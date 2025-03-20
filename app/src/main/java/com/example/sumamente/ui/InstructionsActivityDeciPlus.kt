@@ -15,6 +15,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.sumamente.R
+import androidx.core.view.isVisible
+import androidx.core.content.edit
 
 class InstructionsActivityDeciPlus : AppCompatActivity() {
 
@@ -118,10 +120,10 @@ class InstructionsActivityDeciPlus : AppCompatActivity() {
             add(ObjectAnimator.ofFloat(tvNegativeNumberWarning, "alpha", 0f, 1f).setDuration(fadeInDuration))
             add(ObjectAnimator.ofFloat(tvTimeLimit, "alpha", 0f, 1f).setDuration(fadeInDuration))
 
-            if (tvRepeatedNumbersMessage.visibility == View.VISIBLE) {
+            if (tvRepeatedNumbersMessage.isVisible) {
                 add(ObjectAnimator.ofFloat(tvRepeatedNumbersMessage, "translationY", 0f, -20f, 0f).setDuration(250L))
             }
-            if (tvNegativeNumberWarning.visibility == View.VISIBLE) {
+            if (tvNegativeNumberWarning.isVisible) {
                 add(ObjectAnimator.ofFloat(tvNegativeNumberWarning, "translationY", 0f, -20f, 0f).setDuration(250L))
             }
 
@@ -153,7 +155,7 @@ class InstructionsActivityDeciPlus : AppCompatActivity() {
                     val mode = responseMode
                     if (mode != null) {
                         val prefs = getSharedPreferences("MyPrefsDeciPlus", Context.MODE_PRIVATE)
-                        prefs.edit().putString("selectedResponseModeDeciPlus", mode.name).apply()
+                        prefs.edit { putString("selectedResponseModeDeciPlus", mode.name) }
                     }
                     val intent = Intent(this@InstructionsActivityDeciPlus, GameActivityDeciPlus::class.java)
                     intent.putExtra("LEVEL", level)

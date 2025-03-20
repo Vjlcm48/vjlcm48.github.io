@@ -32,6 +32,7 @@ private val LightColorScheme = lightColorScheme(
     */
 )
 
+@Suppress("unused")
 @Composable
 fun SumaMenteTheme(
         darkTheme: Boolean = isSystemInDarkTheme(),
