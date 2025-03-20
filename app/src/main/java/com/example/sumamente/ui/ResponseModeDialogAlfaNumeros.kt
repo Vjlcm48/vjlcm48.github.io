@@ -4,7 +4,6 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.os.Handler
@@ -21,8 +20,8 @@ import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDialog
 import androidx.core.content.ContextCompat
-import com.example.sumamente.R
 import androidx.core.graphics.drawable.toDrawable
+import com.example.sumamente.R
 
 enum class ResponseModeAlfaNumeros {
     SIMPLE_SELECTION,
