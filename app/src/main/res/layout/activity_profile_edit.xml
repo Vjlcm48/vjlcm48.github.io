@@ -1,0 +1,67 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <LinearLayout
+        android:id="@+id/profile_edit_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:id="@+id/closeButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_close"
+            android:contentDescription="@string/cerrar"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_gravity="end"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/title_profile_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_profile_edit"
+            android:textSize="22sp"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginBottom="24dp" />
+
+        <Button
+            android:id="@+id/btn_edit_username"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:background="@drawable/button_background"
+            android:text="@string/edit_username"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/edit_username_desc" />
+
+        <Button
+            android:id="@+id/btn_edit_flag"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:background="@drawable/button_background"
+            android:text="@string/edit_flag"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/edit_flag_desc" />
+
+    </LinearLayout>
+</RelativeLayout>

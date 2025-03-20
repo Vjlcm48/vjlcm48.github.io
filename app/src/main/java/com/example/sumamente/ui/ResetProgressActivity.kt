@@ -1,0 +1,519 @@
+package com.example.sumamente.ui
+
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.content.Context
+import android.graphics.Color
+import android.graphics.Typeface
+import android.graphics.drawable.GradientDrawable
+import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.ImageView
+import android.widget.RelativeLayout
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.content.edit
+import androidx.core.graphics.drawable.toDrawable
+import com.example.sumamente.R
+import java.util.Locale
+
+class ResetProgressActivity : AppCompatActivity() {
+
+    private var selectedGame: String? = null
+    private var selectedDifficulty: String? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        ScoreManager.init(this)
+        ScoreManager.initPrincipiante(this)
+        ScoreManager.initPro(this)
+        ScoreManager.initRomas(this)
+        ScoreManager.initDeciPlus(this)
+        ScoreManager.initAlfaNumeros(this)
+        ScoreManager.initSumaResta(this)
+        ScoreManager.initMasPlus(this)
+        ScoreManager.initGenioPlus(this)
+
+        setContentView(R.layout.activity_reset_progress)
+
+        val btnNumerosPlus = findViewById<Button>(R.id.btn_numeros_plus)
+        val btnDeciPlus = findViewById<Button>(R.id.btn_deci_plus)
+        val btnRomas = findViewById<Button>(R.id.btn_romas)
+        val btnAlfaNumeros = findViewById<Button>(R.id.btn_alfa_numeros)
+        val btnSumaresta = findViewById<Button>(R.id.btn_sumaresta)
+        val btnMasPlus = findViewById<Button>(R.id.btn_mas_plus)
+        val btnGenioPlus = findViewById<Button>(R.id.btn_genio_plus)
+        val closeButton = findViewById<ImageView>(R.id.closeButton)
+
+        val alfaText = getString(R.string.text_alfa)
+        val numerosText = getString(R.string.text_numeros)
+        val alfaNumerosText = "$alfaText$numerosText"
+        val spannableAlfaNumeros = SpannableString(alfaNumerosText)
+
+        spannableAlfaNumeros.setSpan(
+            ForegroundColorSpan(ContextCompat.getColor(this, R.color.red_primary)),
+            0, alfaText.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        spannableAlfaNumeros.setSpan(
+            ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_primary_darker)),
+            alfaText.length, alfaNumerosText.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        btnAlfaNumeros.text = spannableAlfaNumeros
+
+        val sumaText = getString(R.string.text_suma)
+        val restaText = getString(R.string.text_resta)
+        val sumarestaText = "$sumaText$restaText"
+        val spannableSumaresta = SpannableString(sumarestaText)
+
+        spannableSumaresta.setSpan(
+            ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_pressed)),
+            0, sumaText.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        spannableSumaresta.setSpan(
+            ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)),
+            sumaText.length, sumarestaText.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        btnSumaresta.text = spannableSumaresta
+
+        btnNumerosPlus.setOnClickListener {
+            applyBounceEffect(it) {
+                selectedGame = "NumerosPlus"
+                showDifficultySelectionDialog(getString(R.string.game_numeros_plus))
+            }
+        }
+
+        btnDeciPlus.setOnClickListener {
+            applyBounceEffect(it) {
+                selectedGame = "DeciPlus"
+                showDifficultySelectionDialog(getString(R.string.game_deci_plus))
+            }
+        }
+
+        btnRomas.setOnClickListener {
+            applyBounceEffect(it) {
+                selectedGame = "Romas"
+                showDifficultySelectionDialog(getString(R.string.game_romas))
+            }
+        }
+
+        btnAlfaNumeros.setOnClickListener {
+            applyBounceEffect(it) {
+                selectedGame = "AlfaNumeros"
+                showDifficultySelectionDialog(getString(R.string.game_alfa_numeros))
+            }
+        }
+
+        btnSumaresta.setOnClickListener {
+            applyBounceEffect(it) {
+                selectedGame = "Sumaresta"
+                showDifficultySelectionDialog(getString(R.string.game_sumaresta))
+            }
+        }
+
+        btnMasPlus.setOnClickListener {
+            applyBounceEffect(it) {
+                selectedGame = "MasPlus"
+                showDifficultySelectionDialog(getString(R.string.game_mas_plus))
+            }
+        }
+
+        btnGenioPlus.setOnClickListener {
+            applyBounceEffect(it) {
+                selectedGame = "GenioPlus"
+                showDifficultySelectionDialog(getString(R.string.game_genio_plus))
+            }
+        }
+
+        closeButton.setOnClickListener {
+            applyBounceEffect(it) {
+                finish()
+            }
+        }
+    }
+
+    private fun getDifficultyKey(gameType: String): String {
+        return "difficulty_${gameType.lowercase(Locale.getDefault())}"
+    }
+
+    private fun showDifficultySelectionDialog(gameName: String) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_select_difficulty, null)
+
+        val tvGameName = dialogView.findViewById<TextView>(R.id.tv_game_name)
+        tvGameName.text = gameName
+
+        val btnPrincipiante = dialogView.findViewById<RelativeLayout>(R.id.btn_principiante)
+        val btnAvanzado = dialogView.findViewById<RelativeLayout>(R.id.btn_avanzado)
+        val btnPro = dialogView.findViewById<RelativeLayout>(R.id.btn_pro)
+
+        val originalCloseButton = dialogView.findViewById<ImageView>(R.id.closeButton)
+        originalCloseButton?.visibility = View.GONE
+
+        if (selectedGame == "NumerosPlus") {
+            btnPrincipiante.isEnabled = true
+            btnAvanzado.isEnabled = true
+            btnPro.isEnabled = true
+            btnPro.alpha = 1.0f
+        } else {
+            btnPrincipiante.isEnabled = false
+            btnPrincipiante.alpha = 0.5f
+            btnAvanzado.isEnabled = true
+            btnPro.isEnabled = false
+            btnPro.alpha = 0.5f
+        }
+
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+
+        alertDialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
+
+        val container = dialogView.findViewById<RelativeLayout>(R.id.difficulty_selection_container)
+        val closeImageView = ImageView(this).apply {
+            layoutParams = RelativeLayout.LayoutParams(
+                24.dpToPx(this@ResetProgressActivity),
+                24.dpToPx(this@ResetProgressActivity)
+            ).apply {
+                addRule(RelativeLayout.ALIGN_PARENT_END)
+                addRule(RelativeLayout.ALIGN_PARENT_TOP)
+                setMargins(0, 8.dpToPx(this@ResetProgressActivity), 8.dpToPx(this@ResetProgressActivity), 0)
+            }
+            setImageResource(R.drawable.ic_close_black)
+            contentDescription = getString(R.string.cerrar)
+            isClickable = true
+            isFocusable = true
+
+            setOnClickListener { view ->
+                applyBounceEffect(view) {
+                    alertDialog.dismiss()
+                }
+            }
+        }
+
+        container.addView(closeImageView)
+
+        btnPrincipiante.setOnClickListener {
+            applyBounceEffect(it) {
+                selectedDifficulty = DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE
+
+                if (selectedGame == "NumerosPlus") {
+                    val prefsNumeros = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                    prefsNumeros.edit {
+                        putString(getDifficultyKey(selectedGame!!),
+                            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE)
+                    }
+                }
+                alertDialog.dismiss()
+                showResetOptionsDialog()
+            }
+        }
+
+        btnAvanzado.setOnClickListener {
+            applyBounceEffect(it) {
+                selectedDifficulty = DifficultySelectionActivity.DIFFICULTY_AVANZADO
+
+                if (selectedGame == "NumerosPlus") {
+                    val prefsNumeros = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                    prefsNumeros.edit {
+                        putString(getDifficultyKey(selectedGame!!),
+                            DifficultySelectionActivity.DIFFICULTY_AVANZADO)
+                    }
+                }
+                alertDialog.dismiss()
+                showResetOptionsDialog()
+            }
+        }
+
+        btnPro.setOnClickListener {
+            applyBounceEffect(it) {
+                selectedDifficulty = DifficultySelectionActivity.DIFFICULTY_PRO
+
+                if (selectedGame == "NumerosPlus") {
+                    val prefsNumeros = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                    prefsNumeros.edit {
+                        putString(getDifficultyKey(selectedGame!!),
+                            DifficultySelectionActivity.DIFFICULTY_PRO)
+                    }
+                }
+                alertDialog.dismiss()
+                showResetOptionsDialog()
+            }
+        }
+
+        alertDialog.show()
+
+        alertDialog.window?.let { window ->
+            window.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
+
+            val roundedDrawable = GradientDrawable().apply {
+                setColor(Color.WHITE)
+                cornerRadius = 30f
+            }
+            container.background = roundedDrawable
+        }
+    }
+
+    private fun Int.dpToPx(context: Context): Int {
+        return (this * context.resources.displayMetrics.density).toInt()
+    }
+
+    private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
+        val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.9f).setDuration(50)
+        val scaleDownY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 0.9f).setDuration(50)
+        val scaleUpX = ObjectAnimator.ofFloat(view, "scaleX", 0.9f, 1f).setDuration(50)
+        val scaleUpY = ObjectAnimator.ofFloat(view, "scaleY", 0.9f, 1f).setDuration(50)
+
+        val animatorSet = AnimatorSet()
+        animatorSet.playTogether(scaleDownX, scaleDownY)
+        animatorSet.playTogether(scaleUpX, scaleUpY)
+        animatorSet.playSequentially(scaleDownX, scaleUpX)
+
+        animatorSet.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator) {
+                onAnimationEnd()
+            }
+        })
+
+        animatorSet.start()
+    }
+
+    private fun showResetOptionsDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_reset_options, null)
+        val checkboxResetScore = dialogView.findViewById<CheckBox>(R.id.checkbox_reset_score)
+        val checkboxResetResponseMode = dialogView.findViewById<CheckBox>(R.id.checkbox_reset_response_mode)
+        val buttonAccept = dialogView.findViewById<Button>(R.id.button_accept)
+        val closeButtonDialog = dialogView.findViewById<ImageView>(R.id.closeButtonDialog)
+
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+
+        buttonAccept.setOnClickListener { view ->
+            applyBounceEffect(view) {
+                val selectedOptions = mutableListOf<String>()
+                if (checkboxResetScore.isChecked) {
+                    selectedOptions.add(getString(R.string.reset_score))
+                }
+                if (checkboxResetResponseMode.isChecked) {
+                    selectedOptions.add(getString(R.string.reset_response_mode))
+                }
+
+                if (selectedOptions.isNotEmpty()) {
+                    showConfirmationDialog(selectedOptions)
+                } else {
+                    Toast.makeText(this, getString(R.string.toast_select_option), Toast.LENGTH_SHORT).show()
+                }
+                alertDialog.dismiss()
+            }
+        }
+
+        closeButtonDialog.setOnClickListener { view ->
+            applyBounceEffect(view) {
+                alertDialog.dismiss()
+            }
+        }
+
+        alertDialog.show()
+        alertDialog.window?.let { window ->
+            window.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
+
+            val rootView = dialogView.rootView
+            if (rootView is ViewGroup) {
+                val roundedDrawable = GradientDrawable().apply {
+                    setColor(Color.WHITE)
+                    cornerRadius = 30f
+                }
+                rootView.background = roundedDrawable
+            }
+        }
+    }
+
+    private fun showConfirmationDialog(selectedOptions: List<String>) {
+        val message = getString(R.string.confirmation_message)
+        val yesText = SpannableString(getString(R.string.yes))
+        yesText.setSpan(StyleSpan(Typeface.BOLD), 0, yesText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        val noText = SpannableString(getString(R.string.no))
+        noText.setSpan(StyleSpan(Typeface.BOLD), 0, noText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        val alertDialog = AlertDialog.Builder(this)
+            .setMessage(message)
+            .setPositiveButton(yesText, null)
+            .setNegativeButton(noText, null)
+            .create()
+
+        alertDialog.show()
+        alertDialog.window?.setBackgroundDrawableResource(R.drawable.dialog_background)
+
+        val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+        positiveButton.setOnClickListener { view ->
+            applyBounceEffect(view) {
+                resetSelectedData(selectedOptions)
+                alertDialog.dismiss()
+            }
+        }
+
+        val negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+        negativeButton.setOnClickListener { view ->
+            applyBounceEffect(view) {
+                alertDialog.dismiss()
+            }
+        }
+    }
+
+    private fun resetSelectedData(selectedOptions: List<String>) {
+        selectedGame?.let { game ->
+            selectedDifficulty?.let { difficulty ->
+                if (selectedOptions.contains(getString(R.string.reset_score))) {
+                    clearScoreDataForGame(game, difficulty)
+                }
+                if (selectedOptions.contains(getString(R.string.reset_response_mode))) {
+                    clearResponseModeForGame(game, difficulty)
+                }
+            }
+        }
+
+        ScoreManager.init(this)
+        ScoreManager.initPrincipiante(this)
+        ScoreManager.initPro(this)
+        ScoreManager.initDeciPlus(this)
+        ScoreManager.initRomas(this)
+        ScoreManager.initAlfaNumeros(this)
+        ScoreManager.initSumaResta(this)
+        ScoreManager.initMasPlus(this)
+        ScoreManager.initGenioPlus(this)
+
+        Toast.makeText(this, "Datos reiniciados correctamente", Toast.LENGTH_SHORT).show()
+
+        selectedGame = null
+        selectedDifficulty = null
+    }
+
+    private fun clearScoreDataForGame(gameName: String, difficulty: String) {
+        when (gameName) {
+            "NumerosPlus" -> {
+                when (difficulty) {
+                    DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> {
+                        val scorePrefs = getSharedPreferences("ScorePrefsPrincipiante", Context.MODE_PRIVATE)
+                        scorePrefs.edit { clear() }
+                        ScoreManager.resetPrincipiante()
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_AVANZADO -> {
+                        val scorePrefs = getSharedPreferences("ScorePrefs", Context.MODE_PRIVATE)
+                        scorePrefs.edit { clear() }
+                        ScoreManager.reset()
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_PRO -> {
+                        val scorePrefs = getSharedPreferences("ScorePrefsPro", Context.MODE_PRIVATE)
+                        scorePrefs.edit { clear() }
+                        ScoreManager.resetPro()
+                    }
+                }
+            }
+            "DeciPlus" -> {
+                val scorePrefs = getSharedPreferences("ScorePrefsDeciPlus", Context.MODE_PRIVATE)
+                scorePrefs.edit { clear() }
+                ScoreManager.resetDeciPlus()
+            }
+            "Romas" -> {
+                val scorePrefs = getSharedPreferences("ScorePrefsRomas", Context.MODE_PRIVATE)
+                scorePrefs.edit { clear() }
+                ScoreManager.resetRomas()
+            }
+            "AlfaNumeros" -> {
+                val scorePrefs = getSharedPreferences("ScorePrefsAlfaNumeros", Context.MODE_PRIVATE)
+                scorePrefs.edit { clear() }
+                ScoreManager.resetAlfaNumeros()
+            }
+            "Sumaresta" -> {
+                val scorePrefs = getSharedPreferences("ScorePrefsSumaResta", Context.MODE_PRIVATE)
+                scorePrefs.edit { clear() }
+                ScoreManager.resetSumaResta()
+            }
+            "MasPlus" -> {
+                val scorePrefs = getSharedPreferences("ScorePrefsMasPlus", Context.MODE_PRIVATE)
+                scorePrefs.edit { clear() }
+                ScoreManager.resetMasPlus()
+            }
+            "GenioPlus" -> {
+                val scorePrefs = getSharedPreferences("ScorePrefsGenioPlus", Context.MODE_PRIVATE)
+                scorePrefs.edit { clear() }
+                ScoreManager.resetGenioPlus()
+            }
+        }
+    }
+
+    private fun clearResponseModeForGame(gameName: String, difficulty: String) {
+        when (gameName) {
+            "NumerosPlus" -> {
+                val myPrefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                when (difficulty) {
+                    DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> {
+                        myPrefs.edit {
+                            remove("selectedResponseModePrincipiante")
+
+                            putString(getDifficultyKey(selectedGame!!),
+                                DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE)
+                        }
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_AVANZADO -> {
+                        myPrefs.edit {
+                            remove("selectedResponseMode")
+
+                            putString(getDifficultyKey(selectedGame!!),
+                                DifficultySelectionActivity.DIFFICULTY_AVANZADO)
+                        }
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_PRO -> {
+                        myPrefs.edit {
+                            remove("selectedResponseModePro")
+
+                            putString(getDifficultyKey(selectedGame!!),
+                                DifficultySelectionActivity.DIFFICULTY_PRO)
+                        }
+                    }
+                }
+            }
+            "DeciPlus" -> {
+                val myPrefs = getSharedPreferences("MyPrefsDeciPlus", Context.MODE_PRIVATE)
+                myPrefs.edit { remove("selectedResponseModeDialogDeciPlus") }
+            }
+            "Romas" -> {
+                val myPrefs = getSharedPreferences("MyPrefsRomas", Context.MODE_PRIVATE)
+                myPrefs.edit { remove("selectedResponseModeRomas") }
+            }
+            "AlfaNumeros" -> {
+                val myPrefs = getSharedPreferences("MyPrefsAlfaNumeros", Context.MODE_PRIVATE)
+                myPrefs.edit { remove("selectedResponseModeAlfaNumeros") }
+            }
+            "Sumaresta" -> {
+                val myPrefs = getSharedPreferences("MyPrefsSumaResta", Context.MODE_PRIVATE)
+                myPrefs.edit { remove("selectedResponseModeSumaResta") }
+            }
+            "MasPlus" -> {
+                val myPrefs = getSharedPreferences("MyPrefsMasPlus", Context.MODE_PRIVATE)
+                myPrefs.edit { remove("selectedResponseModeMasPlus") }
+            }
+            "GenioPlus" -> {
+                val myPrefs = getSharedPreferences("MyPrefsGenioPlus", Context.MODE_PRIVATE)
+                myPrefs.edit { remove("selectedResponseModeGenioPlus") }
+            }
+        }
+    }
+}

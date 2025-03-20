@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_primary"
+    android:padding="32dp"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:id="@+id/difficulty_selection_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="312dp"
+        android:minHeight="500dp"
+        android:background="@drawable/dialog_background"
+        android:elevation="4dp"
+        android:padding="24dp"
+        android:layout_centerInParent="true"
+        android:importantForAccessibility="no">
+
+        <TextView
+            android:id="@+id/tv_game_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/game_numeros_plus"
+            android:textColor="@color/blue_pressed"
+            android:textSize="24sp"
+            android:fontFamily="@font/roboto_bold"/>
+
+        <TextView
+            android:id="@+id/tv_game_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_game_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="@string/difficulty_selection_title"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            android:fontFamily="@font/roboto_bold"/>
+
+
+        <RelativeLayout
+            android:id="@+id/btn_principiante"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_game_title"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/button_background_principiante"
+            android:clickable="true"
+            android:contentDescription="@string/difficulty_principiante"
+            android:focusable="true"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_difficulty_title_principiante"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="13dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/difficulty_principiante"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_star_principiante"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:layout_toEndOf="@id/tv_difficulty_title_principiante"
+                android:text="@string/difficulty_one_star"
+                android:textColor="@color/dark_goldenrod"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_difficulty_subtitle_principiante"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_difficulty_title_principiante"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="4dp"
+                android:text="@string/difficulty_subtitle_principiante"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/btn_avanzado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_principiante"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/button_background_avanzado"
+            android:clickable="true"
+            android:contentDescription="@string/difficulty_avanzado"
+            android:focusable="true"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_difficulty_title_avanzado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="13dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/difficulty_avanzado"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_star_avanzado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:layout_toEndOf="@id/tv_difficulty_title_avanzado"
+                android:text="@string/difficulty_two_stars"
+                android:textColor="@color/dark_goldenrod"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_difficulty_subtitle_avanzado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_difficulty_title_avanzado"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="4dp"
+                android:text="@string/difficulty_subtitle_avanzado"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/btn_pro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_avanzado"
+            android:background="@drawable/button_background_pro"
+            android:clickable="true"
+            android:contentDescription="@string/difficulty_pro"
+            android:focusable="true"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_difficulty_title_pro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="13dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/difficulty_pro"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_star_pro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:layout_toEndOf="@id/tv_difficulty_title_pro"
+                android:text="@string/difficulty_three_stars"
+                android:textColor="@color/dark_goldenrod"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_difficulty_subtitle_pro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_difficulty_title_pro"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="4dp"
+                android:text="@string/difficulty_subtitle_pro"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/closeButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignTop="@+id/difficulty_selection_container"
+        android:layout_alignEnd="@+id/difficulty_selection_container"
+        android:layout_marginTop="-76dp"
+        android:layout_marginEnd="2dp"
+        android:clickable="true"
+        android:contentDescription="@string/cerrar"
+        android:focusable="true"
+        android:src="@drawable/ic_close_black" />
+
+</RelativeLayout>

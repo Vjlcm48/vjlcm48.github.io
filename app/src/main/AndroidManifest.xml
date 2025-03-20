@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.sumamente">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/data_extraction_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:configChanges="locale|layoutDirection"
+        android:theme="@style/Theme.SumaMente"
+        android:hardwareAccelerated="true">
+
+        <activity
+            android:name=".ui.SettingsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.StatisticsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.FlagSelectionActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.LevelsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.LevelsActivityPrincipiante"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.LevelsActivityPro"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.LevelsActivityDeciPlus"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.LevelsActivityRomas"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.LevelsActivityAlfaNumeros"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.LevelsActivitySumaResta"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.LevelsActivityMasPlus"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.LevelsActivityGenioPlus"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.TutorialActivityNumeros"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.TutorialActivityDeciPlus"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.TutorialActivityRomas"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.TutorialActivitySumaResta"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.TutorialActivityAlfaNumeros"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.TutorialActivityMasPlus"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.TutorialActivityGenioPlus"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.HelpTutorialActivityNumeros"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.HelpTutorialActivityDeciPlus"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.HelpTutorialActivityRomas"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.HelpTutorialActivitySumaResta"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.HelpTutorialActivityAlfaNumeros"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.HelpTutorialActivityMasPlus"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.HelpTutorialActivityGenioPlus"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.InstructionsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.InstructionsActivityPrincipiante"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.InstructionsActivityPro"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.InstructionsActivityDeciPlus"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.InstructionsActivityRomas"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.InstructionsActivityAlfaNumeros"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.InstructionsActivitySumaResta"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.InstructionsActivityMasPlus"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.InstructionsActivityGenioPlus"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.GameActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.GameActivityPrincipiante"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.GameActivityPro"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.GameActivityDeciPlus"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.GameActivityRomas"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.GameActivityAlfaNumeros"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.GameActivitySumaResta"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.GameActivityMasPlus"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.GameActivityGenioPlus"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SumaMente.Launcher">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.TransitionActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.NotificationsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.UsernameSelectionActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.MainGameActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.LevelResultActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.LevelResultActivityPrincipiante"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.LevelResultActivityPro"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.ExerciseReviewActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.LevelResultActivityDeciPlus"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.LevelResultActivityRomas"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.LevelResultActivityAlfaNumeros"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.LevelResultActivitySumaResta"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.LevelResultActivityMasPlus"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.LevelResultActivityGenioPlus"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.GameSelectionActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.DifficultySelectionActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.HelpGameSelectionActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.ResetProgressActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+    </application>
+
+</manifest>

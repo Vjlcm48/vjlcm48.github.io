@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "113803539978",
+    "project_id": "sumamente-3f788",
+    "storage_bucket": "sumamente-3f788.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:113803539978:android:1a617e1a043914fe6991f3",
+        "android_client_info": {
+          "package_name": "com.example.sumamente"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZUsiXW8nJ6HgAF_cf6l-fYDQ9ec-lFV8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

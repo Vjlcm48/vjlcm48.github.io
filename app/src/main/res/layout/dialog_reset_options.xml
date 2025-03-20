@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
+    android:padding="24dp">
+
+    <ImageView
+        android:id="@+id/closeButtonDialog"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_close"
+        android:contentDescription="@string/cerrar"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="16dp" />
+
+    <LinearLayout
+        android:id="@+id/content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/closeButtonDialog"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select_data_to_reset"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:layout_marginBottom="16dp" />
+
+        <LinearLayout
+            android:id="@+id/linear_reset_score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/text_reset_score"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/reset_score"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:layout_weight="1" />
+
+            <CheckBox
+                android:id="@+id/checkbox_reset_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/reset_score"
+                android:minWidth="48dp"
+                android:minHeight="48dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_reset_response_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:id="@+id/text_reset_response_mode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/reset_response_mode"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:layout_weight="1" />
+
+            <CheckBox
+                android:id="@+id/checkbox_reset_response_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/reset_response_mode"
+                android:minWidth="48dp"
+                android:minHeight="48dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/accept"
+            android:background="@drawable/button_background"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:fontFamily="@font/roboto_bold"
+            android:paddingHorizontal="32dp"
+            android:gravity="center" />
+    </LinearLayout>
+</RelativeLayout>

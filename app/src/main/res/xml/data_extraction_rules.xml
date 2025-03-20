@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fullBackupContent>
+    <exclude domain="sharedpref" path="MyPrefsDeciPlus.xml"/>
+    <exclude domain="sharedpref" path="ScorePrefsDeciPlus.xml"/>
+    <exclude domain="sharedpref" path="MyPrefs.xml"/>
+    <exclude domain="sharedpref" path="ScorePrefs.xml"/>
+</fullBackupContent>

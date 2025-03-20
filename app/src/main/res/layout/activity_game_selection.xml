@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_primary"
+    android:padding="32dp"
+    android:gravity="center">
+
+    <LinearLayout
+        android:id="@+id/game_selection_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/dialog_background"
+        android:padding="24dp"
+        android:layout_centerInParent="true"
+        android:elevation="4dp">
+
+        <ImageView
+            android:id="@+id/closeButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_close"
+            android:contentDescription="@string/cerrar"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_gravity="end"
+            android:layout_marginBottom="16dp" />
+
+        <RelativeLayout
+            android:id="@+id/btn_numeros_plus"
+            android:layout_width="271dp"
+            android:layout_height="59dp"
+            android:background="@drawable/button_background"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tv_game_name_numeros_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/game_numeros_plus"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_bold"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_alignParentStart="true" />
+
+            <ImageView
+                android:id="@+id/icon_star_numeros_plus"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_star"
+                android:contentDescription="@string/star_icon"
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="80dp" />
+
+            <TextView
+                android:id="@+id/tv_points_numeros_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_score"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_bold"
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/btn_deci_plus"
+            android:layout_width="271dp"
+            android:layout_height="59dp"
+            android:background="@drawable/button_background_deci"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tv_game_name_deci_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/game_deci_plus"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_bold"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_alignParentStart="true" />
+
+            <ImageView
+                android:id="@+id/icon_star_deci_plus"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_star"
+                android:contentDescription="@string/star_icon"
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="80dp" />
+
+            <TextView
+                android:id="@+id/tv_points_deci_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_score"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_bold"
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/btn_romas"
+            android:layout_width="271dp"
+            android:layout_height="59dp"
+            android:background="@drawable/button_background_romas"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tv_game_name_romas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/game_romas"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_bold"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_alignParentStart="true" />
+
+            <ImageView
+                android:id="@+id/icon_star_romas"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_star"
+                android:contentDescription="@string/star_icon"
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="80dp" />
+
+            <TextView
+                android:id="@+id/tv_points_romas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_score"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_bold"
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/btn_alfa_numeros"
+            android:layout_width="271dp"
+            android:layout_height="59dp"
+            android:background="@drawable/button_background_alfa_numeros"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tv_game_name_alfa_numeros"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/game_alfa_numeros"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_bold"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_alignParentStart="true" />
+
+            <ImageView
+                android:id="@+id/icon_star_alfa_numeros"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_star"
+                android:contentDescription="@string/star_icon"
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="80dp" />
+
+            <TextView
+                android:id="@+id/tv_points_alfa_numeros"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_score"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_bold"
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/btn_sumaresta"
+            android:layout_width="271dp"
+            android:layout_height="59dp"
+            android:background="@drawable/button_background_sumaresta"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tv_game_name_sumaresta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/game_sumaresta"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_bold"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_alignParentStart="true" />
+
+            <ImageView
+                android:id="@+id/icon_star_sumaresta"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_star"
+                android:contentDescription="@string/star_icon"
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="80dp" />
+
+            <TextView
+                android:id="@+id/tv_points_sumaresta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_score"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_bold"
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/btn_mas_plus"
+            android:layout_width="271dp"
+            android:layout_height="59dp"
+            android:background="@drawable/button_background_mas"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tv_game_name_mas_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/game_mas_plus"
+                android:textColor="@color/grey_light"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_bold"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_alignParentStart="true" />
+
+            <ImageView
+                android:id="@+id/icon_star_mas_plus"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_star"
+                android:contentDescription="@string/star_icon"
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="80dp" />
+
+            <TextView
+                android:id="@+id/tv_points_mas_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_score"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_bold"
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/btn_genio_plus"
+            android:layout_width="271dp"
+            android:layout_height="59dp"
+            android:background="@drawable/button_background_genio"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tv_game_name_genio_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/game_genio_plus"
+                android:textColor="@color/blue_pressed"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_bold"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_alignParentStart="true" />
+
+            <ImageView
+                android:id="@+id/icon_star_genio_plus"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_star"
+                android:contentDescription="@string/star_icon"
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="80dp" />
+
+            <TextView
+                android:id="@+id/tv_points_genio_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_score"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_bold"
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>
