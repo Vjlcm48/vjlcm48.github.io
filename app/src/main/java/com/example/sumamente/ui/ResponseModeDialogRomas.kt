@@ -22,6 +22,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatDialog
 import androidx.core.content.ContextCompat
 import com.example.sumamente.R
+import androidx.core.graphics.drawable.toDrawable
 
 enum class ResponseModeRomas {
     SIMPLE_SELECTION_ROMAS,
@@ -36,7 +37,7 @@ class ResponseModeDialogRomas(context: Context) : AppCompatDialog(context) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.response_mode_dialog_romas)
 
-        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
 
         val layoutParams = WindowManager.LayoutParams()
         layoutParams.copyFrom(window?.attributes)

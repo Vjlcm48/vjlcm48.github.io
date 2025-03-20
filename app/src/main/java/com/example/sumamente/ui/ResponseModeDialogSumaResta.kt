@@ -22,6 +22,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatDialog
 import androidx.core.content.ContextCompat
 import com.example.sumamente.R
+import androidx.core.graphics.drawable.toDrawable
 
 enum class ResponseModeSumaResta {
     SIMPLE_SELECTION,
@@ -36,7 +37,7 @@ class ResponseModeDialogSumaResta(context: Context) : AppCompatDialog(context) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.response_mode_dialog_suma_resta)
 
-        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
 
         val layoutParams = WindowManager.LayoutParams()
         layoutParams.copyFrom(window?.attributes)

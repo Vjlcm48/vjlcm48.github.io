@@ -8,12 +8,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.content.edit
+import androidx.core.view.isVisible
 import com.example.sumamente.R
 
 class InstructionsActivitySumaResta : AppCompatActivity() {
@@ -114,7 +115,7 @@ class InstructionsActivitySumaResta : AppCompatActivity() {
         animationsList.add(negativeNumberAnimation)
         animationsList.add(timeLimitAnimation)
 
-        if (tvRepeatedNumbersMessage.visibility == View.VISIBLE && tvNegativeNumberWarning.visibility == View.VISIBLE) {
+        if (tvRepeatedNumbersMessage.isVisible && tvNegativeNumberWarning.isVisible) {
             val bounceAmarillos = ObjectAnimator.ofFloat(tvRepeatedNumbersMessage, "translationY", 0f, -20f, 0f).apply {
                 duration = 250L
             }
@@ -123,12 +124,12 @@ class InstructionsActivitySumaResta : AppCompatActivity() {
             }
             animationsList.add(bounceAmarillos)
             animationsList.add(bounceNegativos)
-        } else if (tvRepeatedNumbersMessage.visibility == View.VISIBLE) {
+        } else if (tvRepeatedNumbersMessage.isVisible) {
             val bounceAmarillos = ObjectAnimator.ofFloat(tvRepeatedNumbersMessage, "translationY", 0f, -20f, 0f).apply {
                 duration = 250L
             }
             animationsList.add(bounceAmarillos)
-        } else if (tvNegativeNumberWarning.visibility == View.VISIBLE) {
+        } else if (tvNegativeNumberWarning.isVisible) {
             val bounceNegativos = ObjectAnimator.ofFloat(tvNegativeNumberWarning, "translationY", 0f, -20f, 0f).apply {
                 duration = 250L
             }
@@ -162,7 +163,7 @@ class InstructionsActivitySumaResta : AppCompatActivity() {
                     val mode = responseMode
                     if (mode != null) {
                         val prefs = getSharedPreferences("MyPrefsSumaResta", Context.MODE_PRIVATE)
-                        prefs.edit().putString("selectedResponseModeSumaResta", mode.name).apply()
+                        prefs.edit { putString("selectedResponseModeSumaResta", mode.name) }
                     }
                     val intent = Intent(this@InstructionsActivitySumaResta, GameActivitySumaResta::class.java)
                     intent.putExtra("LEVEL", level)

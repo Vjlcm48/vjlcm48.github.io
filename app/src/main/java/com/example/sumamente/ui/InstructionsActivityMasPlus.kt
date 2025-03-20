@@ -8,12 +8,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.content.edit
+import androidx.core.view.isVisible
 import com.example.sumamente.R
 
 class InstructionsActivityMasPlus : AppCompatActivity() {
@@ -103,10 +104,10 @@ class InstructionsActivityMasPlus : AppCompatActivity() {
             add(ObjectAnimator.ofFloat(tvNegativeNumberWarning, "alpha", 0f, 1f).setDuration(fadeInDuration))
             add(ObjectAnimator.ofFloat(tvTimeLimit, "alpha", 0f, 1f).setDuration(fadeInDuration))
 
-            if (tvRepeatedNumbersMessage.visibility == View.VISIBLE) {
+            if (tvRepeatedNumbersMessage.isVisible) {
                 add(ObjectAnimator.ofFloat(tvRepeatedNumbersMessage, "translationY", 0f, -20f, 0f).setDuration(250L))
             }
-            if (tvNegativeNumberWarning.visibility == View.VISIBLE) {
+            if (tvNegativeNumberWarning.isVisible) {
                 add(ObjectAnimator.ofFloat(tvNegativeNumberWarning, "translationY", 0f, -20f, 0f).setDuration(250L))
             }
 
@@ -138,7 +139,7 @@ class InstructionsActivityMasPlus : AppCompatActivity() {
                     val mode = responseMode
                     if (mode != null) {
                         val prefs = getSharedPreferences("MyPrefsMasPlus", Context.MODE_PRIVATE)
-                        prefs.edit().putString("selectedResponseModeMasPlus", mode.name).apply()
+                        prefs.edit { putString("selectedResponseModeMasPlus", mode.name) }
                     }
                     val intent = Intent(this@InstructionsActivityMasPlus, GameActivityMasPlus::class.java)
                     intent.putExtra("LEVEL", level)

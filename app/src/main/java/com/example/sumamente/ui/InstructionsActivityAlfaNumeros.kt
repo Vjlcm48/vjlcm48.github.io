@@ -15,6 +15,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.sumamente.R
+import androidx.core.view.isVisible
+import androidx.core.content.edit
 
 class InstructionsActivityAlfaNumeros : AppCompatActivity() {
 
@@ -130,7 +132,7 @@ class InstructionsActivityAlfaNumeros : AppCompatActivity() {
         animationsList.add(negativeNumberAnimation)
         animationsList.add(timeLimitAnimation)
 
-        if (tvRepeatedNumbersMessage.visibility == View.VISIBLE && tvNegativeNumberWarning.visibility == View.VISIBLE) {
+        if (tvRepeatedNumbersMessage.isVisible && tvNegativeNumberWarning.isVisible) {
             val bounceAmarillos = ObjectAnimator.ofFloat(tvRepeatedNumbersMessage, "translationY", 0f, -20f, 0f).apply {
                 duration = 250L
             }
@@ -139,12 +141,12 @@ class InstructionsActivityAlfaNumeros : AppCompatActivity() {
             }
             animationsList.add(bounceAmarillos)
             animationsList.add(bounceNegativos)
-        } else if (tvRepeatedNumbersMessage.visibility == View.VISIBLE) {
+        } else if (tvRepeatedNumbersMessage.isVisible) {
             val bounceAmarillos = ObjectAnimator.ofFloat(tvRepeatedNumbersMessage, "translationY", 0f, -20f, 0f).apply {
                 duration = 250L
             }
             animationsList.add(bounceAmarillos)
-        } else if (tvNegativeNumberWarning.visibility == View.VISIBLE) {
+        } else if (tvNegativeNumberWarning.isVisible) {
             val bounceNegativos = ObjectAnimator.ofFloat(tvNegativeNumberWarning, "translationY", 0f, -20f, 0f).apply {
                 duration = 250L
             }
@@ -178,7 +180,7 @@ class InstructionsActivityAlfaNumeros : AppCompatActivity() {
                     val mode = responseMode
                     if (mode != null) {
                         val prefs = getSharedPreferences("MyPrefsAlfaNumeros", Context.MODE_PRIVATE)
-                        prefs.edit().putString("selectedResponseModeAlfaNumeros", mode.name).apply()
+                        prefs.edit { putString("selectedResponseModeAlfaNumeros", mode.name) }
                     }
                     val intent = Intent(this@InstructionsActivityAlfaNumeros, GameActivityAlfaNumeros::class.java)
                     intent.putExtra("LEVEL", level)

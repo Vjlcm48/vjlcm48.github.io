@@ -8,6 +8,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sumamente.R
+import androidx.core.content.edit
 
 class FlagsAdapter(
     private var flags: List<String>,
@@ -286,7 +287,7 @@ class FlagsAdapter(
             onFlagSelected(flagCode, holder.itemView)
 
 
-            sharedPreferences.edit().putString("savedCountryCode", flagCode).apply()
+            sharedPreferences.edit { putString("savedCountryCode", flagCode) }
         }
     }
 

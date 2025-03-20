@@ -15,6 +15,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.sumamente.R
+import androidx.core.view.isVisible
+import androidx.core.content.edit
 
 class InstructionsActivityRomas : AppCompatActivity() {
 
@@ -129,7 +131,7 @@ class InstructionsActivityRomas : AppCompatActivity() {
         animationsList.add(negativeNumberAnimation)
         animationsList.add(timeLimitAnimation)
 
-        if (tvRepeatedNumbersMessage.visibility == View.VISIBLE && tvNegativeNumberWarning.visibility == View.VISIBLE) {
+        if (tvRepeatedNumbersMessage.isVisible && tvNegativeNumberWarning.isVisible) {
             val bounceAmarillos = ObjectAnimator.ofFloat(tvRepeatedNumbersMessage, "translationY", 0f, -20f, 0f).apply {
                 duration = 250L
             }
@@ -138,12 +140,12 @@ class InstructionsActivityRomas : AppCompatActivity() {
             }
             animationsList.add(bounceAmarillos)
             animationsList.add(bounceNegativos)
-        } else if (tvRepeatedNumbersMessage.visibility == View.VISIBLE) {
+        } else if (tvRepeatedNumbersMessage.isVisible) {
             val bounceAmarillos = ObjectAnimator.ofFloat(tvRepeatedNumbersMessage, "translationY", 0f, -20f, 0f).apply {
                 duration = 250L
             }
             animationsList.add(bounceAmarillos)
-        } else if (tvNegativeNumberWarning.visibility == View.VISIBLE) {
+        } else if (tvNegativeNumberWarning.isVisible) {
             val bounceNegativos = ObjectAnimator.ofFloat(tvNegativeNumberWarning, "translationY", 0f, -20f, 0f).apply {
                 duration = 250L
             }
@@ -177,7 +179,7 @@ class InstructionsActivityRomas : AppCompatActivity() {
                     val mode = responseMode
                     if (mode != null) {
                         val prefs = getSharedPreferences("MyPrefsRomas", Context.MODE_PRIVATE)
-                        prefs.edit().putString("selectedResponseModeRomas", mode.name).apply()
+                        prefs.edit { putString("selectedResponseModeRomas", mode.name) }
                     }
                     val intent = Intent(this@InstructionsActivityRomas, GameActivityRomas::class.java)
                     intent.putExtra("LEVEL", level)

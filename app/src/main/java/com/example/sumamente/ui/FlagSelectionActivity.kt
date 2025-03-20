@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sumamente.R
 import java.util.Locale
+import androidx.core.content.edit
 
 class FlagSelectionActivity : AppCompatActivity() {
 
@@ -339,7 +340,7 @@ class FlagSelectionActivity : AppCompatActivity() {
         builder.setTitle(R.string.confirmation)
         builder.setMessage(R.string.confirm_change_flag)
         builder.setPositiveButton(getString(R.string.yes).uppercase(Locale.getDefault())) { dialog, _ ->
-            sharedPreferences.edit().putString("savedCountryCode", newCountryCode).apply()
+            sharedPreferences.edit { putString("savedCountryCode", newCountryCode) }
             currentCountryCode = newCountryCode
 
             val inputField = findViewById<EditText>(R.id.searchEditText)
