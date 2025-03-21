@@ -51,7 +51,6 @@ object ScoreManager {
     private const val KEY_UNLOCKED_LEVELS_GENIO_PLUS = "unlocked_levels_genio_plus"
     private const val KEY_COMPLETED_LEVELS_GENIO_PLUS= "completed_levels_genio_plus"
 
-
     var currentScore: Int = 0
     var unlockedLevels: Int = 2
     val levelScores: MutableMap<Int, Int> = mutableMapOf()
@@ -88,7 +87,6 @@ object ScoreManager {
     var unlockedLevelsGenioPlus: Int = 2
     val levelScoresGenioPlus: MutableMap<Int, Int> = mutableMapOf()
 
-
     private const val KEY_CONSECUTIVE_FAILURES = "consecutive_failures"
     private const val KEY_CONSECUTIVE_FAILURES_PRINCIPIANTE = "consecutive_failures_principiante"
     private const val KEY_CONSECUTIVE_FAILURES_PRO = "consecutive_failures_pro"
@@ -105,7 +103,6 @@ object ScoreManager {
     private lateinit var preferencesSumaResta: SharedPreferences
     private lateinit var preferencesMasPlus: SharedPreferences
     private lateinit var preferencesGenioPlus: SharedPreferences
-
 
     fun init(context: Context) {
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
@@ -181,8 +178,6 @@ object ScoreManager {
         currentScoreGenioPlus = preferencesGenioPlus.getInt(KEY_CURRENT_SCORE_GENIO_PLUS, 0)
         unlockedLevelsGenioPlus = preferencesGenioPlus.getInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS, 2)
     }
-
-
 
     fun saveScore() {
         preferences.edit {
