@@ -465,34 +465,52 @@ class ResetProgressActivity : AppCompatActivity() {
                 val myPrefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
                 when (difficulty) {
                     DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> {
+
+                        val hasSeenTutorialPrincipiante = myPrefs.getBoolean("hasSeenInstructionsPrincipiante", false)
+
                         myPrefs.edit {
                             remove("selectedResponseModePrincipiante")
-
                             putString(getDifficultyKey(selectedGame!!),
                                 DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE)
+
+                            putBoolean("hasSeenInstructionsPrincipiante", hasSeenTutorialPrincipiante)
                         }
                     }
                     DifficultySelectionActivity.DIFFICULTY_AVANZADO -> {
+
+                        val hasSeenTutorialAvanzado = myPrefs.getBoolean("hasSeenInstructions", false)
+
                         myPrefs.edit {
                             remove("selectedResponseMode")
-
                             putString(getDifficultyKey(selectedGame!!),
                                 DifficultySelectionActivity.DIFFICULTY_AVANZADO)
+
+                            putBoolean("hasSeenInstructions", hasSeenTutorialAvanzado)
                         }
                     }
                     DifficultySelectionActivity.DIFFICULTY_PRO -> {
+
+                        val hasSeenTutorialPro = myPrefs.getBoolean("hasSeenInstructionsPro", false)
+
                         myPrefs.edit {
                             remove("selectedResponseModePro")
-
                             putString(getDifficultyKey(selectedGame!!),
                                 DifficultySelectionActivity.DIFFICULTY_PRO)
+
+                            putBoolean("hasSeenInstructionsPro", hasSeenTutorialPro)
                         }
                     }
                 }
             }
             "DeciPlus" -> {
                 val myPrefs = getSharedPreferences("MyPrefsDeciPlus", Context.MODE_PRIVATE)
-                myPrefs.edit { remove("selectedResponseModeDialogDeciPlus") }
+                val hasSeenTutorial = myPrefs.getBoolean("hasSeenInstructionsDeciplus", false)
+
+                myPrefs.edit {
+                    remove("selectedResponseModeDialogDeciPlus")
+
+                    putBoolean("hasSeenInstructionsDeciplus", hasSeenTutorial)
+                }
             }
             "Romas" -> {
                 val myPrefs = getSharedPreferences("MyPrefsRomas", Context.MODE_PRIVATE)

@@ -15,6 +15,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -26,7 +27,11 @@ class LevelsActivityDeciPlus : AppCompatActivity() {
     private lateinit var levelContainer: LinearLayout
     private lateinit var sharedPreferences: android.content.SharedPreferences
 
-        private val levelStrings = arrayOf(
+    private lateinit var tvGameName: TextView
+    private lateinit var tvDifficulty: TextView
+    private lateinit var tvScore: TextView
+
+    private val levelStrings = arrayOf(
         R.string.level_1, R.string.level_2, R.string.level_3, R.string.level_4, R.string.level_5,
         R.string.level_6, R.string.level_7, R.string.level_8, R.string.level_9, R.string.level_10,
         R.string.level_11, R.string.level_12, R.string.level_13, R.string.level_14, R.string.level_15,
@@ -51,8 +56,14 @@ class LevelsActivityDeciPlus : AppCompatActivity() {
 
         mediaPlayer = MediaPlayer.create(this, R.raw.clicbotones)
 
+        tvGameName = findViewById(R.id.tv_game_name)
+        tvDifficulty = findViewById(R.id.tv_difficulty)
+        tvScore = findViewById(R.id.tv_score)
+
         val btnClose = findViewById<ImageView>(R.id.btn_close)
         levelContainer = findViewById(R.id.level_container)
+
+        setupInfoBar()
 
         btnClose.setOnClickListener {
             applyBounceEffect(it) {
@@ -68,7 +79,9 @@ class LevelsActivityDeciPlus : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        ScoreManager.initDeciPlus(this)
         updateLevelButtons()
+        setupInfoBar()
     }
 
     private fun createLevelButtons() {
@@ -105,7 +118,7 @@ class LevelsActivityDeciPlus : AppCompatActivity() {
                     8.dpToPx(this@LevelsActivityDeciPlus)
                 )
 
-                if (i < ScoreManager.unlockedLevelsDeciPlus) {
+                if (i < ScoreManager.unlockedLevelsDeciPlus && !ScoreManager.isLevelBlockedByFailuresDeciPlus(i + 1)) {
                     setBackgroundResource(R.drawable.button_background_deci)
 
                     setOnClickListener {
@@ -205,5 +218,31 @@ class LevelsActivityDeciPlus : AppCompatActivity() {
             })
         }
         animatorSet.start()
+    }
+
+    private fun setupInfoBar() {
+        tvGameName.text = getString(R.string.game_deci_plus)
+        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.orange_dark))
+
+        val difficultyKey = "difficulty_deciplus"
+
+        val difficultyValue = sharedPreferences.getString(
+            difficultyKey,
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO
+        )
+
+        val difficultyText = when (difficultyValue) {
+            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> getString(R.string.difficulty_principiante)
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO -> getString(R.string.difficulty_avanzado)
+            DifficultySelectionActivity.DIFFICULTY_PRO -> getString(R.string.difficulty_pro)
+            else -> getString(R.string.difficulty_avanzado)
+        }
+
+        tvDifficulty.text = difficultyText
+        tvScore.text = getString(R.string.score_format, ScoreManager.currentScoreDeciPlus)
+
+        tvDifficulty.setOnClickListener {
+            // Disabled for DeciPlus - only Avanzado difficulty available
+        }
     }
 }

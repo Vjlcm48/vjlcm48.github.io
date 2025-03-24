@@ -26,6 +26,10 @@ class InstructionsActivityDeciPlus : AppCompatActivity() {
 
     private lateinit var sharedPreferences: android.content.SharedPreferences
 
+    private lateinit var tvGameName: TextView
+    private lateinit var tvDifficulty: TextView
+    private lateinit var tvScore: TextView
+
     private val timeLimits = mapOf(
         1 to 19.04, 2 to 18.93, 3 to 18.83, 4 to 18.73, 5 to 18.62, 6 to 18.55, 7 to 18.39,
         8 to 22.90, 9 to 22.68, 10 to 22.45, 11 to 22.65, 12 to 22.43, 13 to 22.20, 14 to 21.93,
@@ -39,10 +43,17 @@ class InstructionsActivityDeciPlus : AppCompatActivity() {
         64 to 20.45, 65 to 19.50, 66 to 21.90, 67 to 20.95, 68 to 20.00, 69 to 19.05, 70 to 18.05
     )
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_instructions_deci_plus)
+
+        tvGameName = findViewById(R.id.tv_game_name)
+        tvDifficulty = findViewById(R.id.tv_difficulty)
+        tvScore = findViewById(R.id.tv_score)
+
+        setupInfoBar()
 
         val btnClose = findViewById<ImageView>(R.id.btn_close)
         val btnStart = findViewById<Button>(R.id.btn_start)
@@ -94,16 +105,13 @@ class InstructionsActivityDeciPlus : AppCompatActivity() {
         btnClose.setOnClickListener {
             btnClose.isEnabled = false
             val prefs = getSharedPreferences("MyPrefsDeciPlus", Context.MODE_PRIVATE)
-            val storedModeName = prefs.getString("selectedResponseModeDeciPlus", null)
+            val storedModeName = prefs.getString("selectedResponseModeDialogDeciPlus", null)
             if (storedModeName == null) {
-
                 val intent = Intent(this, ResponseModeDialogDeciPlus::class.java)
                 intent.putExtra("LEVEL", level)
                 startActivity(intent)
                 finish()
-
             } else {
-
                 val intent = Intent(this, LevelsActivityDeciPlus::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
@@ -155,7 +163,7 @@ class InstructionsActivityDeciPlus : AppCompatActivity() {
                     val mode = responseMode
                     if (mode != null) {
                         val prefs = getSharedPreferences("MyPrefsDeciPlus", Context.MODE_PRIVATE)
-                        prefs.edit { putString("selectedResponseModeDeciPlus", mode.name) }
+                        prefs.edit { putString("selectedResponseModeDialogDeciPlus", mode.name) }
                     }
                     val intent = Intent(this@InstructionsActivityDeciPlus, GameActivityDeciPlus::class.java)
                     intent.putExtra("LEVEL", level)
@@ -247,4 +255,33 @@ class InstructionsActivityDeciPlus : AppCompatActivity() {
 
         return spannable
     }
+
+    private fun setupInfoBar() {
+        tvGameName.text = getString(R.string.game_deci_plus)
+        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.orange_dark))
+
+        val difficultyKey = "difficulty_deciplus"
+
+        val difficultyValue = sharedPreferences.getString(
+            difficultyKey,
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO
+        )
+
+        val difficultyText = when (difficultyValue) {
+            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> getString(R.string.difficulty_principiante)
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO -> getString(R.string.difficulty_avanzado)
+            DifficultySelectionActivity.DIFFICULTY_PRO -> getString(R.string.difficulty_pro)
+            else -> getString(R.string.difficulty_avanzado)
+        }
+
+        tvDifficulty.text = difficultyText
+
+        ScoreManager.initDeciPlus(this)
+        tvScore.text = getString(R.string.score_format, ScoreManager.currentScoreDeciPlus)
+
+        tvDifficulty.setOnClickListener {
+
+        }
+    }
 }
+

@@ -78,6 +78,7 @@ class GameActivityDeciPlus : AppCompatActivity() {
     private var soundPlayed = false
     private var timeSpentInSeconds: Double = 0.0
     private lateinit var sharedPreferences: SharedPreferences
+    private var userResponses = mutableListOf<Double>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -231,6 +232,7 @@ class GameActivityDeciPlus : AppCompatActivity() {
                     showNumbers()
                 }, delayBeforeNumbers)
             }
+
             override fun onAnimationCancel(animation: Animator) {}
             override fun onAnimationRepeat(animation: Animator) {}
         })
@@ -537,6 +539,7 @@ class GameActivityDeciPlus : AppCompatActivity() {
                 chronometerTextView.scaleX = 1f
                 chronometerTextView.scaleY = 1f
             }
+
             override fun onAnimationCancel(animation: Animator) {}
             override fun onAnimationRepeat(animation: Animator) {}
         })
@@ -617,10 +620,11 @@ class GameActivityDeciPlus : AppCompatActivity() {
         chronometerTextView.text = spannableString
     }
 
+
     private fun checkManualAnswer(userAnswer: Double) {
         val epsilon = 0.1
+        userResponses.add(userAnswer)
         val isCorrect = abs(userAnswer - correctAnswer) < epsilon
-
 
         if (isCorrect) {
             answerTimer?.cancel()
@@ -643,6 +647,7 @@ class GameActivityDeciPlus : AppCompatActivity() {
             manualAnswerEditText.startAnimation(shake)
 
             attempts++
+
             if (attempts >= 2) {
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
@@ -652,6 +657,7 @@ class GameActivityDeciPlus : AppCompatActivity() {
                 Handler(Looper.getMainLooper()).postDelayed({
                     manualAnswerEditText.background = originalBackground
 
+                    ScoreManager.incrementConsecutiveFailuresDeciPlus(currentLevel)
                     Handler(Looper.getMainLooper()).postDelayed({
                         navigateToLevelResult(false)
                     }, 1000)
@@ -729,7 +735,6 @@ class GameActivityDeciPlus : AppCompatActivity() {
         }
     }
 
-
     private fun startAnswerTimer() {
         startTime = System.currentTimeMillis()
         answerTimer?.cancel()
@@ -742,10 +747,10 @@ class GameActivityDeciPlus : AppCompatActivity() {
     }
 
     private fun checkAnswer(selectedButton: Button) {
-
         selectedButton.clearFocus()
 
         val selectedAnswer = selectedButton.text.toString().replace(",", ".").toDouble()
+        userResponses.add(selectedAnswer)
         val epsilon = 0.01
         val isCorrect = abs(selectedAnswer - correctAnswer) < epsilon
 
@@ -794,6 +799,7 @@ class GameActivityDeciPlus : AppCompatActivity() {
         builder.create().show()
     }
 
+
     private fun navigateToLevelResult(isSuccessful: Boolean) {
         val intent = Intent(this, LevelResultActivityDeciPlus::class.java)
         intent.putExtra("LEVEL", currentLevel)
@@ -801,6 +807,16 @@ class GameActivityDeciPlus : AppCompatActivity() {
         intent.putExtra("ATTEMPTS", attempts)
         intent.putExtra("TIME_SPENT", timeSpentInSeconds)
         intent.putExtra("GAME_MODE", "DeciPlus")
+
+        if (isSuccessful) {
+            ScoreManager.resetConsecutiveFailuresDeciPlus(currentLevel)
+        } else if (attempts >= 2) {
+            intent.putExtra("NUMBER_LIST", numberList.toDoubleArray())
+            intent.putExtra("CORRECT_ANSWER", correctAnswer)
+            intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
+            intent.putExtra("USER_RESPONSES", userResponses.toDoubleArray())
+        }
+
         startActivity(intent)
         finish()
     }
@@ -823,3 +839,13 @@ class GameActivityDeciPlus : AppCompatActivity() {
         return (this * factor).roundToInt() / factor
     }
 }
+
+
+
+
+
+
+
+
+
+
