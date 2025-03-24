@@ -48,11 +48,11 @@ class MainGameActivity : AppCompatActivity() {
         locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
         profileText = findViewById(R.id.profile_text)
 
-
         val newGameButton = findViewById<Button>(R.id.new_game_button)
         val homeIcon = findViewById<ImageView>(R.id.home_icon)
         val statisticsIcon = findViewById<ImageView>(R.id.statistics_icon)
         val settingsIcon = findViewById<ImageView>(R.id.settings_icon)
+        val calendarIcon = findViewById<ImageView>(R.id.calendar_icon)
 
         mediaPlayer = MediaPlayer.create(this, R.raw.fondomusicals1)
         mediaPlayer.isLooping = true
@@ -133,8 +133,14 @@ class MainGameActivity : AppCompatActivity() {
                 profileEditDialog.show()
             }
         }
-    }
 
+        calendarIcon.setOnClickListener {
+            applyBounceEffect(it) {
+                mediaPlayer.fadeOut()
+                startActivity(Intent(this, DesafiosActivity::class.java))
+            }
+        }
+    }
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
         val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.9f).setDuration(50)

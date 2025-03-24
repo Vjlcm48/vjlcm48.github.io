@@ -695,4 +695,17 @@
     <string name="user_responses_format">Your answers were: %d %d</string>
     <string name="level_locked_by_failures">You must complete the previous level to unlock this level again</string>
 
+    <string name="desafios_mensaje">SUMAMENTE CHALLENGES! Compete and win prizes with players from around the world. We will notify you when the next event takes place. Get ready to shine!</string>
+
+    <string name="monday_short">Mon</string>
+    <string name="tuesday_short">Tue</string>
+    <string name="wednesday_short">Wed</string>
+    <string name="thursday_short">Thu</string>
+    <string name="friday_short">Fri</string>
+    <string name="saturday_short">Sat</string>
+    <string name="sunday_short">Sun</string>
+
+    <string name="correct_answer_format_deci">Correct answer: %s</string>
+    <string name="user_responses_format_deci">Your responses: %s</string>
+
 </resources>

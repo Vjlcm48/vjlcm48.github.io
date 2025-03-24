@@ -32,7 +32,6 @@ class GameSelectionActivity : AppCompatActivity() {
         ScoreManager.initMasPlus(this)
         ScoreManager.initGenioPlus(this)
 
-
         setContentView(R.layout.activity_game_selection)
 
         val btnNumerosPlus = findViewById<RelativeLayout>(R.id.btn_numeros_plus)
@@ -53,23 +52,18 @@ class GameSelectionActivity : AppCompatActivity() {
         val puntosSumaResta = ScoreManager.currentScoreSumaResta
         val puntosMasPlus = ScoreManager.currentScoreMasPlus
         val puntosGenioPlus = ScoreManager.currentScoreGenioPlus
-
-
         val tvGameNameNumerosPlus = btnNumerosPlus.findViewById<TextView>(R.id.tv_game_name_numeros_plus)
         val tvGameNameDeciPlus = btnDeciPlus.findViewById<TextView>(R.id.tv_game_name_deci_plus)
         val tvGameNameRomas = btnRomas.findViewById<TextView>(R.id.tv_game_name_romas)
-        val tvGameNameAlfaNumeros = btnAlfaNumeros.findViewById<TextView>(R.id.tv_game_name_alfa_numeros)
-        val tvGameNameSumaresta = btnSumaresta.findViewById<TextView>(R.id.tv_game_name_sumaresta)
-        val tvGameNameMasPlus = btnMasPlus.findViewById<TextView>(R.id.tv_game_name_mas_plus)
-        val tvGameNameGenioPlus = btnGenioPlus.findViewById<TextView>(R.id.tv_game_name_genio_plus)
 
         tvGameNameNumerosPlus.text = getString(R.string.game_numeros_plus)
         tvGameNameDeciPlus.text = getString(R.string.game_deci_plus)
         tvGameNameRomas.text = getString(R.string.game_romas)
-        tvGameNameAlfaNumeros.text = getString(R.string.game_alfa_numeros)
-        tvGameNameSumaresta.text = getString(R.string.game_sumaresta)
-        tvGameNameMasPlus.text = getString(R.string.game_mas_plus)
-        tvGameNameGenioPlus.text = getString(R.string.game_genio_plus)
+
+        applyAlfaNumerosColor(btnAlfaNumeros)
+        applySumarestaColor(btnSumaresta)
+        applyMasPlusColor(btnMasPlus)
+        applyGenioPlusColor(btnGenioPlus)
 
         updateNumerosPlusButton(btnNumerosPlus, puntosNumerosPlus, puntosPrincipiante, puntosPro)
         updateDeciPlusButton(btnDeciPlus, puntosDeciPlus)
@@ -78,9 +72,6 @@ class GameSelectionActivity : AppCompatActivity() {
         updateSumaRestaButton(btnSumaresta, puntosSumaResta)
         updateMasPlusButton(btnMasPlus, puntosMasPlus)
         updateGenioPlusButton(btnGenioPlus, puntosGenioPlus)
-
-        applyAlfaNumerosColor(btnAlfaNumeros)
-        applySumarestaColor(btnSumaresta)
 
         btnNumerosPlus.setOnClickListener {
             applyBounceEffect(it) {
@@ -179,7 +170,6 @@ class GameSelectionActivity : AppCompatActivity() {
         val puntosMasPlus = ScoreManager.currentScoreMasPlus
         val puntosGenioPlus = ScoreManager.currentScoreGenioPlus
 
-
         val btnNumerosPlus = findViewById<RelativeLayout>(R.id.btn_numeros_plus)
         val btnDeciPlus = findViewById<RelativeLayout>(R.id.btn_deci_plus)
         val btnRomas = findViewById<RelativeLayout>(R.id.btn_romas)
@@ -187,6 +177,13 @@ class GameSelectionActivity : AppCompatActivity() {
         val btnSumaresta = findViewById<RelativeLayout>(R.id.btn_sumaresta)
         val btnMasPlus = findViewById<RelativeLayout>(R.id.btn_mas_plus)
         val btnGenioPlus = findViewById<RelativeLayout>(R.id.btn_genio_plus)
+
+
+        applyAlfaNumerosColor(btnAlfaNumeros)
+        applySumarestaColor(btnSumaresta)
+        applyMasPlusColor(btnMasPlus)
+        applyGenioPlusColor(btnGenioPlus)
+
 
         updateNumerosPlusButton(btnNumerosPlus, puntosNumerosPlus, puntosPrincipiante, puntosPro)
         updateDeciPlusButton(btnDeciPlus, puntosDeciPlus)
@@ -250,41 +247,37 @@ class GameSelectionActivity : AppCompatActivity() {
     }
 
     private fun updateAlfaNumerosButton(button: RelativeLayout, score: Int) {
-        val gameNameTextView = button.findViewById<TextView>(R.id.tv_game_name_alfa_numeros)
+
         val pointsTextView = button.findViewById<TextView>(R.id.tv_points_alfa_numeros)
         val starIcon = button.findViewById<ImageView>(R.id.icon_star_alfa_numeros)
 
         if (score > 0) {
-            gameNameTextView.text = getString(R.string.game_alfa_numeros)
             pointsTextView.text = getString(R.string.score_format, score)
             pointsTextView.visibility = View.VISIBLE
             starIcon.visibility = View.VISIBLE
         } else {
-            gameNameTextView.text = getString(R.string.game_alfa_numeros)
             pointsTextView.visibility = View.GONE
             starIcon.visibility = View.GONE
         }
     }
 
     private fun updateSumaRestaButton(button: RelativeLayout, score: Int) {
-        val gameNameTextView = button.findViewById<TextView>(R.id.tv_game_name_sumaresta)
+
         val pointsTextView = button.findViewById<TextView>(R.id.tv_points_sumaresta)
         val starIcon = button.findViewById<ImageView>(R.id.icon_star_sumaresta)
 
         if (score > 0) {
-            gameNameTextView.text = getString(R.string.game_sumaresta)
             pointsTextView.text = getString(R.string.score_format, score)
             pointsTextView.visibility = View.VISIBLE
             starIcon.visibility = View.VISIBLE
         } else {
-            gameNameTextView.text = getString(R.string.game_sumaresta)
             pointsTextView.visibility = View.GONE
             starIcon.visibility = View.GONE
         }
     }
 
     private fun updateMasPlusButton(button: RelativeLayout, score: Int) {
-        val gameNameTextView = button.findViewById<TextView>(R.id.tv_game_name_mas_plus)
+
         val pointsTextView = button.findViewById<TextView>(R.id.tv_points_mas_plus)
         val starIcon = button.findViewById<ImageView>(R.id.icon_star_mas_plus)
 
@@ -293,14 +286,13 @@ class GameSelectionActivity : AppCompatActivity() {
             pointsTextView.visibility = View.VISIBLE
             starIcon.visibility = View.VISIBLE
         } else {
-            gameNameTextView.text = getString(R.string.game_mas_plus)
             pointsTextView.visibility = View.GONE
             starIcon.visibility = View.GONE
         }
     }
 
     private fun updateGenioPlusButton(button: RelativeLayout, score: Int) {
-        val gameNameTextView = button.findViewById<TextView>(R.id.tv_game_name_genio_plus)
+
         val pointsTextView = button.findViewById<TextView>(R.id.tv_points_genio_plus)
         val starIcon = button.findViewById<ImageView>(R.id.icon_star_genio_plus)
 
@@ -309,7 +301,6 @@ class GameSelectionActivity : AppCompatActivity() {
             pointsTextView.visibility = View.VISIBLE
             starIcon.visibility = View.VISIBLE
         } else {
-            gameNameTextView.text = getString(R.string.game_genio_plus)
             pointsTextView.visibility = View.GONE
             starIcon.visibility = View.GONE
         }
@@ -355,6 +346,16 @@ class GameSelectionActivity : AppCompatActivity() {
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         textView.text = spannableSumaresta
+    }
+
+    private fun applyMasPlusColor(button: RelativeLayout) {
+        val textView = button.findViewById<TextView>(R.id.tv_game_name_mas_plus)
+        textView.setTextColor(ContextCompat.getColor(this, R.color.grey_light))
+    }
+
+    private fun applyGenioPlusColor(button: RelativeLayout) {
+        val textView = button.findViewById<TextView>(R.id.tv_game_name_genio_plus)
+        textView.setTextColor(ContextCompat.getColor(this, R.color.blue_pressed))
     }
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {

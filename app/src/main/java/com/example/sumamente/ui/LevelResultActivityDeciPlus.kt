@@ -46,6 +46,13 @@ class LevelResultActivityDeciPlus : AppCompatActivity() {
     private var pointsEarned = 0
     private var mediaPlayer: MediaPlayer? = null
 
+
+    private var numberList: DoubleArray? = null
+    private var correctAnswer: Double = 0.0
+    private var userResponses: DoubleArray? = null
+    private var excludedIndex: Int? = null
+    private lateinit var reviewExerciseTextView: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
@@ -53,10 +60,18 @@ class LevelResultActivityDeciPlus : AppCompatActivity() {
 
         ScoreManager.initDeciPlus(this)
 
+
         currentLevel = intent.getIntExtra("LEVEL", 1)
         isSuccessful = intent.getBooleanExtra("IS_SUCCESSFUL", false)
         attempts = intent.getIntExtra("ATTEMPTS", 0)
         timeSpentInSeconds = intent.getDoubleExtra("TIME_SPENT", 0.0)
+
+        numberList = intent.getDoubleArrayExtra("NUMBER_LIST")
+        correctAnswer = intent.getDoubleExtra("CORRECT_ANSWER", 0.0)
+        userResponses = intent.getDoubleArrayExtra("USER_RESPONSES")
+        val exclIndex = intent.getIntExtra("EXCLUDED_INDEX", -1)
+        excludedIndex = if (exclIndex >= 0) exclIndex else null
+
 
         mainMessageTextView = findViewById(R.id.mainMessageTextView)
         pointsTextView = findViewById(R.id.pointsTextView)
@@ -71,6 +86,7 @@ class LevelResultActivityDeciPlus : AppCompatActivity() {
         successInfoLayout = findViewById(R.id.successInfoLayout)
         currentScoreTextView = findViewById(R.id.currentScoreTextView)
         starImageView = findViewById(R.id.starImageView)
+        reviewExerciseTextView = findViewById(R.id.reviewexercisetextview)
 
         setupUI()
     }
@@ -360,6 +376,13 @@ class LevelResultActivityDeciPlus : AppCompatActivity() {
         unlockLevelTextView.visibility = View.VISIBLE
         repeatLevelTextView.visibility = View.VISIBLE
 
+        val isLevelBlockedAfterThisFail = ScoreManager.getConsecutiveFailuresDeciPlus(currentLevel) >= 12
+
+        if (isLevelBlockedAfterThisFail) {
+            repeatLevelTextView.visibility = View.GONE
+        } else {
+            repeatLevelTextView.visibility = View.VISIBLE
+        }
 
         mainMessageTextView.text = if (attempts >= 2) {
             getString(R.string.has_agotado_tus_intentos)
@@ -396,6 +419,25 @@ class LevelResultActivityDeciPlus : AppCompatActivity() {
         rankingChangedTextView.startAnimation(fadeIn)
         unlockLevelTextView.startAnimation(fadeIn)
         repeatLevelTextView.startAnimation(fadeIn)
+
+        if (attempts >= 2 && numberList != null && userResponses != null) {
+            reviewExerciseTextView.visibility = View.VISIBLE
+            applyTouchAnimation(reviewExerciseTextView)
+
+            reviewExerciseTextView.setOnClickListener {
+                val intent = Intent(this, ExerciseReviewActivityDeciPlus::class.java)
+                intent.putExtra("NUMBER_LIST", numberList)
+                intent.putExtra("CORRECT_ANSWER", correctAnswer)
+                intent.putExtra("USER_RESPONSES", userResponses)
+                intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
+                intent.putExtra("LEVEL", currentLevel)
+                startActivity(intent)
+            }
+
+            reviewExerciseTextView.startAnimation(fadeIn)
+        } else {
+            reviewExerciseTextView.visibility = View.GONE
+        }
     }
 
     private fun applyTouchAnimation(view: View) {

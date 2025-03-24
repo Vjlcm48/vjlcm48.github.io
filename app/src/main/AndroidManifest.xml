@@ -224,6 +224,11 @@
             android:theme="@style/Theme.SumaMente" />
 
         <activity
+            android:name=".ui.DesafiosActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
             android:name=".ui.LevelResultActivity"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
@@ -240,6 +245,11 @@
 
         <activity
             android:name=".ui.ExerciseReviewActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.ExerciseReviewActivityDeciPlus"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 

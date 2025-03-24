@@ -90,9 +90,11 @@ object ScoreManager {
     private const val KEY_CONSECUTIVE_FAILURES = "consecutive_failures"
     private const val KEY_CONSECUTIVE_FAILURES_PRINCIPIANTE = "consecutive_failures_principiante"
     private const val KEY_CONSECUTIVE_FAILURES_PRO = "consecutive_failures_pro"
+    private const val KEY_CONSECUTIVE_FAILURES_DECI_PLUS = "consecutive_failures_deci_plus"
     private val consecutiveFailures: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresPrincipiante: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresPro: MutableMap<Int, Int> = mutableMapOf()
+    private val consecutiveFailuresDeciPlus: MutableMap<Int, Int> = mutableMapOf()
 
     private lateinit var preferences: SharedPreferences
     private lateinit var preferencesPrincipiante: SharedPreferences
@@ -147,6 +149,13 @@ object ScoreManager {
         preferencesDeciPlus = context.getSharedPreferences(PREFS_NAME_DECI_PLUS, Context.MODE_PRIVATE)
         currentScoreDeciPlus = preferencesDeciPlus.getInt(KEY_CURRENT_SCORE_DECI_PLUS, 0)
         unlockedLevelsDeciPlus = preferencesDeciPlus.getInt(KEY_UNLOCKED_LEVELS_DECI_PLUS, 2)
+
+        for (i in 1..70) {
+            val failures = preferencesDeciPlus.getInt("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS:$i", 0)
+            if (failures > 0) {
+                consecutiveFailuresDeciPlus[i] = failures
+            }
+        }
     }
 
     fun initRomas(context: Context) {
@@ -581,6 +590,30 @@ object ScoreManager {
     fun isLevelBlockedByFailuresPro(level: Int): Boolean {
         if (level == 1) return false
         return getConsecutiveFailuresPro(level) >= 12
+    }
+
+    fun incrementConsecutiveFailuresDeciPlus(level: Int) {
+        val currentFailures = consecutiveFailuresDeciPlus[level] ?: 0
+        consecutiveFailuresDeciPlus[level] = currentFailures + 1
+        preferencesDeciPlus.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS:$level", consecutiveFailuresDeciPlus[level] ?: 0)
+        }
+    }
+
+    fun resetConsecutiveFailuresDeciPlus(level: Int) {
+        consecutiveFailuresDeciPlus[level] = 0
+        preferencesDeciPlus.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS:$level", 0)
+        }
+    }
+
+    fun getConsecutiveFailuresDeciPlus(level: Int): Int {
+        return consecutiveFailuresDeciPlus[level] ?: 0
+    }
+
+    fun isLevelBlockedByFailuresDeciPlus(level: Int): Boolean {
+        if (level == 1) return false
+        return getConsecutiveFailuresDeciPlus(level) >= 12
     }
 }
 

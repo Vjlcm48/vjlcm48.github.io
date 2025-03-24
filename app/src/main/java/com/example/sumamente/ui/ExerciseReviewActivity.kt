@@ -64,7 +64,7 @@ class ExerciseReviewActivity : AppCompatActivity() {
 
         val columns = 3
         numbersGridLayout.columnCount = columns
-        val rows = (numberList.size + columns - 1) / columns // Ceiling division
+        val rows = (numberList.size + columns - 1) / columns
         numbersGridLayout.rowCount = rows
 
         for (i in numberList.indices) {

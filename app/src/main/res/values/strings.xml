@@ -668,4 +668,17 @@
     <string name="user_responses_format">Tus respuestas fueron: %d %d</string>
     <string name="level_locked_by_failures">Debes completar el nivel anterior para desbloquear este nivel nuevamente</string>
 
+    <string name="desafios_mensaje">¡DESAFÍOS SUMAMENTE! Compite y gana premios con jugadores de todo el mundo. Te notificaremos cuándo será el próximo evento. ¡Prepárate para brillar!</string>
+
+    <string name="monday_short">Lu</string>
+    <string name="tuesday_short">Ma</string>
+    <string name="wednesday_short">Mi</string>
+    <string name="thursday_short">Ju</string>
+    <string name="friday_short">Vi</string>
+    <string name="saturday_short">Sa</string>
+    <string name="sunday_short">Do</string>
+
+    <string name="correct_answer_format_deci">Respuesta correcta: %s</string>
+    <string name="user_responses_format_deci">Tus respuestas: %s</string>
+
 </resources>
