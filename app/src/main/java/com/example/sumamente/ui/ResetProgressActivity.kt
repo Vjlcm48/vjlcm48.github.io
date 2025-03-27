@@ -427,9 +427,23 @@ class ResetProgressActivity : AppCompatActivity() {
                 }
             }
             "DeciPlus" -> {
-                val scorePrefs = getSharedPreferences("ScorePrefsDeciPlus", Context.MODE_PRIVATE)
-                scorePrefs.edit { clear() }
-                ScoreManager.resetDeciPlus()
+                when (difficulty) {
+                    DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> {
+                        val scorePrefs = getSharedPreferences("ScorePrefsDeciPlusPrincipiante", Context.MODE_PRIVATE)
+                        scorePrefs.edit { clear() }
+                        ScoreManager.resetDeciPlusPrincipiante()
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_AVANZADO -> {
+                        val scorePrefs = getSharedPreferences("ScorePrefsDeciPlus", Context.MODE_PRIVATE)
+                        scorePrefs.edit { clear() }
+                        ScoreManager.resetDeciPlus()
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_PRO -> {
+                        val scorePrefs = getSharedPreferences("ScorePrefsDeciPlusPro", Context.MODE_PRIVATE)
+                        scorePrefs.edit { clear() }
+                        ScoreManager.resetDeciPlusPro()
+                    }
+                }
             }
             "Romas" -> {
                 val scorePrefs = getSharedPreferences("ScorePrefsRomas", Context.MODE_PRIVATE)
@@ -504,12 +518,38 @@ class ResetProgressActivity : AppCompatActivity() {
             }
             "DeciPlus" -> {
                 val myPrefs = getSharedPreferences("MyPrefsDeciPlus", Context.MODE_PRIVATE)
-                val hasSeenTutorial = myPrefs.getBoolean("hasSeenInstructionsDeciplus", false)
 
-                myPrefs.edit {
-                    remove("selectedResponseModeDialogDeciPlus")
+                when (difficulty) {
+                    DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> {
+                        val hasSeenTutorialPrincipiante = myPrefs.getBoolean("hasSeenInstructionsDeciPlusPrincipiante", false)
 
-                    putBoolean("hasSeenInstructionsDeciplus", hasSeenTutorial)
+                        myPrefs.edit {
+                            remove("selectedResponseModeDialogDeciPlusPrincipiante")
+                            putString(getDifficultyKey(selectedGame!!),
+                                DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE)
+                            putBoolean("hasSeenInstructionsDeciPlusPrincipiante", hasSeenTutorialPrincipiante)
+                        }
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_AVANZADO -> {
+                        val hasSeenTutorial = myPrefs.getBoolean("hasSeenInstructionsDeciplus", false)
+
+                        myPrefs.edit {
+                            remove("selectedResponseModeDialogDeciPlus")
+                            putString(getDifficultyKey(selectedGame!!),
+                                DifficultySelectionActivity.DIFFICULTY_AVANZADO)
+                            putBoolean("hasSeenInstructionsDeciplus", hasSeenTutorial)
+                        }
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_PRO -> {
+                        val hasSeenTutorialPro = myPrefs.getBoolean("hasSeenInstructionsDeciPlusPro", false)
+
+                        myPrefs.edit {
+                            remove("selectedResponseModeDialogDeciPlusPro")
+                            putString(getDifficultyKey(selectedGame!!),
+                                DifficultySelectionActivity.DIFFICULTY_PRO)
+                            putBoolean("hasSeenInstructionsDeciPlusPro", hasSeenTutorialPro)
+                        }
+                    }
                 }
             }
             "Romas" -> {

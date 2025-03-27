@@ -21,7 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.sumamente.R
 
-class LevelsActivityDeciPlus : AppCompatActivity() {
+class LevelsActivityDeciPlusPrincipiante : AppCompatActivity() {
 
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var levelContainer: LinearLayout
@@ -51,8 +51,8 @@ class LevelsActivityDeciPlus : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsDeciPlus", Context.MODE_PRIVATE)
-        ScoreManager.initDeciPlus(this)
-        setContentView(R.layout.activity_levels_deci_plus)
+        ScoreManager.initDeciPlusPrincipiante(this)
+        setContentView(R.layout.activity_levels_deci_plus_principiante)
 
         mediaPlayer = MediaPlayer.create(this, R.raw.clicbotones)
 
@@ -79,7 +79,7 @@ class LevelsActivityDeciPlus : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        ScoreManager.initDeciPlus(this)
+        ScoreManager.initDeciPlusPrincipiante(this)
         updateLevelButtons()
         setupInfoBar()
     }
@@ -92,7 +92,7 @@ class LevelsActivityDeciPlus : AppCompatActivity() {
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
                 ).apply {
-                    bottomMargin = 8.dpToPx(this@LevelsActivityDeciPlus)
+                    bottomMargin = 8.dpToPx(this@LevelsActivityDeciPlusPrincipiante)
                 }
                 orientation = LinearLayout.HORIZONTAL
                 gravity = Gravity.CENTER_VERTICAL
@@ -101,24 +101,24 @@ class LevelsActivityDeciPlus : AppCompatActivity() {
             val button = Button(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
                     0,
-                    48.dpToPx(this@LevelsActivityDeciPlus),
+                    48.dpToPx(this@LevelsActivityDeciPlusPrincipiante),
                     1f
                 ).apply {
-                    setMargins(0, 0, 8.dpToPx(this@LevelsActivityDeciPlus), 0)
+                    setMargins(0, 0, 8.dpToPx(this@LevelsActivityDeciPlusPrincipiante), 0)
                 }
                 text = getString(levelStrings[i])
                 textSize = 16f
                 setTypeface(null, Typeface.BOLD)
-                setTextColor(ContextCompat.getColor(this@LevelsActivityDeciPlus, android.R.color.black))
+                setTextColor(ContextCompat.getColor(this@LevelsActivityDeciPlusPrincipiante, android.R.color.black))
                 gravity = Gravity.CENTER
                 setPadding(
-                    16.dpToPx(this@LevelsActivityDeciPlus),
-                    8.dpToPx(this@LevelsActivityDeciPlus),
-                    16.dpToPx(this@LevelsActivityDeciPlus),
-                    8.dpToPx(this@LevelsActivityDeciPlus)
+                    16.dpToPx(this@LevelsActivityDeciPlusPrincipiante),
+                    8.dpToPx(this@LevelsActivityDeciPlusPrincipiante),
+                    16.dpToPx(this@LevelsActivityDeciPlusPrincipiante),
+                    8.dpToPx(this@LevelsActivityDeciPlusPrincipiante)
                 )
 
-                if (i < ScoreManager.unlockedLevelsDeciPlus && !ScoreManager.isLevelBlockedByFailuresDeciPlus(i + 1)) {
+                if (i < ScoreManager.unlockedLevelsDeciPlusPrincipiante && !ScoreManager.isLevelBlockedByFailuresDeciPlusPrincipiante(i + 1)) {
                     setBackgroundResource(R.drawable.button_background_deci)
 
                     setOnClickListener {
@@ -126,7 +126,7 @@ class LevelsActivityDeciPlus : AppCompatActivity() {
                             mediaPlayer.start()
 
                             val prefs = getSharedPreferences("MyPrefsDeciPlus", Context.MODE_PRIVATE)
-                            val storedModeName = prefs.getString("selectedResponseModeDialogDeciPlus", null)
+                            val storedModeName = prefs.getString("selectedResponseModeDialogDeciPlusPrincipiante", null)
                             val storedMode = if (storedModeName != null) ResponseModeDeciPlus.valueOf(storedModeName) else null
 
                             if (storedMode == null) {
@@ -142,7 +142,7 @@ class LevelsActivityDeciPlus : AppCompatActivity() {
                     setOnClickListener {
                         applyBounceEffect(this) {
                             Toast.makeText(
-                                this@LevelsActivityDeciPlus,
+                                this@LevelsActivityDeciPlusPrincipiante,
                                 R.string.level_locked_message,
                                 Toast.LENGTH_SHORT
                             ).show()
@@ -153,12 +153,12 @@ class LevelsActivityDeciPlus : AppCompatActivity() {
 
             val lockIcon = ImageView(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
-                    36.dpToPx(this@LevelsActivityDeciPlus),
-                    36.dpToPx(this@LevelsActivityDeciPlus)
+                    36.dpToPx(this@LevelsActivityDeciPlusPrincipiante),
+                    36.dpToPx(this@LevelsActivityDeciPlusPrincipiante)
                 ).apply {
                     gravity = Gravity.CENTER_VERTICAL
                 }
-                setImageResource(if (i < ScoreManager.unlockedLevelsDeciPlus) R.drawable.ic_unlock else R.drawable.ic_lock)
+                setImageResource(if (i < ScoreManager.unlockedLevelsDeciPlusPrincipiante && !ScoreManager.isLevelBlockedByFailuresDeciPlusPrincipiante(i + 1)) R.drawable.ic_unlock else R.drawable.ic_lock)
                 scaleType = ImageView.ScaleType.CENTER_INSIDE
             }
 
@@ -166,7 +166,7 @@ class LevelsActivityDeciPlus : AppCompatActivity() {
             levelLayout.addView(lockIcon)
 
             levelContainer.addView(levelLayout)
-            Log.d("LevelsActivityDeciPlus", "Added button for level ${i + 1}")
+            Log.d("LevelsActivityDeciPlusPrincipiante", "Added button for level ${i + 1}")
         }
     }
 
@@ -175,7 +175,7 @@ class LevelsActivityDeciPlus : AppCompatActivity() {
     }
 
     private fun showInstructions(level: Int, mode: ResponseModeDeciPlus? = null) {
-        val intent = Intent(this, InstructionsActivityDeciPlus::class.java)
+        val intent = Intent(this, InstructionsActivityDeciPlusPrincipiante::class.java)
         intent.putExtra("LEVEL", level)
         if (mode != null) {
             intent.putExtra("RESPONSE_MODE", mode.name)
@@ -184,8 +184,8 @@ class LevelsActivityDeciPlus : AppCompatActivity() {
     }
 
     private fun showResponseModeDialog(level: Int) {
-        val dialog = ResponseModeDialogDeciPlus(this)
-        dialog.setOnResponseModeSelectedListener(object : ResponseModeDialogDeciPlus.OnResponseModeSelectedListenerDeciPlus {
+        val dialog = ResponseModeDialogDeciPlusPrincipiante(this)
+        dialog.setOnResponseModeSelectedListener(object : ResponseModeDialogDeciPlusPrincipiante.OnResponseModeSelectedListenerDeciPlusPrincipiante {
             override fun onResponseModeSelected(mode: ResponseModeDeciPlus) {
                 showInstructions(level, mode)
             }
@@ -228,18 +228,18 @@ class LevelsActivityDeciPlus : AppCompatActivity() {
 
         val difficultyValue = sharedPreferences.getString(
             difficultyKey,
-            DifficultySelectionActivity.DIFFICULTY_AVANZADO
+            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE
         )
 
         val difficultyText = when (difficultyValue) {
             DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> getString(R.string.difficulty_principiante)
             DifficultySelectionActivity.DIFFICULTY_AVANZADO -> getString(R.string.difficulty_avanzado)
             DifficultySelectionActivity.DIFFICULTY_PRO -> getString(R.string.difficulty_pro)
-            else -> getString(R.string.difficulty_avanzado)
+            else -> getString(R.string.difficulty_principiante)
         }
 
         tvDifficulty.text = difficultyText
-        tvScore.text = getString(R.string.score_format, ScoreManager.currentScoreDeciPlus)
+        tvScore.text = getString(R.string.score_format, ScoreManager.currentScoreDeciPlusPrincipiante)
 
         tvDifficulty.setOnClickListener {
             val scaleDownX = ObjectAnimator.ofFloat(it, "scaleX", 1f, 0.9f).setDuration(50)
@@ -253,7 +253,7 @@ class LevelsActivityDeciPlus : AppCompatActivity() {
             clickAnimatorSet.addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
                     val intent = DifficultySelectionActivity.createIntent(
-                        this@LevelsActivityDeciPlus,
+                        this@LevelsActivityDeciPlusPrincipiante,
                         "DeciPlus"
                     )
                     startActivity(intent)

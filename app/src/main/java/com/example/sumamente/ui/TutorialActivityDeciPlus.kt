@@ -654,8 +654,9 @@ class TutorialActivityDeciPlus : AppCompatActivity() {
     private fun markTutorialAsSeenAndNavigate() {
         stopBackgroundMusic()
         val prefs = getSharedPreferences("MyPrefsDeciPlus", Context.MODE_PRIVATE)
-        prefs.edit { putBoolean("hasSeenInstructionsDeciplus", true) }
-        val intent = Intent(this, LevelsActivityDeciPlus::class.java)
+        prefs.edit { putBoolean("hasSeenInstructionsDeciPlus", true) }
+
+        val intent = DifficultySelectionActivity.createIntent(this, "DeciPlus")
         startActivity(intent)
         finish()
     }

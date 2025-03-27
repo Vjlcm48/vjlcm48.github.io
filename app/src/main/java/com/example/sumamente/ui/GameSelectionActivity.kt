@@ -26,6 +26,8 @@ class GameSelectionActivity : AppCompatActivity() {
         ScoreManager.initPrincipiante(this)
         ScoreManager.initPro(this)
         ScoreManager.initDeciPlus(this)
+        ScoreManager.initDeciPlusPrincipiante(this)
+        ScoreManager.initDeciPlusPro(this)
         ScoreManager.initRomas(this)
         ScoreManager.initAlfaNumeros(this)
         ScoreManager.initSumaResta(this)
@@ -47,6 +49,8 @@ class GameSelectionActivity : AppCompatActivity() {
         val puntosPrincipiante = ScoreManager.currentScorePrincipiante
         val puntosPro = ScoreManager.currentScorePro
         val puntosDeciPlus = ScoreManager.currentScoreDeciPlus
+        val puntosDeciPlusPrincipiante = ScoreManager.currentScoreDeciPlusPrincipiante
+        val puntosDeciPlusPro = ScoreManager.currentScoreDeciPlusPro
         val puntosRomas = ScoreManager.currentScoreRomas
         val puntosAlfaNumeros = ScoreManager.currentScoreAlfaNumeros
         val puntosSumaResta = ScoreManager.currentScoreSumaResta
@@ -66,7 +70,7 @@ class GameSelectionActivity : AppCompatActivity() {
         applyGenioPlusColor(btnGenioPlus)
 
         updateNumerosPlusButton(btnNumerosPlus, puntosNumerosPlus, puntosPrincipiante, puntosPro)
-        updateDeciPlusButton(btnDeciPlus, puntosDeciPlus)
+        updateDeciPlusButton(btnDeciPlus, puntosDeciPlus, puntosDeciPlusPrincipiante, puntosDeciPlusPro)
         updateRomasButton(btnRomas, puntosRomas)
         updateAlfaNumerosButton(btnAlfaNumeros, puntosAlfaNumeros)
         updateSumaRestaButton(btnSumaresta, puntosSumaResta)
@@ -106,7 +110,31 @@ class GameSelectionActivity : AppCompatActivity() {
 
         btnDeciPlus.setOnClickListener {
             applyBounceEffect(it) {
-                startActivity(Intent(this, TutorialActivityDeciPlus::class.java))
+                val prefs = getSharedPreferences("MyPrefsDeciPlus", Context.MODE_PRIVATE)
+                val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsDeciPlus", false)
+
+                if (hasSeenInstructions) {
+                    val difficultyKey = "difficulty_deciplus"
+                    val hasDifficulty = prefs.contains(difficultyKey)
+
+                    if (hasDifficulty) {
+                        val difficulty = prefs.getString(difficultyKey,
+                            DifficultySelectionActivity.DIFFICULTY_AVANZADO)
+
+                        val intent = when (difficulty) {
+                            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE ->
+                                Intent(this, LevelsActivityDeciPlusPrincipiante::class.java)
+                            DifficultySelectionActivity.DIFFICULTY_PRO ->
+                                Intent(this, LevelsActivityDeciPlusPrincipiante::class.java)
+                            else -> Intent(this, LevelsActivityDeciPlus::class.java)
+                        }
+                        startActivity(intent)
+                    } else {
+                        startActivity(DifficultySelectionActivity.createIntent(this, "DeciPlus"))
+                    }
+                } else {
+                    startActivity(Intent(this, TutorialActivityDeciPlus::class.java))
+                }
             }
         }
 
@@ -154,6 +182,8 @@ class GameSelectionActivity : AppCompatActivity() {
         ScoreManager.initPrincipiante(this)
         ScoreManager.initPro(this)
         ScoreManager.initDeciPlus(this)
+        ScoreManager.initDeciPlusPrincipiante(this)
+        ScoreManager.initDeciPlusPro(this)
         ScoreManager.initRomas(this)
         ScoreManager.initAlfaNumeros(this)
         ScoreManager.initSumaResta(this)
@@ -164,6 +194,8 @@ class GameSelectionActivity : AppCompatActivity() {
         val puntosPrincipiante = ScoreManager.currentScorePrincipiante
         val puntosPro = ScoreManager.currentScorePro
         val puntosDeciPlus = ScoreManager.currentScoreDeciPlus
+        val puntosDeciPlusPrincipiante = ScoreManager.currentScoreDeciPlusPrincipiante
+        val puntosDeciPlusPro = ScoreManager.currentScoreDeciPlusPro
         val puntosRomas = ScoreManager.currentScoreRomas
         val puntosAlfaNumeros = ScoreManager.currentScoreAlfaNumeros
         val puntosSumaResta = ScoreManager.currentScoreSumaResta
@@ -186,7 +218,7 @@ class GameSelectionActivity : AppCompatActivity() {
 
 
         updateNumerosPlusButton(btnNumerosPlus, puntosNumerosPlus, puntosPrincipiante, puntosPro)
-        updateDeciPlusButton(btnDeciPlus, puntosDeciPlus)
+        updateDeciPlusButton(btnDeciPlus, puntosDeciPlus, puntosDeciPlusPrincipiante, puntosDeciPlusPro)
         updateRomasButton(btnRomas, puntosRomas)
         updateAlfaNumerosButton(btnAlfaNumeros, puntosAlfaNumeros)
         updateSumaRestaButton(btnSumaresta, puntosSumaResta)
@@ -212,14 +244,15 @@ class GameSelectionActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateDeciPlusButton(button: RelativeLayout, score: Int) {
+    private fun updateDeciPlusButton(button: RelativeLayout, score: Int, principianteScore: Int, proScore: Int) {
         val gameNameTextView = button.findViewById<TextView>(R.id.tv_game_name_deci_plus)
         val pointsTextView = button.findViewById<TextView>(R.id.tv_points_deci_plus)
         val starIcon = button.findViewById<ImageView>(R.id.icon_star_deci_plus)
+        val totalScore = score + principianteScore + proScore
 
-        if (score > 0) {
+        if (totalScore > 0) {
             gameNameTextView.text = getString(R.string.game_deci_plus)
-            pointsTextView.text = getString(R.string.score_format, score)
+            pointsTextView.text = getString(R.string.score_format, totalScore)
             pointsTextView.visibility = View.VISIBLE
             starIcon.visibility = View.VISIBLE
         } else {

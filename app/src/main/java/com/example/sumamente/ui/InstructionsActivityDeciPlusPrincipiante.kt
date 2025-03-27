@@ -18,7 +18,7 @@ import com.example.sumamente.R
 import androidx.core.view.isVisible
 import androidx.core.content.edit
 
-class InstructionsActivityDeciPlus : AppCompatActivity() {
+class InstructionsActivityDeciPlusPrincipiante : AppCompatActivity() {
 
     private var responseMode: ResponseModeDeciPlus? = null
     private var level: Int = 1
@@ -47,7 +47,7 @@ class InstructionsActivityDeciPlus : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
-        setContentView(R.layout.activity_instructions_deci_plus)
+        setContentView(R.layout.activity_instructions_deci_plus_principiante)
 
         tvGameName = findViewById(R.id.tv_game_name)
         tvDifficulty = findViewById(R.id.tv_difficulty)
@@ -105,7 +105,7 @@ class InstructionsActivityDeciPlus : AppCompatActivity() {
         btnClose.setOnClickListener {
             btnClose.isEnabled = false
 
-            val intent = Intent(this, LevelsActivityDeciPlus::class.java)
+            val intent = Intent(this, LevelsActivityDeciPlusPrincipiante::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             finish()
@@ -156,9 +156,9 @@ class InstructionsActivityDeciPlus : AppCompatActivity() {
                     val mode = responseMode
                     if (mode != null) {
                         val prefs = getSharedPreferences("MyPrefsDeciPlus", Context.MODE_PRIVATE)
-                        prefs.edit { putString("selectedResponseModeDialogDeciPlus", mode.name) }
+                        prefs.edit { putString("selectedResponseModeDialogDeciPlusPrincipiante", mode.name) }
                     }
-                    val intent = Intent(this@InstructionsActivityDeciPlus, GameActivityDeciPlus::class.java)
+                    val intent = Intent(this@InstructionsActivityDeciPlusPrincipiante, GameActivityDeciPlusPrincipiante::class.java)
                     intent.putExtra("LEVEL", level)
                     if (mode != null) {
                         intent.putExtra("RESPONSE_MODE", mode.name)
@@ -257,20 +257,20 @@ class InstructionsActivityDeciPlus : AppCompatActivity() {
 
         val difficultyValue = sharedPreferences.getString(
             difficultyKey,
-            DifficultySelectionActivity.DIFFICULTY_AVANZADO
+            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE
         )
 
         val difficultyText = when (difficultyValue) {
             DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> getString(R.string.difficulty_principiante)
             DifficultySelectionActivity.DIFFICULTY_AVANZADO -> getString(R.string.difficulty_avanzado)
             DifficultySelectionActivity.DIFFICULTY_PRO -> getString(R.string.difficulty_pro)
-            else -> getString(R.string.difficulty_avanzado)
+            else -> getString(R.string.difficulty_principiante)
         }
 
         tvDifficulty.text = difficultyText
 
-        ScoreManager.initDeciPlus(this)
-        tvScore.text = getString(R.string.score_format, ScoreManager.currentScoreDeciPlus)
+        ScoreManager.initDeciPlusPrincipiante(this)
+        tvScore.text = getString(R.string.score_format, ScoreManager.currentScoreDeciPlusPrincipiante)
 
         tvDifficulty.setOnClickListener {
             val scaleDownX = ObjectAnimator.ofFloat(it, "scaleX", 1f, 0.9f).setDuration(50)
@@ -285,7 +285,7 @@ class InstructionsActivityDeciPlus : AppCompatActivity() {
                 override fun onAnimationStart(animation: Animator) {}
                 override fun onAnimationEnd(animation: Animator) {
                     val intent = DifficultySelectionActivity.createIntent(
-                        this@InstructionsActivityDeciPlus,
+                        this@InstructionsActivityDeciPlusPrincipiante,
                         "DeciPlus",
                         true,
                         level,
@@ -299,4 +299,3 @@ class InstructionsActivityDeciPlus : AppCompatActivity() {
         }
     }
 }
-

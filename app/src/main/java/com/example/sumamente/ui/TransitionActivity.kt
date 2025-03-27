@@ -62,6 +62,12 @@ class TransitionActivity : AppCompatActivity() {
         val scorePrefsDeciPlus = getSharedPreferences("ScorePrefsDeciPlus", MODE_PRIVATE)
         scorePrefsDeciPlus.edit { clear() }
 
+        val scorePrefsDeciPlusPrincipiante = getSharedPreferences("ScorePrefsDeciPlusPrincipiante", MODE_PRIVATE)
+        scorePrefsDeciPlusPrincipiante.edit { clear() }
+
+        val scorePrefsDeciPlusPro = getSharedPreferences("ScorePrefsDeciPlusPro", MODE_PRIVATE)
+        scorePrefsDeciPlusPro.edit { clear() }
+
         val myPrefsRomas = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
         myPrefsRomas.edit { clear() }
 

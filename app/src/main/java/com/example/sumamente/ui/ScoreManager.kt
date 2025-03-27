@@ -26,6 +26,16 @@ object ScoreManager {
     private const val KEY_UNLOCKED_LEVELS_DECI_PLUS = "unlocked_levels_deci_plus"
     private const val KEY_COMPLETED_LEVELS_DECI_PLUS = "completed_levels_deci_plus"
 
+    private const val PREFS_NAME_DECI_PLUS_PRINCIPIANTE = "ScorePrefsDeciPlusPrincipiante"
+    private const val KEY_CURRENT_SCORE_DECI_PLUS_PRINCIPIANTE = "current_score_deci_plus_principiante"
+    private const val KEY_UNLOCKED_LEVELS_DECI_PLUS_PRINCIPIANTE = "unlocked_levels_deci_plus_principiante"
+    private const val KEY_COMPLETED_LEVELS_DECI_PLUS_PRINCIPIANTE = "completed_levels_deci_plus_principiante"
+
+    private const val PREFS_NAME_DECI_PLUS_PRO = "ScorePrefsDeciPlusPro"
+    private const val KEY_CURRENT_SCORE_DECI_PLUS_PRO = "current_score_deci_plus_pro"
+    private const val KEY_UNLOCKED_LEVELS_DECI_PLUS_PRO = "unlocked_levels_deci_plus_pro"
+    private const val KEY_COMPLETED_LEVELS_DECI_PLUS_PRO = "completed_levels_deci_plus_pro"
+
     private const val PREFS_NAME_ROMAS = "ScorePrefsRomas"
     private const val KEY_CURRENT_SCORE_ROMAS = "current_score_romas"
     private const val KEY_UNLOCKED_LEVELS_ROMAS = "unlocked_levels_romas"
@@ -67,6 +77,14 @@ object ScoreManager {
     var unlockedLevelsDeciPlus: Int = 2
     val levelScoresDeciPlus: MutableMap<Int, Int> = mutableMapOf()
 
+    var currentScoreDeciPlusPrincipiante: Int = 0
+    var unlockedLevelsDeciPlusPrincipiante: Int = 2
+    val levelScoresDeciPlusPrincipiante: MutableMap<Int, Int> = mutableMapOf()
+
+    var currentScoreDeciPlusPro: Int = 0
+    var unlockedLevelsDeciPlusPro: Int = 2
+    val levelScoresDeciPlusPro: MutableMap<Int, Int> = mutableMapOf()
+
     var currentScoreRomas: Int = 0
     var unlockedLevelsRomas: Int = 2
     val levelScoresRomas: MutableMap<Int, Int> = mutableMapOf()
@@ -91,15 +109,22 @@ object ScoreManager {
     private const val KEY_CONSECUTIVE_FAILURES_PRINCIPIANTE = "consecutive_failures_principiante"
     private const val KEY_CONSECUTIVE_FAILURES_PRO = "consecutive_failures_pro"
     private const val KEY_CONSECUTIVE_FAILURES_DECI_PLUS = "consecutive_failures_deci_plus"
+    private const val KEY_CONSECUTIVE_FAILURES_DECI_PLUS_PRINCIPIANTE = "consecutive_failures_deci_plus_principiante"
+    private const val KEY_CONSECUTIVE_FAILURES_DECI_PLUS_PRO = "consecutive_failures_deci_plus_pro"
+
     private val consecutiveFailures: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresPrincipiante: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresPro: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresDeciPlus: MutableMap<Int, Int> = mutableMapOf()
+    private val consecutiveFailuresDeciPlusPrincipiante: MutableMap<Int, Int> = mutableMapOf()
+    private val consecutiveFailuresDeciPlusPro: MutableMap<Int, Int> = mutableMapOf()
 
     private lateinit var preferences: SharedPreferences
     private lateinit var preferencesPrincipiante: SharedPreferences
     private lateinit var preferencesPro: SharedPreferences
     private lateinit var preferencesDeciPlus: SharedPreferences
+    private lateinit var preferencesDeciPlusPrincipiante: SharedPreferences
+    private lateinit var preferencesDeciPlusPro: SharedPreferences
     private lateinit var preferencesRomas: SharedPreferences
     private lateinit var preferencesAlfaNumeros: SharedPreferences
     private lateinit var preferencesSumaResta: SharedPreferences
@@ -154,6 +179,32 @@ object ScoreManager {
             val failures = preferencesDeciPlus.getInt("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS:$i", 0)
             if (failures > 0) {
                 consecutiveFailuresDeciPlus[i] = failures
+            }
+        }
+    }
+
+    fun initDeciPlusPrincipiante(context: Context) {
+        preferencesDeciPlusPrincipiante = context.getSharedPreferences(PREFS_NAME_DECI_PLUS_PRINCIPIANTE, Context.MODE_PRIVATE)
+        currentScoreDeciPlusPrincipiante = preferencesDeciPlusPrincipiante.getInt(KEY_CURRENT_SCORE_DECI_PLUS_PRINCIPIANTE, 0)
+        unlockedLevelsDeciPlusPrincipiante = preferencesDeciPlusPrincipiante.getInt(KEY_UNLOCKED_LEVELS_DECI_PLUS_PRINCIPIANTE, 2)
+
+        for (i in 1..70) {
+            val failures = preferencesDeciPlusPrincipiante.getInt("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS_PRINCIPIANTE:$i-principiante", 0)
+            if (failures > 0) {
+                consecutiveFailuresDeciPlusPrincipiante[i] = failures
+            }
+        }
+    }
+
+    fun initDeciPlusPro(context: Context) {
+        preferencesDeciPlusPro = context.getSharedPreferences(PREFS_NAME_DECI_PLUS_PRO, Context.MODE_PRIVATE)
+        currentScoreDeciPlusPro = preferencesDeciPlusPro.getInt(KEY_CURRENT_SCORE_DECI_PLUS_PRO, 0)
+        unlockedLevelsDeciPlusPro = preferencesDeciPlusPro.getInt(KEY_UNLOCKED_LEVELS_DECI_PLUS_PRO, 2)
+
+        for (i in 1..70) {
+            val failures = preferencesDeciPlusPro.getInt("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS_PRO:$i-pro", 0)
+            if (failures > 0) {
+                consecutiveFailuresDeciPlusPro[i] = failures
             }
         }
     }
@@ -216,6 +267,20 @@ object ScoreManager {
         }
     }
 
+    fun saveScoreDeciPlusPrincipiante() {
+        preferencesDeciPlusPrincipiante.edit {
+            putInt(KEY_CURRENT_SCORE_DECI_PLUS_PRINCIPIANTE, currentScoreDeciPlusPrincipiante)
+            putInt(KEY_UNLOCKED_LEVELS_DECI_PLUS_PRINCIPIANTE, unlockedLevelsDeciPlusPrincipiante)
+        }
+    }
+
+    fun saveScoreDeciPlusPro() {
+        preferencesDeciPlusPro.edit {
+            putInt(KEY_CURRENT_SCORE_DECI_PLUS_PRO, currentScoreDeciPlusPro)
+            putInt(KEY_UNLOCKED_LEVELS_DECI_PLUS_PRO, unlockedLevelsDeciPlusPro)
+        }
+    }
+
     fun saveScoreRomas() {
         preferencesRomas.edit {
             putInt(KEY_CURRENT_SCORE_ROMAS, currentScoreRomas)
@@ -269,6 +334,16 @@ object ScoreManager {
 
     private fun getCompletedLevelsDeciPlus(): Set<Int> {
         return preferencesDeciPlus.getStringSet(KEY_COMPLETED_LEVELS_DECI_PLUS, emptySet())
+            ?.map { it.toInt() }?.toSet() ?: emptySet()
+    }
+
+    private fun getCompletedLevelsDeciPlusPrincipiante(): Set<Int> {
+        return preferencesDeciPlusPrincipiante.getStringSet(KEY_COMPLETED_LEVELS_DECI_PLUS_PRINCIPIANTE, emptySet())
+            ?.map { it.toInt() }?.toSet() ?: emptySet()
+    }
+
+    private fun getCompletedLevelsDeciPlusPro(): Set<Int> {
+        return preferencesDeciPlusPro.getStringSet(KEY_COMPLETED_LEVELS_DECI_PLUS_PRO, emptySet())
             ?.map { it.toInt() }?.toSet() ?: emptySet()
     }
 
@@ -332,6 +407,24 @@ object ScoreManager {
         preferencesDeciPlus.edit {
             putStringSet(
                 KEY_COMPLETED_LEVELS_DECI_PLUS, completedLevelsDeciPlus.map { it.toString() }.toSet())
+        }
+    }
+
+    fun addCompletedLevelDeciPlusPrincipiante(level: Int) {
+        val completedLevelsDeciPlusPrincipiante = getCompletedLevelsDeciPlusPrincipiante().toMutableSet()
+        completedLevelsDeciPlusPrincipiante.add(level)
+        preferencesDeciPlusPrincipiante.edit {
+            putStringSet(
+                KEY_COMPLETED_LEVELS_DECI_PLUS_PRINCIPIANTE, completedLevelsDeciPlusPrincipiante.map { it.toString() }.toSet())
+        }
+    }
+
+    fun addCompletedLevelDeciPlusPro(level: Int) {
+        val completedLevelsDeciPlusPro = getCompletedLevelsDeciPlusPro().toMutableSet()
+        completedLevelsDeciPlusPro.add(level)
+        preferencesDeciPlusPro.edit {
+            putStringSet(
+                KEY_COMPLETED_LEVELS_DECI_PLUS_PRO, completedLevelsDeciPlusPro.map { it.toString() }.toSet())
         }
     }
 
@@ -401,6 +494,14 @@ object ScoreManager {
         return getCompletedLevelsDeciPlus().contains(level)
     }
 
+    fun hasCompletedLevelDeciPlusPrincipiante(level: Int): Boolean {
+        return getCompletedLevelsDeciPlusPrincipiante().contains(level)
+    }
+
+    fun hasCompletedLevelDeciPlusPro(level: Int): Boolean {
+        return getCompletedLevelsDeciPlusPro().contains(level)
+    }
+
     fun hasCompletedLevelRomas(level: Int): Boolean {
         return getCompletedLevelsRomas().contains(level)
     }
@@ -462,6 +563,28 @@ object ScoreManager {
             putInt(KEY_CURRENT_SCORE_DECI_PLUS, currentScoreDeciPlus)
                 .putInt(KEY_UNLOCKED_LEVELS_DECI_PLUS, unlockedLevelsDeciPlus)
                 .putStringSet(KEY_COMPLETED_LEVELS_DECI_PLUS, emptySet())
+        }
+    }
+
+    fun resetDeciPlusPrincipiante() {
+        currentScoreDeciPlusPrincipiante = 0
+        unlockedLevelsDeciPlusPrincipiante = 2
+        levelScoresDeciPlusPrincipiante.clear()
+        preferencesDeciPlusPrincipiante.edit {
+            putInt(KEY_CURRENT_SCORE_DECI_PLUS_PRINCIPIANTE, currentScoreDeciPlusPrincipiante)
+                .putInt(KEY_UNLOCKED_LEVELS_DECI_PLUS_PRINCIPIANTE, unlockedLevelsDeciPlusPrincipiante)
+                .putStringSet(KEY_COMPLETED_LEVELS_DECI_PLUS_PRINCIPIANTE, emptySet())
+        }
+    }
+
+    fun resetDeciPlusPro() {
+        currentScoreDeciPlusPro = 0
+        unlockedLevelsDeciPlusPro = 2
+        levelScoresDeciPlusPro.clear()
+        preferencesDeciPlusPro.edit {
+            putInt(KEY_CURRENT_SCORE_DECI_PLUS_PRO, currentScoreDeciPlusPro)
+                .putInt(KEY_UNLOCKED_LEVELS_DECI_PLUS_PRO, unlockedLevelsDeciPlusPro)
+                .putStringSet(KEY_COMPLETED_LEVELS_DECI_PLUS_PRO, emptySet())
         }
     }
 
@@ -615,5 +738,54 @@ object ScoreManager {
         if (level == 1) return false
         return getConsecutiveFailuresDeciPlus(level) >= 12
     }
+
+    fun incrementConsecutiveFailuresDeciPlusPrincipiante(level: Int) {
+        val currentFailures = consecutiveFailuresDeciPlusPrincipiante[level] ?: 0
+        consecutiveFailuresDeciPlusPrincipiante[level] = currentFailures + 1
+        preferencesDeciPlusPrincipiante.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS_PRINCIPIANTE:$level", consecutiveFailuresDeciPlusPrincipiante[level] ?: 0)
+        }
+    }
+
+    fun resetConsecutiveFailuresDeciPlusPrincipiante(level: Int) {
+        consecutiveFailuresDeciPlusPrincipiante[level] = 0
+        preferencesDeciPlusPrincipiante.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS_PRINCIPIANTE:$level", 0)
+        }
+    }
+
+    fun getConsecutiveFailuresDeciPlusPrincipiante(level: Int): Int {
+        return consecutiveFailuresDeciPlusPrincipiante[level] ?: 0
+    }
+
+    fun isLevelBlockedByFailuresDeciPlusPrincipiante(level: Int): Boolean {
+        if (level == 1) return false
+        return getConsecutiveFailuresDeciPlusPrincipiante(level) >= 12
+    }
+
+    fun incrementConsecutiveFailuresDeciPlusPro(level: Int) {
+        val currentFailures = consecutiveFailuresDeciPlusPro[level] ?: 0
+        consecutiveFailuresDeciPlusPro[level] = currentFailures + 1
+        preferencesDeciPlusPro.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS_PRO:$level", consecutiveFailuresDeciPlusPro[level] ?: 0)
+        }
+    }
+
+    fun resetConsecutiveFailuresDeciPlusPro(level: Int) {
+        consecutiveFailuresDeciPlusPro[level] = 0
+        preferencesDeciPlusPro.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS_PRO:$level", 0)
+        }
+    }
+
+    fun getConsecutiveFailuresDeciPlusPro(level: Int): Int {
+        return consecutiveFailuresDeciPlusPro[level] ?: 0
+    }
+
+    fun isLevelBlockedByFailuresDeciPlusPro(level: Int): Boolean {
+        if (level == 1) return false
+        return getConsecutiveFailuresDeciPlusPro(level) >= 12
+    }
+
 }
 

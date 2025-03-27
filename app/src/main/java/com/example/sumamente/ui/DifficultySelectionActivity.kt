@@ -70,7 +70,6 @@ class DifficultySelectionActivity : AppCompatActivity() {
         val tvGameName = findViewById<TextView>(R.id.tv_game_name)
         val tvGameTitle = findViewById<TextView>(R.id.tv_game_title)
 
-
         val gameName = when (gameType) {
             "NumerosPlus" -> getString(R.string.game_numeros_plus)
             "DeciPlus" -> getString(R.string.game_deci_plus)
@@ -95,20 +94,28 @@ class DifficultySelectionActivity : AppCompatActivity() {
         val responseModeStr = intent.getStringExtra("RESPONSE_MODE")
         val currentDifficulty = sharedPreferences.getString(difficultyKey, DIFFICULTY_AVANZADO)
 
-
-        if (gameType == "NumerosPlus") {
-            btnPrincipiante.isEnabled = true
-            btnPrincipiante.alpha = 1.0f
-            btnAvanzado.isEnabled = true
-            btnPro.isEnabled = true
-            btnPro.alpha = 1.0f
-        } else {
-
-            btnPrincipiante.isEnabled = false
-            btnPrincipiante.alpha = 0.5f
-            btnAvanzado.isEnabled = true
-            btnPro.isEnabled = false
-            btnPro.alpha = 0.5f
+        when (gameType) {
+            "NumerosPlus" -> {
+                btnPrincipiante.isEnabled = true
+                btnPrincipiante.alpha = 1.0f
+                btnAvanzado.isEnabled = true
+                btnPro.isEnabled = true
+                btnPro.alpha = 1.0f
+            }
+            "DeciPlus" -> {
+                btnPrincipiante.isEnabled = true
+                btnPrincipiante.alpha = 1.0f
+                btnAvanzado.isEnabled = true
+                btnPro.isEnabled = false
+                btnPro.alpha = 0.5f
+            }
+            else -> {
+                btnPrincipiante.isEnabled = false
+                btnPrincipiante.alpha = 0.5f
+                btnAvanzado.isEnabled = true
+                btnPro.isEnabled = false
+                btnPro.alpha = 0.5f
+            }
         }
 
         closeButton.setOnClickListener {
@@ -169,46 +176,29 @@ class DifficultySelectionActivity : AppCompatActivity() {
 
     private fun navigateBasedOnSelection(difficulty: String, fromInstructions: Boolean, level: Int, responseMode: String?) {
         val targetIntent = when {
+
             gameType == "NumerosPlus" && difficulty == DIFFICULTY_PRINCIPIANTE -> {
-                if (fromInstructions) {
-                    Intent(this, InstructionsActivityPrincipiante::class.java).apply {
-                        putExtra("LEVEL", level)
-                        if (responseMode != null) putExtra("RESPONSE_MODE", responseMode)
-                    }
-                } else {
-                    Intent(this, LevelsActivityPrincipiante::class.java)
-                }
+                Intent(this, LevelsActivityPrincipiante::class.java)
             }
             gameType == "NumerosPlus" && difficulty == DIFFICULTY_AVANZADO -> {
-                if (fromInstructions) {
-                    Intent(this, InstructionsActivity::class.java).apply {
-                        putExtra("LEVEL", level)
-                        if (responseMode != null) putExtra("RESPONSE_MODE", responseMode)
-                    }
-                } else {
-                    Intent(this, LevelsActivity::class.java)
-                }
+                Intent(this, LevelsActivity::class.java)
             }
             gameType == "NumerosPlus" && difficulty == DIFFICULTY_PRO -> {
-                if (fromInstructions) {
-                    Intent(this, InstructionsActivityPro::class.java).apply {
-                        putExtra("LEVEL", level)
-                        if (responseMode != null) putExtra("RESPONSE_MODE", responseMode)
-                    }
-                } else {
-                    Intent(this, LevelsActivityPro::class.java)
-                }
+                Intent(this, LevelsActivityPro::class.java)
             }
-            gameType == "DeciPlus" -> {
-                if (fromInstructions) {
-                    Intent(this, InstructionsActivityDeciPlus::class.java).apply {
-                        putExtra("LEVEL", level)
-                        if (responseMode != null) putExtra("RESPONSE_MODE", responseMode)
-                    }
-                } else {
-                    Intent(this, LevelsActivityDeciPlus::class.java)
-                }
+
+
+            gameType == "DeciPlus" && difficulty == DIFFICULTY_AVANZADO -> {
+                Intent(this, LevelsActivityDeciPlus::class.java)
             }
+            gameType == "DeciPlus" && difficulty == DIFFICULTY_PRINCIPIANTE -> {
+                Intent(this, LevelsActivityDeciPlusPrincipiante::class.java)
+            }
+            gameType == "DeciPlus" && difficulty == DIFFICULTY_PRO -> {
+                Intent(this, LevelsActivityDeciPlusPrincipiante::class.java)
+            }
+
+
             gameType == "Romas" -> {
                 if (fromInstructions) {
                     Intent(this, InstructionsActivityRomas::class.java).apply {
@@ -277,7 +267,13 @@ class DifficultySelectionActivity : AppCompatActivity() {
                     DIFFICULTY_PRO -> ScoreManager.saveScorePro()
                 }
             }
-            "DeciPlus" -> ScoreManager.saveScoreDeciPlus()
+            "DeciPlus" -> {
+                when (difficulty) {
+                    DIFFICULTY_PRINCIPIANTE -> ScoreManager.saveScoreDeciPlusPrincipiante()
+                    DIFFICULTY_AVANZADO -> ScoreManager.saveScoreDeciPlus()
+                    DIFFICULTY_PRO -> ScoreManager.saveScoreDeciPlusPro()
+                }
+            }
             "Romas" -> ScoreManager.saveScoreRomas()
             "AlfaNumeros" -> ScoreManager.saveScoreAlfaNumeros()
             "Sumaresta" -> ScoreManager.saveScoreSumaResta()
