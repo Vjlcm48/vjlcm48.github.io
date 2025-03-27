@@ -710,4 +710,12 @@
 
     <string name="skip_tutorial">Skip tutorial</string>
 
+    <string name="premio_titulo">Your effort, your rewards…</string>
+    <string name="pin_reconocimiento">Special achievements</string>
+    <string name="corona_laureles">Superior speed</string>
+    <string name="medalla">Consistent perseverance</string>
+    <string name="trofeo">Complete mastery</string>
+
+    <string name="en_construccion">Under construction</string>
+
 </resources>

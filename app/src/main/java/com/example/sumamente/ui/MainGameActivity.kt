@@ -52,6 +52,7 @@ class MainGameActivity : AppCompatActivity() {
         val homeIcon = findViewById<ImageView>(R.id.home_icon)
         val statisticsIcon = findViewById<ImageView>(R.id.statistics_icon)
         val settingsIcon = findViewById<ImageView>(R.id.settings_icon)
+        val trophyIcon = findViewById<ImageView>(R.id.trophy_icon)
         val calendarIcon = findViewById<ImageView>(R.id.calendar_icon)
 
         mediaPlayer = MediaPlayer.create(this, R.raw.fondomusicals1)
@@ -138,6 +139,14 @@ class MainGameActivity : AppCompatActivity() {
             applyBounceEffect(it) {
                 mediaPlayer.fadeOut()
                 startActivity(Intent(this, DesafiosActivity::class.java))
+            }
+        }
+
+        trophyIcon.setOnClickListener {
+            applyBounceEffect(it) {
+                mediaPlayer.fadeOut()
+                val intent = Intent(this, TrofeosActivity::class.java)
+                startActivity(intent)
             }
         }
     }

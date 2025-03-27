@@ -1,0 +1,102 @@
+package com.example.sumamente.ui
+
+import android.animation.AnimatorListenerAdapter
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.content.Intent
+import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.sumamente.R
+
+class TrofeosActivity : AppCompatActivity() {
+
+    private lateinit var tvTituloTrofeos: TextView
+    private lateinit var btnPin: LinearLayout
+    private lateinit var btnCorona: LinearLayout
+    private lateinit var btnMedalla: LinearLayout
+    private lateinit var btnTrofeo: LinearLayout
+    private lateinit var btnClose: ImageView
+    private lateinit var btnBack: ImageView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_trofeos)
+
+        initViews()
+        setupButtons()
+    }
+
+    private fun initViews() {
+        tvTituloTrofeos = findViewById(R.id.tv_titulo_trofeos)
+        btnPin = findViewById(R.id.btn_pin)
+        btnCorona = findViewById(R.id.btn_corona)
+        btnMedalla = findViewById(R.id.btn_medalla)
+        btnTrofeo = findViewById(R.id.btn_trofeo)
+        btnClose = findViewById(R.id.btn_close)
+        btnBack = findViewById(R.id.btn_back)
+    }
+
+    private fun setupButtons() {
+        btnClose.setOnClickListener {
+            applyBounceEffect(it) {
+                val intent = Intent(this, MainGameActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+
+        btnBack.setOnClickListener {
+            applyBounceEffect(it) {
+                val intent = Intent(this, MainGameActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+
+
+        setupPremioButton(btnPin)
+        setupPremioButton(btnCorona)
+        setupPremioButton(btnMedalla)
+        setupPremioButton(btnTrofeo)
+    }
+
+    private fun setupPremioButton(button: LinearLayout) {
+        button.setOnClickListener {
+            applyBounceEffect(it) {
+
+                Toast.makeText(this, getString(R.string.en_construccion), Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
+        val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.9f).setDuration(50)
+        val scaleDownY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 0.9f).setDuration(50)
+        val scaleUpX = ObjectAnimator.ofFloat(view, "scaleX", 0.9f, 1f).setDuration(50)
+        val scaleUpY = ObjectAnimator.ofFloat(view, "scaleY", 0.9f, 1f).setDuration(50)
+
+        val scaleDown = AnimatorSet().apply {
+            playTogether(scaleDownX, scaleDownY)
+        }
+
+        val scaleUp = AnimatorSet().apply {
+            playTogether(scaleUpX, scaleUpY)
+        }
+
+        val animatorSet = AnimatorSet()
+        animatorSet.playSequentially(scaleDown, scaleUp)
+
+        animatorSet.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: android.animation.Animator) {
+                onAnimationEnd()
+            }
+        })
+
+        animatorSet.start()
+    }
+}

@@ -683,4 +683,12 @@
 
     <string name="skip_tutorial">Omitir tutorial</string>
 
+    <string name="premio_titulo">Tu esfuerzo, tus premios…</string>
+    <string name="pin_reconocimiento">Logros especiales</string>
+    <string name="corona_laureles">Velocidad superior</string>
+    <string name="medalla">Perseverancia constante</string>
+    <string name="trofeo">Maestría completa</string>
+
+    <string name="en_construccion">Estamos en construcción</string>
+
 </resources>
