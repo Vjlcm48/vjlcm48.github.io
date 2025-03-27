@@ -106,8 +106,8 @@ class DifficultySelectionActivity : AppCompatActivity() {
                 btnPrincipiante.isEnabled = true
                 btnPrincipiante.alpha = 1.0f
                 btnAvanzado.isEnabled = true
-                btnPro.isEnabled = false
-                btnPro.alpha = 0.5f
+                btnPro.isEnabled = true
+                btnPro.alpha = 1.0f
             }
             else -> {
                 btnPrincipiante.isEnabled = false
@@ -195,7 +195,7 @@ class DifficultySelectionActivity : AppCompatActivity() {
                 Intent(this, LevelsActivityDeciPlusPrincipiante::class.java)
             }
             gameType == "DeciPlus" && difficulty == DIFFICULTY_PRO -> {
-                Intent(this, LevelsActivityDeciPlusPrincipiante::class.java)
+                Intent(this, LevelsActivityDeciPlusPro::class.java)
             }
 
 

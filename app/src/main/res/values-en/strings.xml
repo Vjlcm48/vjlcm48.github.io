@@ -708,4 +708,6 @@
     <string name="correct_answer_format_deci">Correct answer: %s</string>
     <string name="user_responses_format_deci">Your responses: %s</string>
 
+    <string name="skip_tutorial">Skip tutorial</string>
+
 </resources>

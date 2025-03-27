@@ -50,6 +50,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.LevelsActivityDeciPlusPro"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.LevelsActivityRomas"
             android:exported="false" />
 
@@ -146,6 +150,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.InstructionsActivityDeciPlusPro"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.InstructionsActivityRomas"
             android:exported="false" />
 
@@ -183,6 +191,10 @@
 
         <activity
             android:name=".ui.GameActivityDeciPlusPrincipiante"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.GameActivityDeciPlusPro"
             android:exported="false" />
 
         <activity
@@ -272,6 +284,11 @@
 
         <activity
             android:name=".ui.LevelResultActivityDeciPlusPrincipiante"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.LevelResultActivityDeciPlusPro"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 

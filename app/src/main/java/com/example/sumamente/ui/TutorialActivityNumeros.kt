@@ -69,6 +69,7 @@ class TutorialActivityNumeros : AppCompatActivity() {
     private lateinit var tvStepThreePartTwo: TextView
     private lateinit var tvResultMessage: TextView
     private lateinit var tvClosingMessage: TextView
+    private lateinit var btnSkipTutorial: ImageView
 
     private val fixedNumbers = listOf(7, 3, 5, -3, 4, 4, -11)
     private val handler = Handler(Looper.getMainLooper())
@@ -141,6 +142,14 @@ class TutorialActivityNumeros : AppCompatActivity() {
         tvStepThreePartTwo = findViewById(R.id.tv_step_three_part_two)
         tvResultMessage = findViewById(R.id.tv_result_message)
         tvClosingMessage = findViewById(R.id.tv_closing_message)
+        btnSkipTutorial = findViewById(R.id.btn_skip_tutorial)
+
+        btnSkipTutorial.setOnClickListener {
+            applyBounceEffect(it) {
+                markTutorialAsSeenAndNavigate()
+            }
+        }
+
     }
 
     private fun startSequence() {

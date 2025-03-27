@@ -385,6 +385,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <ImageView
+        android:id="@+id/btn_skip_tutorial"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_skip_tutorial"
+        android:contentDescription="@string/skip_tutorial"
+        android:visibility="visible"
+        android:alpha="0.9"
+        android:padding="8dp"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 
     <TextView
         android:id="@+id/tv_step_three_part_one"

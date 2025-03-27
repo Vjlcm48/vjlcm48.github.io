@@ -82,7 +82,7 @@ class TutorialActivityDeciPlus : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val prefs = getSharedPreferences("MyPrefsDeciPlus", Context.MODE_PRIVATE)
-        val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsDeciplus", false)
+        val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsDeciPlus", false)
         if (hasSeenInstructions) {
             val intent = Intent(this, LevelsActivityDeciPlus::class.java)
             startActivity(intent)

@@ -681,4 +681,6 @@
     <string name="correct_answer_format_deci">Respuesta correcta: %s</string>
     <string name="user_responses_format_deci">Tus respuestas: %s</string>
 
+    <string name="skip_tutorial">Omitir tutorial</string>
+
 </resources>

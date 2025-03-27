@@ -164,7 +164,7 @@ class ResetProgressActivity : AppCompatActivity() {
         val originalCloseButton = dialogView.findViewById<ImageView>(R.id.closeButton)
         originalCloseButton?.visibility = View.GONE
 
-        if (selectedGame == "NumerosPlus") {
+        if (selectedGame == "NumerosPlus" || selectedGame == "DeciPlus") {
             btnPrincipiante.isEnabled = true
             btnAvanzado.isEnabled = true
             btnPro.isEnabled = true
@@ -408,6 +408,10 @@ class ResetProgressActivity : AppCompatActivity() {
     private fun clearScoreDataForGame(gameName: String, difficulty: String) {
         when (gameName) {
             "NumerosPlus" -> {
+
+                val myPrefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                val hasSeenTutorial = myPrefs.getBoolean("hasSeenInstructionsNumeros", false)
+
                 when (difficulty) {
                     DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> {
                         val scorePrefs = getSharedPreferences("ScorePrefsPrincipiante", Context.MODE_PRIVATE)
@@ -425,8 +429,14 @@ class ResetProgressActivity : AppCompatActivity() {
                         ScoreManager.resetPro()
                     }
                 }
+
+                myPrefs.edit { putBoolean("hasSeenInstructionsNumeros", hasSeenTutorial) }
             }
             "DeciPlus" -> {
+
+                val myPrefs = getSharedPreferences("MyPrefsDeciPlus", Context.MODE_PRIVATE)
+                val hasSeenTutorial = myPrefs.getBoolean("hasSeenInstructionsDeciPlus", false)
+
                 when (difficulty) {
                     DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> {
                         val scorePrefs = getSharedPreferences("ScorePrefsDeciPlusPrincipiante", Context.MODE_PRIVATE)
@@ -444,6 +454,8 @@ class ResetProgressActivity : AppCompatActivity() {
                         ScoreManager.resetDeciPlusPro()
                     }
                 }
+
+                myPrefs.edit { putBoolean("hasSeenInstructionsDeciPlus", hasSeenTutorial) }
             }
             "Romas" -> {
                 val scorePrefs = getSharedPreferences("ScorePrefsRomas", Context.MODE_PRIVATE)
@@ -477,41 +489,35 @@ class ResetProgressActivity : AppCompatActivity() {
         when (gameName) {
             "NumerosPlus" -> {
                 val myPrefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+
+                val hasSeenTutorial = myPrefs.getBoolean("hasSeenInstructionsNumeros", false)
+
                 when (difficulty) {
                     DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> {
-
-                        val hasSeenTutorialPrincipiante = myPrefs.getBoolean("hasSeenInstructionsPrincipiante", false)
-
                         myPrefs.edit {
                             remove("selectedResponseModePrincipiante")
                             putString(getDifficultyKey(selectedGame!!),
                                 DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE)
 
-                            putBoolean("hasSeenInstructionsPrincipiante", hasSeenTutorialPrincipiante)
+                            putBoolean("hasSeenInstructionsNumeros", hasSeenTutorial)
                         }
                     }
                     DifficultySelectionActivity.DIFFICULTY_AVANZADO -> {
-
-                        val hasSeenTutorialAvanzado = myPrefs.getBoolean("hasSeenInstructions", false)
-
                         myPrefs.edit {
                             remove("selectedResponseMode")
                             putString(getDifficultyKey(selectedGame!!),
                                 DifficultySelectionActivity.DIFFICULTY_AVANZADO)
 
-                            putBoolean("hasSeenInstructions", hasSeenTutorialAvanzado)
+                            putBoolean("hasSeenInstructionsNumeros", hasSeenTutorial)
                         }
                     }
                     DifficultySelectionActivity.DIFFICULTY_PRO -> {
-
-                        val hasSeenTutorialPro = myPrefs.getBoolean("hasSeenInstructionsPro", false)
-
                         myPrefs.edit {
                             remove("selectedResponseModePro")
                             putString(getDifficultyKey(selectedGame!!),
                                 DifficultySelectionActivity.DIFFICULTY_PRO)
 
-                            putBoolean("hasSeenInstructionsPro", hasSeenTutorialPro)
+                            putBoolean("hasSeenInstructionsNumeros", hasSeenTutorial)
                         }
                     }
                 }
@@ -519,35 +525,34 @@ class ResetProgressActivity : AppCompatActivity() {
             "DeciPlus" -> {
                 val myPrefs = getSharedPreferences("MyPrefsDeciPlus", Context.MODE_PRIVATE)
 
+                val hasSeenTutorial = myPrefs.getBoolean("hasSeenInstructionsDeciPlus", false)
+
                 when (difficulty) {
                     DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> {
-                        val hasSeenTutorialPrincipiante = myPrefs.getBoolean("hasSeenInstructionsDeciPlusPrincipiante", false)
-
                         myPrefs.edit {
                             remove("selectedResponseModeDialogDeciPlusPrincipiante")
                             putString(getDifficultyKey(selectedGame!!),
                                 DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE)
-                            putBoolean("hasSeenInstructionsDeciPlusPrincipiante", hasSeenTutorialPrincipiante)
+
+                            putBoolean("hasSeenInstructionsDeciPlus", hasSeenTutorial)
                         }
                     }
                     DifficultySelectionActivity.DIFFICULTY_AVANZADO -> {
-                        val hasSeenTutorial = myPrefs.getBoolean("hasSeenInstructionsDeciplus", false)
-
                         myPrefs.edit {
                             remove("selectedResponseModeDialogDeciPlus")
                             putString(getDifficultyKey(selectedGame!!),
                                 DifficultySelectionActivity.DIFFICULTY_AVANZADO)
-                            putBoolean("hasSeenInstructionsDeciplus", hasSeenTutorial)
+
+                            putBoolean("hasSeenInstructionsDeciPlus", hasSeenTutorial)
                         }
                     }
                     DifficultySelectionActivity.DIFFICULTY_PRO -> {
-                        val hasSeenTutorialPro = myPrefs.getBoolean("hasSeenInstructionsDeciPlusPro", false)
-
                         myPrefs.edit {
                             remove("selectedResponseModeDialogDeciPlusPro")
                             putString(getDifficultyKey(selectedGame!!),
                                 DifficultySelectionActivity.DIFFICULTY_PRO)
-                            putBoolean("hasSeenInstructionsDeciPlusPro", hasSeenTutorialPro)
+
+                            putBoolean("hasSeenInstructionsDeciPlus", hasSeenTutorial)
                         }
                     }
                 }

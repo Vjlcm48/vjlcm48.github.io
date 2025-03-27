@@ -125,7 +125,7 @@ class GameSelectionActivity : AppCompatActivity() {
                             DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE ->
                                 Intent(this, LevelsActivityDeciPlusPrincipiante::class.java)
                             DifficultySelectionActivity.DIFFICULTY_PRO ->
-                                Intent(this, LevelsActivityDeciPlusPrincipiante::class.java)
+                                Intent(this, LevelsActivityDeciPlusPro::class.java)
                             else -> Intent(this, LevelsActivityDeciPlus::class.java)
                         }
                         startActivity(intent)
