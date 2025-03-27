@@ -60,6 +60,7 @@ class TutorialActivityMasPlus : AppCompatActivity() {
     private lateinit var starImageView: ImageView
     private lateinit var btnUnderstood: Button
     private lateinit var btnClose: ImageView
+    private lateinit var btnSkipTutorial: ImageView
     private lateinit var checkEscribeRespuesta: ImageView
     private lateinit var progressRing: ProgressRingView
     private lateinit var tvNumber: TextView
@@ -145,6 +146,13 @@ class TutorialActivityMasPlus : AppCompatActivity() {
         tvResultMessage = findViewById(R.id.tv_result_message)
         tvClosingMessage = findViewById(R.id.tv_closing_message)
         etUserAnswer = findViewById(R.id.et_user_answer)
+        btnSkipTutorial = findViewById(R.id.btn_skip_tutorial)
+
+        btnSkipTutorial.setOnClickListener {
+            applyBounceEffect(it) {
+                markTutorialAsSeenAndNavigate()
+            }
+        }
     }
 
     private fun positionCheckRelativeTo(
