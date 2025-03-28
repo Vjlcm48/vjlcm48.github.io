@@ -64,7 +64,6 @@ class LevelsActivity : AppCompatActivity() {
         val btnClose = findViewById<ImageView>(R.id.btn_close)
         levelContainer = findViewById(R.id.level_container)
 
-
         setupInfoBar()
 
         btnClose.setOnClickListener {

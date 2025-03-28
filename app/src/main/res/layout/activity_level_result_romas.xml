@@ -196,5 +196,21 @@
             android:focusable="true"
             android:visibility="invisible" />
 
+        <TextView
+            android:id="@+id/reviewexercisetextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/review_exercise"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#388E3C"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:padding="16dp"
+            android:background="@drawable/interactive_textview_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

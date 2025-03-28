@@ -15,6 +15,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -22,10 +23,12 @@ import com.example.sumamente.R
 
 class LevelsActivityRomas : AppCompatActivity() {
 
-
     private lateinit var levelContainer: LinearLayout
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var sharedPreferences: android.content.SharedPreferences
+    private lateinit var tvGameName: TextView
+    private lateinit var tvDifficulty: TextView
+    private lateinit var tvScore: TextView
 
     private val levelStrings = arrayOf(
         R.string.level_1, R.string.level_2, R.string.level_3, R.string.level_4, R.string.level_5,
@@ -54,6 +57,11 @@ class LevelsActivityRomas : AppCompatActivity() {
 
         val btnClose = findViewById<ImageView>(R.id.btn_close)
         levelContainer = findViewById(R.id.level_container)
+        tvGameName = findViewById(R.id.tv_game_name)
+        tvDifficulty = findViewById(R.id.tv_difficulty)
+        tvScore = findViewById(R.id.tv_score)
+
+        setupInfoBar()
 
         btnClose.setOnClickListener {
             applyBounceEffect(it) {
@@ -69,7 +77,51 @@ class LevelsActivityRomas : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        ScoreManager.initRomas(this)
         updateLevelButtons()
+        setupInfoBar()
+    }
+
+    private fun setupInfoBar() {
+        tvGameName.text = getString(R.string.game_romas)
+        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.green_medium))
+
+        val difficultyKey = "difficulty_romas"
+
+        val difficultyValue = sharedPreferences.getString(
+            difficultyKey,
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO
+        )
+
+        val difficultyText = when (difficultyValue) {
+            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> getString(R.string.difficulty_principiante)
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO -> getString(R.string.difficulty_avanzado)
+            DifficultySelectionActivity.DIFFICULTY_PRO -> getString(R.string.difficulty_pro)
+            else -> getString(R.string.difficulty_avanzado)
+        }
+
+        tvDifficulty.text = difficultyText
+        tvScore.text = getString(R.string.score_format, ScoreManager.currentScoreRomas)
+
+        tvDifficulty.setOnClickListener {
+            val scaleDownX = ObjectAnimator.ofFloat(it, "scaleX", 1f, 0.9f).setDuration(50)
+            val scaleDownY = ObjectAnimator.ofFloat(it, "scaleY", 1f, 0.9f).setDuration(50)
+            val scaleUpX = ObjectAnimator.ofFloat(it, "scaleX", 0.9f, 1f).setDuration(50)
+            val scaleUpY = ObjectAnimator.ofFloat(it, "scaleY", 0.9f, 1f).setDuration(50)
+            val clickAnimatorSet = AnimatorSet()
+            clickAnimatorSet.playSequentially(scaleDownX, scaleDownY, scaleUpX, scaleUpY)
+            clickAnimatorSet.start()
+
+            clickAnimatorSet.addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    val intent = DifficultySelectionActivity.createIntent(
+                        this@LevelsActivityRomas,
+                        "Romas"
+                    )
+                    startActivity(intent)
+                }
+            })
+        }
     }
 
     private fun createLevelButtons() {
@@ -106,7 +158,7 @@ class LevelsActivityRomas : AppCompatActivity() {
                     8.dpToPx(this@LevelsActivityRomas)
                 )
 
-                if (i < ScoreManager.unlockedLevelsRomas) {
+                if (i < ScoreManager.unlockedLevelsRomas && !ScoreManager.isLevelBlockedByFailuresRomas(i + 1)) {
                     setBackgroundResource(R.drawable.button_background_romas)
 
                     setOnClickListener {
@@ -145,7 +197,7 @@ class LevelsActivityRomas : AppCompatActivity() {
                 ).apply {
                     gravity = Gravity.CENTER_VERTICAL
                 }
-                setImageResource(if (i < ScoreManager.unlockedLevelsRomas) R.drawable.ic_unlock else R.drawable.ic_lock)
+                setImageResource(if (i < ScoreManager.unlockedLevelsRomas && !ScoreManager.isLevelBlockedByFailuresRomas(i + 1)) R.drawable.ic_unlock else R.drawable.ic_lock)
                 scaleType = ImageView.ScaleType.CENTER_INSIDE
             }
 

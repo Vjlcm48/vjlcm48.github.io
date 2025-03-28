@@ -41,6 +41,8 @@ class ResetProgressActivity : AppCompatActivity() {
         ScoreManager.initPro(this)
         ScoreManager.initRomas(this)
         ScoreManager.initDeciPlus(this)
+        ScoreManager.initDeciPlusPrincipiante(this)
+        ScoreManager.initDeciPlusPro(this)
         ScoreManager.initAlfaNumeros(this)
         ScoreManager.initSumaResta(this)
         ScoreManager.initMasPlus(this)
@@ -393,6 +395,8 @@ class ResetProgressActivity : AppCompatActivity() {
         ScoreManager.initPrincipiante(this)
         ScoreManager.initPro(this)
         ScoreManager.initDeciPlus(this)
+        ScoreManager.initDeciPlusPrincipiante(this)
+        ScoreManager.initDeciPlusPro(this)
         ScoreManager.initRomas(this)
         ScoreManager.initAlfaNumeros(this)
         ScoreManager.initSumaResta(this)
@@ -458,9 +462,28 @@ class ResetProgressActivity : AppCompatActivity() {
                 myPrefs.edit { putBoolean("hasSeenInstructionsDeciPlus", hasSeenTutorial) }
             }
             "Romas" -> {
-                val scorePrefs = getSharedPreferences("ScorePrefsRomas", Context.MODE_PRIVATE)
-                scorePrefs.edit { clear() }
-                ScoreManager.resetRomas()
+                val myPrefs = getSharedPreferences("MyPrefsRomas", Context.MODE_PRIVATE)
+                val hasSeenTutorial = myPrefs.getBoolean("hasSeenInstructionsRomas", false)
+
+                when (difficulty) {
+                    DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> {
+                        val scorePrefs = getSharedPreferences("ScorePrefsRomasPrincipiante", Context.MODE_PRIVATE)
+                        scorePrefs.edit { clear() }
+                        ScoreManager.resetRomas()
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_AVANZADO -> {
+                        val scorePrefs = getSharedPreferences("ScorePrefsRomas", Context.MODE_PRIVATE)
+                        scorePrefs.edit { clear() }
+                        ScoreManager.resetRomas()
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_PRO -> {
+                        val scorePrefs = getSharedPreferences("ScorePrefsRomasPro", Context.MODE_PRIVATE)
+                        scorePrefs.edit { clear() }
+                        ScoreManager.resetRomas()
+                    }
+                }
+
+                myPrefs.edit { putBoolean("hasSeenInstructionsRomas", hasSeenTutorial) }
             }
             "AlfaNumeros" -> {
                 val scorePrefs = getSharedPreferences("ScorePrefsAlfaNumeros", Context.MODE_PRIVATE)
@@ -559,7 +582,34 @@ class ResetProgressActivity : AppCompatActivity() {
             }
             "Romas" -> {
                 val myPrefs = getSharedPreferences("MyPrefsRomas", Context.MODE_PRIVATE)
-                myPrefs.edit { remove("selectedResponseModeRomas") }
+                val hasSeenTutorial = myPrefs.getBoolean("hasSeenInstructionsRomas", false)
+
+                when (difficulty) {
+                    DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> {
+                        myPrefs.edit {
+                            remove("selectedResponseModeRomasPrincipiante")
+                            putString(getDifficultyKey(selectedGame!!),
+                                DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE)
+                            putBoolean("hasSeenInstructionsRomas", hasSeenTutorial)
+                        }
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_AVANZADO -> {
+                        myPrefs.edit {
+                            remove("selectedResponseModeRomas")
+                            putString(getDifficultyKey(selectedGame!!),
+                                DifficultySelectionActivity.DIFFICULTY_AVANZADO)
+                            putBoolean("hasSeenInstructionsRomas", hasSeenTutorial)
+                        }
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_PRO -> {
+                        myPrefs.edit {
+                            remove("selectedResponseModeRomasPro")
+                            putString(getDifficultyKey(selectedGame!!),
+                                DifficultySelectionActivity.DIFFICULTY_PRO)
+                            putBoolean("hasSeenInstructionsRomas", hasSeenTutorial)
+                        }
+                    }
+                }
             }
             "AlfaNumeros" -> {
                 val myPrefs = getSharedPreferences("MyPrefsAlfaNumeros", Context.MODE_PRIVATE)

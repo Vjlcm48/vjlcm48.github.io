@@ -74,7 +74,10 @@ class GameActivityRomas : AppCompatActivity() {
     private var heartbeatAnimator: ObjectAnimator? = null
     private var soundPlayed = false
     private var timeSpentInSeconds: Double = 0.0
+
+    private var userResponses = mutableListOf<Int>()
     private lateinit var sharedPreferences: android.content.SharedPreferences
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -671,6 +674,7 @@ class GameActivityRomas : AppCompatActivity() {
     }
 
     private fun checkManualAnswer(userAnswer: Int) {
+        userResponses.add(userAnswer)
         val isCorrect = userAnswer == correctAnswer
 
         if (isCorrect) {
@@ -702,6 +706,8 @@ class GameActivityRomas : AppCompatActivity() {
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     manualAnswerEditText.background = originalBackground
+
+                    ScoreManager.incrementConsecutiveFailuresRomas(currentLevel)
 
                     Handler(Looper.getMainLooper()).postDelayed({
                         navigateToLevelResult(false)
@@ -777,10 +783,10 @@ class GameActivityRomas : AppCompatActivity() {
     }
 
     private fun checkAnswer(selectedButton: Button) {
-
         selectedButton.clearFocus()
 
         val selectedAnswer = selectedButton.text.toString().toInt()
+        userResponses.add(selectedAnswer)
         val isCorrect = selectedAnswer == correctAnswer
 
         if (isCorrect) {
@@ -812,7 +818,7 @@ class GameActivityRomas : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
-
+                ScoreManager.incrementConsecutiveFailuresRomas(currentLevel)
                 Handler(Looper.getMainLooper()).postDelayed({
                     navigateToLevelResult(false)
                 }, 1000)
@@ -834,6 +840,16 @@ class GameActivityRomas : AppCompatActivity() {
         intent.putExtra("IS_SUCCESSFUL", isSuccessful)
         intent.putExtra("ATTEMPTS", attempts)
         intent.putExtra("TIME_SPENT", timeSpentInSeconds)
+
+        if (isSuccessful) {
+            ScoreManager.resetConsecutiveFailuresRomas(currentLevel)
+        } else if (attempts >= 2) {
+            intent.putExtra("NUMBER_LIST", numberList.toIntArray())
+            intent.putExtra("CORRECT_ANSWER", correctAnswer)
+            intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
+            intent.putExtra("USER_RESPONSES", userResponses.toIntArray())
+        }
+
         startActivity(intent)
         finish()
     }

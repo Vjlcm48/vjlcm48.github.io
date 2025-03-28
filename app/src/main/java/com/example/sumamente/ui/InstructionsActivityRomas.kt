@@ -25,6 +25,9 @@ class InstructionsActivityRomas : AppCompatActivity() {
     private var excludedIndex: Int? = null
 
     private lateinit var sharedPreferencesRomas: android.content.SharedPreferences
+    private lateinit var tvGameName: TextView
+    private lateinit var tvDifficulty: TextView
+    private lateinit var tvScore: TextView
 
     private val timeLimits = mapOf(
         1 to 17.99, 2 to 17.89, 3 to 17.78, 4 to 17.68, 5 to 17.57, 6 to 17.50, 7 to 17.34,
@@ -52,6 +55,12 @@ class InstructionsActivityRomas : AppCompatActivity() {
         val tvTimeLimit = findViewById<TextView>(R.id.tv_time_limit)
         val tvRepeatedNumbersMessage = findViewById<TextView>(R.id.tv_repeated_numbers)
         val tvNegativeNumberWarning = findViewById<TextView>(R.id.tv_negative_numbers)
+
+        tvGameName = findViewById(R.id.tv_game_name)
+        tvDifficulty = findViewById(R.id.tv_difficulty)
+        tvScore = findViewById(R.id.tv_score)
+
+        setupInfoBar()
 
         level = intent.getIntExtra("LEVEL", 1)
         val timeLimit = timeLimits[level] ?: throw IllegalStateException("Time limit not found for level $level")
@@ -96,22 +105,12 @@ class InstructionsActivityRomas : AppCompatActivity() {
 
         btnClose.setOnClickListener {
             btnClose.isEnabled = false
-            val prefs = getSharedPreferences("MyPrefsRomas", Context.MODE_PRIVATE)
-            val storedModeName = prefs.getString("selectedResponseModeRomas", null)
-            if (storedModeName == null) {
 
-                val intent = Intent(this, ResponseModeDialogRomas::class.java)
-                intent.putExtra("LEVEL", level)
-                startActivity(intent)
-                finish()
+            val intent = Intent(this, LevelsActivityRomas::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish()
 
-            } else {
-
-                val intent = Intent(this, LevelsActivityRomas::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-                finish()
-            }
             btnClose.isEnabled = true
         }
 
@@ -187,6 +186,54 @@ class InstructionsActivityRomas : AppCompatActivity() {
                         intent.putExtra("RESPONSE_MODE_ROMAS", mode.name)
                     }
                     intent.putExtra("EXCLUDED_INDEX", excludedIndex)
+                    startActivity(intent)
+                }
+                override fun onAnimationCancel(animation: Animator) {}
+                override fun onAnimationRepeat(animation: Animator) {}
+            })
+        }
+    }
+
+    private fun setupInfoBar() {
+        tvGameName.text = getString(R.string.game_romas)
+        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.green_medium))
+
+        val difficultyKey = "difficulty_romas"
+
+        val difficultyValue = sharedPreferencesRomas.getString(
+            difficultyKey,
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO
+        )
+
+        val difficultyText = when (difficultyValue) {
+            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> getString(R.string.difficulty_principiante)
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO -> getString(R.string.difficulty_avanzado)
+            DifficultySelectionActivity.DIFFICULTY_PRO -> getString(R.string.difficulty_pro)
+            else -> getString(R.string.difficulty_avanzado)
+        }
+
+        tvDifficulty.text = difficultyText
+        tvScore.text = getString(R.string.score_format, ScoreManager.currentScoreRomas)
+
+        tvDifficulty.setOnClickListener {
+            val scaleDownX = ObjectAnimator.ofFloat(it, "scaleX", 1f, 0.9f).setDuration(50)
+            val scaleDownY = ObjectAnimator.ofFloat(it, "scaleY", 1f, 0.9f).setDuration(50)
+            val scaleUpX = ObjectAnimator.ofFloat(it, "scaleX", 0.9f, 1f).setDuration(50)
+            val scaleUpY = ObjectAnimator.ofFloat(it, "scaleY", 0.9f, 1f).setDuration(50)
+            val clickAnimatorSet = AnimatorSet()
+            clickAnimatorSet.playSequentially(scaleDownX, scaleDownY, scaleUpX, scaleUpY)
+            clickAnimatorSet.start()
+
+            clickAnimatorSet.addListener(object : Animator.AnimatorListener {
+                override fun onAnimationStart(animation: Animator) {}
+                override fun onAnimationEnd(animation: Animator) {
+                    val intent = DifficultySelectionActivity.createIntent(
+                        this@InstructionsActivityRomas,
+                        "Romas",
+                        true,
+                        level,
+                        responseMode?.name
+                    )
                     startActivity(intent)
                 }
                 override fun onAnimationCancel(animation: Animator) {}

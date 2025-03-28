@@ -722,9 +722,9 @@ class TutorialActivityRomas : AppCompatActivity() {
 
     private fun markTutorialAsSeenAndNavigate() {
         stopBackgroundMusic()
-        val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("MyPrefsRomas", Context.MODE_PRIVATE)
         prefs.edit { putBoolean("hasSeenInstructionsRomas", true) }
-        val intent = Intent(this, LevelsActivityRomas::class.java)
+        val intent = DifficultySelectionActivity.createIntent(this, "Romas")
         startActivity(intent)
         finish()
     }

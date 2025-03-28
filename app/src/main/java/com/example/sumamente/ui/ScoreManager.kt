@@ -111,6 +111,7 @@ object ScoreManager {
     private const val KEY_CONSECUTIVE_FAILURES_DECI_PLUS = "consecutive_failures_deci_plus"
     private const val KEY_CONSECUTIVE_FAILURES_DECI_PLUS_PRINCIPIANTE = "consecutive_failures_deci_plus_principiante"
     private const val KEY_CONSECUTIVE_FAILURES_DECI_PLUS_PRO = "consecutive_failures_deci_plus_pro"
+    private const val KEY_CONSECUTIVE_FAILURES_ROMAS = "consecutive_failures_romas"
 
     private val consecutiveFailures: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresPrincipiante: MutableMap<Int, Int> = mutableMapOf()
@@ -118,6 +119,7 @@ object ScoreManager {
     private val consecutiveFailuresDeciPlus: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresDeciPlusPrincipiante: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresDeciPlusPro: MutableMap<Int, Int> = mutableMapOf()
+    private val consecutiveFailuresRomas: MutableMap<Int, Int> = mutableMapOf()
 
     private lateinit var preferences: SharedPreferences
     private lateinit var preferencesPrincipiante: SharedPreferences
@@ -213,6 +215,13 @@ object ScoreManager {
         preferencesRomas = context.getSharedPreferences(PREFS_NAME_ROMAS, Context.MODE_PRIVATE)
         currentScoreRomas = preferencesRomas.getInt(KEY_CURRENT_SCORE_ROMAS, 0)
         unlockedLevelsRomas = preferencesRomas.getInt(KEY_UNLOCKED_LEVELS_ROMAS, 2)
+
+        for (i in 1..70) {
+            val failures = preferencesRomas.getInt("$KEY_CONSECUTIVE_FAILURES_ROMAS:$i", 0)
+            if (failures > 0) {
+                consecutiveFailuresRomas[i] = failures
+            }
+        }
     }
 
     fun initAlfaNumeros(context: Context) {
@@ -785,6 +794,30 @@ object ScoreManager {
     fun isLevelBlockedByFailuresDeciPlusPro(level: Int): Boolean {
         if (level == 1) return false
         return getConsecutiveFailuresDeciPlusPro(level) >= 12
+    }
+
+    fun incrementConsecutiveFailuresRomas(level: Int) {
+        val currentFailures = consecutiveFailuresRomas[level] ?: 0
+        consecutiveFailuresRomas[level] = currentFailures + 1
+        preferencesRomas.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_ROMAS:$level", consecutiveFailuresRomas[level] ?: 0)
+        }
+    }
+
+    fun resetConsecutiveFailuresRomas(level: Int) {
+        consecutiveFailuresRomas[level] = 0
+        preferencesRomas.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_ROMAS:$level", 0)
+        }
+    }
+
+    fun getConsecutiveFailuresRomas(level: Int): Int {
+        return consecutiveFailuresRomas[level] ?: 0
+    }
+
+    fun isLevelBlockedByFailuresRomas(level: Int): Boolean {
+        if (level == 1) return false
+        return getConsecutiveFailuresRomas(level) >= 12
     }
 
 }
