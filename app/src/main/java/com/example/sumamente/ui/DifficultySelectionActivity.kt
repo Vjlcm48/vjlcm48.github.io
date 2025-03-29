@@ -95,19 +95,19 @@ class DifficultySelectionActivity : AppCompatActivity() {
         val currentDifficulty = sharedPreferences.getString(difficultyKey, DIFFICULTY_AVANZADO)
 
         when (gameType) {
-            "NumerosPlus" -> {
+            "NumerosPlus", "DeciPlus" -> {
                 btnPrincipiante.isEnabled = true
                 btnPrincipiante.alpha = 1.0f
                 btnAvanzado.isEnabled = true
                 btnPro.isEnabled = true
                 btnPro.alpha = 1.0f
             }
-            "DeciPlus" -> {
+            "Romas" -> {
                 btnPrincipiante.isEnabled = true
                 btnPrincipiante.alpha = 1.0f
                 btnAvanzado.isEnabled = true
-                btnPro.isEnabled = true
-                btnPro.alpha = 1.0f
+                btnPro.isEnabled = false
+                btnPro.alpha = 0.5f
             }
             else -> {
                 btnPrincipiante.isEnabled = false
@@ -187,7 +187,6 @@ class DifficultySelectionActivity : AppCompatActivity() {
                 Intent(this, LevelsActivityPro::class.java)
             }
 
-
             gameType == "DeciPlus" && difficulty == DIFFICULTY_AVANZADO -> {
                 Intent(this, LevelsActivityDeciPlus::class.java)
             }
@@ -198,17 +197,16 @@ class DifficultySelectionActivity : AppCompatActivity() {
                 Intent(this, LevelsActivityDeciPlusPro::class.java)
             }
 
-
-            gameType == "Romas" -> {
-                if (fromInstructions) {
-                    Intent(this, InstructionsActivityRomas::class.java).apply {
-                        putExtra("LEVEL", level)
-                        if (responseMode != null) putExtra("RESPONSE_MODE", responseMode)
-                    }
-                } else {
-                    Intent(this, LevelsActivityRomas::class.java)
-                }
+            gameType == "Romas" && difficulty == DIFFICULTY_PRINCIPIANTE -> {
+                Intent(this, LevelsActivityRomasPrincipiante::class.java)
             }
+            gameType == "Romas" && difficulty == DIFFICULTY_AVANZADO -> {
+                Intent(this, LevelsActivityRomas::class.java)
+            }
+            gameType == "Romas" && difficulty == DIFFICULTY_PRO -> {
+                Intent(this, LevelsActivityRomas::class.java)
+            }
+
             gameType == "AlfaNumeros" -> {
                 if (fromInstructions) {
                     Intent(this, InstructionsActivityAlfaNumeros::class.java).apply {
@@ -219,6 +217,7 @@ class DifficultySelectionActivity : AppCompatActivity() {
                     Intent(this, LevelsActivityAlfaNumeros::class.java)
                 }
             }
+
             gameType == "Sumaresta" -> {
                 if (fromInstructions) {
                     Intent(this, InstructionsActivitySumaResta::class.java).apply {
@@ -229,6 +228,7 @@ class DifficultySelectionActivity : AppCompatActivity() {
                     Intent(this, LevelsActivitySumaResta::class.java)
                 }
             }
+
             gameType == "MasPlus" -> {
                 if (fromInstructions) {
                     Intent(this, InstructionsActivityMasPlus::class.java).apply {
@@ -239,6 +239,7 @@ class DifficultySelectionActivity : AppCompatActivity() {
                     Intent(this, LevelsActivityMasPlus::class.java)
                 }
             }
+
             gameType == "GenioPlus" -> {
                 if (fromInstructions) {
                     Intent(this, InstructionsActivityGenioPlus::class.java).apply {
@@ -249,6 +250,7 @@ class DifficultySelectionActivity : AppCompatActivity() {
                     Intent(this, LevelsActivityGenioPlus::class.java)
                 }
             }
+
             else -> {
                 Intent(this, GameSelectionActivity::class.java)
             }
@@ -274,7 +276,13 @@ class DifficultySelectionActivity : AppCompatActivity() {
                     DIFFICULTY_PRO -> ScoreManager.saveScoreDeciPlusPro()
                 }
             }
-            "Romas" -> ScoreManager.saveScoreRomas()
+            "Romas" -> {
+                when (difficulty) {
+                    DIFFICULTY_PRINCIPIANTE -> ScoreManager.saveScoreRomasPrincipiante()
+                    DIFFICULTY_AVANZADO -> ScoreManager.saveScoreRomas()
+                    DIFFICULTY_PRO -> ScoreManager.saveScoreRomas()
+                }
+            }
             "AlfaNumeros" -> ScoreManager.saveScoreAlfaNumeros()
             "Sumaresta" -> ScoreManager.saveScoreSumaResta()
             "MasPlus" -> ScoreManager.saveScoreMasPlus()

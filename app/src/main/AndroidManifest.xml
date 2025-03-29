@@ -58,6 +58,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.LevelsActivityRomasPrincipiante"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.LevelsActivityAlfaNumeros"
             android:exported="false" />
 
@@ -158,6 +162,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.InstructionsActivityRomasPrincipiante"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.InstructionsActivityAlfaNumeros"
             android:exported="false" />
 
@@ -199,6 +207,10 @@
 
         <activity
             android:name=".ui.GameActivityRomas"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.GameActivityRomasPrincipiante"
             android:exported="false" />
 
         <activity
@@ -304,6 +316,11 @@
 
         <activity
             android:name=".ui.LevelResultActivityRomas"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.LevelResultActivityRomasPrincipiante"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 

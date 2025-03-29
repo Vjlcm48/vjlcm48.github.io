@@ -40,6 +40,7 @@ class ResetProgressActivity : AppCompatActivity() {
         ScoreManager.initPrincipiante(this)
         ScoreManager.initPro(this)
         ScoreManager.initRomas(this)
+        ScoreManager.initRomasPrincipiante(this)
         ScoreManager.initDeciPlus(this)
         ScoreManager.initDeciPlusPrincipiante(this)
         ScoreManager.initDeciPlusPro(this)
@@ -166,17 +167,27 @@ class ResetProgressActivity : AppCompatActivity() {
         val originalCloseButton = dialogView.findViewById<ImageView>(R.id.closeButton)
         originalCloseButton?.visibility = View.GONE
 
-        if (selectedGame == "NumerosPlus" || selectedGame == "DeciPlus") {
-            btnPrincipiante.isEnabled = true
-            btnAvanzado.isEnabled = true
-            btnPro.isEnabled = true
-            btnPro.alpha = 1.0f
-        } else {
-            btnPrincipiante.isEnabled = false
-            btnPrincipiante.alpha = 0.5f
-            btnAvanzado.isEnabled = true
-            btnPro.isEnabled = false
-            btnPro.alpha = 0.5f
+        when (selectedGame) {
+            "NumerosPlus", "DeciPlus" -> {
+                btnPrincipiante.isEnabled = true
+                btnAvanzado.isEnabled = true
+                btnPro.isEnabled = true
+                btnPro.alpha = 1.0f
+            }
+            "Romas" -> {
+                btnPrincipiante.isEnabled = true
+                btnPrincipiante.alpha = 1.0f
+                btnAvanzado.isEnabled = true
+                btnPro.isEnabled = false
+                btnPro.alpha = 0.5f
+            }
+            else -> {
+                btnPrincipiante.isEnabled = false
+                btnPrincipiante.alpha = 0.5f
+                btnAvanzado.isEnabled = true
+                btnPro.isEnabled = false
+                btnPro.alpha = 0.5f
+            }
         }
 
         val alertDialog = AlertDialog.Builder(this)
@@ -398,6 +409,7 @@ class ResetProgressActivity : AppCompatActivity() {
         ScoreManager.initDeciPlusPrincipiante(this)
         ScoreManager.initDeciPlusPro(this)
         ScoreManager.initRomas(this)
+        ScoreManager.initRomasPrincipiante(this)
         ScoreManager.initAlfaNumeros(this)
         ScoreManager.initSumaResta(this)
         ScoreManager.initMasPlus(this)
@@ -469,7 +481,7 @@ class ResetProgressActivity : AppCompatActivity() {
                     DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> {
                         val scorePrefs = getSharedPreferences("ScorePrefsRomasPrincipiante", Context.MODE_PRIVATE)
                         scorePrefs.edit { clear() }
-                        ScoreManager.resetRomas()
+                        ScoreManager.resetRomasPrincipiante()
                     }
                     DifficultySelectionActivity.DIFFICULTY_AVANZADO -> {
                         val scorePrefs = getSharedPreferences("ScorePrefsRomas", Context.MODE_PRIVATE)
