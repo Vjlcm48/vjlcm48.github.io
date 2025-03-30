@@ -30,6 +30,7 @@ class GameSelectionActivity : AppCompatActivity() {
         ScoreManager.initDeciPlusPro(this)
         ScoreManager.initRomas(this)
         ScoreManager.initRomasPrincipiante(this)
+        ScoreManager.initRomasPro(this)
         ScoreManager.initAlfaNumeros(this)
         ScoreManager.initSumaResta(this)
         ScoreManager.initMasPlus(this)
@@ -54,6 +55,7 @@ class GameSelectionActivity : AppCompatActivity() {
         val puntosDeciPlusPro = ScoreManager.currentScoreDeciPlusPro
         val puntosRomas = ScoreManager.currentScoreRomas
         val puntosRomasPrincipiante = ScoreManager.currentScoreRomasPrincipiante
+        val puntosRomasPro = ScoreManager.currentScoreRomasPro
         val puntosAlfaNumeros = ScoreManager.currentScoreAlfaNumeros
         val puntosSumaResta = ScoreManager.currentScoreSumaResta
         val puntosMasPlus = ScoreManager.currentScoreMasPlus
@@ -73,7 +75,7 @@ class GameSelectionActivity : AppCompatActivity() {
 
         updateNumerosPlusButton(btnNumerosPlus, puntosNumerosPlus, puntosPrincipiante, puntosPro)
         updateDeciPlusButton(btnDeciPlus, puntosDeciPlus, puntosDeciPlusPrincipiante, puntosDeciPlusPro)
-        updateRomasButton(btnRomas, puntosRomas, puntosRomasPrincipiante)
+        updateRomasButton(btnRomas, puntosRomas, puntosRomasPrincipiante, puntosRomasPro)
         updateAlfaNumerosButton(btnAlfaNumeros, puntosAlfaNumeros)
         updateSumaRestaButton(btnSumaresta, puntosSumaResta)
         updateMasPlusButton(btnMasPlus, puntosMasPlus)
@@ -156,6 +158,8 @@ class GameSelectionActivity : AppCompatActivity() {
                         val intent = when (difficulty) {
                             DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE ->
                                 Intent(this, LevelsActivityRomasPrincipiante::class.java)
+                            DifficultySelectionActivity.DIFFICULTY_PRO ->
+                                Intent(this, LevelsActivityRomasPro::class.java)
                             else -> Intent(this, LevelsActivityRomas::class.java)
                         }
                         startActivity(intent)
@@ -210,6 +214,7 @@ class GameSelectionActivity : AppCompatActivity() {
         ScoreManager.initDeciPlusPro(this)
         ScoreManager.initRomas(this)
         ScoreManager.initRomasPrincipiante(this)
+        ScoreManager.initRomasPro(this)
         ScoreManager.initAlfaNumeros(this)
         ScoreManager.initSumaResta(this)
         ScoreManager.initMasPlus(this)
@@ -223,6 +228,7 @@ class GameSelectionActivity : AppCompatActivity() {
         val puntosDeciPlusPro = ScoreManager.currentScoreDeciPlusPro
         val puntosRomas = ScoreManager.currentScoreRomas
         val puntosRomasPrincipiante = ScoreManager.currentScoreRomasPrincipiante
+        val puntosRomasPro = ScoreManager.currentScoreRomasPro
         val puntosAlfaNumeros = ScoreManager.currentScoreAlfaNumeros
         val puntosSumaResta = ScoreManager.currentScoreSumaResta
         val puntosMasPlus = ScoreManager.currentScoreMasPlus
@@ -243,7 +249,7 @@ class GameSelectionActivity : AppCompatActivity() {
 
         updateNumerosPlusButton(btnNumerosPlus, puntosNumerosPlus, puntosPrincipiante, puntosPro)
         updateDeciPlusButton(btnDeciPlus, puntosDeciPlus, puntosDeciPlusPrincipiante, puntosDeciPlusPro)
-        updateRomasButton(btnRomas, puntosRomas, puntosRomasPrincipiante)
+        updateRomasButton(btnRomas, puntosRomas, puntosRomasPrincipiante, puntosRomasPro)
         updateAlfaNumerosButton(btnAlfaNumeros, puntosAlfaNumeros)
         updateSumaRestaButton(btnSumaresta, puntosSumaResta)
         updateMasPlusButton(btnMasPlus, puntosMasPlus)
@@ -286,11 +292,11 @@ class GameSelectionActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateRomasButton(button: RelativeLayout, score: Int, principianteScore: Int) {
+    private fun updateRomasButton(button: RelativeLayout, score: Int, principianteScore: Int, proScore: Int) {
         val gameNameTextView = button.findViewById<TextView>(R.id.tv_game_name_romas)
         val pointsTextView = button.findViewById<TextView>(R.id.tv_points_romas)
         val starIcon = button.findViewById<ImageView>(R.id.icon_star_romas)
-        val totalScore = score + principianteScore
+        val totalScore = score + principianteScore + proScore
 
         if (totalScore > 0) {
             gameNameTextView.text = getString(R.string.game_romas)

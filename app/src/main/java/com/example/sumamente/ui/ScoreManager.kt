@@ -41,6 +41,11 @@ object ScoreManager {
     private const val KEY_UNLOCKED_LEVELS_ROMAS = "unlocked_levels_romas"
     private const val KEY_COMPLETED_LEVELS_ROMAS = "completed_levels_romas"
 
+    private const val PREFS_NAME_ROMAS_PRO = "ScorePrefsRomasPro"
+    private const val KEY_CURRENT_SCORE_ROMAS_PRO = "current_score_romas_pro"
+    private const val KEY_UNLOCKED_LEVELS_ROMAS_PRO = "unlocked_levels_romas_pro"
+    private const val KEY_COMPLETED_LEVELS_ROMAS_PRO = "completed_levels_romas_pro"
+
     private const val PREFS_NAME_ROMAS_PRINCIPIANTE = "ScorePrefsRomasPrincipiante"
     private const val KEY_CURRENT_SCORE_ROMAS_PRINCIPIANTE = "current_score_romas_principiante"
     private const val KEY_UNLOCKED_LEVELS_ROMAS_PRINCIPIANTE = "unlocked_levels_romas_principiante"
@@ -98,6 +103,10 @@ object ScoreManager {
     var unlockedLevelsRomasPrincipiante: Int = 2
     val levelScoresRomasPrincipiante: MutableMap<Int, Int> = mutableMapOf()
 
+    var currentScoreRomasPro: Int = 0
+    var unlockedLevelsRomasPro: Int = 2
+    val levelScoresRomasPro: MutableMap<Int, Int> = mutableMapOf()
+
     var currentScoreAlfaNumeros: Int = 0
     var unlockedLevelsAlfaNumeros: Int = 2
     val levelScoresAlfaNumeros: MutableMap<Int, Int> = mutableMapOf()
@@ -122,6 +131,7 @@ object ScoreManager {
     private const val KEY_CONSECUTIVE_FAILURES_DECI_PLUS_PRO = "consecutive_failures_deci_plus_pro"
     private const val KEY_CONSECUTIVE_FAILURES_ROMAS = "consecutive_failures_romas"
     private const val KEY_CONSECUTIVE_FAILURES_ROMAS_PRINCIPIANTE = "consecutive_failures_romas_principiante"
+    private const val KEY_CONSECUTIVE_FAILURES_ROMAS_PRO = "consecutive_failures_romas_pro"
 
     private val consecutiveFailures: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresPrincipiante: MutableMap<Int, Int> = mutableMapOf()
@@ -131,6 +141,7 @@ object ScoreManager {
     private val consecutiveFailuresDeciPlusPro: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresRomas: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresRomasPrincipiante: MutableMap<Int, Int> = mutableMapOf()
+    private val consecutiveFailuresRomasPro: MutableMap<Int, Int> = mutableMapOf()
 
     private lateinit var preferences: SharedPreferences
     private lateinit var preferencesPrincipiante: SharedPreferences
@@ -140,6 +151,7 @@ object ScoreManager {
     private lateinit var preferencesDeciPlusPro: SharedPreferences
     private lateinit var preferencesRomas: SharedPreferences
     private lateinit var preferencesRomasPrincipiante: SharedPreferences
+    private lateinit var preferencesRomasPro: SharedPreferences
     private lateinit var preferencesAlfaNumeros: SharedPreferences
     private lateinit var preferencesSumaResta: SharedPreferences
     private lateinit var preferencesMasPlus: SharedPreferences
@@ -249,6 +261,19 @@ object ScoreManager {
         }
     }
 
+    fun initRomasPro(context: Context) {
+        preferencesRomasPro = context.getSharedPreferences(PREFS_NAME_ROMAS_PRO, Context.MODE_PRIVATE)
+        currentScoreRomasPro = preferencesRomasPro.getInt(KEY_CURRENT_SCORE_ROMAS_PRO, 0)
+        unlockedLevelsRomasPro = preferencesRomasPro.getInt(KEY_UNLOCKED_LEVELS_ROMAS_PRO, 2)
+
+        for (i in 1..70) {
+            val failures = preferencesRomasPro.getInt("$KEY_CONSECUTIVE_FAILURES_ROMAS_PRO:$i", 0)
+            if (failures > 0) {
+                consecutiveFailuresRomasPro[i] = failures
+            }
+        }
+    }
+
     fun initAlfaNumeros(context: Context) {
         preferencesAlfaNumeros = context.getSharedPreferences(PREFS_NAME_ALFANUMEROS, Context.MODE_PRIVATE)
         currentScoreAlfaNumeros = preferencesAlfaNumeros.getInt(KEY_CURRENT_SCORE_ALFANUMEROS, 0)
@@ -329,6 +354,13 @@ object ScoreManager {
         }
     }
 
+    fun saveScoreRomasPro() {
+        preferencesRomasPro.edit {
+            putInt(KEY_CURRENT_SCORE_ROMAS_PRO, currentScoreRomasPro)
+                .putInt(KEY_UNLOCKED_LEVELS_ROMAS_PRO, unlockedLevelsRomasPro)
+        }
+    }
+
     fun saveScoreAlfaNumeros() {
         preferencesAlfaNumeros.edit {
             putInt(KEY_CURRENT_SCORE_ALFANUMEROS, currentScoreAlfaNumeros)
@@ -395,6 +427,11 @@ object ScoreManager {
 
     private fun getCompletedLevelsRomasPrincipiante(): Set<Int> {
         return preferencesRomasPrincipiante.getStringSet(KEY_COMPLETED_LEVELS_ROMAS_PRINCIPIANTE, emptySet())
+            ?.map { it.toInt() }?.toSet() ?: emptySet()
+    }
+
+    private fun getCompletedLevelsRomasPro(): Set<Int> {
+        return preferencesRomasPro.getStringSet(KEY_COMPLETED_LEVELS_ROMAS_PRO, emptySet())
             ?.map { it.toInt() }?.toSet() ?: emptySet()
     }
 
@@ -494,6 +531,16 @@ object ScoreManager {
         }
     }
 
+    fun addCompletedLevelRomasPro(level: Int) {
+        val completedLevelsRomasPro = getCompletedLevelsRomasPro().toMutableSet()
+        completedLevelsRomasPro.add(level)
+        preferencesRomasPro.edit {
+            putStringSet(
+                KEY_COMPLETED_LEVELS_ROMAS_PRO,
+                completedLevelsRomasPro.map { it.toString() }.toSet())
+        }
+    }
+
     fun addCompletedLevelAlfaNumeros(level: Int) {
         val completedLevelsAlfaNumeros = getCompletedLevelsAlfaNumeros().toMutableSet()
         completedLevelsAlfaNumeros.add(level)
@@ -564,6 +611,10 @@ object ScoreManager {
 
     fun hasCompletedLevelRomasPrincipiante(level: Int): Boolean {
         return getCompletedLevelsRomasPrincipiante().contains(level)
+    }
+
+    fun hasCompletedLevelRomasPro(level: Int): Boolean {
+        return getCompletedLevelsRomasPro().contains(level)
     }
 
     fun hasCompletedLevelAlfaNumeros(level: Int): Boolean {
@@ -667,6 +718,17 @@ object ScoreManager {
             putInt(KEY_CURRENT_SCORE_ROMAS_PRINCIPIANTE, currentScoreRomasPrincipiante)
                 .putInt(KEY_UNLOCKED_LEVELS_ROMAS_PRINCIPIANTE, unlockedLevelsRomasPrincipiante)
                 .putStringSet(KEY_COMPLETED_LEVELS_ROMAS_PRINCIPIANTE, emptySet())
+        }
+    }
+
+    fun resetRomasPro() {
+        currentScoreRomasPro = 0
+        unlockedLevelsRomasPro = 2
+        levelScoresRomasPro.clear()
+        preferencesRomasPro.edit {
+            putInt(KEY_CURRENT_SCORE_ROMAS_PRO, currentScoreRomasPro)
+                .putInt(KEY_UNLOCKED_LEVELS_ROMAS_PRO, unlockedLevelsRomasPro)
+                .putStringSet(KEY_COMPLETED_LEVELS_ROMAS_PRO, emptySet())
         }
     }
 
@@ -906,5 +968,28 @@ object ScoreManager {
         return getConsecutiveFailuresRomasPrincipiante(level) >= 12
     }
 
-}
+    fun incrementConsecutiveFailuresRomasPro(level: Int) {
+        val currentFailures = consecutiveFailuresRomasPro[level] ?: 0
+        consecutiveFailuresRomasPro[level] = currentFailures + 1
+        preferencesRomasPro.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_ROMAS_PRO:$level", consecutiveFailuresRomasPro[level] ?: 0)
+        }
+    }
 
+    fun resetConsecutiveFailuresRomasPro(level: Int) {
+        consecutiveFailuresRomasPro[level] = 0
+        preferencesRomasPro.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_ROMAS_PRO:$level", 0)
+        }
+    }
+
+    fun getConsecutiveFailuresRomasPro(level: Int): Int {
+        return consecutiveFailuresRomasPro[level] ?: 0
+    }
+
+    fun isLevelBlockedByFailuresRomasPro(level: Int): Boolean {
+        if (level == 1) return false
+        return getConsecutiveFailuresRomasPro(level) >= 12
+    }
+
+}

@@ -39,11 +39,12 @@ class ResetProgressActivity : AppCompatActivity() {
         ScoreManager.init(this)
         ScoreManager.initPrincipiante(this)
         ScoreManager.initPro(this)
-        ScoreManager.initRomas(this)
-        ScoreManager.initRomasPrincipiante(this)
         ScoreManager.initDeciPlus(this)
         ScoreManager.initDeciPlusPrincipiante(this)
         ScoreManager.initDeciPlusPro(this)
+        ScoreManager.initRomas(this)
+        ScoreManager.initRomasPrincipiante(this)
+        ScoreManager.initRomasPro(this)
         ScoreManager.initAlfaNumeros(this)
         ScoreManager.initSumaResta(this)
         ScoreManager.initMasPlus(this)
@@ -178,8 +179,8 @@ class ResetProgressActivity : AppCompatActivity() {
                 btnPrincipiante.isEnabled = true
                 btnPrincipiante.alpha = 1.0f
                 btnAvanzado.isEnabled = true
-                btnPro.isEnabled = false
-                btnPro.alpha = 0.5f
+                btnPro.isEnabled = true
+                btnPro.alpha = 1.0f
             }
             else -> {
                 btnPrincipiante.isEnabled = false
@@ -410,6 +411,7 @@ class ResetProgressActivity : AppCompatActivity() {
         ScoreManager.initDeciPlusPro(this)
         ScoreManager.initRomas(this)
         ScoreManager.initRomasPrincipiante(this)
+        ScoreManager.initRomasPro(this)
         ScoreManager.initAlfaNumeros(this)
         ScoreManager.initSumaResta(this)
         ScoreManager.initMasPlus(this)
@@ -491,7 +493,7 @@ class ResetProgressActivity : AppCompatActivity() {
                     DifficultySelectionActivity.DIFFICULTY_PRO -> {
                         val scorePrefs = getSharedPreferences("ScorePrefsRomasPro", Context.MODE_PRIVATE)
                         scorePrefs.edit { clear() }
-                        ScoreManager.resetRomas()
+                        ScoreManager.resetRomasPro()
                     }
                 }
 

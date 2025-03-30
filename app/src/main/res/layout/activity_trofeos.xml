@@ -114,7 +114,7 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:src="@drawable/ic_corona_laureles_dorada"
+                    android:src="@drawable/ic_corona_volucer"
                     android:contentDescription="@string/corona_laureles"/>
 
                 <TextView

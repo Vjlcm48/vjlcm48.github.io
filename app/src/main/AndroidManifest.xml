@@ -62,6 +62,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.LevelsActivityRomasPro"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.LevelsActivityAlfaNumeros"
             android:exported="false" />
 
@@ -166,6 +170,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.InstructionsActivityRomasPro"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.InstructionsActivityAlfaNumeros"
             android:exported="false" />
 
@@ -211,6 +219,10 @@
 
         <activity
             android:name=".ui.GameActivityRomasPrincipiante"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.GameActivityRomasPro"
             android:exported="false" />
 
         <activity
@@ -289,15 +301,6 @@
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
-        <activity
-            android:name=".ui.ExerciseReviewActivityDeciPlus"
-            android:exported="false"
-            android:theme="@style/Theme.SumaMente" />
-
-        <activity
-            android:name=".ui.ExerciseReviewActivityRomas"
-            android:exported="false"
-            android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.LevelResultActivityDeciPlus"
@@ -315,6 +318,12 @@
             android:theme="@style/Theme.SumaMente" />
 
         <activity
+            android:name=".ui.ExerciseReviewActivityDeciPlus"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+
+        <activity
             android:name=".ui.LevelResultActivityRomas"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
@@ -323,6 +332,17 @@
             android:name=".ui.LevelResultActivityRomasPrincipiante"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.LevelResultActivityRomasPro"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.ExerciseReviewActivityRomas"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
 
         <activity
             android:name=".ui.LevelResultActivityAlfaNumeros"

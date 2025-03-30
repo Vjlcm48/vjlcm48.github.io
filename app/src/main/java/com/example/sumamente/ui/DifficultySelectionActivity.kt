@@ -106,8 +106,8 @@ class DifficultySelectionActivity : AppCompatActivity() {
                 btnPrincipiante.isEnabled = true
                 btnPrincipiante.alpha = 1.0f
                 btnAvanzado.isEnabled = true
-                btnPro.isEnabled = false
-                btnPro.alpha = 0.5f
+                btnPro.isEnabled = true
+                btnPro.alpha = 1.0f
             }
             else -> {
                 btnPrincipiante.isEnabled = false
@@ -204,7 +204,7 @@ class DifficultySelectionActivity : AppCompatActivity() {
                 Intent(this, LevelsActivityRomas::class.java)
             }
             gameType == "Romas" && difficulty == DIFFICULTY_PRO -> {
-                Intent(this, LevelsActivityRomas::class.java)
+                Intent(this, LevelsActivityRomasPro::class.java)
             }
 
             gameType == "AlfaNumeros" -> {
