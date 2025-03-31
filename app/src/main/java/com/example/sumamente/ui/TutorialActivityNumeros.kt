@@ -24,6 +24,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.PopupWindow
+import android.widget.SeekBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -71,6 +72,9 @@ class TutorialActivityNumeros : AppCompatActivity() {
     private lateinit var tvClosingMessage: TextView
     private lateinit var btnSkipTutorial: ImageView
 
+    private lateinit var btnPlayPauseTutorial: ImageView
+    private lateinit var seekBarTutorial: SeekBar
+
     private val fixedNumbers = listOf(7, 3, 5, -3, 4, 4, -11)
     private val handler = Handler(Looper.getMainLooper())
     private var backgroundMusicPlayer: MediaPlayer? = null
@@ -78,6 +82,19 @@ class TutorialActivityNumeros : AppCompatActivity() {
     private var responseModeDialog: ResponseModeDialog? = null
     private var currentNumberIndex = 0
     private var selectedMode = ResponseMode.SIMPLE_SELECTION
+
+    private var isPaused = false
+    private var pendingSequences = mutableListOf<SequenceStep>()
+    private var currentProgress = 0
+    private var totalTutorialDuration = 0L
+    private var isUserInteractingWithSeekBar = false
+
+    private data class SequenceStep(
+        val action: () -> Unit,
+        val delay: Long,
+        val progress: Int,
+        val description: String
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,6 +110,8 @@ class TutorialActivityNumeros : AppCompatActivity() {
 
         setContentView(R.layout.activity_tutorial_numeros)
         initViews()
+        setupTutorialControls()
+        initSequences()
         startSequence()
         startBackgroundMusic()
     }
@@ -133,7 +152,6 @@ class TutorialActivityNumeros : AppCompatActivity() {
         checkSeleccionSimple = findViewById(R.id.check_seleccion_simple)
         progressRing = findViewById(R.id.progress_ring)
         tvNumber = findViewById(R.id.tv_number)
-
         tvStepIntroPartA = findViewById(R.id.tv_step_intro_part_a)
         tvStepIntroPartB = findViewById(R.id.tv_step_intro_part_b)
         tvStepOne = findViewById(R.id.tv_step_one)
@@ -144,44 +162,241 @@ class TutorialActivityNumeros : AppCompatActivity() {
         tvClosingMessage = findViewById(R.id.tv_closing_message)
         btnSkipTutorial = findViewById(R.id.btn_skip_tutorial)
 
+        btnPlayPauseTutorial = findViewById(R.id.btn_play_pause_tutorial)
+        seekBarTutorial = findViewById(R.id.seek_bar_tutorial)
+
         btnSkipTutorial.setOnClickListener {
             applyBounceEffect(it) {
                 markTutorialAsSeenAndNavigate()
             }
         }
+    }
 
+    private fun setupTutorialControls() {
+
+        btnPlayPauseTutorial.setOnClickListener {
+            applyBounceEffect(it) {
+                togglePausePlay()
+            }
+        }
+
+        seekBarTutorial.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                if (fromUser) {
+                    currentProgress = progress
+                }
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                isUserInteractingWithSeekBar = true
+                if (!isPaused) {
+
+                    pauseTutorial(updateUI = false)
+                }
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                isUserInteractingWithSeekBar = false
+
+                jumpToProgress(currentProgress)
+
+                if (!isPaused) {
+                    resumeTutorial()
+                }
+            }
+        })
+    }
+
+    private fun initSequences() {
+
+        val durations = listOf(
+            7500L,
+            3000L,
+            12000L,
+            4000L,
+            3000L,
+            12600L,
+            5000L,
+            4370L,
+            3000L,
+            4000L,
+            6000L
+        )
+
+        totalTutorialDuration = durations.sum()
     }
 
     private fun startSequence() {
+        clearPendingSequences()
         showWelcomeAndIntroMessages()
     }
 
+    private fun togglePausePlay() {
+        if (isPaused) {
+            resumeTutorial()
+        } else {
+            pauseTutorial()
+        }
+    }
+
+    private fun pauseTutorial(updateUI: Boolean = true) {
+        isPaused = true
+        if (updateUI) {
+            btnPlayPauseTutorial.setImageResource(R.drawable.ic_play_circle)
+            btnPlayPauseTutorial.contentDescription = getString(R.string.play_tutorial)
+        }
+    }
+
+    private fun resumeTutorial() {
+        isPaused = false
+        btnPlayPauseTutorial.setImageResource(R.drawable.ic_pause_circle)
+        btnPlayPauseTutorial.contentDescription = getString(R.string.pause_tutorial)
+
+        if (pendingSequences.isNotEmpty()) {
+            val nextStep = pendingSequences.removeAt(0)
+            scheduleTutorialStep(nextStep)
+        }
+    }
+
+    private fun jumpToProgress(progress: Int) {
+
+        clearPendingSequences()
+
+        hideAllViews()
+
+
+        when {
+            progress < 10 -> {
+                showWelcomeAndIntroMessages()
+            }
+            progress < 15 -> {
+                showStepOne()
+            }
+            progress < 30 -> {
+                showInstructionToChooseMode()
+            }
+            progress < 35 -> { // 30-35%: Paso 2
+                proceedToStepTwo()
+            }
+            progress < 50 -> {
+                proceedToCircleAnimation()
+            }
+            progress < 60 -> {
+                showStepThree()
+            }
+            progress < 75 -> {
+                showChronometerAndButtons()
+            }
+            progress < 80 -> {
+                showTutorialResultMessage()
+            }
+            progress < 90 -> {
+                showCelebration()
+            }
+            else -> {
+                showFinalClosingMessage()
+            }
+        }
+
+        currentProgress = progress
+        seekBarTutorial.progress = currentProgress
+    }
+
+    private fun hideAllViews() {
+
+        tvWelcomeText.visibility = View.GONE
+        tvGameName.visibility = View.GONE
+        tvStepIntroPartA.visibility = View.GONE
+        tvStepIntroPartB.visibility = View.GONE
+        tvStepOne.visibility = View.GONE
+        instructionTextView.visibility = View.GONE
+        modeDialogContainer.visibility = View.GONE
+        lottieHandChrono.visibility = View.GONE
+        lottieHandAnswer.visibility = View.GONE
+        circleView.visibility = View.GONE
+        vamosTextView.visibility = View.GONE
+        numbersContainer.visibility = View.GONE
+        tvStepTwo.visibility = View.GONE
+        tvStepThreePartOne.visibility = View.GONE
+        tvStepThreePartTwo.visibility = View.GONE
+        chronometerTextView.visibility = View.GONE
+        answerButtonsLayout.visibility = View.GONE
+        btnAnswer1.visibility = View.GONE
+        btnAnswer2.visibility = View.GONE
+        btnAnswer3.visibility = View.GONE
+        btnAnswer4.visibility = View.GONE
+        checkSeleccionSimple.visibility = View.GONE
+        tvResultMessage.visibility = View.GONE
+        confettiAnimation.visibility = View.GONE
+        finalMessageTextView.visibility = View.GONE
+        finalTimeTextView.visibility = View.GONE
+        finalPointsTextView.visibility = View.GONE
+        starImageView.visibility = View.GONE
+        tvClosingMessage.visibility = View.GONE
+        btnUnderstood.visibility = View.GONE
+        btnClose.visibility = View.GONE
+    }
+
+    private fun clearPendingSequences() {
+
+        handler.removeCallbacksAndMessages(null)
+        pendingSequences.clear()
+    }
+
+    private fun scheduleTutorialStep(step: SequenceStep) {
+        updateProgress(step.progress)
+
+        handler.postDelayed({
+
+            if (isPaused) {
+                pendingSequences.add(0, step)
+            } else {
+                step.action()
+
+                if (pendingSequences.isNotEmpty()) {
+                    val nextStep = pendingSequences.removeAt(0)
+                    scheduleTutorialStep(nextStep)
+                }
+            }
+        }, step.delay)
+    }
+
+    private fun updateProgress(progress: Int) {
+        if (!isUserInteractingWithSeekBar) {
+            currentProgress = progress
+            seekBarTutorial.progress = progress
+        }
+    }
+
+    private fun addTutorialStep(action: () -> Unit, delay: Long, progress: Int, description: String) {
+        val step = SequenceStep(action, delay, progress, description)
+        pendingSequences.add(step)
+    }
+
     private fun showWelcomeAndIntroMessages() {
+
+        updateProgress(0)
 
         tvWelcomeText.visibility = View.VISIBLE
         val bounceInWelcome = AnimationUtils.loadAnimation(this, R.anim.bounce_in)
         tvWelcomeText.startAnimation(bounceInWelcome)
 
-        handler.postDelayed({
-
+        addTutorialStep({
             tvGameName.visibility = View.VISIBLE
             val bounceInGameName = AnimationUtils.loadAnimation(this, R.anim.bounce_in)
             tvGameName.startAnimation(bounceInGameName)
-        }, 2500)
+        }, 2500, 5, "Mostrar nombre del juego")
 
-        handler.postDelayed({
-
+        addTutorialStep({
             tvStepIntroPartA.visibility = View.VISIBLE
             tvStepIntroPartB.visibility = View.VISIBLE
 
             val fadeIn = AnimationUtils.loadAnimation(this, R.anim.activity_fade_in)
             tvStepIntroPartA.startAnimation(fadeIn)
             tvStepIntroPartB.startAnimation(fadeIn)
+        }, 2000, 10, "Mostrar introducción paso A y B")
 
-        }, 4500)
-
-        handler.postDelayed({
-
+        addTutorialStep({
             val fadeOut = AnimationUtils.loadAnimation(this, R.anim.activity_fade_out)
             tvStepIntroPartA.startAnimation(fadeOut)
             tvStepIntroPartB.startAnimation(fadeOut)
@@ -193,43 +408,67 @@ class TutorialActivityNumeros : AppCompatActivity() {
                     tvGameName.visibility = View.GONE
                     tvStepIntroPartA.visibility = View.GONE
                     tvStepIntroPartB.visibility = View.GONE
-                    showStepOne()
+
+
+                    if (!isPaused) {
+                        showStepOne()
+                    } else {
+
+                        pendingSequences.add(0, SequenceStep({ showStepOne() }, 0, 15, "Mostrar paso 1"))
+                    }
                 }
                 override fun onAnimationRepeat(animation: Animation?) {}
             })
-        }, 7500)
+        }, 3000, 15, "Ocultar introducción")
+
+
+            val firstStep = pendingSequences.removeAt(0)
+            scheduleTutorialStep(firstStep)
 
     }
 
-
     private fun showStepOne() {
+        updateProgress(15)
+
         tvStepOne.visibility = View.VISIBLE
         val bounceIn = AnimationUtils.loadAnimation(this, R.anim.bounce_in)
         tvStepOne.startAnimation(bounceIn)
 
-        handler.postDelayed({
+        addTutorialStep({
             val fadeOut = AnimationUtils.loadAnimation(this, R.anim.activity_fade_out)
             tvStepOne.startAnimation(fadeOut)
             fadeOut.setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationStart(animation: Animation?) {}
                 override fun onAnimationEnd(animation: Animation?) {
                     tvStepOne.visibility = View.GONE
-                    showInstructionToChooseMode()
+                    if (!isPaused) {
+                        showInstructionToChooseMode()
+                    } else {
+                        pendingSequences.add(0, SequenceStep({ showInstructionToChooseMode() }, 0, 20, "Mostrar selección de modo"))
+                    }
                 }
                 override fun onAnimationRepeat(animation: Animation?) {}
             })
-        }, 3000)
+        }, 3000, 20, "Finalizar paso 1")
+
+            val firstStep = pendingSequences.removeAt(0)
+            scheduleTutorialStep(firstStep)
+
     }
 
     private fun showInstructionToChooseMode() {
+        updateProgress(20)
+
         instructionTextView.visibility = View.VISIBLE
         instructionTextView.text = getString(R.string.escoge_tu_modo_de_respuesta)
         val fadeIn = AnimationUtils.loadAnimation(this, R.anim.activity_fade_in)
         instructionTextView.startAnimation(fadeIn)
 
-        handler.postDelayed({
-            showModesDialog()
-        }, 1000)
+        addTutorialStep({ showModesDialog() }, 1000, 22, "Mostrar diálogo de modos")
+
+            val firstStep = pendingSequences.removeAt(0)
+            scheduleTutorialStep(firstStep)
+
     }
 
     private fun showModesDialog() {
@@ -258,13 +497,19 @@ class TutorialActivityNumeros : AppCompatActivity() {
             override fun onAnimationEnd(animation: Animation?) {
                 modeDialogContainer.visibility = View.GONE
                 instructionTextView.visibility = View.GONE
-                proceedToStepTwo()
+                if (!isPaused) {
+                    proceedToStepTwo()
+                } else {
+                    pendingSequences.add(0, SequenceStep({ proceedToStepTwo() }, 0, 30, "Proceder al paso 2"))
+                }
             }
             override fun onAnimationRepeat(animation: Animation?) {}
         })
     }
 
     private fun simulateHandInfoIcons() {
+        updateProgress(25)
+
         val infoSimple = findViewById<ImageButton>(R.id.info_seleccion_simple)
         val infoType = findViewById<ImageButton>(R.id.info_escribe_respuesta)
         val btnSeleccionSimple = findViewById<Button>(R.id.btn_seleccion_simple)
@@ -302,34 +547,54 @@ class TutorialActivityNumeros : AppCompatActivity() {
             }
         )
 
-        handler.postDelayed({
+        addTutorialStep({
             modeDialogContainer.visibility = View.GONE
             checkSeleccionSimple.visibility = View.GONE
             instructionTextView.visibility = View.GONE
-            proceedToStepTwo()
-        }, 13700)
+            if (!isPaused) {
+                proceedToStepTwo()
+            } else {
+                pendingSequences.add(0, SequenceStep({ proceedToStepTwo() }, 0, 30, "Proceder al paso 2"))
+            }
+        }, 13700, 30, "Finalizar selección de modo")
+
+            val firstStep = pendingSequences.removeAt(0)
+            scheduleTutorialStep(firstStep)
+
     }
 
     private fun proceedToStepTwo() {
+        updateProgress(30)
+
         tvStepTwo.visibility = View.VISIBLE
         val bounceIn = AnimationUtils.loadAnimation(this, R.anim.bounce_in)
         tvStepTwo.startAnimation(bounceIn)
 
-        handler.postDelayed({
+        addTutorialStep({
             val fadeOut = AnimationUtils.loadAnimation(this, R.anim.activity_fade_out)
             tvStepTwo.startAnimation(fadeOut)
             fadeOut.setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationStart(animation: Animation?) {}
                 override fun onAnimationEnd(animation: Animation?) {
                     tvStepTwo.visibility = View.GONE
-                    proceedToCircleAnimation()
+                    if (!isPaused) {
+                        proceedToCircleAnimation()
+                    } else {
+                        pendingSequences.add(0, SequenceStep({ proceedToCircleAnimation() }, 0, 35, "Mostrar animación del círculo"))
+                    }
                 }
                 override fun onAnimationRepeat(animation: Animation?) {}
             })
-        }, 4000)
+        }, 4000, 35, "Finalizar paso 2")
+
+            val firstStep = pendingSequences.removeAt(0)
+            scheduleTutorialStep(firstStep)
+
     }
 
     private fun proceedToCircleAnimation() {
+        updateProgress(35)
+
         circleView.visibility = View.VISIBLE
         circleView.scaleX = 0f
         circleView.scaleY = 0f
@@ -367,10 +632,18 @@ class TutorialActivityNumeros : AppCompatActivity() {
         animatorSet.addListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(animation: Animator) {}
             override fun onAnimationEnd(animation: Animator) {
-                handler.postDelayed({
+                addTutorialStep({
                     vamosTextView.visibility = View.GONE
-                    showNumbersSequence()
-                }, 1000)
+                    if (!isPaused) {
+                        showNumbersSequence()
+                    } else {
+                        pendingSequences.add(0, SequenceStep({ showNumbersSequence() }, 0, 40, "Mostrar secuencia de números"))
+                    }
+                }, 1000, 40, "Preparar secuencia de números")
+
+                    val step = pendingSequences.removeAt(0)
+                    scheduleTutorialStep(step)
+
             }
             override fun onAnimationCancel(animation: Animator) {}
             override fun onAnimationRepeat(animation: Animator) {}
@@ -378,6 +651,8 @@ class TutorialActivityNumeros : AppCompatActivity() {
     }
 
     private fun showNumbersSequence() {
+        updateProgress(40)
+
         numbersContainer.visibility = View.VISIBLE
         currentNumberIndex = 0
         startRingProgress()
@@ -390,12 +665,22 @@ class TutorialActivityNumeros : AppCompatActivity() {
     }
 
     private fun displayNextNumber() {
+        if (isPaused) {
+            pendingSequences.add(0, SequenceStep({ displayNextNumber() }, 0, 45, "Continuar secuencia de números"))
+            return
+        }
+
         if (currentNumberIndex >= fixedNumbers.size) {
             hideCircle()
             return
         }
+
         val number = fixedNumbers[currentNumberIndex]
         currentNumberIndex++
+
+
+        val progressValue = 40 + (currentNumberIndex * 10 / fixedNumbers.size)
+        updateProgress(progressValue)
 
         tvNumber.apply {
             textSize = 150f
@@ -413,12 +698,16 @@ class TutorialActivityNumeros : AppCompatActivity() {
             startAnimation(bounce)
         }
 
-        handler.postDelayed({
-            displayNextNumber()
-        }, 1800)
+        addTutorialStep({ displayNextNumber() }, 1800, progressValue, "Mostrar siguiente número")
+
+            val step = pendingSequences.removeAt(0)
+            scheduleTutorialStep(step)
+
     }
 
     private fun hideCircle() {
+        updateProgress(50)
+
         val circleScaleDown = ObjectAnimator.ofPropertyValuesHolder(
             circleView,
             PropertyValuesHolder.ofFloat("scaleX", 1f, 0f),
@@ -430,7 +719,11 @@ class TutorialActivityNumeros : AppCompatActivity() {
             override fun onAnimationEnd(animation: Animator) {
                 circleView.visibility = View.GONE
                 numbersContainer.visibility = View.GONE
-                showStepThree()
+                if (!isPaused) {
+                    showStepThree()
+                } else {
+                    pendingSequences.add(0, SequenceStep({ showStepThree() }, 0, 50, "Mostrar paso 3"))
+                }
             }
             override fun onAnimationCancel(animation: Animator) {}
             override fun onAnimationRepeat(animation: Animator) {}
@@ -440,17 +733,19 @@ class TutorialActivityNumeros : AppCompatActivity() {
     }
 
     private fun showStepThree() {
+        updateProgress(50)
+
         tvStepThreePartOne.visibility = View.VISIBLE
         val bounceIn = AnimationUtils.loadAnimation(this, R.anim.bounce_in)
         tvStepThreePartOne.startAnimation(bounceIn)
 
-        handler.postDelayed({
+        addTutorialStep({
             tvStepThreePartTwo.visibility = View.VISIBLE
             val bounceInPartTwo = AnimationUtils.loadAnimation(this, R.anim.bounce_in)
             tvStepThreePartTwo.startAnimation(bounceInPartTwo)
-        }, 2500)
+        }, 2500, 55, "Mostrar segunda parte del paso 3")
 
-        handler.postDelayed({
+        addTutorialStep({
             val fadeOut = AnimationUtils.loadAnimation(this, R.anim.activity_fade_out)
             tvStepThreePartOne.startAnimation(fadeOut)
             tvStepThreePartTwo.startAnimation(fadeOut)
@@ -460,14 +755,24 @@ class TutorialActivityNumeros : AppCompatActivity() {
                 override fun onAnimationEnd(animation: Animation?) {
                     tvStepThreePartOne.visibility = View.GONE
                     tvStepThreePartTwo.visibility = View.GONE
-                    showChronometerAndButtons()
+                    if (!isPaused) {
+                        showChronometerAndButtons()
+                    } else {
+                        pendingSequences.add(0, SequenceStep({ showChronometerAndButtons() }, 0, 60, "Mostrar cronómetro y botones"))
+                    }
                 }
                 override fun onAnimationRepeat(animation: Animation?) {}
             })
-        }, 5000)
+        }, 2500, 60, "Finalizar paso 3")
+
+            val firstStep = pendingSequences.removeAt(0)
+            scheduleTutorialStep(firstStep)
+
     }
 
     private fun showChronometerAndButtons() {
+        updateProgress(60)
+
         chronometerTextView.visibility = View.VISIBLE
         chronometerTextView.text = getString(R.string.default_chronometer)
         startChronometerSimulation()
@@ -485,7 +790,7 @@ class TutorialActivityNumeros : AppCompatActivity() {
         lottieHandChrono.setAnimation("handchrono_animation.json")
         lottieHandChrono.playAnimation()
 
-        handler.postDelayed({
+        addTutorialStep({
             val fadeOutChronoHand = AnimationUtils.loadAnimation(this, R.anim.activity_fade_out)
             lottieHandChrono.startAnimation(fadeOutChronoHand)
 
@@ -494,7 +799,7 @@ class TutorialActivityNumeros : AppCompatActivity() {
                 override fun onAnimationEnd(animation: Animation?) {
                     lottieHandChrono.visibility = View.GONE
 
-                    handler.postDelayed({
+                    addTutorialStep({
                         showHandWithFade(
                             targetView = btnAnswer2,
                             appearDelay = 0L,
@@ -504,18 +809,35 @@ class TutorialActivityNumeros : AppCompatActivity() {
                                 highlightCorrectButton(btnAnswer2)
                             }
                         )
-                    }, 300)
+                    }, 300, 70, "Mostrar mano para seleccionar respuesta")
+
+                    if (!isPaused) {
+                        val step = pendingSequences.removeAt(0)
+                        scheduleTutorialStep(step)
+                    }
                 }
                 override fun onAnimationRepeat(animation: Animation?) {}
             })
-        }, 2500)
+        }, 2500, 65, "Mano en cronómetro")
+
+            val firstStep = pendingSequences.removeAt(0)
+            scheduleTutorialStep(firstStep)
+
     }
 
     private fun startChronometerSimulation() {
+        updateProgress(65)
+
         val startTime = System.currentTimeMillis()
         val totalDuration = 4370L
         val tick = object : Runnable {
             override fun run() {
+                if (isPaused) {
+
+                    pendingSequences.add(0, SequenceStep({ startChronometerSimulation() }, 0, 65, "Reanudar cronómetro"))
+                    return
+                }
+
                 val elapsed = System.currentTimeMillis() - startTime
                 if (elapsed < totalDuration) {
                     val seconds = elapsed / 1000.0
@@ -558,42 +880,64 @@ class TutorialActivityNumeros : AppCompatActivity() {
     }
 
     private fun highlightCorrectButton(button: Button) {
+        updateProgress(70)
+
         button.setOnClickListener {
             playClickSound()
             button.setBackgroundResource(R.drawable.sombra_correcta)
             val pulse = AnimationUtils.loadAnimation(this, R.anim.pulse)
             button.startAnimation(pulse)
 
-            handler.postDelayed({
+            addTutorialStep({
                 chronometerTextView.visibility = View.GONE
                 answerButtonsLayout.visibility = View.GONE
-                showTutorialResultMessage()
-            }, 1500)
+                if (!isPaused) {
+                    showTutorialResultMessage()
+                } else {
+                    pendingSequences.add(0, SequenceStep({ showTutorialResultMessage() }, 0, 75, "Mostrar mensaje de resultado"))
+                }
+            }, 1500, 75, "Finalizar selección de respuesta")
+
+                val step = pendingSequences.removeAt(0)
+                scheduleTutorialStep(step)
+
         }
 
         button.performClick()
     }
 
     private fun showTutorialResultMessage() {
+        updateProgress(75)
+
         tvResultMessage.visibility = View.VISIBLE
         val bounceIn = AnimationUtils.loadAnimation(this, R.anim.bounce_in)
         tvResultMessage.startAnimation(bounceIn)
 
-        handler.postDelayed({
+        addTutorialStep({
             val fadeOut = AnimationUtils.loadAnimation(this, R.anim.activity_fade_out)
             tvResultMessage.startAnimation(fadeOut)
             fadeOut.setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationStart(animation: Animation?) {}
                 override fun onAnimationEnd(animation: Animation?) {
                     tvResultMessage.visibility = View.GONE
-                    showCelebration()
+                    if (!isPaused) {
+                        showCelebration()
+                    } else {
+                        pendingSequences.add(0, SequenceStep({ showCelebration() }, 0, 80, "Mostrar celebración"))
+                    }
                 }
                 override fun onAnimationRepeat(animation: Animation?) {}
             })
-        }, 3000)
+        }, 3000, 80, "Finalizar mensaje de resultado")
+
+            val firstStep = pendingSequences.removeAt(0)
+            scheduleTutorialStep(firstStep)
+
     }
 
     private fun showCelebration() {
+        updateProgress(80)
+
         confettiAnimation.visibility = View.VISIBLE
         confettiAnimation.setAnimation("confetti_animation.json")
         confettiAnimation.repeatCount = 0
@@ -604,36 +948,44 @@ class TutorialActivityNumeros : AppCompatActivity() {
         finalMessageTextView.visibility = View.VISIBLE
         finalMessageTextView.text = getString(R.string.perfecto)
 
-        handler.postDelayed({
+        addTutorialStep({
             finalTimeTextView.visibility = View.VISIBLE
             finalTimeTextView.text = getString(R.string.formatted_time, "4.37")
-        }, 1000)
+        }, 1000, 85, "Mostrar tiempo final")
 
-        handler.postDelayed({
+        addTutorialStep({
             finalPointsTextView.visibility = View.VISIBLE
             finalPointsTextView.text = getString(R.string.formatted_points, 200)
             starImageView.visibility = View.VISIBLE
-        }, 2000)
+        }, 1000, 90, "Mostrar puntos finales")
 
-        handler.postDelayed({
-
+        addTutorialStep({
             confettiAnimation.visibility = View.GONE
             finalMessageTextView.visibility = View.GONE
             finalTimeTextView.visibility = View.GONE
             finalPointsTextView.visibility = View.GONE
             starImageView.visibility = View.GONE
 
-            showFinalClosingMessage()
-        }, 4000)
+            if (!isPaused) {
+                showFinalClosingMessage()
+            } else {
+                pendingSequences.add(0, SequenceStep({ showFinalClosingMessage() }, 0, 95, "Mostrar mensaje final"))
+            }
+        }, 2000, 95, "Finalizar celebración")
+
+            val firstStep = pendingSequences.removeAt(0)
+            scheduleTutorialStep(firstStep)
+
     }
 
-
     private fun showFinalClosingMessage() {
+        updateProgress(95)
+
         tvClosingMessage.visibility = View.VISIBLE
         val bounceIn = AnimationUtils.loadAnimation(this, R.anim.bounce_in)
         tvClosingMessage.startAnimation(bounceIn)
 
-        handler.postDelayed({
+        addTutorialStep({
             btnUnderstood.visibility = View.VISIBLE
             btnClose.visibility = View.VISIBLE
 
@@ -647,9 +999,9 @@ class TutorialActivityNumeros : AppCompatActivity() {
                     markTutorialAsSeenAndNavigate()
                 }
             }
-        }, 2000)
+        }, 2000, 100, "Mostrar botones finales")
 
-        handler.postDelayed({
+        addTutorialStep({
             val fadeOut = AnimationUtils.loadAnimation(this, R.anim.activity_fade_out)
             tvClosingMessage.startAnimation(fadeOut)
             fadeOut.setAnimationListener(object : Animation.AnimationListener {
@@ -659,7 +1011,11 @@ class TutorialActivityNumeros : AppCompatActivity() {
                 }
                 override fun onAnimationRepeat(animation: Animation?) {}
             })
-        }, 4000)
+        }, 2000, 100, "Finalizar mensaje de cierre")
+
+            val firstStep = pendingSequences.removeAt(0)
+            scheduleTutorialStep(firstStep)
+
     }
 
     private fun markTutorialAsSeenAndNavigate() {
@@ -678,7 +1034,14 @@ class TutorialActivityNumeros : AppCompatActivity() {
         hideDelay: Long,
         onComplete: (() -> Unit)? = null
     ) {
-        handler.postDelayed({
+        addTutorialStep({
+            if (isPaused) {
+                pendingSequences.add(0, SequenceStep({
+                    showHandWithFade(targetView, appearDelay, clickDelay, hideDelay, onComplete)
+                }, 0, currentProgress, "Reanudar animación de mano"))
+                return@addTutorialStep
+            }
+
             lottieHandAnswer.alpha = 0f
             lottieHandAnswer.visibility = View.VISIBLE
             showHandOnViewFor(duration = 2000, targetView = targetView)
@@ -686,13 +1049,29 @@ class TutorialActivityNumeros : AppCompatActivity() {
                 .alpha(1f)
                 .setDuration(200)
                 .start()
-        }, appearDelay)
+        }, appearDelay, currentProgress, "Mostrar mano")
 
-        handler.postDelayed({
-            playClickSound()
-        }, clickDelay)
+        addTutorialStep({
+            if (!isPaused) {
+                playClickSound()
+            }
+        }, clickDelay - appearDelay, currentProgress, "Sonido de click")
 
-        handler.postDelayed({
+        addTutorialStep({
+            if (isPaused) {
+                pendingSequences.add(0, SequenceStep({
+                    lottieHandAnswer.animate()
+                        .alpha(0f)
+                        .setDuration(300)
+                        .withEndAction {
+                            hideHand()
+                            onComplete?.invoke()
+                        }
+                        .start()
+                }, 0, currentProgress, "Completar animación de mano"))
+                return@addTutorialStep
+            }
+
             lottieHandAnswer.animate()
                 .alpha(0f)
                 .setDuration(300)
@@ -701,7 +1080,11 @@ class TutorialActivityNumeros : AppCompatActivity() {
                     onComplete?.invoke()
                 }
                 .start()
-        }, hideDelay)
+        }, hideDelay - clickDelay, currentProgress, "Ocultar mano")
+
+            val firstStep = pendingSequences.removeAt(0)
+            scheduleTutorialStep(firstStep)
+
     }
 
     private fun showHandOnViewFor(
@@ -807,7 +1190,6 @@ class TutorialActivityNumeros : AppCompatActivity() {
         }
     }
 
-
     private fun releaseAllMediaPlayers() {
         backgroundMusicPlayer?.stop()
         backgroundMusicPlayer?.release()
@@ -832,6 +1214,7 @@ class TutorialActivityNumeros : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        clearPendingSequences()
         releaseAllMediaPlayers()
     }
 
@@ -855,3 +1238,4 @@ class TutorialActivityNumeros : AppCompatActivity() {
         animatorSet.start()
     }
 }
+

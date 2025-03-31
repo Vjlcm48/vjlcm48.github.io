@@ -74,6 +74,12 @@ class TransitionActivity : AppCompatActivity() {
         val scorePrefsRomas = getSharedPreferences("ScorePrefsRomas", MODE_PRIVATE)
         scorePrefsRomas.edit { clear() }
 
+        val scorePrefsRomasPrincipiante = getSharedPreferences("ScorePrefsRomasPrincipiante", MODE_PRIVATE)
+        scorePrefsRomasPrincipiante.edit { clear() }
+
+        val scorePrefsRomasPro = getSharedPreferences("ScorePrefsRomasPro", MODE_PRIVATE)
+        scorePrefsRomasPro.edit { clear() }
+
         val myPrefsAlfaNumeros = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
         myPrefsAlfaNumeros.edit { clear() }
 

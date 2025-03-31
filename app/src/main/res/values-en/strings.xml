@@ -721,4 +721,7 @@
     <string name="correct_answer_format_romas">Correct answer: %s</string>
     <string name="user_responses_format_romas">Your responses: %s</string>
 
+    <string name="pause_tutorial">Pause tutorial</string>
+    <string name="play_tutorial">Play tutorial</string>
+
 </resources>

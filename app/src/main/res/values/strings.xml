@@ -694,4 +694,7 @@
     <string name="correct_answer_format_romas">Respuesta correcta: %s</string>
     <string name="user_responses_format_romas">Tus respuestas: %s</string>
 
+    <string name="pause_tutorial">Pausar tutorial</string>
+    <string name="play_tutorial">Reproducir tutorial</string>
+
 </resources>
