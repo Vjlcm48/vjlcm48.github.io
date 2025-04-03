@@ -697,4 +697,28 @@
     <string name="pause_tutorial">Pausar tutorial</string>
     <string name="play_tutorial">Reproducir tutorial</string>
 
+    <string name="clasificaciones_titulo">CLASIFICACIONES</string>
+    <string name="clasificaciones_como_funciona">¿Cómo funciona el sistema de clasificación?</string>
+    <string name="clasificaciones_ver_mi">Ver mi clasificación</string>
+
+    <string name="clasificaciones_titulo_dialog">¿CÓMO FUNCIONA EL SISTEMA DE CLASIFICACIÓN?</string>
+    <string name="clasificaciones_subtitulo_puntos">¡Así ganas puntos en SUMAMENTE!</string>
+    <string name="clasificaciones_puntos_correctas">Puntos por respuestas correctas</string>
+    <string name="clasificaciones_puntos_correctas_1">• Cada juego te da puntos cuando respondes bien</string>
+    <string name="clasificaciones_puntos_correctas_2">• Si aciertas todas tus respuestas, recibes todos tus puntos</string>
+    <string name="clasificaciones_puntos_correctas_3">• Si te equivocas en algunas, recibes menos puntos</string>
+    <string name="clasificaciones_puntos_velocidad">Puntos por velocidad</string>
+    <string name="clasificaciones_puntos_velocidad_1">• ¡Ser rápido te da más puntos!</string>
+    <string name="clasificaciones_puntos_velocidad_2">• Si respondes en 1 segundo, recibes los puntos normales</string>
+    <string name="clasificaciones_puntos_velocidad_3">• Si eres más rápido, ¡ganas más puntos!</string>
+    <string name="clasificaciones_puntos_velocidad_4">• Si tardas más, recibes menos puntos</string>
+    <string name="clasificaciones_juegos_niveles">Juegos y niveles</string>
+    <string name="clasificaciones_juegos_niveles_1">• Hay 7 juegos diferentes: NÚMEROS⁺, DECI⁺, ROMAS, SUMARESTA, ALFANÚMEROS, MÁS⁺ y GENIO⁺</string>
+    <string name="clasificaciones_juegos_niveles_2">• Cada juego tiene 3 niveles: Principiante, Avanzado y Pro</string>
+    <string name="clasificaciones_juegos_niveles_3">• Los juegos más difíciles y los niveles más altos te dan más puntos</string>
+    <string name="clasificaciones_practica">¡Practica y mejora!</string>
+    <string name="clasificaciones_practica_1">• Puedes repetir cualquier juego cuando quieras</string>
+    <string name="clasificaciones_practica_2">• Juega todas las veces que quieras para mejorar tu promedio de tiempo</string>
+    <string name="clasificaciones_practica_3">• ¡Practica todos los días para aumentar tu velocidad y precisión!</string>
+
 </resources>

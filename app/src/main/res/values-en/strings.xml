@@ -724,4 +724,28 @@
     <string name="pause_tutorial">Pause tutorial</string>
     <string name="play_tutorial">Play tutorial</string>
 
+    <string name="clasificaciones_titulo">CLASSIFICATIONS</string>
+    <string name="clasificaciones_como_funciona">How the classification system works?</string>
+    <string name="clasificaciones_ver_mi">View my classification</string>
+
+    <string name="clasificaciones_titulo_dialog">HOW THE CLASSIFICATION SYSTEM WORKS?</string>
+    <string name="clasificaciones_subtitulo_puntos">How you earn points in SUMAMENTE!</string>
+    <string name="clasificaciones_puntos_correctas">Points for correct answers</string>
+    <string name="clasificaciones_puntos_correctas_1">• Each game gives you points when you answer correctly</string>
+    <string name="clasificaciones_puntos_correctas_2">• If you get all your answers right, you receive all your points</string>
+    <string name="clasificaciones_puntos_correctas_3">• If you make some mistakes, you receive fewer points</string>
+    <string name="clasificaciones_puntos_velocidad">Points for speed</string>
+    <string name="clasificaciones_puntos_velocidad_1">• Being fast gives you more points!</string>
+    <string name="clasificaciones_puntos_velocidad_2">• If you answer in 1 second, you get the standard points</string>
+    <string name="clasificaciones_puntos_velocidad_3">• If you\'re faster, you earn more points!</string>
+    <string name="clasificaciones_puntos_velocidad_4">• If you take longer, you receive fewer points</string>
+    <string name="clasificaciones_juegos_niveles">Games and levels</string>
+    <string name="clasificaciones_juegos_niveles_1">• There are 7 different games: NÚMEROS⁺, DECI⁺, ROMAS, SUMARESTA, ALFANÚMEROS, MÁS⁺ and GENIO⁺</string>
+    <string name="clasificaciones_juegos_niveles_2">• Each game has 3 levels: Beginner, Advanced and Pro</string>
+    <string name="clasificaciones_juegos_niveles_3">• More difficult games and higher levels give you more points</string>
+    <string name="clasificaciones_practica">Practice and improve!</string>
+    <string name="clasificaciones_practica_1">• You can repeat any game whenever you want</string>
+    <string name="clasificaciones_practica_2">• Play as many times as you want to improve your average response time</string>
+    <string name="clasificaciones_practica_3">• Practice every day to increase your speed and accuracy!</string>
+
 </resources>

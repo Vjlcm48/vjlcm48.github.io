@@ -86,7 +86,7 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:src="@drawable/ic_pin_victoris"
+                    android:src="@drawable/ic_pin_optimum"
                     android:contentDescription="@string/pin_reconocimiento"/>
 
                 <TextView
@@ -142,7 +142,7 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:src="@drawable/ic_medalla_dorada"
+                    android:src="@drawable/ic_medalla_initium"
                     android:contentDescription="@string/medalla"/>
 
                 <TextView

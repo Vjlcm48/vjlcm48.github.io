@@ -22,10 +22,6 @@
             android:exported="false" />
 
         <activity
-            android:name=".ui.StatisticsActivity"
-            android:exported="false" />
-
-        <activity
             android:name=".ui.FlagSelectionActivity"
             android:exported="false" />
 
@@ -268,6 +264,11 @@
 
         <activity
             android:name=".ui.MainGameActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.ClassificationActivity"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 

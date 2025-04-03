@@ -110,14 +110,14 @@ class MainGameActivity : AppCompatActivity() {
         homeIcon.setOnClickListener {
             applyBounceEffect(it) {
                 mediaPlayer.fadeOut()
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, MainGameActivity::class.java))
             }
         }
 
         statisticsIcon.setOnClickListener {
             applyBounceEffect(it) {
                 mediaPlayer.fadeOut()
-                startActivity(Intent(this, StatisticsActivity::class.java))
+                startActivity(Intent(this, ClassificationActivity::class.java))
             }
         }
 

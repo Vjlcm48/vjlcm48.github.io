@@ -825,7 +825,7 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun navigateToStatistics() {
-        val intent = Intent(this, StatisticsActivity::class.java)
+        val intent = Intent(this, ClassificationActivity::class.java)
         startActivity(intent)
         finish()
     }
