@@ -386,32 +386,6 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView
-        android:id="@+id/btn_play_pause_tutorial"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@drawable/ic_pause_circle"
-        android:contentDescription="@string/pause_tutorial"
-        android:visibility="visible"
-        android:alpha="0.9"
-        android:padding="8dp"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <SeekBar
-        android:id="@+id/seek_bar_tutorial"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:progress="0"
-        android:max="100"
-        app:layout_constraintStart_toEndOf="@+id/btn_play_pause_tutorial"
-        app:layout_constraintEnd_toStartOf="@+id/btn_skip_tutorial"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_play_pause_tutorial"
-        app:layout_constraintTop_toTopOf="@+id/btn_play_pause_tutorial"/>
-
-    <ImageView
         android:id="@+id/btn_skip_tutorial"
         android:layout_width="48dp"
         android:layout_height="48dp"
