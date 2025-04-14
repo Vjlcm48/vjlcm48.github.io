@@ -721,4 +721,68 @@
     <string name="clasificaciones_practica_2">• Juega todas las veces que quieras para mejorar tu promedio de tiempo</string>
     <string name="clasificaciones_practica_3">• ¡Practica todos los días para aumentar tu velocidad y precisión!</string>
 
+    <!-- 🟨 PINES -->
+    <string name="pin_victoris">30 niveles. Ningún error. 24 horas. VICTORIS… Solo los vencedores entenderán.</string>
+    <string name="pin_optimum">40 niveles. Ni un fallo. Un solo día. OPTIMUM… Solo los óptimos resisten.</string>
+    <string name="pin_invictus">50 niveles. Imbatible. 24 horas. INVICTUS… Solo los indomables lo logran.</string>
+
+    <!-- 🟦 MEDALLAS -->
+    <string name="medalla_initium_100">El viaje apenas comienza. Alcanza 100 juegos completados y obtendrás INITIUM.</string>
+    <string name="medalla_fidelis_200">Tu constancia será reconocida. Llega a 200 juegos y esta medalla será tuya.</string>
+    <string name="medalla_virtus_300">Entrena cada día. Al sumar 300 juegos demostrarás la virtud de la disciplina.</string>
+    <string name="medalla_audax_400">Solo los valientes siguen adelante. Conquista 400 juegos sin dudar.</string>
+    <string name="medalla_fortis_500">Tu mente es firme. Llega a 500 juegos y fortalece tu leyenda.</string>
+    <string name="medalla_tenax_600">No te detengas. Al completar 600 juegos, tu tenacidad brillará.</string>
+    <string name="medalla_intrepidus_700">Enfrenta cada reto sin miedo. Esta medalla es tuya al alcanzar 700 juegos.</string>
+    <string name="medalla_sapiens_800">La sabiduría se gana con experiencia. 800 juegos completados lo demostrarán.</string>
+    <string name="medalla_exemplar_900">Sé el ejemplo. Al llegar a 900 juegos, todos sabrán que nunca abandonaste.</string>
+    <string name="medalla_gloriam_1000">Atrévete a alcanzar la cima. 1000 juegos te llevarán a la gloria.</string>
+    <string name="medalla_magnus_1100">La grandeza se construye con esfuerzo. Llega a 1100 juegos y recibirás MAGNUS.</string>
+    <string name="medalla_immortalis_1200">Tu legado trascenderá. Al completar 1200 juegos, esta medalla te inmortaliza.</string>
+
+    <!-- 🟥 CORONAS -->
+    <string name="corona_velocitas_10">La rapidez está en tu esencia. Si respondes más rápido que el 90%… esta corona es tuya.</string>
+    <string name="corona_celeris_6">Mente relámpago. Si superas al 94% en velocidad, lo sabrás al verla aparecer.</string>
+    <string name="corona_volucer_1">El 1% más veloz. Tu mente es un haz de luz. Esta corona solo honra a los legendarios.</string>
+
+    <!-- 🏆 TROFEOS NÚMEROS⁺ -->
+    <string name="trofeo_initia_numeros_principiante">Inicia tu viaje. Domina NÚMEROS⁺ Principiante y este trofeo será tu punto de partida.</string>
+    <string name="trofeo_constantia_numeros_avanzado">Sigue avanzando sin rendirte. Recorre cada desafío en NÚMEROS⁺ Avanzado.</string>
+    <string name="trofeo_confectus_numeros_pro">No dejes nada incompleto. Alcanza el final de NÚMEROS⁺ Pro y obtén CONFECTUS.</string>
+
+    <!-- 🏆 TROFEOS DECI⁺ -->
+    <string name="trofeo_via_deci_principiante">Traza tu camino entre los decimales. Termina DECI⁺ Principiante y empieza a destacar.</string>
+    <string name="trofeo_altus_deci_avanzado">Apunta alto. Finaliza DECI⁺ Avanzado y ALTUS será tuyo.</string>
+    <string name="trofeo_perseverantia_deci_pro">No te detengas. Conquista cada juego de DECI⁺ Pro con disciplina inquebrantable.</string>
+
+    <!-- 🏆 TROFEOS ROMAS -->
+    <string name="trofeo_gradus_romas_principiante">Avanza paso a paso. Supera ROMAS Principiante y deja tu huella imperial.</string>
+    <string name="trofeo_fortitudo_romas_avanzado">Demuestra tu fortaleza. Enfrenta los desafíos de ROMAS Avanzado hasta el final.</string>
+    <string name="trofeo_metam_romas_pro">Alcanza la meta romana. Vence cada nivel de ROMAS Pro y conquista este emblema.</string>
+
+    <!-- 🏆 TROFEOS ALFANUMEROS -->
+    <string name="trofeo_fundamentum_alfanumeros_principiante">Construye la base de tu maestría. Completa ALFANUMEROS Principiante sin dejar vacíos.</string>
+    <string name="trofeo_praemium_alfanumeros_avanzado">Gánate este premio letra a letra. Avanza por todo ALFANUMEROS Avanzado.</string>
+    <string name="trofeo_glorificus_alfanumeros_pro">Ve por la gloria. Domina ALFANUMEROS Pro y haz brillar tu mente.</string>
+
+    <!-- 🏆 TROFEOS SUMARESTA -->
+    <string name="trofeo_scala_sumaresta_principiante">Escala con firmeza. Sube peldaño a peldaño hasta conquistar SUMARESTA Principiante.</string>
+    <string name="trofeo_tenacitas_sumaresta_avanzado">Solo los tenaces llegan lejos. Enfrenta y termina SUMARESTA Avanzado.</string>
+    <string name="trofeo_perfectus_sumaresta_pro">Busca la perfección en cada jugada. Culmina SUMARESTA Pro sin rendirte.</string>
+
+    <!-- 🏆 TROFEOS MAS⁺ -->
+    <string name="trofeo_origo_mas_principiante">Todo empieza aquí. Supera MAS⁺ Principiante y desbloquea tu origen.</string>
+    <string name="trofeo_proficium_mas_avanzado">Haz del progreso tu bandera. Avanza por cada desafío de MAS⁺ Avanzado.</string>
+    <string name="trofeo_exemplaritas_mas_pro">Conviértete en referente. Termina MAS⁺ Pro y honra tu ejemplo.</string>
+
+    <!-- 🏆 TROFEOS GENIOS⁺ -->
+    <string name="trofeo_ascensus_genio_principiante">Inicia el ascenso a tu genialidad. Completa GENIOS⁺ Principiante.</string>
+    <string name="trofeo_magnificus_genio_avanzado">Deja brillar tu intelecto. Atraviesa cada nivel de GENIOS⁺ Avanzado.</string>
+    <string name="trofeo_potens_genio_pro">Libera tu máximo potencial. Conquista GENIOS⁺ Pro sin mirar atrás.</string>
+
+    <string name="previous">Anterior</string>
+    <string name="next">Siguiente</string>
+
+    <string name="mis_condecoraciones">Mis condecoraciones logradas</string>
+
 </resources>

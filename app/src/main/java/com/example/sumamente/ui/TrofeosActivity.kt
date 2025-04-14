@@ -20,6 +20,7 @@ class TrofeosActivity : AppCompatActivity() {
     private lateinit var btnCorona: LinearLayout
     private lateinit var btnMedalla: LinearLayout
     private lateinit var btnTrofeo: LinearLayout
+    private lateinit var btnMisCondecoraciones: LinearLayout
     private lateinit var btnClose: ImageView
     private lateinit var btnBack: ImageView
 
@@ -37,6 +38,7 @@ class TrofeosActivity : AppCompatActivity() {
         btnCorona = findViewById(R.id.btn_corona)
         btnMedalla = findViewById(R.id.btn_medalla)
         btnTrofeo = findViewById(R.id.btn_trofeo)
+        btnMisCondecoraciones = findViewById(R.id.btn_mis_condecoraciones)
         btnClose = findViewById(R.id.btn_close)
         btnBack = findViewById(R.id.btn_back)
     }
@@ -58,17 +60,22 @@ class TrofeosActivity : AppCompatActivity() {
             }
         }
 
+        btnPin.setOnClickListener {
+            applyBounceEffect(it) {
+                val intent = Intent(this, PinesActivity::class.java)
+                startActivity(intent)
+            }
+        }
 
-        setupPremioButton(btnPin)
         setupPremioButton(btnCorona)
         setupPremioButton(btnMedalla)
         setupPremioButton(btnTrofeo)
+        setupPremioButton(btnMisCondecoraciones)
     }
 
     private fun setupPremioButton(button: LinearLayout) {
         button.setOnClickListener {
             applyBounceEffect(it) {
-
                 Toast.makeText(this, getString(R.string.en_construccion), Toast.LENGTH_SHORT).show()
             }
         }

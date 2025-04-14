@@ -278,6 +278,11 @@
             android:theme="@style/Theme.SumaMente" />
 
         <activity
+            android:name=".ui.PinesActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
             android:name=".ui.DesafiosActivity"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
