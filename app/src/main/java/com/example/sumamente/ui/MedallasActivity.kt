@@ -13,21 +13,21 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.sumamente.R
 import kotlin.math.abs
 
-class PinesActivity : AppCompatActivity() {
+class MedallasActivity : AppCompatActivity() {
 
     private lateinit var viewPager: ViewPager2
     private lateinit var btnBack: ImageView
     private lateinit var btnClose: ImageView
-    private lateinit var tvTituloPines: TextView
+    private lateinit var tvTituloMedallas: TextView
     private lateinit var btnPrevious: ImageView
     private lateinit var btnNext: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pines)
+        setContentView(R.layout.activity_medallas)
 
         initViews()
-        setupPines()
+        setupMedallas()
         setupNavigation()
     }
 
@@ -35,31 +35,38 @@ class PinesActivity : AppCompatActivity() {
         viewPager = findViewById(R.id.viewPager)
         btnBack = findViewById(R.id.btn_back)
         btnClose = findViewById(R.id.btn_close)
-        tvTituloPines = findViewById(R.id.tv_titulo_pines)
+        tvTituloMedallas = findViewById(R.id.tv_titulo_medallas)
         btnPrevious = findViewById(R.id.btn_previous)
         btnNext = findViewById(R.id.btn_next)
     }
 
-    private fun setupPines() {
-        val pines = listOf(
-            Pin("ic_pin_victoris", getString(R.string.pin_victoris)),
-            Pin("ic_pin_optimum", getString(R.string.pin_optimum)),
-            Pin("ic_pin_invictus", getString(R.string.pin_invictus))
+    private fun setupMedallas() {
+        val medallas = listOf(
+            Medalla("ic_medalla_initium_cintas", getString(R.string.medalla_initium_100)),
+            Medalla("ic_medalla_fidelis_cintas", getString(R.string.medalla_fidelis_200)),
+            Medalla("ic_medalla_virtus_cintas", getString(R.string.medalla_virtus_300)),
+            Medalla("ic_medalla_audax_cintas", getString(R.string.medalla_audax_400)),
+            Medalla("ic_medalla_fortis_cintas", getString(R.string.medalla_fortis_500)),
+            Medalla("ic_medalla_tenax_cintas", getString(R.string.medalla_tenax_600)),
+            Medalla("ic_medalla_intrepidus_cintas", getString(R.string.medalla_intrepidus_700)),
+            Medalla("ic_medalla_sapiens_cintas", getString(R.string.medalla_sapiens_800)),
+            Medalla("ic_medalla_exemplar_cintas", getString(R.string.medalla_exemplar_900)),
+            Medalla("ic_medalla_gloriam_cintas", getString(R.string.medalla_gloriam_1000)),
+            Medalla("ic_medalla_magnus_cintas", getString(R.string.medalla_magnus_1100)),
+            Medalla("ic_medalla_immortalis_cintas", getString(R.string.medalla_immortalis_1200))
         )
 
-        val adapter = PinPagerAdapter(this, pines)
+        val adapter = MedallaPagerAdapter(this, medallas)
         viewPager.adapter = adapter
-        viewPager.setPageTransformer(createPinPageTransformer())
-
+        viewPager.setPageTransformer(createMedallaPageTransformer())
 
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-                updateNavigationButtons(position, pines.size)
+                updateNavigationButtons(position, medallas.size)
             }
         })
 
-
-        updateNavigationButtons(0, pines.size)
+        updateNavigationButtons(0, medallas.size)
     }
 
     private fun setupNavigation() {
@@ -105,22 +112,19 @@ class PinesActivity : AppCompatActivity() {
         btnNext.visibility = if (position < totalItems - 1) View.VISIBLE else View.INVISIBLE
     }
 
-    private fun createPinPageTransformer(): ViewPager2.PageTransformer {
+    private fun createMedallaPageTransformer(): ViewPager2.PageTransformer {
         return ViewPager2.PageTransformer { page, position ->
             when {
                 position < -1 || position > 1 -> {
-
                     page.alpha = 0f
                 }
                 position == 0f -> {
-
                     page.alpha = 1f
                     page.translationX = 0f
                     page.scaleX = 1f
                     page.scaleY = 1f
                 }
                 else -> {
-
                     page.alpha = 1f - abs(position)
                     page.translationX = -position * (page.width / 2)
                     val scaleFactor = 0.85f.coerceAtLeast(1 - abs(position * 0.15f))

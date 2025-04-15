@@ -1,9 +1,11 @@
 package com.example.sumamente.ui
 
+import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -12,8 +14,17 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sumamente.R
+import java.lang.ref.WeakReference
 
 class TrofeosActivity : AppCompatActivity() {
+
+    companion object {
+        private var instanceRef: WeakReference<TrofeosActivity>? = null
+
+        fun finishTrofeosActivity() {
+            instanceRef?.get()?.finish()
+        }
+    }
 
     private lateinit var tvTituloTrofeos: TextView
     private lateinit var btnPin: LinearLayout
@@ -23,14 +34,20 @@ class TrofeosActivity : AppCompatActivity() {
     private lateinit var btnMisCondecoraciones: LinearLayout
     private lateinit var btnClose: ImageView
     private lateinit var btnBack: ImageView
+    private lateinit var mediaPlayer: MediaPlayer
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trofeos)
 
+        instanceRef = WeakReference(this)
+
         initViews()
+        initMusic()
         setupButtons()
     }
+
 
     private fun initViews() {
         tvTituloTrofeos = findViewById(R.id.tv_titulo_trofeos)
@@ -43,7 +60,17 @@ class TrofeosActivity : AppCompatActivity() {
         btnBack = findViewById(R.id.btn_back)
     }
 
+
+    private fun initMusic() {
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.condecoraciones).apply {
+            isLooping = true
+            start()
+        }
+    }
+
     private fun setupButtons() {
+
         btnClose.setOnClickListener {
             applyBounceEffect(it) {
                 val intent = Intent(this, MainGameActivity::class.java)
@@ -51,6 +78,7 @@ class TrofeosActivity : AppCompatActivity() {
                 finish()
             }
         }
+
 
         btnBack.setOnClickListener {
             applyBounceEffect(it) {
@@ -63,13 +91,33 @@ class TrofeosActivity : AppCompatActivity() {
         btnPin.setOnClickListener {
             applyBounceEffect(it) {
                 val intent = Intent(this, PinesActivity::class.java)
+
                 startActivity(intent)
             }
         }
 
-        setupPremioButton(btnCorona)
-        setupPremioButton(btnMedalla)
-        setupPremioButton(btnTrofeo)
+
+        btnCorona.setOnClickListener {
+            applyBounceEffect(it) {
+                val intent = Intent(this, CoronasActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        btnMedalla.setOnClickListener {
+            applyBounceEffect(it) {
+                val intent = Intent(this, MedallasActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        btnTrofeo.setOnClickListener {
+            applyBounceEffect(it) {
+                val intent = Intent(this, TrofeosDetailActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
         setupPremioButton(btnMisCondecoraciones)
     }
 
@@ -99,11 +147,25 @@ class TrofeosActivity : AppCompatActivity() {
         animatorSet.playSequentially(scaleDown, scaleUp)
 
         animatorSet.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: android.animation.Animator) {
+            override fun onAnimationEnd(animation: Animator) {
                 onAnimationEnd()
             }
         })
 
         animatorSet.start()
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (this::mediaPlayer.isInitialized) {
+            if (mediaPlayer.isPlaying) {
+                mediaPlayer.stop()
+            }
+            mediaPlayer.release()
+        }
+        instanceRef?.clear()
+        instanceRef = null
+    }
+
+
 }

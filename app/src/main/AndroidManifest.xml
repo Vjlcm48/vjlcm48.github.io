@@ -283,6 +283,21 @@
             android:theme="@style/Theme.SumaMente" />
 
         <activity
+            android:name=".ui.CoronasActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.MedallasActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.TrofeosDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
             android:name=".ui.DesafiosActivity"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />

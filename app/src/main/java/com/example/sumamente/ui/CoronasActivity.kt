@@ -13,21 +13,21 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.sumamente.R
 import kotlin.math.abs
 
-class PinesActivity : AppCompatActivity() {
+class CoronasActivity : AppCompatActivity() {
 
     private lateinit var viewPager: ViewPager2
     private lateinit var btnBack: ImageView
     private lateinit var btnClose: ImageView
-    private lateinit var tvTituloPines: TextView
+    private lateinit var tvTituloCoronas: TextView
     private lateinit var btnPrevious: ImageView
     private lateinit var btnNext: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pines)
+        setContentView(R.layout.activity_coronas)
 
         initViews()
-        setupPines()
+        setupCoronas()
         setupNavigation()
     }
 
@@ -35,31 +35,29 @@ class PinesActivity : AppCompatActivity() {
         viewPager = findViewById(R.id.viewPager)
         btnBack = findViewById(R.id.btn_back)
         btnClose = findViewById(R.id.btn_close)
-        tvTituloPines = findViewById(R.id.tv_titulo_pines)
+        tvTituloCoronas = findViewById(R.id.tv_titulo_coronas)
         btnPrevious = findViewById(R.id.btn_previous)
         btnNext = findViewById(R.id.btn_next)
     }
 
-    private fun setupPines() {
-        val pines = listOf(
-            Pin("ic_pin_victoris", getString(R.string.pin_victoris)),
-            Pin("ic_pin_optimum", getString(R.string.pin_optimum)),
-            Pin("ic_pin_invictus", getString(R.string.pin_invictus))
+    private fun setupCoronas() {
+        val coronas = listOf(
+            Corona("ic_corona_velocitas_alas", getString(R.string.corona_velocitas_10)),
+            Corona("ic_corona_celeris_alas", getString(R.string.corona_celeris_6)),
+            Corona("ic_corona_volucer_alas", getString(R.string.corona_volucer_1))
         )
 
-        val adapter = PinPagerAdapter(this, pines)
+        val adapter = CoronaPagerAdapter(this, coronas)
         viewPager.adapter = adapter
-        viewPager.setPageTransformer(createPinPageTransformer())
-
+        viewPager.setPageTransformer(createCoronaPageTransformer())
 
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-                updateNavigationButtons(position, pines.size)
+                updateNavigationButtons(position, coronas.size)
             }
         })
 
-
-        updateNavigationButtons(0, pines.size)
+        updateNavigationButtons(0, coronas.size)
     }
 
     private fun setupNavigation() {
@@ -105,22 +103,19 @@ class PinesActivity : AppCompatActivity() {
         btnNext.visibility = if (position < totalItems - 1) View.VISIBLE else View.INVISIBLE
     }
 
-    private fun createPinPageTransformer(): ViewPager2.PageTransformer {
+    private fun createCoronaPageTransformer(): ViewPager2.PageTransformer {
         return ViewPager2.PageTransformer { page, position ->
             when {
                 position < -1 || position > 1 -> {
-
                     page.alpha = 0f
                 }
                 position == 0f -> {
-
                     page.alpha = 1f
                     page.translationX = 0f
                     page.scaleX = 1f
                     page.scaleY = 1f
                 }
                 else -> {
-
                     page.alpha = 1f - abs(position)
                     page.translationX = -position * (page.width / 2)
                     val scaleFactor = 0.85f.coerceAtLeast(1 - abs(position * 0.15f))
