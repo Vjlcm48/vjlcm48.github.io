@@ -21,7 +21,7 @@ import com.example.sumamente.R
 import java.util.Locale
 import kotlin.math.max
 
-class LevelResultActivityAlfaNumeros : AppCompatActivity() {
+class LevelResultActivityAlfaNumerosPrincipiante : AppCompatActivity() {
 
     private lateinit var mainMessageTextView: TextView
     private lateinit var pointsTextView: TextView
@@ -55,9 +55,9 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsAlfaNumeros", Context.MODE_PRIVATE)
-        setContentView(R.layout.activity_level_result_alfanumeros)
+        setContentView(R.layout.activity_level_result_alfanumeros_principiante)
 
-        ScoreManager.initAlfaNumeros(this)
+        ScoreManager.initAlfaNumerosPrincipiante(this)
 
         currentLevel = intent.getIntExtra("LEVEL", 1)
         isSuccessful = intent.getBooleanExtra("IS_SUCCESSFUL", false)
@@ -111,22 +111,22 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
     private fun handleSuccessScenario() {
         pointsEarned = calculatePoints()
 
-        ScoreManager.levelScoresAlfaNumeros[currentLevel]?.let { previousScore ->
-            ScoreManager.currentScoreAlfaNumeros -= previousScore
+        ScoreManager.levelScoresAlfaNumerosPrincipiante[currentLevel]?.let { previousScore ->
+            ScoreManager.currentScoreAlfaNumerosPrincipiante -= previousScore
         }
 
-        ScoreManager.levelScoresAlfaNumeros[currentLevel] = pointsEarned
-        ScoreManager.currentScoreAlfaNumeros = max(ScoreManager.currentScoreAlfaNumeros + pointsEarned, 0)
+        ScoreManager.levelScoresAlfaNumerosPrincipiante[currentLevel] = pointsEarned
+        ScoreManager.currentScoreAlfaNumerosPrincipiante = max(ScoreManager.currentScoreAlfaNumerosPrincipiante + pointsEarned, 0)
 
-        if (!ScoreManager.hasCompletedLevelAlfaNumeros(currentLevel)) {
-            ScoreManager.addCompletedLevelAlfaNumeros(currentLevel)
+        if (!ScoreManager.hasCompletedLevelAlfaNumerosPrincipiante(currentLevel)) {
+            ScoreManager.addCompletedLevelAlfaNumerosPrincipiante(currentLevel)
         }
 
-        if (currentLevel >= ScoreManager.unlockedLevelsAlfaNumeros) {
-            ScoreManager.unlockedLevelsAlfaNumeros = currentLevel + 1
+        if (currentLevel >= ScoreManager.unlockedLevelsAlfaNumerosPrincipiante) {
+            ScoreManager.unlockedLevelsAlfaNumerosPrincipiante = currentLevel + 1
         }
 
-        ScoreManager.saveScoreAlfaNumeros()
+        ScoreManager.saveScoreAlfaNumerosPrincipiante()
 
         showSuccessDialog()
     }
@@ -137,17 +137,18 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
     }
 
     private fun calculatePoints(): Int {
+
         val basePoints = when (currentLevel) {
-            in 1..7 -> 400
-            in 8..14 -> 700
-            in 15..21 -> 1200
-            in 22..28 -> 1700
-            in 29..35 -> 2200
-            in 36..42 -> 2700
-            in 43..49 -> 3200
-            in 50..56 -> 3700
-            in 57..63 -> 4200
-            else -> 4700
+            in 1..7 -> 300
+            in 8..14 -> 600
+            in 15..21 -> 1100
+            in 22..28 -> 1600
+            in 29..35 -> 2100
+            in 36..42 -> 2600
+            in 43..49 -> 3100
+            in 50..56 -> 3600
+            in 57..63 -> 4100
+            else -> 4600
         }
 
         return when (attempts) {
@@ -158,11 +159,11 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
     }
 
     private fun updateScoreToZero() {
-        ScoreManager.levelScoresAlfaNumeros[currentLevel]?.let { previousScore ->
-            ScoreManager.currentScoreAlfaNumeros -= previousScore
+        ScoreManager.levelScoresAlfaNumerosPrincipiante[currentLevel]?.let { previousScore ->
+            ScoreManager.currentScoreAlfaNumerosPrincipiante -= previousScore
         }
-        ScoreManager.levelScoresAlfaNumeros[currentLevel] = 0
-        ScoreManager.saveScoreAlfaNumeros()
+        ScoreManager.levelScoresAlfaNumerosPrincipiante[currentLevel] = 0
+        ScoreManager.saveScoreAlfaNumerosPrincipiante()
     }
 
     private fun showSuccessDialog() {
@@ -228,7 +229,7 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
 
                 override fun onAnimationEnd(animation: android.view.animation.Animation?) {
                     animationView.setAnimation("confetti_animation.json")
-                    val fadeIn = AnimationUtils.loadAnimation(this@LevelResultActivityAlfaNumeros, R.anim.dialog_fade_in)
+                    val fadeIn = AnimationUtils.loadAnimation(this@LevelResultActivityAlfaNumerosPrincipiante, R.anim.dialog_fade_in)
                     animationView.startAnimation(fadeIn)
                     animationView.playAnimation()
 
@@ -245,7 +246,7 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
                     spannable.setSpan(StyleSpan(Typeface.BOLD), startIdx, endIdx, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                     pointsTextView.text = spannable
 
-                    val pointsAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityAlfaNumeros, R.anim.points_appear_from_back)
+                    val pointsAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityAlfaNumerosPrincipiante, R.anim.points_appear_from_back)
                     pointsTextView.startAnimation(pointsAnimation)
 
                     pointsAnimation.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
@@ -253,7 +254,7 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
 
                         override fun onAnimationEnd(animation: android.view.animation.Animation?) {
                             checkImageView.visibility = View.VISIBLE
-                            val checkAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityAlfaNumeros, R.anim.check_appear)
+                            val checkAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityAlfaNumerosPrincipiante, R.anim.check_appear)
                             checkImageView.startAnimation(checkAnimation)
 
                             checkAnimation.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
@@ -261,10 +262,10 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
 
                                 override fun onAnimationEnd(animation: android.view.animation.Animation?) {
 
-                                    val puntosAlfaNumerosActual = ScoreManager.currentScoreAlfaNumeros
-                                    val puntajeActualText = getString(R.string.puntaje_actual, puntosAlfaNumerosActual)
+                                    val puntosAlfaNumerosPrincipianteActual = ScoreManager.currentScoreAlfaNumerosPrincipiante
+                                    val puntajeActualText = getString(R.string.puntaje_actual, puntosAlfaNumerosPrincipianteActual)
                                     val spannablePuntajeActual = SpannableString(puntajeActualText)
-                                    val puntosStrActual = puntosAlfaNumerosActual.toString()
+                                    val puntosStrActual = puntosAlfaNumerosPrincipianteActual.toString()
                                     val startIdxActual = puntajeActualText.indexOf(puntosStrActual)
                                     val endIdxActual = startIdxActual + puntosStrActual.length
                                     spannablePuntajeActual.setSpan(StyleSpan(Typeface.BOLD), startIdxActual, endIdxActual, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -273,7 +274,7 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
                                     currentScoreTextView.visibility = View.VISIBLE
                                     starImageView.visibility = View.VISIBLE
 
-                                    val puntajeActualAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityAlfaNumeros, R.anim.points_appear_from_back)
+                                    val puntajeActualAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityAlfaNumerosPrincipiante, R.anim.points_appear_from_back)
                                     currentScoreTextView.startAnimation(puntajeActualAnimation)
                                     starImageView.startAnimation(puntajeActualAnimation)
 
@@ -291,7 +292,7 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
                                             timeSpentTextView.text = spannableTime
 
                                             timeSpentTextView.visibility = View.VISIBLE
-                                            val timeAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityAlfaNumeros, R.anim.points_appear_from_back)
+                                            val timeAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityAlfaNumerosPrincipiante, R.anim.points_appear_from_back)
                                             timeSpentTextView.startAnimation(timeAnimation)
 
                                             timeAnimation.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
@@ -299,24 +300,24 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
 
                                                 override fun onAnimationEnd(animation: android.view.animation.Animation?) {
                                                     checkBlueImageView.visibility = View.VISIBLE
-                                                    val checkBlueAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityAlfaNumeros, R.anim.check_appear)
+                                                    val checkBlueAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityAlfaNumerosPrincipiante, R.anim.check_appear)
                                                     checkBlueImageView.startAnimation(checkBlueAnimation)
 
                                                     unlockLevelTextView.text = getString(R.string.jugar_un_nuevo_nivel)
 
                                                     mainHandler.postDelayed({
                                                         rankingChangedTextView.visibility = View.VISIBLE
-                                                        rankingChangedTextView.startAnimation(AnimationUtils.loadAnimation(this@LevelResultActivityAlfaNumeros, R.anim.dialog_fade_in))
+                                                        rankingChangedTextView.startAnimation(AnimationUtils.loadAnimation(this@LevelResultActivityAlfaNumerosPrincipiante, R.anim.dialog_fade_in))
                                                     }, 300)
 
                                                     mainHandler.postDelayed({
                                                         unlockLevelTextView.visibility = View.VISIBLE
-                                                        unlockLevelTextView.startAnimation(AnimationUtils.loadAnimation(this@LevelResultActivityAlfaNumeros, R.anim.dialog_fade_in))
+                                                        unlockLevelTextView.startAnimation(AnimationUtils.loadAnimation(this@LevelResultActivityAlfaNumerosPrincipiante, R.anim.dialog_fade_in))
                                                     }, 600)
 
                                                     mainHandler.postDelayed({
                                                         repeatLevelTextView.visibility = View.VISIBLE
-                                                        repeatLevelTextView.startAnimation(AnimationUtils.loadAnimation(this@LevelResultActivityAlfaNumeros, R.anim.dialog_fade_in))
+                                                        repeatLevelTextView.startAnimation(AnimationUtils.loadAnimation(this@LevelResultActivityAlfaNumerosPrincipiante, R.anim.dialog_fade_in))
                                                     }, 900)
                                                 }
 
@@ -340,7 +341,7 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
             })
         }, 2000)
 
-    unlockLevelTextView.setOnClickListener {
+        unlockLevelTextView.setOnClickListener {
             finish()
             navigateToLevels()
         }
@@ -374,12 +375,10 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
         unlockLevelTextView.visibility = View.VISIBLE
         repeatLevelTextView.visibility = View.VISIBLE
 
-        val isLevelBlockedAfterThisFail = ScoreManager.getConsecutiveFailuresAlfaNumeros(currentLevel) >= 12
+        val isLevelBlockedAfterThisFail = ScoreManager.getConsecutiveFailuresAlfaNumerosPrincipiante(currentLevel) >= 12
 
         if (isLevelBlockedAfterThisFail) {
             repeatLevelTextView.visibility = View.GONE
-        } else {
-            repeatLevelTextView.visibility = View.VISIBLE
         }
 
         mainMessageTextView.text = if (attempts >= 2) {
@@ -416,14 +415,16 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
         val fadeIn = AnimationUtils.loadAnimation(this, R.anim.dialog_fade_in)
         rankingChangedTextView.startAnimation(fadeIn)
         unlockLevelTextView.startAnimation(fadeIn)
-        repeatLevelTextView.startAnimation(fadeIn)
+        if (!isLevelBlockedAfterThisFail) {
+            repeatLevelTextView.startAnimation(fadeIn)
+        }
 
         if (attempts >= 2 && elementList != null && userResponses != null) {
             reviewExerciseTextView.visibility = View.VISIBLE
             applyTouchAnimation(reviewExerciseTextView)
 
             reviewExerciseTextView.setOnClickListener {
-                val intent = Intent(this, ExerciseReviewActivityAlfaNumeros::class.java)
+                val intent = Intent(this, ExerciseReviewActivity::class.java)
                 intent.putExtra("ELEMENT_LIST", elementList)
                 intent.putExtra("CORRECT_ANSWER", correctAnswer)
                 intent.putExtra("USER_RESPONSES", userResponses)
@@ -471,14 +472,14 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
     }
 
     private fun navigateToInstructions() {
-        val intent = Intent(this, InstructionsActivityAlfaNumeros::class.java)
+        val intent = Intent(this, InstructionsActivityAlfaNumerosPrincipiante::class.java)
         intent.putExtra("LEVEL", currentLevel)
         startActivity(intent)
         finish()
     }
 
     private fun navigateToLevels() {
-        val intent = Intent(this, LevelsActivityAlfaNumeros::class.java)
+        val intent = Intent(this, LevelsActivityAlfaNumerosPrincipiante::class.java)
         startActivity(intent)
         finish()
     }

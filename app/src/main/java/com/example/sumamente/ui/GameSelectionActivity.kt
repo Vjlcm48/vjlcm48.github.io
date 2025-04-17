@@ -32,6 +32,7 @@ class GameSelectionActivity : AppCompatActivity() {
         ScoreManager.initRomasPrincipiante(this)
         ScoreManager.initRomasPro(this)
         ScoreManager.initAlfaNumeros(this)
+        ScoreManager.initAlfaNumerosPrincipiante(this)
         ScoreManager.initSumaResta(this)
         ScoreManager.initMasPlus(this)
         ScoreManager.initGenioPlus(this)
@@ -57,6 +58,7 @@ class GameSelectionActivity : AppCompatActivity() {
         val puntosRomasPrincipiante = ScoreManager.currentScoreRomasPrincipiante
         val puntosRomasPro = ScoreManager.currentScoreRomasPro
         val puntosAlfaNumeros = ScoreManager.currentScoreAlfaNumeros
+        val puntosAlfaNumerosPrincipiante = ScoreManager.currentScoreAlfaNumerosPrincipiante
         val puntosSumaResta = ScoreManager.currentScoreSumaResta
         val puntosMasPlus = ScoreManager.currentScoreMasPlus
         val puntosGenioPlus = ScoreManager.currentScoreGenioPlus
@@ -76,7 +78,7 @@ class GameSelectionActivity : AppCompatActivity() {
         updateNumerosPlusButton(btnNumerosPlus, puntosNumerosPlus, puntosPrincipiante, puntosPro)
         updateDeciPlusButton(btnDeciPlus, puntosDeciPlus, puntosDeciPlusPrincipiante, puntosDeciPlusPro)
         updateRomasButton(btnRomas, puntosRomas, puntosRomasPrincipiante, puntosRomasPro)
-        updateAlfaNumerosButton(btnAlfaNumeros, puntosAlfaNumeros)
+        updateAlfaNumerosButton(btnAlfaNumeros, puntosAlfaNumeros, puntosAlfaNumerosPrincipiante)
         updateSumaRestaButton(btnSumaresta, puntosSumaResta)
         updateMasPlusButton(btnMasPlus, puntosMasPlus)
         updateGenioPlusButton(btnGenioPlus, puntosGenioPlus)
@@ -174,7 +176,31 @@ class GameSelectionActivity : AppCompatActivity() {
 
         btnAlfaNumeros.setOnClickListener {
             applyBounceEffect(it) {
-                startActivity(Intent(this, TutorialActivityAlfaNumeros::class.java))
+                val prefs = getSharedPreferences("MyPrefsAlfaNumeros", Context.MODE_PRIVATE)
+                val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsAlfaNumeros", false)
+
+                if (hasSeenInstructions) {
+                    val difficultyKey = "difficulty_alfanumeros"
+                    val hasDifficulty = prefs.contains(difficultyKey)
+
+                    if (hasDifficulty) {
+                        val difficulty = prefs.getString(difficultyKey,
+                            DifficultySelectionActivity.DIFFICULTY_AVANZADO)
+
+                        val intent = when (difficulty) {
+                            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE ->
+                                Intent(this, LevelsActivityAlfaNumerosPrincipiante::class.java)
+                            DifficultySelectionActivity.DIFFICULTY_PRO ->
+                                Intent(this, LevelsActivityAlfaNumeros::class.java)
+                            else -> Intent(this, LevelsActivityAlfaNumeros::class.java)
+                        }
+                        startActivity(intent)
+                    } else {
+                        startActivity(DifficultySelectionActivity.createIntent(this, "AlfaNumeros"))
+                    }
+                } else {
+                    startActivity(Intent(this, TutorialActivityAlfaNumeros::class.java))
+                }
             }
         }
 
@@ -216,6 +242,7 @@ class GameSelectionActivity : AppCompatActivity() {
         ScoreManager.initRomasPrincipiante(this)
         ScoreManager.initRomasPro(this)
         ScoreManager.initAlfaNumeros(this)
+        ScoreManager.initAlfaNumerosPrincipiante(this)
         ScoreManager.initSumaResta(this)
         ScoreManager.initMasPlus(this)
         ScoreManager.initGenioPlus(this)
@@ -230,6 +257,7 @@ class GameSelectionActivity : AppCompatActivity() {
         val puntosRomasPrincipiante = ScoreManager.currentScoreRomasPrincipiante
         val puntosRomasPro = ScoreManager.currentScoreRomasPro
         val puntosAlfaNumeros = ScoreManager.currentScoreAlfaNumeros
+        val puntosAlfaNumerosPrincipiante = ScoreManager.currentScoreAlfaNumerosPrincipiante
         val puntosSumaResta = ScoreManager.currentScoreSumaResta
         val puntosMasPlus = ScoreManager.currentScoreMasPlus
         val puntosGenioPlus = ScoreManager.currentScoreGenioPlus
@@ -250,7 +278,7 @@ class GameSelectionActivity : AppCompatActivity() {
         updateNumerosPlusButton(btnNumerosPlus, puntosNumerosPlus, puntosPrincipiante, puntosPro)
         updateDeciPlusButton(btnDeciPlus, puntosDeciPlus, puntosDeciPlusPrincipiante, puntosDeciPlusPro)
         updateRomasButton(btnRomas, puntosRomas, puntosRomasPrincipiante, puntosRomasPro)
-        updateAlfaNumerosButton(btnAlfaNumeros, puntosAlfaNumeros)
+        updateAlfaNumerosButton(btnAlfaNumeros, puntosAlfaNumeros, puntosAlfaNumerosPrincipiante)
         updateSumaRestaButton(btnSumaresta, puntosSumaResta)
         updateMasPlusButton(btnMasPlus, puntosMasPlus)
         updateGenioPlusButton(btnGenioPlus, puntosGenioPlus)
@@ -310,13 +338,13 @@ class GameSelectionActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateAlfaNumerosButton(button: RelativeLayout, score: Int) {
-
+    private fun updateAlfaNumerosButton(button: RelativeLayout, score: Int, principianteScore: Int) {
         val pointsTextView = button.findViewById<TextView>(R.id.tv_points_alfa_numeros)
         val starIcon = button.findViewById<ImageView>(R.id.icon_star_alfa_numeros)
+        val totalScore = score + principianteScore
 
-        if (score > 0) {
-            pointsTextView.text = getString(R.string.score_format, score)
+        if (totalScore > 0) {
+            pointsTextView.text = getString(R.string.score_format, totalScore)
             pointsTextView.visibility = View.VISIBLE
             starIcon.visibility = View.VISIBLE
         } else {

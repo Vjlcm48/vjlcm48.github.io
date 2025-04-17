@@ -66,6 +66,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.LevelsActivityAlfaNumerosPrincipiante"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.LevelsActivitySumaResta"
             android:exported="false" />
 
@@ -174,6 +178,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.InstructionsActivityAlfaNumerosPrincipiante"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.InstructionsActivitySumaResta"
             android:exported="false" />
 
@@ -223,6 +231,10 @@
 
         <activity
             android:name=".ui.GameActivityAlfaNumeros"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.GameActivityAlfaNumerosPrincipiante"
             android:exported="false" />
 
         <activity
@@ -367,6 +379,11 @@
 
         <activity
             android:name=".ui.LevelResultActivityAlfaNumeros"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.LevelResultActivityAlfaNumerosPrincipiante"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 

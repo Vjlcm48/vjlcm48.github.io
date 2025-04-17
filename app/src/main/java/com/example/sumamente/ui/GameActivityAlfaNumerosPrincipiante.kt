@@ -31,7 +31,7 @@ import com.example.sumamente.R
 import java.util.Locale
 import kotlin.random.Random
 
-class GameActivityAlfaNumeros : AppCompatActivity() {
+class GameActivityAlfaNumerosPrincipiante : AppCompatActivity() {
 
     data class GameElement(val value: String, val isNegative: Boolean = false)
 
@@ -79,12 +79,12 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsAlfaNumeros", Context.MODE_PRIVATE)
-        setContentView(R.layout.activity_game_alfanumeros)
+        setContentView(R.layout.activity_game_alfanumeros_principiante)
 
-        ScoreManager.initAlfaNumeros(this)
+        ScoreManager.initAlfaNumerosPrincipiante(this)
 
         val prefs = getSharedPreferences("MyPrefsAlfaNumeros", Context.MODE_PRIVATE)
-        val responseMode = prefs.getString("selectedResponseModeAlfaNumeros", intent.getStringExtra("RESPONSE_MODE"))
+        val responseMode = prefs.getString("selectedResponseModeAlfaNumerosPrincipiante", intent.getStringExtra("RESPONSE_MODE"))
 
         if (responseMode != null) {
             useManualAnswer = responseMode == ResponseModeAlfaNumeros.TYPE_ANSWER.name
@@ -118,7 +118,7 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
         chronometerTextView.typeface = Typeface.MONOSPACE
         currentLevel = intent.getIntExtra("LEVEL", 1)
         levelTitle.text = getString(R.string.level_title, currentLevel)
-        scoreTextView.text = getString(R.string.score_label, ScoreManager.currentScoreAlfaNumeros)
+        scoreTextView.text = getString(R.string.score_label, ScoreManager.currentScoreAlfaNumerosPrincipiante)
 
         backArrow.setOnClickListener {
             showExitConfirmation { finish() }
@@ -235,17 +235,18 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
 
         val level = currentLevel
 
+
         val totalCount = when (level) {
             in 1..7 -> 7
-            in 8..14 -> 10
-            in 15..21 -> 12
-            in 22..28 -> 14
-            in 29..35 -> 15
-            in 36..42 -> 16
-            in 43..49 -> 17
-            in 50..56 -> 18
-            in 57..63 -> 19
-            else -> 20
+            in 8..14 -> 9
+            in 15..21 -> 11
+            in 22..28 -> 13
+            in 29..35 -> 14
+            in 36..42 -> 15
+            in 43..49 -> 16
+            in 50..56 -> 17
+            in 57..63 -> 18
+            else -> 19
         }
 
         val numberRange = when (level) {
@@ -477,14 +478,15 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
     private fun calculateTimePerElement() {
         timePerElementList.clear()
         val level = currentLevel
-        var firstNumberTime = 1.65
+
+        var firstElementTime = 1.85
 
         val blockNumber = (level - 1) / 5
-        firstNumberTime -= blockNumber * 0.07
+        firstElementTime -= blockNumber * 0.07
 
         val levelInBlock = (level - 1) % 5
 
-        var currentTime = firstNumberTime
+        var currentTime = firstElementTime
 
         for (i in elementList.indices) {
             timePerElementList.add((currentTime * 1000).toLong())
@@ -546,10 +548,8 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
                     }
 
                     if (element.value.matches(Regex("\\(.*\\+.*\\)"))) {
-
                         elementTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 70f)
                     } else {
-
                         elementTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 140f)
                     }
 
@@ -606,9 +606,9 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
 
         startHeartbeatAnimation()
 
-        chronometerTimer = object : CountDownTimer(7000, 75) {
+        chronometerTimer = object : CountDownTimer(10000, 75) {
             override fun onTick(millisUntilFinished: Long) {
-                val elapsedMillis = 7000 - millisUntilFinished
+                val elapsedMillis = 10000 - millisUntilFinished
                 val elapsedSeconds = elapsedMillis / 1000.0
                 val formattedTime = String.format(Locale.getDefault(), "%04.2f", elapsedSeconds)
                 val spannableString = SpannableString(formattedTime)
@@ -622,10 +622,11 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
 
+
                 val textColor = when {
-                    elapsedSeconds < 3.0 -> ContextCompat.getColor(this@GameActivityAlfaNumeros, R.color.green_medium)
-                    elapsedSeconds < 5.0 -> ContextCompat.getColor(this@GameActivityAlfaNumeros, R.color.orange_dark)
-                    else -> ContextCompat.getColor(this@GameActivityAlfaNumeros, R.color.red)
+                    elapsedSeconds < 5.0 -> ContextCompat.getColor(this@GameActivityAlfaNumerosPrincipiante, R.color.green_medium)
+                    elapsedSeconds < 8.0 -> ContextCompat.getColor(this@GameActivityAlfaNumerosPrincipiante, R.color.orange_dark)
+                    else -> ContextCompat.getColor(this@GameActivityAlfaNumerosPrincipiante, R.color.red)
                 }
 
                 spannableString.setSpan(
@@ -637,14 +638,14 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
 
                 chronometerTextView.text = spannableString
 
-                if (elapsedSeconds >= 5.0 && !soundPlayed) {
+                if (elapsedSeconds >= 8.0 && !soundPlayed) {
                     soundPlayed = true
                     playAlertSound()
                 }
             }
 
             override fun onFinish() {
-                val finalTime = "7.00"
+                val finalTime = "10.00"
                 val spannableString = SpannableString(finalTime)
 
                 spannableString.setSpan(
@@ -655,7 +656,7 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
                 )
 
                 spannableString.setSpan(
-                    ForegroundColorSpan(ContextCompat.getColor(this@GameActivityAlfaNumeros, R.color.red)),
+                    ForegroundColorSpan(ContextCompat.getColor(this@GameActivityAlfaNumerosPrincipiante, R.color.red)),
                     0,
                     finalTime.length,
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -768,8 +769,8 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
         )
 
         val textColor = when {
-            timeSpentInSeconds < 3.0 -> ContextCompat.getColor(this, R.color.green_medium)
-            timeSpentInSeconds < 5.0 -> ContextCompat.getColor(this, R.color.orange_dark)
+            timeSpentInSeconds < 5.0 -> ContextCompat.getColor(this, R.color.green_medium)
+            timeSpentInSeconds < 8.0 -> ContextCompat.getColor(this, R.color.orange_dark)
             else -> ContextCompat.getColor(this, R.color.red)
         }
 
@@ -813,7 +814,7 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
-                ScoreManager.incrementConsecutiveFailuresAlfaNumeros(currentLevel)
+                ScoreManager.incrementConsecutiveFailuresAlfaNumerosPrincipiante(currentLevel)
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     manualAnswerEditText.background = originalBackground
@@ -884,7 +885,9 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
     private fun startAnswerTimer() {
         startTime = System.currentTimeMillis()
         answerTimer?.cancel()
-        answerTimer = object : CountDownTimer(7000, 75) {
+
+        // Aumentar el tiempo para responder a 10 segundos
+        answerTimer = object : CountDownTimer(10000, 75) {
             override fun onTick(millisUntilFinished: Long) {}
             override fun onFinish() {
                 navigateToLevelResult(false)
@@ -893,7 +896,6 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
     }
 
     private fun checkAnswer(selectedButton: Button) {
-
         selectedButton.clearFocus()
 
         val selectedAnswer = selectedButton.text.toString().toInt()
@@ -929,7 +931,7 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
-                ScoreManager.incrementConsecutiveFailuresAlfaNumeros(currentLevel)
+                ScoreManager.incrementConsecutiveFailuresAlfaNumerosPrincipiante(currentLevel)
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     navigateToLevelResult(false)
@@ -947,17 +949,16 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
     }
 
     private fun navigateToLevelResult(isSuccessful: Boolean) {
-        val intent = Intent(this, LevelResultActivityAlfaNumeros::class.java)
+        val intent = Intent(this, LevelResultActivityAlfaNumerosPrincipiante::class.java)
         intent.putExtra("LEVEL", currentLevel)
         intent.putExtra("IS_SUCCESSFUL", isSuccessful)
         intent.putExtra("ATTEMPTS", attempts)
         intent.putExtra("TIME_SPENT", timeSpentInSeconds)
 
         if (isSuccessful) {
-            ScoreManager.resetConsecutiveFailuresAlfaNumeros(currentLevel)
+            ScoreManager.resetConsecutiveFailuresAlfaNumerosPrincipiante(currentLevel)
         }
         else if (attempts >= 2) {
-
             val elementValuesArray = elementList.map { it.value }.toTypedArray()
             intent.putExtra("ELEMENT_LIST", elementValuesArray)
             intent.putExtra("CORRECT_ANSWER", correctAnswer)
@@ -982,3 +983,7 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
         finish()
     }
 }
+
+
+
+

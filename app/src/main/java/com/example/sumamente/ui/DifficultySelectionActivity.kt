@@ -95,19 +95,12 @@ class DifficultySelectionActivity : AppCompatActivity() {
         val currentDifficulty = sharedPreferences.getString(difficultyKey, DIFFICULTY_AVANZADO)
 
         when (gameType) {
-            "NumerosPlus", "DeciPlus" -> {
+            "NumerosPlus", "DeciPlus", "Romas", "AlfaNumeros" -> {
                 btnPrincipiante.isEnabled = true
                 btnPrincipiante.alpha = 1.0f
                 btnAvanzado.isEnabled = true
-                btnPro.isEnabled = true
-                btnPro.alpha = 1.0f
-            }
-            "Romas" -> {
-                btnPrincipiante.isEnabled = true
-                btnPrincipiante.alpha = 1.0f
-                btnAvanzado.isEnabled = true
-                btnPro.isEnabled = true
-                btnPro.alpha = 1.0f
+                btnPro.isEnabled = gameType != "AlfaNumeros"
+                btnPro.alpha = if (gameType != "AlfaNumeros") 1.0f else 0.5f
             }
             else -> {
                 btnPrincipiante.isEnabled = false
@@ -207,15 +200,14 @@ class DifficultySelectionActivity : AppCompatActivity() {
                 Intent(this, LevelsActivityRomasPro::class.java)
             }
 
-            gameType == "AlfaNumeros" -> {
-                if (fromInstructions) {
-                    Intent(this, InstructionsActivityAlfaNumeros::class.java).apply {
-                        putExtra("LEVEL", level)
-                        if (responseMode != null) putExtra("RESPONSE_MODE", responseMode)
-                    }
-                } else {
-                    Intent(this, LevelsActivityAlfaNumeros::class.java)
-                }
+            gameType == "AlfaNumeros" && difficulty == DIFFICULTY_PRINCIPIANTE -> {
+                Intent(this, LevelsActivityAlfaNumerosPrincipiante::class.java)
+            }
+            gameType == "AlfaNumeros" && difficulty == DIFFICULTY_AVANZADO -> {
+                Intent(this, LevelsActivityAlfaNumeros::class.java)
+            }
+            gameType == "AlfaNumeros" && difficulty == DIFFICULTY_PRO -> {
+                Intent(this, LevelsActivityAlfaNumeros::class.java)
             }
 
             gameType == "Sumaresta" -> {
@@ -283,7 +275,13 @@ class DifficultySelectionActivity : AppCompatActivity() {
                     DIFFICULTY_PRO -> ScoreManager.saveScoreRomas()
                 }
             }
-            "AlfaNumeros" -> ScoreManager.saveScoreAlfaNumeros()
+            "AlfaNumeros" -> {
+                when (difficulty) {
+                    DIFFICULTY_PRINCIPIANTE -> ScoreManager.saveScoreAlfaNumerosPrincipiante()
+                    DIFFICULTY_AVANZADO -> ScoreManager.saveScoreAlfaNumeros()
+                    DIFFICULTY_PRO -> ScoreManager.saveScoreAlfaNumeros()
+                }
+            }
             "Sumaresta" -> ScoreManager.saveScoreSumaResta()
             "MasPlus" -> ScoreManager.saveScoreMasPlus()
             "GenioPlus" -> ScoreManager.saveScoreGenioPlus()
