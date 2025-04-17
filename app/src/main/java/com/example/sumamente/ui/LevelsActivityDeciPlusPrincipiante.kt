@@ -138,14 +138,22 @@ class LevelsActivityDeciPlusPrincipiante : AppCompatActivity() {
                     }
                 } else {
                     setBackgroundResource(R.drawable.button_background_locked)
-                    isEnabled = false
+
                     setOnClickListener {
                         applyBounceEffect(this) {
-                            Toast.makeText(
-                                this@LevelsActivityDeciPlusPrincipiante,
-                                R.string.level_locked_message,
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            if (i < ScoreManager.unlockedLevelsDeciPlusPrincipiante && ScoreManager.isLevelBlockedByFailuresDeciPlusPrincipiante(i + 1)) {
+                                Toast.makeText(
+                                    this@LevelsActivityDeciPlusPrincipiante,
+                                    R.string.level_locked_by_failures,
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            } else {
+                                Toast.makeText(
+                                    this@LevelsActivityDeciPlusPrincipiante,
+                                    R.string.level_locked_message,
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
                         }
                     }
                 }

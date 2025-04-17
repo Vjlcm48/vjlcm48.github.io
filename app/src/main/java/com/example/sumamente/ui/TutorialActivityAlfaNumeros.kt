@@ -727,9 +727,10 @@ class TutorialActivityAlfaNumeros : AppCompatActivity() {
 
     private fun markTutorialAsSeenAndNavigate() {
         stopBackgroundMusic()
-        val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("MyPrefsAlfaNumeros", Context.MODE_PRIVATE)
         prefs.edit { putBoolean("hasSeenInstructionsAlfaNumeros", true) }
-        val intent = Intent(this, LevelsActivityAlfaNumeros::class.java)
+
+        val intent = DifficultySelectionActivity.createIntent(this, "AlfaNumeros")
         startActivity(intent)
         finish()
     }

@@ -56,7 +56,6 @@ class LevelsActivity : AppCompatActivity() {
 
         mediaPlayer = MediaPlayer.create(this, R.raw.clicbotones)
 
-
         tvGameName = findViewById(R.id.tv_game_name)
         tvDifficulty = findViewById(R.id.tv_difficulty)
         tvScore = findViewById(R.id.tv_score)

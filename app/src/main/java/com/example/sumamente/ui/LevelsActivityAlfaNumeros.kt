@@ -15,6 +15,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -25,6 +26,9 @@ class LevelsActivityAlfaNumeros : AppCompatActivity() {
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var levelContainer: LinearLayout
     private lateinit var sharedPreferences: android.content.SharedPreferences
+    private lateinit var tvGameName: TextView
+    private lateinit var tvDifficulty: TextView
+    private lateinit var tvScore: TextView
 
     private val levelStrings = arrayOf(
         R.string.level_1, R.string.level_2, R.string.level_3, R.string.level_4, R.string.level_5,
@@ -52,8 +56,14 @@ class LevelsActivityAlfaNumeros : AppCompatActivity() {
 
         mediaPlayer = MediaPlayer.create(this, R.raw.clicbotones)
 
+        tvGameName = findViewById(R.id.tv_game_name)
+        tvDifficulty = findViewById(R.id.tv_difficulty)
+        tvScore = findViewById(R.id.tv_score)
+
         val btnClose = findViewById<ImageView>(R.id.btn_close)
         levelContainer = findViewById(R.id.level_container)
+
+        setupInfoBar()
 
         btnClose.setOnClickListener {
             applyBounceEffect(it) {
@@ -69,7 +79,57 @@ class LevelsActivityAlfaNumeros : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        ScoreManager.initAlfaNumeros(this)
         updateLevelButtons()
+        setupInfoBar()
+    }
+
+    private fun setupInfoBar() {
+
+        val alfaText = getString(R.string.text_alfa)
+        val numerosText = getString(R.string.text_numeros)
+        val alfaNumerosText = "$alfaText$numerosText"
+        val spannableAlfaNumeros = android.text.SpannableString(alfaNumerosText)
+
+        spannableAlfaNumeros.setSpan(
+            android.text.style.ForegroundColorSpan(ContextCompat.getColor(this, R.color.red_primary)),
+            0, alfaText.length,
+            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        spannableAlfaNumeros.setSpan(
+            android.text.style.ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_primary_darker)),
+            alfaText.length, alfaNumerosText.length,
+            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        tvGameName.text = spannableAlfaNumeros
+
+        val difficultyKey = "difficulty_alfanumeros"
+
+        val difficultyValue = sharedPreferences.getString(
+            difficultyKey,
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO
+        )
+
+        val difficultyText = when(difficultyValue) {
+            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> getString(R.string.difficulty_principiante)
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO -> getString(R.string.difficulty_avanzado)
+            DifficultySelectionActivity.DIFFICULTY_PRO -> getString(R.string.difficulty_pro)
+            else -> getString(R.string.difficulty_avanzado)
+        }
+
+        tvDifficulty.text = difficultyText
+        tvScore.text = getString(R.string.score_format, ScoreManager.currentScoreAlfaNumeros)
+
+        tvDifficulty.setOnClickListener {
+            applyBounceEffect(it) {
+                val intent = DifficultySelectionActivity.createIntent(
+                    this,
+                    "AlfaNumeros"
+                )
+                intent.putExtra("FROM_LEVELS", true)
+                startActivity(intent)
+            }
+        }
     }
 
     private fun createLevelButtons() {
@@ -125,7 +185,7 @@ class LevelsActivityAlfaNumeros : AppCompatActivity() {
                     }
                 } else {
                     setBackgroundResource(R.drawable.button_background_locked)
-                    isEnabled = false
+
                     setOnClickListener {
                         applyBounceEffect(this) {
 

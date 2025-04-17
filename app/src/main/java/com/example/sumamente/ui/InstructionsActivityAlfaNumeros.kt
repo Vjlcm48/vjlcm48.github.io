@@ -25,6 +25,9 @@ class InstructionsActivityAlfaNumeros : AppCompatActivity() {
     private var excludedIndex: Int? = null
 
     private lateinit var sharedPreferencesAlfaNumeros: android.content.SharedPreferences
+    private lateinit var tvGameName: TextView
+    private lateinit var tvDifficulty: TextView
+    private lateinit var tvScore: TextView
 
     private val timeLimits = mapOf(
         1 to 17.99, 2 to 17.89, 3 to 17.78, 4 to 17.68, 5 to 17.57, 6 to 17.50, 7 to 17.34,
@@ -43,6 +46,12 @@ class InstructionsActivityAlfaNumeros : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         sharedPreferencesAlfaNumeros = getSharedPreferences("MyPrefsAlfaNumeros", Context.MODE_PRIVATE)
         setContentView(R.layout.activity_instructions_alfanumeros)
+
+        tvGameName = findViewById(R.id.tv_game_name)
+        tvDifficulty = findViewById(R.id.tv_difficulty)
+        tvScore = findViewById(R.id.tv_score)
+
+        setupInfoBar()
 
         val btnClose = findViewById<ImageView>(R.id.btn_close)
         val btnStart = findViewById<Button>(R.id.btn_start)
@@ -188,6 +197,71 @@ class InstructionsActivityAlfaNumeros : AppCompatActivity() {
                         intent.putExtra("RESPONSE_MODE", mode.name)
                     }
                     intent.putExtra("EXCLUDED_INDEX", excludedIndex)
+                    startActivity(intent)
+                }
+                override fun onAnimationCancel(animation: Animator) {}
+                override fun onAnimationRepeat(animation: Animator) {}
+            })
+        }
+    }
+
+    private fun setupInfoBar() {
+
+        val alfaText = getString(R.string.text_alfa)
+        val numerosText = getString(R.string.text_numeros)
+        val alfaNumerosText = "$alfaText$numerosText"
+        val spannableAlfaNumeros = SpannableString(alfaNumerosText)
+
+        spannableAlfaNumeros.setSpan(
+            android.text.style.ForegroundColorSpan(ContextCompat.getColor(this, R.color.red_primary)),
+            0, alfaText.length,
+            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        spannableAlfaNumeros.setSpan(
+            android.text.style.ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_primary_darker)),
+            alfaText.length, alfaNumerosText.length,
+            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        tvGameName.text = spannableAlfaNumeros
+
+        val difficultyKey = "difficulty_alfanumeros"
+
+        val difficultyValue = sharedPreferencesAlfaNumeros.getString(
+            difficultyKey,
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO
+        )
+
+        val difficultyText = when(difficultyValue) {
+            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> getString(R.string.difficulty_principiante)
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO -> getString(R.string.difficulty_avanzado)
+            DifficultySelectionActivity.DIFFICULTY_PRO -> getString(R.string.difficulty_pro)
+            else -> getString(R.string.difficulty_avanzado)
+        }
+
+        tvDifficulty.text = difficultyText
+
+        ScoreManager.initAlfaNumeros(this)
+        tvScore.text = getString(R.string.score_format, ScoreManager.currentScoreAlfaNumeros)
+
+        tvDifficulty.setOnClickListener {
+            val scaleDownX = ObjectAnimator.ofFloat(it, "scaleX", 1f, 0.9f).setDuration(50)
+            val scaleDownY = ObjectAnimator.ofFloat(it, "scaleY", 1f, 0.9f).setDuration(50)
+            val scaleUpX = ObjectAnimator.ofFloat(it, "scaleX", 0.9f, 1f).setDuration(50)
+            val scaleUpY = ObjectAnimator.ofFloat(it, "scaleY", 0.9f, 1f).setDuration(50)
+            val clickAnimatorSet = AnimatorSet()
+            clickAnimatorSet.playSequentially(scaleDownX, scaleDownY, scaleUpX, scaleUpY)
+            clickAnimatorSet.start()
+
+            clickAnimatorSet.addListener(object : Animator.AnimatorListener {
+                override fun onAnimationStart(animation: Animator) {}
+                override fun onAnimationEnd(animation: Animator) {
+                    val intent = DifficultySelectionActivity.createIntent(
+                        this@InstructionsActivityAlfaNumeros,
+                        "AlfaNumeros",
+                        true,
+                        level,
+                        responseMode?.name
+                    )
                     startActivity(intent)
                 }
                 override fun onAnimationCancel(animation: Animator) {}
