@@ -371,6 +371,11 @@
             android:theme="@style/Theme.SumaMente" />
 
         <activity
+            android:name=".ui.ExerciseReviewActivityAlfaNumeros"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
             android:name=".ui.LevelResultActivitySumaResta"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />

@@ -106,7 +106,7 @@ class LevelsActivityAlfaNumeros : AppCompatActivity() {
                     8.dpToPx(this@LevelsActivityAlfaNumeros)
                 )
 
-                if (i < ScoreManager.unlockedLevelsAlfaNumeros) {
+                if (i < ScoreManager.unlockedLevelsAlfaNumeros && !ScoreManager.isLevelBlockedByFailuresAlfaNumeros(i + 1)) {
                     setBackgroundResource(R.drawable.button_background_alfa_numeros)
 
                     setOnClickListener {
@@ -128,11 +128,20 @@ class LevelsActivityAlfaNumeros : AppCompatActivity() {
                     isEnabled = false
                     setOnClickListener {
                         applyBounceEffect(this) {
-                            Toast.makeText(
-                                this@LevelsActivityAlfaNumeros,
-                                R.string.level_locked_message,
-                                Toast.LENGTH_SHORT
-                            ).show()
+
+                            if (i < ScoreManager.unlockedLevelsAlfaNumeros && ScoreManager.isLevelBlockedByFailuresAlfaNumeros(i + 1)) {
+                                Toast.makeText(
+                                    this@LevelsActivityAlfaNumeros,
+                                    R.string.level_locked_by_failures,
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            } else {
+                                Toast.makeText(
+                                    this@LevelsActivityAlfaNumeros,
+                                    R.string.level_locked_message,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
                     }
                 }
@@ -145,7 +154,8 @@ class LevelsActivityAlfaNumeros : AppCompatActivity() {
                 ).apply {
                     gravity = Gravity.CENTER_VERTICAL
                 }
-                setImageResource(if (i < ScoreManager.unlockedLevelsAlfaNumeros) R.drawable.ic_unlock else R.drawable.ic_lock)
+                setImageResource(if (i < ScoreManager.unlockedLevelsAlfaNumeros && !ScoreManager.isLevelBlockedByFailuresAlfaNumeros(i + 1))
+                    R.drawable.ic_unlock else R.drawable.ic_lock)
                 scaleType = ImageView.ScaleType.CENTER_INSIDE
             }
 

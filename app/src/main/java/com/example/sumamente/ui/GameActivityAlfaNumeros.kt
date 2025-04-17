@@ -73,6 +73,7 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
     private var heartbeatAnimator: ObjectAnimator? = null
     private var soundPlayed = false
     private var timeSpentInSeconds: Double = 0.0
+    private var userResponses = mutableListOf<Int>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -784,6 +785,7 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
 
     private fun checkManualAnswer(userAnswer: Int) {
         val isCorrect = userAnswer == correctAnswer
+        userResponses.add(userAnswer)
 
         if (isCorrect) {
             answerTimer?.cancel()
@@ -811,6 +813,7 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
+                ScoreManager.incrementConsecutiveFailuresAlfaNumeros(currentLevel)
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     manualAnswerEditText.background = originalBackground
@@ -895,6 +898,7 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
 
         val selectedAnswer = selectedButton.text.toString().toInt()
         val isCorrect = selectedAnswer == correctAnswer
+        userResponses.add(selectedAnswer)
 
         if (isCorrect) {
             answerTimer?.cancel()
@@ -925,6 +929,7 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
+                ScoreManager.incrementConsecutiveFailuresAlfaNumeros(currentLevel)
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     navigateToLevelResult(false)
@@ -947,6 +952,19 @@ class GameActivityAlfaNumeros : AppCompatActivity() {
         intent.putExtra("IS_SUCCESSFUL", isSuccessful)
         intent.putExtra("ATTEMPTS", attempts)
         intent.putExtra("TIME_SPENT", timeSpentInSeconds)
+
+        if (isSuccessful) {
+            ScoreManager.resetConsecutiveFailuresAlfaNumeros(currentLevel)
+        }
+        else if (attempts >= 2) {
+
+            val elementValuesArray = elementList.map { it.value }.toTypedArray()
+            intent.putExtra("ELEMENT_LIST", elementValuesArray)
+            intent.putExtra("CORRECT_ANSWER", correctAnswer)
+            intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
+            intent.putExtra("USER_RESPONSES", userResponses.toIntArray())
+        }
+
         startActivity(intent)
         finish()
     }

@@ -132,6 +132,7 @@ object ScoreManager {
     private const val KEY_CONSECUTIVE_FAILURES_ROMAS = "consecutive_failures_romas"
     private const val KEY_CONSECUTIVE_FAILURES_ROMAS_PRINCIPIANTE = "consecutive_failures_romas_principiante"
     private const val KEY_CONSECUTIVE_FAILURES_ROMAS_PRO = "consecutive_failures_romas_pro"
+    private const val KEY_CONSECUTIVE_FAILURES_ALFANUMEROS = "consecutive_failures_alfanumeros"
 
     private val consecutiveFailures: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresPrincipiante: MutableMap<Int, Int> = mutableMapOf()
@@ -142,6 +143,7 @@ object ScoreManager {
     private val consecutiveFailuresRomas: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresRomasPrincipiante: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresRomasPro: MutableMap<Int, Int> = mutableMapOf()
+    private val consecutiveFailuresAlfaNumeros: MutableMap<Int, Int> = mutableMapOf()
 
     private lateinit var preferences: SharedPreferences
     private lateinit var preferencesPrincipiante: SharedPreferences
@@ -278,6 +280,13 @@ object ScoreManager {
         preferencesAlfaNumeros = context.getSharedPreferences(PREFS_NAME_ALFANUMEROS, Context.MODE_PRIVATE)
         currentScoreAlfaNumeros = preferencesAlfaNumeros.getInt(KEY_CURRENT_SCORE_ALFANUMEROS, 0)
         unlockedLevelsAlfaNumeros = preferencesAlfaNumeros.getInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS, 2)
+
+        for (i in 1..70) {
+            val failures = preferencesAlfaNumeros.getInt("$KEY_CONSECUTIVE_FAILURES_ALFANUMEROS:$i", 0)
+            if (failures > 0) {
+                consecutiveFailuresAlfaNumeros[i] = failures
+            }
+        }
     }
 
     fun initSumaResta(context: Context) {
@@ -990,6 +999,30 @@ object ScoreManager {
     fun isLevelBlockedByFailuresRomasPro(level: Int): Boolean {
         if (level == 1) return false
         return getConsecutiveFailuresRomasPro(level) >= 12
+    }
+
+    fun incrementConsecutiveFailuresAlfaNumeros(level: Int) {
+        val currentFailures = consecutiveFailuresAlfaNumeros[level] ?: 0
+        consecutiveFailuresAlfaNumeros[level] = currentFailures + 1
+        preferencesAlfaNumeros.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_ALFANUMEROS:$level", consecutiveFailuresAlfaNumeros[level] ?: 0)
+        }
+    }
+
+    fun resetConsecutiveFailuresAlfaNumeros(level: Int) {
+        consecutiveFailuresAlfaNumeros[level] = 0
+        preferencesAlfaNumeros.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_ALFANUMEROS:$level", 0)
+        }
+    }
+
+    fun getConsecutiveFailuresAlfaNumeros(level: Int): Int {
+        return consecutiveFailuresAlfaNumeros[level] ?: 0
+    }
+
+    fun isLevelBlockedByFailuresAlfaNumeros(level: Int): Boolean {
+        if (level == 1) return false
+        return getConsecutiveFailuresAlfaNumeros(level) >= 12
     }
 
 }

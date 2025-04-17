@@ -44,6 +44,12 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
     private var pointsEarned = 0
 
     private var mediaPlayer: MediaPlayer? = null
+
+    private var elementList: Array<String>? = null
+    private var correctAnswer: Int = 0
+    private var userResponses: IntArray? = null
+    private var excludedIndex: Int? = null
+    private lateinit var reviewExerciseTextView: TextView
     private lateinit var sharedPreferences: android.content.SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,6 +64,13 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
         attempts = intent.getIntExtra("ATTEMPTS", 0)
         timeSpentInSeconds = intent.getDoubleExtra("TIME_SPENT", 0.0)
 
+        elementList = intent.getStringArrayExtra("ELEMENT_LIST")
+        correctAnswer = intent.getIntExtra("CORRECT_ANSWER", 0)
+        userResponses = intent.getIntArrayExtra("USER_RESPONSES")
+        val exclIndex = intent.getIntExtra("EXCLUDED_INDEX", -1)
+        excludedIndex = if (exclIndex >= 0) exclIndex else null
+
+        reviewExerciseTextView = findViewById(R.id.review_exercise_textview)
         mainMessageTextView = findViewById(R.id.mainMessageTextView)
         pointsTextView = findViewById(R.id.pointsTextView)
         checkImageView = findViewById(R.id.checkImageView)
@@ -397,6 +410,25 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
         rankingChangedTextView.startAnimation(fadeIn)
         unlockLevelTextView.startAnimation(fadeIn)
         repeatLevelTextView.startAnimation(fadeIn)
+
+        if (attempts >= 2 && elementList != null && userResponses != null) {
+            reviewExerciseTextView.visibility = View.VISIBLE
+            applyTouchAnimation(reviewExerciseTextView)
+
+            reviewExerciseTextView.setOnClickListener {
+                val intent = Intent(this, ExerciseReviewActivityAlfaNumeros::class.java)
+                intent.putExtra("ELEMENT_LIST", elementList)
+                intent.putExtra("CORRECT_ANSWER", correctAnswer)
+                intent.putExtra("USER_RESPONSES", userResponses)
+                intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
+                intent.putExtra("LEVEL", currentLevel)
+                startActivity(intent)
+            }
+
+            reviewExerciseTextView.startAnimation(fadeIn)
+        } else {
+            reviewExerciseTextView.visibility = View.GONE
+        }
     }
 
     private fun applyTouchAnimation(view: View) {
