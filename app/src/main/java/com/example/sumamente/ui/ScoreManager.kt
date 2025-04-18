@@ -61,6 +61,11 @@ object ScoreManager {
     private const val KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRINCIPIANTE = "unlocked_levels_alfanumeros_principiante"
     private const val KEY_COMPLETED_LEVELS_ALFANUMEROS_PRINCIPIANTE = "completed_levels_alfanumeros_principiante"
 
+    private const val PREFS_NAME_ALFANUMEROS_PRO = "ScorePrefsAlfaNumerosPro"
+    private const val KEY_CURRENT_SCORE_ALFANUMEROS_PRO = "current_score_alfanumeros_pro"
+    private const val KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRO = "unlocked_levels_alfanumeros_pro"
+    private const val KEY_COMPLETED_LEVELS_ALFANUMEROS_PRO = "completed_levels_alfanumeros_pro"
+
     private const val PREFS_NAME_SUMARESTA = "ScorePrefsSumaResta"
     private const val KEY_CURRENT_SCORE_SUMARESTA = "current_score_sumaresta"
     private const val KEY_UNLOCKED_LEVELS_SUMARESTA = "unlocked_levels_sumaresta"
@@ -120,6 +125,10 @@ object ScoreManager {
     var unlockedLevelsAlfaNumerosPrincipiante: Int = 2
     val levelScoresAlfaNumerosPrincipiante: MutableMap<Int, Int> = mutableMapOf()
 
+    var currentScoreAlfaNumerosPro: Int = 0
+    var unlockedLevelsAlfaNumerosPro: Int = 2
+    val levelScoresAlfaNumerosPro: MutableMap<Int, Int> = mutableMapOf()
+
     var currentScoreSumaResta: Int = 0
     var unlockedLevelsSumaResta: Int = 2
     val levelScoresSumaResta: MutableMap<Int, Int> = mutableMapOf()
@@ -143,6 +152,8 @@ object ScoreManager {
     private const val KEY_CONSECUTIVE_FAILURES_ROMAS_PRO = "consecutive_failures_romas_pro"
     private const val KEY_CONSECUTIVE_FAILURES_ALFANUMEROS = "consecutive_failures_alfanumeros"
     private const val KEY_CONSECUTIVE_FAILURES_ALFANUMEROS_PRINCIPIANTE = "consecutive_failures_alfanumeros_principiante"
+    private const val KEY_CONSECUTIVE_FAILURES_ALFANUMEROS_PRO = "consecutive_failures_alfanumeros_pro"
+
 
     private val consecutiveFailures: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresPrincipiante: MutableMap<Int, Int> = mutableMapOf()
@@ -155,6 +166,8 @@ object ScoreManager {
     private val consecutiveFailuresRomasPro: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresAlfaNumeros: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresAlfaNumerosPrincipiante: MutableMap<Int, Int> = mutableMapOf()
+    private val consecutiveFailuresAlfaNumerosPro: MutableMap<Int, Int> = mutableMapOf()
+
 
     private lateinit var preferences: SharedPreferences
     private lateinit var preferencesPrincipiante: SharedPreferences
@@ -167,6 +180,7 @@ object ScoreManager {
     private lateinit var preferencesRomasPro: SharedPreferences
     private lateinit var preferencesAlfaNumeros: SharedPreferences
     private lateinit var preferencesAlfaNumerosPrincipiante: SharedPreferences
+    private lateinit var preferencesAlfaNumerosPro: SharedPreferences
     private lateinit var preferencesSumaResta: SharedPreferences
     private lateinit var preferencesMasPlus: SharedPreferences
     private lateinit var preferencesGenioPlus: SharedPreferences
@@ -314,6 +328,16 @@ object ScoreManager {
         }
     }
 
+    fun initAlfaNumerosPro(context: Context) {
+        preferencesAlfaNumerosPro = context.getSharedPreferences(PREFS_NAME_ALFANUMEROS_PRO, Context.MODE_PRIVATE)
+        currentScoreAlfaNumerosPro = preferencesAlfaNumerosPro.getInt(KEY_CURRENT_SCORE_ALFANUMEROS_PRO, 0)
+        unlockedLevelsAlfaNumerosPro = preferencesAlfaNumerosPro.getInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRO, 2)
+        for (i in 1..70) {
+            val failures = preferencesAlfaNumerosPro.getInt("$KEY_CONSECUTIVE_FAILURES_ALFANUMEROS_PRO:$i", 0)
+            if (failures > 0) consecutiveFailuresAlfaNumerosPro[i] = failures
+        }
+    }
+
     fun initSumaResta(context: Context) {
         preferencesSumaResta = context.getSharedPreferences(PREFS_NAME_SUMARESTA, Context.MODE_PRIVATE)
         currentScoreSumaResta = preferencesSumaResta.getInt(KEY_CURRENT_SCORE_SUMARESTA, 0)
@@ -409,6 +433,13 @@ object ScoreManager {
         }
     }
 
+    fun saveScoreAlfaNumerosPro() {
+        preferencesAlfaNumerosPro.edit {
+            putInt(KEY_CURRENT_SCORE_ALFANUMEROS_PRO, currentScoreAlfaNumerosPro)
+            putInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRO, unlockedLevelsAlfaNumerosPro)
+        }
+    }
+
     fun saveScoreSumaResta() {
         preferencesSumaResta.edit {
             putInt(KEY_CURRENT_SCORE_SUMARESTA, currentScoreSumaResta)
@@ -483,6 +514,11 @@ object ScoreManager {
 
     private fun getCompletedLevelsAlfaNumerosPrincipiante(): Set<Int> {
         return preferencesAlfaNumerosPrincipiante.getStringSet(KEY_COMPLETED_LEVELS_ALFANUMEROS_PRINCIPIANTE, emptySet())
+            ?.map { it.toInt() }?.toSet() ?: emptySet()
+    }
+
+    private fun getCompletedLevelsAlfaNumerosPro(): Set<Int> {
+        return preferencesAlfaNumerosPro.getStringSet(KEY_COMPLETED_LEVELS_ALFANUMEROS_PRO, emptySet())
             ?.map { it.toInt() }?.toSet() ?: emptySet()
     }
 
@@ -607,6 +643,17 @@ object ScoreManager {
         }
     }
 
+    fun addCompletedLevelAlfaNumerosPro(level: Int) {
+        val completedLevels = getCompletedLevelsAlfaNumerosPro().toMutableSet()
+        completedLevels.add(level)
+        preferencesAlfaNumerosPro.edit {
+            putStringSet(
+                KEY_COMPLETED_LEVELS_ALFANUMEROS_PRO,
+                completedLevels.map { it.toString() }.toSet()
+            )
+        }
+    }
+
     fun addCompletedLevelSumaResta(level: Int) {
         val completedLevelsSumaResta = getCompletedLevelsSumaResta().toMutableSet()
         completedLevelsSumaResta.add(level)
@@ -679,6 +726,10 @@ object ScoreManager {
 
     fun hasCompletedLevelAlfaNumerosPrincipiante(level: Int): Boolean {
         return getCompletedLevelsAlfaNumerosPrincipiante().contains(level)
+    }
+
+    fun hasCompletedLevelAlfaNumerosPro(level: Int): Boolean {
+        return getCompletedLevelsAlfaNumerosPro().contains(level)
     }
 
     fun hasCompletedLevelSumaResta(level: Int): Boolean {
@@ -811,6 +862,17 @@ object ScoreManager {
             putInt(KEY_CURRENT_SCORE_ALFANUMEROS_PRINCIPIANTE, currentScoreAlfaNumerosPrincipiante)
                 .putInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRINCIPIANTE, unlockedLevelsAlfaNumerosPrincipiante)
                 .putStringSet(KEY_COMPLETED_LEVELS_ALFANUMEROS_PRINCIPIANTE, emptySet())
+        }
+    }
+
+    fun resetAlfaNumerosPro() {
+        currentScoreAlfaNumerosPro = 0
+        unlockedLevelsAlfaNumerosPro = 2
+        levelScoresAlfaNumerosPro.clear()
+        preferencesAlfaNumerosPro.edit {
+            putInt(KEY_CURRENT_SCORE_ALFANUMEROS_PRO, currentScoreAlfaNumerosPro)
+                .putInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRO, unlockedLevelsAlfaNumerosPro)
+                .putStringSet(KEY_COMPLETED_LEVELS_ALFANUMEROS_PRO, emptySet())
         }
     }
 
@@ -1109,6 +1171,30 @@ object ScoreManager {
     fun isLevelBlockedByFailuresAlfaNumerosPrincipiante(level: Int): Boolean {
         if (level == 1) return false
         return getConsecutiveFailuresAlfaNumerosPrincipiante(level) >= 12
+    }
+
+    fun incrementConsecutiveFailuresAlfaNumerosPro(level: Int) {
+        val currentFailures = consecutiveFailuresAlfaNumerosPro[level] ?: 0
+        consecutiveFailuresAlfaNumerosPro[level] = currentFailures + 1
+        preferencesAlfaNumerosPro.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_ALFANUMEROS_PRO:$level", consecutiveFailuresAlfaNumerosPro[level] ?: 0)
+        }
+    }
+
+    fun resetConsecutiveFailuresAlfaNumerosPro(level: Int) {
+        consecutiveFailuresAlfaNumerosPro[level] = 0
+        preferencesAlfaNumerosPro.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_ALFANUMEROS_PRO:$level", 0)
+        }
+    }
+
+    fun getConsecutiveFailuresAlfaNumerosPro(level: Int): Int {
+        return consecutiveFailuresAlfaNumerosPro[level] ?: 0
+    }
+
+    fun isLevelBlockedByFailuresAlfaNumerosPro(level: Int): Boolean {
+        if (level == 1) return false
+        return getConsecutiveFailuresAlfaNumerosPro(level) >= 12
     }
 
 }

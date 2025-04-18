@@ -47,6 +47,7 @@ class ResetProgressActivity : AppCompatActivity() {
         ScoreManager.initRomasPro(this)
         ScoreManager.initAlfaNumeros(this)
         ScoreManager.initAlfaNumerosPrincipiante(this)
+        ScoreManager.initAlfaNumerosPro(this)
         ScoreManager.initSumaResta(this)
         ScoreManager.initMasPlus(this)
         ScoreManager.initGenioPlus(this)
@@ -174,8 +175,9 @@ class ResetProgressActivity : AppCompatActivity() {
                 btnPrincipiante.isEnabled = true
                 btnPrincipiante.alpha = 1.0f
                 btnAvanzado.isEnabled = true
-                btnPro.isEnabled = selectedGame != "AlfaNumeros"
-                btnPro.alpha = if (selectedGame != "AlfaNumeros") 1.0f else 0.5f
+                btnPro.isEnabled = true
+                btnPro.alpha = 1.0f
+
             }
             else -> {
                 btnPrincipiante.isEnabled = false
@@ -409,6 +411,7 @@ class ResetProgressActivity : AppCompatActivity() {
         ScoreManager.initRomasPro(this)
         ScoreManager.initAlfaNumeros(this)
         ScoreManager.initAlfaNumerosPrincipiante(this)
+        ScoreManager.initAlfaNumerosPro(this)
         ScoreManager.initSumaResta(this)
         ScoreManager.initMasPlus(this)
         ScoreManager.initGenioPlus(this)
@@ -508,9 +511,9 @@ class ResetProgressActivity : AppCompatActivity() {
                         ScoreManager.resetAlfaNumeros()
                     }
                     DifficultySelectionActivity.DIFFICULTY_PRO -> {
-                        val scorePrefs = getSharedPreferences("ScorePrefsAlfaNumeros", Context.MODE_PRIVATE)
+                        val scorePrefs = getSharedPreferences("ScorePrefsAlfaNumerosPro", Context.MODE_PRIVATE)
                         scorePrefs.edit { clear() }
-                        ScoreManager.resetAlfaNumeros()
+                        ScoreManager.resetAlfaNumerosPro()
                     }
                 }
             }
@@ -653,6 +656,16 @@ class ResetProgressActivity : AppCompatActivity() {
                             remove("selectedResponseModeAlfaNumeros")
                             putString(getDifficultyKey(selectedGame!!),
                                 DifficultySelectionActivity.DIFFICULTY_AVANZADO)
+                            putBoolean("hasSeenInstructionsAlfaNumeros", hasSeenTutorial)
+                        }
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_PRO -> {
+                        myPrefs.edit {
+                            remove("selectedResponseModeAlfaNumerosPro")
+                            putString(
+                                getDifficultyKey(selectedGame!!),
+                                DifficultySelectionActivity.DIFFICULTY_PRO
+                            )
                             putBoolean("hasSeenInstructionsAlfaNumeros", hasSeenTutorial)
                         }
                     }

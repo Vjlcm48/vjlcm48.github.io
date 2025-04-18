@@ -89,6 +89,9 @@ class TransitionActivity : AppCompatActivity() {
         val scorePrefsAlfaNumerosPrincipiante = getSharedPreferences("ScorePrefsAlfaNumerosPrincipiante", MODE_PRIVATE)
         scorePrefsAlfaNumerosPrincipiante.edit { clear() }
 
+        val scorePrefsAlfaNumerosPro = getSharedPreferences("ScorePrefsAlfaNumerosPro", MODE_PRIVATE)
+        scorePrefsAlfaNumerosPro.edit { clear() }
+
         val myPrefsSumaResta = getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
         myPrefsSumaResta.edit { clear() }
 
