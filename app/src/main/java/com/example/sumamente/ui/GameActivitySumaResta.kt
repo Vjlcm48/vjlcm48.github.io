@@ -357,7 +357,7 @@ class GameActivitySumaResta : AppCompatActivity() {
     private fun calculateTimePerNumber() {
         timePerNumberList.clear()
         val level = currentLevel
-        var firstNumberTime = 1.80
+        var firstNumberTime = 1.65
 
         val blockNumber = (level - 1) / 5
         firstNumberTime -= blockNumber * 0.07
