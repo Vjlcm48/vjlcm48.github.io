@@ -675,7 +675,9 @@ class TutorialActivitySumaResta : AppCompatActivity() {
         stopBackgroundMusic()
         val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         prefs.edit { putBoolean("hasSeenInstructionsSumaResta", true) }
-        val intent = Intent(this, LevelsActivitySumaResta::class.java)
+        val intent = Intent(this, DifficultySelectionActivity::class.java).apply {
+            putExtra(DifficultySelectionActivity.EXTRA_GAME_TYPE, "Sumaresta")
+        }
         startActivity(intent)
         finish()
     }

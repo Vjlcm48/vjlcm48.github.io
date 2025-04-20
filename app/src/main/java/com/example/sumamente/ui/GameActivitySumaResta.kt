@@ -818,12 +818,27 @@ class GameActivitySumaResta : AppCompatActivity() {
         builder.create().show()
     }
 
+
     private fun navigateToLevelResult(isSuccessful: Boolean) {
         val intent = Intent(this, LevelResultActivitySumaResta::class.java)
         intent.putExtra("LEVEL", currentLevel)
         intent.putExtra("IS_SUCCESSFUL", isSuccessful)
         intent.putExtra("ATTEMPTS", attempts)
         intent.putExtra("TIME_SPENT", timeSpentInSeconds)
+
+        if (isSuccessful) {
+            ScoreManager.resetConsecutiveFailuresSumaResta(currentLevel)
+        }
+        else if (attempts >= 2) {
+
+            ScoreManager.incrementConsecutiveFailuresSumaResta(currentLevel)
+
+            intent.putExtra("NUMBER_LIST", numberList.toIntArray())
+            intent.putExtra("CORRECT_ANSWER", correctAnswer)
+            intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
+            intent.putExtra("USER_RESPONSES", arrayOf(btnAnswer1.text.toString().toInt(), btnAnswer2.text.toString().toInt()).toIntArray())
+        }
+
         startActivity(intent)
         finish()
     }

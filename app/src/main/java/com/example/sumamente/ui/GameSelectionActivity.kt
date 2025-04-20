@@ -348,15 +348,30 @@ class GameSelectionActivity : AppCompatActivity() {
         val starIcon         = button.findViewById<ImageView>(R.id.icon_star_alfa_numeros)
         val totalScore = score + principianteScore + proScore
 
+        val alfaText = getString(R.string.text_alfa)
+        val numerosText = getString(R.string.text_numeros)
+        val alfaNumerosText = "$alfaText$numerosText"
+        val spannableAlfaNumeros = SpannableString(alfaNumerosText)
+
+        spannableAlfaNumeros.setSpan(
+            ForegroundColorSpan(ContextCompat.getColor(this, R.color.red_primary)),
+            0, alfaText.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        spannableAlfaNumeros.setSpan(
+            ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_primary_darker)),
+            alfaText.length, alfaNumerosText.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        gameNameTextView.text = spannableAlfaNumeros
+
         if (totalScore > 0) {
-            gameNameTextView.text = getString(R.string.game_alfa_numeros)
-            pointsTextView.text   = getString(R.string.score_format, totalScore)
+            pointsTextView.text = getString(R.string.score_format, totalScore)
             pointsTextView.visibility = View.VISIBLE
-            starIcon.visibility   = View.VISIBLE
+            starIcon.visibility = View.VISIBLE
         } else {
-            gameNameTextView.text = getString(R.string.game_alfa_numeros)
             pointsTextView.visibility = View.GONE
-            starIcon.visibility   = View.GONE
+            starIcon.visibility = View.GONE
         }
     }
 

@@ -156,6 +156,27 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/btn_top_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:background="@drawable/premio_boton_background"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/top_10"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/btn_mis_condecoraciones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

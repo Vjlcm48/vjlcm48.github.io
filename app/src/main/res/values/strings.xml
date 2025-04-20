@@ -785,4 +785,30 @@
 
     <string name="mis_condecoraciones">Mis condecoraciones logradas</string>
 
+    <string name="top_10">Los 10 mejores</string>
+
+    <string name="condecoracion_image">Imagen de condecoración</string>
+    <string name="condecoracion_honorabilis">Décimo lugar. Digno del reconocimiento.</string>
+    <string name="condecoracion_virtuosus">Noveno puesto. Dominio con disciplina.</string>
+    <string name="condecoracion_insignis">Octavo lugar. Deja huella en el ranking.</string>
+    <string name="condecoracion_praestans">Séptimo puesto. Sobresale en cada reto.</string>
+    <string name="condecoracion_illustris">Sexto lugar. Su luz no pasa desapercibida.</string>
+    <string name="condecoracion_gloriosus">Quinto puesto. Triunfa con honor.</string>
+    <string name="condecoracion_venerabilis">Cuarto lugar. Admirado por su constancia.</string>
+    <string name="condecoracion_magnanimous">Tercer puesto. Grande en puntos y en espíritu.</string>
+    <string name="condecoracion_summum">Segundo lugar. Solo uno se eleva más.</string>
+    <string name="condecoracion_excelsitur">Cima absoluta. Ocupa el primer lugar del ranking global.</string>
+
+    <string name="position_1">Nº1</string>
+    <string name="position_2">Nº2</string>
+    <string name="position_3">Nº3</string>
+    <string name="position_4">Nº4</string>
+    <string name="position_5">Nº5</string>
+    <string name="position_6">Nº6</string>
+    <string name="position_7">Nº7</string>
+    <string name="position_8">Nº8</string>
+    <string name="position_9">Nº9</string>
+    <string name="position_10">Nº10</string>
+
+
 </resources>

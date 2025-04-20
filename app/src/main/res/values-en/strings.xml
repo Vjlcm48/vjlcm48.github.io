@@ -812,4 +812,30 @@
 
     <string name="mis_condecoraciones">My earned decorations</string>
 
+    <string name="top_10">Top 10</string>
+
+    <string name="condecoracion_image">Decoration image</string>
+    <string name="condecoracion_honorabilis">Tenth place. Worthy of recognition.</string>
+    <string name="condecoracion_virtuosus">Ninth place. Mastery with discipline.</string>
+    <string name="condecoracion_insignis">Eighth place. Leaves a mark in the ranking.</string>
+    <string name="condecoracion_praestans">Seventh place. Excels in every challenge.</string>
+    <string name="condecoracion_illustris">Sixth place. Its light does not go unnoticed.</string>
+    <string name="condecoracion_gloriosus">Fifth place. Triumphs with honor.</string>
+    <string name="condecoracion_venerabilis">Fourth place. Admired for their constancy.</string>
+    <string name="condecoracion_magnanimous">Third place. Great in points and in spirit.</string>
+    <string name="condecoracion_summum">Second place. Only one rises higher.</string>
+    <string name="condecoracion_excelsitur">Absolute peak. Occupies the first place in the global ranking.</string>
+
+    <string name="position_1">No.1</string>
+    <string name="position_2">No.2</string>
+    <string name="position_3">No.3</string>
+    <string name="position_4">No.4</string>
+    <string name="position_5">No.5</string>
+    <string name="position_6">No.6</string>
+    <string name="position_7">No.7</string>
+    <string name="position_8">No.8</string>
+    <string name="position_9">No.9</string>
+    <string name="position_10">No.10</string>
+
+
 </resources>

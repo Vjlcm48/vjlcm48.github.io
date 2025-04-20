@@ -36,6 +36,7 @@ class LevelResultActivitySumaResta : AppCompatActivity() {
     private lateinit var successInfoLayout: View
     private lateinit var currentScoreTextView: TextView
     private lateinit var starImageView: ImageView
+    private lateinit var sharedPreferences: android.content.SharedPreferences
     private val mainHandler = Handler(Looper.getMainLooper())
     private var currentLevel = 1
     private var isSuccessful = false
@@ -43,9 +44,13 @@ class LevelResultActivitySumaResta : AppCompatActivity() {
     private var timeSpentInSeconds = 0.0
     private var pointsEarned = 0
 
-    private var mediaPlayer: MediaPlayer? = null
-    private lateinit var sharedPreferences: android.content.SharedPreferences
+    private var numberList: IntArray? = null
+    private var correctAnswer: Int = 0
+    private var userResponses: IntArray? = null
+    private var excludedIndex: Int? = null
+    private lateinit var reviewExerciseTextView: TextView
 
+    private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +63,12 @@ class LevelResultActivitySumaResta : AppCompatActivity() {
         isSuccessful = intent.getBooleanExtra("IS_SUCCESSFUL", false)
         attempts = intent.getIntExtra("ATTEMPTS", 0)
         timeSpentInSeconds = intent.getDoubleExtra("TIME_SPENT", 0.0)
+
+        numberList = intent.getIntArrayExtra("NUMBER_LIST")
+        correctAnswer = intent.getIntExtra("CORRECT_ANSWER", 0)
+        userResponses = intent.getIntArrayExtra("USER_RESPONSES")
+        val exclIndex = intent.getIntExtra("EXCLUDED_INDEX", -1)
+        excludedIndex = if (exclIndex >= 0) exclIndex else null
 
         mainMessageTextView = findViewById(R.id.mainMessageTextView)
         pointsTextView = findViewById(R.id.pointsTextView)
@@ -72,6 +83,7 @@ class LevelResultActivitySumaResta : AppCompatActivity() {
         successInfoLayout = findViewById(R.id.successInfoLayout)
         currentScoreTextView = findViewById(R.id.currentScoreTextView)
         starImageView = findViewById(R.id.starImageView)
+        reviewExerciseTextView = findViewById(R.id.review_exercise_textview)
 
         setupUI()
     }
@@ -362,6 +374,13 @@ class LevelResultActivitySumaResta : AppCompatActivity() {
         unlockLevelTextView.visibility = View.VISIBLE
         repeatLevelTextView.visibility = View.VISIBLE
 
+        val isLevelBlockedAfterThisFail = ScoreManager.getConsecutiveFailuresSumaResta(currentLevel) >= 12
+
+        if (isLevelBlockedAfterThisFail) {
+            repeatLevelTextView.visibility = View.GONE
+        } else {
+            repeatLevelTextView.visibility = View.VISIBLE
+        }
 
         mainMessageTextView.text = if (attempts >= 2) {
             getString(R.string.has_agotado_tus_intentos)
@@ -398,6 +417,25 @@ class LevelResultActivitySumaResta : AppCompatActivity() {
         rankingChangedTextView.startAnimation(fadeIn)
         unlockLevelTextView.startAnimation(fadeIn)
         repeatLevelTextView.startAnimation(fadeIn)
+
+        if (attempts >= 2 && numberList != null && userResponses != null) {
+            reviewExerciseTextView.visibility = View.VISIBLE
+            applyTouchAnimation(reviewExerciseTextView)
+
+            reviewExerciseTextView.setOnClickListener {
+                val intent = Intent(this, ExerciseReviewActivitySumaResta::class.java)
+                intent.putExtra("NUMBER_LIST", numberList)
+                intent.putExtra("CORRECT_ANSWER", correctAnswer)
+                intent.putExtra("USER_RESPONSES", userResponses)
+                intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
+                intent.putExtra("LEVEL", currentLevel)
+                startActivity(intent)
+            }
+
+            reviewExerciseTextView.startAnimation(fadeIn)
+        } else {
+            reviewExerciseTextView.visibility = View.GONE
+        }
     }
 
     private fun applyTouchAnimation(view: View) {

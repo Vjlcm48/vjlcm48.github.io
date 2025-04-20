@@ -15,6 +15,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -25,6 +26,9 @@ class LevelsActivitySumaResta : AppCompatActivity() {
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var levelContainer: LinearLayout
     private lateinit var sharedPreferences: android.content.SharedPreferences
+    private lateinit var tvGameName: TextView
+    private lateinit var tvDifficulty: TextView
+    private lateinit var tvScore: TextView
 
     private val levelStrings = arrayOf(
         R.string.level_1, R.string.level_2, R.string.level_3, R.string.level_4, R.string.level_5,
@@ -52,8 +56,14 @@ class LevelsActivitySumaResta : AppCompatActivity() {
 
         mediaPlayer = MediaPlayer.create(this, R.raw.clicbotones)
 
+        tvGameName = findViewById(R.id.tv_game_name)
+        tvDifficulty = findViewById(R.id.tv_difficulty)
+        tvScore = findViewById(R.id.tv_score)
+
         val btnClose = findViewById<ImageView>(R.id.btn_close)
         levelContainer = findViewById(R.id.level_container)
+
+        setupInfoBar()
 
         btnClose.setOnClickListener {
             applyBounceEffect(it) {
@@ -69,7 +79,51 @@ class LevelsActivitySumaResta : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        ScoreManager.initSumaResta(this)
         updateLevelButtons()
+        setupInfoBar()
+    }
+
+    private fun setupInfoBar() {
+
+        val sumaText = getString(R.string.text_suma)
+        val restaText = getString(R.string.text_resta)
+        val sumarestaText = "$sumaText$restaText"
+        val spannableSumaresta = android.text.SpannableString(sumarestaText)
+
+        spannableSumaresta.setSpan(
+            android.text.style.ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_pressed)),
+            0, sumaText.length,
+            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        spannableSumaresta.setSpan(
+            android.text.style.ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)),
+            sumaText.length, sumarestaText.length,
+            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        tvGameName.text = spannableSumaresta
+
+
+        val difficultyKey = "difficulty_sumaresta"
+        val difficultyValue = sharedPreferences.getString(difficultyKey, DifficultySelectionActivity.DIFFICULTY_AVANZADO)
+        val difficultyText = when (difficultyValue) {
+            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> getString(R.string.difficulty_principiante)
+            DifficultySelectionActivity.DIFFICULTY_PRO -> getString(R.string.difficulty_pro)
+            else -> getString(R.string.difficulty_avanzado)
+        }
+        tvDifficulty.text = difficultyText
+
+
+        tvScore.text = getString(R.string.score_format, ScoreManager.currentScoreSumaResta)
+
+
+        tvDifficulty.setOnClickListener {
+            applyBounceEffect(it) {
+                val intent = DifficultySelectionActivity.createIntent(this, "Sumaresta")
+                intent.putExtra("FROM_LEVELS", true)
+                startActivity(intent)
+            }
+        }
     }
 
     private fun createLevelButtons() {
@@ -106,7 +160,7 @@ class LevelsActivitySumaResta : AppCompatActivity() {
                     8.dpToPx(this@LevelsActivitySumaResta)
                 )
 
-                if (i < ScoreManager.unlockedLevelsSumaResta) {
+                if (i < ScoreManager.unlockedLevelsSumaResta && (!ScoreManager.isLevelBlockedByFailuresSumaResta(i + 1) || i == 0)) {
                     setBackgroundResource(R.drawable.button_background_sumalevels)
 
                     setOnClickListener {
@@ -129,11 +183,19 @@ class LevelsActivitySumaResta : AppCompatActivity() {
                     isEnabled = false
                     setOnClickListener {
                         applyBounceEffect(this) {
-                            Toast.makeText(
-                                this@LevelsActivitySumaResta,
-                                R.string.level_locked_message,
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            if (i < ScoreManager.unlockedLevelsSumaResta && ScoreManager.isLevelBlockedByFailuresSumaResta(i + 1)) {
+                                Toast.makeText(
+                                    this@LevelsActivitySumaResta,
+                                    R.string.level_locked_by_failures,
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            } else {
+                                Toast.makeText(
+                                    this@LevelsActivitySumaResta,
+                                    R.string.level_locked_message,
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
                         }
                     }
                 }
@@ -146,7 +208,7 @@ class LevelsActivitySumaResta : AppCompatActivity() {
                 ).apply {
                     gravity = Gravity.CENTER_VERTICAL
                 }
-                setImageResource(if (i < ScoreManager.unlockedLevelsSumaResta) R.drawable.ic_unlock else R.drawable.ic_lock)
+                setImageResource(if (i < ScoreManager.unlockedLevelsSumaResta && (!ScoreManager.isLevelBlockedByFailuresSumaResta(i + 1) || i == 0)) R.drawable.ic_unlock else R.drawable.ic_lock)
                 scaleType = ImageView.ScaleType.CENTER_INSIDE
             }
 

@@ -153,7 +153,7 @@ object ScoreManager {
     private const val KEY_CONSECUTIVE_FAILURES_ALFANUMEROS = "consecutive_failures_alfanumeros"
     private const val KEY_CONSECUTIVE_FAILURES_ALFANUMEROS_PRINCIPIANTE = "consecutive_failures_alfanumeros_principiante"
     private const val KEY_CONSECUTIVE_FAILURES_ALFANUMEROS_PRO = "consecutive_failures_alfanumeros_pro"
-
+    private const val KEY_CONSECUTIVE_FAILURES_SUMARESTA = "consecutive_failures_sumaresta"
 
     private val consecutiveFailures: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresPrincipiante: MutableMap<Int, Int> = mutableMapOf()
@@ -167,7 +167,7 @@ object ScoreManager {
     private val consecutiveFailuresAlfaNumeros: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresAlfaNumerosPrincipiante: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresAlfaNumerosPro: MutableMap<Int, Int> = mutableMapOf()
-
+    private val consecutiveFailuresSumaResta: MutableMap<Int, Int> = mutableMapOf()
 
     private lateinit var preferences: SharedPreferences
     private lateinit var preferencesPrincipiante: SharedPreferences
@@ -342,6 +342,13 @@ object ScoreManager {
         preferencesSumaResta = context.getSharedPreferences(PREFS_NAME_SUMARESTA, Context.MODE_PRIVATE)
         currentScoreSumaResta = preferencesSumaResta.getInt(KEY_CURRENT_SCORE_SUMARESTA, 0)
         unlockedLevelsSumaResta = preferencesSumaResta.getInt(KEY_UNLOCKED_LEVELS_SUMARESTA, 2)
+
+        for (i in 1..70) {
+            val failures = preferencesSumaResta.getInt("$KEY_CONSECUTIVE_FAILURES_SUMARESTA:$i", 0)
+            if (failures > 0) {
+                consecutiveFailuresSumaResta[i] = failures
+            }
+        }
     }
 
     fun initMasPlus(context: Context) {
@@ -1195,6 +1202,30 @@ object ScoreManager {
     fun isLevelBlockedByFailuresAlfaNumerosPro(level: Int): Boolean {
         if (level == 1) return false
         return getConsecutiveFailuresAlfaNumerosPro(level) >= 12
+    }
+
+    fun incrementConsecutiveFailuresSumaResta(level: Int) {
+        val currentFailures = consecutiveFailuresSumaResta[level] ?: 0
+        consecutiveFailuresSumaResta[level] = currentFailures + 1
+        preferencesSumaResta.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_SUMARESTA:$level", consecutiveFailuresSumaResta[level] ?: 0)
+        }
+    }
+
+    fun resetConsecutiveFailuresSumaResta(level: Int) {
+        consecutiveFailuresSumaResta[level] = 0
+        preferencesSumaResta.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_SUMARESTA:$level", 0)
+        }
+    }
+
+    fun getConsecutiveFailuresSumaResta(level: Int): Int {
+        return consecutiveFailuresSumaResta[level] ?: 0
+    }
+
+    fun isLevelBlockedByFailuresSumaResta(level: Int): Boolean {
+        if (level == 1) return false
+        return getConsecutiveFailuresSumaResta(level) >= 12
     }
 
 }

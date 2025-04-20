@@ -8,6 +8,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -23,6 +24,9 @@ class InstructionsActivitySumaResta : AppCompatActivity() {
     private var level: Int = 1
     private var excludedIndex: Int? = null
     private lateinit var sharedPreferencesSumaResta: android.content.SharedPreferences
+    private lateinit var tvGameName: TextView
+    private lateinit var tvDifficulty: TextView
+    private lateinit var tvScore: TextView
 
     private val timeLimits = mapOf(
         1 to 17.99, 2 to 17.89, 3 to 17.78, 4 to 17.68, 5 to 17.57, 6 to 17.50, 7 to 17.34,
@@ -41,6 +45,12 @@ class InstructionsActivitySumaResta : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         sharedPreferencesSumaResta = getSharedPreferences("MyPrefsSumaResta", Context.MODE_PRIVATE)
         setContentView(R.layout.activity_instructions_suma_resta)
+
+        tvGameName = findViewById(R.id.tv_game_name)
+        tvDifficulty = findViewById(R.id.tv_difficulty)
+        tvScore = findViewById(R.id.tv_score)
+
+        setupInfoBar()
 
         val btnClose = findViewById<ImageView>(R.id.btn_close)
         val btnStart = findViewById<Button>(R.id.btn_start)
@@ -74,9 +84,24 @@ class InstructionsActivitySumaResta : AppCompatActivity() {
         val repeatedNumbersMessage = getString(R.string.repeated_numbers_message)
         tvRepeatedNumbersMessage.text = formatStyledText(
             repeatedNumbersMessage,
+            12,
+            21,
             R.color.yellow,
             R.color.blue_primary
         )
+
+        if (level in listOf(3, 7, 10, 16, 19, 22, 25, 29, 33) || level >= 36) {
+            val negativeNumberWarning = getString(R.string.negative_numbers_warning, "negativos")
+            tvNegativeNumberWarning.text = formatStyledText(
+                negativeNumberWarning,
+                35,
+                46,
+                R.color.red,
+                R.color.blue_primary
+            )
+        } else {
+            tvNegativeNumberWarning.visibility = View.GONE
+        }
 
         btnClose.setOnClickListener {
             btnClose.isEnabled = false
@@ -179,6 +204,73 @@ class InstructionsActivitySumaResta : AppCompatActivity() {
         }
     }
 
+    private fun setupInfoBar() {
+
+        val sumaText = getString(R.string.text_suma)
+        val restaText = getString(R.string.text_resta)
+        val sumarestaText = "$sumaText$restaText"
+        val spannableSumaresta = SpannableString(sumarestaText)
+
+        spannableSumaresta.setSpan(
+            android.text.style.ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_pressed)),
+            0, sumaText.length,
+            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        spannableSumaresta.setSpan(
+            android.text.style.ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)),
+            sumaText.length, sumarestaText.length,
+            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        tvGameName.text = spannableSumaresta
+
+
+        val difficultyKey = "difficulty_sumaresta"
+        val difficultyValue = sharedPreferencesSumaResta.getString(
+            difficultyKey,
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO
+        )
+
+        val difficultyText = when(difficultyValue) {
+            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> getString(R.string.difficulty_principiante)
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO -> getString(R.string.difficulty_avanzado)
+            DifficultySelectionActivity.DIFFICULTY_PRO -> getString(R.string.difficulty_pro)
+            else -> getString(R.string.difficulty_avanzado)
+        }
+
+        tvDifficulty.text = difficultyText
+
+
+        ScoreManager.initSumaResta(this)
+        tvScore.text = getString(R.string.score_format, ScoreManager.currentScoreSumaResta)
+
+
+        tvDifficulty.setOnClickListener {
+            val scaleDownX = ObjectAnimator.ofFloat(it, "scaleX", 1f, 0.9f).setDuration(50)
+            val scaleDownY = ObjectAnimator.ofFloat(it, "scaleY", 1f, 0.9f).setDuration(50)
+            val scaleUpX = ObjectAnimator.ofFloat(it, "scaleX", 0.9f, 1f).setDuration(50)
+            val scaleUpY = ObjectAnimator.ofFloat(it, "scaleY", 0.9f, 1f).setDuration(50)
+            val clickAnimatorSet = AnimatorSet()
+            clickAnimatorSet.playSequentially(scaleDownX, scaleDownY, scaleUpX, scaleUpY)
+            clickAnimatorSet.start()
+
+            clickAnimatorSet.addListener(object : Animator.AnimatorListener {
+                override fun onAnimationStart(animation: Animator) {}
+                override fun onAnimationEnd(animation: Animator) {
+                    val intent = DifficultySelectionActivity.createIntent(
+                        this@InstructionsActivitySumaResta,
+                        "Sumaresta",
+                        true,
+                        level,
+                        responseMode?.name
+                    )
+                    startActivity(intent)
+                }
+                override fun onAnimationCancel(animation: Animator) {}
+                override fun onAnimationRepeat(animation: Animator) {}
+            })
+        }
+    }
+
     private fun getLevelInstructions(level: Int): String {
         return if (level in 21..30 || level in 41..50 || level in 61..70) {
             getRandomExceptionInstruction(level)
@@ -234,13 +326,12 @@ class InstructionsActivitySumaResta : AppCompatActivity() {
 
     private fun formatStyledText(
         text: String,
+        start: Int,
+        end: Int,
         textColorResId: Int,
         backgroundResId: Int
     ): SpannableString {
         val spannable = SpannableString(text)
-
-        val start = 12
-        val end = 21
 
         val textColor = ContextCompat.getColor(this, textColorResId)
         val backgroundColor = ContextCompat.getColor(this, backgroundResId)

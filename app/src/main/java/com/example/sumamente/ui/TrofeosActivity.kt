@@ -118,6 +118,13 @@ class TrofeosActivity : AppCompatActivity() {
             }
         }
 
+        findViewById<LinearLayout>(R.id.btn_top_10).setOnClickListener {
+            applyBounceEffect(it) {
+                val intent = Intent(this, Top10Activity::class.java)
+                startActivity(intent)
+            }
+        }
+
         setupPremioButton(btnMisCondecoraciones)
     }
 

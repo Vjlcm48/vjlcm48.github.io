@@ -31,11 +31,67 @@
                 android:contentDescription="@string/close"
                 android:src="@drawable/ic_close" />
 
+            <RelativeLayout
+                android:id="@+id/info_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_close"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp">
+
+                <TextView
+                    android:id="@+id/tv_game_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="@string/game_sumaresta"
+                    android:textColor="@color/blue_pressed"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_difficulty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_below="@id/tv_game_name"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/clickable_background"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="4dp"
+                    android:minHeight="48dp"
+                    android:minWidth="110dp"
+                    android:padding="8dp"
+                    android:text="@string/difficulty_avanzado"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:contentDescription="@string/change_difficulty"
+                    app:drawableEndCompat="@drawable/ic_edit" />
+
+                <TextView
+                    android:id="@+id/tv_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_below="@id/tv_game_name"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical|end"
+                    android:minHeight="48dp"
+                    android:padding="8dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/btn_close"
-                android:layout_marginTop="24dp"
+                android:layout_below="@id/info_bar"
                 android:paddingBottom="16dp"
                 android:contentDescription="@string/scroll_view_description">
 
