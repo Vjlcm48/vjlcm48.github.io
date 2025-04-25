@@ -49,6 +49,7 @@ class ResetProgressActivity : AppCompatActivity() {
         ScoreManager.initAlfaNumerosPrincipiante(this)
         ScoreManager.initAlfaNumerosPro(this)
         ScoreManager.initSumaResta(this)
+        ScoreManager.initSumaRestaPrincipiante(this)
         ScoreManager.initMasPlus(this)
         ScoreManager.initGenioPlus(this)
 
@@ -170,23 +171,29 @@ class ResetProgressActivity : AppCompatActivity() {
         val originalCloseButton = dialogView.findViewById<ImageView>(R.id.closeButton)
         originalCloseButton?.visibility = View.GONE
 
+        btnAvanzado.isEnabled = true
+
         when (selectedGame) {
             "NumerosPlus", "DeciPlus", "Romas", "AlfaNumeros" -> {
                 btnPrincipiante.isEnabled = true
                 btnPrincipiante.alpha = 1.0f
-                btnAvanzado.isEnabled = true
                 btnPro.isEnabled = true
                 btnPro.alpha = 1.0f
-
+            }
+            "SumaResta" -> {
+                btnPrincipiante.isEnabled = true
+                btnPrincipiante.alpha = 1.0f
+                btnPro.isEnabled = false
+                btnPro.alpha = 0.5f
             }
             else -> {
                 btnPrincipiante.isEnabled = false
                 btnPrincipiante.alpha = 0.5f
-                btnAvanzado.isEnabled = true
                 btnPro.isEnabled = false
                 btnPro.alpha = 0.5f
             }
         }
+
 
         val alertDialog = AlertDialog.Builder(this)
             .setView(dialogView)
@@ -413,6 +420,7 @@ class ResetProgressActivity : AppCompatActivity() {
         ScoreManager.initAlfaNumerosPrincipiante(this)
         ScoreManager.initAlfaNumerosPro(this)
         ScoreManager.initSumaResta(this)
+        ScoreManager.initSumaRestaPrincipiante(this)
         ScoreManager.initMasPlus(this)
         ScoreManager.initGenioPlus(this)
 
@@ -517,10 +525,25 @@ class ResetProgressActivity : AppCompatActivity() {
                     }
                 }
             }
-            "Sumaresta" -> {
-                val scorePrefs = getSharedPreferences("ScorePrefsSumaResta", Context.MODE_PRIVATE)
-                scorePrefs.edit { clear() }
-                ScoreManager.resetSumaResta()
+            "SumaResta" -> {
+                when (difficulty) {
+                    DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> {
+                        val scorePrefs = getSharedPreferences("ScorePrefsSumaRestaPrincipiante", Context.MODE_PRIVATE)
+                        scorePrefs.edit { clear() }
+                        ScoreManager.resetSumaRestaPrincipiante()
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_AVANZADO -> {
+                        val scorePrefs = getSharedPreferences("ScorePrefsSumaResta", Context.MODE_PRIVATE)
+                        scorePrefs.edit { clear() }
+                        ScoreManager.resetSumaResta()
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_PRO -> {
+                        val scorePrefs = getSharedPreferences("ScorePrefsSumaResta", Context.MODE_PRIVATE)
+                        scorePrefs.edit { clear() }
+                        ScoreManager.resetSumaResta()
+
+                    }
+                }
             }
             "MasPlus" -> {
                 val scorePrefs = getSharedPreferences("ScorePrefsMasPlus", Context.MODE_PRIVATE)
@@ -673,7 +696,35 @@ class ResetProgressActivity : AppCompatActivity() {
             }
             "Sumaresta" -> {
                 val myPrefs = getSharedPreferences("MyPrefsSumaResta", Context.MODE_PRIVATE)
-                myPrefs.edit { remove("selectedResponseModeSumaResta") }
+                val hasSeenTutorial = myPrefs.getBoolean("hasSeenInstructionsSumaResta", false)
+
+                when (difficulty) {
+                    DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> {
+                        myPrefs.edit {
+                            remove("selectedResponseModeSumaRestaPrincipiante")
+                            putString(getDifficultyKey(selectedGame!!),
+                                DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE)
+                            putBoolean("hasSeenInstructionsSumaResta", hasSeenTutorial)
+                        }
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_AVANZADO -> {
+                        myPrefs.edit {
+                            remove("selectedResponseModeSumaResta")
+                            putString(getDifficultyKey(selectedGame!!),
+                                DifficultySelectionActivity.DIFFICULTY_AVANZADO)
+                            putBoolean("hasSeenInstructionsSumaResta", hasSeenTutorial)
+                        }
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_PRO -> {
+                        myPrefs.edit {
+                            remove("selectedResponseModeSumaResta")
+                            putString(getDifficultyKey(selectedGame!!),
+                                DifficultySelectionActivity.DIFFICULTY_PRO)
+                            putBoolean("hasSeenInstructionsSumaResta", hasSeenTutorial)
+                        }
+
+                    }
+                }
             }
             "MasPlus" -> {
                 val myPrefs = getSharedPreferences("MyPrefsMasPlus", Context.MODE_PRIVATE)

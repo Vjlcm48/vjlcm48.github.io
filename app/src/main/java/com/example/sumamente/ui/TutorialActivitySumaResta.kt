@@ -673,14 +673,14 @@ class TutorialActivitySumaResta : AppCompatActivity() {
 
     private fun markTutorialAsSeenAndNavigate() {
         stopBackgroundMusic()
-        val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("MyPrefsSumaResta", Context.MODE_PRIVATE)
         prefs.edit { putBoolean("hasSeenInstructionsSumaResta", true) }
-        val intent = Intent(this, DifficultySelectionActivity::class.java).apply {
-            putExtra(DifficultySelectionActivity.EXTRA_GAME_TYPE, "Sumaresta")
-        }
+
+        val intent = DifficultySelectionActivity.createIntent(this, "Sumaresta")
         startActivity(intent)
         finish()
     }
+
 
     private fun showHandWithFade(
         targetView: View,
