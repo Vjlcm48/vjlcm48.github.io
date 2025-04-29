@@ -50,6 +50,7 @@ class ResetProgressActivity : AppCompatActivity() {
         ScoreManager.initAlfaNumerosPro(this)
         ScoreManager.initSumaResta(this)
         ScoreManager.initSumaRestaPrincipiante(this)
+        ScoreManager.initSumaRestaPro(this)
         ScoreManager.initMasPlus(this)
         ScoreManager.initGenioPlus(this)
 
@@ -174,18 +175,13 @@ class ResetProgressActivity : AppCompatActivity() {
         btnAvanzado.isEnabled = true
 
         when (selectedGame) {
-            "NumerosPlus", "DeciPlus", "Romas", "AlfaNumeros" -> {
+            "NumerosPlus", "DeciPlus", "Romas", "AlfaNumeros", "SumaResta" -> {
                 btnPrincipiante.isEnabled = true
                 btnPrincipiante.alpha = 1.0f
                 btnPro.isEnabled = true
                 btnPro.alpha = 1.0f
             }
-            "SumaResta" -> {
-                btnPrincipiante.isEnabled = true
-                btnPrincipiante.alpha = 1.0f
-                btnPro.isEnabled = false
-                btnPro.alpha = 0.5f
-            }
+
             else -> {
                 btnPrincipiante.isEnabled = false
                 btnPrincipiante.alpha = 0.5f
@@ -421,6 +417,7 @@ class ResetProgressActivity : AppCompatActivity() {
         ScoreManager.initAlfaNumerosPro(this)
         ScoreManager.initSumaResta(this)
         ScoreManager.initSumaRestaPrincipiante(this)
+        ScoreManager.initSumaRestaPro(this)
         ScoreManager.initMasPlus(this)
         ScoreManager.initGenioPlus(this)
 
@@ -538,9 +535,9 @@ class ResetProgressActivity : AppCompatActivity() {
                         ScoreManager.resetSumaResta()
                     }
                     DifficultySelectionActivity.DIFFICULTY_PRO -> {
-                        val scorePrefs = getSharedPreferences("ScorePrefsSumaResta", Context.MODE_PRIVATE)
+                        val scorePrefs = getSharedPreferences("ScorePrefsSumaRestaPro", Context.MODE_PRIVATE)
                         scorePrefs.edit { clear() }
-                        ScoreManager.resetSumaResta()
+                        ScoreManager.resetSumaRestaPro()
 
                     }
                 }
@@ -717,7 +714,7 @@ class ResetProgressActivity : AppCompatActivity() {
                     }
                     DifficultySelectionActivity.DIFFICULTY_PRO -> {
                         myPrefs.edit {
-                            remove("selectedResponseModeSumaResta")
+                            remove("selectedResponseModeSumaRestaPro")
                             putString(getDifficultyKey(selectedGame!!),
                                 DifficultySelectionActivity.DIFFICULTY_PRO)
                             putBoolean("hasSeenInstructionsSumaResta", hasSeenTutorial)

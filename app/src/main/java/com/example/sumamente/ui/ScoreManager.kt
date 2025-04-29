@@ -76,6 +76,10 @@ object ScoreManager {
     private const val KEY_UNLOCKED_LEVELS_SUMARESTA_PRINCIPIANTE = "unlocked_levels_sumaresta_principiante"
     private const val KEY_COMPLETED_LEVELS_SUMARESTA_PRINCIPIANTE = "completed_levels_sumaresta_principiante"
 
+    private const val PREFS_NAME_SUMARESTA_PRO = "ScorePrefsSumaRestaPro"
+    private const val KEY_CURRENT_SCORE_SUMARESTA_PRO = "current_score_sumaresta_pro"
+    private const val KEY_UNLOCKED_LEVELS_SUMARESTA_PRO = "unlocked_levels_sumaresta_pro"
+    private const val KEY_COMPLETED_LEVELS_SUMARESTA_PRO = "completed_levels_sumaresta_pro"
 
     private const val PREFS_NAME_MAS_PLUS = "ScorePrefsMasPlus"
     private const val KEY_CURRENT_SCORE_MAS_PLUS = "current_score_mas_plus"
@@ -143,6 +147,10 @@ object ScoreManager {
     var unlockedLevelsSumaRestaPrincipiante: Int = 2
     val levelScoresSumaRestaPrincipiante: MutableMap<Int, Int> = mutableMapOf()
 
+    var currentScoreSumaRestaPro: Int = 0
+    var unlockedLevelsSumaRestaPro: Int = 2
+    val levelScoresSumaRestaPro: MutableMap<Int, Int> = mutableMapOf()
+
     var currentScoreMasPlus: Int = 0
     var unlockedLevelsMasPlus: Int = 2
     val levelScoresMasPlus: MutableMap<Int, Int> = mutableMapOf()
@@ -165,6 +173,7 @@ object ScoreManager {
     private const val KEY_CONSECUTIVE_FAILURES_ALFANUMEROS_PRO = "consecutive_failures_alfanumeros_pro"
     private const val KEY_CONSECUTIVE_FAILURES_SUMARESTA = "consecutive_failures_sumaresta"
     private const val KEY_CONSECUTIVE_FAILURES_SUMARESTA_PRINCIPIANTE = "consecutive_failures_sumaresta_principiante"
+    private const val KEY_CONSECUTIVE_FAILURES_SUMARESTA_PRO = "consecutive_failures_sumaresta_pro"
 
     private val consecutiveFailures: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresPrincipiante: MutableMap<Int, Int> = mutableMapOf()
@@ -180,6 +189,7 @@ object ScoreManager {
     private val consecutiveFailuresAlfaNumerosPro: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresSumaResta: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresSumaRestaPrincipiante: MutableMap<Int, Int> = mutableMapOf()
+    private val consecutiveFailuresSumaRestaPro: MutableMap<Int, Int> = mutableMapOf()
 
     private lateinit var preferences: SharedPreferences
     private lateinit var preferencesPrincipiante: SharedPreferences
@@ -195,6 +205,7 @@ object ScoreManager {
     private lateinit var preferencesAlfaNumerosPro: SharedPreferences
     private lateinit var preferencesSumaResta: SharedPreferences
     private lateinit var preferencesSumaRestaPrincipiante: SharedPreferences
+    private lateinit var preferencesSumaRestaPro: SharedPreferences
     private lateinit var preferencesMasPlus: SharedPreferences
     private lateinit var preferencesGenioPlus: SharedPreferences
 
@@ -377,6 +388,19 @@ object ScoreManager {
         }
     }
 
+    fun initSumaRestaPro(context: Context) {
+        preferencesSumaRestaPro = context.getSharedPreferences(PREFS_NAME_SUMARESTA_PRO, Context.MODE_PRIVATE)
+        currentScoreSumaRestaPro = preferencesSumaRestaPro.getInt(KEY_CURRENT_SCORE_SUMARESTA_PRO, 0)
+        unlockedLevelsSumaRestaPro = preferencesSumaRestaPro.getInt(KEY_UNLOCKED_LEVELS_SUMARESTA_PRO, 2)
+
+        for (i in 1..70) {
+            val failures = preferencesSumaRestaPro.getInt("$KEY_CONSECUTIVE_FAILURES_SUMARESTA_PRO:$i", 0)
+            if (failures > 0) {
+                consecutiveFailuresSumaRestaPro[i] = failures
+            }
+        }
+    }
+
     fun initMasPlus(context: Context) {
         preferencesMasPlus = context.getSharedPreferences(PREFS_NAME_MAS_PLUS, Context.MODE_PRIVATE)
         currentScoreMasPlus = preferencesMasPlus.getInt(KEY_CURRENT_SCORE_MAS_PLUS, 0)
@@ -487,6 +511,13 @@ object ScoreManager {
         }
     }
 
+    fun saveScoreSumaRestaPro() {
+        preferencesSumaRestaPro.edit {
+            putInt(KEY_CURRENT_SCORE_SUMARESTA_PRO, currentScoreSumaRestaPro)
+                .putInt(KEY_UNLOCKED_LEVELS_SUMARESTA_PRO, unlockedLevelsSumaRestaPro)
+        }
+    }
+
     fun saveScoreMasPlus() {
         preferencesMasPlus.edit {
             putInt(KEY_CURRENT_SCORE_MAS_PLUS, currentScoreMasPlus)
@@ -500,7 +531,6 @@ object ScoreManager {
                 .putInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS, unlockedLevelsGenioPlus)
         }
     }
-
 
     private fun getCompletedLevels(): Set<Int> {
         return preferences.getStringSet(KEY_COMPLETED_LEVELS, emptySet())
@@ -569,6 +599,11 @@ object ScoreManager {
 
     private fun getCompletedLevelsSumaRestaPrincipiante(): Set<Int> {
         return preferencesSumaRestaPrincipiante.getStringSet(KEY_COMPLETED_LEVELS_SUMARESTA_PRINCIPIANTE, emptySet())
+            ?.map { it.toInt() }?.toSet() ?: emptySet()
+    }
+
+    private fun getCompletedLevelsSumaRestaPro(): Set<Int> {
+        return preferencesSumaRestaPro.getStringSet(KEY_COMPLETED_LEVELS_SUMARESTA_PRO, emptySet())
             ?.map { it.toInt() }?.toSet() ?: emptySet()
     }
 
@@ -719,6 +754,16 @@ object ScoreManager {
         }
     }
 
+    fun addCompletedLevelSumaRestaPro(level: Int) {
+        val completedLevelsSumaRestaPro = getCompletedLevelsSumaRestaPro().toMutableSet()
+        completedLevelsSumaRestaPro.add(level)
+        preferencesSumaRestaPro.edit {
+            putStringSet(
+                KEY_COMPLETED_LEVELS_SUMARESTA_PRO,
+                completedLevelsSumaRestaPro.map { it.toString() }.toSet())
+        }
+    }
+
     fun addCompletedLevelMasPlus(level: Int) {
         val completedLevelsMasPlus = getCompletedLevelsMasPlus().toMutableSet()
         completedLevelsMasPlus.add(level)
@@ -793,6 +838,10 @@ object ScoreManager {
 
     fun hasCompletedLevelSumaRestaPrincipiante(level: Int): Boolean {
         return getCompletedLevelsSumaRestaPrincipiante().contains(level)
+    }
+
+    fun hasCompletedLevelSumaRestaPro(level: Int): Boolean {
+        return getCompletedLevelsSumaRestaPro().contains(level)
     }
 
     fun hasCompletedLevelMasPlus(level: Int): Boolean {
@@ -954,6 +1003,17 @@ object ScoreManager {
             putInt(KEY_CURRENT_SCORE_SUMARESTA_PRINCIPIANTE, currentScoreSumaRestaPrincipiante)
                 .putInt(KEY_UNLOCKED_LEVELS_SUMARESTA_PRINCIPIANTE, unlockedLevelsSumaRestaPrincipiante)
                 .putStringSet(KEY_COMPLETED_LEVELS_SUMARESTA_PRINCIPIANTE, emptySet())
+        }
+    }
+
+    fun resetSumaRestaPro() {
+        currentScoreSumaRestaPro = 0
+        unlockedLevelsSumaRestaPro = 2
+        levelScoresSumaRestaPro.clear()
+        preferencesSumaRestaPro.edit {
+            putInt(KEY_CURRENT_SCORE_SUMARESTA_PRO, currentScoreSumaRestaPro)
+                .putInt(KEY_UNLOCKED_LEVELS_SUMARESTA_PRO, unlockedLevelsSumaRestaPro)
+                .putStringSet(KEY_COMPLETED_LEVELS_SUMARESTA_PRO, emptySet())
         }
     }
 
@@ -1313,6 +1373,30 @@ object ScoreManager {
     fun isLevelBlockedByFailuresSumaRestaPrincipiante(level: Int): Boolean {
         if (level == 1) return false
         return getConsecutiveFailuresSumaRestaPrincipiante(level) >= 12
+    }
+
+    fun incrementConsecutiveFailuresSumaRestaPro(level: Int) {
+        val currentFailures = consecutiveFailuresSumaRestaPro[level] ?: 0
+        consecutiveFailuresSumaRestaPro[level] = currentFailures + 1
+        preferencesSumaRestaPro.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_SUMARESTA_PRO:$level", consecutiveFailuresSumaRestaPro[level] ?: 0)
+        }
+    }
+
+    fun resetConsecutiveFailuresSumaRestaPro(level: Int) {
+        consecutiveFailuresSumaRestaPro[level] = 0
+        preferencesSumaRestaPro.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_SUMARESTA_PRO:$level", 0)
+        }
+    }
+
+    fun getConsecutiveFailuresSumaRestaPro(level: Int): Int {
+        return consecutiveFailuresSumaRestaPro[level] ?: 0
+    }
+
+    fun isLevelBlockedByFailuresSumaRestaPro(level: Int): Boolean {
+        if (level == 1) return false
+        return getConsecutiveFailuresSumaRestaPro(level) >= 12
     }
 
 }

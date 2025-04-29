@@ -97,18 +97,13 @@ class DifficultySelectionActivity : AppCompatActivity() {
         btnAvanzado.isEnabled = true
 
         when (gameType) {
-            "NumerosPlus", "DeciPlus", "Romas", "AlfaNumeros" -> {
+            "NumerosPlus", "DeciPlus", "Romas", "AlfaNumeros", "Sumaresta" -> {
                 btnPrincipiante.isEnabled = true
                 btnPrincipiante.alpha = 1.0f
                 btnPro.isEnabled = true
                 btnPro.alpha = 1.0f
             }
-            "Sumaresta" -> {
-                btnPrincipiante.isEnabled = true
-                btnPrincipiante.alpha = 1.0f
-                btnPro.isEnabled = false
-                btnPro.alpha = 0.5f
-            }
+
             else -> {
                 btnPrincipiante.isEnabled = false
                 btnPrincipiante.alpha = 0.5f
@@ -224,7 +219,7 @@ class DifficultySelectionActivity : AppCompatActivity() {
                 Intent(this, LevelsActivitySumaResta::class.java)
             }
             gameType == "Sumaresta" && difficulty == DIFFICULTY_PRO -> {
-                Intent(this, LevelsActivitySumaResta::class.java)
+                Intent(this, LevelsActivitySumaRestaPro::class.java)
             }
 
             gameType == "MasPlus" -> {
@@ -292,7 +287,7 @@ class DifficultySelectionActivity : AppCompatActivity() {
                 when (difficulty) {
                     DIFFICULTY_PRINCIPIANTE -> ScoreManager.saveScoreSumaRestaPrincipiante()
                     DIFFICULTY_AVANZADO -> ScoreManager.saveScoreSumaResta()
-                    DIFFICULTY_PRO -> ScoreManager.saveScoreSumaResta()
+                    DIFFICULTY_PRO -> ScoreManager.saveScoreSumaRestaPro()
                 }
             }
 

@@ -82,6 +82,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.LevelsActivitySumaRestaPro"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.LevelsActivityMasPlus"
             android:exported="false" />
 
@@ -202,6 +206,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.InstructionsActivitySumaRestaPro"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.InstructionsActivityMasPlus"
             android:exported="false" />
 
@@ -263,6 +271,10 @@
 
         <activity
             android:name=".ui.GameActivitySumaRestaPrincipiante"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.GameActivitySumaRestaPro"
             android:exported="false" />
 
         <activity
@@ -433,6 +445,11 @@
 
         <activity
             android:name=".ui.LevelResultActivitySumaRestaPrincipiante"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.LevelResultActivitySumaRestaPro"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
