@@ -708,9 +708,9 @@ class TutorialActivityMasPlus : AppCompatActivity() {
 
     private fun markTutorialAsSeenAndNavigate() {
         stopBackgroundMusic()
-        val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("MyPrefsMasPlus", Context.MODE_PRIVATE)
         prefs.edit { putBoolean("hasSeenInstructionsMasPlus", true) }
-        val intent = Intent(this, LevelsActivityMasPlus::class.java)
+        val intent = DifficultySelectionActivity.createIntent(this, "MasPlus")
         startActivity(intent)
         finish()
     }

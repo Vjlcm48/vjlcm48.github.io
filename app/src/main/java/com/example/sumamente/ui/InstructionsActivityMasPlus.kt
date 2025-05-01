@@ -167,7 +167,7 @@ class InstructionsActivityMasPlus : AppCompatActivity() {
 
     private fun setupInfoBar() {
         tvGameName.text = getString(R.string.game_mas_plus)
-        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.grey_light))
+        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.red))
 
         val difficultyKey = "difficulty_masplus"
 

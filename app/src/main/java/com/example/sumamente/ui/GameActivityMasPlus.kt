@@ -510,7 +510,7 @@ class GameActivityMasPlus : AppCompatActivity() {
 
                     if (index > 0 && masplusElement.value == elementsList[index - 1].value) {
                         spannableString.setSpan(
-                            ForegroundColorSpan(ResourcesCompat.getColor(resources, R.color.yellow_dark, null)),
+                            ForegroundColorSpan(ResourcesCompat.getColor(resources, R.color.blue_pressed, null)),
                             0,
                             spannableString.length,
                             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE

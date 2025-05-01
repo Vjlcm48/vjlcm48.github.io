@@ -246,8 +246,15 @@ class GameSelectionActivity : AppCompatActivity() {
                 val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsMasPlus", false)
 
                 if (hasSeenInstructions) {
-                    val intent = Intent(this, LevelsActivityMasPlus::class.java)
-                    startActivity(intent)
+                    val difficultyKey = "difficulty_masplus"
+                    val hasDifficulty = prefs.contains(difficultyKey)
+
+                    if (hasDifficulty) {
+                        val intent = Intent(this, LevelsActivityMasPlus::class.java)
+                        startActivity(intent)
+                    } else {
+                        startActivity(DifficultySelectionActivity.createIntent(this, "MasPlus"))
+                    }
                 } else {
                     startActivity(Intent(this, TutorialActivityMasPlus::class.java))
                 }

@@ -708,7 +708,7 @@ class TutorialActivityGenioPlus : AppCompatActivity() {
 
     private fun markTutorialAsSeenAndNavigate() {
         stopBackgroundMusic()
-        val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("MyPrefsGenioPlus", Context.MODE_PRIVATE)
         prefs.edit { putBoolean("hasSeenInstructionsGenioPlus", true) }
         val intent = Intent(this, LevelsActivityGenioPlus::class.java)
         startActivity(intent)
