@@ -738,6 +738,9 @@ class GameActivityMasPlus : AppCompatActivity() {
             attempts++
 
             if (attempts >= 2) {
+
+                ScoreManager.incrementConsecutiveFailuresMasPlus(currentLevel)
+
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
                 calculateTimeSpent()
@@ -875,6 +878,9 @@ class GameActivityMasPlus : AppCompatActivity() {
 
             attempts++
             if (attempts >= 2) {
+
+                ScoreManager.incrementConsecutiveFailuresMasPlus(currentLevel)
+
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
                 calculateTimeSpent()
@@ -900,6 +906,22 @@ class GameActivityMasPlus : AppCompatActivity() {
         intent.putExtra("IS_SUCCESSFUL", isSuccessful)
         intent.putExtra("ATTEMPTS", attempts)
         intent.putExtra("TIME_SPENT", timeSpentInSeconds)
+
+        if (isSuccessful) {
+            ScoreManager.resetConsecutiveFailuresMasPlus(currentLevel)
+        }
+        else if (attempts >= 2) {
+            ScoreManager.incrementConsecutiveFailuresMasPlus(currentLevel)
+            intent.putExtra("NUMBER_LIST", elementsList.map { it.value }.toTypedArray())
+            intent.putExtra("CORRECT_ANSWER", correctAnswer)
+            intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
+            intent.putExtra("USER_RESPONSES", mutableListOf<Int>().apply {
+                if (manualAnswerEditText.text.toString().isNotEmpty()) {
+                    add(manualAnswerEditText.text.toString().toIntOrNull() ?: 0)
+                }
+            }.toIntArray())
+        }
+
         startActivity(intent)
         finish()
     }

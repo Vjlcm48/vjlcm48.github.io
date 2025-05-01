@@ -15,6 +15,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -25,6 +26,10 @@ class LevelsActivityMasPlus : AppCompatActivity() {
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var levelContainer: LinearLayout
     private lateinit var sharedPreferences: android.content.SharedPreferences
+
+    private lateinit var tvGameName: TextView
+    private lateinit var tvDifficulty: TextView
+    private lateinit var tvScore: TextView
 
     private val levelStrings = arrayOf(
         R.string.level_1, R.string.level_2, R.string.level_3, R.string.level_4, R.string.level_5,
@@ -55,6 +60,12 @@ class LevelsActivityMasPlus : AppCompatActivity() {
         val btnClose = findViewById<ImageView>(R.id.btn_close)
         levelContainer = findViewById(R.id.level_container)
 
+        tvGameName = findViewById(R.id.tv_game_name)
+        tvDifficulty = findViewById(R.id.tv_difficulty)
+        tvScore = findViewById(R.id.tv_score)
+
+        setupInfoBar()
+
         btnClose.setOnClickListener {
             applyBounceEffect(it) {
                 val intent = Intent(this, GameSelectionActivity::class.java)
@@ -70,6 +81,42 @@ class LevelsActivityMasPlus : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         updateLevelButtons()
+
+        setupInfoBar()
+    }
+
+    private fun setupInfoBar() {
+        tvGameName.text = getString(R.string.game_mas_plus)
+        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.grey_light))
+
+        val difficultyKey = "difficulty_masplus"
+
+        val difficultyValue = sharedPreferences.getString(
+            difficultyKey,
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO
+        )
+
+        val difficultyText = when(difficultyValue) {
+            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> getString(R.string.difficulty_principiante)
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO -> getString(R.string.difficulty_avanzado)
+            DifficultySelectionActivity.DIFFICULTY_PRO -> getString(R.string.difficulty_pro)
+            else -> getString(R.string.difficulty_avanzado)
+        }
+
+        tvDifficulty.text = difficultyText
+        ScoreManager.initMasPlus(this)
+        tvScore.text = getString(R.string.score_format, ScoreManager.currentScoreMasPlus)
+
+        tvDifficulty.setOnClickListener {
+            applyBounceEffect(it) {
+                val intent = DifficultySelectionActivity.createIntent(
+                    this,
+                    "MasPlus"
+                )
+                intent.putExtra("FROM_LEVELS", true)
+                startActivity(intent)
+            }
+        }
     }
 
     private fun createLevelButtons() {
@@ -106,7 +153,7 @@ class LevelsActivityMasPlus : AppCompatActivity() {
                     8.dpToPx(this@LevelsActivityMasPlus)
                 )
 
-                if (i < ScoreManager.unlockedLevelsMasPlus) {
+                if (i < ScoreManager.unlockedLevelsMasPlus && !ScoreManager.isLevelBlockedByFailuresMasPlus(i + 1)) {
                     setBackgroundResource(R.drawable.button_background_mas)
 
                     setOnClickListener {
@@ -129,11 +176,19 @@ class LevelsActivityMasPlus : AppCompatActivity() {
                     isEnabled = false
                     setOnClickListener {
                         applyBounceEffect(this) {
-                            Toast.makeText(
-                                this@LevelsActivityMasPlus,
-                                R.string.level_locked_message,
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            if (i < ScoreManager.unlockedLevelsMasPlus && ScoreManager.isLevelBlockedByFailuresMasPlus(i + 1)) {
+                                Toast.makeText(
+                                    this@LevelsActivityMasPlus,
+                                    R.string.level_locked_by_failures,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } else {
+                                Toast.makeText(
+                                    this@LevelsActivityMasPlus,
+                                    R.string.level_locked_message,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
                     }
                 }
@@ -146,7 +201,8 @@ class LevelsActivityMasPlus : AppCompatActivity() {
                 ).apply {
                     gravity = Gravity.CENTER_VERTICAL
                 }
-                setImageResource(if (i < ScoreManager.unlockedLevelsMasPlus) R.drawable.ic_unlock else R.drawable.ic_lock)
+                setImageResource(if (i < ScoreManager.unlockedLevelsMasPlus && !ScoreManager.isLevelBlockedByFailuresMasPlus(i + 1))
+                    R.drawable.ic_unlock else R.drawable.ic_lock)
                 scaleType = ImageView.ScaleType.CENTER_INSIDE
             }
 

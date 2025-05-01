@@ -810,5 +810,6 @@
     <string name="position_9">Nº9</string>
     <string name="position_10">Nº10</string>
 
+    <string name="user_response_single_format">Tu respuesta: %d</string>
 
 </resources>

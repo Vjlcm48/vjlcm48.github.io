@@ -242,7 +242,15 @@ class GameSelectionActivity : AppCompatActivity() {
 
         btnMasPlus.setOnClickListener {
             applyBounceEffect(it) {
-                startActivity(Intent(this, TutorialActivityMasPlus::class.java))
+                val prefs = getSharedPreferences("MyPrefsMasPlus", Context.MODE_PRIVATE)
+                val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsMasPlus", false)
+
+                if (hasSeenInstructions) {
+                    val intent = Intent(this, LevelsActivityMasPlus::class.java)
+                    startActivity(intent)
+                } else {
+                    startActivity(Intent(this, TutorialActivityMasPlus::class.java))
+                }
             }
         }
 

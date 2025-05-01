@@ -837,5 +837,6 @@
     <string name="position_9">No.9</string>
     <string name="position_10">No.10</string>
 
+    <string name="user_response_single_format">Your answer: %d</string>
 
 </resources>

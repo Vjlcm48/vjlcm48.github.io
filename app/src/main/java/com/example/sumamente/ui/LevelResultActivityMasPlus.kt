@@ -36,12 +36,19 @@ class LevelResultActivityMasPlus : AppCompatActivity() {
     private lateinit var successInfoLayout: View
     private lateinit var currentScoreTextView: TextView
     private lateinit var starImageView: ImageView
+    private lateinit var reviewExerciseTextView: TextView
+
     private val mainHandler = Handler(Looper.getMainLooper())
     private var currentLevel = 1
     private var isSuccessful = false
     private var attempts = 0
     private var timeSpentInSeconds = 0.0
     private var pointsEarned = 0
+
+    private var numberList: Array<String>? = null
+    private var correctAnswer: Int = 0
+    private var userResponses: IntArray? = null
+    private var excludedIndex: Int? = null
 
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var sharedPreferences: android.content.SharedPreferences
@@ -58,6 +65,12 @@ class LevelResultActivityMasPlus : AppCompatActivity() {
         attempts = intent.getIntExtra("ATTEMPTS", 0)
         timeSpentInSeconds = intent.getDoubleExtra("TIME_SPENT", 0.0)
 
+        numberList = intent.getStringArrayExtra("NUMBER_LIST")
+        correctAnswer = intent.getIntExtra("CORRECT_ANSWER", 0)
+        userResponses = intent.getIntArrayExtra("USER_RESPONSES")
+        val exclIndex = intent.getIntExtra("EXCLUDED_INDEX", -1)
+        excludedIndex = if (exclIndex >= 0) exclIndex else null
+
         mainMessageTextView = findViewById(R.id.mainMessageTextView)
         pointsTextView = findViewById(R.id.pointsTextView)
         checkImageView = findViewById(R.id.checkImageView)
@@ -71,6 +84,7 @@ class LevelResultActivityMasPlus : AppCompatActivity() {
         successInfoLayout = findViewById(R.id.successInfoLayout)
         currentScoreTextView = findViewById(R.id.currentScoreTextView)
         starImageView = findViewById(R.id.starImageView)
+        reviewExerciseTextView = findViewById(R.id.review_exercise_textview)
 
         setupUI()
     }
@@ -87,6 +101,7 @@ class LevelResultActivityMasPlus : AppCompatActivity() {
         rankingChangedTextView.visibility = View.INVISIBLE
         unlockLevelTextView.visibility = View.INVISIBLE
         repeatLevelTextView.visibility = View.INVISIBLE
+        reviewExerciseTextView.visibility = View.GONE
 
         if (isSuccessful) {
             handleSuccessScenario()
@@ -113,11 +128,12 @@ class LevelResultActivityMasPlus : AppCompatActivity() {
             ScoreManager.unlockedLevelsMasPlus = currentLevel + 1
         }
 
+        ScoreManager.resetConsecutiveFailuresMasPlus(currentLevel)
+
         ScoreManager.saveScoreMasPlus()
 
         showSuccessDialog()
     }
-
 
     private fun handleFailureScenario() {
         updateScoreToZero()
@@ -359,8 +375,15 @@ class LevelResultActivityMasPlus : AppCompatActivity() {
         mainMessageTextView.visibility = View.VISIBLE
         rankingChangedTextView.visibility = View.VISIBLE
         unlockLevelTextView.visibility = View.VISIBLE
-        repeatLevelTextView.visibility = View.VISIBLE
 
+
+        val isLevelBlockedAfterThisFail = ScoreManager.getConsecutiveFailuresMasPlus(currentLevel) >= 12
+
+        if (isLevelBlockedAfterThisFail) {
+            repeatLevelTextView.visibility = View.GONE
+        } else {
+            repeatLevelTextView.visibility = View.VISIBLE
+        }
 
         mainMessageTextView.text = if (attempts >= 2) {
             getString(R.string.has_agotado_tus_intentos)
@@ -396,7 +419,26 @@ class LevelResultActivityMasPlus : AppCompatActivity() {
         val fadeIn = AnimationUtils.loadAnimation(this, R.anim.dialog_fade_in)
         rankingChangedTextView.startAnimation(fadeIn)
         unlockLevelTextView.startAnimation(fadeIn)
-        repeatLevelTextView.startAnimation(fadeIn)
+        if (!isLevelBlockedAfterThisFail) {
+            repeatLevelTextView.startAnimation(fadeIn)
+        }
+
+        if (attempts >= 2 && numberList != null && userResponses != null) {
+            reviewExerciseTextView.visibility = View.VISIBLE
+            applyTouchAnimation(reviewExerciseTextView)
+
+            reviewExerciseTextView.setOnClickListener {
+                val reviewIntent = Intent(this, ExerciseReviewActivityMasPlus::class.java)
+                reviewIntent.putExtra("NUMBER_LIST", numberList)
+                reviewIntent.putExtra("CORRECT_ANSWER", correctAnswer)
+                reviewIntent.putExtra("USER_RESPONSES", userResponses)
+                reviewIntent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
+                reviewIntent.putExtra("LEVEL", currentLevel)
+                startActivity(reviewIntent)
+            }
+
+            reviewExerciseTextView.startAnimation(fadeIn)
+        }
     }
 
     private fun applyTouchAnimation(view: View) {

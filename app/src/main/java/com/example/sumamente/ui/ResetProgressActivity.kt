@@ -543,9 +543,14 @@ class ResetProgressActivity : AppCompatActivity() {
                 }
             }
             "MasPlus" -> {
-                val scorePrefs = getSharedPreferences("ScorePrefsMasPlus", Context.MODE_PRIVATE)
-                scorePrefs.edit { clear() }
-                ScoreManager.resetMasPlus()
+                when (difficulty) {
+                    DifficultySelectionActivity.DIFFICULTY_AVANZADO -> {
+                        val scorePrefs = getSharedPreferences("ScorePrefsMasPlus", Context.MODE_PRIVATE)
+                        scorePrefs.edit { clear() }
+                        ScoreManager.resetMasPlus()
+                    }
+
+                }
             }
             "GenioPlus" -> {
                 val scorePrefs = getSharedPreferences("ScorePrefsGenioPlus", Context.MODE_PRIVATE)

@@ -174,6 +174,7 @@ object ScoreManager {
     private const val KEY_CONSECUTIVE_FAILURES_SUMARESTA = "consecutive_failures_sumaresta"
     private const val KEY_CONSECUTIVE_FAILURES_SUMARESTA_PRINCIPIANTE = "consecutive_failures_sumaresta_principiante"
     private const val KEY_CONSECUTIVE_FAILURES_SUMARESTA_PRO = "consecutive_failures_sumaresta_pro"
+    private const val KEY_CONSECUTIVE_FAILURES_MAS_PLUS = "consecutive_failures_mas_plus"
 
     private val consecutiveFailures: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresPrincipiante: MutableMap<Int, Int> = mutableMapOf()
@@ -190,6 +191,7 @@ object ScoreManager {
     private val consecutiveFailuresSumaResta: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresSumaRestaPrincipiante: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresSumaRestaPro: MutableMap<Int, Int> = mutableMapOf()
+    private val consecutiveFailuresMasPlus: MutableMap<Int, Int> = mutableMapOf()
 
     private lateinit var preferences: SharedPreferences
     private lateinit var preferencesPrincipiante: SharedPreferences
@@ -405,6 +407,13 @@ object ScoreManager {
         preferencesMasPlus = context.getSharedPreferences(PREFS_NAME_MAS_PLUS, Context.MODE_PRIVATE)
         currentScoreMasPlus = preferencesMasPlus.getInt(KEY_CURRENT_SCORE_MAS_PLUS, 0)
         unlockedLevelsMasPlus = preferencesMasPlus.getInt(KEY_UNLOCKED_LEVELS_MAS_PLUS, 2)
+
+        for (i in 1..70) {
+            val failures = preferencesMasPlus.getInt("$KEY_CONSECUTIVE_FAILURES_MAS_PLUS:$i", 0)
+            if (failures > 0) {
+                consecutiveFailuresMasPlus[i] = failures
+            }
+        }
     }
 
     fun initGenioPlus(context: Context) {
@@ -1397,6 +1406,30 @@ object ScoreManager {
     fun isLevelBlockedByFailuresSumaRestaPro(level: Int): Boolean {
         if (level == 1) return false
         return getConsecutiveFailuresSumaRestaPro(level) >= 12
+    }
+
+    fun incrementConsecutiveFailuresMasPlus(level: Int) {
+        val currentFailures = consecutiveFailuresMasPlus[level] ?: 0
+        consecutiveFailuresMasPlus[level] = currentFailures + 1
+        preferencesMasPlus.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_MAS_PLUS:$level", consecutiveFailuresMasPlus[level] ?: 0)
+        }
+    }
+
+    fun resetConsecutiveFailuresMasPlus(level: Int) {
+        consecutiveFailuresMasPlus[level] = 0
+        preferencesMasPlus.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_MAS_PLUS:$level", 0)
+        }
+    }
+
+    fun getConsecutiveFailuresMasPlus(level: Int): Int {
+        return consecutiveFailuresMasPlus[level] ?: 0
+    }
+
+    fun isLevelBlockedByFailuresMasPlus(level: Int): Boolean {
+        if (level == 1) return false
+        return getConsecutiveFailuresMasPlus(level) >= 12
     }
 
 }

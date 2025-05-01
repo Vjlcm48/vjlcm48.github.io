@@ -25,6 +25,10 @@ class InstructionsActivityMasPlus : AppCompatActivity() {
 
     private lateinit var sharedPreferences: android.content.SharedPreferences
 
+    private lateinit var tvGameName: TextView
+    private lateinit var tvDifficulty: TextView
+    private lateinit var tvScore: TextView
+
     private val timeLimits = mapOf(
         1 to 19.04, 2 to 18.93, 3 to 18.83, 4 to 18.73, 5 to 18.62, 6 to 18.55, 7 to 18.39,
         8 to 22.90, 9 to 22.68, 10 to 22.45, 11 to 22.65, 12 to 22.43, 13 to 22.20, 14 to 21.93,
@@ -58,6 +62,12 @@ class InstructionsActivityMasPlus : AppCompatActivity() {
         if (responseModeName != null) {
             responseMode = ResponseModeMasPlus.valueOf(responseModeName)
         }
+
+        tvGameName = findViewById(R.id.tv_game_name)
+        tvDifficulty = findViewById(R.id.tv_difficulty)
+        tvScore = findViewById(R.id.tv_score)
+
+        setupInfoBar()
 
         tvLevel.text = getString(R.string.level_title, level)
         tvInstructions.text = getLevelInstructions(level)
@@ -155,6 +165,56 @@ class InstructionsActivityMasPlus : AppCompatActivity() {
         }
     }
 
+    private fun setupInfoBar() {
+        tvGameName.text = getString(R.string.game_mas_plus)
+        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.grey_light))
+
+        val difficultyKey = "difficulty_masplus"
+
+        val difficultyValue = sharedPreferences.getString(
+            difficultyKey,
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO
+        )
+
+        val difficultyText = when(difficultyValue) {
+            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> getString(R.string.difficulty_principiante)
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO -> getString(R.string.difficulty_avanzado)
+            DifficultySelectionActivity.DIFFICULTY_PRO -> getString(R.string.difficulty_pro)
+            else -> getString(R.string.difficulty_avanzado)
+        }
+
+        tvDifficulty.text = difficultyText
+
+        ScoreManager.initMasPlus(this)
+        tvScore.text = getString(R.string.score_format, ScoreManager.currentScoreMasPlus)
+
+        tvDifficulty.setOnClickListener {
+            val scaleDownX = ObjectAnimator.ofFloat(it, "scaleX", 1f, 0.9f).setDuration(50)
+            val scaleDownY = ObjectAnimator.ofFloat(it, "scaleY", 1f, 0.9f).setDuration(50)
+            val scaleUpX = ObjectAnimator.ofFloat(it, "scaleX", 0.9f, 1f).setDuration(50)
+            val scaleUpY = ObjectAnimator.ofFloat(it, "scaleY", 0.9f, 1f).setDuration(50)
+            val clickAnimatorSet = AnimatorSet()
+            clickAnimatorSet.playSequentially(scaleDownX, scaleDownY, scaleUpX, scaleUpY)
+            clickAnimatorSet.start()
+
+            clickAnimatorSet.addListener(object : Animator.AnimatorListener {
+                override fun onAnimationStart(animation: Animator) {}
+                override fun onAnimationEnd(animation: Animator) {
+                    val intent = DifficultySelectionActivity.createIntent(
+                        this@InstructionsActivityMasPlus,
+                        "MasPlus",
+                        true,
+                        level,
+                        responseMode?.name
+                    )
+                    startActivity(intent)
+                }
+                override fun onAnimationCancel(animation: Animator) {}
+                override fun onAnimationRepeat(animation: Animator) {}
+            })
+        }
+    }
+
     private fun getLevelInstructions(level: Int): String {
         return when (level) {
             in 1..10 -> getString(R.string.general_instructions)
@@ -239,4 +299,6 @@ class InstructionsActivityMasPlus : AppCompatActivity() {
 
         return spannable
     }
+
+
 }

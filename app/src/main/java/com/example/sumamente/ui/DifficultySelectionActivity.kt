@@ -222,7 +222,7 @@ class DifficultySelectionActivity : AppCompatActivity() {
                 Intent(this, LevelsActivitySumaRestaPro::class.java)
             }
 
-            gameType == "MasPlus" -> {
+            gameType == "MasPlus" && difficulty == DIFFICULTY_AVANZADO -> {
                 if (fromInstructions) {
                     Intent(this, InstructionsActivityMasPlus::class.java).apply {
                         putExtra("LEVEL", level)
