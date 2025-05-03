@@ -103,7 +103,12 @@ class DifficultySelectionActivity : AppCompatActivity() {
                 btnPro.isEnabled = true
                 btnPro.alpha = 1.0f
             }
-
+            "MasPlus" -> {
+                btnPrincipiante.isEnabled = true
+                btnPrincipiante.alpha = 1.0f
+                btnPro.isEnabled = false
+                btnPro.alpha = 0.5f
+            }
             else -> {
                 btnPrincipiante.isEnabled = false
                 btnPrincipiante.alpha = 0.5f
@@ -223,14 +228,13 @@ class DifficultySelectionActivity : AppCompatActivity() {
             }
 
             gameType == "MasPlus" && difficulty == DIFFICULTY_AVANZADO -> {
-                if (fromInstructions) {
-                    Intent(this, InstructionsActivityMasPlus::class.java).apply {
-                        putExtra("LEVEL", level)
-                        if (responseMode != null) putExtra("RESPONSE_MODE", responseMode)
-                    }
-                } else {
-                    Intent(this, LevelsActivityMasPlus::class.java)
-                }
+                Intent(this, LevelsActivityMasPlus::class.java)
+            }
+            gameType == "MasPlus" && difficulty == DIFFICULTY_PRINCIPIANTE -> {
+                Intent(this, LevelsActivityMasPlusPrincipiante::class.java)
+            }
+            gameType == "MasPlus" && difficulty == DIFFICULTY_PRO -> {
+                Intent(this, LevelsActivityMasPlus::class.java)
             }
 
             gameType == "GenioPlus" -> {
@@ -273,7 +277,7 @@ class DifficultySelectionActivity : AppCompatActivity() {
                 when (difficulty) {
                     DIFFICULTY_PRINCIPIANTE -> ScoreManager.saveScoreRomasPrincipiante()
                     DIFFICULTY_AVANZADO -> ScoreManager.saveScoreRomas()
-                    DIFFICULTY_PRO -> ScoreManager.saveScoreRomas()
+                    DIFFICULTY_PRO -> ScoreManager.saveScoreRomasPro()
                 }
             }
             "AlfaNumeros" -> {
@@ -290,8 +294,13 @@ class DifficultySelectionActivity : AppCompatActivity() {
                     DIFFICULTY_PRO -> ScoreManager.saveScoreSumaRestaPro()
                 }
             }
-
-            "MasPlus" -> ScoreManager.saveScoreMasPlus()
+            "MasPlus" -> {
+                when (difficulty) {
+                    DIFFICULTY_PRINCIPIANTE -> ScoreManager.saveScoreMasPlusPrincipiante()
+                    DIFFICULTY_AVANZADO -> ScoreManager.saveScoreMasPlus()
+                    DIFFICULTY_PRO -> ScoreManager.saveScoreMasPlus()
+                }
+            }
             "GenioPlus" -> ScoreManager.saveScoreGenioPlus()
         }
     }

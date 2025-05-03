@@ -37,7 +37,7 @@ import java.util.Locale
 import kotlin.math.abs
 import kotlin.random.Random
 
-class GameActivityMasPlus : AppCompatActivity() {
+class GameActivityMasPlusPrincipiante : AppCompatActivity() {
 
     private lateinit var backArrow: ImageView
     private lateinit var levelTitle: TextView
@@ -63,7 +63,7 @@ class GameActivityMasPlus : AppCompatActivity() {
 
     private var currentLevel = 1
 
-    private val elementsList = mutableListOf<MASPlusElement>()
+    private val elementsList = mutableListOf<MASPlusElementPrincipiante>()
     private var correctAnswer = 0
     private var timePerElementList = mutableListOf<Long>()
 
@@ -79,19 +79,20 @@ class GameActivityMasPlus : AppCompatActivity() {
     private var soundPlayed = false
     private var timeSpentInSeconds: Double = 0.0
     private lateinit var sharedPreferences: SharedPreferences
+    private var userResponses = mutableListOf<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsMasPlus", Context.MODE_PRIVATE)
         setContentView(R.layout.activity_game_mas_plus)
 
-        ScoreManager.initMasPlus(this)
+        ScoreManager.initMasPlusPrincipiante(this)
 
         val prefs = getSharedPreferences("MyPrefsMasPlus", Context.MODE_PRIVATE)
-        val responseMode = prefs.getString("selectedResponseModeMasPlus", intent.getStringExtra("RESPONSE_MODE_MASPLUS"))
+        val responseMode = prefs.getString("selectedResponseModeMasPlusPrincipiante", intent.getStringExtra("RESPONSE_MODE_MASPLUS"))
 
         if (responseMode != null) {
-            useManualAnswer = responseMode == ResponseMode.TYPE_ANSWER.name
+            useManualAnswer = responseMode == ResponseModeMasPlusPrincipiante.TYPE_ANSWER.name
             if (!useManualAnswer) {
                 window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
             }
@@ -122,7 +123,7 @@ class GameActivityMasPlus : AppCompatActivity() {
         chronometerTextView.typeface = Typeface.MONOSPACE
         currentLevel = intent.getIntExtra("LEVEL", 1)
         levelTitle.text = getString(R.string.level_title, currentLevel)
-        scoreTextView.text = getString(R.string.score_label, ScoreManager.currentScoreMasPlus)
+        scoreTextView.text = getString(R.string.score_label, ScoreManager.currentScoreMasPlusPrincipiante)
 
         chronometerTextView.typeface = Typeface.MONOSPACE
 
@@ -239,10 +240,10 @@ class GameActivityMasPlus : AppCompatActivity() {
 
     private fun generateElementsForLevel(level: Int) {
         elementsList.clear()
-        generateMASPlusElements(level)
+        generateMASPlusElementsPrincipiante(level)
     }
 
-    private fun generateMASPlusElements(level: Int) {
+    private fun generateMASPlusElementsPrincipiante(level: Int) {
 
         val totalElements: Int
         val intRange: IntRange
@@ -252,7 +253,7 @@ class GameActivityMasPlus : AppCompatActivity() {
         val decimalCount: Int
         var decimalRange = 0.1..0.1
         val combinationCount: Int
-        val combinationTypes = mutableListOf<CombinationType>()
+        val combinationTypes = mutableListOf<CombinationTypePrincipiante>()
         val negativeCount: Int
 
         when (level) {
@@ -293,8 +294,8 @@ class GameActivityMasPlus : AppCompatActivity() {
                 decimalCount = 2
                 decimalRange = 0.1..0.4
                 combinationCount = 2
-                combinationTypes.add(CombinationType.RomanNumber)
-                combinationTypes.add(CombinationType.RomanRoman)
+                combinationTypes.add(CombinationTypePrincipiante.RomanNumber)
+                combinationTypes.add(CombinationTypePrincipiante.RomanRoman)
                 negativeCount = 1
             }
             in 29..35 -> {
@@ -306,8 +307,8 @@ class GameActivityMasPlus : AppCompatActivity() {
                 decimalCount = 2
                 decimalRange = 0.1..0.5
                 combinationCount = 2
-                combinationTypes.add(CombinationType.LetterNumber)
-                combinationTypes.add(CombinationType.LetterLetter)
+                combinationTypes.add(CombinationTypePrincipiante.LetterNumber)
+                combinationTypes.add(CombinationTypePrincipiante.LetterLetter)
                 negativeCount = 2
             }
             in 36..42 -> {
@@ -319,7 +320,7 @@ class GameActivityMasPlus : AppCompatActivity() {
                 decimalCount = 2
                 decimalRange = 0.1..0.6
                 combinationCount = 2
-                combinationTypes.add(CombinationType.NumberDecimal)
+                combinationTypes.add(CombinationTypePrincipiante.NumberDecimal)
                 negativeCount = 2
             }
             in 43..49 -> {
@@ -331,7 +332,7 @@ class GameActivityMasPlus : AppCompatActivity() {
                 decimalCount = 2
                 decimalRange = 0.1..0.7
                 combinationCount = 2
-                combinationTypes.add(CombinationType.LetterDecimal)
+                combinationTypes.add(CombinationTypePrincipiante.LetterDecimal)
                 negativeCount = 3
             }
             in 50..56 -> {
@@ -343,7 +344,7 @@ class GameActivityMasPlus : AppCompatActivity() {
                 decimalCount = 3
                 decimalRange = 0.1..0.8
                 combinationCount = 2
-                combinationTypes.add(CombinationType.RomanLetter)
+                combinationTypes.add(CombinationTypePrincipiante.RomanLetter)
                 negativeCount = 2
             }
             in 57..63 -> {
@@ -355,7 +356,7 @@ class GameActivityMasPlus : AppCompatActivity() {
                 decimalCount = 2
                 decimalRange = 0.1..0.9
                 combinationCount = 2
-                combinationTypes.add(CombinationType.RomanDecimal)
+                combinationTypes.add(CombinationTypePrincipiante.RomanDecimal)
                 negativeCount = 3
             }
             else -> {
@@ -367,38 +368,38 @@ class GameActivityMasPlus : AppCompatActivity() {
                 decimalCount = 3
                 decimalRange = 0.1..0.9
                 combinationCount = 2
-                combinationTypes.add(CombinationType.RomanLetter)
-                combinationTypes.add(CombinationType.RomanNumber)
+                combinationTypes.add(CombinationTypePrincipiante.RomanLetter)
+                combinationTypes.add(CombinationTypePrincipiante.RomanNumber)
                 negativeCount = 3
             }
         }
 
-        val generatedElements = mutableListOf<MASPlusElement>()
+        val generatedElements = mutableListOf<MASPlusElementPrincipiante>()
 
         repeat(romanCount) {
             val randomInt = Random.nextInt(intRange.first, intRange.last + 1)
             val roman = convertToRoman(randomInt)
-            generatedElements.add(MASPlusElement(roman, isNegative = false))
+            generatedElements.add(MASPlusElementPrincipiante(roman, isNegative = false))
         }
 
         if (letterPool.isNotEmpty()) {
             repeat(letterCount) {
                 val letter = letterPool.random()
-                generatedElements.add(MASPlusElement(letter.toString(), isNegative = false))
+                generatedElements.add(MASPlusElementPrincipiante(letter.toString(), isNegative = false))
             }
         }
 
         repeat(decimalCount) {
             val decimalValue = generateRandomDecimal(decimalRange.start, decimalRange.endInclusive)
             val formattedDecimal = String.format(Locale.getDefault(), "%.1f", decimalValue)
-            generatedElements.add(MASPlusElement(formattedDecimal, isNegative = false))
+            generatedElements.add(MASPlusElementPrincipiante(formattedDecimal, isNegative = false))
         }
 
         val usedUpSoFar = romanCount + letterCount + decimalCount
         val neededBeforeCombos = totalElements - combinationCount - usedUpSoFar
         for (i in 1..neededBeforeCombos) {
             val randomInt = Random.nextInt(intRange.first, intRange.last + 1)
-            generatedElements.add(MASPlusElement(randomInt.toString()))
+            generatedElements.add(MASPlusElementPrincipiante(randomInt.toString()))
         }
 
         val combinationElements = generateCombinations(
@@ -438,7 +439,7 @@ class GameActivityMasPlus : AppCompatActivity() {
         elementsList.addAll(generatedElements)
     }
 
-    private fun ensureNoConsecutiveDuplicates(list: MutableList<MASPlusElement>) {
+    private fun ensureNoConsecutiveDuplicates(list: MutableList<MASPlusElementPrincipiante>) {
         var index = 0
         while (index < list.size - 2) {
             val currentVal = list[index].value
@@ -459,7 +460,8 @@ class GameActivityMasPlus : AppCompatActivity() {
     private fun calculateTimePerElement() {
         timePerElementList.clear()
         val level = currentLevel
-        var baseTime = 1.80
+        // Tiempo base para el primer elemento: 1.90 segundos (según instrucciones)
+        var baseTime = 1.90
 
         val blockNumber = (level - 1) / 5
         baseTime -= blockNumber * 0.05
@@ -579,9 +581,10 @@ class GameActivityMasPlus : AppCompatActivity() {
 
         startHeartbeatAnimation()
 
-        chronometerTimer = object : CountDownTimer(7000, 75) {
+        // 10 segundos para el cronómetro (según instrucciones)
+        chronometerTimer = object : CountDownTimer(10000, 75) {
             override fun onTick(millisUntilFinished: Long) {
-                val elapsedMillis = 7000 - millisUntilFinished
+                val elapsedMillis = 10000 - millisUntilFinished
                 val elapsedSeconds = elapsedMillis / 1000.0
                 val formattedTime = String.format(Locale.getDefault(), "%04.2f", elapsedSeconds)
                 val spannableString = SpannableString(formattedTime)
@@ -595,10 +598,11 @@ class GameActivityMasPlus : AppCompatActivity() {
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
 
+                // Ajustando colores para 10 segundos: verde hasta 5s, naranja hasta 8s, rojo después
                 val textColor = when {
-                    elapsedSeconds < 3.0 -> ContextCompat.getColor(this@GameActivityMasPlus, R.color.green_medium)
-                    elapsedSeconds < 5.0 -> ContextCompat.getColor(this@GameActivityMasPlus, R.color.orange_dark)
-                    else -> ContextCompat.getColor(this@GameActivityMasPlus, R.color.red)
+                    elapsedSeconds < 5.0 -> ContextCompat.getColor(this@GameActivityMasPlusPrincipiante, R.color.green_medium)
+                    elapsedSeconds < 8.0 -> ContextCompat.getColor(this@GameActivityMasPlusPrincipiante, R.color.orange_dark)
+                    else -> ContextCompat.getColor(this@GameActivityMasPlusPrincipiante, R.color.red)
                 }
 
                 spannableString.setSpan(
@@ -610,14 +614,14 @@ class GameActivityMasPlus : AppCompatActivity() {
 
                 chronometerTextView.text = spannableString
 
-                if (elapsedSeconds >= 5.0 && !soundPlayed) {
+                if (elapsedSeconds >= 8.0 && !soundPlayed) {
                     soundPlayed = true
                     playAlertSound()
                 }
             }
 
             override fun onFinish() {
-                val finalTime = "7.00"
+                val finalTime = "10.00"
                 val spannableString = SpannableString(finalTime)
                 spannableString.setSpan(
                     RelativeSizeSpan(0.75f),
@@ -626,7 +630,7 @@ class GameActivityMasPlus : AppCompatActivity() {
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
                 spannableString.setSpan(
-                    ForegroundColorSpan(ContextCompat.getColor(this@GameActivityMasPlus, R.color.red)),
+                    ForegroundColorSpan(ContextCompat.getColor(this@GameActivityMasPlusPrincipiante, R.color.red)),
                     0,
                     finalTime.length,
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -718,6 +722,7 @@ class GameActivityMasPlus : AppCompatActivity() {
 
     private fun checkManualAnswer(userAnswer: Int) {
         val isCorrect = userAnswer == correctAnswer
+        userResponses.add(userAnswer)
         if (isCorrect) {
             answerTimer?.cancel()
             chronometerTimer?.cancel()
@@ -739,7 +744,7 @@ class GameActivityMasPlus : AppCompatActivity() {
 
             if (attempts >= 2) {
 
-                ScoreManager.incrementConsecutiveFailuresMasPlus(currentLevel)
+                ScoreManager.incrementConsecutiveFailuresMasPlusPrincipiante(currentLevel)
 
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
@@ -776,8 +781,8 @@ class GameActivityMasPlus : AppCompatActivity() {
         )
 
         val textColor = when {
-            timeSpentInSeconds < 3.0 -> ContextCompat.getColor(this, R.color.green_medium)
-            timeSpentInSeconds < 5.0 -> ContextCompat.getColor(this, R.color.orange_dark)
+            timeSpentInSeconds < 5.0 -> ContextCompat.getColor(this, R.color.green_medium)
+            timeSpentInSeconds < 8.0 -> ContextCompat.getColor(this, R.color.orange_dark)
             else -> ContextCompat.getColor(this, R.color.red)
         }
 
@@ -844,7 +849,7 @@ class GameActivityMasPlus : AppCompatActivity() {
     private fun startAnswerTimer() {
         startTime = System.currentTimeMillis()
         answerTimer?.cancel()
-        answerTimer = object : CountDownTimer(7000, 75) {
+        answerTimer = object : CountDownTimer(10000, 75) {
             override fun onTick(millisUntilFinished: Long) {}
             override fun onFinish() {
                 navigateToLevelResult(false)
@@ -856,6 +861,7 @@ class GameActivityMasPlus : AppCompatActivity() {
         selectedButton.clearFocus()
         val selectedAnswer = selectedButton.text.toString().toInt()
         val isCorrect = selectedAnswer == correctAnswer
+        userResponses.add(selectedAnswer)
 
         if (isCorrect) {
             answerTimer?.cancel()
@@ -879,7 +885,7 @@ class GameActivityMasPlus : AppCompatActivity() {
             attempts++
             if (attempts >= 2) {
 
-                ScoreManager.incrementConsecutiveFailuresMasPlus(currentLevel)
+                ScoreManager.incrementConsecutiveFailuresMasPlusPrincipiante(currentLevel)
 
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
@@ -901,25 +907,21 @@ class GameActivityMasPlus : AppCompatActivity() {
     }
 
     private fun navigateToLevelResult(isSuccessful: Boolean) {
-        val intent = Intent(this, LevelResultActivityMasPlus::class.java)
+        val intent = Intent(this, LevelResultActivityMasPlusPrincipiante::class.java)
         intent.putExtra("LEVEL", currentLevel)
         intent.putExtra("IS_SUCCESSFUL", isSuccessful)
         intent.putExtra("ATTEMPTS", attempts)
         intent.putExtra("TIME_SPENT", timeSpentInSeconds)
 
         if (isSuccessful) {
-            ScoreManager.resetConsecutiveFailuresMasPlus(currentLevel)
+            ScoreManager.resetConsecutiveFailuresMasPlusPrincipiante(currentLevel)
         }
         else if (attempts >= 2) {
-            ScoreManager.incrementConsecutiveFailuresMasPlus(currentLevel)
+            ScoreManager.incrementConsecutiveFailuresMasPlusPrincipiante(currentLevel)
             intent.putExtra("NUMBER_LIST", elementsList.map { it.value }.toTypedArray())
             intent.putExtra("CORRECT_ANSWER", correctAnswer)
             intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
-            intent.putExtra("USER_RESPONSES", mutableListOf<Int>().apply {
-                if (manualAnswerEditText.text.toString().isNotEmpty()) {
-                    add(manualAnswerEditText.text.toString().toIntOrNull() ?: 0)
-                }
-            }.toIntArray())
+            intent.putExtra("USER_RESPONSES", userResponses.toIntArray())
         }
 
         startActivity(intent)
@@ -946,28 +948,28 @@ class GameActivityMasPlus : AppCompatActivity() {
 
     private fun generateCombinations(
         count: Int,
-        comboTypes: List<CombinationType>,
+        comboTypes: List<CombinationTypePrincipiante>,
         intRange: IntRange,
         letterPool: List<Char>
-    ): List<MASPlusElement> {
+    ): List<MASPlusElementPrincipiante> {
         if (count <= 0) return emptyList()
-        val combos = mutableListOf<MASPlusElement>()
+        val combos = mutableListOf<MASPlusElementPrincipiante>()
 
         repeat(count) {
             val comboType = comboTypes.random()
             val comboString = when (comboType) {
-                CombinationType.RomanNumber -> {
+                CombinationTypePrincipiante.RomanNumber -> {
                     val randomRomanInt = Random.nextInt(intRange.first, intRange.last + 1)
                     val roman = convertToRoman(randomRomanInt)
                     val randomInt = Random.nextInt(intRange.first, intRange.last + 1)
                     "($roman + $randomInt)"
                 }
-                CombinationType.RomanRoman -> {
+                CombinationTypePrincipiante.RomanRoman -> {
                     val rand1 = convertToRoman(Random.nextInt(intRange.first, intRange.last + 1))
                     val rand2 = convertToRoman(Random.nextInt(intRange.first, intRange.last + 1))
                     "($rand1 + $rand2)"
                 }
-                CombinationType.LetterNumber -> {
+                CombinationTypePrincipiante.LetterNumber -> {
                     if (letterPool.isEmpty()) {
                         "(A + 1)"
                     } else {
@@ -976,7 +978,7 @@ class GameActivityMasPlus : AppCompatActivity() {
                         "($randomLetter + $randomInt)"
                     }
                 }
-                CombinationType.LetterLetter -> {
+                CombinationTypePrincipiante.LetterLetter -> {
                     if (letterPool.size < 2) {
                         "(A + B)"
                     } else {
@@ -985,31 +987,31 @@ class GameActivityMasPlus : AppCompatActivity() {
                         "($l1 + $l2)"
                     }
                 }
-                CombinationType.NumberDecimal -> {
+                CombinationTypePrincipiante.NumberDecimal -> {
                     val randomInt = Random.nextInt(intRange.first, intRange.last + 1)
                     val randDecimal = generateRandomDecimal(0.1, 0.9)
                     val formatted = String.format(Locale.getDefault(), "%.1f", randDecimal)
                     "($randomInt + $formatted)"
                 }
-                CombinationType.LetterDecimal -> {
+                CombinationTypePrincipiante.LetterDecimal -> {
                     val randomLetter = if (letterPool.isEmpty()) 'A' else letterPool.random()
                     val randDecimal = generateRandomDecimal(0.1, 0.9)
                     val formatted = String.format(Locale.getDefault(), "%.1f", randDecimal)
                     "($randomLetter + $formatted)"
                 }
-                CombinationType.RomanLetter -> {
+                CombinationTypePrincipiante.RomanLetter -> {
                     val roman = convertToRoman(Random.nextInt(intRange.first, intRange.last + 1))
                     val randomLetter = if (letterPool.isEmpty()) 'A' else letterPool.random()
                     "($roman + $randomLetter)"
                 }
-                CombinationType.RomanDecimal -> {
+                CombinationTypePrincipiante.RomanDecimal -> {
                     val roman = convertToRoman(Random.nextInt(intRange.first, intRange.last + 1))
                     val randDecimal = generateRandomDecimal(0.1, 0.9)
                     val formatted = String.format(Locale.getDefault(), "%.1f", randDecimal)
                     "($roman + $formatted)"
                 }
             }
-            combos.add(MASPlusElement(comboString))
+            combos.add(MASPlusElementPrincipiante(comboString))
         }
         return combos
     }
@@ -1044,7 +1046,7 @@ class GameActivityMasPlus : AppCompatActivity() {
         return if (number < 0) "-$result" else result.toString()
     }
 
-    private fun calculateSum(list: List<MASPlusElement>): Int {
+    private fun calculateSum(list: List<MASPlusElementPrincipiante>): Int {
         var total = 0.0
         for (elem in list) {
             val sign = if (elem.isNegative) -1 else 1
@@ -1116,12 +1118,12 @@ class GameActivityMasPlus : AppCompatActivity() {
     }
 }
 
-data class MASPlusElement(
+data class MASPlusElementPrincipiante(
     val value: String,
     val isNegative: Boolean = false
 )
 
-enum class CombinationType {
+enum class CombinationTypePrincipiante {
     RomanNumber,
     RomanRoman,
     LetterNumber,
@@ -1131,4 +1133,3 @@ enum class CombinationType {
     RomanLetter,
     RomanDecimal
 }
-

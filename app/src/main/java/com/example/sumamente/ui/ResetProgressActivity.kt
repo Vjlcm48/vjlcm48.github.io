@@ -52,6 +52,7 @@ class ResetProgressActivity : AppCompatActivity() {
         ScoreManager.initSumaRestaPrincipiante(this)
         ScoreManager.initSumaRestaPro(this)
         ScoreManager.initMasPlus(this)
+        ScoreManager.initMasPlusPrincipiante(this)
         ScoreManager.initGenioPlus(this)
 
         setContentView(R.layout.activity_reset_progress)
@@ -175,13 +176,18 @@ class ResetProgressActivity : AppCompatActivity() {
         btnAvanzado.isEnabled = true
 
         when (selectedGame) {
-            "NumerosPlus", "DeciPlus", "Romas", "AlfaNumeros", "SumaResta" -> {
+            "NumerosPlus", "DeciPlus", "Romas", "AlfaNumeros", "Sumaresta" -> {
                 btnPrincipiante.isEnabled = true
                 btnPrincipiante.alpha = 1.0f
                 btnPro.isEnabled = true
                 btnPro.alpha = 1.0f
             }
-
+            "MasPlus" -> {
+                btnPrincipiante.isEnabled = true
+                btnPrincipiante.alpha = 1.0f
+                btnPro.isEnabled = false
+                btnPro.alpha = 0.5f
+            }
             else -> {
                 btnPrincipiante.isEnabled = false
                 btnPrincipiante.alpha = 0.5f
@@ -189,7 +195,6 @@ class ResetProgressActivity : AppCompatActivity() {
                 btnPro.alpha = 0.5f
             }
         }
-
 
         val alertDialog = AlertDialog.Builder(this)
             .setView(dialogView)
@@ -419,6 +424,7 @@ class ResetProgressActivity : AppCompatActivity() {
         ScoreManager.initSumaRestaPrincipiante(this)
         ScoreManager.initSumaRestaPro(this)
         ScoreManager.initMasPlus(this)
+        ScoreManager.initMasPlusPrincipiante(this)
         ScoreManager.initGenioPlus(this)
 
         Toast.makeText(this, "Datos reiniciados correctamente", Toast.LENGTH_SHORT).show()
@@ -544,12 +550,16 @@ class ResetProgressActivity : AppCompatActivity() {
             }
             "MasPlus" -> {
                 when (difficulty) {
-                    DifficultySelectionActivity.DIFFICULTY_AVANZADO -> {
+                    DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> {
+                        val scorePrefs = getSharedPreferences("ScorePrefsMasPlusPrincipiante", Context.MODE_PRIVATE)
+                        scorePrefs.edit { clear() }
+                        ScoreManager.resetMasPlusPrincipiante()
+                    }
+                    else -> {
                         val scorePrefs = getSharedPreferences("ScorePrefsMasPlus", Context.MODE_PRIVATE)
                         scorePrefs.edit { clear() }
                         ScoreManager.resetMasPlus()
                     }
-
                 }
             }
             "GenioPlus" -> {
@@ -730,7 +740,14 @@ class ResetProgressActivity : AppCompatActivity() {
             }
             "MasPlus" -> {
                 val myPrefs = getSharedPreferences("MyPrefsMasPlus", Context.MODE_PRIVATE)
-                myPrefs.edit { remove("selectedResponseModeMasPlus") }
+                when (difficulty) {
+                    DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> {
+                        myPrefs.edit { remove("selectedResponseModeMasPlusPrincipiante") }
+                    }
+                    else -> {
+                        myPrefs.edit { remove("selectedResponseModeMasPlus") }
+                    }
+                }
             }
             "GenioPlus" -> {
                 val myPrefs = getSharedPreferences("MyPrefsGenioPlus", Context.MODE_PRIVATE)
