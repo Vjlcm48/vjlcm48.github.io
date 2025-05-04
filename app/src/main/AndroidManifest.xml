@@ -94,6 +94,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.LevelsActivityMasPlusPro"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.LevelsActivityGenioPlus"
             android:exported="false" />
 
@@ -222,6 +226,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.InstructionsActivityMasPlusPro"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.InstructionsActivityGenioPlus"
             android:exported="false" />
 
@@ -291,6 +299,10 @@
 
         <activity
             android:name=".ui.GameActivityMasPlusPrincipiante"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.GameActivityMasPlusPro"
             android:exported="false" />
 
         <activity
@@ -429,7 +441,6 @@
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
-
         <activity
             android:name=".ui.LevelResultActivityAlfaNumeros"
             android:exported="false"
@@ -477,6 +488,11 @@
 
         <activity
             android:name=".ui.LevelResultActivityMasPlusPrincipiante"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.LevelResultActivityMasPlusPro"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 

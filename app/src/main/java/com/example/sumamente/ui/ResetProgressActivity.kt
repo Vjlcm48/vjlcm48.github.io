@@ -53,6 +53,7 @@ class ResetProgressActivity : AppCompatActivity() {
         ScoreManager.initSumaRestaPro(this)
         ScoreManager.initMasPlus(this)
         ScoreManager.initMasPlusPrincipiante(this)
+        ScoreManager.initMasPlusPro(this)
         ScoreManager.initGenioPlus(this)
 
         setContentView(R.layout.activity_reset_progress)
@@ -176,17 +177,11 @@ class ResetProgressActivity : AppCompatActivity() {
         btnAvanzado.isEnabled = true
 
         when (selectedGame) {
-            "NumerosPlus", "DeciPlus", "Romas", "AlfaNumeros", "Sumaresta" -> {
+            "NumerosPlus", "DeciPlus", "Romas", "AlfaNumeros", "Sumaresta", "MasPlus" -> {
                 btnPrincipiante.isEnabled = true
                 btnPrincipiante.alpha = 1.0f
                 btnPro.isEnabled = true
                 btnPro.alpha = 1.0f
-            }
-            "MasPlus" -> {
-                btnPrincipiante.isEnabled = true
-                btnPrincipiante.alpha = 1.0f
-                btnPro.isEnabled = false
-                btnPro.alpha = 0.5f
             }
             else -> {
                 btnPrincipiante.isEnabled = false
@@ -195,6 +190,7 @@ class ResetProgressActivity : AppCompatActivity() {
                 btnPro.alpha = 0.5f
             }
         }
+
 
         val alertDialog = AlertDialog.Builder(this)
             .setView(dialogView)
@@ -425,6 +421,7 @@ class ResetProgressActivity : AppCompatActivity() {
         ScoreManager.initSumaRestaPro(this)
         ScoreManager.initMasPlus(this)
         ScoreManager.initMasPlusPrincipiante(this)
+        ScoreManager.initMasPlusPro(this)
         ScoreManager.initGenioPlus(this)
 
         Toast.makeText(this, "Datos reiniciados correctamente", Toast.LENGTH_SHORT).show()
@@ -555,10 +552,15 @@ class ResetProgressActivity : AppCompatActivity() {
                         scorePrefs.edit { clear() }
                         ScoreManager.resetMasPlusPrincipiante()
                     }
-                    else -> {
+                    DifficultySelectionActivity.DIFFICULTY_AVANZADO -> {
                         val scorePrefs = getSharedPreferences("ScorePrefsMasPlus", Context.MODE_PRIVATE)
                         scorePrefs.edit { clear() }
                         ScoreManager.resetMasPlus()
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_PRO -> {
+                        val scorePrefs = getSharedPreferences("ScorePrefsMasPlusPro", Context.MODE_PRIVATE)
+                        scorePrefs.edit { clear() }
+                        ScoreManager.resetMasPlusPro()
                     }
                 }
             }
@@ -740,12 +742,32 @@ class ResetProgressActivity : AppCompatActivity() {
             }
             "MasPlus" -> {
                 val myPrefs = getSharedPreferences("MyPrefsMasPlus", Context.MODE_PRIVATE)
+                val hasSeenTutorial = myPrefs.getBoolean("hasSeenInstructionsMasPlus", false)
+
                 when (difficulty) {
                     DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> {
-                        myPrefs.edit { remove("selectedResponseModeMasPlusPrincipiante") }
+                        myPrefs.edit {
+                            remove("selectedResponseModeMasPlusPrincipiante")
+                            putString(getDifficultyKey(selectedGame!!),
+                                DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE)
+                            putBoolean("hasSeenInstructionsMasPlus", hasSeenTutorial)
+                        }
                     }
-                    else -> {
-                        myPrefs.edit { remove("selectedResponseModeMasPlus") }
+                    DifficultySelectionActivity.DIFFICULTY_AVANZADO -> {
+                        myPrefs.edit {
+                            remove("selectedResponseModeMasPlus")
+                            putString(getDifficultyKey(selectedGame!!),
+                                DifficultySelectionActivity.DIFFICULTY_AVANZADO)
+                            putBoolean("hasSeenInstructionsMasPlus", hasSeenTutorial)
+                        }
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_PRO -> {
+                        myPrefs.edit {
+                            remove("selectedResponseModeMasPlusPro")
+                            putString(getDifficultyKey(selectedGame!!),
+                                DifficultySelectionActivity.DIFFICULTY_PRO)
+                            putBoolean("hasSeenInstructionsMasPlus", hasSeenTutorial)
+                        }
                     }
                 }
             }
