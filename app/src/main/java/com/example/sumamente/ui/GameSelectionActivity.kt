@@ -433,14 +433,12 @@ class GameSelectionActivity : AppCompatActivity() {
         }
     }
 
-
     private fun updateSumaRestaButton(button: RelativeLayout, score: Int, principianteScore: Int, proScore: Int) {
-
         val pointsTextView = button.findViewById<TextView>(R.id.tv_points_sumaresta)
         val starIcon = button.findViewById<ImageView>(R.id.icon_star_sumaresta)
         val totalScore = score + principianteScore + proScore
 
-        if (score > 0) {
+        if (totalScore > 0) {
             pointsTextView.text = getString(R.string.score_format, totalScore)
             pointsTextView.visibility = View.VISIBLE
             starIcon.visibility = View.VISIBLE
