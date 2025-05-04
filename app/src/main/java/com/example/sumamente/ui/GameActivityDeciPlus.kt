@@ -799,7 +799,6 @@ class GameActivityDeciPlus : AppCompatActivity() {
         builder.create().show()
     }
 
-
     private fun navigateToLevelResult(isSuccessful: Boolean) {
         val intent = Intent(this, LevelResultActivityDeciPlus::class.java)
         intent.putExtra("LEVEL", currentLevel)

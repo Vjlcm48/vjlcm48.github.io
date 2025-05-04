@@ -710,7 +710,8 @@ class TutorialActivityGenioPlus : AppCompatActivity() {
         stopBackgroundMusic()
         val prefs = getSharedPreferences("MyPrefsGenioPlus", Context.MODE_PRIVATE)
         prefs.edit { putBoolean("hasSeenInstructionsGenioPlus", true) }
-        val intent = Intent(this, LevelsActivityGenioPlus::class.java)
+
+        val intent = DifficultySelectionActivity.createIntent(this, "GenioPlus")
         startActivity(intent)
         finish()
     }

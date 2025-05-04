@@ -26,6 +26,10 @@ class InstructionsActivityGenioPlus : AppCompatActivity() {
 
     private lateinit var sharedPreferences: android.content.SharedPreferences
 
+    private lateinit var tvGameName: TextView
+    private lateinit var tvDifficulty: TextView
+    private lateinit var tvScore: TextView
+
     private val timeLimits = mapOf(
         1 to 20.00, 2 to 19.90, 3 to 19.80, 4 to 19.70, 5 to 19.60, 6 to 19.50, 7 to 19.40,
         8 to 23.00, 9 to 22.80, 10 to 22.60, 11 to 22.90, 12 to 22.70, 13 to 22.50, 14 to 22.30,
@@ -59,6 +63,12 @@ class InstructionsActivityGenioPlus : AppCompatActivity() {
         if (responseModeName != null) {
             responseMode = ResponseModeGenioPlus.valueOf(responseModeName)
         }
+
+        tvGameName = findViewById(R.id.tv_game_name)
+        tvDifficulty = findViewById(R.id.tv_difficulty)
+        tvScore = findViewById(R.id.tv_score)
+
+        setupInfoBar()
 
         tvLevel.text = getString(R.string.level_title, level)
         tvInstructions.text = getLevelInstructions(level)
@@ -191,6 +201,56 @@ class InstructionsActivityGenioPlus : AppCompatActivity() {
             })
         }
     }
+
+    private fun setupInfoBar() {
+        tvGameName.text = getString(R.string.game_genio_plus)
+        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.blue_primary_darker))
+
+        val difficultyKey = "difficulty_genioplus"
+        val difficultyValue = sharedPreferences.getString(
+            difficultyKey,
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO
+        )
+
+        val difficultyText = when (difficultyValue) {
+            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> getString(R.string.difficulty_principiante)
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO -> getString(R.string.difficulty_avanzado)
+            DifficultySelectionActivity.DIFFICULTY_PRO -> getString(R.string.difficulty_pro)
+            else -> getString(R.string.difficulty_avanzado)
+        }
+
+        tvDifficulty.text = difficultyText
+
+        ScoreManager.initGenioPlus(this)
+        tvScore.text = getString(R.string.score_format, ScoreManager.currentScoreGenioPlus)
+
+        tvDifficulty.setOnClickListener {
+            val scaleDownX = ObjectAnimator.ofFloat(it, "scaleX", 1f, 0.9f).setDuration(50)
+            val scaleDownY = ObjectAnimator.ofFloat(it, "scaleY", 1f, 0.9f).setDuration(50)
+            val scaleUpX = ObjectAnimator.ofFloat(it, "scaleX", 0.9f, 1f).setDuration(50)
+            val scaleUpY = ObjectAnimator.ofFloat(it, "scaleY", 0.9f, 1f).setDuration(50)
+            val clickAnimatorSet = AnimatorSet()
+            clickAnimatorSet.playSequentially(scaleDownX, scaleDownY, scaleUpX, scaleUpY)
+            clickAnimatorSet.start()
+
+            clickAnimatorSet.addListener(object : Animator.AnimatorListener {
+                override fun onAnimationStart(animation: Animator) {}
+                override fun onAnimationEnd(animation: Animator) {
+                    val intent = DifficultySelectionActivity.createIntent(
+                        this@InstructionsActivityGenioPlus,
+                        "GenioPlus",
+                        true,
+                        level,
+                        responseMode?.name
+                    )
+                    startActivity(intent)
+                }
+                override fun onAnimationCancel(animation: Animator) {}
+                override fun onAnimationRepeat(animation: Animator) {}
+            })
+        }
+    }
+
 
     private fun getLevelInstructions(level: Int): String {
         return when (level) {

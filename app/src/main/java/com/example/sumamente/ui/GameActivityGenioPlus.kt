@@ -841,6 +841,7 @@ class GameActivityGenioPlus : AppCompatActivity() {
 
             attempts++
             if (attempts >= 2) {
+                ScoreManager.incrementConsecutiveFailuresGenioPlus(currentLevel)
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
 
@@ -955,6 +956,7 @@ class GameActivityGenioPlus : AppCompatActivity() {
 
             attempts++
             if (attempts >= 2) {
+                ScoreManager.incrementConsecutiveFailuresGenioPlus(currentLevel)
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
 
@@ -1010,17 +1012,32 @@ class GameActivityGenioPlus : AppCompatActivity() {
         builder.create().show()
     }
 
-
     private fun navigateToLevelResult(isSuccessful: Boolean) {
         val intent = Intent(this, LevelResultActivityGenioPlus::class.java)
         intent.putExtra("LEVEL", currentLevel)
         intent.putExtra("IS_SUCCESSFUL", isSuccessful)
         intent.putExtra("ATTEMPTS", attempts)
         intent.putExtra("TIME_SPENT", timeSpentInSeconds)
+        intent.putExtra("GAME_MODE", "GenioPlus")
+
+        if (isSuccessful) {
+            ScoreManager.resetConsecutiveFailuresGenioPlus(currentLevel)
+        }
+        else if (attempts >= 2) {
+            ScoreManager.incrementConsecutiveFailuresGenioPlus(currentLevel)
+            intent.putExtra("NUMBER_LIST", elementList.map { it.value }.toTypedArray())
+            intent.putExtra("CORRECT_ANSWER", correctAnswer)
+            intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
+            intent.putExtra("USER_RESPONSES", mutableListOf<Int>().apply {
+                if (manualAnswerEditText.text.toString().isNotEmpty()) {
+                    add(manualAnswerEditText.text.toString().toIntOrNull() ?: 0)
+                }
+            }.toIntArray())
+        }
+
         startActivity(intent)
         finish()
     }
-
 
     private fun navigateToHome() {
         val intent = Intent(this, MainGameActivity::class.java)

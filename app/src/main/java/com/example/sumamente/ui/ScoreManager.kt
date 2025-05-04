@@ -195,6 +195,7 @@ object ScoreManager {
     private const val KEY_CONSECUTIVE_FAILURES_MAS_PLUS = "consecutive_failures_mas_plus"
     private const val KEY_CONSECUTIVE_FAILURES_MAS_PLUS_PRINCIPIANTE = "consecutive_failures_mas_plus_principiante"
     private const val KEY_CONSECUTIVE_FAILURES_MAS_PLUS_PRO = "consecutive_failures_mas_plus_pro"
+    private const val KEY_CONSECUTIVE_FAILURES_GENIO_PLUS = "consecutive_failures_genio_plus"
 
     private val consecutiveFailures: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresPrincipiante: MutableMap<Int, Int> = mutableMapOf()
@@ -214,6 +215,7 @@ object ScoreManager {
     private val consecutiveFailuresMasPlus: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresMasPlusPrincipiante: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresMasPlusPro: MutableMap<Int, Int> = mutableMapOf()
+    private val consecutiveFailuresGenioPlus: MutableMap<Int, Int> = mutableMapOf()
 
     private lateinit var preferences: SharedPreferences
     private lateinit var preferencesPrincipiante: SharedPreferences
@@ -470,6 +472,13 @@ object ScoreManager {
         preferencesGenioPlus = context.getSharedPreferences(PREFS_NAME_GENIO_PLUS, Context.MODE_PRIVATE)
         currentScoreGenioPlus = preferencesGenioPlus.getInt(KEY_CURRENT_SCORE_GENIO_PLUS, 0)
         unlockedLevelsGenioPlus = preferencesGenioPlus.getInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS, 2)
+
+        for (i in 1..70) {
+            val failures = preferencesGenioPlus.getInt("$KEY_CONSECUTIVE_FAILURES_GENIO_PLUS:$i", 0)
+            if (failures > 0) {
+                consecutiveFailuresGenioPlus[i] = failures
+            }
+        }
     }
 
     fun saveScore() {
@@ -1602,6 +1611,31 @@ object ScoreManager {
     fun isLevelBlockedByFailuresMasPlusPro(level: Int): Boolean {
         if (level == 1) return false
         return getConsecutiveFailuresMasPlusPro(level) >= 12
+    }
+
+    fun incrementConsecutiveFailuresGenioPlus(level: Int) {
+        val currentFailures = consecutiveFailuresGenioPlus[level] ?: 0
+        consecutiveFailuresGenioPlus[level] = currentFailures + 1
+        preferencesGenioPlus.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_GENIO_PLUS:$level", consecutiveFailuresGenioPlus[level] ?: 0)
+        }
+    }
+
+    fun resetConsecutiveFailuresGenioPlus(level: Int) {
+        val prefs = preferencesGenioPlus
+        prefs.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_GENIO_PLUS:$level", 0)
+        }
+    }
+
+    fun getConsecutiveFailuresGenioPlus(level: Int): Int {
+        val prefs = preferencesGenioPlus
+        return prefs.getInt("$KEY_CONSECUTIVE_FAILURES_GENIO_PLUS:$level", 0)
+    }
+
+    fun isLevelBlockedByFailuresGenioPlus(level: Int): Boolean {
+        if (level == 1) return false
+        return getConsecutiveFailuresGenioPlus(level) >= 12
     }
 
 }
