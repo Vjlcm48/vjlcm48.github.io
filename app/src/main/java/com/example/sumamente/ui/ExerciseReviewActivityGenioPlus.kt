@@ -22,6 +22,7 @@ class ExerciseReviewActivityGenioPlus : AppCompatActivity() {
     private lateinit var correctAnswerTextView: TextView
     private lateinit var userResponsesTextView: TextView
     private lateinit var understoodButton: Button
+    private var level: Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +38,7 @@ class ExerciseReviewActivityGenioPlus : AppCompatActivity() {
         val correctAnswer = intent.getIntExtra("CORRECT_ANSWER", 0)
         val userResponses = intent.getIntArrayExtra("USER_RESPONSES") ?: intArrayOf()
         val excludedIndex = intent.getIntExtra("EXCLUDED_INDEX", -1)
-        intent.getIntExtra("LEVEL", 1)
+        level = intent.getIntExtra("LEVEL", 1)
 
         setupUI(elementList, correctAnswer, userResponses, excludedIndex)
     }
