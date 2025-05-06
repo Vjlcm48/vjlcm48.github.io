@@ -25,7 +25,7 @@ class ExerciseReviewActivityGenioPlus : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_exercise_review)
+        setContentView(R.layout.activity_exercise_review_genio_plus)
 
         titleTextView = findViewById(R.id.title_textview)
         numbersGridLayout = findViewById(R.id.numbers_grid)

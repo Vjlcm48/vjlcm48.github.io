@@ -65,6 +65,8 @@ class GameActivityMasPlus : AppCompatActivity() {
 
     private val elementsList = mutableListOf<MASPlusElement>()
     private var correctAnswer = 0
+    private var userResponses: MutableList<Int> = mutableListOf()
+
     private var timePerElementList = mutableListOf<Long>()
 
     private val handler = Handler(Looper.getMainLooper())
@@ -718,6 +720,8 @@ class GameActivityMasPlus : AppCompatActivity() {
 
     private fun checkManualAnswer(userAnswer: Int) {
         val isCorrect = userAnswer == correctAnswer
+        userResponses.add(userAnswer)
+
         if (isCorrect) {
             answerTimer?.cancel()
             chronometerTimer?.cancel()
@@ -855,6 +859,8 @@ class GameActivityMasPlus : AppCompatActivity() {
     private fun checkAnswerButton(selectedButton: Button) {
         selectedButton.clearFocus()
         val selectedAnswer = selectedButton.text.toString().toInt()
+        userResponses.add(selectedAnswer)
+
         val isCorrect = selectedAnswer == correctAnswer
 
         if (isCorrect) {
@@ -909,17 +915,12 @@ class GameActivityMasPlus : AppCompatActivity() {
 
         if (isSuccessful) {
             ScoreManager.resetConsecutiveFailuresMasPlus(currentLevel)
-        }
-        else if (attempts >= 2) {
+        } else if (attempts >= 2) {
             ScoreManager.incrementConsecutiveFailuresMasPlus(currentLevel)
             intent.putExtra("NUMBER_LIST", elementsList.map { it.value }.toTypedArray())
             intent.putExtra("CORRECT_ANSWER", correctAnswer)
             intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
-            intent.putExtra("USER_RESPONSES", mutableListOf<Int>().apply {
-                if (manualAnswerEditText.text.toString().isNotEmpty()) {
-                    add(manualAnswerEditText.text.toString().toIntOrNull() ?: 0)
-                }
-            }.toIntArray())
+            intent.putExtra("USER_RESPONSES", userResponses.toIntArray())
         }
 
         startActivity(intent)

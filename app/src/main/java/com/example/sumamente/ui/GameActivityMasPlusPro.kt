@@ -581,7 +581,6 @@ class GameActivityMasPlusPro : AppCompatActivity() {
 
         startHeartbeatAnimation()
 
-        // 7 segundos para el cronómetro (igual que en avanzado)
         chronometerTimer = object : CountDownTimer(7000, 75) {
             override fun onTick(millisUntilFinished: Long) {
                 val elapsedMillis = 7000 - millisUntilFinished

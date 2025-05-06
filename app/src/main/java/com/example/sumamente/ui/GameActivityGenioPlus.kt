@@ -65,6 +65,7 @@ class GameActivityGenioPlus : AppCompatActivity() {
     private lateinit var vamosTextView: TextView
     private lateinit var chronometerTextView: TextView
     private lateinit var sharedPreferences: android.content.SharedPreferences
+    private var userResponses = mutableListOf<Int>()
 
     private var currentLevel = 1
     private var elementList = mutableListOf<GameElement>()
@@ -818,6 +819,7 @@ class GameActivityGenioPlus : AppCompatActivity() {
 
     private fun checkManualAnswer(userAnswer: Int) {
         val isCorrect = userAnswer == correctAnswer
+        userResponses.add(userAnswer)
 
         if (isCorrect) {
             answerTimer?.cancel()
@@ -929,6 +931,8 @@ class GameActivityGenioPlus : AppCompatActivity() {
         selectedButton.clearFocus()
 
         val selectedAnswer = selectedButton.text.toString().toInt()
+        userResponses.add(selectedAnswer)
+
         val isCorrect = selectedAnswer == correctAnswer
 
         if (isCorrect) {
@@ -1018,26 +1022,22 @@ class GameActivityGenioPlus : AppCompatActivity() {
         intent.putExtra("IS_SUCCESSFUL", isSuccessful)
         intent.putExtra("ATTEMPTS", attempts)
         intent.putExtra("TIME_SPENT", timeSpentInSeconds)
-        intent.putExtra("GAME_MODE", "GenioPlus")
 
         if (isSuccessful) {
             ScoreManager.resetConsecutiveFailuresGenioPlus(currentLevel)
-        }
-        else if (attempts >= 2) {
+        } else if (attempts >= 2) {
             ScoreManager.incrementConsecutiveFailuresGenioPlus(currentLevel)
+            if (userResponses.isEmpty()) userResponses.add(-1)
             intent.putExtra("NUMBER_LIST", elementList.map { it.value }.toTypedArray())
             intent.putExtra("CORRECT_ANSWER", correctAnswer)
             intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
-            intent.putExtra("USER_RESPONSES", mutableListOf<Int>().apply {
-                if (manualAnswerEditText.text.toString().isNotEmpty()) {
-                    add(manualAnswerEditText.text.toString().toIntOrNull() ?: 0)
-                }
-            }.toIntArray())
+            intent.putExtra("USER_RESPONSES", userResponses.toIntArray())
         }
 
         startActivity(intent)
         finish()
     }
+
 
     private fun navigateToHome() {
         val intent = Intent(this, MainGameActivity::class.java)
