@@ -55,6 +55,7 @@ class ResetProgressActivity : AppCompatActivity() {
         ScoreManager.initMasPlusPrincipiante(this)
         ScoreManager.initMasPlusPro(this)
         ScoreManager.initGenioPlus(this)
+        ScoreManager.initGenioPlusPrincipiante(this)
 
         setContentView(R.layout.activity_reset_progress)
 
@@ -184,13 +185,12 @@ class ResetProgressActivity : AppCompatActivity() {
                 btnPro.alpha = 1.0f
             }
             else -> {
-                btnPrincipiante.isEnabled = false
-                btnPrincipiante.alpha = 0.5f
+                btnPrincipiante.isEnabled = true
+                btnPrincipiante.alpha = 1.0f
                 btnPro.isEnabled = false
                 btnPro.alpha = 0.5f
             }
         }
-
 
         val alertDialog = AlertDialog.Builder(this)
             .setView(dialogView)
@@ -423,6 +423,7 @@ class ResetProgressActivity : AppCompatActivity() {
         ScoreManager.initMasPlusPrincipiante(this)
         ScoreManager.initMasPlusPro(this)
         ScoreManager.initGenioPlus(this)
+        ScoreManager.initGenioPlusPrincipiante(this)
 
         Toast.makeText(this, "Datos reiniciados correctamente", Toast.LENGTH_SHORT).show()
 
@@ -565,9 +566,23 @@ class ResetProgressActivity : AppCompatActivity() {
                 }
             }
             "GenioPlus" -> {
-                val scorePrefs = getSharedPreferences("ScorePrefsGenioPlus", Context.MODE_PRIVATE)
-                scorePrefs.edit { clear() }
-                ScoreManager.resetGenioPlus()
+                when (difficulty) {
+                    DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> {
+                        val scorePrefs = getSharedPreferences("ScorePrefsGenioPlusPrincipiante", Context.MODE_PRIVATE)
+                        scorePrefs.edit { clear() }
+                        ScoreManager.resetGenioPlusPrincipiante()
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_AVANZADO -> {
+                        val scorePrefs = getSharedPreferences("ScorePrefsGenioPlus", Context.MODE_PRIVATE)
+                        scorePrefs.edit { clear() }
+                        ScoreManager.resetGenioPlus()
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_PRO -> {
+                        val scorePrefs = getSharedPreferences("ScorePrefsGenioPlus", Context.MODE_PRIVATE)
+                        scorePrefs.edit { clear() }
+                        ScoreManager.resetGenioPlus()
+                    }
+                }
             }
         }
     }
@@ -773,7 +788,34 @@ class ResetProgressActivity : AppCompatActivity() {
             }
             "GenioPlus" -> {
                 val myPrefs = getSharedPreferences("MyPrefsGenioPlus", Context.MODE_PRIVATE)
-                myPrefs.edit { remove("selectedResponseModeGenioPlus") }
+                val hasSeenTutorial = myPrefs.getBoolean("hasSeenInstructionsGenioPlus", false)
+
+                when (difficulty) {
+                    DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> {
+                        myPrefs.edit {
+                            remove("selectedResponseModeGenioPlusPrincipiante")
+                            putString(getDifficultyKey(selectedGame!!),
+                                DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE)
+                            putBoolean("hasSeenInstructionsGenioPlus", hasSeenTutorial)
+                        }
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_AVANZADO -> {
+                        myPrefs.edit {
+                            remove("selectedResponseModeGenioPlus")
+                            putString(getDifficultyKey(selectedGame!!),
+                                DifficultySelectionActivity.DIFFICULTY_AVANZADO)
+                            putBoolean("hasSeenInstructionsGenioPlus", hasSeenTutorial)
+                        }
+                    }
+                    DifficultySelectionActivity.DIFFICULTY_PRO -> {
+                        myPrefs.edit {
+                            remove("selectedResponseModeGenioPlus")
+                            putString(getDifficultyKey(selectedGame!!),
+                                DifficultySelectionActivity.DIFFICULTY_PRO)
+                            putBoolean("hasSeenInstructionsGenioPlus", hasSeenTutorial)
+                        }
+                    }
+                }
             }
         }
     }

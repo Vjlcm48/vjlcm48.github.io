@@ -25,9 +25,7 @@ class DifficultySelectionActivity : AppCompatActivity() {
         const val DIFFICULTY_AVANZADO = "avanzado"
         const val DIFFICULTY_PRO = "pro"
 
-
         const val EXTRA_GAME_TYPE = "game_type"
-
 
         fun createIntent(context: Context, gameType: String, isFromInstructions: Boolean = false,
                          level: Int = 0, responseMode: String? = null): Intent {
@@ -104,13 +102,12 @@ class DifficultySelectionActivity : AppCompatActivity() {
                 btnPro.alpha = 1.0f
             }
             else -> {
-                btnPrincipiante.isEnabled = false
-                btnPrincipiante.alpha = 0.5f
+                btnPrincipiante.isEnabled = true
+                btnPrincipiante.alpha = 1.0f
                 btnPro.isEnabled = false
                 btnPro.alpha = 0.5f
             }
         }
-
 
         closeButton.setOnClickListener {
             applyBounceEffect(it) {
@@ -169,81 +166,44 @@ class DifficultySelectionActivity : AppCompatActivity() {
     }
 
     private fun navigateBasedOnSelection(difficulty: String, fromInstructions: Boolean, level: Int, responseMode: String?) {
-        val targetIntent = when {
+        val targetIntent = when (gameType to difficulty) {
+            "NumerosPlus" to DIFFICULTY_PRINCIPIANTE -> Intent(this, LevelsActivityPrincipiante::class.java)
+            "NumerosPlus" to DIFFICULTY_AVANZADO -> Intent(this, LevelsActivity::class.java)
+            "NumerosPlus" to DIFFICULTY_PRO -> Intent(this, LevelsActivityPro::class.java)
 
-            gameType == "NumerosPlus" && difficulty == DIFFICULTY_PRINCIPIANTE -> {
-                Intent(this, LevelsActivityPrincipiante::class.java)
-            }
-            gameType == "NumerosPlus" && difficulty == DIFFICULTY_AVANZADO -> {
-                Intent(this, LevelsActivity::class.java)
-            }
-            gameType == "NumerosPlus" && difficulty == DIFFICULTY_PRO -> {
-                Intent(this, LevelsActivityPro::class.java)
-            }
+            "DeciPlus" to DIFFICULTY_PRINCIPIANTE -> Intent(this, LevelsActivityDeciPlusPrincipiante::class.java)
+            "DeciPlus" to DIFFICULTY_AVANZADO -> Intent(this, LevelsActivityDeciPlus::class.java)
+            "DeciPlus" to DIFFICULTY_PRO -> Intent(this, LevelsActivityDeciPlusPro::class.java)
 
-            gameType == "DeciPlus" && difficulty == DIFFICULTY_AVANZADO -> {
-                Intent(this, LevelsActivityDeciPlus::class.java)
-            }
-            gameType == "DeciPlus" && difficulty == DIFFICULTY_PRINCIPIANTE -> {
-                Intent(this, LevelsActivityDeciPlusPrincipiante::class.java)
-            }
-            gameType == "DeciPlus" && difficulty == DIFFICULTY_PRO -> {
-                Intent(this, LevelsActivityDeciPlusPro::class.java)
-            }
+            "Romas" to DIFFICULTY_PRINCIPIANTE -> Intent(this, LevelsActivityRomasPrincipiante::class.java)
+            "Romas" to DIFFICULTY_AVANZADO -> Intent(this, LevelsActivityRomas::class.java)
+            "Romas" to DIFFICULTY_PRO -> Intent(this, LevelsActivityRomasPro::class.java)
 
-            gameType == "Romas" && difficulty == DIFFICULTY_PRINCIPIANTE -> {
-                Intent(this, LevelsActivityRomasPrincipiante::class.java)
-            }
-            gameType == "Romas" && difficulty == DIFFICULTY_AVANZADO -> {
-                Intent(this, LevelsActivityRomas::class.java)
-            }
-            gameType == "Romas" && difficulty == DIFFICULTY_PRO -> {
-                Intent(this, LevelsActivityRomasPro::class.java)
-            }
+            "AlfaNumeros" to DIFFICULTY_PRINCIPIANTE -> Intent(this, LevelsActivityAlfaNumerosPrincipiante::class.java)
+            "AlfaNumeros" to DIFFICULTY_AVANZADO -> Intent(this, LevelsActivityAlfaNumeros::class.java)
+            "AlfaNumeros" to DIFFICULTY_PRO -> Intent(this, LevelsActivityAlfaNumerosPro::class.java)
 
-            gameType == "AlfaNumeros" && difficulty == DIFFICULTY_PRINCIPIANTE -> {
-                Intent(this, LevelsActivityAlfaNumerosPrincipiante::class.java)
-            }
-            gameType == "AlfaNumeros" && difficulty == DIFFICULTY_AVANZADO -> {
-                Intent(this, LevelsActivityAlfaNumeros::class.java)
-            }
-            gameType == "AlfaNumeros" && difficulty == DIFFICULTY_PRO -> {
-                Intent(this, LevelsActivityAlfaNumerosPro::class.java)
-            }
+            "Sumaresta" to DIFFICULTY_PRINCIPIANTE -> Intent(this, LevelsActivitySumaRestaPrincipiante::class.java)
+            "Sumaresta" to DIFFICULTY_AVANZADO -> Intent(this, LevelsActivitySumaResta::class.java)
+            "Sumaresta" to DIFFICULTY_PRO -> Intent(this, LevelsActivitySumaRestaPro::class.java)
 
-            gameType == "Sumaresta" && difficulty == DIFFICULTY_PRINCIPIANTE -> {
-                Intent(this, LevelsActivitySumaRestaPrincipiante::class.java)
-            }
-            gameType == "Sumaresta" && difficulty == DIFFICULTY_AVANZADO -> {
-                Intent(this, LevelsActivitySumaResta::class.java)
-            }
-            gameType == "Sumaresta" && difficulty == DIFFICULTY_PRO -> {
-                Intent(this, LevelsActivitySumaRestaPro::class.java)
-            }
+            "MasPlus" to DIFFICULTY_PRINCIPIANTE -> Intent(this, LevelsActivityMasPlusPrincipiante::class.java)
+            "MasPlus" to DIFFICULTY_AVANZADO -> Intent(this, LevelsActivityMasPlus::class.java)
+            "MasPlus" to DIFFICULTY_PRO -> Intent(this, LevelsActivityMasPlusPro::class.java)
 
-            gameType == "MasPlus" && difficulty == DIFFICULTY_AVANZADO -> {
-                Intent(this, LevelsActivityMasPlus::class.java)
-            }
-            gameType == "MasPlus" && difficulty == DIFFICULTY_PRINCIPIANTE -> {
-                Intent(this, LevelsActivityMasPlusPrincipiante::class.java)
-            }
-            gameType == "MasPlus" && difficulty == DIFFICULTY_PRO -> {
-                Intent(this, LevelsActivityMasPlusPro::class.java)
-            }
+            "GenioPlus" to DIFFICULTY_PRINCIPIANTE -> Intent(this, LevelsActivityGenioPlusPrincipiante::class.java)
+            "GenioPlus" to DIFFICULTY_AVANZADO -> Intent(this, LevelsActivityGenioPlus::class.java)
+            "GenioPlus" to DIFFICULTY_PRO -> Intent(this, LevelsActivityGenioPlus::class.java)
 
-            gameType == "GenioPlus" -> {
+            else -> {
                 if (fromInstructions) {
                     Intent(this, InstructionsActivityGenioPlus::class.java).apply {
                         putExtra("LEVEL", level)
-                        if (responseMode != null) putExtra("RESPONSE_MODE", responseMode)
+                        responseMode?.let { putExtra("RESPONSE_MODE", it) }
                     }
                 } else {
-                    Intent(this, LevelsActivityGenioPlus::class.java)
+                    Intent(this, GameSelectionActivity::class.java)
                 }
-            }
-
-            else -> {
-                Intent(this, GameSelectionActivity::class.java)
             }
         }
 
@@ -252,51 +212,45 @@ class DifficultySelectionActivity : AppCompatActivity() {
     }
 
     private fun saveScoreForDifficulty(difficulty: String) {
-        when (gameType) {
-            "NumerosPlus" -> {
-                when (difficulty) {
-                    DIFFICULTY_PRINCIPIANTE -> ScoreManager.saveScorePrincipiante()
-                    DIFFICULTY_AVANZADO -> ScoreManager.saveScore()
-                    DIFFICULTY_PRO -> ScoreManager.saveScorePro()
-                }
-            }
-            "DeciPlus" -> {
-                when (difficulty) {
-                    DIFFICULTY_PRINCIPIANTE -> ScoreManager.saveScoreDeciPlusPrincipiante()
-                    DIFFICULTY_AVANZADO -> ScoreManager.saveScoreDeciPlus()
-                    DIFFICULTY_PRO -> ScoreManager.saveScoreDeciPlusPro()
-                }
-            }
-            "Romas" -> {
-                when (difficulty) {
-                    DIFFICULTY_PRINCIPIANTE -> ScoreManager.saveScoreRomasPrincipiante()
-                    DIFFICULTY_AVANZADO -> ScoreManager.saveScoreRomas()
-                    DIFFICULTY_PRO -> ScoreManager.saveScoreRomasPro()
-                }
-            }
-            "AlfaNumeros" -> {
-                when (difficulty) {
-                    DIFFICULTY_PRINCIPIANTE -> ScoreManager.saveScoreAlfaNumerosPrincipiante()
-                    DIFFICULTY_AVANZADO -> ScoreManager.saveScoreAlfaNumeros()
-                    DIFFICULTY_PRO -> ScoreManager.saveScoreAlfaNumerosPro()
-                }
-            }
-            "Sumaresta" -> {
-                when (difficulty) {
-                    DIFFICULTY_PRINCIPIANTE -> ScoreManager.saveScoreSumaRestaPrincipiante()
-                    DIFFICULTY_AVANZADO -> ScoreManager.saveScoreSumaResta()
-                    DIFFICULTY_PRO -> ScoreManager.saveScoreSumaRestaPro()
-                }
-            }
-            "MasPlus" -> {
-                when (difficulty) {
-                    DIFFICULTY_PRINCIPIANTE -> ScoreManager.saveScoreMasPlusPrincipiante()
-                    DIFFICULTY_AVANZADO -> ScoreManager.saveScoreMasPlus()
-                    DIFFICULTY_PRO -> ScoreManager.saveScoreMasPlusPro()
-                }
-            }
-            "GenioPlus" -> ScoreManager.saveScoreGenioPlus()
-        }
+        val saveActions = mapOf(
+            "NumerosPlus" to mapOf(
+                DIFFICULTY_PRINCIPIANTE to ScoreManager::saveScorePrincipiante,
+                DIFFICULTY_AVANZADO to ScoreManager::saveScore,
+                DIFFICULTY_PRO to ScoreManager::saveScorePro
+            ),
+            "DeciPlus" to mapOf(
+                DIFFICULTY_PRINCIPIANTE to ScoreManager::saveScoreDeciPlusPrincipiante,
+                DIFFICULTY_AVANZADO to ScoreManager::saveScoreDeciPlus,
+                DIFFICULTY_PRO to ScoreManager::saveScoreDeciPlusPro
+            ),
+            "Romas" to mapOf(
+                DIFFICULTY_PRINCIPIANTE to ScoreManager::saveScoreRomasPrincipiante,
+                DIFFICULTY_AVANZADO to ScoreManager::saveScoreRomas,
+                DIFFICULTY_PRO to ScoreManager::saveScoreRomasPro
+            ),
+            "AlfaNumeros" to mapOf(
+                DIFFICULTY_PRINCIPIANTE to ScoreManager::saveScoreAlfaNumerosPrincipiante,
+                DIFFICULTY_AVANZADO to ScoreManager::saveScoreAlfaNumeros,
+                DIFFICULTY_PRO to ScoreManager::saveScoreAlfaNumerosPro
+            ),
+            "Sumaresta" to mapOf(
+                DIFFICULTY_PRINCIPIANTE to ScoreManager::saveScoreSumaRestaPrincipiante,
+                DIFFICULTY_AVANZADO to ScoreManager::saveScoreSumaResta,
+                DIFFICULTY_PRO to ScoreManager::saveScoreSumaRestaPro
+            ),
+            "MasPlus" to mapOf(
+                DIFFICULTY_PRINCIPIANTE to ScoreManager::saveScoreMasPlusPrincipiante,
+                DIFFICULTY_AVANZADO to ScoreManager::saveScoreMasPlus,
+                DIFFICULTY_PRO to ScoreManager::saveScoreMasPlusPro
+            ),
+            "GenioPlus" to mapOf(
+                DIFFICULTY_PRINCIPIANTE to ScoreManager::saveScoreGenioPlusPrincipiante,
+                DIFFICULTY_AVANZADO to ScoreManager::saveScoreGenioPlus,
+                DIFFICULTY_PRO to ScoreManager::saveScoreGenioPlus
+            )
+        )
+
+        saveActions[gameType]?.get(difficulty)?.invoke()
     }
 
     private fun saveDifficultyPreference(difficulty: String) {

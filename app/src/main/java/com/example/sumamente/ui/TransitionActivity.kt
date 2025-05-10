@@ -122,5 +122,8 @@ class TransitionActivity : AppCompatActivity() {
         val scorePrefsGenioPlus = getSharedPreferences("ScorePrefsGenioPlus", MODE_PRIVATE)
         scorePrefsGenioPlus.edit { clear() }
 
+        val scorePrefsGenioPlusPrincipiante = getSharedPreferences("ScorePrefsGenioPlusPrincipiante", MODE_PRIVATE)
+        scorePrefsGenioPlusPrincipiante.edit { clear() }
+
     }
 }

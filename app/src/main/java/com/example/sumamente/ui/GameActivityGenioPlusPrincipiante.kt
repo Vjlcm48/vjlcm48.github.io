@@ -40,7 +40,7 @@ import kotlin.math.sqrt
 import kotlin.random.Random
 import com.example.sumamente.ui.utils.isPositiveNumber
 
-class GameActivityGenioPlus : AppCompatActivity() {
+class GameActivityGenioPlusPrincipiante : AppCompatActivity() {
 
     data class GameElement(val value: String, val isNegative: Boolean = false)
 
@@ -111,13 +111,13 @@ class GameActivityGenioPlus : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("MyPrefsGenioPlus", Context.MODE_PRIVATE)
         setContentView(R.layout.activity_game_genio_plus)
 
-        ScoreManager.initGenioPlus(this)
+        ScoreManager.initGenioPlusPrincipiante(this)
 
         val prefs = getSharedPreferences("MyPrefsGenioPlus", Context.MODE_PRIVATE)
-        val responseMode = prefs.getString("selectedResponseModeGenioPlus", intent.getStringExtra("RESPONSE_MODE"))
+        val responseMode = prefs.getString("selectedResponseModeGenioPlusPrincipiante", intent.getStringExtra("RESPONSE_MODE"))
 
         if (responseMode != null) {
-            useManualAnswer = responseMode == ResponseModeGenioPlus.TYPE_ANSWER.name
+            useManualAnswer = responseMode == ResponseModeGenioPlusPrincipiante.TYPE_ANSWER.name
             if (!useManualAnswer) {
                 window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
             }
@@ -149,7 +149,7 @@ class GameActivityGenioPlus : AppCompatActivity() {
         chronometerTextView.typeface = Typeface.MONOSPACE
         currentLevel = intent.getIntExtra("LEVEL", 1)
         levelTitle.text = getString(R.string.level_title, currentLevel)
-        scoreTextView.text = getString(R.string.score_label, ScoreManager.currentScoreGenioPlus)
+        scoreTextView.text = getString(R.string.score_label, ScoreManager.currentScoreGenioPlusPrincipiante)
 
 
         backArrow.setOnClickListener {
@@ -341,7 +341,6 @@ class GameActivityGenioPlus : AppCompatActivity() {
 
         elementList.addAll(allElements)
     }
-
 
     private fun calculateSum(): Int {
         val filteredList = if (excludedIndex != null && excludedIndex!! in elementList.indices) {
@@ -602,7 +601,8 @@ class GameActivityGenioPlus : AppCompatActivity() {
     private fun calculateTimePerElement() {
         timePerElementList.clear()
         val level = currentLevel
-        var firstNumberTime = 2.20
+
+        var firstNumberTime = 2.50
 
         val blockNumber = (level - 1) / 5
         firstNumberTime -= blockNumber * 0.07
@@ -634,7 +634,6 @@ class GameActivityGenioPlus : AppCompatActivity() {
         val totalDuration = timePerElementList.sum()
         progressRing.startProgressAnimation(totalDuration)
     }
-
 
     private fun transitionToPrompt() {
         elementTextView.visibility = View.GONE
@@ -671,9 +670,9 @@ class GameActivityGenioPlus : AppCompatActivity() {
 
         startHeartbeatAnimation()
 
-        chronometerTimer = object : CountDownTimer(7000, 75) {
+        chronometerTimer = object : CountDownTimer(10000, 75) {
             override fun onTick(millisUntilFinished: Long) {
-                val elapsedMillis = 7000 - millisUntilFinished
+                val elapsedMillis = 10000 - millisUntilFinished
                 val elapsedSeconds = elapsedMillis / 1000.0
                 val formattedTime = String.format(Locale.getDefault(), "%04.2f", elapsedSeconds)
                 val spannableString = SpannableString(formattedTime)
@@ -688,9 +687,9 @@ class GameActivityGenioPlus : AppCompatActivity() {
                 )
 
                 val textColor = when {
-                    timeSpentInSeconds < 3.0 -> ContextCompat.getColor(this@GameActivityGenioPlus, R.color.green_medium)
-                    timeSpentInSeconds < 5.0 -> ContextCompat.getColor(this@GameActivityGenioPlus, R.color.orange_dark)
-                    else -> ContextCompat.getColor(this@GameActivityGenioPlus, R.color.red)
+                    elapsedSeconds < 5.0 -> ContextCompat.getColor(this@GameActivityGenioPlusPrincipiante, R.color.green_medium)
+                    elapsedSeconds < 8.0 -> ContextCompat.getColor(this@GameActivityGenioPlusPrincipiante, R.color.orange_dark)
+                    else -> ContextCompat.getColor(this@GameActivityGenioPlusPrincipiante, R.color.red)
                 }
 
                 spannableString.setSpan(
@@ -702,14 +701,14 @@ class GameActivityGenioPlus : AppCompatActivity() {
 
                 chronometerTextView.text = spannableString
 
-                if (elapsedSeconds >= 5.0 && !soundPlayed) {
+                if (elapsedSeconds >= 8.0 && !soundPlayed) {
                     soundPlayed = true
                     playAlertSound()
                 }
             }
 
             override fun onFinish() {
-                val finalTime = "7.00"
+                val finalTime = "10.00"
                 val spannableString = SpannableString(finalTime)
 
                 spannableString.setSpan(
@@ -720,7 +719,7 @@ class GameActivityGenioPlus : AppCompatActivity() {
                 )
 
                 spannableString.setSpan(
-                    ForegroundColorSpan(ContextCompat.getColor(this@GameActivityGenioPlus, R.color.red)),
+                    ForegroundColorSpan(ContextCompat.getColor(this@GameActivityGenioPlusPrincipiante, R.color.red)),
                     0,
                     finalTime.length,
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -733,7 +732,6 @@ class GameActivityGenioPlus : AppCompatActivity() {
             }
         }.start()
     }
-
 
     private fun startHeartbeatAnimation() {
         val scaleUpX = PropertyValuesHolder.ofFloat("scaleX", 1f, 1.1f)
@@ -776,7 +774,6 @@ class GameActivityGenioPlus : AppCompatActivity() {
         animatorSet.start()
     }
 
-
     private fun playAlertSound() {
         val mediaPlayer = MediaPlayer.create(this, R.raw.sonidoerror)
         mediaPlayer.setOnCompletionListener {
@@ -784,7 +781,6 @@ class GameActivityGenioPlus : AppCompatActivity() {
         }
         mediaPlayer.start()
     }
-
 
     private fun showManualInput() {
         manualInputLayout.visibility = View.VISIBLE
@@ -844,7 +840,7 @@ class GameActivityGenioPlus : AppCompatActivity() {
 
             attempts++
             if (attempts >= 2) {
-                ScoreManager.incrementConsecutiveFailuresGenioPlus(currentLevel)
+                ScoreManager.incrementConsecutiveFailuresGenioPlusPrincipiante(currentLevel)
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
 
@@ -920,7 +916,7 @@ class GameActivityGenioPlus : AppCompatActivity() {
     private fun startAnswerTimer() {
         startTime = System.currentTimeMillis()
         answerTimer?.cancel()
-        answerTimer = object : CountDownTimer(7000, 75) {
+        answerTimer = object : CountDownTimer(10000, 75) {
             override fun onTick(millisUntilFinished: Long) {}
             override fun onFinish() {
                 navigateToLevelResult(false)
@@ -961,7 +957,7 @@ class GameActivityGenioPlus : AppCompatActivity() {
 
             attempts++
             if (attempts >= 2) {
-                ScoreManager.incrementConsecutiveFailuresGenioPlus(currentLevel)
+                ScoreManager.incrementConsecutiveFailuresGenioPlusPrincipiante(currentLevel)
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
 
@@ -993,8 +989,8 @@ class GameActivityGenioPlus : AppCompatActivity() {
         )
 
         val textColor = when {
-            timeSpentInSeconds < 3.0 -> ContextCompat.getColor(this, R.color.green_medium)
-            timeSpentInSeconds < 5.0 -> ContextCompat.getColor(this, R.color.orange_dark)
+            timeSpentInSeconds < 5.0 -> ContextCompat.getColor(this, R.color.green_medium)
+            timeSpentInSeconds < 8.0 -> ContextCompat.getColor(this, R.color.orange_dark)
             else -> ContextCompat.getColor(this, R.color.red)
         }
 
@@ -1018,16 +1014,16 @@ class GameActivityGenioPlus : AppCompatActivity() {
     }
 
     private fun navigateToLevelResult(isSuccessful: Boolean) {
-        val intent = Intent(this, LevelResultActivityGenioPlus::class.java)
+        val intent = Intent(this, LevelResultActivityGenioPlusPrincipiante::class.java)
         intent.putExtra("LEVEL", currentLevel)
         intent.putExtra("IS_SUCCESSFUL", isSuccessful)
         intent.putExtra("ATTEMPTS", attempts)
         intent.putExtra("TIME_SPENT", timeSpentInSeconds)
 
         if (isSuccessful) {
-            ScoreManager.resetConsecutiveFailuresGenioPlus(currentLevel)
+            ScoreManager.resetConsecutiveFailuresGenioPlusPrincipiante(currentLevel)
         } else if (attempts >= 2) {
-            ScoreManager.incrementConsecutiveFailuresGenioPlus(currentLevel)
+            ScoreManager.incrementConsecutiveFailuresGenioPlusPrincipiante(currentLevel)
             if (userResponses.isEmpty()) userResponses.add(-1)
             intent.putExtra("NUMBER_LIST", elementList.map { it.value }.toTypedArray())
             intent.putExtra("CORRECT_ANSWER", correctAnswer)
@@ -1053,7 +1049,5 @@ class GameActivityGenioPlus : AppCompatActivity() {
         finish()
     }
 }
-
-
 
 
