@@ -812,4 +812,8 @@
 
     <string name="user_response_single_format">Tu respuesta: %d</string>
 
+    <string name="condecoracion_suprema">Condecoración Suprema</string>
+    <string name="apex_supremus_descripcion">Sólo los vencedores supremos podrán obtenerlo…</string>
+    <string name="apex_supremus_info">Esta distinguida condecoración se otorga únicamente a quienes completan todos los desafíos de Sumamente.</string>
+
 </resources>

@@ -56,6 +56,7 @@ class ResetProgressActivity : AppCompatActivity() {
         ScoreManager.initMasPlusPro(this)
         ScoreManager.initGenioPlus(this)
         ScoreManager.initGenioPlusPrincipiante(this)
+        ScoreManager.initGenioPlusPro(this)
 
         setContentView(R.layout.activity_reset_progress)
 
@@ -176,21 +177,10 @@ class ResetProgressActivity : AppCompatActivity() {
         originalCloseButton?.visibility = View.GONE
 
         btnAvanzado.isEnabled = true
-
-        when (selectedGame) {
-            "NumerosPlus", "DeciPlus", "Romas", "AlfaNumeros", "Sumaresta", "MasPlus" -> {
-                btnPrincipiante.isEnabled = true
-                btnPrincipiante.alpha = 1.0f
-                btnPro.isEnabled = true
-                btnPro.alpha = 1.0f
-            }
-            else -> {
-                btnPrincipiante.isEnabled = true
-                btnPrincipiante.alpha = 1.0f
-                btnPro.isEnabled = false
-                btnPro.alpha = 0.5f
-            }
-        }
+        btnPrincipiante.isEnabled = true
+        btnPrincipiante.alpha = 1.0f
+        btnPro.isEnabled = true
+        btnPro.alpha = 1.0f
 
         val alertDialog = AlertDialog.Builder(this)
             .setView(dialogView)
@@ -424,6 +414,7 @@ class ResetProgressActivity : AppCompatActivity() {
         ScoreManager.initMasPlusPro(this)
         ScoreManager.initGenioPlus(this)
         ScoreManager.initGenioPlusPrincipiante(this)
+        ScoreManager.initGenioPlusPro(this)
 
         Toast.makeText(this, "Datos reiniciados correctamente", Toast.LENGTH_SHORT).show()
 
@@ -578,9 +569,9 @@ class ResetProgressActivity : AppCompatActivity() {
                         ScoreManager.resetGenioPlus()
                     }
                     DifficultySelectionActivity.DIFFICULTY_PRO -> {
-                        val scorePrefs = getSharedPreferences("ScorePrefsGenioPlus", Context.MODE_PRIVATE)
+                        val scorePrefs = getSharedPreferences("ScorePrefsGenioPlusPro", Context.MODE_PRIVATE)
                         scorePrefs.edit { clear() }
-                        ScoreManager.resetGenioPlus()
+                        ScoreManager.resetGenioPlusPro()
                     }
                 }
             }
@@ -809,7 +800,7 @@ class ResetProgressActivity : AppCompatActivity() {
                     }
                     DifficultySelectionActivity.DIFFICULTY_PRO -> {
                         myPrefs.edit {
-                            remove("selectedResponseModeGenioPlus")
+                            remove("selectedResponseModeGenioPlusPro")
                             putString(getDifficultyKey(selectedGame!!),
                                 DifficultySelectionActivity.DIFFICULTY_PRO)
                             putBoolean("hasSeenInstructionsGenioPlus", hasSeenTutorial)

@@ -106,6 +106,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.LevelsActivityGenioPlusPro"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.TutorialActivityNumeros"
             android:exported="false" />
 
@@ -242,6 +246,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.InstructionsActivityGenioPlusPro"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.GameActivity"
             android:exported="false" />
 
@@ -319,6 +327,10 @@
 
         <activity
             android:name=".ui.GameActivityGenioPlusPrincipiante"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.GameActivityGenioPlusPro"
             android:exported="false" />
 
         <activity
@@ -524,6 +536,11 @@
             android:theme="@style/Theme.SumaMente" />
 
         <activity
+            android:name=".ui.LevelResultActivityGenioPlusPro"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
             android:name=".ui.ExerciseReviewActivityGenioPlus"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
@@ -544,6 +561,11 @@
 
         <activity
             android:name=".ui.ResetProgressActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.ApexSupremusActivity"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 

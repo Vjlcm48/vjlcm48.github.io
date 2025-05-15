@@ -93,21 +93,11 @@ class DifficultySelectionActivity : AppCompatActivity() {
         val currentDifficulty = sharedPreferences.getString(difficultyKey, DIFFICULTY_AVANZADO)
 
         btnAvanzado.isEnabled = true
+        btnPrincipiante.isEnabled = true
+        btnPrincipiante.alpha = 1.0f
 
-        when (gameType) {
-            "NumerosPlus", "DeciPlus", "Romas", "AlfaNumeros", "Sumaresta", "MasPlus" -> {
-                btnPrincipiante.isEnabled = true
-                btnPrincipiante.alpha = 1.0f
-                btnPro.isEnabled = true
-                btnPro.alpha = 1.0f
-            }
-            else -> {
-                btnPrincipiante.isEnabled = true
-                btnPrincipiante.alpha = 1.0f
-                btnPro.isEnabled = false
-                btnPro.alpha = 0.5f
-            }
-        }
+        btnPro.isEnabled = true
+        btnPro.alpha = 1.0f
 
         closeButton.setOnClickListener {
             applyBounceEffect(it) {
@@ -193,7 +183,7 @@ class DifficultySelectionActivity : AppCompatActivity() {
 
             "GenioPlus" to DIFFICULTY_PRINCIPIANTE -> Intent(this, LevelsActivityGenioPlusPrincipiante::class.java)
             "GenioPlus" to DIFFICULTY_AVANZADO -> Intent(this, LevelsActivityGenioPlus::class.java)
-            "GenioPlus" to DIFFICULTY_PRO -> Intent(this, LevelsActivityGenioPlus::class.java)
+            "GenioPlus" to DIFFICULTY_PRO -> Intent(this, LevelsActivityGenioPlusPro::class.java)
 
             else -> {
                 if (fromInstructions) {
@@ -246,7 +236,7 @@ class DifficultySelectionActivity : AppCompatActivity() {
             "GenioPlus" to mapOf(
                 DIFFICULTY_PRINCIPIANTE to ScoreManager::saveScoreGenioPlusPrincipiante,
                 DIFFICULTY_AVANZADO to ScoreManager::saveScoreGenioPlus,
-                DIFFICULTY_PRO to ScoreManager::saveScoreGenioPlus
+                DIFFICULTY_PRO to ScoreManager::saveScoreGenioPlusPro
             )
         )
 

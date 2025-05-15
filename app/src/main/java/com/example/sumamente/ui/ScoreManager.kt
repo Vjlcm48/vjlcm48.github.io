@@ -106,6 +106,11 @@ object ScoreManager {
     private const val KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRINCIPIANTE = "unlocked_levels_genio_plus_principiante"
     private const val KEY_COMPLETED_LEVELS_GENIO_PLUS_PRINCIPIANTE = "completed_levels_genio_plus_principiante"
 
+    private const val PREFS_NAME_GENIO_PLUS_PRO = "ScorePrefsGenioPlusPro"
+    private const val KEY_CURRENT_SCORE_GENIO_PLUS_PRO = "current_score_genio_plus_pro"
+    private const val KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRO = "unlocked_levels_genio_plus_pro"
+    private const val KEY_COMPLETED_LEVELS_GENIO_PLUS_PRO = "completed_levels_genio_plus_pro"
+
     var currentScore: Int = 0
     var unlockedLevels: Int = 2
     val levelScores: MutableMap<Int, Int> = mutableMapOf()
@@ -186,6 +191,10 @@ object ScoreManager {
     var unlockedLevelsGenioPlusPrincipiante: Int = 2
     val levelScoresGenioPlusPrincipiante: MutableMap<Int, Int> = mutableMapOf()
 
+    var currentScoreGenioPlusPro: Int = 0
+    var unlockedLevelsGenioPlusPro: Int = 2
+    val levelScoresGenioPlusPro: MutableMap<Int, Int> = mutableMapOf()
+
     private const val KEY_CONSECUTIVE_FAILURES = "consecutive_failures"
     private const val KEY_CONSECUTIVE_FAILURES_PRINCIPIANTE = "consecutive_failures_principiante"
     private const val KEY_CONSECUTIVE_FAILURES_PRO = "consecutive_failures_pro"
@@ -206,6 +215,7 @@ object ScoreManager {
     private const val KEY_CONSECUTIVE_FAILURES_MAS_PLUS_PRO = "consecutive_failures_mas_plus_pro"
     private const val KEY_CONSECUTIVE_FAILURES_GENIO_PLUS = "consecutive_failures_genio_plus"
     private const val KEY_CONSECUTIVE_FAILURES_GENIO_PLUS_PRINCIPIANTE = "consecutive_failures_genio_plus_principiante"
+    private const val KEY_CONSECUTIVE_FAILURES_GENIO_PLUS_PRO = "consecutive_failures_genio_plus_pro"
 
     private val consecutiveFailures: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresPrincipiante: MutableMap<Int, Int> = mutableMapOf()
@@ -227,6 +237,7 @@ object ScoreManager {
     private val consecutiveFailuresMasPlusPro: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresGenioPlus: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresGenioPlusPrincipiante: MutableMap<Int, Int> = mutableMapOf()
+    private val consecutiveFailuresGenioPlusPro: MutableMap<Int, Int> = mutableMapOf()
 
     private lateinit var preferences: SharedPreferences
     private lateinit var preferencesPrincipiante: SharedPreferences
@@ -248,6 +259,7 @@ object ScoreManager {
     private lateinit var preferencesMasPlusPro: SharedPreferences
     private lateinit var preferencesGenioPlus: SharedPreferences
     private lateinit var preferencesGenioPlusPrincipiante: SharedPreferences
+    private lateinit var preferencesGenioPlusPro: SharedPreferences
 
     fun init(context: Context) {
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
@@ -506,6 +518,19 @@ object ScoreManager {
         }
     }
 
+    fun initGenioPlusPro(context: Context) {
+        preferencesGenioPlusPro = context.getSharedPreferences(PREFS_NAME_GENIO_PLUS_PRO, Context.MODE_PRIVATE)
+        currentScoreGenioPlusPro = preferencesGenioPlusPro.getInt(KEY_CURRENT_SCORE_GENIO_PLUS_PRO, 0)
+        unlockedLevelsGenioPlusPro = preferencesGenioPlusPro.getInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRO, 2)
+
+        for (i in 1..70) {
+            val failures = preferencesGenioPlusPro.getInt("$KEY_CONSECUTIVE_FAILURES_GENIO_PLUS_PRO:$i", 0)
+            if (failures > 0) {
+                consecutiveFailuresGenioPlusPro[i] = failures
+            }
+        }
+    }
+
     fun saveScore() {
         preferences.edit {
             putInt(KEY_CURRENT_SCORE, currentScore)
@@ -646,6 +671,13 @@ object ScoreManager {
         }
     }
 
+    fun saveScoreGenioPlusPro() {
+        preferencesGenioPlusPro.edit {
+            putInt(KEY_CURRENT_SCORE_GENIO_PLUS_PRO, currentScoreGenioPlusPro)
+                .putInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRO, unlockedLevelsGenioPlusPro)
+        }
+    }
+
     private fun getCompletedLevels(): Set<Int> {
         return preferences.getStringSet(KEY_COMPLETED_LEVELS, emptySet())
             ?.map { it.toInt() }?.toSet() ?: emptySet()
@@ -743,6 +775,11 @@ object ScoreManager {
 
     private fun getCompletedLevelsGenioPlusPrincipiante(): Set<Int> {
         return preferencesGenioPlusPrincipiante.getStringSet(KEY_COMPLETED_LEVELS_GENIO_PLUS_PRINCIPIANTE, emptySet())
+            ?.map { it.toInt() }?.toSet() ?: emptySet()
+    }
+
+    private fun getCompletedLevelsGenioPlusPro(): Set<Int> {
+        return preferencesGenioPlusPro.getStringSet(KEY_COMPLETED_LEVELS_GENIO_PLUS_PRO, emptySet())
             ?.map { it.toInt() }?.toSet() ?: emptySet()
     }
 
@@ -942,6 +979,16 @@ object ScoreManager {
         }
     }
 
+    fun addCompletedLevelGenioPlusPro(level: Int) {
+        val completedLevelsGenioPlusPro = getCompletedLevelsGenioPlusPro().toMutableSet()
+        completedLevelsGenioPlusPro.add(level)
+        preferencesGenioPlusPro.edit {
+            putStringSet(
+                KEY_COMPLETED_LEVELS_GENIO_PLUS_PRO,
+                completedLevelsGenioPlusPro.map { it.toString() }.toSet())
+        }
+    }
+
     fun hasCompletedLevel(level: Int): Boolean {
         return getCompletedLevels().contains(level)
     }
@@ -1020,6 +1067,10 @@ object ScoreManager {
 
     fun hasCompletedLevelGenioPlusPrincipiante(level: Int): Boolean {
         return getCompletedLevelsGenioPlusPrincipiante().contains(level)
+    }
+
+    fun hasCompletedLevelGenioPlusPro(level: Int): Boolean {
+        return getCompletedLevelsGenioPlusPro().contains(level)
     }
 
     fun reset() {
@@ -1239,6 +1290,17 @@ object ScoreManager {
             putInt(KEY_CURRENT_SCORE_GENIO_PLUS_PRINCIPIANTE, currentScoreGenioPlusPrincipiante)
                 .putInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRINCIPIANTE, unlockedLevelsGenioPlusPrincipiante)
                 .putStringSet(KEY_COMPLETED_LEVELS_GENIO_PLUS_PRINCIPIANTE, emptySet())
+        }
+    }
+
+    fun resetGenioPlusPro() {
+        currentScoreGenioPlusPro = 0
+        unlockedLevelsGenioPlusPro = 2
+        levelScoresGenioPlusPro.clear()
+        preferencesGenioPlusPro.edit {
+            putInt(KEY_CURRENT_SCORE_GENIO_PLUS_PRO, currentScoreGenioPlusPro)
+                .putInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRO, unlockedLevelsGenioPlusPro)
+                .putStringSet(KEY_COMPLETED_LEVELS_GENIO_PLUS_PRO, emptySet())
         }
     }
 
@@ -1721,6 +1783,30 @@ object ScoreManager {
     fun isLevelBlockedByFailuresGenioPlusPrincipiante(level: Int): Boolean {
         if (level == 1) return false
         return getConsecutiveFailuresGenioPlusPrincipiante(level) >= 12
+    }
+
+    fun incrementConsecutiveFailuresGenioPlusPro(level: Int) {
+        val currentFailures = consecutiveFailuresGenioPlusPro[level] ?: 0
+        consecutiveFailuresGenioPlusPro[level] = currentFailures + 1
+        preferencesGenioPlusPro.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_GENIO_PLUS_PRO:$level", consecutiveFailuresGenioPlusPro[level] ?: 0)
+        }
+    }
+
+    fun resetConsecutiveFailuresGenioPlusPro(level: Int) {
+        consecutiveFailuresGenioPlusPro[level] = 0
+        preferencesGenioPlusPro.edit {
+            putInt("$KEY_CONSECUTIVE_FAILURES_GENIO_PLUS_PRO:$level", 0)
+        }
+    }
+
+    fun getConsecutiveFailuresGenioPlusPro(level: Int): Int {
+        return consecutiveFailuresGenioPlusPro[level] ?: 0
+    }
+
+    fun isLevelBlockedByFailuresGenioPlusPro(level: Int): Boolean {
+        if (level == 1) return false
+        return getConsecutiveFailuresGenioPlusPro(level) >= 12
     }
 
 }

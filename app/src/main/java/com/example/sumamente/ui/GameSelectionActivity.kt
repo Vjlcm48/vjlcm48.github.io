@@ -42,6 +42,7 @@ class GameSelectionActivity : AppCompatActivity() {
         ScoreManager.initMasPlusPro(this)
         ScoreManager.initGenioPlus(this)
         ScoreManager.initGenioPlusPrincipiante(this)
+        ScoreManager.initGenioPlusPro(this)
 
         setContentView(R.layout.activity_game_selection)
 
@@ -74,6 +75,7 @@ class GameSelectionActivity : AppCompatActivity() {
         val puntosMasPlusPro = ScoreManager.currentScoreMasPlusPro
         val puntosGenioPlus = ScoreManager.currentScoreGenioPlus
         val puntosGenioPlusPrincipiante = ScoreManager.currentScoreGenioPlusPrincipiante
+        val puntosGenioPlusPro = ScoreManager.currentScoreGenioPlusPro
 
         val tvGameNameNumerosPlus = btnNumerosPlus.findViewById<TextView>(R.id.tv_game_name_numeros_plus)
         val tvGameNameDeciPlus = btnDeciPlus.findViewById<TextView>(R.id.tv_game_name_deci_plus)
@@ -94,7 +96,7 @@ class GameSelectionActivity : AppCompatActivity() {
         updateAlfaNumerosButton(btnAlfaNumeros, puntosAlfaNumeros, puntosAlfaNumerosPrincipiante, puntosAlfaNumerosPro)
         updateSumaRestaButton(btnSumaresta, puntosSumaResta, puntosSumaRestaPrincipiante, puntosSumaRestaPro)
         updateMasPlusButton(btnMasPlus, puntosMasPlus, puntosMasPlusPrincipiante, puntosMasPlusPro)
-        updateGenioPlusButton(btnGenioPlus, puntosGenioPlus, puntosGenioPlusPrincipiante)
+        updateGenioPlusButton(btnGenioPlus, puntosGenioPlus, puntosGenioPlusPrincipiante, puntosGenioPlusPro)
 
         btnNumerosPlus.setOnClickListener {
             applyBounceEffect(it) {
@@ -292,9 +294,9 @@ class GameSelectionActivity : AppCompatActivity() {
 
                         val intent = when (difficulty) {
                             DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE ->
-                                Intent(this, LevelsActivityGenioPlus::class.java)
+                                Intent(this, LevelsActivityGenioPlusPrincipiante::class.java)
                             DifficultySelectionActivity.DIFFICULTY_PRO ->
-                                Intent(this, LevelsActivityGenioPlus::class.java)
+                                Intent(this, LevelsActivityGenioPlusPro::class.java)
                             else -> Intent(this, LevelsActivityGenioPlus::class.java)
                         }
                         startActivity(intent)
@@ -337,6 +339,7 @@ class GameSelectionActivity : AppCompatActivity() {
         ScoreManager.initMasPlusPro(this)
         ScoreManager.initGenioPlus(this)
         ScoreManager.initGenioPlusPrincipiante(this)
+        ScoreManager.initGenioPlusPro(this)
 
         val puntosNumerosPlus = ScoreManager.currentScore
         val puntosPrincipiante = ScoreManager.currentScorePrincipiante
@@ -358,6 +361,7 @@ class GameSelectionActivity : AppCompatActivity() {
         val puntosMasPlusPro = ScoreManager.currentScoreMasPlusPro
         val puntosGenioPlus = ScoreManager.currentScoreGenioPlus
         val puntosGenioPlusPrincipiante = ScoreManager.currentScoreGenioPlusPrincipiante
+        val puntosGenioPlusPro = ScoreManager.currentScoreGenioPlusPro
 
         val btnNumerosPlus = findViewById<RelativeLayout>(R.id.btn_numeros_plus)
         val btnDeciPlus = findViewById<RelativeLayout>(R.id.btn_deci_plus)
@@ -378,7 +382,7 @@ class GameSelectionActivity : AppCompatActivity() {
         updateAlfaNumerosButton(btnAlfaNumeros, puntosAlfaNumeros, puntosAlfaNumerosPrincipiante, puntosAlfaNumerosPro)
         updateSumaRestaButton(btnSumaresta, puntosSumaResta, puntosSumaRestaPrincipiante, puntosSumaRestaPro)
         updateMasPlusButton(btnMasPlus, puntosMasPlus, puntosMasPlusPrincipiante, puntosMasPlusPro)
-        updateGenioPlusButton(btnGenioPlus, puntosGenioPlus, puntosGenioPlusPrincipiante)
+        updateGenioPlusButton(btnGenioPlus, puntosGenioPlus, puntosGenioPlusPrincipiante, puntosGenioPlusPro)
     }
 
     private fun updateNumerosPlusButton(button: RelativeLayout, score: Int, principianteScore: Int, proScore: Int) {
@@ -498,11 +502,11 @@ class GameSelectionActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateGenioPlusButton(button: RelativeLayout, score: Int, principianteScore: Int) {
+    private fun updateGenioPlusButton(button: RelativeLayout, score: Int, principianteScore: Int, proScore: Int) {
         val pointsTextView = button.findViewById<TextView>(R.id.tv_points_genio_plus)
         val starIcon = button.findViewById<ImageView>(R.id.icon_star_genio_plus)
 
-        val totalScore = score + principianteScore
+        val totalScore = score + principianteScore + proScore
 
         if (totalScore > 0) {
             pointsTextView.text = getString(R.string.score_format, totalScore)

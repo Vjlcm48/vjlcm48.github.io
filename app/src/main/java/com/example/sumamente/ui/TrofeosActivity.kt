@@ -32,6 +32,7 @@ class TrofeosActivity : AppCompatActivity() {
     private lateinit var btnMedalla: LinearLayout
     private lateinit var btnTrofeo: LinearLayout
     private lateinit var btnMisCondecoraciones: LinearLayout
+    private lateinit var btnApexSupremus: LinearLayout
     private lateinit var btnClose: ImageView
     private lateinit var btnBack: ImageView
     private lateinit var mediaPlayer: MediaPlayer
@@ -56,6 +57,7 @@ class TrofeosActivity : AppCompatActivity() {
         btnMedalla = findViewById(R.id.btn_medalla)
         btnTrofeo = findViewById(R.id.btn_trofeo)
         btnMisCondecoraciones = findViewById(R.id.btn_mis_condecoraciones)
+        btnApexSupremus = findViewById(R.id.btn_apex_supremus)
         btnClose = findViewById(R.id.btn_close)
         btnBack = findViewById(R.id.btn_back)
     }
@@ -121,6 +123,13 @@ class TrofeosActivity : AppCompatActivity() {
         findViewById<LinearLayout>(R.id.btn_top_10).setOnClickListener {
             applyBounceEffect(it) {
                 val intent = Intent(this, Top10Activity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        btnApexSupremus.setOnClickListener {
+            applyBounceEffect(it) {
+                val intent = Intent(this, ApexSupremusActivity::class.java)
                 startActivity(intent)
             }
         }
