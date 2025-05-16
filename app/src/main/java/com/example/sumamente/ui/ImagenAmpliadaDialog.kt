@@ -3,12 +3,12 @@ package com.example.sumamente.ui
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
 import android.widget.TextView
 import com.example.sumamente.R
 import com.github.chrisbanes.photoview.PhotoView
-
 
 class ImagenAmpliadaDialog(
     context: Context,
@@ -21,6 +21,10 @@ class ImagenAmpliadaDialog(
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.dialog_imagen_ampliada)
 
+        window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
         window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         findViewById<TextView>(R.id.tv_titulo_imagen).text = titulo
@@ -31,4 +35,5 @@ class ImagenAmpliadaDialog(
             dismiss()
         }
     }
+
 }
