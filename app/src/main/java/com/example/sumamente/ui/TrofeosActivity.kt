@@ -11,7 +11,6 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sumamente.R
 import java.lang.ref.WeakReference
@@ -134,13 +133,10 @@ class TrofeosActivity : AppCompatActivity() {
             }
         }
 
-        setupPremioButton(btnMisCondecoraciones)
-    }
-
-    private fun setupPremioButton(button: LinearLayout) {
-        button.setOnClickListener {
+        btnMisCondecoraciones.setOnClickListener {
             applyBounceEffect(it) {
-                Toast.makeText(this, getString(R.string.en_construccion), Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, MisCondecoracionesActivity::class.java)
+                startActivity(intent)
             }
         }
     }

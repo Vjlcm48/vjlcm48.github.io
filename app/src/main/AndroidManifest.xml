@@ -574,6 +574,11 @@
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
+        <activity
+            android:name=".ui.MisCondecoracionesActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
 
 
     </application>

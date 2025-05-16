@@ -824,4 +824,67 @@
     <string name="ranking_sin_datos">No hay datos de ranking disponibles</string>
     <string name="bandera_pais">Bandera del país</string>
 
+    <string name="logro_pin_victoris">¡Conquistaste 30 desafíos diferentes sin fallos en un solo día, mereciendo el pin VICTORIS!</string>
+    <string name="logro_pin_optimum">Tu precisión es excepcional: 40 niveles superados sin errores en 24 horas te han otorgado el pin OPTIMUM.</string>
+    <string name="logro_pin_invictus">La excelencia te distingue, 50 retos en un día, consiguiendo INVICTUS.</string>
+
+    <string name="logro_corona_velocitas">¡Tu velocidad en %1$s impresiona! Estás entre el top 10%% de los más rápidos, coronándote con VELOCITAS.</string>
+    <string name="logro_corona_celeris">¡Reflejos extraordinarios en %1$s! Tu rapidez te posiciona en el exclusivo 4%% superior, mereciendo la corona CELERIS.</string>
+    <string name="logro_corona_volucer">¡Velocidad legendaria en %1$s! Has alcanzado el 1%% de élite en rapidez mental, ciñéndote la prestigiosa corona VOLUCER.</string>
+
+    <string name="logro_medalla_initium">¡Has completado 100 juegos únicos! Tu dedicación te ha otorgado la medalla INITIUM, el comienzo de tu colección.</string>
+    <string name="logro_medalla_fidelis">¡200 juegos completados! Tu constancia es admirable, consiguiendo así la medalla FIDELIS.</string>
+    <string name="logro_medalla_virtus">La medalla VIRTUS es tuya por superar 300 desafíos diferentes. ¡Tu valentía mental se demuestra con cada juego!</string>
+    <string name="logro_medalla_audax">¡400 juegos dominados! Tu audacia te ha llevado a conquistar la prestigiosa medalla AUDAX.</string>
+    <string name="logro_medalla_fortis">Has demostrado fortaleza mental en 500 juegos distintos, mereciendo la excepcional medalla FORTIS.</string>
+    <string name="logro_medalla_tenax">¡La perseverancia tiene premio! 600 juegos completados te coronan con la medalla TENAX.</string>
+    <string name="logro_medalla_intrepidus">Tu espíritu intrépido ha superado 700 desafíos, otorgándote la respetada medalla INTREPIDUS.</string>
+    <string name="logro_medalla_sapiens">La sabiduría se adquiere con práctica: 800 juegos completados te hacen merecedor de la medalla SAPIENS.</string>
+    <string name="logro_medalla_exemplar">¡Eres un ejemplo de determinación! 900 juegos superados te han concedido la ejemplar medalla EXEMPLAR.</string>
+    <string name="logro_medalla_gloriam">¡Gloria a tu perseverancia! Has conquistado 1000 desafíos, alcanzando la gloriosa medalla GLORIAM.</string>
+    <string name="logro_medalla_magnus">¡Logro magnífico! Al completar 1100 juegos diferentes, has obtenido la grandiosa medalla MAGNUS.</string>
+    <string name="logro_medalla_immortalis">¡Hazaña inmortal! Has culminado 1200 desafíos únicos, consagrándote con la legendaria medalla IMMORTALIS.</string>
+
+    <string name="logro_trofeo_initia">¡Dominaste los números! Has completado los 70 niveles de NÚMEROS⁺ Principiante, consiguiendo el trofeo INITIA.</string>
+    <string name="logro_trofeo_constantia">¡Maestría numérica avanzada! Superaste los 70 niveles de NÚMEROS⁺ Avanzado, conquistando el trofeo CONSTANTIA.</string>
+    <string name="logro_trofeo_confectus">¡Experto supremo en números! Los 70 niveles de NÚMEROS⁺ Pro han caído ante ti, otorgándote el trofeo CONFECTUS.</string>
+
+    <string name="logro_trofeo_via">¡Comienzo brillante con decimales! Completaste todos los niveles de DECI⁺ Principiante, ganando el trofeo VIA.</string>
+    <string name="logro_trofeo_altus">¡Precisión decimal probada! Los 70 niveles de DECI⁺ Avanzado son tuyos, mereciendo el prestigioso trofeo ALTUS.</string>
+    <string name="logro_trofeo_perseverantia">¡Maestría decimal absoluta! Has conquistado todos los niveles de DECI⁺ Pro, alzándote con el trofeo PERSEVERANTIA.</string>
+
+    <string name="logro_trofeo_gradus">¡Como un antiguo romano! Dominaste los 70 niveles de ROMAS Principiante, consiguiendo el valioso trofeo GRADUS.</string>
+    <string name="logro_trofeo_fortitudo">¡Poder imperial en números romanos! Has superado ROMAS Avanzado completamente, ganando el trofeo FORTITUDO.</string>
+    <string name="logro_trofeo_metam">¡Dominación romana total! Los 70 desafíos de ROMAS Pro han sido conquistados, premiándote con el glorioso trofeo METAM.</string>
+
+    <string name="logro_trofeo_fundamentum">¡Fundamentos alfanuméricos dominados! Completaste ALFANÚMEROS Principiante, obteniendo el trofeo FUNDAMENTUM.</string>
+    <string name="logro_trofeo_praemium">¡Genio alfanumérico confirmado! Los 70 niveles de ALFANÚMEROS Avanzado son historia, premiándote con el trofeo PRAEMIUM.</string>
+    <string name="logro_trofeo_glorificus">¡Maestría alfanumérica suprema! Has vencido todos los desafíos de ALFANÚMEROS Pro, alcanzando el magnífico trofeo GLORIFICUS.</string>
+
+    <string name="logro_trofeo_scala">¡Cálculo mental en ascenso! Superaste los 70 niveles de SUMARESTA Principiante, consiguiendo el trofeo SCALA.</string>
+    <string name="logro_trofeo_tenacitas">¡Suma y resta con maestría! Todos los niveles de SUMARESTA Avanzado completados, premiándote con el trofeo TENACITAS.</string>
+    <string name="logro_trofeo_perfectus">¡Perfección en el cálculo! Has dominado los 70 desafíos de SUMARESTA Pro, alcanzando el codiciado trofeo PERFECTUS.</string>
+
+    <string name="logro_trofeo_origo">¡Origen de tu dominio matemático! Completaste MÁS⁺ Principiante, ganando el importante trofeo ORIGO.</string>
+    <string name="logro_trofeo_proficium">¡Progreso matemático ejemplar! Los 70 niveles de MÁS⁺ Avanzado han caído, otorgándote el prestigioso trofeo PROFICIUM.</string>
+    <string name="logro_trofeo_exemplaritas">¡Ejemplo de excelencia matemática! Has superado todos los desafíos de MÁS⁺ Pro, consiguiendo el extraordinario trofeo EXEMPLARITAS.</string>
+
+    <string name="logro_trofeo_ascensus">¡Ascenso hacia la genialidad! Completaste los 70 niveles de GENIO⁺ Principiante, consiguiendo el codiciado trofeo ASCENSUS.</string>
+    <string name="logro_trofeo_magnificus">¡Capacidad mental magnífica! Has dominado GENIO⁺ Avanzado por completo, ganando el impresionante trofeo MAGNIFICUS.</string>
+    <string name="logro_trofeo_potens">¡Poder mental sin límites! Los 70 desafíos de GENIO⁺ Pro han sido conquistados, coronándote con el legendario trofeo POTENS.</string>
+
+    <string name="logro_top10_honorabilis">¡Has alcanzado el 10° lugar en el ranking global! Tu rendimiento te ha otorgado la condecoración HONORABILIS.</string>
+    <string name="logro_top10_virtuosus">¡Excelente desempeño! Te has posicionado en el 9° lugar del ranking global, mereciendo la condecoración VIRTUOSUS.</string>
+    <string name="logro_top10_insignis">¡Notable habilidad mental! Has conquistado el 8° puesto en el ranking global, ganando la distinguida condecoración INSIGNIS.</string>
+    <string name="logro_top10_praestans">¡Sobresales entre miles! El 7° lugar del ranking global es tuyo, junto con la prestigiosa condecoración PRAESTANS.</string>
+    <string name="logro_top10_illustris">¡Inteligencia ilustre! Has escalado hasta el 6° puesto del ranking global, consiguiendo la brillante condecoración ILLUSTRIS.</string>
+    <string name="logro_top10_gloriosus">¡Glorioso logro! Te has establecido en el 5° lugar del ranking global, coronándote con la condecoración GLORIOSUS.</string>
+    <string name="logro_top10_venerabilis">¡Habilidad venerable! Has alcanzado el prestigioso 4° puesto del ranking global, obteniendo la admirable condecoración VENERABILIS.</string>
+    <string name="logro_top10_magnanimous">¡Entre los mejores del mundo! El 3er lugar del ranking global refleja tu magnánima destreza, premiada con la condecoración MAGNANIMOUS.</string>
+    <string name="logro_top10_summum">¡Casi en la cima! Has conseguido el impresionante 2° lugar del ranking global, alcanzando la máxima condecoración SUMMUM.</string>
+    <string name="logro_top10_excelsitur">¡Indiscutible campeón mental! Has conquistado el 1er puesto del ranking global, consagrándote con la suprema condecoración EXCELSITUR.</string>
+
+    <string name="logro_apex_supremus">¡HAZAÑA LEGENDARIA! Has completado los 1490 niveles de SUMAMENTE, demostrando una dedicación y maestría mental extraordinarias. La máxima condecoración APEX SUPREMUS "MCDXC" es tuya por derecho.</string>
+    <string name="no_condecoraciones">Aún no has obtenido ninguna condecoración. ¡Sigue jugando para conseguirlas!</string>
+
 </resources>

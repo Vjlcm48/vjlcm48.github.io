@@ -772,40 +772,40 @@
     <string name="corona_celeris_6">A lightning-fast mind. Beat 94% of users and this crown will appear for you.</string>
     <string name="corona_volucer_1">The top 1% of the fastest. Your mind is a flash of light. This crown honors the legendary.</string>
 
-    <!-- 🏆 TROPHIES NÚMEROS⁺ -->
-    <string name="trofeo_initia_numeros_principiante">Begin your journey. Master NÚMEROS⁺ Beginner and this trophy marks your start.</string>
-    <string name="trofeo_constantia_numeros_avanzado">Keep pushing forward. Face every challenge in NÚMEROS⁺ Advanced.</string>
-    <string name="trofeo_confectus_numeros_pro">Leave nothing behind. Reach the end of NÚMEROS⁺ Pro and earn CONFECTUS.</string>
+    <!-- 🏆 TROPHIES NUMBERS⁺ -->
+    <string name="trofeo_initia_numeros_principiante">Begin your journey. Master NUMBERS⁺ Beginner and this trophy marks your start.</string>
+    <string name="trofeo_constantia_numeros_avanzado">Keep pushing forward. Face every challenge in NUMBERS⁺ Advanced.</string>
+    <string name="trofeo_confectus_numeros_pro">Leave nothing behind. Reach the end of NUMBERS⁺ Pro and earn CONFECTUS.</string>
 
     <!-- 🏆 TROPHIES DECI⁺ -->
     <string name="trofeo_via_deci_principiante">Start your decimal journey. Complete DECI⁺ Beginner and rise above.</string>
     <string name="trofeo_altus_deci_avanzado">Aim high. Finish DECI⁺ Advanced and ALTUS will be yours.</string>
-    <string name="trofeo_perseverantia_deci_pro">Don’t stop. Conquer every challenge in DECI⁺ Pro with unwavering discipline.</string>
+    <string name="trofeo_perseverantia_deci_pro">Don\'t stop. Conquer every challenge in DECI⁺ Pro with unwavering discipline.</string>
 
     <!-- 🏆 TROPHIES ROMAS -->
     <string name="trofeo_gradus_romas_principiante">Step by step. Complete ROMAS Beginner and leave your imperial mark.</string>
     <string name="trofeo_fortitudo_romas_avanzado">Show your strength. Face all of ROMAS Advanced until the end.</string>
     <string name="trofeo_metam_romas_pro">Reach the Roman finish line. Beat every ROMAS Pro level and claim this trophy.</string>
 
-    <!-- 🏆 TROPHIES ALFANUMEROS -->
-    <string name="trofeo_fundamentum_alfanumeros_principiante">Lay the foundations of mastery. Complete ALFANUMEROS Beginner with no gaps.</string>
-    <string name="trofeo_praemium_alfanumeros_avanzado">Earn your prize letter by letter. Advance through all ALFANUMEROS Advanced levels.</string>
-    <string name="trofeo_glorificus_alfanumeros_pro">Chase glory. Master ALFANUMEROS Pro and let your mind shine.</string>
+    <!-- 🏆 TROPHIES ALPHANUMBERS -->
+    <string name="trofeo_fundamentum_alfanumeros_principiante">Lay the foundations of mastery. Complete ALPHANUMBERS Beginner with no gaps.</string>
+    <string name="trofeo_praemium_alfanumeros_avanzado">Earn your prize letter by letter. Advance through all ALPHANUMBERS Advanced levels.</string>
+    <string name="trofeo_glorificus_alfanumeros_pro">Chase glory. Master ALPHANUMBERS Pro and let your mind shine.</string>
 
-    <!-- 🏆 TROPHIES SUMARESTA -->
-    <string name="trofeo_scala_sumaresta_principiante">Climb steadily. Rise level by level until you conquer SUMARESTA Beginner.</string>
-    <string name="trofeo_tenacitas_sumaresta_avanzado">Only the tenacious go far. Face and complete SUMARESTA Advanced.</string>
-    <string name="trofeo_perfectus_sumaresta_pro">Strive for perfection. Finish SUMARESTA Pro without giving up.</string>
+    <!-- 🏆 TROPHIES SUMADD -->
+    <string name="trofeo_scala_sumaresta_principiante">Climb steadily. Rise level by level until you conquer SUMADD Beginner.</string>
+    <string name="trofeo_tenacitas_sumaresta_avanzado">Only the tenacious go far. Face and complete SUMADD Advanced.</string>
+    <string name="trofeo_perfectus_sumaresta_pro">Strive for perfection. Finish SUMADD Pro without giving up.</string>
 
-    <!-- 🏆 TROPHIES MAS⁺ -->
-    <string name="trofeo_origo_mas_principiante">Everything starts here. Complete MAS⁺ Beginner and unlock your origin.</string>
-    <string name="trofeo_proficium_mas_avanzado">Make progress your mission. Advance through all MAS⁺ Advanced challenges.</string>
-    <string name="trofeo_exemplaritas_mas_pro">Become a model to follow. Finish MAS⁺ Pro and honor your example.</string>
+    <!-- 🏆 TROPHIES MORE⁺ -->
+    <string name="trofeo_origo_mas_principiante">Everything starts here. Complete MORE⁺ Beginner and unlock your origin.</string>
+    <string name="trofeo_proficium_mas_avanzado">Make progress your mission. Advance through all MORE⁺ Advanced challenges.</string>
+    <string name="trofeo_exemplaritas_mas_pro">Become a model to follow. Finish MORE⁺ Pro and honor your example.</string>
 
-    <!-- 🏆 TROPHIES GENIOS⁺ -->
-    <string name="trofeo_ascensus_genio_principiante">Begin your rise to genius. Complete GENIOS⁺ Beginner.</string>
-    <string name="trofeo_magnificus_genio_avanzado">Let your intellect shine. Overcome every level of GENIOS⁺ Advanced.</string>
-    <string name="trofeo_potens_genio_pro">Unleash your full potential. Conquer GENIOS⁺ Pro without looking back.</string>
+    <!-- 🏆 TROPHIES GENIUS⁺ -->
+    <string name="trofeo_ascensus_genio_principiante">Begin your rise to genius. Complete GENIUS⁺ Beginner.</string>
+    <string name="trofeo_magnificus_genio_avanzado">Let your intellect shine. Overcome every level of GENIUS⁺ Advanced.</string>
+    <string name="trofeo_potens_genio_pro">Unleash your full potential. Conquer GENIUS⁺ Pro without looking back.</string>
 
     <string name="previous">Previous</string>
     <string name="next">Next</string>
@@ -850,5 +850,68 @@
     <string name="puntaje">Score</string>
     <string name="ranking_sin_datos">No ranking data available</string>
     <string name="bandera_pais">Country flag</string>
+
+    <string name="logro_pin_victoris">You conquered 30 different challenges without errors in a single day, earning the VICTORIS pin!</string>
+    <string name="logro_pin_optimum">Your precision is exceptional: 40 levels completed flawlessly in 24 hours have granted you the OPTIMUM pin.</string>
+    <string name="logro_pin_invictus">Excellence distinguishes you for solving 50 different challenges perfectly in one day, achieving the prestigious INVICTUS pin.</string>
+
+    <string name="logro_corona_velocitas">Your speed in %1$s is impressive! You\'re among the top 10%% of fastest players, crowning yourself with VELOCITAS.</string>
+    <string name="logro_corona_celeris">Extraordinary reflexes in %1$s! Your quickness places you in the exclusive top 4%%, earning you the CELERIS crown.</string>
+    <string name="logro_corona_volucer">Legendary speed in %1$s! You\'ve reached the elite 1%% in mental agility, claiming the prestigious VOLUCER crown.</string>
+
+    <string name="logro_medalla_initium">You\'ve completed 100 unique games! Your dedication has earned you the INITIUM medal, the beginning of your collection.</string>
+    <string name="logro_medalla_fidelis">200 games completed! Your consistency is admirable, thus achieving the FIDELIS medal.</string>
+    <string name="logro_medalla_virtus">The VIRTUS medal is yours for overcoming 300 different challenges. Your mental courage shows with every game!</string>
+    <string name="logro_medalla_audax">400 games mastered! Your boldness has led you to conquer the prestigious AUDAX medal.</string>
+    <string name="logro_medalla_fortis">You\'ve demonstrated mental strength in 500 different games, deserving the exceptional FORTIS medal.</string>
+    <string name="logro_medalla_tenax">Perseverance has its reward! 600 completed games crown you with the TENAX medal.</string>
+    <string name="logro_medalla_intrepidus">Your fearless spirit has overcome 700 challenges, granting you the respected INTREPIDUS medal.</string>
+    <string name="logro_medalla_sapiens">Wisdom comes with practice: 800 completed games make you worthy of the SAPIENS medal.</string>
+    <string name="logro_medalla_exemplar">You\'re an example of determination! 900 conquered games have awarded you the exemplary EXEMPLAR medal.</string>
+    <string name="logro_medalla_gloriam">Glory to your perseverance! You\'ve conquered 1000 challenges, reaching the glorious GLORIAM medal.</string>
+    <string name="logro_medalla_magnus">Magnificent achievement! By completing 1100 different games, you\'ve obtained the grand MAGNUS medal.</string>
+    <string name="logro_medalla_immortalis">Immortal feat! You\'ve culminated 1200 unique challenges, consecrating yourself with the legendary IMMORTALIS medal.</string>
+
+    <string name="logro_trofeo_initia">You mastered numbers! You\'ve completed all 70 levels of NUMBERS⁺ Beginner, earning the INITIA trophy.</string>
+    <string name="logro_trofeo_constantia">Advanced numerical mastery! You conquered all 70 levels of NUMBERS⁺ Advanced, claiming the CONSTANTIA trophy.</string>
+    <string name="logro_trofeo_confectus">Supreme expert in numbers! All 70 levels of NUMBERS⁺ Pro have fallen before you, granting you the CONFECTUS trophy.</string>
+
+    <string name="logro_trofeo_via">Brilliant start with decimals! You completed all levels of DECI⁺ Beginner, winning the VIA trophy.</string>
+    <string name="logro_trofeo_altus">Decimal precision proven! The 70 levels of DECI⁺ Advanced are yours, deserving the prestigious ALTUS trophy.</string>
+    <string name="logro_trofeo_perseverantia">Absolute decimal mastery! You\'ve conquered all levels of DECI⁺ Pro, claiming the PERSEVERANTIA trophy.</string>
+
+    <string name="logro_trofeo_gradus">Like an ancient Roman! You mastered all 70 levels of ROMAS Beginner, obtaining the valuable GRADUS trophy.</string>
+    <string name="logro_trofeo_fortitudo">Imperial power in Roman numerals! You\'ve completely overcome ROMAS Advanced, winning the FORTITUDO trophy.</string>
+    <string name="logro_trofeo_metam">Total Roman domination! All 70 challenges of ROMAS Pro have been conquered, rewarding you with the glorious METAM trophy.</string>
+
+    <string name="logro_trofeo_fundamentum">Alphanumeric foundations mastered! You completed ALPHANUMBERS Beginner, obtaining the FUNDAMENTUM trophy.</string>
+    <string name="logro_trofeo_praemium">Confirmed alphanumeric genius! All 70 levels of ALPHANUMBERS Advanced are history, rewarding you with the PRAEMIUM trophy.</string>
+    <string name="logro_trofeo_glorificus">Supreme alphanumeric mastery! You\'ve defeated all challenges of ALPHANUMBERS Pro, reaching the magnificent GLORIFICUS trophy.</string>
+
+    <string name="logro_trofeo_scala">Mental calculation on the rise! You conquered all 70 levels of SUMADD Beginner, earning the SCALA trophy.</string>
+    <string name="logro_trofeo_tenacitas">Addition and subtraction mastery! All levels of SUMADD Advanced completed, rewarding you with the TENACITAS trophy.</string>
+    <string name="logro_trofeo_perfectus">Perfection in calculation! You\'ve mastered all 70 challenges of SUMADD Pro, achieving the coveted PERFECTUS trophy.</string>
+
+    <string name="logro_trofeo_origo">Origin of your mathematical dominance! You completed MORE⁺ Beginner, winning the important ORIGO trophy.</string>
+    <string name="logro_trofeo_proficium">Exemplary mathematical progress! All 70 levels of MORE⁺ Advanced have fallen, granting you the prestigious PROFICIUM trophy.</string>
+    <string name="logro_trofeo_exemplaritas">Example of mathematical excellence! You\'ve overcome all challenges of MORE⁺ Pro, achieving the extraordinary EXEMPLARITAS trophy.</string>
+
+    <string name="logro_trofeo_ascensus">Ascent towards genius! You completed all 70 levels of GENIUS⁺ Beginner, earning the coveted ASCENSUS trophy.</string>
+    <string name="logro_trofeo_magnificus">Magnificent mental capacity! You\'ve mastered GENIUS⁺ Advanced completely, winning the impressive MAGNIFICUS trophy.</string>
+    <string name="logro_trofeo_potens">Unlimited mental power! All 70 challenges of GENIUS⁺ Pro have been conquered, crowning you with the legendary POTENS trophy.</string>
+
+    <string name="logro_top10_honorabilis">You\'ve reached 10th place in the global ranking! Your performance has earned you the HONORABILIS decoration.</string>
+    <string name="logro_top10_virtuosus">Excellent performance! You\'ve positioned yourself in 9th place of the global ranking, deserving the VIRTUOSUS decoration.</string>
+    <string name="logro_top10_insignis">Notable mental ability! You\'ve conquered 8th position in the global ranking, winning the distinguished INSIGNIS decoration.</string>
+    <string name="logro_top10_praestans">You stand out among thousands! The 7th place of the global ranking is yours, along with the prestigious PRAESTANS decoration.</string>
+    <string name="logro_top10_illustris">Illustrious intelligence! You\'ve climbed to 6th position in the global ranking, achieving the brilliant ILLUSTRIS decoration.</string>
+    <string name="logro_top10_gloriosus">Glorious achievement! You\'ve established yourself in 5th place of the global ranking, crowning yourself with the GLORIOSUS decoration.</string>
+    <string name="logro_top10_venerabilis">Venerable skill! You\'ve reached the prestigious 4th position in the global ranking, obtaining the admirable VENERABILIS decoration.</string>
+    <string name="logro_top10_magnanimous">Among the world\'s best! The 3rd place in the global ranking reflects your magnanimous prowess, awarded with the MAGNANIMOUS decoration.</string>
+    <string name="logro_top10_summum">Almost at the top! You\'ve secured the impressive 2nd place in the global ranking, reaching the highest SUMMUM decoration.</string>
+    <string name="logro_top10_excelsitur">Undisputed mental champion! You\'ve conquered the 1st position in the global ranking, consecrating yourself with the supreme EXCELSITUR decoration.</string>
+
+    <string name="logro_apex_supremus">LEGENDARY FEAT! You\'ve completed all 1490 levels of SUMAMENTE, demonstrating extraordinary dedication and mental mastery. The ultimate APEX SUPREMUS "MCDXC" decoration is yours by right.</string>
+    <string name="no_condecoraciones">You haven\'t earned any decorations yet. Keep playing to get them!</string>
 
 </resources>
