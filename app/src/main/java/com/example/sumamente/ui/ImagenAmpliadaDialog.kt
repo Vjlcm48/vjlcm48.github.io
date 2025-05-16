@@ -5,9 +5,10 @@ import android.content.Context
 import android.os.Bundle
 import android.view.Window
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import com.example.sumamente.R
+import com.github.chrisbanes.photoview.PhotoView
+
 
 class ImagenAmpliadaDialog(
     context: Context,
@@ -23,7 +24,8 @@ class ImagenAmpliadaDialog(
         window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         findViewById<TextView>(R.id.tv_titulo_imagen).text = titulo
-        findViewById<ImageView>(R.id.img_ampliada).setImageResource(imagenResourceId)
+        val photoView = findViewById<PhotoView>(R.id.img_ampliada)
+        photoView.setImageResource(imagenResourceId)
 
         findViewById<Button>(R.id.btn_cerrar).setOnClickListener {
             dismiss()
