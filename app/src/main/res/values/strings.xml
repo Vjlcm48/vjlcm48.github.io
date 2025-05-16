@@ -816,4 +816,12 @@
     <string name="apex_supremus_descripcion">Sólo los vencedores supremos podrán obtenerlo…</string>
     <string name="apex_supremus_info">Esta distinguida condecoración se otorga únicamente a quienes completan todos los desafíos de Sumamente.</string>
 
+    <string name="ranking_global">Ranking Global</string>
+    <string name="posicion">Posición</string>
+    <string name="usuario">Usuario</string>
+    <string name="pais">País</string>
+    <string name="puntaje">Puntaje</string>
+    <string name="ranking_sin_datos">No hay datos de ranking disponibles</string>
+    <string name="bandera_pais">Bandera del país</string>
+
 </resources>

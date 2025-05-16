@@ -18,7 +18,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toDrawable
 import com.example.sumamente.R
@@ -102,7 +101,8 @@ class ClassificationActivity : AppCompatActivity() {
 
         btnVerClasificacion.setOnClickListener {
             applyBounceEffect(it) {
-                Toast.makeText(this, getString(R.string.en_construccion), Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, RankingActivity::class.java)
+                startActivity(intent)
             }
         }
     }

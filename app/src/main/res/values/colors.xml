@@ -37,5 +37,12 @@
     <color name="red_lighter">#FFEBEE</color>
     <color name="gold_star">#FFD700</color>
     <color name="dark_goldenrod">#8B6D0B</color>
+    <color name="gold">#FFD700</color>
+    <color name="silver">#C0C0C0</color>
+    <color name="bronze">#CD7F32</color>
+    <color name="highlight_user_background">#E3F2FD</color>
+    <color name="highlight_user_text">#1565C0</color>
+    <color name="ranking_item_even">#FFFFFF</color>
+    <color name="ranking_item_odd">#F5F5F5</color>
 
 </resources>

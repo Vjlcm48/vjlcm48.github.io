@@ -843,4 +843,12 @@
     <string name="apex_supremus_descripcion">Only supreme victors shall possess it…</string>
     <string name="apex_supremus_info">This distinguished honor is awarded exclusively to those who complete all Sumamente challenges.</string>
 
+    <string name="ranking_global">Global Ranking</string>
+    <string name="posicion">Position</string>
+    <string name="usuario">User</string>
+    <string name="pais">Country</string>
+    <string name="puntaje">Score</string>
+    <string name="ranking_sin_datos">No ranking data available</string>
+    <string name="bandera_pais">Country flag</string>
+
 </resources>
