@@ -151,12 +151,34 @@ class LevelResultActivityPro : AppCompatActivity() {
             else -> 4600
         }
 
-        return when (attempts) {
+        val pointsAfterAttempts = when (attempts) {
             0 -> basePoints
             1 -> basePoints / 2
             else -> 0
         }
+        if (pointsAfterAttempts == 0) return 0
+
+        val precisionGlobal = ScoreManager.getPrecisionGlobal()
+        val velocidadBonus = 240.0
+
+        var tiempoPromedio = ScoreManager.getTiempoPromedioNumerosPlus()  // En segundos
+
+        val useManualAnswer = intent.getBooleanExtra("USE_MANUAL_ANSWER", false)
+        if (useManualAnswer) {
+            tiempoPromedio *= 0.7
+        }
+
+        val puntosPorVelocidad = if (tiempoPromedio > 0) {
+            (velocidadBonus * (1.0 / tiempoPromedio))
+        } else {
+            0.0
+        }
+
+        val puntajeFinal = (pointsAfterAttempts * precisionGlobal) + puntosPorVelocidad
+
+        return puntajeFinal.toInt()
     }
+
 
     private fun updateScoreToZero() {
         ScoreManager.levelScoresPro[currentLevel]?.let { previousScore ->

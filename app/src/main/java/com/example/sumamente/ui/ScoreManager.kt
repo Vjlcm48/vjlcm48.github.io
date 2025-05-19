@@ -11,11 +11,6 @@ object ScoreManager {
     private const val KEY_UNLOCKED_LEVELS = "unlocked_levels"
     private const val KEY_COMPLETED_LEVELS = "completed_levels"
 
-    private const val KEY_TOTAL_GAMES_GLOBAL = "total_games_global"
-    private const val KEY_CORRECT_GAMES_GLOBAL = "correct_games_global"
-    private const val KEY_TOTAL_GAMES_NUMEROS_PLUS = "total_games_numeros_plus"
-    private const val KEY_TOTAL_TIME_NUMEROS_PLUS = "total_time_numeros_plus"
-
     private const val PREFS_NAME_PRINCIPIANTE = "ScorePrefsPrincipiante"
     private const val KEY_CURRENT_SCORE_PRINCIPIANTE = "current_score_principiante"
     private const val KEY_UNLOCKED_LEVELS_PRINCIPIANTE = "unlocked_levels_principiante"
@@ -25,6 +20,11 @@ object ScoreManager {
     private const val KEY_CURRENT_SCORE_PRO = "current_score_pro"
     private const val KEY_UNLOCKED_LEVELS_PRO = "unlocked_levels_pro"
     private const val KEY_COMPLETED_LEVELS_PRO = "completed_levels_pro"
+
+    private const val KEY_TOTAL_GAMES_GLOBAL = "total_games_global"
+    private const val KEY_CORRECT_GAMES_GLOBAL = "correct_games_global"
+    private const val KEY_TOTAL_GAMES_NUMEROS_PLUS = "total_games_numeros_plus"
+    private const val KEY_TOTAL_TIME_NUMEROS_PLUS = "total_time_numeros_plus"
 
     private const val PREFS_NAME_DECI_PLUS = "ScorePrefsDeciPlus"
     private const val KEY_CURRENT_SCORE_DECI_PLUS = "current_score_deci_plus"
@@ -123,9 +123,6 @@ object ScoreManager {
     var unlockedLevels: Int = 2
     val levelScores: MutableMap<Int, Int> = mutableMapOf()
 
-    var totalGamesNumerosPlus: Int = 0
-    var totalTimeNumerosPlus: Double = 0.0
-
     var currentScorePrincipiante: Int = 0
     var unlockedLevelsPrincipiante: Int = 2
     val levelScoresPrincipiante: MutableMap<Int, Int> = mutableMapOf()
@@ -133,6 +130,9 @@ object ScoreManager {
     var currentScorePro: Int = 0
     var unlockedLevelsPro: Int = 2
     val levelScoresPro: MutableMap<Int, Int> = mutableMapOf()
+
+    var totalGamesNumerosPlus: Int = 0
+    var totalTimeNumerosPlus: Double = 0.0
 
     var currentScoreDeciPlus: Int = 0
     var unlockedLevelsDeciPlus: Int = 2

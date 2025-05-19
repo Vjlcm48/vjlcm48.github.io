@@ -648,6 +648,12 @@ class GameActivityPrincipiante : AppCompatActivity() {
 
             calculateTimeSpent()
 
+            ScoreManager.totalGamesGlobal++
+            ScoreManager.correctGamesGlobal++
+            ScoreManager.totalGamesNumerosPlus++
+            ScoreManager.totalTimeNumerosPlus += timeSpentInSeconds
+            ScoreManager.saveStatsGlobalAndNumerosPlus()
+
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -664,6 +670,10 @@ class GameActivityPrincipiante : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
+
+                ScoreManager.totalGamesGlobal++
+                ScoreManager.totalGamesNumerosPlus++
+                ScoreManager.saveStatsGlobalAndNumerosPlus()
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     manualAnswerEditText.background = originalBackground
@@ -762,6 +772,12 @@ class GameActivityPrincipiante : AppCompatActivity() {
 
             calculateTimeSpent()
 
+            ScoreManager.totalGamesGlobal++
+            ScoreManager.correctGamesGlobal++
+            ScoreManager.totalGamesNumerosPlus++
+            ScoreManager.totalTimeNumerosPlus += timeSpentInSeconds
+            ScoreManager.saveStatsGlobalAndNumerosPlus()
+
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -781,6 +797,11 @@ class GameActivityPrincipiante : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
+
+                ScoreManager.totalGamesGlobal++
+                ScoreManager.totalGamesNumerosPlus++
+                ScoreManager.saveStatsGlobalAndNumerosPlus()
+
                 ScoreManager.incrementConsecutiveFailuresPrincipiante(currentLevel)
                 Handler(Looper.getMainLooper()).postDelayed({
                     navigateToLevelResult(false)
@@ -813,6 +834,8 @@ class GameActivityPrincipiante : AppCompatActivity() {
             intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
             intent.putExtra("USER_RESPONSES", userResponses.toIntArray())
         }
+
+        intent.putExtra("USE_MANUAL_ANSWER", useManualAnswer)
 
         startActivity(intent)
         finish()
