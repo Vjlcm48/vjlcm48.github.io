@@ -11,6 +11,11 @@ object ScoreManager {
     private const val KEY_UNLOCKED_LEVELS = "unlocked_levels"
     private const val KEY_COMPLETED_LEVELS = "completed_levels"
 
+    private const val KEY_TOTAL_GAMES_GLOBAL = "total_games_global"
+    private const val KEY_CORRECT_GAMES_GLOBAL = "correct_games_global"
+    private const val KEY_TOTAL_GAMES_NUMEROS_PLUS = "total_games_numeros_plus"
+    private const val KEY_TOTAL_TIME_NUMEROS_PLUS = "total_time_numeros_plus"
+
     private const val PREFS_NAME_PRINCIPIANTE = "ScorePrefsPrincipiante"
     private const val KEY_CURRENT_SCORE_PRINCIPIANTE = "current_score_principiante"
     private const val KEY_UNLOCKED_LEVELS_PRINCIPIANTE = "unlocked_levels_principiante"
@@ -111,9 +116,15 @@ object ScoreManager {
     private const val KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRO = "unlocked_levels_genio_plus_pro"
     private const val KEY_COMPLETED_LEVELS_GENIO_PLUS_PRO = "completed_levels_genio_plus_pro"
 
+    var totalGamesGlobal: Int = 0
+    var correctGamesGlobal: Int = 0
+
     var currentScore: Int = 0
     var unlockedLevels: Int = 2
     val levelScores: MutableMap<Int, Int> = mutableMapOf()
+
+    var totalGamesNumerosPlus: Int = 0
+    var totalTimeNumerosPlus: Double = 0.0
 
     var currentScorePrincipiante: Int = 0
     var unlockedLevelsPrincipiante: Int = 2
@@ -272,7 +283,14 @@ object ScoreManager {
                 consecutiveFailures[i] = failures
             }
         }
+
+        totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
+        correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
+        totalGamesNumerosPlus = preferences.getInt(KEY_TOTAL_GAMES_NUMEROS_PLUS, 0)
+        totalTimeNumerosPlus = preferences.getFloat(KEY_TOTAL_TIME_NUMEROS_PLUS, 0f).toDouble()
+
     }
+
 
     fun initPrincipiante(context: Context) {
         preferencesPrincipiante = context.getSharedPreferences(PREFS_NAME_PRINCIPIANTE, Context.MODE_PRIVATE)
@@ -550,6 +568,23 @@ object ScoreManager {
             putInt(KEY_CURRENT_SCORE_PRO, currentScorePro)
                 .putInt(KEY_UNLOCKED_LEVELS_PRO, unlockedLevelsPro)
         }
+    }
+
+    fun saveStatsGlobalAndNumerosPlus() {
+        preferences.edit {
+            putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
+            putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
+            putInt(KEY_TOTAL_GAMES_NUMEROS_PLUS, totalGamesNumerosPlus)
+            putFloat(KEY_TOTAL_TIME_NUMEROS_PLUS, totalTimeNumerosPlus.toFloat())
+        }
+    }
+
+    fun getPrecisionGlobal(): Double {
+        return if (totalGamesGlobal > 0) correctGamesGlobal.toDouble() / totalGamesGlobal else 1.0
+    }
+
+    fun getTiempoPromedioNumerosPlus(): Double {
+        return if (totalGamesNumerosPlus > 0) totalTimeNumerosPlus / totalGamesNumerosPlus else 1.0
     }
 
     fun saveScoreDeciPlus() {
