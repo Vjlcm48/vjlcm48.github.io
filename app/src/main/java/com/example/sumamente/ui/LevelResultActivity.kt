@@ -110,6 +110,11 @@ class LevelResultActivity : AppCompatActivity() {
     }
 
     private fun handleSuccessScenario() {
+        ScoreManager.totalGamesGlobal += 1
+        ScoreManager.totalGamesNumerosPlus += 1
+        ScoreManager.correctGamesGlobal += 1
+        ScoreManager.saveStatsGlobalAndNumerosPlus()
+
         pointsEarned = calculatePoints()
 
         ScoreManager.levelScores[currentLevel]?.let { previousScore ->
@@ -133,6 +138,9 @@ class LevelResultActivity : AppCompatActivity() {
     }
 
     private fun handleFailureScenario() {
+        ScoreManager.totalGamesGlobal += 1
+        ScoreManager.saveStatsGlobalAndNumerosPlus()
+
         updateScoreToZero()
         showFailureDialog()
     }
@@ -159,11 +167,11 @@ class LevelResultActivity : AppCompatActivity() {
         }
         if (pointsAfterAttempts == 0) return 0
 
-        val precisionGlobal = ScoreManager.getPrecisionGlobal()  // [0..1]
+        val precisionGlobal = ScoreManager.getPrecisionGlobal()
 
         val velocidadBonus = 140
 
-        var tiempoPromedio = ScoreManager.getTiempoPromedioNumerosPlus()  // En segundos
+        var tiempoPromedio = ScoreManager.getTiempoPromedioNumerosPlus()
 
         val useManualAnswer = intent.getBooleanExtra("USE_MANUAL_ANSWER", false)
         if (useManualAnswer) {

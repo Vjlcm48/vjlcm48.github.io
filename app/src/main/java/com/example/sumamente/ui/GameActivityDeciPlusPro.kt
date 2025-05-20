@@ -636,6 +636,12 @@ class GameActivityDeciPlusPro : AppCompatActivity() {
 
             calculateTimeSpent()
 
+            ScoreManager.totalGamesGlobal++
+            ScoreManager.correctGamesGlobal++
+            ScoreManager.totalGamesDeciPlus++
+            ScoreManager.totalTimeDeciPlus += timeSpentInSeconds
+            ScoreManager.saveStatsGlobalAndDeciPlus()
+
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -653,6 +659,10 @@ class GameActivityDeciPlusPro : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
+
+                ScoreManager.totalGamesGlobal++
+                ScoreManager.totalGamesDeciPlus++
+                ScoreManager.saveStatsGlobalAndDeciPlus()
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     manualAnswerEditText.background = originalBackground
@@ -764,6 +774,12 @@ class GameActivityDeciPlusPro : AppCompatActivity() {
 
             calculateTimeSpent()
 
+            ScoreManager.totalGamesGlobal++
+            ScoreManager.correctGamesGlobal++
+            ScoreManager.totalGamesDeciPlus++
+            ScoreManager.totalTimeDeciPlus += timeSpentInSeconds
+            ScoreManager.saveStatsGlobalAndDeciPlus()
+
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -783,6 +799,11 @@ class GameActivityDeciPlusPro : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
+
+                ScoreManager.totalGamesGlobal++
+                ScoreManager.totalGamesDeciPlus++
+                ScoreManager.saveStatsGlobalAndDeciPlus()
+
                 ScoreManager.incrementConsecutiveFailuresDeciPlusPro(currentLevel)
                 Handler(Looper.getMainLooper()).postDelayed({
                     navigateToLevelResult(false)
@@ -816,6 +837,8 @@ class GameActivityDeciPlusPro : AppCompatActivity() {
             intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
             intent.putExtra("USER_RESPONSES", userResponses.toDoubleArray())
         }
+
+        intent.putExtra("USE_MANUAL_ANSWER", useManualAnswer)
 
         startActivity(intent)
         finish()

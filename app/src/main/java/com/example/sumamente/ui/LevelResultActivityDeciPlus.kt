@@ -112,6 +112,11 @@ class LevelResultActivityDeciPlus : AppCompatActivity() {
     }
 
     private fun handleSuccessScenario() {
+        ScoreManager.totalGamesGlobal += 1
+        ScoreManager.correctGamesGlobal += 1
+        ScoreManager.totalGamesDeciPlus += 1
+        ScoreManager.saveStatsGlobalAndDeciPlus()
+
         pointsEarned = calculatePoints()
 
         ScoreManager.levelScoresDeciPlus[currentLevel]?.let { previousScore ->
@@ -135,6 +140,10 @@ class LevelResultActivityDeciPlus : AppCompatActivity() {
     }
 
     private fun handleFailureScenario() {
+        ScoreManager.totalGamesGlobal += 1
+        ScoreManager.totalGamesDeciPlus += 1
+        ScoreManager.saveStatsGlobalAndDeciPlus()
+
         updateScoreToZero()
         showFailureDialog()
     }

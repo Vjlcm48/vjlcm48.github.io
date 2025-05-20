@@ -638,6 +638,7 @@ class GameActivityDeciPlus : AppCompatActivity() {
 
             ScoreManager.totalGamesGlobal++
             ScoreManager.correctGamesGlobal++
+            ScoreManager.totalGamesDeciPlus++
             ScoreManager.totalTimeDeciPlus += timeSpentInSeconds
             ScoreManager.saveStatsGlobalAndDeciPlus()
 
@@ -660,6 +661,7 @@ class GameActivityDeciPlus : AppCompatActivity() {
                 calculateTimeSpent()
 
                 ScoreManager.totalGamesGlobal++
+                ScoreManager.totalGamesDeciPlus++
                 ScoreManager.saveStatsGlobalAndDeciPlus()
 
                 Handler(Looper.getMainLooper()).postDelayed({
@@ -774,6 +776,7 @@ class GameActivityDeciPlus : AppCompatActivity() {
 
             ScoreManager.totalGamesGlobal++
             ScoreManager.correctGamesGlobal++
+            ScoreManager.totalGamesDeciPlus++
             ScoreManager.totalTimeDeciPlus += timeSpentInSeconds
             ScoreManager.saveStatsGlobalAndDeciPlus()
 
@@ -798,6 +801,7 @@ class GameActivityDeciPlus : AppCompatActivity() {
                 calculateTimeSpent()
 
                 ScoreManager.totalGamesGlobal++
+                ScoreManager.totalGamesDeciPlus++
                 ScoreManager.saveStatsGlobalAndDeciPlus()
 
                 Handler(Looper.getMainLooper()).postDelayed({
