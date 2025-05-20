@@ -636,6 +636,11 @@ class GameActivityDeciPlus : AppCompatActivity() {
 
             calculateTimeSpent()
 
+            ScoreManager.totalGamesGlobal++
+            ScoreManager.correctGamesGlobal++
+            ScoreManager.totalTimeDeciPlus += timeSpentInSeconds
+            ScoreManager.saveStatsGlobalAndDeciPlus()
+
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -653,6 +658,9 @@ class GameActivityDeciPlus : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
+
+                ScoreManager.totalGamesGlobal++
+                ScoreManager.saveStatsGlobalAndDeciPlus()
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     manualAnswerEditText.background = originalBackground
@@ -764,6 +772,11 @@ class GameActivityDeciPlus : AppCompatActivity() {
 
             calculateTimeSpent()
 
+            ScoreManager.totalGamesGlobal++
+            ScoreManager.correctGamesGlobal++
+            ScoreManager.totalTimeDeciPlus += timeSpentInSeconds
+            ScoreManager.saveStatsGlobalAndDeciPlus()
+
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -783,6 +796,9 @@ class GameActivityDeciPlus : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
+
+                ScoreManager.totalGamesGlobal++
+                ScoreManager.saveStatsGlobalAndDeciPlus()
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     navigateToLevelResult(false)
@@ -815,6 +831,8 @@ class GameActivityDeciPlus : AppCompatActivity() {
             intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
             intent.putExtra("USER_RESPONSES", userResponses.toDoubleArray())
         }
+
+        intent.putExtra("USE_MANUAL_ANSWER", useManualAnswer)
 
         startActivity(intent)
         finish()

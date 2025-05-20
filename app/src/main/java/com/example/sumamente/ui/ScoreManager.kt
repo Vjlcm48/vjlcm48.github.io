@@ -24,6 +24,7 @@ object ScoreManager {
     private const val KEY_TOTAL_GAMES_GLOBAL = "total_games_global"
     private const val KEY_CORRECT_GAMES_GLOBAL = "correct_games_global"
     private const val KEY_TOTAL_GAMES_NUMEROS_PLUS = "total_games_numeros_plus"
+
     private const val KEY_TOTAL_TIME_NUMEROS_PLUS = "total_time_numeros_plus"
 
     private const val PREFS_NAME_DECI_PLUS = "ScorePrefsDeciPlus"
@@ -40,6 +41,8 @@ object ScoreManager {
     private const val KEY_CURRENT_SCORE_DECI_PLUS_PRO = "current_score_deci_plus_pro"
     private const val KEY_UNLOCKED_LEVELS_DECI_PLUS_PRO = "unlocked_levels_deci_plus_pro"
     private const val KEY_COMPLETED_LEVELS_DECI_PLUS_PRO = "completed_levels_deci_plus_pro"
+
+    private const val KEY_TOTAL_TIME_DECI_PLUS = "total_time_deci_plus"
 
     private const val PREFS_NAME_ROMAS = "ScorePrefsRomas"
     private const val KEY_CURRENT_SCORE_ROMAS = "current_score_romas"
@@ -145,6 +148,8 @@ object ScoreManager {
     var currentScoreDeciPlusPro: Int = 0
     var unlockedLevelsDeciPlusPro: Int = 2
     val levelScoresDeciPlusPro: MutableMap<Int, Int> = mutableMapOf()
+
+    var totalTimeDeciPlus: Double = 0.0
 
     var currentScoreRomas: Int = 0
     var unlockedLevelsRomas: Int = 2
@@ -291,7 +296,6 @@ object ScoreManager {
 
     }
 
-
     fun initPrincipiante(context: Context) {
         preferencesPrincipiante = context.getSharedPreferences(PREFS_NAME_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScorePrincipiante = preferencesPrincipiante.getInt(KEY_CURRENT_SCORE_PRINCIPIANTE, 0)
@@ -322,6 +326,14 @@ object ScoreManager {
         preferencesDeciPlus = context.getSharedPreferences(PREFS_NAME_DECI_PLUS, Context.MODE_PRIVATE)
         currentScoreDeciPlus = preferencesDeciPlus.getInt(KEY_CURRENT_SCORE_DECI_PLUS, 0)
         unlockedLevelsDeciPlus = preferencesDeciPlus.getInt(KEY_UNLOCKED_LEVELS_DECI_PLUS, 2)
+
+        if (!::preferences.isInitialized) {
+            preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+            totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
+            correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
+        }
+
+        totalTimeDeciPlus = preferencesDeciPlus.getFloat(KEY_TOTAL_TIME_DECI_PLUS, 0f).toDouble()
 
         for (i in 1..70) {
             val failures = preferencesDeciPlus.getInt("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS:$i", 0)
@@ -606,6 +618,23 @@ object ScoreManager {
             putInt(KEY_CURRENT_SCORE_DECI_PLUS_PRO, currentScoreDeciPlusPro)
             putInt(KEY_UNLOCKED_LEVELS_DECI_PLUS_PRO, unlockedLevelsDeciPlusPro)
         }
+    }
+
+    fun saveStatsGlobalAndDeciPlus() {
+        // Guardar estadísticas globales
+        preferences.edit {
+            putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
+            putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
+        }
+
+        // Guardar tiempo específico de DECI+
+        preferencesDeciPlus.edit {
+            putFloat(KEY_TOTAL_TIME_DECI_PLUS, totalTimeDeciPlus.toFloat())
+        }
+    }
+
+    fun getTiempoPromedioDeciPlus(): Double {
+        return if (totalGamesGlobal > 0) totalTimeDeciPlus / totalGamesGlobal else 1.0
     }
 
     fun saveScoreRomas() {
