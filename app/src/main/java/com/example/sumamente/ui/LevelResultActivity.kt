@@ -111,8 +111,8 @@ class LevelResultActivity : AppCompatActivity() {
 
     private fun handleSuccessScenario() {
         ScoreManager.totalGamesGlobal += 1
-        ScoreManager.totalGamesNumerosPlus += 1
         ScoreManager.correctGamesGlobal += 1
+        ScoreManager.totalGamesNumerosPlus += 1
         ScoreManager.saveStatsGlobalAndNumerosPlus()
 
         pointsEarned = calculatePoints()
@@ -139,6 +139,7 @@ class LevelResultActivity : AppCompatActivity() {
 
     private fun handleFailureScenario() {
         ScoreManager.totalGamesGlobal += 1
+        ScoreManager.totalGamesNumerosPlus += 1
         ScoreManager.saveStatsGlobalAndNumerosPlus()
 
         updateScoreToZero()
