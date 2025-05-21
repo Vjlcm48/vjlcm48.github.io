@@ -110,6 +110,11 @@ class LevelResultActivityRomasPro : AppCompatActivity() {
     }
 
     private fun handleSuccessScenario() {
+        ScoreManager.totalGamesGlobal += 1
+        ScoreManager.correctGamesGlobal += 1
+        ScoreManager.totalGamesRomas += 1
+        ScoreManager.saveStatsGlobalAndRomas()
+
         pointsEarned = calculatePoints()
 
         ScoreManager.levelScoresRomasPro[currentLevel]?.let { previousScore ->
@@ -133,29 +138,55 @@ class LevelResultActivityRomasPro : AppCompatActivity() {
     }
 
     private fun handleFailureScenario() {
+        ScoreManager.totalGamesGlobal += 1
+        ScoreManager.totalGamesRomas += 1
+        ScoreManager.saveStatsGlobalAndRomas()
+
         updateScoreToZero()
         showFailureDialog()
     }
 
     private fun calculatePoints(): Int {
         val basePoints = when (currentLevel) {
-            in 1..7 -> 700    // +200 puntos más que avanzado
-            in 8..14 -> 1200   // +200 puntos más que avanzado
-            in 15..21 -> 1700  // +200 puntos más que avanzado
-            in 22..28 -> 2200  // +200 puntos más que avanzado
-            in 29..35 -> 2700  // +200 puntos más que avanzado
-            in 36..42 -> 3200  // +200 puntos más que avanzado
-            in 43..49 -> 3700  // +200 puntos más que avanzado
-            in 50..56 -> 4200  // +200 puntos más que avanzado
-            in 57..63 -> 4700  // +200 puntos más que avanzado
-            else -> 5200       // +200 puntos más que avanzado
+            in 1..7 -> 700
+            in 8..14 -> 1200
+            in 15..21 -> 1700
+            in 22..28 -> 2200
+            in 29..35 -> 2700
+            in 36..42 -> 3200
+            in 43..49 -> 3700
+            in 50..56 -> 4200
+            in 57..63 -> 4700
+            else -> 5200
         }
 
-        return when (attempts) {
+        val pointsAfterAttempts = when (attempts) {
             0 -> basePoints
             1 -> basePoints / 2
             else -> 0
         }
+        if (pointsAfterAttempts == 0) return 0
+
+        val precisionGlobal = ScoreManager.getPrecisionGlobal()
+
+        val velocidadBonus = 260
+
+        var tiempoPromedio = ScoreManager.getTiempoPromedioRomas()
+
+        val useManualAnswer = intent.getBooleanExtra("USE_MANUAL_ANSWER", false)
+        if (useManualAnswer) {
+            tiempoPromedio *= 0.7
+        }
+
+        val puntosPorVelocidad = if (tiempoPromedio > 0) {
+            (velocidadBonus * (1.0 / tiempoPromedio))
+        } else {
+            0.0
+        }
+
+        val puntajeFinal = (pointsAfterAttempts * precisionGlobal) + puntosPorVelocidad
+
+        return puntajeFinal.toInt()
     }
 
     private fun updateScoreToZero() {
