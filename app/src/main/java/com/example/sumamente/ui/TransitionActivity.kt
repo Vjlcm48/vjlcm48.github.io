@@ -128,5 +128,8 @@ class TransitionActivity : AppCompatActivity() {
         val scorePrefsGenioPlusPro = getSharedPreferences("ScorePrefsGenioPlusPro", MODE_PRIVATE)
         scorePrefsGenioPlusPro.edit { clear() }
 
+        ScoreManager.resetStatsAndTimes()
+
     }
+
 }

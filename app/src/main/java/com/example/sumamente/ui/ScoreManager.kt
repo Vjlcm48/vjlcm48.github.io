@@ -1994,4 +1994,31 @@ object ScoreManager {
         return getConsecutiveFailuresGenioPlusPro(level) >= 12
     }
 
+    fun resetStatsAndTimes() {
+        totalGamesGlobal = 0
+        correctGamesGlobal = 0
+
+        totalGamesNumerosPlus = 0
+        totalTimeNumerosPlus = 0.0
+
+        totalGamesDeciPlus = 0
+        totalTimeDeciPlus = 0.0
+
+        totalGamesRomas = 0
+        totalTimeRomas = 0.0
+
+        totalGamesAlfaNumeros = 0
+        totalTimeAlfaNumeros = 0.0
+
+        totalGamesSumaResta = 0
+        totalTimeSumaResta = 0.0
+
+        totalGamesMasPlus = 0
+        totalTimeMasPlus = 0.0
+
+        totalGamesGenioPlus = 0
+        totalTimeGenioPlus = 0.0
+    }
 }
+
+
