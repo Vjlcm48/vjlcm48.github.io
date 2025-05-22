@@ -110,12 +110,13 @@ class LevelResultActivityRomasPrincipiante : AppCompatActivity() {
     }
 
     private fun handleSuccessScenario() {
+        pointsEarned = calculatePoints()
+
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.correctGamesGlobal += 1
         ScoreManager.totalGamesRomas += 1
+        ScoreManager.totalTimeRomas += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndRomas()
-
-        pointsEarned = calculatePoints()
 
         ScoreManager.levelScoresRomasPrincipiante[currentLevel]?.let { previousScore ->
             ScoreManager.currentScoreRomasPrincipiante -= previousScore
@@ -140,6 +141,7 @@ class LevelResultActivityRomasPrincipiante : AppCompatActivity() {
     private fun handleFailureScenario() {
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.totalGamesRomas += 1
+        ScoreManager.totalTimeRomas += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndRomas()
 
         updateScoreToZero()
@@ -168,10 +170,13 @@ class LevelResultActivityRomasPrincipiante : AppCompatActivity() {
         if (pointsAfterAttempts == 0) return 0
 
         val precisionGlobal = ScoreManager.getPrecisionGlobal()
-
         val velocidadBonus = 60
 
-        var tiempoPromedio = ScoreManager.getTiempoPromedioRomas()
+        var tiempoPromedio = if (ScoreManager.totalGamesRomas > 0) {
+            (ScoreManager.totalTimeRomas + timeSpentInSeconds) / (ScoreManager.totalGamesRomas + 1)
+        } else {
+            timeSpentInSeconds
+        }
 
         val useManualAnswer = intent.getBooleanExtra("USE_MANUAL_ANSWER", false)
         if (useManualAnswer) {

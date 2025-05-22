@@ -112,12 +112,13 @@ class LevelResultActivityDeciPlusPrincipiante : AppCompatActivity() {
     }
 
     private fun handleSuccessScenario() {
+        pointsEarned = calculatePoints()
+
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.correctGamesGlobal += 1
         ScoreManager.totalGamesDeciPlus += 1
+        ScoreManager.totalTimeDeciPlus += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndDeciPlus()
-
-        pointsEarned = calculatePoints()
 
         ScoreManager.levelScoresDeciPlusPrincipiante[currentLevel]?.let { previousScore ->
             ScoreManager.currentScoreDeciPlusPrincipiante -= previousScore
@@ -142,6 +143,7 @@ class LevelResultActivityDeciPlusPrincipiante : AppCompatActivity() {
     private fun handleFailureScenario() {
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.totalGamesDeciPlus += 1
+        ScoreManager.totalTimeDeciPlus += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndDeciPlus()
 
         updateScoreToZero()
@@ -172,7 +174,12 @@ class LevelResultActivityDeciPlusPrincipiante : AppCompatActivity() {
         val precisionGlobal = ScoreManager.getPrecisionGlobal()
         val velocidadBonus = 50.0
 
-        var tiempoPromedio = ScoreManager.getTiempoPromedioDeciPlus()
+
+        var tiempoPromedio = if (ScoreManager.totalGamesDeciPlus > 0) {
+            (ScoreManager.totalTimeDeciPlus + timeSpentInSeconds) / (ScoreManager.totalGamesDeciPlus + 1)
+        } else {
+            timeSpentInSeconds
+        }
 
         val useManualAnswer = intent.getBooleanExtra("USE_MANUAL_ANSWER", false)
         if (useManualAnswer) {

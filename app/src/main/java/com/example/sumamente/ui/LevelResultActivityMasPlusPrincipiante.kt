@@ -111,12 +111,13 @@ class LevelResultActivityMasPlusPrincipiante : AppCompatActivity() {
     }
 
     private fun handleSuccessScenario() {
+        pointsEarned = calculatePoints()
+
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.correctGamesGlobal += 1
         ScoreManager.totalGamesMasPlus += 1
+        ScoreManager.totalTimeMasPlus += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndMasPlus()
-
-        pointsEarned = calculatePoints()
 
         ScoreManager.levelScoresMasPlusPrincipiante[currentLevel]?.let { previousScore ->
             ScoreManager.currentScoreMasPlusPrincipiante -= previousScore
@@ -143,6 +144,7 @@ class LevelResultActivityMasPlusPrincipiante : AppCompatActivity() {
     private fun handleFailureScenario() {
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.totalGamesMasPlus += 1
+        ScoreManager.totalTimeMasPlus += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndMasPlus()
 
         updateScoreToZero()
@@ -173,7 +175,11 @@ class LevelResultActivityMasPlusPrincipiante : AppCompatActivity() {
         val precisionGlobal = ScoreManager.getPrecisionGlobal()
         val velocidadBonus = 90.0
 
-        var tiempoPromedio = ScoreManager.getTiempoPromedioMasPlus()
+        var tiempoPromedio = if (ScoreManager.totalGamesMasPlus > 0) {
+            (ScoreManager.totalTimeMasPlus + timeSpentInSeconds) / (ScoreManager.totalGamesMasPlus + 1)
+        } else {
+            timeSpentInSeconds
+        }
 
         val useManualAnswer = intent.getBooleanExtra("USE_MANUAL_ANSWER", false)
         if (useManualAnswer) {
@@ -190,7 +196,6 @@ class LevelResultActivityMasPlusPrincipiante : AppCompatActivity() {
 
         return puntajeFinal.toInt()
     }
-
 
     private fun updateScoreToZero() {
         ScoreManager.levelScoresMasPlusPrincipiante[currentLevel]?.let { previousScore ->

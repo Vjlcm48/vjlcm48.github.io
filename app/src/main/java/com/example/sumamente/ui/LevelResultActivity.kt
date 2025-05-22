@@ -172,9 +172,10 @@ class LevelResultActivity : AppCompatActivity() {
         val precisionGlobal = ScoreManager.getPrecisionGlobal()
         val velocidadBonus = 140
 
-        var tiempoPromedio = ScoreManager.getTiempoPromedioNumerosPlus()
-        if (ScoreManager.totalGamesNumerosPlus == 0) {
-            tiempoPromedio = timeSpentInSeconds
+        var tiempoPromedio = if (ScoreManager.totalGamesNumerosPlus > 0) {
+            (ScoreManager.totalTimeNumerosPlus + timeSpentInSeconds) / (ScoreManager.totalGamesNumerosPlus + 1)
+        } else {
+            timeSpentInSeconds
         }
 
         val useManualAnswer = intent.getBooleanExtra("USE_MANUAL_ANSWER", false)
@@ -192,7 +193,6 @@ class LevelResultActivity : AppCompatActivity() {
 
         return puntajeFinal.toInt()
     }
-
 
     private fun updateScoreToZero() {
         ScoreManager.levelScores[currentLevel]?.let { previousScore ->

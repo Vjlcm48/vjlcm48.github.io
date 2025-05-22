@@ -109,12 +109,13 @@ class LevelResultActivityAlfaNumerosPro : AppCompatActivity() {
     }
 
     private fun handleSuccessScenario() {
+        pointsEarned = calculatePoints()
+
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.correctGamesGlobal += 1
         ScoreManager.totalGamesAlfaNumeros += 1
+        ScoreManager.totalTimeAlfaNumeros += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndAlfaNumeros()
-
-        pointsEarned = calculatePoints()
 
         ScoreManager.levelScoresAlfaNumerosPro[currentLevel]?.let { previousScore ->
             ScoreManager.currentScoreAlfaNumerosPro -= previousScore
@@ -139,6 +140,7 @@ class LevelResultActivityAlfaNumerosPro : AppCompatActivity() {
     private fun handleFailureScenario() {
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.totalGamesAlfaNumeros += 1
+        ScoreManager.totalTimeAlfaNumeros += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndAlfaNumeros()
 
         updateScoreToZero()
@@ -169,7 +171,11 @@ class LevelResultActivityAlfaNumerosPro : AppCompatActivity() {
         val precisionGlobal = ScoreManager.getPrecisionGlobal()
         val velocidadBonus = 280.0
 
-        var tiempoPromedio = ScoreManager.getTiempoPromedioAlfaNumeros()
+        var tiempoPromedio = if (ScoreManager.totalGamesAlfaNumeros > 0) {
+            (ScoreManager.totalTimeAlfaNumeros + timeSpentInSeconds) / (ScoreManager.totalGamesAlfaNumeros + 1)
+        } else {
+            timeSpentInSeconds
+        }
 
         val useManualAnswer = intent.getBooleanExtra("USE_MANUAL_ANSWER", false)
         if (useManualAnswer) {
@@ -186,7 +192,6 @@ class LevelResultActivityAlfaNumerosPro : AppCompatActivity() {
 
         return puntajeFinal.toInt()
     }
-
 
     private fun updateScoreToZero() {
         ScoreManager.levelScoresAlfaNumerosPro[currentLevel]?.let { previousScore ->

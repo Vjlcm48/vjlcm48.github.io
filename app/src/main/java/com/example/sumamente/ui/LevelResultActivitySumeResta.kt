@@ -109,12 +109,13 @@ class LevelResultActivitySumaResta : AppCompatActivity() {
     }
 
     private fun handleSuccessScenario() {
+        pointsEarned = calculatePoints()
+
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.correctGamesGlobal += 1
         ScoreManager.totalGamesSumaResta += 1
+        ScoreManager.totalTimeSumaResta += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndSumaResta()
-
-        pointsEarned = calculatePoints()
 
         ScoreManager.levelScoresSumaResta[currentLevel]?.let { previousScore ->
             ScoreManager.currentScoreSumaResta -= previousScore
@@ -139,6 +140,7 @@ class LevelResultActivitySumaResta : AppCompatActivity() {
     private fun handleFailureScenario() {
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.totalGamesSumaResta += 1
+        ScoreManager.totalTimeSumaResta += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndSumaResta()
 
         updateScoreToZero()
@@ -169,7 +171,11 @@ class LevelResultActivitySumaResta : AppCompatActivity() {
         val precisionGlobal = ScoreManager.getPrecisionGlobal()
         val velocidadBonus = 170.0
 
-        var tiempoPromedio = ScoreManager.getTiempoPromedioSumaResta()
+        var tiempoPromedio = if (ScoreManager.totalGamesSumaResta > 0) {
+            (ScoreManager.totalTimeSumaResta + timeSpentInSeconds) / (ScoreManager.totalGamesSumaResta + 1)
+        } else {
+            timeSpentInSeconds
+        }
 
         val useManualAnswer = intent.getBooleanExtra("USE_MANUAL_ANSWER", false)
         if (useManualAnswer) {
@@ -186,7 +192,6 @@ class LevelResultActivitySumaResta : AppCompatActivity() {
 
         return puntajeFinal.toInt()
     }
-
 
     private fun updateScoreToZero() {
         ScoreManager.levelScoresSumaResta[currentLevel]?.let { previousScore ->
