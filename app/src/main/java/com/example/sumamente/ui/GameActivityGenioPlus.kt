@@ -832,6 +832,13 @@ class GameActivityGenioPlus : AppCompatActivity() {
 
             calculateTimeSpent()
 
+            ScoreManager.totalGamesGlobal++
+            ScoreManager.correctGamesGlobal++
+            ScoreManager.totalGamesGenioPlus++
+            ScoreManager.totalTimeGenioPlus += timeSpentInSeconds
+            ScoreManager.saveStatsGlobalAndGenioPlus()
+
+
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -850,6 +857,10 @@ class GameActivityGenioPlus : AppCompatActivity() {
 
                 calculateTimeSpent()
 
+                ScoreManager.totalGamesGlobal++
+                ScoreManager.totalGamesGenioPlus++
+                ScoreManager.saveStatsGlobalAndGenioPlus()
+
                 Handler(Looper.getMainLooper()).postDelayed({
                     manualAnswerEditText.background = originalBackground
 
@@ -865,7 +876,6 @@ class GameActivityGenioPlus : AppCompatActivity() {
             }
         }
     }
-
 
     private fun showAnswerButtons() {
         answerButtonsGrid.visibility = View.VISIBLE
@@ -946,6 +956,12 @@ class GameActivityGenioPlus : AppCompatActivity() {
 
             calculateTimeSpent()
 
+            ScoreManager.totalGamesGlobal++
+            ScoreManager.correctGamesGlobal++
+            ScoreManager.totalGamesGenioPlus++
+            ScoreManager.totalTimeGenioPlus += timeSpentInSeconds
+            ScoreManager.saveStatsGlobalAndGenioPlus()
+
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -966,6 +982,10 @@ class GameActivityGenioPlus : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
+
+                ScoreManager.totalGamesGlobal++
+                ScoreManager.totalGamesGenioPlus++
+                ScoreManager.saveStatsGlobalAndGenioPlus()
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     navigateToLevelResult(false)
@@ -1034,6 +1054,8 @@ class GameActivityGenioPlus : AppCompatActivity() {
             intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
             intent.putExtra("USER_RESPONSES", userResponses.toIntArray())
         }
+
+        intent.putExtra("USE_MANUAL_ANSWER", useManualAnswer)
 
         startActivity(intent)
         finish()

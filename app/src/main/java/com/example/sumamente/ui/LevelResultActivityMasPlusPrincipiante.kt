@@ -111,6 +111,11 @@ class LevelResultActivityMasPlusPrincipiante : AppCompatActivity() {
     }
 
     private fun handleSuccessScenario() {
+        ScoreManager.totalGamesGlobal += 1
+        ScoreManager.correctGamesGlobal += 1
+        ScoreManager.totalGamesMasPlus += 1
+        ScoreManager.saveStatsGlobalAndMasPlus()
+
         pointsEarned = calculatePoints()
 
         ScoreManager.levelScoresMasPlusPrincipiante[currentLevel]?.let { previousScore ->
@@ -136,12 +141,15 @@ class LevelResultActivityMasPlusPrincipiante : AppCompatActivity() {
     }
 
     private fun handleFailureScenario() {
+        ScoreManager.totalGamesGlobal += 1
+        ScoreManager.totalGamesMasPlus += 1
+        ScoreManager.saveStatsGlobalAndMasPlus()
+
         updateScoreToZero()
         showFailureDialog()
     }
 
     private fun calculatePoints(): Int {
-        // Reducción de 100 puntos en cada rango de nivel según instrucciones
         val basePoints = when (currentLevel) {
             in 1..7 -> 300
             in 8..14 -> 600
@@ -155,12 +163,34 @@ class LevelResultActivityMasPlusPrincipiante : AppCompatActivity() {
             else -> 4600
         }
 
-        return when (attempts) {
+        val pointsAfterAttempts = when (attempts) {
             0 -> basePoints
             1 -> basePoints / 2
             else -> 0
         }
+        if (pointsAfterAttempts == 0) return 0
+
+        val precisionGlobal = ScoreManager.getPrecisionGlobal()
+        val velocidadBonus = 90.0
+
+        var tiempoPromedio = ScoreManager.getTiempoPromedioMasPlus()
+
+        val useManualAnswer = intent.getBooleanExtra("USE_MANUAL_ANSWER", false)
+        if (useManualAnswer) {
+            tiempoPromedio *= 0.7
+        }
+
+        val puntosPorVelocidad = if (tiempoPromedio > 0) {
+            (velocidadBonus * (1.0 / tiempoPromedio))
+        } else {
+            0.0
+        }
+
+        val puntajeFinal = (pointsAfterAttempts * precisionGlobal) + puntosPorVelocidad
+
+        return puntajeFinal.toInt()
     }
+
 
     private fun updateScoreToZero() {
         ScoreManager.levelScoresMasPlusPrincipiante[currentLevel]?.let { previousScore ->

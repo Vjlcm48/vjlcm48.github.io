@@ -673,6 +673,13 @@ class GameActivitySumaResta : AppCompatActivity() {
 
             calculateTimeSpent()
 
+            ScoreManager.totalGamesGlobal++
+            ScoreManager.correctGamesGlobal++
+            ScoreManager.totalGamesSumaResta++
+            ScoreManager.totalTimeSumaResta += timeSpentInSeconds
+            ScoreManager.saveStatsGlobalAndSumaResta()
+
+
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -689,6 +696,10 @@ class GameActivitySumaResta : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
+
+                ScoreManager.totalGamesGlobal++
+                ScoreManager.totalGamesSumaResta++
+                ScoreManager.saveStatsGlobalAndSumaResta()
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     manualAnswerEditText.background = originalBackground
@@ -783,6 +794,13 @@ class GameActivitySumaResta : AppCompatActivity() {
 
             calculateTimeSpent()
 
+            ScoreManager.totalGamesGlobal++
+            ScoreManager.correctGamesGlobal++
+            ScoreManager.totalGamesSumaResta++
+            ScoreManager.totalTimeSumaResta += timeSpentInSeconds
+            ScoreManager.saveStatsGlobalAndSumaResta()
+
+
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -802,6 +820,11 @@ class GameActivitySumaResta : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
+
+                ScoreManager.totalGamesGlobal++
+                ScoreManager.totalGamesSumaResta++
+                ScoreManager.saveStatsGlobalAndSumaResta()
+
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     navigateToLevelResult(false)
@@ -838,6 +861,8 @@ class GameActivitySumaResta : AppCompatActivity() {
             intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
             intent.putExtra("USER_RESPONSES", arrayOf(btnAnswer1.text.toString().toInt(), btnAnswer2.text.toString().toInt()).toIntArray())
         }
+
+        intent.putExtra("USE_MANUAL_ANSWER", useManualAnswer)
 
         startActivity(intent)
         finish()

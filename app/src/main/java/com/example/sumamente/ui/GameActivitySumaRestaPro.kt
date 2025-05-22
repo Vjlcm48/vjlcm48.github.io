@@ -663,6 +663,13 @@ class GameActivitySumaRestaPro : AppCompatActivity() {
 
             calculateTimeSpent()
 
+            ScoreManager.totalGamesGlobal++
+            ScoreManager.correctGamesGlobal++
+            ScoreManager.totalGamesSumaResta++
+            ScoreManager.totalTimeSumaResta += timeSpentInSeconds
+            ScoreManager.saveStatsGlobalAndSumaResta()
+
+
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -679,6 +686,10 @@ class GameActivitySumaRestaPro : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
+
+                ScoreManager.totalGamesGlobal++
+                ScoreManager.totalGamesSumaResta++
+                ScoreManager.saveStatsGlobalAndSumaResta()
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     manualAnswerEditText.background = originalBackground
@@ -773,6 +784,13 @@ class GameActivitySumaRestaPro : AppCompatActivity() {
 
             calculateTimeSpent()
 
+            ScoreManager.totalGamesGlobal++
+            ScoreManager.correctGamesGlobal++
+            ScoreManager.totalGamesSumaResta++
+            ScoreManager.totalTimeSumaResta += timeSpentInSeconds
+            ScoreManager.saveStatsGlobalAndSumaResta()
+
+
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -792,6 +810,12 @@ class GameActivitySumaRestaPro : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
+
+                ScoreManager.totalGamesGlobal++
+                ScoreManager.totalGamesSumaResta++
+                ScoreManager.saveStatsGlobalAndSumaResta()
+
+
                 ScoreManager.incrementConsecutiveFailuresSumaRestaPro(currentLevel)
 
                 Handler(Looper.getMainLooper()).postDelayed({
@@ -825,6 +849,8 @@ class GameActivitySumaRestaPro : AppCompatActivity() {
             intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
             intent.putExtra("USER_RESPONSES", userResponses.toIntArray())
         }
+
+        intent.putExtra("USE_MANUAL_ANSWER", useManualAnswer)
 
         startActivity(intent)
         finish()

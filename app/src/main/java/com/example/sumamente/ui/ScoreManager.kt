@@ -83,6 +83,9 @@ object ScoreManager {
     private const val KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRO = "unlocked_levels_alfanumeros_pro"
     private const val KEY_COMPLETED_LEVELS_ALFANUMEROS_PRO = "completed_levels_alfanumeros_pro"
 
+    private const val KEY_TOTAL_GAMES_ALFANUMEROS = "total_games_alfanumeros"
+    private const val KEY_TOTAL_TIME_ALFANUMEROS = "total_time_alfanumeros"
+
 
     private const val PREFS_NAME_SUMARESTA = "ScorePrefsSumaResta"
     private const val KEY_CURRENT_SCORE_SUMARESTA = "current_score_sumaresta"
@@ -98,6 +101,9 @@ object ScoreManager {
     private const val KEY_CURRENT_SCORE_SUMARESTA_PRO = "current_score_sumaresta_pro"
     private const val KEY_UNLOCKED_LEVELS_SUMARESTA_PRO = "unlocked_levels_sumaresta_pro"
     private const val KEY_COMPLETED_LEVELS_SUMARESTA_PRO = "completed_levels_sumaresta_pro"
+
+    private const val KEY_TOTAL_GAMES_SUMARESTA = "total_games_sumaresta"
+    private const val KEY_TOTAL_TIME_SUMARESTA = "total_time_sumaresta"
 
 
     private const val PREFS_NAME_MAS_PLUS = "ScorePrefsMasPlus"
@@ -115,6 +121,9 @@ object ScoreManager {
     private const val KEY_UNLOCKED_LEVELS_MAS_PLUS_PRO = "unlocked_levels_mas_plus_pro"
     private const val KEY_COMPLETED_LEVELS_MAS_PLUS_PRO = "completed_levels_mas_plus_pro"
 
+    private const val KEY_TOTAL_GAMES_MAS_PLUS = "total_games_mas_plus"
+    private const val KEY_TOTAL_TIME_MAS_PLUS = "total_time_mas_plus"
+
 
     private const val PREFS_NAME_GENIO_PLUS = "ScorePrefsGenioPlus"
     private const val KEY_CURRENT_SCORE_GENIO_PLUS = "current_score_genio_plus"
@@ -130,6 +139,9 @@ object ScoreManager {
     private const val KEY_CURRENT_SCORE_GENIO_PLUS_PRO = "current_score_genio_plus_pro"
     private const val KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRO = "unlocked_levels_genio_plus_pro"
     private const val KEY_COMPLETED_LEVELS_GENIO_PLUS_PRO = "completed_levels_genio_plus_pro"
+
+    private const val KEY_TOTAL_GAMES_GENIO_PLUS = "total_games_genio_plus"
+    private const val KEY_TOTAL_TIME_GENIO_PLUS = "total_time_genio_plus"
 
 
     var totalGamesGlobal: Int = 0
@@ -195,6 +207,9 @@ object ScoreManager {
     var unlockedLevelsAlfaNumerosPro: Int = 2
     val levelScoresAlfaNumerosPro: MutableMap<Int, Int> = mutableMapOf()
 
+    var totalGamesAlfaNumeros: Int = 0
+    var totalTimeAlfaNumeros: Double = 0.0
+
 
     var currentScoreSumaResta: Int = 0
     var unlockedLevelsSumaResta: Int = 2
@@ -207,6 +222,9 @@ object ScoreManager {
     var currentScoreSumaRestaPro: Int = 0
     var unlockedLevelsSumaRestaPro: Int = 2
     val levelScoresSumaRestaPro: MutableMap<Int, Int> = mutableMapOf()
+
+    var totalGamesSumaResta: Int = 0
+    var totalTimeSumaResta: Double = 0.0
 
 
     var currentScoreMasPlus: Int = 0
@@ -221,6 +239,9 @@ object ScoreManager {
     var unlockedLevelsMasPlusPro: Int = 2
     val levelScoresMasPlusPro: MutableMap<Int, Int> = mutableMapOf()
 
+    var totalGamesMasPlus: Int = 0
+    var totalTimeMasPlus: Double = 0.0
+
 
     var currentScoreGenioPlus: Int = 0
     var unlockedLevelsGenioPlus: Int = 2
@@ -233,6 +254,9 @@ object ScoreManager {
     var currentScoreGenioPlusPro: Int = 0
     var unlockedLevelsGenioPlusPro: Int = 2
     val levelScoresGenioPlusPro: MutableMap<Int, Int> = mutableMapOf()
+
+    var totalGamesGenioPlus: Int = 0
+    var totalTimeGenioPlus: Double = 0.0
 
 
     private const val KEY_CONSECUTIVE_FAILURES = "consecutive_failures"
@@ -301,6 +325,7 @@ object ScoreManager {
     private lateinit var preferencesGenioPlusPrincipiante: SharedPreferences
     private lateinit var preferencesGenioPlusPro: SharedPreferences
 
+
     fun init(context: Context) {
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         currentScore = preferences.getInt(KEY_CURRENT_SCORE, 0)
@@ -319,7 +344,6 @@ object ScoreManager {
         totalTimeNumerosPlus = preferences.getFloat(KEY_TOTAL_TIME_NUMEROS_PLUS, 0f).toDouble()
 
     }
-
     fun initPrincipiante(context: Context) {
         preferencesPrincipiante = context.getSharedPreferences(PREFS_NAME_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScorePrincipiante = preferencesPrincipiante.getInt(KEY_CURRENT_SCORE_PRINCIPIANTE, 0)
@@ -332,7 +356,6 @@ object ScoreManager {
             }
         }
     }
-
     fun initPro(context: Context) {
         preferencesPro = context.getSharedPreferences(PREFS_NAME_PRO, Context.MODE_PRIVATE)
         currentScorePro = preferencesPro.getInt(KEY_CURRENT_SCORE_PRO, 0)
@@ -365,7 +388,6 @@ object ScoreManager {
         totalGamesDeciPlus = preferencesDeciPlus.getInt(KEY_TOTAL_GAMES_DECI_PLUS, 0)
         totalTimeDeciPlus = preferencesDeciPlus.getFloat(KEY_TOTAL_TIME_DECI_PLUS, 0f).toDouble()
     }
-
     fun initDeciPlusPrincipiante(context: Context) {
         preferencesDeciPlusPrincipiante = context.getSharedPreferences(PREFS_NAME_DECI_PLUS_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScoreDeciPlusPrincipiante = preferencesDeciPlusPrincipiante.getInt(KEY_CURRENT_SCORE_DECI_PLUS_PRINCIPIANTE, 0)
@@ -378,7 +400,6 @@ object ScoreManager {
             }
         }
     }
-
     fun initDeciPlusPro(context: Context) {
         preferencesDeciPlusPro = context.getSharedPreferences(PREFS_NAME_DECI_PLUS_PRO, Context.MODE_PRIVATE)
         currentScoreDeciPlusPro = preferencesDeciPlusPro.getInt(KEY_CURRENT_SCORE_DECI_PLUS_PRO, 0)
@@ -411,7 +432,6 @@ object ScoreManager {
         totalGamesRomas = preferencesRomas.getInt(KEY_TOTAL_GAMES_ROMAS, 0)
         totalTimeRomas = preferencesRomas.getFloat(KEY_TOTAL_TIME_ROMAS, 0f).toDouble()
     }
-
     fun initRomasPrincipiante(context: Context) {
         preferencesRomasPrincipiante = context.getSharedPreferences(PREFS_NAME_ROMAS_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScoreRomasPrincipiante = preferencesRomasPrincipiante.getInt(KEY_CURRENT_SCORE_ROMAS_PRINCIPIANTE, 0)
@@ -424,7 +444,6 @@ object ScoreManager {
             }
         }
     }
-
     fun initRomasPro(context: Context) {
         preferencesRomasPro = context.getSharedPreferences(PREFS_NAME_ROMAS_PRO, Context.MODE_PRIVATE)
         currentScoreRomasPro = preferencesRomasPro.getInt(KEY_CURRENT_SCORE_ROMAS_PRO, 0)
@@ -450,8 +469,13 @@ object ScoreManager {
                 consecutiveFailuresAlfaNumeros[i] = failures
             }
         }
-    }
 
+        preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
+        correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
+        totalGamesAlfaNumeros = preferencesAlfaNumeros.getInt(KEY_TOTAL_GAMES_ALFANUMEROS, 0)
+        totalTimeAlfaNumeros = preferencesAlfaNumeros.getFloat(KEY_TOTAL_TIME_ALFANUMEROS, 0f).toDouble()
+    }
     fun initAlfaNumerosPrincipiante(context: Context) {
         preferencesAlfaNumerosPrincipiante = context.getSharedPreferences(PREFS_NAME_ALFANUMEROS_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScoreAlfaNumerosPrincipiante = preferencesAlfaNumerosPrincipiante.getInt(KEY_CURRENT_SCORE_ALFANUMEROS_PRINCIPIANTE, 0)
@@ -464,7 +488,6 @@ object ScoreManager {
             }
         }
     }
-
     fun initAlfaNumerosPro(context: Context) {
         preferencesAlfaNumerosPro = context.getSharedPreferences(PREFS_NAME_ALFANUMEROS_PRO, Context.MODE_PRIVATE)
         currentScoreAlfaNumerosPro = preferencesAlfaNumerosPro.getInt(KEY_CURRENT_SCORE_ALFANUMEROS_PRO, 0)
@@ -487,6 +510,12 @@ object ScoreManager {
                 consecutiveFailuresSumaResta[i] = failures
             }
         }
+
+        preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
+        correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
+        totalGamesSumaResta = preferencesSumaResta.getInt(KEY_TOTAL_GAMES_SUMARESTA, 0)
+        totalTimeSumaResta = preferencesSumaResta.getFloat(KEY_TOTAL_TIME_SUMARESTA, 0f).toDouble()
     }
 
     fun initSumaRestaPrincipiante(context: Context) {
@@ -501,7 +530,6 @@ object ScoreManager {
             }
         }
     }
-
     fun initSumaRestaPro(context: Context) {
         preferencesSumaRestaPro = context.getSharedPreferences(PREFS_NAME_SUMARESTA_PRO, Context.MODE_PRIVATE)
         currentScoreSumaRestaPro = preferencesSumaRestaPro.getInt(KEY_CURRENT_SCORE_SUMARESTA_PRO, 0)
@@ -527,8 +555,13 @@ object ScoreManager {
                 consecutiveFailuresMasPlus[i] = failures
             }
         }
-    }
 
+        preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
+        correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
+        totalGamesMasPlus = preferencesMasPlus.getInt(KEY_TOTAL_GAMES_MAS_PLUS, 0)
+        totalTimeMasPlus = preferencesMasPlus.getFloat(KEY_TOTAL_TIME_MAS_PLUS, 0f).toDouble()
+    }
     fun initMasPlusPrincipiante(context: Context) {
         preferencesMasPlusPrincipiante = context.getSharedPreferences(PREFS_NAME_MAS_PLUS_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScoreMasPlusPrincipiante = preferencesMasPlusPrincipiante.getInt(KEY_CURRENT_SCORE_MAS_PLUS_PRINCIPIANTE, 0)
@@ -541,7 +574,6 @@ object ScoreManager {
             }
         }
     }
-
     fun initMasPlusPro(context: Context) {
         preferencesMasPlusPro = context.getSharedPreferences(PREFS_NAME_MAS_PLUS_PRO, Context.MODE_PRIVATE)
         currentScoreMasPlusPro = preferencesMasPlusPro.getInt(KEY_CURRENT_SCORE_MAS_PLUS_PRO, 0)
@@ -567,8 +599,13 @@ object ScoreManager {
                 consecutiveFailuresGenioPlus[i] = failures
             }
         }
-    }
 
+        preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
+        correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
+        totalGamesGenioPlus = preferencesGenioPlus.getInt(KEY_TOTAL_GAMES_GENIO_PLUS, 0)
+        totalTimeGenioPlus = preferencesGenioPlus.getFloat(KEY_TOTAL_TIME_GENIO_PLUS, 0f).toDouble()
+    }
     fun initGenioPlusPrincipiante(context: Context) {
         preferencesGenioPlusPrincipiante = context.getSharedPreferences(PREFS_NAME_GENIO_PLUS_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScoreGenioPlusPrincipiante = preferencesGenioPlusPrincipiante.getInt(KEY_CURRENT_SCORE_GENIO_PLUS_PRINCIPIANTE, 0)
@@ -581,7 +618,6 @@ object ScoreManager {
             }
         }
     }
-
     fun initGenioPlusPro(context: Context) {
         preferencesGenioPlusPro = context.getSharedPreferences(PREFS_NAME_GENIO_PLUS_PRO, Context.MODE_PRIVATE)
         currentScoreGenioPlusPro = preferencesGenioPlusPro.getInt(KEY_CURRENT_SCORE_GENIO_PLUS_PRO, 0)
@@ -601,21 +637,18 @@ object ScoreManager {
                 .putInt(KEY_UNLOCKED_LEVELS, unlockedLevels)
         }
     }
-
     fun saveScorePrincipiante() {
         preferencesPrincipiante.edit {
             putInt(KEY_CURRENT_SCORE_PRINCIPIANTE, currentScorePrincipiante)
                 .putInt(KEY_UNLOCKED_LEVELS_PRINCIPIANTE, unlockedLevelsPrincipiante)
         }
     }
-
     fun saveScorePro() {
         preferencesPro.edit {
             putInt(KEY_CURRENT_SCORE_PRO, currentScorePro)
                 .putInt(KEY_UNLOCKED_LEVELS_PRO, unlockedLevelsPro)
         }
     }
-
     fun saveStatsGlobalAndNumerosPlus() {
         preferences.edit {
             putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
@@ -624,11 +657,9 @@ object ScoreManager {
             putFloat(KEY_TOTAL_TIME_NUMEROS_PLUS, totalTimeNumerosPlus.toFloat())
         }
     }
-
     fun getPrecisionGlobal(): Double {
         return if (totalGamesGlobal > 0) correctGamesGlobal.toDouble() / totalGamesGlobal else 1.0
     }
-
     fun getTiempoPromedioNumerosPlus(): Double {
         return if (totalGamesNumerosPlus > 0) totalTimeNumerosPlus / totalGamesNumerosPlus else 1.0
     }
@@ -640,33 +671,28 @@ object ScoreManager {
             putInt(KEY_UNLOCKED_LEVELS_DECI_PLUS, unlockedLevelsDeciPlus)
         }
     }
-
     fun saveScoreDeciPlusPrincipiante() {
         preferencesDeciPlusPrincipiante.edit {
             putInt(KEY_CURRENT_SCORE_DECI_PLUS_PRINCIPIANTE, currentScoreDeciPlusPrincipiante)
             putInt(KEY_UNLOCKED_LEVELS_DECI_PLUS_PRINCIPIANTE, unlockedLevelsDeciPlusPrincipiante)
         }
     }
-
     fun saveScoreDeciPlusPro() {
         preferencesDeciPlusPro.edit {
             putInt(KEY_CURRENT_SCORE_DECI_PLUS_PRO, currentScoreDeciPlusPro)
             putInt(KEY_UNLOCKED_LEVELS_DECI_PLUS_PRO, unlockedLevelsDeciPlusPro)
         }
     }
-
     fun saveStatsGlobalAndDeciPlus() {
         preferences.edit {
             putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
             putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
         }
-
         preferencesDeciPlus.edit {
             putInt(KEY_TOTAL_GAMES_DECI_PLUS, totalGamesDeciPlus)
             putFloat(KEY_TOTAL_TIME_DECI_PLUS, totalTimeDeciPlus.toFloat())
         }
     }
-
     fun getTiempoPromedioDeciPlus(): Double {
         return if (totalGamesDeciPlus > 0) totalTimeDeciPlus / totalGamesDeciPlus else 1.0
     }
@@ -678,33 +704,28 @@ object ScoreManager {
                 .putInt(KEY_UNLOCKED_LEVELS_ROMAS, unlockedLevelsRomas)
         }
     }
-
     fun saveScoreRomasPrincipiante() {
         preferencesRomasPrincipiante.edit {
             putInt(KEY_CURRENT_SCORE_ROMAS_PRINCIPIANTE, currentScoreRomasPrincipiante)
                 .putInt(KEY_UNLOCKED_LEVELS_ROMAS_PRINCIPIANTE, unlockedLevelsRomasPrincipiante)
         }
     }
-
     fun saveScoreRomasPro() {
         preferencesRomasPro.edit {
             putInt(KEY_CURRENT_SCORE_ROMAS_PRO, currentScoreRomasPro)
                 .putInt(KEY_UNLOCKED_LEVELS_ROMAS_PRO, unlockedLevelsRomasPro)
         }
     }
-
     fun saveStatsGlobalAndRomas() {
         preferences.edit {
             putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
             putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
         }
-
         preferencesRomas.edit {
             putInt(KEY_TOTAL_GAMES_ROMAS, totalGamesRomas)
             putFloat(KEY_TOTAL_TIME_ROMAS, totalTimeRomas.toFloat())
         }
     }
-
     fun getTiempoPromedioRomas(): Double {
         return if (totalGamesRomas > 0) totalTimeRomas / totalGamesRomas else 1.0
     }
@@ -716,19 +737,30 @@ object ScoreManager {
                 .putInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS, unlockedLevelsAlfaNumeros)
         }
     }
-
     fun saveScoreAlfaNumerosPrincipiante() {
         preferencesAlfaNumerosPrincipiante.edit {
             putInt(KEY_CURRENT_SCORE_ALFANUMEROS_PRINCIPIANTE, currentScoreAlfaNumerosPrincipiante)
                 .putInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRINCIPIANTE, unlockedLevelsAlfaNumerosPrincipiante)
         }
     }
-
     fun saveScoreAlfaNumerosPro() {
         preferencesAlfaNumerosPro.edit {
             putInt(KEY_CURRENT_SCORE_ALFANUMEROS_PRO, currentScoreAlfaNumerosPro)
             putInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRO, unlockedLevelsAlfaNumerosPro)
         }
+    }
+    fun saveStatsGlobalAndAlfaNumeros() {
+        preferences.edit {
+            putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
+            putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
+        }
+        preferencesAlfaNumeros.edit {
+            putInt(KEY_TOTAL_GAMES_ALFANUMEROS, totalGamesAlfaNumeros)
+            putFloat(KEY_TOTAL_TIME_ALFANUMEROS, totalTimeAlfaNumeros.toFloat())
+        }
+    }
+    fun getTiempoPromedioAlfaNumeros(): Double {
+        return if (totalGamesAlfaNumeros > 0) totalTimeAlfaNumeros / totalGamesAlfaNumeros else 1.0
     }
 
 
@@ -738,19 +770,30 @@ object ScoreManager {
                 .putInt(KEY_UNLOCKED_LEVELS_SUMARESTA, unlockedLevelsSumaResta)
         }
     }
-
     fun saveScoreSumaRestaPrincipiante() {
         preferencesSumaRestaPrincipiante.edit {
             putInt(KEY_CURRENT_SCORE_SUMARESTA_PRINCIPIANTE, currentScoreSumaRestaPrincipiante)
                 .putInt(KEY_UNLOCKED_LEVELS_SUMARESTA_PRINCIPIANTE, unlockedLevelsSumaRestaPrincipiante)
         }
     }
-
     fun saveScoreSumaRestaPro() {
         preferencesSumaRestaPro.edit {
             putInt(KEY_CURRENT_SCORE_SUMARESTA_PRO, currentScoreSumaRestaPro)
                 .putInt(KEY_UNLOCKED_LEVELS_SUMARESTA_PRO, unlockedLevelsSumaRestaPro)
         }
+    }
+    fun saveStatsGlobalAndSumaResta() {
+        preferences.edit {
+            putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
+            putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
+        }
+        preferencesSumaResta.edit {
+            putInt(KEY_TOTAL_GAMES_SUMARESTA, totalGamesSumaResta)
+            putFloat(KEY_TOTAL_TIME_SUMARESTA, totalTimeSumaResta.toFloat())
+        }
+    }
+    fun getTiempoPromedioSumaResta(): Double {
+        return if (totalGamesSumaResta > 0) totalTimeSumaResta / totalGamesSumaResta else 1.0
     }
 
 
@@ -760,19 +803,30 @@ object ScoreManager {
                 .putInt(KEY_UNLOCKED_LEVELS_MAS_PLUS, unlockedLevelsMasPlus)
         }
     }
-
     fun saveScoreMasPlusPrincipiante() {
         preferencesMasPlusPrincipiante.edit {
             putInt(KEY_CURRENT_SCORE_MAS_PLUS_PRINCIPIANTE, currentScoreMasPlusPrincipiante)
                 .putInt(KEY_UNLOCKED_LEVELS_MAS_PLUS_PRINCIPIANTE, unlockedLevelsMasPlusPrincipiante)
         }
     }
-
     fun saveScoreMasPlusPro() {
         preferencesMasPlusPro.edit {
             putInt(KEY_CURRENT_SCORE_MAS_PLUS_PRO, currentScoreMasPlusPro)
                 .putInt(KEY_UNLOCKED_LEVELS_MAS_PLUS_PRO, unlockedLevelsMasPlusPro)
         }
+    }
+    fun saveStatsGlobalAndMasPlus() {
+        preferences.edit {
+            putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
+            putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
+        }
+        preferencesMasPlus.edit {
+            putInt(KEY_TOTAL_GAMES_MAS_PLUS, totalGamesMasPlus)
+            putFloat(KEY_TOTAL_TIME_MAS_PLUS, totalTimeMasPlus.toFloat())
+        }
+    }
+    fun getTiempoPromedioMasPlus(): Double {
+        return if (totalGamesMasPlus > 0) totalTimeMasPlus / totalGamesMasPlus else 1.0
     }
 
 
@@ -782,20 +836,32 @@ object ScoreManager {
                 .putInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS, unlockedLevelsGenioPlus)
         }
     }
-
     fun saveScoreGenioPlusPrincipiante() {
         preferencesGenioPlusPrincipiante.edit {
             putInt(KEY_CURRENT_SCORE_GENIO_PLUS_PRINCIPIANTE, currentScoreGenioPlusPrincipiante)
                 .putInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRINCIPIANTE, unlockedLevelsGenioPlusPrincipiante)
         }
     }
-
     fun saveScoreGenioPlusPro() {
         preferencesGenioPlusPro.edit {
             putInt(KEY_CURRENT_SCORE_GENIO_PLUS_PRO, currentScoreGenioPlusPro)
                 .putInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRO, unlockedLevelsGenioPlusPro)
         }
     }
+    fun saveStatsGlobalAndGenioPlus() {
+        preferences.edit {
+            putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
+            putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
+        }
+        preferencesGenioPlus.edit {
+            putInt(KEY_TOTAL_GAMES_GENIO_PLUS, totalGamesGenioPlus)
+            putFloat(KEY_TOTAL_TIME_GENIO_PLUS, totalTimeGenioPlus.toFloat())
+        }
+    }
+    fun getTiempoPromedioGenioPlus(): Double {
+        return if (totalGamesGenioPlus > 0) totalTimeGenioPlus / totalGamesGenioPlus else 1.0
+    }
+
 
     private fun getCompletedLevels(): Set<Int> {
         return preferences.getStringSet(KEY_COMPLETED_LEVELS, emptySet())

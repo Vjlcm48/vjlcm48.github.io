@@ -26,7 +26,6 @@ class LevelsActivityMasPlus : AppCompatActivity() {
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var levelContainer: LinearLayout
     private lateinit var sharedPreferences: android.content.SharedPreferences
-
     private lateinit var tvGameName: TextView
     private lateinit var tvDifficulty: TextView
     private lateinit var tvScore: TextView

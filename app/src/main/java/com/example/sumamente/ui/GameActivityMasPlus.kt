@@ -730,6 +730,13 @@ class GameActivityMasPlus : AppCompatActivity() {
             manualAnswerEditText.startAnimation(shake)
             calculateTimeSpent()
 
+            ScoreManager.totalGamesGlobal++
+            ScoreManager.correctGamesGlobal++
+            ScoreManager.totalGamesMasPlus++
+            ScoreManager.totalTimeMasPlus += timeSpentInSeconds
+            ScoreManager.saveStatsGlobalAndMasPlus()
+
+
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -748,6 +755,12 @@ class GameActivityMasPlus : AppCompatActivity() {
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
                 calculateTimeSpent()
+
+                ScoreManager.totalGamesGlobal++
+                ScoreManager.totalGamesMasPlus++
+                ScoreManager.saveStatsGlobalAndMasPlus()
+
+
                 Handler(Looper.getMainLooper()).postDelayed({
                     manualAnswerEditText.background = originalBackground
                     Handler(Looper.getMainLooper()).postDelayed({
@@ -870,6 +883,9 @@ class GameActivityMasPlus : AppCompatActivity() {
             val shake = AnimationUtils.loadAnimation(this, R.anim.shake)
             selectedButton.startAnimation(shake)
             calculateTimeSpent()
+
+
+
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -890,13 +906,18 @@ class GameActivityMasPlus : AppCompatActivity() {
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
                 calculateTimeSpent()
+
+                ScoreManager.totalGamesGlobal++
+                ScoreManager.totalGamesMasPlus++
+                ScoreManager.saveStatsGlobalAndMasPlus()
+
+
                 Handler(Looper.getMainLooper()).postDelayed({
                     navigateToLevelResult(false)
                 }, 1000)
             }
         }
     }
-
 
     private fun showExitConfirmation(onConfirm: () -> Unit) {
         val builder = androidx.appcompat.app.AlertDialog.Builder(this)
@@ -922,6 +943,8 @@ class GameActivityMasPlus : AppCompatActivity() {
             intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
             intent.putExtra("USER_RESPONSES", userResponses.toIntArray())
         }
+
+        intent.putExtra("USE_MANUAL_ANSWER", useManualAnswer)
 
         startActivity(intent)
         finish()

@@ -460,7 +460,7 @@ class GameActivityMasPlusPrincipiante : AppCompatActivity() {
     private fun calculateTimePerElement() {
         timePerElementList.clear()
         val level = currentLevel
-        // Tiempo base para el primer elemento: 1.90 segundos (según instrucciones)
+
         var baseTime = 1.90
 
         val blockNumber = (level - 1) / 5
@@ -581,7 +581,7 @@ class GameActivityMasPlusPrincipiante : AppCompatActivity() {
 
         startHeartbeatAnimation()
 
-        // 10 segundos para el cronómetro (según instrucciones)
+
         chronometerTimer = object : CountDownTimer(10000, 75) {
             override fun onTick(millisUntilFinished: Long) {
                 val elapsedMillis = 10000 - millisUntilFinished
@@ -598,7 +598,6 @@ class GameActivityMasPlusPrincipiante : AppCompatActivity() {
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
 
-                // Ajustando colores para 10 segundos: verde hasta 5s, naranja hasta 8s, rojo después
                 val textColor = when {
                     elapsedSeconds < 5.0 -> ContextCompat.getColor(this@GameActivityMasPlusPrincipiante, R.color.green_medium)
                     elapsedSeconds < 8.0 -> ContextCompat.getColor(this@GameActivityMasPlusPrincipiante, R.color.orange_dark)
@@ -731,6 +730,13 @@ class GameActivityMasPlusPrincipiante : AppCompatActivity() {
             manualAnswerEditText.startAnimation(shake)
             calculateTimeSpent()
 
+            ScoreManager.totalGamesGlobal++
+            ScoreManager.correctGamesGlobal++
+            ScoreManager.totalGamesMasPlus++
+            ScoreManager.totalTimeMasPlus += timeSpentInSeconds
+            ScoreManager.saveStatsGlobalAndMasPlus()
+
+
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -749,6 +755,12 @@ class GameActivityMasPlusPrincipiante : AppCompatActivity() {
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
                 calculateTimeSpent()
+
+                ScoreManager.totalGamesGlobal++
+                ScoreManager.totalGamesMasPlus++
+                ScoreManager.saveStatsGlobalAndMasPlus()
+
+
                 Handler(Looper.getMainLooper()).postDelayed({
                     manualAnswerEditText.background = originalBackground
                     Handler(Looper.getMainLooper()).postDelayed({
@@ -870,6 +882,9 @@ class GameActivityMasPlusPrincipiante : AppCompatActivity() {
             val shake = AnimationUtils.loadAnimation(this, R.anim.shake)
             selectedButton.startAnimation(shake)
             calculateTimeSpent()
+
+
+
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -890,6 +905,12 @@ class GameActivityMasPlusPrincipiante : AppCompatActivity() {
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
                 calculateTimeSpent()
+
+                ScoreManager.totalGamesGlobal++
+                ScoreManager.totalGamesMasPlus++
+                ScoreManager.saveStatsGlobalAndMasPlus()
+
+
                 Handler(Looper.getMainLooper()).postDelayed({
                     navigateToLevelResult(false)
                 }, 1000)
@@ -923,6 +944,8 @@ class GameActivityMasPlusPrincipiante : AppCompatActivity() {
             intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
             intent.putExtra("USER_RESPONSES", userResponses.toIntArray())
         }
+
+        intent.putExtra("USE_MANUAL_ANSWER", useManualAnswer)
 
         startActivity(intent)
         finish()

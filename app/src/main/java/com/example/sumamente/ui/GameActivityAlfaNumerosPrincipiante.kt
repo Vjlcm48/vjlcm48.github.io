@@ -798,6 +798,12 @@ class GameActivityAlfaNumerosPrincipiante : AppCompatActivity() {
 
             calculateTimeSpent()
 
+            ScoreManager.totalGamesGlobal++
+            ScoreManager.correctGamesGlobal++
+            ScoreManager.totalGamesAlfaNumeros++
+            ScoreManager.totalTimeAlfaNumeros += timeSpentInSeconds
+            ScoreManager.saveStatsGlobalAndAlfaNumeros()
+
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -814,6 +820,11 @@ class GameActivityAlfaNumerosPrincipiante : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
+
+                ScoreManager.totalGamesGlobal++
+                ScoreManager.totalGamesAlfaNumeros++
+                ScoreManager.saveStatsGlobalAndAlfaNumeros()
+
                 ScoreManager.incrementConsecutiveFailuresAlfaNumerosPrincipiante(currentLevel)
 
                 Handler(Looper.getMainLooper()).postDelayed({
@@ -912,6 +923,12 @@ class GameActivityAlfaNumerosPrincipiante : AppCompatActivity() {
 
             calculateTimeSpent()
 
+            ScoreManager.totalGamesGlobal++
+            ScoreManager.correctGamesGlobal++
+            ScoreManager.totalGamesAlfaNumeros++
+            ScoreManager.totalTimeAlfaNumeros += timeSpentInSeconds
+            ScoreManager.saveStatsGlobalAndAlfaNumeros()
+
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -931,6 +948,11 @@ class GameActivityAlfaNumerosPrincipiante : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
+
+                ScoreManager.totalGamesGlobal++
+                ScoreManager.totalGamesAlfaNumeros++
+                ScoreManager.saveStatsGlobalAndAlfaNumeros()
+
                 ScoreManager.incrementConsecutiveFailuresAlfaNumerosPrincipiante(currentLevel)
 
                 Handler(Looper.getMainLooper()).postDelayed({
@@ -965,6 +987,8 @@ class GameActivityAlfaNumerosPrincipiante : AppCompatActivity() {
             intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
             intent.putExtra("USER_RESPONSES", userResponses.toIntArray())
         }
+
+        intent.putExtra("USE_MANUAL_ANSWER", useManualAnswer)
 
         startActivity(intent)
         finish()
