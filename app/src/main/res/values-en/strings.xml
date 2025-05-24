@@ -726,7 +726,8 @@
 
     <string name="clasificaciones_titulo">CLASSIFICATIONS</string>
     <string name="clasificaciones_como_funciona">How the classification system works?</string>
-    <string name="clasificaciones_ver_mi">View my classification</string>
+    <string name="clasificaciones_ver_mi">Global Ranking</string>
+    <string name="clasificaciones_por_velocidad">Speed Ranking</string>
 
     <string name="clasificaciones_titulo_dialog">HOW THE CLASSIFICATION SYSTEM WORKS?</string>
     <string name="clasificaciones_subtitulo_puntos">How you earn points in SUMAMENTE!</string>
@@ -913,5 +914,27 @@
 
     <string name="logro_apex_supremus">LEGENDARY FEAT! You\'ve completed all 1490 levels of SUMAMENTE, demonstrating extraordinary dedication and mental mastery. The ultimate APEX SUPREMUS "MCDXC" decoration is yours by right.</string>
     <string name="no_condecoraciones">You haven\'t earned any decorations yet. Keep playing to get them!</string>
+
+    <string name="speed_classification_title">Speed Classification</string>
+    <string name="speed_ranking_title">Speed Ranking</string>
+    <string name="speed_ranking_game_title">%1$s - %2$s</string>
+    <string name="select_game_speed">Select a game to view its speed ranking</string>
+
+    <!-- Time format -->
+    <string name="time_format_seconds">%s sec</string>
+    <string name="average_time_label">Average time:</string>
+
+    <!-- Ranking headers -->
+    <string name="ranking_position_header">Pos.</string>
+    <string name="ranking_player_header">Player</string>
+    <string name="ranking_time_header">Time</string>
+
+    <!-- Loading states -->
+    <string name="loading_speed_ranking">Loading speed ranking…</string>
+    <string name="empty_speed_ranking">No speed data available</string>
+
+    <!-- Informational messages -->
+    <string name="speed_ranking_info">Ranking based on average response time</string>
+    <string name="current_user_indicator">You</string>
 
 </resources>
