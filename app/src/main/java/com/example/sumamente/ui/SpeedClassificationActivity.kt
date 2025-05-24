@@ -12,9 +12,9 @@ import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.example.sumamente.R
 
@@ -61,13 +61,13 @@ class SpeedClassificationActivity : AppCompatActivity() {
 
     private fun setupButtons() {
         val closeButton = findViewById<ImageView>(R.id.closeButton)
-        val btnNumerosPlus = findViewById<RelativeLayout>(R.id.btn_numeros_plus)
-        val btnDeciPlus = findViewById<RelativeLayout>(R.id.btn_deci_plus)
-        val btnRomas = findViewById<RelativeLayout>(R.id.btn_romas)
-        val btnAlfaNumeros = findViewById<RelativeLayout>(R.id.btn_alfa_numeros)
-        val btnSumaresta = findViewById<RelativeLayout>(R.id.btn_sumaresta)
-        val btnMasPlus = findViewById<RelativeLayout>(R.id.btn_mas_plus)
-        val btnGenioPlus = findViewById<RelativeLayout>(R.id.btn_genio_plus)
+        val btnNumerosPlus = findViewById<ConstraintLayout>(R.id.btn_numeros_plus)
+        val btnDeciPlus = findViewById<ConstraintLayout>(R.id.btn_deci_plus)
+        val btnRomas = findViewById<ConstraintLayout>(R.id.btn_romas)
+        val btnAlfaNumeros = findViewById<ConstraintLayout>(R.id.btn_alfa_numeros)
+        val btnSumaresta = findViewById<ConstraintLayout>(R.id.btn_sumaresta)
+        val btnMasPlus = findViewById<ConstraintLayout>(R.id.btn_mas_plus)
+        val btnGenioPlus = findViewById<ConstraintLayout>(R.id.btn_genio_plus)
 
         closeButton.setOnClickListener {
             applyBounceEffect(it) {
@@ -128,8 +128,8 @@ class SpeedClassificationActivity : AppCompatActivity() {
 
     private fun setupGameNameColors() {
 
-        val btnAlfaNumeros = findViewById<RelativeLayout>(R.id.btn_alfa_numeros)
-        val btnSumaresta = findViewById<RelativeLayout>(R.id.btn_sumaresta)
+        val btnAlfaNumeros = findViewById<ConstraintLayout>(R.id.btn_alfa_numeros)
+        val btnSumaresta = findViewById<ConstraintLayout>(R.id.btn_sumaresta)
 
         applyAlfaNumerosColor(btnAlfaNumeros)
         applySumarestaColor(btnSumaresta)
@@ -137,7 +137,7 @@ class SpeedClassificationActivity : AppCompatActivity() {
         applyGenioPlusColor(findViewById(R.id.btn_genio_plus))
     }
 
-    private fun applyAlfaNumerosColor(button: RelativeLayout) {
+    private fun applyAlfaNumerosColor(button: ConstraintLayout) {
         val textView = button.findViewById<TextView>(R.id.tv_game_name_alfa_numeros)
 
         val alfaText = getString(R.string.text_alfa)
@@ -158,7 +158,7 @@ class SpeedClassificationActivity : AppCompatActivity() {
         textView.text = spannableAlfaNumeros
     }
 
-    private fun applySumarestaColor(button: RelativeLayout) {
+    private fun applySumarestaColor(button: ConstraintLayout) {
         val textView = button.findViewById<TextView>(R.id.tv_game_name_sumaresta)
 
         val sumaText = getString(R.string.text_suma)
@@ -179,12 +179,12 @@ class SpeedClassificationActivity : AppCompatActivity() {
         textView.text = spannableSumaresta
     }
 
-    private fun applyMasPlusColor(button: RelativeLayout) {
+    private fun applyMasPlusColor(button: ConstraintLayout) {
         val textView = button.findViewById<TextView>(R.id.tv_game_name_mas_plus)
         textView.setTextColor(ContextCompat.getColor(this, R.color.grey_light))
     }
 
-    private fun applyGenioPlusColor(button: RelativeLayout) {
+    private fun applyGenioPlusColor(button: ConstraintLayout) {
         val textView = button.findViewById<TextView>(R.id.tv_game_name_genio_plus)
         textView.setTextColor(ContextCompat.getColor(this, R.color.blue_pressed))
     }
