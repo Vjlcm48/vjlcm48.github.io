@@ -911,4 +911,14 @@
     <string name="speed_ranking_info">Ranking basado en tiempo promedio de respuesta</string>
     <string name="current_user_indicator">Tú</string>
 
+    <string name="msg_need_more_games_global">Juega al menos 20 partidas en dos juegos diferentes para ver tu clasificación global.</string>
+    <string name="msg_need_more_games_speed">Juega al menos 10 partidas de %1$s en al menos dos grados de dificultad para ver tu ranking de velocidad.</string>
+    <string name="msg_progress_remaining_global">Te falta: %1$d partidas y %2$d juego(s) diferente(s).</string>
+    <string name="msg_progress_remaining_speed">Te falta: %1$d partida(s) y %2$d grado(s) de dificultad diferente(s).</string>
+
+    <string name="msg_need_more_games_combined">%1$s\n%2$s</string>
+    <string name="msg_speed_ranking_combined">%1$s\n%2$s</string>
+
+    <string name="msg_progress_remaining_speed_3modes">Te faltan: %1$d partidas en total, %2$d en Principiante, %3$d en Avanzado, %4$d en Pro.</string>
+
 </resources>

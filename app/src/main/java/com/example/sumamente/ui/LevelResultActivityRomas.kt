@@ -115,6 +115,7 @@ class LevelResultActivityRomas : AppCompatActivity() {
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.correctGamesGlobal += 1
         ScoreManager.totalGamesRomas += 1
+        ScoreManager.totalGamesRomasAvanzado += 1
         ScoreManager.totalTimeRomas += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndRomas()
 
@@ -141,6 +142,7 @@ class LevelResultActivityRomas : AppCompatActivity() {
     private fun handleFailureScenario() {
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.totalGamesRomas += 1
+        ScoreManager.totalGamesRomasAvanzado += 1
         ScoreManager.totalTimeRomas += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndRomas()
 

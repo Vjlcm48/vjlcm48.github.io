@@ -114,6 +114,7 @@ class LevelResultActivityAlfaNumerosPrincipiante : AppCompatActivity() {
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.correctGamesGlobal += 1
         ScoreManager.totalGamesAlfaNumeros += 1
+        ScoreManager.totalGamesAlfaNumerosPrincipiante += 1
         ScoreManager.totalTimeAlfaNumeros += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndAlfaNumeros()
 
@@ -140,6 +141,7 @@ class LevelResultActivityAlfaNumerosPrincipiante : AppCompatActivity() {
     private fun handleFailureScenario() {
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.totalGamesAlfaNumeros += 1
+        ScoreManager.totalGamesAlfaNumerosPrincipiante += 1
         ScoreManager.totalTimeAlfaNumeros += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndAlfaNumeros()
 

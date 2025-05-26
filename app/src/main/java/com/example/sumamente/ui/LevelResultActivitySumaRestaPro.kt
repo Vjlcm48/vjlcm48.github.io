@@ -114,6 +114,7 @@ class LevelResultActivitySumaRestaPro : AppCompatActivity() {
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.correctGamesGlobal += 1
         ScoreManager.totalGamesSumaResta += 1
+        ScoreManager.totalGamesSumaRestaPro += 1
         ScoreManager.totalTimeSumaResta += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndSumaResta()
 
@@ -140,6 +141,7 @@ class LevelResultActivitySumaRestaPro : AppCompatActivity() {
     private fun handleFailureScenario() {
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.totalGamesSumaResta += 1
+        ScoreManager.totalGamesSumaRestaPro += 1
         ScoreManager.totalTimeSumaResta += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndSumaResta()
 

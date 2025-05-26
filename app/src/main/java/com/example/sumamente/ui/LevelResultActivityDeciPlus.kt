@@ -117,6 +117,7 @@ class LevelResultActivityDeciPlus : AppCompatActivity() {
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.correctGamesGlobal += 1
         ScoreManager.totalGamesDeciPlus += 1
+        ScoreManager.totalGamesDeciPlusAvanzado += 1
         ScoreManager.totalTimeDeciPlus += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndDeciPlus()
 
@@ -143,6 +144,7 @@ class LevelResultActivityDeciPlus : AppCompatActivity() {
     private fun handleFailureScenario() {
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.totalGamesDeciPlus += 1
+        ScoreManager.totalGamesDeciPlusAvanzado += 1
         ScoreManager.totalTimeDeciPlus += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndDeciPlus()
 

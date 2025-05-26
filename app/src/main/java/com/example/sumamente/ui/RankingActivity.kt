@@ -70,36 +70,78 @@ class RankingActivity : AppCompatActivity() {
         loadingIndicator.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
         emptyView.visibility = View.GONE
+        findViewById<TextView>(R.id.tvMsgGlobalRanking).visibility = View.GONE
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val newItems = listOf(
-                RankingItem(1, "MasterMind", "us", 25750, true),
-                RankingItem(2, "BrainGamer", "es", 24800, false),
-                RankingItem(3, "Intelectual99", "mx", 22340, false),
-                RankingItem(4, "GeniusPlayer", "br", 21220, false),
-                RankingItem(5, "SmartBrain", "ar", 19800, false),
-                RankingItem(6, "MathWizard", "co", 18750, false),
-                RankingItem(7, "LogicPro", "pe", 17500, false),
-                RankingItem(8, "NumberKing", "cl", 16820, false),
-                RankingItem(9, "BrainTrainer", "ca", 16400, false),
-                RankingItem(10, "MindMaster", "fr", 15980, false)
-            )
 
-            rankingItems.clear()
-            rankingItems.addAll(newItems)
+            val minGamesRequired = 20
+            val minGamesTypesRequired = 2
 
-            if (rankingItems.isEmpty()) {
-                emptyView.visibility = View.VISIBLE
+
+            val totalGames = ScoreManager.totalGamesGlobal
+            var juegosDistintos = 0
+            if (ScoreManager.totalGamesNumerosPlus > 0) juegosDistintos++
+            if (ScoreManager.totalGamesDeciPlus > 0) juegosDistintos++
+            if (ScoreManager.totalGamesRomas > 0) juegosDistintos++
+            if (ScoreManager.totalGamesAlfaNumeros > 0) juegosDistintos++
+            if (ScoreManager.totalGamesSumaResta > 0) juegosDistintos++
+            if (ScoreManager.totalGamesMasPlus > 0) juegosDistintos++
+            if (ScoreManager.totalGamesGenioPlus > 0) juegosDistintos++
+
+
+            val totalScoreGlobal =
+                ScoreManager.currentScore + ScoreManager.currentScorePrincipiante + ScoreManager.currentScorePro +
+                        ScoreManager.currentScoreDeciPlus + ScoreManager.currentScoreDeciPlusPrincipiante + ScoreManager.currentScoreDeciPlusPro +
+                        ScoreManager.currentScoreRomas + ScoreManager.currentScoreRomasPrincipiante + ScoreManager.currentScoreRomasPro +
+                        ScoreManager.currentScoreAlfaNumeros + ScoreManager.currentScoreAlfaNumerosPrincipiante + ScoreManager.currentScoreAlfaNumerosPro +
+                        ScoreManager.currentScoreSumaResta + ScoreManager.currentScoreSumaRestaPrincipiante + ScoreManager.currentScoreSumaRestaPro +
+                        ScoreManager.currentScoreMasPlus + ScoreManager.currentScoreMasPlusPrincipiante + ScoreManager.currentScoreMasPlusPro +
+                        ScoreManager.currentScoreGenioPlus + ScoreManager.currentScoreGenioPlusPrincipiante + ScoreManager.currentScoreGenioPlusPro
+
+
+            val username = sharedPreferences.getString("savedUserName", "Tú") ?: "Tú"
+            val countryCode = sharedPreferences.getString("savedCountryCode", "us") ?: "us"
+
+            if (totalGames < minGamesRequired || juegosDistintos < minGamesTypesRequired) {
+                val juegosFaltantes = minGamesTypesRequired - juegosDistintos
+                val partidasFaltantes = minGamesRequired - totalGames
+                val msg = getString(R.string.msg_need_more_games_global)
+                val progressMsg = getString(R.string.msg_progress_remaining_global,
+                    maxOf(0, partidasFaltantes), maxOf(0, juegosFaltantes))
+
+                findViewById<TextView>(R.id.tvMsgGlobalRanking).apply {
+                    visibility = View.VISIBLE
+                    text = getString(R.string.msg_need_more_games_combined, msg, progressMsg)
+
+                }
                 recyclerView.visibility = View.GONE
-            } else {
                 emptyView.visibility = View.GONE
-                recyclerView.visibility = View.VISIBLE
-
-                adapter.notifyItemRangeChanged(0, newItems.size)
+                loadingIndicator.visibility = View.GONE
+                return@postDelayed
+            } else {
+                findViewById<TextView>(R.id.tvMsgGlobalRanking).visibility = View.GONE
             }
 
+            val oldSize = rankingItems.size
+            rankingItems.clear()
+            if (oldSize > 0) {
+                adapter.notifyItemRangeRemoved(0, oldSize)
+            }
+            rankingItems.add(
+                RankingItem(
+                    position = 1,
+                    username = username,
+                    countryCode = countryCode,
+                    score = totalScoreGlobal,
+                    isCurrentUser = true
+                )
+            )
+            adapter.notifyItemInserted(0)
+
+            recyclerView.visibility = View.VISIBLE
+            emptyView.visibility = View.GONE
             loadingIndicator.visibility = View.GONE
-        }, 1500)
+        }, 800)
     }
 
     override fun onResume() {

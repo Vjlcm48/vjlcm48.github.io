@@ -116,6 +116,7 @@ class LevelResultActivityMasPlus : AppCompatActivity() {
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.correctGamesGlobal += 1
         ScoreManager.totalGamesMasPlus += 1
+        ScoreManager.totalGamesMasPlusAvanzado += 1
         ScoreManager.totalTimeMasPlus += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndMasPlus()
 
@@ -144,6 +145,7 @@ class LevelResultActivityMasPlus : AppCompatActivity() {
     private fun handleFailureScenario() {
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.totalGamesMasPlus += 1
+        ScoreManager.totalGamesMasPlusAvanzado += 1
         ScoreManager.totalTimeMasPlus += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndMasPlus()
 

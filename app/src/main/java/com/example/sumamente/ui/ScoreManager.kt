@@ -159,6 +159,10 @@ object ScoreManager {
     var unlockedLevelsPro: Int = 2
     val levelScoresPro: MutableMap<Int, Int> = mutableMapOf()
 
+    var totalGamesNumerosPlusAvanzado: Int = 0
+    var totalGamesNumerosPlusPrincipiante: Int = 0
+    var totalGamesNumerosPlusPro: Int = 0
+
     var totalGamesNumerosPlus: Int = 0
     var totalTimeNumerosPlus: Double = 0.0
 
@@ -174,6 +178,10 @@ object ScoreManager {
     var currentScoreDeciPlusPro: Int = 0
     var unlockedLevelsDeciPlusPro: Int = 2
     val levelScoresDeciPlusPro: MutableMap<Int, Int> = mutableMapOf()
+
+    var totalGamesDeciPlusAvanzado: Int = 0
+    var totalGamesDeciPlusPrincipiante: Int = 0
+    var totalGamesDeciPlusPro: Int = 0
 
     var totalGamesDeciPlus: Int = 0
     var totalTimeDeciPlus: Double = 0.0
@@ -191,6 +199,10 @@ object ScoreManager {
     var unlockedLevelsRomasPro: Int = 2
     val levelScoresRomasPro: MutableMap<Int, Int> = mutableMapOf()
 
+    var totalGamesRomasAvanzado: Int = 0
+    var totalGamesRomasPrincipiante: Int = 0
+    var totalGamesRomasPro: Int = 0
+
     var totalGamesRomas: Int = 0
     var totalTimeRomas: Double = 0.0
 
@@ -206,6 +218,10 @@ object ScoreManager {
     var currentScoreAlfaNumerosPro: Int = 0
     var unlockedLevelsAlfaNumerosPro: Int = 2
     val levelScoresAlfaNumerosPro: MutableMap<Int, Int> = mutableMapOf()
+
+    var totalGamesAlfaNumerosAvanzado: Int = 0
+    var totalGamesAlfaNumerosPrincipiante: Int = 0
+    var totalGamesAlfaNumerosPro: Int = 0
 
     var totalGamesAlfaNumeros: Int = 0
     var totalTimeAlfaNumeros: Double = 0.0
@@ -223,6 +239,10 @@ object ScoreManager {
     var unlockedLevelsSumaRestaPro: Int = 2
     val levelScoresSumaRestaPro: MutableMap<Int, Int> = mutableMapOf()
 
+    var totalGamesSumaRestaAvanzado: Int = 0
+    var totalGamesSumaRestaPrincipiante: Int = 0
+    var totalGamesSumaRestaPro: Int = 0
+
     var totalGamesSumaResta: Int = 0
     var totalTimeSumaResta: Double = 0.0
 
@@ -239,6 +259,10 @@ object ScoreManager {
     var unlockedLevelsMasPlusPro: Int = 2
     val levelScoresMasPlusPro: MutableMap<Int, Int> = mutableMapOf()
 
+    var totalGamesMasPlusAvanzado: Int = 0
+    var totalGamesMasPlusPrincipiante: Int = 0
+    var totalGamesMasPlusPro: Int = 0
+
     var totalGamesMasPlus: Int = 0
     var totalTimeMasPlus: Double = 0.0
 
@@ -254,6 +278,10 @@ object ScoreManager {
     var currentScoreGenioPlusPro: Int = 0
     var unlockedLevelsGenioPlusPro: Int = 2
     val levelScoresGenioPlusPro: MutableMap<Int, Int> = mutableMapOf()
+
+    var totalGamesGenioPlusAvanzado: Int = 0
+    var totalGamesGenioPlusPrincipiante: Int = 0
+    var totalGamesGenioPlusPro: Int = 0
 
     var totalGamesGenioPlus: Int = 0
     var totalTimeGenioPlus: Double = 0.0
@@ -337,12 +365,14 @@ object ScoreManager {
                 consecutiveFailures[i] = failures
             }
         }
+        totalGamesNumerosPlusAvanzado = preferences.getInt("total_games_numeros_plus_avanzado", 0)
+        totalGamesNumerosPlusPrincipiante = preferences.getInt("total_games_numeros_plus_principiante", 0)
+        totalGamesNumerosPlusPro = preferences.getInt("total_games_numeros_plus_pro", 0)
 
         totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
         correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
         totalGamesNumerosPlus = preferences.getInt(KEY_TOTAL_GAMES_NUMEROS_PLUS, 0)
         totalTimeNumerosPlus = preferences.getFloat(KEY_TOTAL_TIME_NUMEROS_PLUS, 0f).toDouble()
-
     }
     fun initPrincipiante(context: Context) {
         preferencesPrincipiante = context.getSharedPreferences(PREFS_NAME_PRINCIPIANTE, Context.MODE_PRIVATE)
@@ -381,6 +411,9 @@ object ScoreManager {
                 consecutiveFailuresDeciPlus[i] = failures
             }
         }
+        totalGamesDeciPlusAvanzado = preferences.getInt("total_games_deci_plus_avanzado", 0)
+        totalGamesDeciPlusPrincipiante = preferences.getInt("total_games_deci_plus_principiante", 0)
+        totalGamesDeciPlusPro = preferences.getInt("total_games_deci_plus_pro", 0)
 
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
@@ -425,6 +458,9 @@ object ScoreManager {
                 consecutiveFailuresRomas[i] = failures
             }
         }
+        totalGamesRomasAvanzado = preferences.getInt("total_games_romas_avanzado", 0)
+        totalGamesRomasPrincipiante = preferences.getInt("total_games_romas_principiante", 0)
+        totalGamesRomasPro = preferences.getInt("total_games_romas_pro", 0)
 
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
@@ -469,6 +505,9 @@ object ScoreManager {
                 consecutiveFailuresAlfaNumeros[i] = failures
             }
         }
+        totalGamesAlfaNumerosAvanzado = preferences.getInt("total_games_alfanumeros_avanzado", 0)
+        totalGamesAlfaNumerosPrincipiante = preferences.getInt("total_games_alfanumeros_principiante", 0)
+        totalGamesAlfaNumerosPro = preferences.getInt("total_games_alfanumeros_pro", 0)
 
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
@@ -510,6 +549,9 @@ object ScoreManager {
                 consecutiveFailuresSumaResta[i] = failures
             }
         }
+        totalGamesSumaRestaAvanzado = preferences.getInt("total_games_sumaresta_avanzado", 0)
+        totalGamesSumaRestaPrincipiante = preferences.getInt("total_games_sumaresta_principiante", 0)
+        totalGamesSumaRestaPro = preferences.getInt("total_games_sumaresta_pro", 0)
 
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
@@ -555,6 +597,9 @@ object ScoreManager {
                 consecutiveFailuresMasPlus[i] = failures
             }
         }
+        totalGamesMasPlusAvanzado = preferences.getInt("total_games_masplus_avanzado", 0)
+        totalGamesMasPlusPrincipiante = preferences.getInt("total_games_masplus_principiante", 0)
+        totalGamesMasPlusPro = preferences.getInt("total_games_masplus_pro", 0)
 
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
@@ -599,6 +644,9 @@ object ScoreManager {
                 consecutiveFailuresGenioPlus[i] = failures
             }
         }
+        totalGamesGenioPlusAvanzado = preferences.getInt("total_games_genioplus_avanzado", 0)
+        totalGamesGenioPlusPrincipiante = preferences.getInt("total_games_genioplus_principiante", 0)
+        totalGamesGenioPlusPro = preferences.getInt("total_games_genioplus_pro", 0)
 
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
@@ -631,6 +679,7 @@ object ScoreManager {
         }
     }
 
+
     fun saveScore() {
         preferences.edit {
             putInt(KEY_CURRENT_SCORE, currentScore)
@@ -655,8 +704,13 @@ object ScoreManager {
             putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
             putInt(KEY_TOTAL_GAMES_NUMEROS_PLUS, totalGamesNumerosPlus)
             putFloat(KEY_TOTAL_TIME_NUMEROS_PLUS, totalTimeNumerosPlus.toFloat())
+
+            putInt("total_games_numeros_plus_avanzado", totalGamesNumerosPlusAvanzado)
+            putInt("total_games_numeros_plus_principiante", totalGamesNumerosPlusPrincipiante)
+            putInt("total_games_numeros_plus_pro", totalGamesNumerosPlusPro)
         }
     }
+
     fun getPrecisionGlobal(): Double {
         return if (totalGamesGlobal > 0) correctGamesGlobal.toDouble() / totalGamesGlobal else 1.0
     }
@@ -691,6 +745,9 @@ object ScoreManager {
         preferencesDeciPlus.edit {
             putInt(KEY_TOTAL_GAMES_DECI_PLUS, totalGamesDeciPlus)
             putFloat(KEY_TOTAL_TIME_DECI_PLUS, totalTimeDeciPlus.toFloat())
+            putInt("total_games_deci_plus_avanzado", totalGamesDeciPlusAvanzado)
+            putInt("total_games_deci_plus_principiante", totalGamesDeciPlusPrincipiante)
+            putInt("total_games_deci_plus_pro", totalGamesDeciPlusPro)
         }
     }
     fun getTiempoPromedioDeciPlus(): Double {
@@ -724,6 +781,9 @@ object ScoreManager {
         preferencesRomas.edit {
             putInt(KEY_TOTAL_GAMES_ROMAS, totalGamesRomas)
             putFloat(KEY_TOTAL_TIME_ROMAS, totalTimeRomas.toFloat())
+            putInt("total_games_romas_avanzado", totalGamesRomasAvanzado)
+            putInt("total_games_romas_principiante", totalGamesRomasPrincipiante)
+            putInt("total_games_romas_pro", totalGamesRomasPro)
         }
     }
     fun getTiempoPromedioRomas(): Double {
@@ -757,6 +817,9 @@ object ScoreManager {
         preferencesAlfaNumeros.edit {
             putInt(KEY_TOTAL_GAMES_ALFANUMEROS, totalGamesAlfaNumeros)
             putFloat(KEY_TOTAL_TIME_ALFANUMEROS, totalTimeAlfaNumeros.toFloat())
+            putInt("total_games_alfanumeros_avanzado", totalGamesAlfaNumerosAvanzado)
+            putInt("total_games_alfanumeros_principiante", totalGamesAlfaNumerosPrincipiante)
+            putInt("total_games_alfanumeros_pro", totalGamesAlfaNumerosPro)
         }
     }
     fun getTiempoPromedioAlfaNumeros(): Double {
@@ -790,6 +853,9 @@ object ScoreManager {
         preferencesSumaResta.edit {
             putInt(KEY_TOTAL_GAMES_SUMARESTA, totalGamesSumaResta)
             putFloat(KEY_TOTAL_TIME_SUMARESTA, totalTimeSumaResta.toFloat())
+            putInt("total_games_sumaresta_avanzado", totalGamesSumaRestaAvanzado)
+            putInt("total_games_sumaresta_principiante", totalGamesSumaRestaPrincipiante)
+            putInt("total_games_sumaresta_pro", totalGamesSumaRestaPro)
         }
     }
     fun getTiempoPromedioSumaResta(): Double {
@@ -823,6 +889,9 @@ object ScoreManager {
         preferencesMasPlus.edit {
             putInt(KEY_TOTAL_GAMES_MAS_PLUS, totalGamesMasPlus)
             putFloat(KEY_TOTAL_TIME_MAS_PLUS, totalTimeMasPlus.toFloat())
+            putInt("total_games_masplus_avanzado", totalGamesMasPlusAvanzado)
+            putInt("total_games_masplus_principiante", totalGamesMasPlusPrincipiante)
+            putInt("total_games_masplus_pro", totalGamesMasPlusPro)
         }
     }
     fun getTiempoPromedioMasPlus(): Double {
@@ -856,6 +925,9 @@ object ScoreManager {
         preferencesGenioPlus.edit {
             putInt(KEY_TOTAL_GAMES_GENIO_PLUS, totalGamesGenioPlus)
             putFloat(KEY_TOTAL_TIME_GENIO_PLUS, totalTimeGenioPlus.toFloat())
+            putInt("total_games_genioplus_avanzado", totalGamesGenioPlusAvanzado)
+            putInt("total_games_genioplus_principiante", totalGamesGenioPlusPrincipiante)
+            putInt("total_games_genioplus_pro", totalGamesGenioPlusPro)
         }
     }
     fun getTiempoPromedioGenioPlus(): Double {

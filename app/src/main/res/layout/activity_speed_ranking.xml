@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/blue_secondary">
 
-    <!-- Botón de regreso -->
+
     <ImageView
         android:id="@+id/btn_back"
         android:layout_width="48dp"
@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Título del ranking -->
+
     <TextView
         android:id="@+id/tv_speed_ranking_title"
         android:layout_width="0dp"
@@ -39,7 +39,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_back" />
 
-    <!-- Header del ranking -->
+
     <LinearLayout
         android:id="@+id/ranking_header"
         android:layout_width="0dp"
@@ -99,7 +99,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ranking_header" />
 
-    <!-- Indicador de carga -->
     <ProgressBar
         android:id="@+id/loading_indicator"
         android:layout_width="48dp"
@@ -112,7 +111,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Vista vacía -->
+
     <TextView
         android:id="@+id/empty_view"
         android:layout_width="0dp"
@@ -129,5 +128,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvMsgSpeedRanking"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/empty_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
