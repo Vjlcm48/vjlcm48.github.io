@@ -15,6 +15,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sumamente.R
+import kotlin.math.max
+import kotlin.random.Random
 
 class SpeedRankingActivity : AppCompatActivity() {
 
@@ -32,6 +34,8 @@ class SpeedRankingActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_GAME_TYPE = "game_type"
         const val EXTRA_GAME_COLOR = "game_color"
+        const val TOTAL_LEVELS_REQUIRED = 36
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -102,108 +106,192 @@ class SpeedRankingActivity : AppCompatActivity() {
         loadingIndicator.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
         emptyView.visibility = View.GONE
-        findViewById<TextView>(R.id.tvMsgSpeedRanking).visibility = View.GONE
+        val tvMsgSpeedRanking = findViewById<TextView>(R.id.tvMsgSpeedRanking)
+        tvMsgSpeedRanking.visibility = View.GONE
 
         Handler(Looper.getMainLooper()).postDelayed({
             val gameType = intent.getStringExtra(EXTRA_GAME_TYPE) ?: return@postDelayed
 
-            val (totalGames, partPrincipiante, partAvanzado, partPro, avgTime) = when (gameType) {
+            val result = when (gameType) {
                 SpeedClassificationActivity.GAME_NUMEROS_PLUS -> arrayOf(
-                    ScoreManager.totalGamesNumerosPlusPrincipiante +
-                            ScoreManager.totalGamesNumerosPlusAvanzado +
-                            ScoreManager.totalGamesNumerosPlusPro,
-                    ScoreManager.totalGamesNumerosPlusPrincipiante,
-                    ScoreManager.totalGamesNumerosPlusAvanzado,
-                    ScoreManager.totalGamesNumerosPlusPro,
-                    ScoreManager.getTiempoPromedioNumerosPlus().toFloat()
+                    ScoreManager.getUniqueLevelsPlayedNumerosPlusPrincipiante(),
+                    ScoreManager.getUniqueLevelsPlayedNumerosPlusAvanzado(),
+                    ScoreManager.getUniqueLevelsPlayedNumerosPlusPro(),
+                    ScoreManager.getTiempoPromedioNumerosPlus(),
+                    ScoreManager.isEligibleForSpeedRankingNumerosPlus(),
+                    ScoreManager.getMissingLevelsNumerosPlusPrincipiante(),
+                    ScoreManager.getMissingLevelsNumerosPlusAvanzado(),
+                    ScoreManager.getMissingLevelsNumerosPlusPro()
                 )
                 SpeedClassificationActivity.GAME_DECI_PLUS -> arrayOf(
-                    ScoreManager.totalGamesDeciPlusPrincipiante +
-                            ScoreManager.totalGamesDeciPlusAvanzado +
-                            ScoreManager.totalGamesDeciPlusPro,
-                    ScoreManager.totalGamesDeciPlusPrincipiante,
-                    ScoreManager.totalGamesDeciPlusAvanzado,
-                    ScoreManager.totalGamesDeciPlusPro,
-                    ScoreManager.getTiempoPromedioDeciPlus().toFloat()
+                    ScoreManager.getUniqueLevelsPlayedDeciPlusPrincipiante(),
+                    ScoreManager.getUniqueLevelsPlayedDeciPlusAvanzado(),
+                    ScoreManager.getUniqueLevelsPlayedDeciPlusPro(),
+                    ScoreManager.getTiempoPromedioDeciPlus(),
+                    ScoreManager.isEligibleForSpeedRankingDeciPlus(),
+                    ScoreManager.getMissingLevelsDeciPlusPrincipiante(),
+                    ScoreManager.getMissingLevelsDeciPlusAvanzado(),
+                    ScoreManager.getMissingLevelsDeciPlusPro()
                 )
                 SpeedClassificationActivity.GAME_ROMAS -> arrayOf(
-                    ScoreManager.totalGamesRomasPrincipiante +
-                            ScoreManager.totalGamesRomasAvanzado +
-                            ScoreManager.totalGamesRomasPro,
-                    ScoreManager.totalGamesRomasPrincipiante,
-                    ScoreManager.totalGamesRomasAvanzado,
-                    ScoreManager.totalGamesRomasPro,
-                    ScoreManager.getTiempoPromedioRomas().toFloat()
+                    ScoreManager.getUniqueLevelsPlayedRomasPrincipiante(),
+                    ScoreManager.getUniqueLevelsPlayedRomasAvanzado(),
+                    ScoreManager.getUniqueLevelsPlayedRomasPro(),
+                    ScoreManager.getTiempoPromedioRomas(),
+                    ScoreManager.isEligibleForSpeedRankingRomas(),
+                    ScoreManager.getMissingLevelsRomasPrincipiante(),
+                    ScoreManager.getMissingLevelsRomasAvanzado(),
+                    ScoreManager.getMissingLevelsRomasPro()
                 )
                 SpeedClassificationActivity.GAME_ALFA_NUMEROS -> arrayOf(
-                    ScoreManager.totalGamesAlfaNumerosPrincipiante +
-                            ScoreManager.totalGamesAlfaNumerosAvanzado +
-                            ScoreManager.totalGamesAlfaNumerosPro,
-                    ScoreManager.totalGamesAlfaNumerosPrincipiante,
-                    ScoreManager.totalGamesAlfaNumerosAvanzado,
-                    ScoreManager.totalGamesAlfaNumerosPro,
-                    ScoreManager.getTiempoPromedioAlfaNumeros().toFloat()
+                    ScoreManager.getUniqueLevelsPlayedAlfaNumerosPrincipiante(),
+                    ScoreManager.getUniqueLevelsPlayedAlfaNumerosAvanzado(),
+                    ScoreManager.getUniqueLevelsPlayedAlfaNumerosPro(),
+                    ScoreManager.getTiempoPromedioAlfaNumeros(),
+                    ScoreManager.isEligibleForSpeedRankingAlfaNumeros(),
+                    ScoreManager.getMissingLevelsAlfaNumerosPrincipiante(),
+                    ScoreManager.getMissingLevelsAlfaNumerosAvanzado(),
+                    ScoreManager.getMissingLevelsAlfaNumerosPro()
                 )
                 SpeedClassificationActivity.GAME_SUMA_RESTA -> arrayOf(
-                    ScoreManager.totalGamesSumaRestaPrincipiante +
-                            ScoreManager.totalGamesSumaRestaAvanzado +
-                            ScoreManager.totalGamesSumaRestaPro,
-                    ScoreManager.totalGamesSumaRestaPrincipiante,
-                    ScoreManager.totalGamesSumaRestaAvanzado,
-                    ScoreManager.totalGamesSumaRestaPro,
-                    ScoreManager.getTiempoPromedioSumaResta().toFloat()
+                    ScoreManager.getUniqueLevelsPlayedSumaRestaPrincipiante(),
+                    ScoreManager.getUniqueLevelsPlayedSumaRestaAvanzado(),
+                    ScoreManager.getUniqueLevelsPlayedSumaRestaPro(),
+                    ScoreManager.getTiempoPromedioSumaResta(),
+                    ScoreManager.isEligibleForSpeedRankingSumaResta(),
+                    ScoreManager.getMissingLevelsSumaRestaPrincipiante(),
+                    ScoreManager.getMissingLevelsSumaRestaAvanzado(),
+                    ScoreManager.getMissingLevelsSumaRestaPro()
                 )
                 SpeedClassificationActivity.GAME_MAS_PLUS -> arrayOf(
-                    ScoreManager.totalGamesMasPlusPrincipiante +
-                            ScoreManager.totalGamesMasPlusAvanzado +
-                            ScoreManager.totalGamesMasPlusPro,
-                    ScoreManager.totalGamesMasPlusPrincipiante,
-                    ScoreManager.totalGamesMasPlusAvanzado,
-                    ScoreManager.totalGamesMasPlusPro,
-                    ScoreManager.getTiempoPromedioMasPlus().toFloat()
+                    ScoreManager.getUniqueLevelsPlayedMasPlusPrincipiante(),
+                    ScoreManager.getUniqueLevelsPlayedMasPlusAvanzado(),
+                    ScoreManager.getUniqueLevelsPlayedMasPlusPro(),
+                    ScoreManager.getTiempoPromedioMasPlus(),
+                    ScoreManager.isEligibleForSpeedRankingMasPlus(),
+                    ScoreManager.getMissingLevelsMasPlusPrincipiante(),
+                    ScoreManager.getMissingLevelsMasPlusAvanzado(),
+                    ScoreManager.getMissingLevelsMasPlusPro()
                 )
                 SpeedClassificationActivity.GAME_GENIO_PLUS -> arrayOf(
-                    ScoreManager.totalGamesGenioPlusPrincipiante +
-                            ScoreManager.totalGamesGenioPlusAvanzado +
-                            ScoreManager.totalGamesGenioPlusPro,
-                    ScoreManager.totalGamesGenioPlusPrincipiante,
-                    ScoreManager.totalGamesGenioPlusAvanzado,
-                    ScoreManager.totalGamesGenioPlusPro,
-                    ScoreManager.getTiempoPromedioGenioPlus().toFloat()
+                    ScoreManager.getUniqueLevelsPlayedGenioPlusPrincipiante(),
+                    ScoreManager.getUniqueLevelsPlayedGenioPlusAvanzado(),
+                    ScoreManager.getUniqueLevelsPlayedGenioPlusPro(),
+                    ScoreManager.getTiempoPromedioGenioPlus(),
+                    ScoreManager.isEligibleForSpeedRankingGenioPlus(),
+                    ScoreManager.getMissingLevelsGenioPlusPrincipiante(),
+                    ScoreManager.getMissingLevelsGenioPlusAvanzado(),
+                    ScoreManager.getMissingLevelsGenioPlusPro()
                 )
-                else -> arrayOf(0, 0, 0, 0, 0f)
+                else -> arrayOf(0, 0, 0, 0f, false, 0, 0, 0)
             }
 
-            val total = totalGames as Int
-            val principiante = partPrincipiante as Int
-            val avanzado = partAvanzado as Int
-            val pro = partPro as Int
-            val avg = avgTime as Float
+            val uniquePrincipiante = result[0] as Int
+            val uniqueAvanzado = result[1] as Int
+            val uniquePro = result[2] as Int
+            val avgTime = result[3] as Float
+            val eligibleForRanking = result[4] as Boolean
+            val missingPrincipiante = result[5] as Int
+            val missingAvanzado = result[6] as Int
+            val missingPro = result[7] as Int
 
-            val minTotalGamesRequired = 30
-            val minGamesEachMode = 5
+            val totalPlayed = max(0, uniquePrincipiante.coerceAtMost(12) + uniqueAvanzado.coerceAtMost(12) + uniquePro.coerceAtMost(12))
+            val totalMissing = (TOTAL_LEVELS_REQUIRED - totalPlayed).coerceAtLeast(0)
 
-            val username = sharedPreferences.getString("savedUserName", "Tú") ?: "Tú"
+            val username = sharedPreferences.getString("savedUserName", getString(R.string.default_username)) ?: getString(R.string.default_username)
             val countryCode = sharedPreferences.getString("savedCountryCode", "us") ?: "us"
 
-            if (
-                total < minTotalGamesRequired ||
-                principiante < minGamesEachMode ||
-                avanzado < minGamesEachMode ||
-                pro < minGamesEachMode
-            ) {
-                val msg = getString(R.string.msg_need_more_games_speed, tvTitle.text.toString())
-                val progressMsg = getString(
-                    R.string.msg_progress_remaining_speed_3modes,
-                    maxOf(0, minTotalGamesRequired - total),
-                    maxOf(0, minGamesEachMode - principiante),
-                    maxOf(0, minGamesEachMode - avanzado),
-                    maxOf(0, minGamesEachMode - pro)
+            if (!eligibleForRanking) {
+
+                val avgMsgIndex = Random.nextInt(12)
+                val infoGroup = when (totalPlayed) {
+                    in 1..10 -> 0
+                    in 11..20 -> 1
+                    in 21..35 -> 2
+                    else -> 0
+                }
+                val infoMsgIndex = Random.nextInt(6) + (infoGroup * 6)
+                val motivMsgIndex = Random.nextInt(6) + (infoGroup * 6)
+
+                val avgMsg = getString(
+                    when(avgMsgIndex) {
+                        0 -> R.string.speed_avg_1
+                        1 -> R.string.speed_avg_2
+                        2 -> R.string.speed_avg_3
+                        3 -> R.string.speed_avg_4
+                        4 -> R.string.speed_avg_5
+                        5 -> R.string.speed_avg_6
+                        6 -> R.string.speed_avg_7
+                        7 -> R.string.speed_avg_8
+                        8 -> R.string.speed_avg_9
+                        9 -> R.string.speed_avg_10
+                        10 -> R.string.speed_avg_11
+                        else -> R.string.speed_avg_12
+                    },
+                    avgTime
                 )
-                val combinedMsg = getString(R.string.msg_speed_ranking_combined, msg, progressMsg)
-                findViewById<TextView>(R.id.tvMsgSpeedRanking).apply {
+
+                var infoMsg = getString(
+                    when(infoMsgIndex) {
+                        0 -> R.string.speed_info_1
+                        1 -> R.string.speed_info_2
+                        2 -> R.string.speed_info_3
+                        3 -> R.string.speed_info_4
+                        4 -> R.string.speed_info_5
+                        5 -> R.string.speed_info_6
+                        6 -> R.string.speed_info_7
+                        7 -> R.string.speed_info_8
+                        8 -> R.string.speed_info_9
+                        9 -> R.string.speed_info_10
+                        10 -> R.string.speed_info_11
+                        11 -> R.string.speed_info_12
+                        12 -> R.string.speed_info_13
+                        13 -> R.string.speed_info_14
+                        14 -> R.string.speed_info_15
+                        15 -> R.string.speed_info_16
+                        16 -> R.string.speed_info_17
+                        else -> R.string.speed_info_18
+                    },
+                    totalMissing, missingPrincipiante, missingAvanzado, missingPro, username
+                )
+
+                var motivMsg = getString(
+                    when(motivMsgIndex) {
+                        0 -> R.string.speed_motiv_1
+                        1 -> R.string.speed_motiv_2
+                        2 -> R.string.speed_motiv_3
+                        3 -> R.string.speed_motiv_4
+                        4 -> R.string.speed_motiv_5
+                        5 -> R.string.speed_motiv_6
+                        6 -> R.string.speed_motiv_7
+                        7 -> R.string.speed_motiv_8
+                        8 -> R.string.speed_motiv_9
+                        9 -> R.string.speed_motiv_10
+                        10 -> R.string.speed_motiv_11
+                        11 -> R.string.speed_motiv_12
+                        12 -> R.string.speed_motiv_13
+                        13 -> R.string.speed_motiv_14
+                        14 -> R.string.speed_motiv_15
+                        15 -> R.string.speed_motiv_16
+                        16 -> R.string.speed_motiv_17
+                        else -> R.string.speed_motiv_18
+                    },
+                    username
+                )
+
+                val infoHasName = infoMsg.contains(username)
+                if (infoHasName) {
+                    motivMsg = motivMsg.replace(username, "").replace(", !", "!").replace(", ¡", "¡")
+                } else if (motivMsg.contains(username)) {
+                    infoMsg = infoMsg.replace(username, "").replace(", !", "!").replace(", ¡", "¡")
+                }
+
+                tvMsgSpeedRanking.apply {
                     visibility = View.VISIBLE
-                    text = combinedMsg
+                    text = android.text.Html.fromHtml(
+                        "$avgMsg<br/><br/>$infoMsg<br/><br/>$motivMsg",
+                        android.text.Html.FROM_HTML_MODE_LEGACY
+                    )
                 }
 
                 recyclerView.visibility = View.GONE
@@ -211,7 +299,7 @@ class SpeedRankingActivity : AppCompatActivity() {
                 loadingIndicator.visibility = View.GONE
                 return@postDelayed
             } else {
-                findViewById<TextView>(R.id.tvMsgSpeedRanking).visibility = View.GONE
+                tvMsgSpeedRanking.visibility = View.GONE
             }
 
             rankingItems.clear()
@@ -220,11 +308,10 @@ class SpeedRankingActivity : AppCompatActivity() {
                     position = 1,
                     username = username,
                     countryCode = countryCode,
-                    averageTime = avg,
+                    averageTime = avgTime,
                     isCurrentUser = true
                 )
             )
-
             adapter.notifyItemInserted(0)
             recyclerView.visibility = View.VISIBLE
             emptyView.visibility = View.GONE

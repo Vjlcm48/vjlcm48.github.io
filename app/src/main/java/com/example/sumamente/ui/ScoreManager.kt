@@ -286,7 +286,6 @@ object ScoreManager {
     var totalGamesGenioPlus: Int = 0
     var totalTimeGenioPlus: Double = 0.0
 
-
     private const val KEY_CONSECUTIVE_FAILURES = "consecutive_failures"
     private const val KEY_CONSECUTIVE_FAILURES_PRINCIPIANTE = "consecutive_failures_principiante"
     private const val KEY_CONSECUTIVE_FAILURES_PRO = "consecutive_failures_pro"
@@ -1258,6 +1257,40 @@ object ScoreManager {
         return getCompletedLevelsPro().contains(level)
     }
 
+    // --- NÚMEROS PLUS ---
+
+    fun getUniqueLevelsPlayedNumerosPlusPrincipiante(): Int {
+        return getCompletedLevelsPrincipiante().size.coerceAtMost(12)
+    }
+
+    fun getUniqueLevelsPlayedNumerosPlusAvanzado(): Int {
+        return getCompletedLevels().size.coerceAtMost(12)
+    }
+
+    fun getUniqueLevelsPlayedNumerosPlusPro(): Int {
+        return getCompletedLevelsPro().size.coerceAtMost(12)
+    }
+
+    fun getMissingLevelsNumerosPlusPrincipiante(): Int {
+        return (12 - getUniqueLevelsPlayedNumerosPlusPrincipiante()).coerceAtLeast(0)
+    }
+
+    fun getMissingLevelsNumerosPlusAvanzado(): Int {
+        return (12 - getUniqueLevelsPlayedNumerosPlusAvanzado()).coerceAtLeast(0)
+    }
+
+    fun getMissingLevelsNumerosPlusPro(): Int {
+        return (12 - getUniqueLevelsPlayedNumerosPlusPro()).coerceAtLeast(0)
+    }
+
+    fun isEligibleForSpeedRankingNumerosPlus(): Boolean {
+        return getUniqueLevelsPlayedNumerosPlusPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedNumerosPlusAvanzado() >= 12 &&
+                getUniqueLevelsPlayedNumerosPlusPro() >= 12
+    }
+
+
+
     fun hasCompletedLevelDeciPlus(level: Int): Boolean {
         return getCompletedLevelsDeciPlus().contains(level)
     }
@@ -1269,6 +1302,38 @@ object ScoreManager {
     fun hasCompletedLevelDeciPlusPro(level: Int): Boolean {
         return getCompletedLevelsDeciPlusPro().contains(level)
     }
+    // --- DECI PLUS ---
+
+    fun getUniqueLevelsPlayedDeciPlusPrincipiante(): Int {
+        return getCompletedLevelsDeciPlusPrincipiante().size.coerceAtMost(12)
+    }
+
+    fun getUniqueLevelsPlayedDeciPlusAvanzado(): Int {
+        return getCompletedLevelsDeciPlus().size.coerceAtMost(12)
+    }
+
+    fun getUniqueLevelsPlayedDeciPlusPro(): Int {
+        return getCompletedLevelsDeciPlusPro().size.coerceAtMost(12)
+    }
+
+    fun getMissingLevelsDeciPlusPrincipiante(): Int {
+        return (12 - getUniqueLevelsPlayedDeciPlusPrincipiante()).coerceAtLeast(0)
+    }
+
+    fun getMissingLevelsDeciPlusAvanzado(): Int {
+        return (12 - getUniqueLevelsPlayedDeciPlusAvanzado()).coerceAtLeast(0)
+    }
+
+    fun getMissingLevelsDeciPlusPro(): Int {
+        return (12 - getUniqueLevelsPlayedDeciPlusPro()).coerceAtLeast(0)
+    }
+
+    fun isEligibleForSpeedRankingDeciPlus(): Boolean {
+        return getUniqueLevelsPlayedDeciPlusPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedDeciPlusAvanzado() >= 12 &&
+                getUniqueLevelsPlayedDeciPlusPro() >= 12
+    }
+
 
     fun hasCompletedLevelRomas(level: Int): Boolean {
         return getCompletedLevelsRomas().contains(level)
@@ -1281,6 +1346,38 @@ object ScoreManager {
     fun hasCompletedLevelRomasPro(level: Int): Boolean {
         return getCompletedLevelsRomasPro().contains(level)
     }
+    // --- ROMAS ---
+
+    fun getUniqueLevelsPlayedRomasPrincipiante(): Int {
+        return getCompletedLevelsRomasPrincipiante().size.coerceAtMost(12)
+    }
+
+    fun getUniqueLevelsPlayedRomasAvanzado(): Int {
+        return getCompletedLevelsRomas().size.coerceAtMost(12)
+    }
+
+    fun getUniqueLevelsPlayedRomasPro(): Int {
+        return getCompletedLevelsRomasPro().size.coerceAtMost(12)
+    }
+
+    fun getMissingLevelsRomasPrincipiante(): Int {
+        return (12 - getUniqueLevelsPlayedRomasPrincipiante()).coerceAtLeast(0)
+    }
+
+    fun getMissingLevelsRomasAvanzado(): Int {
+        return (12 - getUniqueLevelsPlayedRomasAvanzado()).coerceAtLeast(0)
+    }
+
+    fun getMissingLevelsRomasPro(): Int {
+        return (12 - getUniqueLevelsPlayedRomasPro()).coerceAtLeast(0)
+    }
+
+    fun isEligibleForSpeedRankingRomas(): Boolean {
+        return getUniqueLevelsPlayedRomasPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedRomasAvanzado() >= 12 &&
+                getUniqueLevelsPlayedRomasPro() >= 12
+    }
+
 
     fun hasCompletedLevelAlfaNumeros(level: Int): Boolean {
         return getCompletedLevelsAlfaNumeros().contains(level)
@@ -1293,6 +1390,38 @@ object ScoreManager {
     fun hasCompletedLevelAlfaNumerosPro(level: Int): Boolean {
         return getCompletedLevelsAlfaNumerosPro().contains(level)
     }
+    // --- ALFANUMEROS ---
+
+    fun getUniqueLevelsPlayedAlfaNumerosPrincipiante(): Int {
+        return getCompletedLevelsAlfaNumerosPrincipiante().size.coerceAtMost(12)
+    }
+
+    fun getUniqueLevelsPlayedAlfaNumerosAvanzado(): Int {
+        return getCompletedLevelsAlfaNumeros().size.coerceAtMost(12)
+    }
+
+    fun getUniqueLevelsPlayedAlfaNumerosPro(): Int {
+        return getCompletedLevelsAlfaNumerosPro().size.coerceAtMost(12)
+    }
+
+    fun getMissingLevelsAlfaNumerosPrincipiante(): Int {
+        return (12 - getUniqueLevelsPlayedAlfaNumerosPrincipiante()).coerceAtLeast(0)
+    }
+
+    fun getMissingLevelsAlfaNumerosAvanzado(): Int {
+        return (12 - getUniqueLevelsPlayedAlfaNumerosAvanzado()).coerceAtLeast(0)
+    }
+
+    fun getMissingLevelsAlfaNumerosPro(): Int {
+        return (12 - getUniqueLevelsPlayedAlfaNumerosPro()).coerceAtLeast(0)
+    }
+
+    fun isEligibleForSpeedRankingAlfaNumeros(): Boolean {
+        return getUniqueLevelsPlayedAlfaNumerosPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedAlfaNumerosAvanzado() >= 12 &&
+                getUniqueLevelsPlayedAlfaNumerosPro() >= 12
+    }
+
 
     fun hasCompletedLevelSumaResta(level: Int): Boolean {
         return getCompletedLevelsSumaResta().contains(level)
@@ -1305,6 +1434,38 @@ object ScoreManager {
     fun hasCompletedLevelSumaRestaPro(level: Int): Boolean {
         return getCompletedLevelsSumaRestaPro().contains(level)
     }
+    // --- SUMARESTA ---
+
+    fun getUniqueLevelsPlayedSumaRestaPrincipiante(): Int {
+        return getCompletedLevelsSumaRestaPrincipiante().size.coerceAtMost(12)
+    }
+
+    fun getUniqueLevelsPlayedSumaRestaAvanzado(): Int {
+        return getCompletedLevelsSumaResta().size.coerceAtMost(12)
+    }
+
+    fun getUniqueLevelsPlayedSumaRestaPro(): Int {
+        return getCompletedLevelsSumaRestaPro().size.coerceAtMost(12)
+    }
+
+    fun getMissingLevelsSumaRestaPrincipiante(): Int {
+        return (12 - getUniqueLevelsPlayedSumaRestaPrincipiante()).coerceAtLeast(0)
+    }
+
+    fun getMissingLevelsSumaRestaAvanzado(): Int {
+        return (12 - getUniqueLevelsPlayedSumaRestaAvanzado()).coerceAtLeast(0)
+    }
+
+    fun getMissingLevelsSumaRestaPro(): Int {
+        return (12 - getUniqueLevelsPlayedSumaRestaPro()).coerceAtLeast(0)
+    }
+
+    fun isEligibleForSpeedRankingSumaResta(): Boolean {
+        return getUniqueLevelsPlayedSumaRestaPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedSumaRestaAvanzado() >= 12 &&
+                getUniqueLevelsPlayedSumaRestaPro() >= 12
+    }
+
 
     fun hasCompletedLevelMasPlus(level: Int): Boolean {
         return getCompletedLevelsMasPlus().contains(level)
@@ -1317,6 +1478,38 @@ object ScoreManager {
     fun hasCompletedLevelMasPlusPro(level: Int): Boolean {
         return getCompletedLevelsMasPlusPro().contains(level)
     }
+    // --- MASPLUS ---
+
+    fun getUniqueLevelsPlayedMasPlusPrincipiante(): Int {
+        return getCompletedLevelsMasPlusPrincipiante().size.coerceAtMost(12)
+    }
+
+    fun getUniqueLevelsPlayedMasPlusAvanzado(): Int {
+        return getCompletedLevelsMasPlus().size.coerceAtMost(12)
+    }
+
+    fun getUniqueLevelsPlayedMasPlusPro(): Int {
+        return getCompletedLevelsMasPlusPro().size.coerceAtMost(12)
+    }
+
+    fun getMissingLevelsMasPlusPrincipiante(): Int {
+        return (12 - getUniqueLevelsPlayedMasPlusPrincipiante()).coerceAtLeast(0)
+    }
+
+    fun getMissingLevelsMasPlusAvanzado(): Int {
+        return (12 - getUniqueLevelsPlayedMasPlusAvanzado()).coerceAtLeast(0)
+    }
+
+    fun getMissingLevelsMasPlusPro(): Int {
+        return (12 - getUniqueLevelsPlayedMasPlusPro()).coerceAtLeast(0)
+    }
+
+    fun isEligibleForSpeedRankingMasPlus(): Boolean {
+        return getUniqueLevelsPlayedMasPlusPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedMasPlusAvanzado() >= 12 &&
+                getUniqueLevelsPlayedMasPlusPro() >= 12
+    }
+
 
     fun hasCompletedLevelGenioPlus(level: Int): Boolean {
         return getCompletedLevelsGenioPlus().contains(level)
@@ -1329,6 +1522,38 @@ object ScoreManager {
     fun hasCompletedLevelGenioPlusPro(level: Int): Boolean {
         return getCompletedLevelsGenioPlusPro().contains(level)
     }
+    // --- GENIOPLUS ---
+
+    fun getUniqueLevelsPlayedGenioPlusPrincipiante(): Int {
+        return getCompletedLevelsGenioPlusPrincipiante().size.coerceAtMost(12)
+    }
+
+    fun getUniqueLevelsPlayedGenioPlusAvanzado(): Int {
+        return getCompletedLevelsGenioPlus().size.coerceAtMost(12)
+    }
+
+    fun getUniqueLevelsPlayedGenioPlusPro(): Int {
+        return getCompletedLevelsGenioPlusPro().size.coerceAtMost(12)
+    }
+
+    fun getMissingLevelsGenioPlusPrincipiante(): Int {
+        return (12 - getUniqueLevelsPlayedGenioPlusPrincipiante()).coerceAtLeast(0)
+    }
+
+    fun getMissingLevelsGenioPlusAvanzado(): Int {
+        return (12 - getUniqueLevelsPlayedGenioPlusAvanzado()).coerceAtLeast(0)
+    }
+
+    fun getMissingLevelsGenioPlusPro(): Int {
+        return (12 - getUniqueLevelsPlayedGenioPlusPro()).coerceAtLeast(0)
+    }
+
+    fun isEligibleForSpeedRankingGenioPlus(): Boolean {
+        return getUniqueLevelsPlayedGenioPlusPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedGenioPlusAvanzado() >= 12 &&
+                getUniqueLevelsPlayedGenioPlusPro() >= 12
+    }
+
 
     fun reset() {
         currentScore = 0
