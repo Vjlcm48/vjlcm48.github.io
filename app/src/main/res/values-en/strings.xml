@@ -940,10 +940,9 @@
     <string name="msg_need_more_games_global">Play at least 20 games in two different games to see your global ranking.</string>
     <string name="msg_need_more_games_speed">Play at least 10 games of %1$s in at least two difficulty levels to see your speed ranking.</string>
     <string name="msg_progress_remaining_global">You need: %1$d more games and %2$d different game(s).</string>
-    <string name="msg_progress_remaining_speed">You need: %1$d more game(s) and %2$d different difficulty level(s).</string>
 
     <string name="msg_need_more_games_combined">%1$s\n%2$s</string>
-    <string name="msg_speed_ranking_combined">%1$s\n%2$s</string>
+
 
     <string name="msg_progress_remaining_speed_3modes">You need: %1$d more games in total, %2$d in Beginner, %3$d in Advanced, %4$d in Pro.</string>
 

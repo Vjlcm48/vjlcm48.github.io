@@ -103,7 +103,7 @@ class LevelResultActivityGenioPlusPro : AppCompatActivity() {
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.correctGamesGlobal += 1
         ScoreManager.totalGamesGenioPlus += 1
-        ScoreManager.totalGamesGenioPlusPrincipiante += 1
+        ScoreManager.totalGamesGenioPlusPro += 1
         ScoreManager.totalTimeGenioPlus += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndGenioPlus()
 
@@ -130,7 +130,7 @@ class LevelResultActivityGenioPlusPro : AppCompatActivity() {
     private fun handleFailureScenario() {
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.totalGamesGenioPlus += 1
-        ScoreManager.totalGamesGenioPlusPrincipiante += 1
+        ScoreManager.totalGamesGenioPlusPro += 1
         ScoreManager.totalTimeGenioPlus += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndGenioPlus()
 

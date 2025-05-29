@@ -57,7 +57,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1.5"
+            android:layout_weight="1"
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:text="@string/ranking_position_header"
@@ -67,9 +67,9 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
+            android:layout_weight="3"
             android:fontFamily="@font/roboto_bold"
-            android:gravity="start"
+            android:gravity="center"
             android:text="@string/ranking_player_header"
             android:textColor="@android:color/white"
             android:textSize="14sp" />
@@ -77,13 +77,24 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2.5"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:text="@string/pais"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:text="@string/ranking_time_header"
             android:textColor="@android:color/white"
             android:textSize="14sp" />
     </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/speed_ranking_recycler_view"
@@ -133,15 +144,17 @@
         android:id="@+id/tvMsgSpeedRanking"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="24dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:fontFamily="@font/roboto_bold"
         android:gravity="center"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
+        android:text="@string/msg_need_more_games_speed"
+        android:textColor="@color/grey_dark"
+        android:textSize="24sp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/empty_view"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

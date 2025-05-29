@@ -910,12 +910,10 @@
     <string name="current_user_indicator">Tú</string>
 
     <string name="msg_need_more_games_global">Juega al menos 36 niveles, 12 en cada uno de los grados de dificultad para ver tu clasificación global.</string>
-    <string name="msg_need_more_games_speed">Juega al menos 36 niveles de %1$s en cada uno de los grados de dificultad para ver tu ranking de velocidad.</string>
+    <string name="msg_need_more_games_speed">Juega al menos 36 niveles de %1$s, 12 en cada uno de los grados de dificultad para ver tu ranking de velocidad.</string>
     <string name="msg_progress_remaining_global">Te falta: %1$d partidas y %2$d juego(s) diferente(s).</string>
-    <string name="msg_progress_remaining_speed">Te falta: %1$d partida(s) y %2$d grado(s) de dificultad diferente(s).</string>
 
     <string name="msg_need_more_games_combined">%1$s\n%2$s</string>
-    <string name="msg_speed_ranking_combined">%1$s\n%2$s</string>
 
     <string name="msg_progress_remaining_speed_3modes">Te faltan: %1$d partidas en total, %2$d en Principiante, %3$d en Avanzado, %4$d en Pro.</string>
 

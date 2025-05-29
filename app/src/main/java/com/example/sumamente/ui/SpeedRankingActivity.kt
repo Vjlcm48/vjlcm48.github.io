@@ -49,6 +49,48 @@ class SpeedRankingActivity : AppCompatActivity() {
         setupMusic()
         setupGameSpecificUI()
 
+
+        val gameType = intent.getStringExtra(EXTRA_GAME_TYPE)
+        if (gameType != null) {
+            when (gameType) {
+                SpeedClassificationActivity.GAME_NUMEROS_PLUS -> {
+                    ScoreManager.initPrincipiante(this)
+                    ScoreManager.init(this)
+                    ScoreManager.initPro(this)
+                }
+                SpeedClassificationActivity.GAME_DECI_PLUS -> {
+                    ScoreManager.initDeciPlusPrincipiante(this)
+                    ScoreManager.initDeciPlus(this)
+                    ScoreManager.initDeciPlusPro(this)
+                }
+                SpeedClassificationActivity.GAME_ROMAS -> {
+                    ScoreManager.initRomasPrincipiante(this)
+                    ScoreManager.initRomas(this)
+                    ScoreManager.initRomasPro(this)
+                }
+                SpeedClassificationActivity.GAME_ALFA_NUMEROS -> {
+                    ScoreManager.initAlfaNumerosPrincipiante(this)
+                    ScoreManager.initAlfaNumeros(this)
+                    ScoreManager.initAlfaNumerosPro(this)
+                }
+                SpeedClassificationActivity.GAME_SUMA_RESTA -> {
+                    ScoreManager.initSumaRestaPrincipiante(this)
+                    ScoreManager.initSumaResta(this)
+                    ScoreManager.initSumaRestaPro(this)
+                }
+                SpeedClassificationActivity.GAME_MAS_PLUS -> {
+                    ScoreManager.initMasPlusPrincipiante(this)
+                    ScoreManager.initMasPlus(this)
+                    ScoreManager.initMasPlusPro(this)
+                }
+                SpeedClassificationActivity.GAME_GENIO_PLUS -> {
+                    ScoreManager.initGenioPlusPrincipiante(this)
+                    ScoreManager.initGenioPlus(this)
+                    ScoreManager.initGenioPlusPro(this)
+                }
+            }
+        }
+
         loadSpeedRankingData()
     }
 
@@ -189,7 +231,7 @@ class SpeedRankingActivity : AppCompatActivity() {
             val uniquePrincipiante = result[0] as Int
             val uniqueAvanzado = result[1] as Int
             val uniquePro = result[2] as Int
-            val avgTime = result[3] as Float
+            val avgTime = (result[3] as Double).toFloat()
             val eligibleForRanking = result[4] as Boolean
             val missingPrincipiante = result[5] as Int
             val missingAvanzado = result[6] as Int
@@ -200,6 +242,22 @@ class SpeedRankingActivity : AppCompatActivity() {
 
             val username = sharedPreferences.getString("savedUserName", getString(R.string.default_username)) ?: getString(R.string.default_username)
             val countryCode = sharedPreferences.getString("savedCountryCode", "us") ?: "us"
+
+            // ----------- ESCENARIO A: Ningún nivel jugado -----------
+            if (uniquePrincipiante == 0 && uniqueAvanzado == 0 && uniquePro == 0) {
+                tvMsgSpeedRanking.apply {
+                    visibility = View.VISIBLE
+                    text = getString(R.string.msg_need_more_games_speed, getGameName(gameType))
+                    textSize = 24f // 50% más grande que 16sp
+                    gravity = android.view.Gravity.CENTER
+                }
+                recyclerView.visibility = View.GONE
+                emptyView.visibility = View.GONE
+                loadingIndicator.visibility = View.GONE
+                return@postDelayed
+            }
+
+            // ----------- ESCENARIO B: Al menos un nivel jugado -----------
 
             if (!eligibleForRanking) {
 
@@ -317,6 +375,19 @@ class SpeedRankingActivity : AppCompatActivity() {
             emptyView.visibility = View.GONE
             loadingIndicator.visibility = View.GONE
         }, 700)
+    }
+
+    private fun getGameName(gameType: String): String {
+        return when (gameType) {
+            SpeedClassificationActivity.GAME_NUMEROS_PLUS -> getString(R.string.game_numeros_plus)
+            SpeedClassificationActivity.GAME_DECI_PLUS -> getString(R.string.game_deci_plus)
+            SpeedClassificationActivity.GAME_ROMAS -> getString(R.string.game_romas)
+            SpeedClassificationActivity.GAME_ALFA_NUMEROS -> getString(R.string.game_alfa_numeros)
+            SpeedClassificationActivity.GAME_SUMA_RESTA -> getString(R.string.game_sumaresta)
+            SpeedClassificationActivity.GAME_MAS_PLUS -> getString(R.string.game_mas_plus)
+            SpeedClassificationActivity.GAME_GENIO_PLUS -> getString(R.string.game_genio_plus)
+            else -> ""
+        }
     }
 
 
