@@ -460,7 +460,6 @@ class SpeedRankingActivity : AppCompatActivity() {
 
     }
 
-
     private fun getGameName(gameType: String): String {
         return when (gameType) {
             SpeedClassificationActivity.GAME_NUMEROS_PLUS -> getString(R.string.game_numeros_plus)
@@ -479,6 +478,9 @@ class SpeedRankingActivity : AppCompatActivity() {
         val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
         if (soundEnabled && !mediaPlayer.isPlaying) {
             mediaPlayer.start()
+        }
+        if (::rankingItems.isInitialized && rankingItems.isNotEmpty()) {
+            loadSpeedRankingData()
         }
     }
 
