@@ -918,38 +918,37 @@
     <string name="msg_progress_remaining_speed_3modes">Te faltan: %1$d partidas en total, %2$d en Principiante, %3$d en Avanzado, %4$d en Pro.</string>
 
     <!-- Speed Average Messages -->
-    <string name="speed_avg_1">Tu promedio de velocidad de respuesta es: &lt;b&gt;%.2f seg&lt;/b&gt;.</string>
-    <string name="speed_avg_2">Hasta ahora, tu tiempo promedio es de &lt;b&gt;%.2f seg&lt;/b&gt; por respuesta.</string>
-    <string name="speed_avg_3">Promedio de respuesta actual: &lt;b&gt;%.2f seg&lt;/b&gt;.</string>
-    <string name="speed_avg_4">Vas marcando un tiempo promedio de &lt;b&gt;%.2f seg&lt;/b&gt;.</string>
-    <string name="speed_avg_5">Actualmente, respondes en un promedio de &lt;b&gt;%.2f seg&lt;/b&gt;.</string>
-    <string name="speed_avg_6">Tiempo promedio de respuesta: &lt;b&gt;%.2f seg&lt;/b&gt;.</string>
-    <string name="speed_avg_7">Por ahora, tu mejor promedio de velocidad es de &lt;b&gt;%.2f seg&lt;/b&gt;.</string>
-    <string name="speed_avg_8">¡Rápido! Tu promedio hasta este punto es de &lt;b&gt;%.2f seg&lt;/b&gt;.</string>
-    <string name="speed_avg_9">En promedio, respondes cada &lt;b&gt;%.2f seg&lt;/b&gt;.</string>
-    <string name="speed_avg_10">Promedio de velocidad registrado: &lt;b&gt;%.2f seg&lt;/b&gt;.</string>
-    <string name="speed_avg_11">¡Buen ritmo! Tu promedio de respuesta es &lt;b&gt;%.2f seg&lt;/b&gt;.</string>
-    <string name="speed_avg_12">Así vas: promedio de velocidad &lt;b&gt;%.2f seg&lt;/b&gt; por respuesta.</string>
+    <string name="speed_avg_1">Tu promedio de velocidad de respuesta es: &lt;b&gt;%s seg&lt;/b&gt;.</string>
+    <string name="speed_avg_2">Hasta ahora, tu tiempo promedio es de &lt;b&gt;%s seg&lt;/b&gt; por respuesta.</string>
+    <string name="speed_avg_3">Promedio de respuesta actual: &lt;b&gt;%s seg&lt;/b&gt;.</string>
+    <string name="speed_avg_4">Vas marcando un tiempo promedio de &lt;b&gt;%s seg&lt;/b&gt;.</string>
+    <string name="speed_avg_5">Actualmente, respondes en un promedio de &lt;b&gt;%s seg&lt;/b&gt;.</string>
+    <string name="speed_avg_6">Tiempo promedio de respuesta: &lt;b&gt;%s seg&lt;/b&gt;.</string>
+    <string name="speed_avg_7">Por ahora, tu mejor promedio de velocidad es de &lt;b&gt;%s seg&lt;/b&gt;.</string>
+    <string name="speed_avg_8">¡Rápido! Tu promedio hasta este punto es de &lt;b&gt;%s seg&lt;/b&gt;.</string>
+    <string name="speed_avg_9">En promedio, respondes cada &lt;b&gt;%s seg&lt;/b&gt;.</string>
+    <string name="speed_avg_10">Promedio de velocidad registrado: &lt;b&gt;%s seg&lt;/b&gt;.</string>
+    <string name="speed_avg_11">¡Buen ritmo! Tu promedio de respuesta es &lt;b&gt;%s seg&lt;/b&gt;.</string>
+    <string name="speed_avg_12">Así vas: promedio de velocidad &lt;b&gt;%s seg&lt;/b&gt; por respuesta.</string>
 
-    <!-- Speed Info Messages -->
-    <string name="speed_info_1">Para aparecer en este ranking, solo te falta jugar &lt;b&gt;%1$d&lt;/b&gt; partidas: &lt;b&gt;%2$d&lt;/b&gt; principiante, &lt;b&gt;%3$d&lt;/b&gt; avanzado y &lt;b&gt;%4$d&lt;/b&gt; pro.</string>
-    <string name="speed_info_2">Sigue sumando partidas para ver tu clasificación: faltan &lt;b&gt;%1$d&lt;/b&gt; juegos (&lt;b&gt;%2$d&lt;/b&gt; princ., &lt;b&gt;%3$d&lt;/b&gt; av., &lt;b&gt;%4$d&lt;/b&gt; pro).</string>
-    <string name="speed_info_3">Todavía tienes camino por recorrer, juega &lt;b&gt;%1$d&lt;/b&gt; partidas más: &lt;b&gt;%2$d&lt;/b&gt; principiante, &lt;b&gt;%3$d&lt;/b&gt; avanzado y &lt;b&gt;%4$d&lt;/b&gt; pro para desbloquear el ranking.</string>
-    <string name="speed_info_4">%5$s, solo necesitas completar &lt;b&gt;%1$d&lt;/b&gt; partidas: &lt;b&gt;%2$d&lt;/b&gt; principiante, &lt;b&gt;%3$d&lt;/b&gt; avanzado y &lt;b&gt;%4$d&lt;/b&gt; pro.</string>
-    <string name="speed_info_5">Te falta un poco más, %5$s: &lt;b&gt;%1$d&lt;/b&gt; partidas (&lt;b&gt;%2$d&lt;/b&gt; princ., &lt;b&gt;%3$d&lt;/b&gt; av., &lt;b&gt;%4$d&lt;/b&gt; pro) y ya podrás ver tu puesto en este ranking.</string>
-    <string name="speed_info_6">¡Ánimo, %5$s! Suma &lt;b&gt;%1$d&lt;/b&gt; juegos (&lt;b&gt;%2$d&lt;/b&gt; princ., &lt;b&gt;%3$d&lt;/b&gt; av., &lt;b&gt;%4$d&lt;/b&gt; pro) y entrarás en la clasificación.</string>
-    <string name="speed_info_7">¡Ya has avanzado bastante! Solo te faltan &lt;b&gt;%1$d&lt;/b&gt; partidas: &lt;b&gt;%2$d&lt;/b&gt; principiante, &lt;b&gt;%3$d&lt;/b&gt; avanzado y &lt;b&gt;%4$d&lt;/b&gt; pro para aparecer en el ranking.</string>
-    <string name="speed_info_8">Estás cada vez más cerca de ver tu posición. Faltan &lt;b&gt;%1$d&lt;/b&gt; juegos (&lt;b&gt;%2$d&lt;/b&gt; princ., &lt;b&gt;%3$d&lt;/b&gt; av., &lt;b&gt;%4$d&lt;/b&gt; pro) para cumplir el requisito.</string>
-    <string name="speed_info_9">El ranking te espera, solo &lt;b&gt;%1$d&lt;/b&gt; partidas más: &lt;b&gt;%2$d&lt;/b&gt; principiante, &lt;b&gt;%3$d&lt;/b&gt; avanzado y &lt;b&gt;%4$d&lt;/b&gt; pro.</string>
-    <string name="speed_info_10">%5$s, tu esfuerzo se nota. Te faltan solo &lt;b&gt;%1$d&lt;/b&gt; juegos: &lt;b&gt;%2$d&lt;/b&gt; principiante, &lt;b&gt;%3$d&lt;/b&gt; avanzado y &lt;b&gt;%4$d&lt;/b&gt; pro.</string>
-    <string name="speed_info_11">¡Muy buen progreso, %5$s! Juega &lt;b&gt;%1$d&lt;/b&gt; partidas (&lt;b&gt;%2$d&lt;/b&gt; princ., &lt;b&gt;%3$d&lt;/b&gt; av., &lt;b&gt;%4$d&lt;/b&gt; pro) y desbloqueas tu clasificación.</string>
-    <string name="speed_info_12">Sigue así, %5$s. Solo &lt;b&gt;%1$d&lt;/b&gt; juegos más (&lt;b&gt;%2$d&lt;/b&gt; princ., &lt;b&gt;%3$d&lt;/b&gt; av., &lt;b&gt;%4$d&lt;/b&gt; pro) y serás parte del ranking de velocidad.</string>
-    <string name="speed_info_13">¡Ya casi lo logras! Solo te faltan &lt;b&gt;%1$d&lt;/b&gt; partidas: &lt;b&gt;%2$d&lt;/b&gt; principiante, &lt;b&gt;%3$d&lt;/b&gt; avanzado y &lt;b&gt;%4$d&lt;/b&gt; pro para aparecer en el ranking.</string>
-    <string name="speed_info_14">Último empujón: &lt;b&gt;%1$d&lt;/b&gt; juegos (&lt;b&gt;%2$d&lt;/b&gt; princ., &lt;b&gt;%3$d&lt;/b&gt; av., &lt;b&gt;%4$d&lt;/b&gt; pro) y ya aparecerás en la clasificación.</string>
-    <string name="speed_info_15">El objetivo está muy cerca, faltan solo &lt;b&gt;%1$d&lt;/b&gt; partidas (&lt;b&gt;%2$d&lt;/b&gt; principiante, &lt;b&gt;%3$d&lt;/b&gt; avanzado y &lt;b&gt;%4$d&lt;/b&gt; pro).</string>
-    <string name="speed_info_16">%5$s, estás a punto de lograrlo: &lt;b&gt;%1$d&lt;/b&gt; juegos más (&lt;b&gt;%2$d&lt;/b&gt; princ., &lt;b&gt;%3$d&lt;/b&gt; av., &lt;b&gt;%4$d&lt;/b&gt; pro) y tu nombre aparecerá en el ranking.</string>
-    <string name="speed_info_17">¡Impresionante avance, %5$s! Solo &lt;b&gt;%1$d&lt;/b&gt; partidas (&lt;b&gt;%2$d&lt;/b&gt; princ., &lt;b&gt;%3$d&lt;/b&gt; av., &lt;b&gt;%4$d&lt;/b&gt; pro) y estarás rankeado.</string>
-    <string name="speed_info_18">Ya no falta nada, %5$s. Completa &lt;b&gt;%1$d&lt;/b&gt; juegos (&lt;b&gt;%2$d&lt;/b&gt; princ., &lt;b&gt;%3$d&lt;/b&gt; av., &lt;b&gt;%4$d&lt;/b&gt; pro) y únete a los más veloces.</string>
+    <string name="speed_info_1">Para aparecer en este ranking, solo te falta jugar &lt;b&gt;%1$s&lt;/b&gt; partidas: &lt;b&gt;%2$s&lt;/b&gt; principiante, &lt;b&gt;%3$s&lt;/b&gt; avanzado y &lt;b&gt;%4$s&lt;/b&gt; pro.</string>
+    <string name="speed_info_2">Sigue sumando partidas para ver tu clasificación: faltan &lt;b&gt;%1$s&lt;/b&gt; juegos (&lt;b&gt;%2$s&lt;/b&gt; princ., &lt;b&gt;%3$s&lt;/b&gt; av., &lt;b&gt;%4$s&lt;/b&gt; pro).</string>
+    <string name="speed_info_3">Todavía tienes camino por recorrer, juega &lt;b&gt;%1$s&lt;/b&gt; partidas más: &lt;b&gt;%2$s&lt;/b&gt; principiante, &lt;b&gt;%3$s&lt;/b&gt; avanzado y &lt;b&gt;%4$s&lt;/b&gt; pro para desbloquear el ranking.</string>
+    <string name="speed_info_4">%5$s, solo necesitas completar &lt;b&gt;%1$s&lt;/b&gt; partidas: &lt;b&gt;%2$s&lt;/b&gt; principiante, &lt;b&gt;%3$s&lt;/b&gt; avanzado y &lt;b&gt;%4$s&lt;/b&gt; pro.</string>
+    <string name="speed_info_5">Te falta un poco más, %5$s: &lt;b&gt;%1$s&lt;/b&gt; partidas (&lt;b&gt;%2$s&lt;/b&gt; princ., &lt;b&gt;%3$s&lt;/b&gt; av., &lt;b&gt;%4$s&lt;/b&gt; pro) y ya podrás ver tu puesto en este ranking.</string>
+    <string name="speed_info_6">¡Ánimo, %5$s! Suma &lt;b&gt;%1$s&lt;/b&gt; juegos (&lt;b&gt;%2$s&lt;/b&gt; princ., &lt;b&gt;%3$s&lt;/b&gt; av., &lt;b&gt;%4$s&lt;/b&gt; pro) y entrarás en la clasificación.</string>
+    <string name="speed_info_7">¡Ya has avanzado bastante! Solo te faltan &lt;b&gt;%1$s&lt;/b&gt; partidas: &lt;b&gt;%2$s&lt;/b&gt; principiante, &lt;b&gt;%3$s&lt;/b&gt; avanzado y &lt;b&gt;%4$s&lt;/b&gt; pro para aparecer en el ranking.</string>
+    <string name="speed_info_8">Estás cada vez más cerca de ver tu posición. Faltan &lt;b&gt;%1$s&lt;/b&gt; juegos (&lt;b&gt;%2$s&lt;/b&gt; princ., &lt;b&gt;%3$s&lt;/b&gt; av., &lt;b&gt;%4$s&lt;/b&gt; pro) para cumplir el requisito.</string>
+    <string name="speed_info_9">El ranking te espera, solo &lt;b&gt;%1$s&lt;/b&gt; partidas más: &lt;b&gt;%2$s&lt;/b&gt; principiante, &lt;b&gt;%3$s&lt;/b&gt; avanzado y &lt;b&gt;%4$s&lt;/b&gt; pro.</string>
+    <string name="speed_info_10">%5$s, tu esfuerzo se nota. Te faltan solo &lt;b&gt;%1$s&lt;/b&gt; juegos: &lt;b&gt;%2$s&lt;/b&gt; principiante, &lt;b&gt;%3$s&lt;/b&gt; avanzado y &lt;b&gt;%4$s&lt;/b&gt; pro.</string>
+    <string name="speed_info_11">¡Muy buen progreso, %5$s! Juega &lt;b&gt;%1$s&lt;/b&gt; partidas (&lt;b&gt;%2$s&lt;/b&gt; princ., &lt;b&gt;%3$s&lt;/b&gt; av., &lt;b&gt;%4$s&lt;/b&gt; pro) y desbloqueas tu clasificación.</string>
+    <string name="speed_info_12">Sigue así, %5$s. Solo &lt;b&gt;%1$s&lt;/b&gt; juegos más (&lt;b&gt;%2$s&lt;/b&gt; princ., &lt;b&gt;%3$s&lt;/b&gt; av., &lt;b&gt;%4$s&lt;/b&gt; pro) y serás parte del ranking de velocidad.</string>
+    <string name="speed_info_13">¡Ya casi lo logras! Solo te faltan &lt;b&gt;%1$s&lt;/b&gt; partidas: &lt;b&gt;%2$s&lt;/b&gt; principiante, &lt;b&gt;%3$s&lt;/b&gt; avanzado y &lt;b&gt;%4$s&lt;/b&gt; pro para aparecer en el ranking.</string>
+    <string name="speed_info_14">Último empujón: &lt;b&gt;%1$s&lt;/b&gt; juegos (&lt;b&gt;%2$s&lt;/b&gt; princ., &lt;b&gt;%3$s&lt;/b&gt; av., &lt;b&gt;%4$s&lt;/b&gt; pro) y ya aparecerás en la clasificación.</string>
+    <string name="speed_info_15">El objetivo está muy cerca, faltan solo &lt;b&gt;%1$s&lt;/b&gt; partidas (&lt;b&gt;%2$s&lt;/b&gt; principiante, &lt;b&gt;%3$s&lt;/b&gt; avanzado y &lt;b&gt;%4$s&lt;/b&gt; pro).</string>
+    <string name="speed_info_16">%5$s, estás a punto de lograrlo: &lt;b&gt;%1$s&lt;/b&gt; juegos más (&lt;b&gt;%2$s&lt;/b&gt; princ., &lt;b&gt;%3$s&lt;/b&gt; av., &lt;b&gt;%4$s&lt;/b&gt; pro) y tu nombre aparecerá en el ranking.</string>
+    <string name="speed_info_17">¡Impresionante avance, %5$s! Solo &lt;b&gt;%1$s&lt;/b&gt; partidas (&lt;b&gt;%2$s&lt;/b&gt; princ., &lt;b&gt;%3$s&lt;/b&gt; av., &lt;b&gt;%4$s&lt;/b&gt; pro) y estarás rankeado.</string>
+    <string name="speed_info_18">Ya no falta nada, %5$s. Completa &lt;b&gt;%1$s&lt;/b&gt; juegos (&lt;b&gt;%2$s&lt;/b&gt; princ., &lt;b&gt;%3$s&lt;/b&gt; av., &lt;b&gt;%4$s&lt;/b&gt; pro) y únete a los más veloces.</string>
 
     <!-- Speed Motivation Messages -->
     <string name="speed_motiv_1">¡Tú puedes lograrlo!</string>

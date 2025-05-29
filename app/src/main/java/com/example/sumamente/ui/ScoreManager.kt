@@ -6,6 +6,14 @@ import androidx.core.content.edit
 
 object ScoreManager {
 
+    lateinit var preferences: SharedPreferences
+
+    fun ensurePreferencesInitialized(context: Context) {
+        if (!::preferences.isInitialized) {
+            preferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        }
+    }
+
     //Constantes globales//
     private const val KEY_TOTAL_GAMES_GLOBAL = "total_games_global"
     private const val KEY_CORRECT_GAMES_GLOBAL = "correct_games_global"
@@ -104,7 +112,6 @@ object ScoreManager {
 
     private const val KEY_TOTAL_GAMES_SUMARESTA = "total_games_sumaresta"
     private const val KEY_TOTAL_TIME_SUMARESTA = "total_time_sumaresta"
-
 
     private const val PREFS_NAME_MAS_PLUS = "ScorePrefsMasPlus"
     private const val KEY_CURRENT_SCORE_MAS_PLUS = "current_score_mas_plus"
@@ -266,7 +273,6 @@ object ScoreManager {
     var totalGamesMasPlus: Int = 0
     var totalTimeMasPlus: Double = 0.0
 
-
     var currentScoreGenioPlus: Int = 0
     var unlockedLevelsGenioPlus: Int = 2
     val levelScoresGenioPlus: MutableMap<Int, Int> = mutableMapOf()
@@ -330,7 +336,8 @@ object ScoreManager {
     private val consecutiveFailuresGenioPlusPrincipiante: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresGenioPlusPro: MutableMap<Int, Int> = mutableMapOf()
 
-    private lateinit var preferences: SharedPreferences
+    // aqui estaba la variable private lateinit var preferences: SharedPreferences //
+
     private lateinit var preferencesPrincipiante: SharedPreferences
     private lateinit var preferencesPro: SharedPreferences
     private lateinit var preferencesDeciPlus: SharedPreferences

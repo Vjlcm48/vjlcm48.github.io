@@ -5,6 +5,9 @@ import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -15,6 +18,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sumamente.R
+import java.util.Locale
 import kotlin.math.max
 import kotlin.random.Random
 
@@ -29,18 +33,23 @@ class SpeedRankingActivity : AppCompatActivity() {
     private lateinit var adapter: SpeedRankingAdapter
     private lateinit var rankingItems: MutableList<SpeedRankingItem>
     private lateinit var mediaPlayer: MediaPlayer
+
+    private lateinit var headerGameButton: ConstraintLayout
+    private lateinit var tvHeaderGameName: TextView
+
     private lateinit var sharedPreferences: android.content.SharedPreferences
 
     companion object {
         const val EXTRA_GAME_TYPE = "game_type"
         const val EXTRA_GAME_COLOR = "game_color"
         const val TOTAL_LEVELS_REQUIRED = 36
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_speed_ranking)
+
+        ScoreManager.ensurePreferencesInitialized(this)
 
         sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
@@ -48,7 +57,6 @@ class SpeedRankingActivity : AppCompatActivity() {
         setupButtons()
         setupMusic()
         setupGameSpecificUI()
-
 
         val gameType = intent.getStringExtra(EXTRA_GAME_TYPE)
         if (gameType != null) {
@@ -102,6 +110,9 @@ class SpeedRankingActivity : AppCompatActivity() {
         tvTitle = findViewById(R.id.tv_speed_ranking_title)
         rootLayout = findViewById(R.id.root_speed_ranking)
 
+        headerGameButton = findViewById(R.id.header_game_button)
+        tvHeaderGameName = findViewById(R.id.tv_header_game_name)
+
         recyclerView.layoutManager = LinearLayoutManager(this)
         rankingItems = mutableListOf()
         adapter = SpeedRankingAdapter(rankingItems)
@@ -126,22 +137,83 @@ class SpeedRankingActivity : AppCompatActivity() {
 
     private fun setupGameSpecificUI() {
         val gameType = intent.getStringExtra(EXTRA_GAME_TYPE) ?: return
-        val gameColor = intent.getIntExtra(EXTRA_GAME_COLOR, R.color.blue_primary)
 
-        rootLayout.setBackgroundColor(ContextCompat.getColor(this, gameColor))
+        rootLayout.setBackgroundColor(ContextCompat.getColor(this, android.R.color.white))
 
-        val gameTitle = when (gameType) {
-            SpeedClassificationActivity.GAME_NUMEROS_PLUS -> getString(R.string.game_numeros_plus)
-            SpeedClassificationActivity.GAME_DECI_PLUS -> getString(R.string.game_deci_plus)
-            SpeedClassificationActivity.GAME_ROMAS -> getString(R.string.game_romas)
-            SpeedClassificationActivity.GAME_ALFA_NUMEROS -> getString(R.string.game_alfa_numeros)
-            SpeedClassificationActivity.GAME_SUMA_RESTA -> getString(R.string.game_sumaresta)
-            SpeedClassificationActivity.GAME_MAS_PLUS -> getString(R.string.game_mas_plus)
-            SpeedClassificationActivity.GAME_GENIO_PLUS -> getString(R.string.game_genio_plus)
-            else -> getString(R.string.speed_ranking_title)
+
+        when (gameType) {
+            SpeedClassificationActivity.GAME_NUMEROS_PLUS -> {
+                headerGameButton.setBackgroundResource(R.drawable.button_background)
+                tvHeaderGameName.text = getString(R.string.game_numeros_plus)
+                tvHeaderGameName.setTextColor(ContextCompat.getColor(this, android.R.color.black))
+            }
+            SpeedClassificationActivity.GAME_DECI_PLUS -> {
+                headerGameButton.setBackgroundResource(R.drawable.button_background_deci)
+                tvHeaderGameName.text = getString(R.string.game_deci_plus)
+                tvHeaderGameName.setTextColor(ContextCompat.getColor(this, android.R.color.black))
+            }
+            SpeedClassificationActivity.GAME_ROMAS -> {
+                headerGameButton.setBackgroundResource(R.drawable.button_background_romas)
+                tvHeaderGameName.text = getString(R.string.game_romas)
+                tvHeaderGameName.setTextColor(ContextCompat.getColor(this, android.R.color.black))
+            }
+            SpeedClassificationActivity.GAME_ALFA_NUMEROS -> {
+                headerGameButton.setBackgroundResource(R.drawable.button_background_alfa_numeros)
+
+                val alfaText = getString(R.string.text_alfa)
+                val numerosText = getString(R.string.text_numeros)
+                val alfaNumerosText = "$alfaText$numerosText"
+                val spannableAlfaNumeros = SpannableString(alfaNumerosText)
+
+                spannableAlfaNumeros.setSpan(
+                    ForegroundColorSpan(ContextCompat.getColor(this, R.color.red_primary)),
+                    0, alfaText.length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                spannableAlfaNumeros.setSpan(
+                    ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_primary_darker)),
+                    alfaText.length, alfaNumerosText.length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                tvHeaderGameName.text = spannableAlfaNumeros
+            }
+            SpeedClassificationActivity.GAME_SUMA_RESTA -> {
+                headerGameButton.setBackgroundResource(R.drawable.button_background_sumaresta)
+
+                val sumaText = getString(R.string.text_suma)
+                val restaText = getString(R.string.text_resta)
+                val sumarestaText = "$sumaText$restaText"
+                val spannableSumaresta = SpannableString(sumarestaText)
+
+                spannableSumaresta.setSpan(
+                    ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_pressed)),
+                    0, sumaText.length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                spannableSumaresta.setSpan(
+                    ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)),
+                    sumaText.length, sumarestaText.length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                tvHeaderGameName.text = spannableSumaresta
+            }
+            SpeedClassificationActivity.GAME_MAS_PLUS -> {
+                headerGameButton.setBackgroundResource(R.drawable.button_background_mas)
+                tvHeaderGameName.text = getString(R.string.game_mas_plus)
+                tvHeaderGameName.setTextColor(ContextCompat.getColor(this, R.color.grey_light))
+            }
+            SpeedClassificationActivity.GAME_GENIO_PLUS -> {
+                headerGameButton.setBackgroundResource(R.drawable.button_background_genio)
+                tvHeaderGameName.text = getString(R.string.game_genio_plus)
+                tvHeaderGameName.setTextColor(ContextCompat.getColor(this, R.color.blue_pressed))
+            }
+            else -> {
+                headerGameButton.setBackgroundResource(R.drawable.button_background)
+                tvHeaderGameName.text = ""
+            }
         }
 
-        tvTitle.text = getString(R.string.speed_ranking_game_title, gameTitle, getString(R.string.speed_ranking_title))
+        tvTitle.text = getString(R.string.speed_ranking_title)
     }
 
     private fun loadSpeedRankingData() {
@@ -232,6 +304,7 @@ class SpeedRankingActivity : AppCompatActivity() {
             val uniqueAvanzado = result[1] as Int
             val uniquePro = result[2] as Int
             val avgTime = (result[3] as Double).toFloat()
+            val avgTimeFormatted = formatAvgTime(avgTime)
             val eligibleForRanking = result[4] as Boolean
             val missingPrincipiante = result[5] as Int
             val missingAvanzado = result[6] as Int
@@ -250,6 +323,7 @@ class SpeedRankingActivity : AppCompatActivity() {
                     text = getString(R.string.msg_need_more_games_speed, getGameName(gameType))
                     textSize = 24f // 50% más grande que 16sp
                     gravity = android.view.Gravity.CENTER
+                    setTextColor(ContextCompat.getColor(this@SpeedRankingActivity, android.R.color.black))
                 }
                 recyclerView.visibility = View.GONE
                 emptyView.visibility = View.GONE
@@ -286,7 +360,7 @@ class SpeedRankingActivity : AppCompatActivity() {
                         10 -> R.string.speed_avg_11
                         else -> R.string.speed_avg_12
                     },
-                    avgTime
+                    avgTimeFormatted
                 )
 
                 var infoMsg = getString(
@@ -310,7 +384,7 @@ class SpeedRankingActivity : AppCompatActivity() {
                         16 -> R.string.speed_info_17
                         else -> R.string.speed_info_18
                     },
-                    totalMissing, missingPrincipiante, missingAvanzado, missingPro, username
+                    "<b>$totalMissing</b>", "<b>$missingPrincipiante</b>", "<b>$missingAvanzado</b>", "<b>$missingPro</b>", "<b>$username</b>"
                 )
 
                 var motivMsg = getString(
@@ -334,14 +408,14 @@ class SpeedRankingActivity : AppCompatActivity() {
                         16 -> R.string.speed_motiv_17
                         else -> R.string.speed_motiv_18
                     },
-                    username
+                    "<b>$username</b>"
                 )
 
-                val infoHasName = infoMsg.contains(username)
+                val infoHasName = infoMsg.contains("<b>$username</b>")
                 if (infoHasName) {
-                    motivMsg = motivMsg.replace(username, "").replace(", !", "!").replace(", ¡", "¡")
-                } else if (motivMsg.contains(username)) {
-                    infoMsg = infoMsg.replace(username, "").replace(", !", "!").replace(", ¡", "¡")
+                    motivMsg = motivMsg.replace("<b>$username</b>", "").replace(", !", "!").replace(", ¡", "¡")
+                } else if (motivMsg.contains("<b>$username</b>")) {
+                    infoMsg = infoMsg.replace("<b>$username</b>", "").replace(", !", "!").replace(", ¡", "¡")
                 }
 
                 tvMsgSpeedRanking.apply {
@@ -350,6 +424,7 @@ class SpeedRankingActivity : AppCompatActivity() {
                         "$avgMsg<br/><br/>$infoMsg<br/><br/>$motivMsg",
                         android.text.Html.FROM_HTML_MODE_LEGACY
                     )
+                    setTextColor(ContextCompat.getColor(this@SpeedRankingActivity, android.R.color.black))
                 }
 
                 recyclerView.visibility = View.GONE
@@ -377,6 +452,15 @@ class SpeedRankingActivity : AppCompatActivity() {
         }, 700)
     }
 
+    private fun formatAvgTime(timeSeconds: Float): String {
+        val totalCentis = (timeSeconds * 100).toInt()
+        val seconds = totalCentis / 100
+        val centis = totalCentis % 100
+        return String.format(Locale.US, "%02d.%02d", seconds, centis)
+
+    }
+
+
     private fun getGameName(gameType: String): String {
         return when (gameType) {
             SpeedClassificationActivity.GAME_NUMEROS_PLUS -> getString(R.string.game_numeros_plus)
@@ -389,7 +473,6 @@ class SpeedRankingActivity : AppCompatActivity() {
             else -> ""
         }
     }
-
 
     override fun onResume() {
         super.onResume()
