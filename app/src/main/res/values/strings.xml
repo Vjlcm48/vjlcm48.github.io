@@ -1009,6 +1009,33 @@
     <string name="msg_motiv_global_levels_11">¡Vamos por más niveles! El ranking global te está esperando.</string>
     <string name="msg_motiv_global_levels_12">¡La meta está cerca! Sigue jugando para llegar al ranking global.</string>
 
+    <string name="msg_iqplus_start_1">%1$s, juega 21 partidas, por lo menos una por cada juego y cada grado de dificultad… y aparecerás dentro del Ranking del IQ+.</string>
+    <string name="msg_iqplus_start_2">¡Hola, %1$s! Empieza tu recorrido en SUMAMENTE jugando al menos un nivel en cada juego y grado de dificultad para competir en el Ranking IQ+.</string>
+    <string name="msg_iqplus_start_3">%1$s, todavía no has comenzado tu camino en el Ranking IQ+. Juega un nivel en todos los juegos y grados para ver tu posición y construir tu índice.</string>
+    <string name="msg_iqplus_start_4">¡Vamos, %1$s! Cuando completes un nivel en cada juego y dificultad, podrás ver tu IQ+ y compararte con otros jugadores.</string>
+    <string name="msg_iqplus_start_5">%1$s, el primer paso para destacar en el Ranking IQ+ es jugar 21 niveles; uno al menos, en todos los juegos y grados. ¡Anímate y empieza hoy mismo!</string>
+    <string name="msg_iqplus_start_6">¿Listo para un reto, %1$s? Participa en al menos 21 juegos diferentes, uno por cada grado, y desbloquea tu lugar en el Ranking IQ+.</string>
+
+    <string name="msg_iqplus_info_1">Tu actual índice IQ+ es: %1$.2f.</string>
+    <string name="msg_iqplus_info_2">Por ahora, tu IQ+ es de %1$.2f puntos. ¡Sigue jugando para mejorarlo!</string>
+    <string name="msg_iqplus_info_3">Índice IQ+ provisional: %1$.2f. Juega en todos los juegos y grados para competir en el ranking.</string>
+    <string name="msg_iqplus_info_4">Estás desarrollando tu IQ+ en SUMAMENTE: %1$.2f.</string>
+    <string name="msg_iqplus_info_5">IQ+ calculado hasta ahora: %1$.2f. Cada nuevo nivel cuenta.</string>
+    <string name="msg_iqplus_info_6">Así va tu IQ+: %1$.2f. ¡Completa todos los juegos y grados para desbloquear el ranking!</string>
+
+    <string name="msg_iqplus_levels_info_1">%1$s, has jugado en %2$d juegos y grados diferentes. Te faltan %3$d para aparecer en el Ranking IQ+.</string>
+    <string name="msg_iqplus_levels_info_2">%1$s, tu cuenta suma %2$d partidas en diferentes juegos y grados. Solo te faltan %3$d para desbloquear tu ranking IQ+.</string>
+    <string name="msg_iqplus_levels_info_3">%1$s, vas avanzando: %2$d jugados, %3$d por jugar. ¡Sigue así para alcanzar el ranking IQ+!</string>
+    <string name="msg_iqplus_levels_info_4">Has jugado en %2$d juegos y grados distintos. Faltan %3$d para desbloquear el ranking IQ+.</string>
+    <string name="msg_iqplus_levels_info_5">Tu progreso: %2$d jugados, %3$d por jugar. ¡Ya casi puedes ver tu posición en el ranking IQ+!</string>
+    <string name="msg_iqplus_levels_info_6">Llevas %2$d partidas diferentes; cuando completes %3$d más, aparecerás en el Ranking IQ+.</string>
+
+    <string name="msg_iqplus_motiv_1">¡Sigue así! Cada juego nuevo te acerca a tu lugar en el Ranking IQ+.</string>
+    <string name="msg_iqplus_motiv_2">Continúa avanzando, pronto podrás verte rankeado y conocer tu posición.</string>
+    <string name="msg_iqplus_motiv_3">Estás a punto de formar parte de los mejores en SUMAMENTE. ¡No te detengas!</string>
+    <string name="msg_iqplus_motiv_4">¡Excelente progreso, %1$s! Un poco más y estarás compitiendo con los mejores en el Ranking IQ+.</string>
+    <string name="msg_iqplus_motiv_5">Muy bien, %1$s. Cada nivel te acerca a la meta de estar entre los mejores.</string>
+    <string name="msg_iqplus_motiv_6">%1$s, no pares ahora. ¡Ya casi alcanzas el Ranking IQ+!</string>
 
 
     <string name="default_username">Tú</string>
