@@ -909,7 +909,7 @@
     <string name="speed_ranking_info">Ranking basado en tiempo promedio de respuesta</string>
     <string name="current_user_indicator">Tú</string>
 
-    <string name="msg_need_more_games_global">Juega al menos 36 niveles, 12 en cada uno de los grados de dificultad para ver tu clasificación global.</string>
+    <string name="msg_need_more_games_global">Juega al menos 36 niveles diferentes para ver tu clasificación global.</string>
     <string name="msg_need_more_games_speed">Juega al menos 36 niveles de %1$s, 12 en cada uno de los grados de dificultad para ver tu ranking de velocidad.</string>
     <string name="msg_progress_remaining_global">Te falta: %1$d partidas y %2$d juego(s) diferente(s).</string>
 
@@ -969,6 +969,47 @@
     <string name="speed_motiv_16">¡Inspirador, %1$s! El ranking ya casi es tuyo.</string>
     <string name="speed_motiv_17">¡Wow, %1$s! Pocos llegan tan lejos, sigue fuerte.</string>
     <string name="speed_motiv_18">¡Vas en grande, %1$s! Muestra lo que puedes lograr.</string>
+
+    <string name="msg_need_more_games_global_1">¡Hola, %1$s! Juega 36 niveles para ver tu clasificación global.</string>
+    <string name="msg_need_more_games_global_2">%1$s, necesitas jugar 36 niveles para desbloquear tu puesto en el ranking global.</string>
+    <string name="msg_need_more_games_global_3">Aún no apareces en el ranking, %1$s. Juega 36 niveles y tu clasificación global se mostrará aquí.</string>
+    <string name="msg_need_more_games_global_4">¡Vamos, %1$s! Cuando completes 36 niveles, podrás ver tu posición en el ranking global.</string>
+    <string name="msg_need_more_games_global_5">%1$s, tu clasificación global aparecerá automáticamente al jugar 36 niveles.</string>
+    <string name="msg_need_more_games_global_6">¿Listo para el reto, %1$s? Juega 36 niveles y entra en el ranking global.</string>
+
+    <!-- Con nombre de usuario -->
+    <string name="msg_info_global_levels_1">%1$s, has jugado %2$d niveles. Te faltan %3$d para entrar al ranking global.</string>
+    <string name="msg_info_global_levels_2">¡Buen avance, %1$s! Llevas %2$d niveles y solo te faltan %3$d para ver tu clasificación.</string>
+    <string name="msg_info_global_levels_3">%1$s, tu cuenta suma %2$d niveles jugados. Te faltan %3$d para desbloquear el ranking global.</string>
+    <string name="msg_info_global_levels_4">%1$s, llevas %2$d de 36 niveles jugados. Solo faltan %3$d para entrar en el ranking.</string>
+    <string name="msg_info_global_levels_5">%1$s, ya completaste %2$d niveles. Juega %3$d más para aparecer en el ranking global.</string>
+    <string name="msg_info_global_levels_6">%1$s, estás a %3$d niveles de alcanzar los 36 necesarios. ¡Ya llevas %2$d jugados!</string>
+
+    <!-- Sin nombre de usuario -->
+    <string name="msg_info_global_levels_7">Has jugado %1$d niveles. Te faltan %2$d para aparecer en el ranking global.</string>
+    <string name="msg_info_global_levels_8">¡Vas por buen camino! %1$d niveles jugados, %2$d más y estarás en el ranking.</string>
+    <string name="msg_info_global_levels_9">Llevas %1$d niveles. Solo te faltan %2$d para desbloquear tu clasificación global.</string>
+    <string name="msg_info_global_levels_10">¡Progreso! %1$d niveles jugados de 36. Faltan %2$d para el ranking global.</string>
+    <string name="msg_info_global_levels_11">Ya completaste %1$d niveles. Solo te faltan %2$d para ver tu posición en el ranking.</string>
+    <string name="msg_info_global_levels_12">Estás a %2$d niveles del ranking global. Ya tienes %1$d jugados.</string>
+
+    <!-- Con nombre de usuario -->
+    <string name="msg_motiv_global_levels_1">¡Tú puedes, %1$s! Cada nivel te acerca al ranking global.</string>
+    <string name="msg_motiv_global_levels_2">%1$s, sigue así. ¡El ranking global está cada vez más cerca!</string>
+    <string name="msg_motiv_global_levels_3">No te detengas, %1$s. ¡Tu esfuerzo pronto tendrá recompensa!</string>
+    <string name="msg_motiv_global_levels_4">¡Sigue jugando, %1$s! El ranking global te espera.</string>
+    <string name="msg_motiv_global_levels_5">%1$s, cada partida cuenta. ¡Ya casi llegas al ranking global!</string>
+    <string name="msg_motiv_global_levels_6">¡Ánimo, %1$s! Muy pronto verás tu nombre entre los mejores.</string>
+
+    <!-- Sin nombre de usuario -->
+    <string name="msg_motiv_global_levels_7">¡No te rindas! Cada nivel te acerca al ranking global.</string>
+    <string name="msg_motiv_global_levels_8">¡Estás muy cerca! Solo un poco más para lograrlo.</string>
+    <string name="msg_motiv_global_levels_9">¡Sigue avanzando! El ranking global está al alcance de tu mano.</string>
+    <string name="msg_motiv_global_levels_10">¡Excelente trabajo! Continúa y muy pronto aparecerás en el ranking.</string>
+    <string name="msg_motiv_global_levels_11">¡Vamos por más niveles! El ranking global te está esperando.</string>
+    <string name="msg_motiv_global_levels_12">¡La meta está cerca! Sigue jugando para llegar al ranking global.</string>
+
+
 
     <string name="default_username">Tú</string>
 

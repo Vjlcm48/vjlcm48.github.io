@@ -5,6 +5,7 @@ import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.Gravity
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sumamente.R
+import kotlin.random.Random
 
 class RankingActivity : AppCompatActivity() {
 
@@ -24,17 +26,21 @@ class RankingActivity : AppCompatActivity() {
     private lateinit var rankingItems: MutableList<RankingItem>
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var sharedPreferences: android.content.SharedPreferences
+    private lateinit var tvMsgGlobalRanking: TextView
+
+    companion object {
+        const val MIN_LEVELS_REQUIRED = 36
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ScoreManager.ensurePreferencesInitialized(this)
         setContentView(R.layout.activity_ranking)
 
         sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-
         initViews()
         setupButtons()
         setupMusic()
-
         loadRankingData()
     }
 
@@ -43,6 +49,7 @@ class RankingActivity : AppCompatActivity() {
         loadingIndicator = findViewById(R.id.loading_indicator)
         emptyView = findViewById(R.id.empty_view)
         btnBack = findViewById(R.id.btn_back)
+        tvMsgGlobalRanking = findViewById(R.id.tvMsgGlobalRanking)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         rankingItems = mutableListOf()
@@ -66,61 +73,115 @@ class RankingActivity : AppCompatActivity() {
         }
     }
 
+    private fun getTotalLevelsPlayed(): Int {
+        return ScoreManager.getTotalUniqueLevelsCompletedAllGames()
+    }
+
     private fun loadRankingData() {
         loadingIndicator.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
         emptyView.visibility = View.GONE
-        findViewById<TextView>(R.id.tvMsgGlobalRanking).visibility = View.GONE
+        tvMsgGlobalRanking.visibility = View.GONE
 
         Handler(Looper.getMainLooper()).postDelayed({
 
-            val minGamesRequired = 20
-            val minGamesTypesRequired = 2
-
-
-            val totalGames = ScoreManager.totalGamesGlobal
-            var juegosDistintos = 0
-            if (ScoreManager.totalGamesNumerosPlus > 0) juegosDistintos++
-            if (ScoreManager.totalGamesDeciPlus > 0) juegosDistintos++
-            if (ScoreManager.totalGamesRomas > 0) juegosDistintos++
-            if (ScoreManager.totalGamesAlfaNumeros > 0) juegosDistintos++
-            if (ScoreManager.totalGamesSumaResta > 0) juegosDistintos++
-            if (ScoreManager.totalGamesMasPlus > 0) juegosDistintos++
-            if (ScoreManager.totalGamesGenioPlus > 0) juegosDistintos++
-
-
-            val totalScoreGlobal =
-                ScoreManager.currentScore + ScoreManager.currentScorePrincipiante + ScoreManager.currentScorePro +
-                        ScoreManager.currentScoreDeciPlus + ScoreManager.currentScoreDeciPlusPrincipiante + ScoreManager.currentScoreDeciPlusPro +
-                        ScoreManager.currentScoreRomas + ScoreManager.currentScoreRomasPrincipiante + ScoreManager.currentScoreRomasPro +
-                        ScoreManager.currentScoreAlfaNumeros + ScoreManager.currentScoreAlfaNumerosPrincipiante + ScoreManager.currentScoreAlfaNumerosPro +
-                        ScoreManager.currentScoreSumaResta + ScoreManager.currentScoreSumaRestaPrincipiante + ScoreManager.currentScoreSumaRestaPro +
-                        ScoreManager.currentScoreMasPlus + ScoreManager.currentScoreMasPlusPrincipiante + ScoreManager.currentScoreMasPlusPro +
-                        ScoreManager.currentScoreGenioPlus + ScoreManager.currentScoreGenioPlusPrincipiante + ScoreManager.currentScoreGenioPlusPro
-
-
-            val username = sharedPreferences.getString("savedUserName", "Tú") ?: "Tú"
+            val totalLevels = getTotalLevelsPlayed()
+            val username = sharedPreferences.getString("savedUserName", getString(R.string.default_username)) ?: getString(R.string.default_username)
             val countryCode = sharedPreferences.getString("savedCountryCode", "us") ?: "us"
+            val score = ScoreManager.currentScore + ScoreManager.currentScorePrincipiante + ScoreManager.currentScorePro +
+                    ScoreManager.currentScoreDeciPlus + ScoreManager.currentScoreDeciPlusPrincipiante + ScoreManager.currentScoreDeciPlusPro +
+                    ScoreManager.currentScoreRomas + ScoreManager.currentScoreRomasPrincipiante + ScoreManager.currentScoreRomasPro +
+                    ScoreManager.currentScoreAlfaNumeros + ScoreManager.currentScoreAlfaNumerosPrincipiante + ScoreManager.currentScoreAlfaNumerosPro +
+                    ScoreManager.currentScoreSumaResta + ScoreManager.currentScoreSumaRestaPrincipiante + ScoreManager.currentScoreSumaRestaPro +
+                    ScoreManager.currentScoreMasPlus + ScoreManager.currentScoreMasPlusPrincipiante + ScoreManager.currentScoreMasPlusPro +
+                    ScoreManager.currentScoreGenioPlus + ScoreManager.currentScoreGenioPlusPrincipiante + ScoreManager.currentScoreGenioPlusPro
 
-            if (totalGames < minGamesRequired || juegosDistintos < minGamesTypesRequired) {
-                val juegosFaltantes = minGamesTypesRequired - juegosDistintos
-                val partidasFaltantes = minGamesRequired - totalGames
-                val msg = getString(R.string.msg_need_more_games_global)
-                val progressMsg = getString(R.string.msg_progress_remaining_global,
-                    maxOf(0, partidasFaltantes), maxOf(0, juegosFaltantes))
+            if (totalLevels == 0) {
 
-                findViewById<TextView>(R.id.tvMsgGlobalRanking).apply {
+                val noGamesMsgs = arrayOf(
+                    getString(R.string.msg_need_more_games_global_1, username),
+                    getString(R.string.msg_need_more_games_global_2, username),
+                    getString(R.string.msg_need_more_games_global_3, username),
+                    getString(R.string.msg_need_more_games_global_4, username),
+                    getString(R.string.msg_need_more_games_global_5, username),
+                    getString(R.string.msg_need_more_games_global_6, username)
+                )
+                val msg = noGamesMsgs[Random.nextInt(noGamesMsgs.size)]
+                tvMsgGlobalRanking.apply {
                     visibility = View.VISIBLE
-                    text = getString(R.string.msg_need_more_games_combined, msg, progressMsg)
-
+                    text = msg
                 }
                 recyclerView.visibility = View.GONE
                 emptyView.visibility = View.GONE
                 loadingIndicator.visibility = View.GONE
                 return@postDelayed
-            } else {
-                findViewById<TextView>(R.id.tvMsgGlobalRanking).visibility = View.GONE
             }
+
+            if (totalLevels in 1 until MIN_LEVELS_REQUIRED) {
+
+                val levelsRemaining = MIN_LEVELS_REQUIRED - totalLevels
+
+
+                val infoMsgsWithName = arrayOf(
+                    getString(R.string.msg_info_global_levels_1, username, totalLevels, levelsRemaining),
+                    getString(R.string.msg_info_global_levels_2, username, totalLevels, levelsRemaining),
+                    getString(R.string.msg_info_global_levels_3, username, totalLevels, levelsRemaining),
+                    getString(R.string.msg_info_global_levels_4, username, totalLevels, levelsRemaining),
+                    getString(R.string.msg_info_global_levels_5, username, totalLevels, levelsRemaining),
+                    getString(R.string.msg_info_global_levels_6, username, totalLevels, levelsRemaining)
+                )
+                val infoMsgsWithoutName = arrayOf(
+                    getString(R.string.msg_info_global_levels_7, totalLevels, levelsRemaining),
+                    getString(R.string.msg_info_global_levels_8, totalLevels, levelsRemaining),
+                    getString(R.string.msg_info_global_levels_9, totalLevels, levelsRemaining),
+                    getString(R.string.msg_info_global_levels_10, totalLevels, levelsRemaining),
+                    getString(R.string.msg_info_global_levels_11, totalLevels, levelsRemaining),
+                    getString(R.string.msg_info_global_levels_12, totalLevels, levelsRemaining)
+                )
+
+                val motivMsgsWithName = arrayOf(
+                    getString(R.string.msg_motiv_global_levels_1, username),
+                    getString(R.string.msg_motiv_global_levels_2, username),
+                    getString(R.string.msg_motiv_global_levels_3, username),
+                    getString(R.string.msg_motiv_global_levels_4, username),
+                    getString(R.string.msg_motiv_global_levels_5, username),
+                    getString(R.string.msg_motiv_global_levels_6, username)
+                )
+                val motivMsgsWithoutName = arrayOf(
+                    getString(R.string.msg_motiv_global_levels_7),
+                    getString(R.string.msg_motiv_global_levels_8),
+                    getString(R.string.msg_motiv_global_levels_9),
+                    getString(R.string.msg_motiv_global_levels_10),
+                    getString(R.string.msg_motiv_global_levels_11),
+                    getString(R.string.msg_motiv_global_levels_12)
+                )
+
+                val infoWithName = Random.nextBoolean()
+                val infoMsg = if (infoWithName)
+                    infoMsgsWithName[Random.nextInt(infoMsgsWithName.size)]
+                else
+                    infoMsgsWithoutName[Random.nextInt(infoMsgsWithoutName.size)]
+
+                val motivMsg = if (infoWithName)
+                    motivMsgsWithoutName[Random.nextInt(motivMsgsWithoutName.size)]
+                else
+                    motivMsgsWithName[Random.nextInt(motivMsgsWithName.size)]
+
+                val combinedMsg = "$infoMsg\n\n$motivMsg"
+
+                tvMsgGlobalRanking.apply {
+                    visibility = View.VISIBLE
+                    text = combinedMsg
+                    textSize = 36f
+                    gravity = Gravity.CENTER
+                }
+                recyclerView.visibility = View.GONE
+                emptyView.visibility = View.GONE
+                loadingIndicator.visibility = View.GONE
+                return@postDelayed
+            }
+
+            tvMsgGlobalRanking.visibility = View.GONE
 
             val oldSize = rankingItems.size
             rankingItems.clear()
@@ -132,7 +193,7 @@ class RankingActivity : AppCompatActivity() {
                     position = 1,
                     username = username,
                     countryCode = countryCode,
-                    score = totalScoreGlobal,
+                    score = score,
                     isCurrentUser = true
                 )
             )
@@ -141,7 +202,7 @@ class RankingActivity : AppCompatActivity() {
             recyclerView.visibility = View.VISIBLE
             emptyView.visibility = View.GONE
             loadingIndicator.visibility = View.GONE
-        }, 800)
+        }, 700)
     }
 
     override fun onResume() {
@@ -150,6 +211,8 @@ class RankingActivity : AppCompatActivity() {
         if (soundEnabled && !mediaPlayer.isPlaying) {
             mediaPlayer.start()
         }
+
+        loadRankingData()
     }
 
     override fun onPause() {
@@ -166,3 +229,4 @@ class RankingActivity : AppCompatActivity() {
         }
     }
 }
+

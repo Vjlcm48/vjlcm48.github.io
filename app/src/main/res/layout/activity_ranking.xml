@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/posicion"
+            android:text="@string/ranking_position_header"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:gravity="center"
-            android:text="@string/usuario"
+            android:text="@string/ranking_player_header"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -134,15 +134,17 @@
         android:id="@+id/tvMsgGlobalRanking"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="24dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/roboto_bold"
         android:gravity="center"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textSize="36sp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/empty_view"
+        app:layout_constraintTop_toBottomOf="@id/header_layout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

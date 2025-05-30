@@ -2323,6 +2323,31 @@ object ScoreManager {
         totalGamesGenioPlus = 0
         totalTimeGenioPlus = 0.0
     }
+
+    fun getTotalUniqueLevelsCompletedAllGames(): Int {
+        return getCompletedLevelsPrincipiante().size +
+                getCompletedLevels().size +
+                getCompletedLevelsPro().size +
+                getCompletedLevelsDeciPlusPrincipiante().size +
+                getCompletedLevelsDeciPlus().size +
+                getCompletedLevelsDeciPlusPro().size +
+                getCompletedLevelsRomasPrincipiante().size +
+                getCompletedLevelsRomas().size +
+                getCompletedLevelsRomasPro().size +
+                getCompletedLevelsAlfaNumerosPrincipiante().size +
+                getCompletedLevelsAlfaNumeros().size +
+                getCompletedLevelsAlfaNumerosPro().size +
+                getCompletedLevelsSumaRestaPrincipiante().size +
+                getCompletedLevelsSumaResta().size +
+                getCompletedLevelsSumaRestaPro().size +
+                getCompletedLevelsMasPlusPrincipiante().size +
+                getCompletedLevelsMasPlus().size +
+                getCompletedLevelsMasPlusPro().size +
+                getCompletedLevelsGenioPlusPrincipiante().size +
+                getCompletedLevelsGenioPlus().size +
+                getCompletedLevelsGenioPlusPro().size
+    }
+
 }
 
 

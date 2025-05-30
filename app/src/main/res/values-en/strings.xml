@@ -998,6 +998,44 @@
     <string name="speed_motiv_17">Wow, %1$s! Few get this far, keep going strong.</string>
     <string name="speed_motiv_18">Go big, %1$s! Show what you can achieve.</string>
 
+    <string name="msg_need_more_games_global_1">Hi, %1$s! Play 36 levels to see your global ranking.</string>
+    <string name="msg_need_more_games_global_2">%1$s, you need to play 36 levels to unlock your spot on the global leaderboard.</string>
+    <string name="msg_need_more_games_global_3">You’re not ranked yet, %1$s. Play 36 levels and your global ranking will appear here.</string>
+    <string name="msg_need_more_games_global_4">Let’s go, %1$s! Once you complete 36 levels, you’ll see your position on the global leaderboard.</string>
+    <string name="msg_need_more_games_global_5">%1$s, your global ranking will automatically appear after you play 36 levels.</string>
+    <string name="msg_need_more_games_global_6">Ready for the challenge, %1$s? Play 36 levels to enter the global ranking.</string>
+
+    <!-- With user name -->
+    <string name="msg_info_global_levels_1">%1$s, you’ve played %2$d levels. Only %3$d more to enter the global ranking.</string>
+    <string name="msg_info_global_levels_2">Great progress, %1$s! You’ve completed %2$d levels and need just %3$d more to see your ranking.</string>
+    <string name="msg_info_global_levels_3">%1$s, your account shows %2$d levels played. Only %3$d more to unlock the global leaderboard.</string>
+    <string name="msg_info_global_levels_4">%1$s, you’ve played %2$d out of 36 levels. Just %3$d more to join the leaderboard.</string>
+    <string name="msg_info_global_levels_5">%1$s, you’ve finished %2$d levels. Play %3$d more to appear in the global ranking.</string>
+    <string name="msg_info_global_levels_6">%1$s, you’re just %3$d levels away from the 36 needed. You’ve already played %2$d!</string>
+
+    <!-- Without user name -->
+    <string name="msg_info_global_levels_7">You’ve played %1$d levels. Only %2$d more to appear in the global ranking.</string>
+    <string name="msg_info_global_levels_8">You’re on the right track! %1$d levels played, just %2$d more and you’ll be ranked.</string>
+    <string name="msg_info_global_levels_9">%1$d levels completed. Only %2$d more to unlock your global ranking.</string>
+    <string name="msg_info_global_levels_10">Progress: %1$d out of 36 levels played. %2$d more to reach the global leaderboard.</string>
+    <string name="msg_info_global_levels_11">%1$d levels finished. Just %2$d more to see your spot in the ranking.</string>
+    <string name="msg_info_global_levels_12">Only %2$d more levels to join the global ranking. You’ve already played %1$d!</string>
+
+    <!-- With user name -->
+    <string name="msg_motiv_global_levels_1">You’ve got this, %1$s! Every level gets you closer to the global ranking.</string>
+    <string name="msg_motiv_global_levels_2">%1$s, keep it up! The global leaderboard is getting closer.</string>
+    <string name="msg_motiv_global_levels_3">Don’t stop now, %1$s. Your effort will pay off soon!</string>
+    <string name="msg_motiv_global_levels_4">Keep playing, %1$s! The global ranking is waiting for you.</string>
+    <string name="msg_motiv_global_levels_5">%1$s, every game counts. You’re almost at the global leaderboard!</string>
+    <string name="msg_motiv_global_levels_6">Go for it, %1$s! Soon you’ll see your name among the best.</string>
+
+    <!-- Without user name -->
+    <string name="msg_motiv_global_levels_7">Don’t give up! Every level gets you closer to the global ranking.</string>
+    <string name="msg_motiv_global_levels_8">You’re so close! Just a little more to make it.</string>
+    <string name="msg_motiv_global_levels_9">Keep going! The global leaderboard is within your reach.</string>
+    <string name="msg_motiv_global_levels_10">Great job! Keep it up and you’ll appear in the ranking soon.</string>
+    <string name="msg_motiv_global_levels_11">Let’s go for more levels! The global leaderboard is waiting for you.</string>
+    <string name="msg_motiv_global_levels_12">The goal is near! Keep playing to reach the global ranking.</string>
 
 
     <string name="default_username">You</string>
