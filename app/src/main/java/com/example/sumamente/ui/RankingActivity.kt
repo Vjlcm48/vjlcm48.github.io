@@ -37,6 +37,34 @@ class RankingActivity : AppCompatActivity() {
         ScoreManager.ensurePreferencesInitialized(this)
         setContentView(R.layout.activity_ranking)
 
+        ScoreManager.init(this)
+        ScoreManager.initPrincipiante(this)
+        ScoreManager.initPro(this)
+
+        ScoreManager.initDeciPlus(this)
+        ScoreManager.initDeciPlusPrincipiante(this)
+        ScoreManager.initDeciPlusPro(this)
+
+        ScoreManager.initRomas(this)
+        ScoreManager.initRomasPrincipiante(this)
+        ScoreManager.initRomasPro(this)
+
+        ScoreManager.initAlfaNumeros(this)
+        ScoreManager.initAlfaNumerosPrincipiante(this)
+        ScoreManager.initAlfaNumerosPro(this)
+
+        ScoreManager.initSumaResta(this)
+        ScoreManager.initSumaRestaPrincipiante(this)
+        ScoreManager.initSumaRestaPro(this)
+
+        ScoreManager.initMasPlus(this)
+        ScoreManager.initMasPlusPrincipiante(this)
+        ScoreManager.initMasPlusPro(this)
+
+        ScoreManager.initGenioPlus(this)
+        ScoreManager.initGenioPlusPrincipiante(this)
+        ScoreManager.initGenioPlusPro(this)
+
         sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         initViews()
         setupButtons()

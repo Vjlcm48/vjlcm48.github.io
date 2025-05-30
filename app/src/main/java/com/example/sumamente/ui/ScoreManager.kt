@@ -361,6 +361,7 @@ object ScoreManager {
 
 
     fun init(context: Context) {
+        ensurePreferencesInitialized(context)
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         currentScore = preferences.getInt(KEY_CURRENT_SCORE, 0)
         unlockedLevels = preferences.getInt(KEY_UNLOCKED_LEVELS, 2)
@@ -381,6 +382,7 @@ object ScoreManager {
         totalTimeNumerosPlus = preferences.getFloat(KEY_TOTAL_TIME_NUMEROS_PLUS, 0f).toDouble()
     }
     fun initPrincipiante(context: Context) {
+        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesPrincipiante = context.getSharedPreferences(PREFS_NAME_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScorePrincipiante = preferencesPrincipiante.getInt(KEY_CURRENT_SCORE_PRINCIPIANTE, 0)
         unlockedLevelsPrincipiante = preferencesPrincipiante.getInt(KEY_UNLOCKED_LEVELS_PRINCIPIANTE, 2)
@@ -393,6 +395,7 @@ object ScoreManager {
         }
     }
     fun initPro(context: Context) {
+        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesPro = context.getSharedPreferences(PREFS_NAME_PRO, Context.MODE_PRIVATE)
         currentScorePro = preferencesPro.getInt(KEY_CURRENT_SCORE_PRO, 0)
         unlockedLevelsPro = preferencesPro.getInt(KEY_UNLOCKED_LEVELS_PRO, 2)
@@ -407,6 +410,7 @@ object ScoreManager {
 
 
     fun initDeciPlus(context: Context) {
+        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesDeciPlus = context.getSharedPreferences(PREFS_NAME_DECI_PLUS, Context.MODE_PRIVATE)
         currentScoreDeciPlus = preferencesDeciPlus.getInt(KEY_CURRENT_SCORE_DECI_PLUS, 0)
         unlockedLevelsDeciPlus = preferencesDeciPlus.getInt(KEY_UNLOCKED_LEVELS_DECI_PLUS, 2)
@@ -428,6 +432,7 @@ object ScoreManager {
         totalTimeDeciPlus = preferencesDeciPlus.getFloat(KEY_TOTAL_TIME_DECI_PLUS, 0f).toDouble()
     }
     fun initDeciPlusPrincipiante(context: Context) {
+        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesDeciPlusPrincipiante = context.getSharedPreferences(PREFS_NAME_DECI_PLUS_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScoreDeciPlusPrincipiante = preferencesDeciPlusPrincipiante.getInt(KEY_CURRENT_SCORE_DECI_PLUS_PRINCIPIANTE, 0)
         unlockedLevelsDeciPlusPrincipiante = preferencesDeciPlusPrincipiante.getInt(KEY_UNLOCKED_LEVELS_DECI_PLUS_PRINCIPIANTE, 2)
@@ -440,6 +445,7 @@ object ScoreManager {
         }
     }
     fun initDeciPlusPro(context: Context) {
+        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesDeciPlusPro = context.getSharedPreferences(PREFS_NAME_DECI_PLUS_PRO, Context.MODE_PRIVATE)
         currentScoreDeciPlusPro = preferencesDeciPlusPro.getInt(KEY_CURRENT_SCORE_DECI_PLUS_PRO, 0)
         unlockedLevelsDeciPlusPro = preferencesDeciPlusPro.getInt(KEY_UNLOCKED_LEVELS_DECI_PLUS_PRO, 2)
@@ -454,6 +460,7 @@ object ScoreManager {
 
 
     fun initRomas(context: Context) {
+        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesRomas = context.getSharedPreferences(PREFS_NAME_ROMAS, Context.MODE_PRIVATE)
         currentScoreRomas = preferencesRomas.getInt(KEY_CURRENT_SCORE_ROMAS, 0)
         unlockedLevelsRomas = preferencesRomas.getInt(KEY_UNLOCKED_LEVELS_ROMAS, 2)
@@ -475,6 +482,7 @@ object ScoreManager {
         totalTimeRomas = preferencesRomas.getFloat(KEY_TOTAL_TIME_ROMAS, 0f).toDouble()
     }
     fun initRomasPrincipiante(context: Context) {
+        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesRomasPrincipiante = context.getSharedPreferences(PREFS_NAME_ROMAS_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScoreRomasPrincipiante = preferencesRomasPrincipiante.getInt(KEY_CURRENT_SCORE_ROMAS_PRINCIPIANTE, 0)
         unlockedLevelsRomasPrincipiante = preferencesRomasPrincipiante.getInt(KEY_UNLOCKED_LEVELS_ROMAS_PRINCIPIANTE, 2)
@@ -487,6 +495,7 @@ object ScoreManager {
         }
     }
     fun initRomasPro(context: Context) {
+        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesRomasPro = context.getSharedPreferences(PREFS_NAME_ROMAS_PRO, Context.MODE_PRIVATE)
         currentScoreRomasPro = preferencesRomasPro.getInt(KEY_CURRENT_SCORE_ROMAS_PRO, 0)
         unlockedLevelsRomasPro = preferencesRomasPro.getInt(KEY_UNLOCKED_LEVELS_ROMAS_PRO, 2)
@@ -501,6 +510,7 @@ object ScoreManager {
 
 
     fun initAlfaNumeros(context: Context) {
+        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesAlfaNumeros = context.getSharedPreferences(PREFS_NAME_ALFANUMEROS, Context.MODE_PRIVATE)
         currentScoreAlfaNumeros = preferencesAlfaNumeros.getInt(KEY_CURRENT_SCORE_ALFANUMEROS, 0)
         unlockedLevelsAlfaNumeros = preferencesAlfaNumeros.getInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS, 2)
@@ -522,6 +532,7 @@ object ScoreManager {
         totalTimeAlfaNumeros = preferencesAlfaNumeros.getFloat(KEY_TOTAL_TIME_ALFANUMEROS, 0f).toDouble()
     }
     fun initAlfaNumerosPrincipiante(context: Context) {
+        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesAlfaNumerosPrincipiante = context.getSharedPreferences(PREFS_NAME_ALFANUMEROS_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScoreAlfaNumerosPrincipiante = preferencesAlfaNumerosPrincipiante.getInt(KEY_CURRENT_SCORE_ALFANUMEROS_PRINCIPIANTE, 0)
         unlockedLevelsAlfaNumerosPrincipiante = preferencesAlfaNumerosPrincipiante.getInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRINCIPIANTE, 2)
@@ -534,6 +545,7 @@ object ScoreManager {
         }
     }
     fun initAlfaNumerosPro(context: Context) {
+        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesAlfaNumerosPro = context.getSharedPreferences(PREFS_NAME_ALFANUMEROS_PRO, Context.MODE_PRIVATE)
         currentScoreAlfaNumerosPro = preferencesAlfaNumerosPro.getInt(KEY_CURRENT_SCORE_ALFANUMEROS_PRO, 0)
         unlockedLevelsAlfaNumerosPro = preferencesAlfaNumerosPro.getInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRO, 2)
@@ -545,6 +557,7 @@ object ScoreManager {
 
 
     fun initSumaResta(context: Context) {
+        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesSumaResta = context.getSharedPreferences(PREFS_NAME_SUMARESTA, Context.MODE_PRIVATE)
         currentScoreSumaResta = preferencesSumaResta.getInt(KEY_CURRENT_SCORE_SUMARESTA, 0)
         unlockedLevelsSumaResta = preferencesSumaResta.getInt(KEY_UNLOCKED_LEVELS_SUMARESTA, 2)
@@ -567,6 +580,7 @@ object ScoreManager {
     }
 
     fun initSumaRestaPrincipiante(context: Context) {
+        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesSumaRestaPrincipiante = context.getSharedPreferences(PREFS_NAME_SUMARESTA_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScoreSumaRestaPrincipiante = preferencesSumaRestaPrincipiante.getInt(KEY_CURRENT_SCORE_SUMARESTA_PRINCIPIANTE, 0)
         unlockedLevelsSumaRestaPrincipiante = preferencesSumaRestaPrincipiante.getInt(KEY_UNLOCKED_LEVELS_SUMARESTA_PRINCIPIANTE, 2)
@@ -579,6 +593,7 @@ object ScoreManager {
         }
     }
     fun initSumaRestaPro(context: Context) {
+        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesSumaRestaPro = context.getSharedPreferences(PREFS_NAME_SUMARESTA_PRO, Context.MODE_PRIVATE)
         currentScoreSumaRestaPro = preferencesSumaRestaPro.getInt(KEY_CURRENT_SCORE_SUMARESTA_PRO, 0)
         unlockedLevelsSumaRestaPro = preferencesSumaRestaPro.getInt(KEY_UNLOCKED_LEVELS_SUMARESTA_PRO, 2)
@@ -593,6 +608,7 @@ object ScoreManager {
 
 
     fun initMasPlus(context: Context) {
+        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesMasPlus = context.getSharedPreferences(PREFS_NAME_MAS_PLUS, Context.MODE_PRIVATE)
         currentScoreMasPlus = preferencesMasPlus.getInt(KEY_CURRENT_SCORE_MAS_PLUS, 0)
         unlockedLevelsMasPlus = preferencesMasPlus.getInt(KEY_UNLOCKED_LEVELS_MAS_PLUS, 2)
@@ -614,6 +630,7 @@ object ScoreManager {
         totalTimeMasPlus = preferencesMasPlus.getFloat(KEY_TOTAL_TIME_MAS_PLUS, 0f).toDouble()
     }
     fun initMasPlusPrincipiante(context: Context) {
+        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesMasPlusPrincipiante = context.getSharedPreferences(PREFS_NAME_MAS_PLUS_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScoreMasPlusPrincipiante = preferencesMasPlusPrincipiante.getInt(KEY_CURRENT_SCORE_MAS_PLUS_PRINCIPIANTE, 0)
         unlockedLevelsMasPlusPrincipiante = preferencesMasPlusPrincipiante.getInt(KEY_UNLOCKED_LEVELS_MAS_PLUS_PRINCIPIANTE, 2)
@@ -626,6 +643,7 @@ object ScoreManager {
         }
     }
     fun initMasPlusPro(context: Context) {
+        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesMasPlusPro = context.getSharedPreferences(PREFS_NAME_MAS_PLUS_PRO, Context.MODE_PRIVATE)
         currentScoreMasPlusPro = preferencesMasPlusPro.getInt(KEY_CURRENT_SCORE_MAS_PLUS_PRO, 0)
         unlockedLevelsMasPlusPro = preferencesMasPlusPro.getInt(KEY_UNLOCKED_LEVELS_MAS_PLUS_PRO, 2)
@@ -640,6 +658,7 @@ object ScoreManager {
 
 
     fun initGenioPlus(context: Context) {
+        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesGenioPlus = context.getSharedPreferences(PREFS_NAME_GENIO_PLUS, Context.MODE_PRIVATE)
         currentScoreGenioPlus = preferencesGenioPlus.getInt(KEY_CURRENT_SCORE_GENIO_PLUS, 0)
         unlockedLevelsGenioPlus = preferencesGenioPlus.getInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS, 2)
@@ -661,6 +680,7 @@ object ScoreManager {
         totalTimeGenioPlus = preferencesGenioPlus.getFloat(KEY_TOTAL_TIME_GENIO_PLUS, 0f).toDouble()
     }
     fun initGenioPlusPrincipiante(context: Context) {
+        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesGenioPlusPrincipiante = context.getSharedPreferences(PREFS_NAME_GENIO_PLUS_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScoreGenioPlusPrincipiante = preferencesGenioPlusPrincipiante.getInt(KEY_CURRENT_SCORE_GENIO_PLUS_PRINCIPIANTE, 0)
         unlockedLevelsGenioPlusPrincipiante = preferencesGenioPlusPrincipiante.getInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRINCIPIANTE, 2)
@@ -673,6 +693,7 @@ object ScoreManager {
         }
     }
     fun initGenioPlusPro(context: Context) {
+        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesGenioPlusPro = context.getSharedPreferences(PREFS_NAME_GENIO_PLUS_PRO, Context.MODE_PRIVATE)
         currentScoreGenioPlusPro = preferencesGenioPlusPro.getInt(KEY_CURRENT_SCORE_GENIO_PLUS_PRO, 0)
         unlockedLevelsGenioPlusPro = preferencesGenioPlusPro.getInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRO, 2)
