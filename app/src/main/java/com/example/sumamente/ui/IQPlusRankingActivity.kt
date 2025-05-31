@@ -1,9 +1,18 @@
 package com.example.sumamente.ui
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sumamente.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.Locale
+import java.util.regex.Pattern
 import kotlin.random.Random
 
 class IQPlusRankingActivity : AppCompatActivity() {
@@ -224,12 +234,61 @@ class IQPlusRankingActivity : AppCompatActivity() {
 
         val mensajeFinal = "$infoMsg\n\n$levelsInfoMsg\n\n$motivMsg"
 
+        val spannableText = hacerIQPlusInteractivo(mensajeFinal, iqPlus)
+
         tvMsgIQPlus.apply {
             visibility = View.VISIBLE
-            text = mensajeFinal
+            text = spannableText
             textSize = 18f
             setTextColor(ContextCompat.getColor(this@IQPlusRankingActivity, android.R.color.black))
+            movementMethod = LinkMovementMethod.getInstance()
         }
+    }
+
+    private fun hacerIQPlusInteractivo(texto: String, iqPlus: Double): SpannableString {
+        val spannableString = SpannableString(texto)
+
+        val iqPlusFormateado = String.format(Locale.ROOT, "%.2f", iqPlus)
+        val pattern = Pattern.compile("\\b\\d+\\.\\d{2}\\b")
+        val matcher = pattern.matcher(texto)
+
+        while (matcher.find()) {
+            val numeroEncontrado = texto.substring(matcher.start(), matcher.end())
+
+            if (numeroEncontrado == iqPlusFormateado) {
+                val start = matcher.start()
+                val end = matcher.end()
+
+                val clickableSpan = object : ClickableSpan() {
+                    override fun onClick(widget: View) {
+                        mostrarDialogoEstadisticas()
+                    }
+
+                    override fun updateDrawState(ds: TextPaint) {
+                        super.updateDrawState(ds)
+                        ds.isUnderlineText = false
+                        ds.color = ContextCompat.getColor(this@IQPlusRankingActivity, R.color.blue_primary)
+                        ds.isFakeBoldText = true // Hacer bold
+                        ds.setShadowLayer(2f, 1f, 1f, Color.GRAY)
+                    }
+                }
+
+                spannableString.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+
+                spannableString.setSpan(
+                    ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_primary)),
+                    start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+
+                spannableString.setSpan(
+                    StyleSpan(Typeface.BOLD),
+                    start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+        }
+
+        return spannableString
     }
 
     private fun getCombosCompletados(): Int {
@@ -250,7 +309,7 @@ class IQPlusRankingActivity : AppCompatActivity() {
     private fun getUsuarioActualPais(): String =
         sharedPreferences.getString("savedCountryCode", "us") ?: "us"
 
-        private fun calcularIQPlus(): Double {
+    private fun calcularIQPlus(): Double {
         val precisionGlobal = ScoreManager.getPrecisionGlobal()
         val tiempoPromedio = ScoreManager.getTiempoPromedioGlobal()
         val velocidadGlobal = if (tiempoPromedio > 0.0) 1.0 / tiempoPromedio else 1.0
