@@ -1037,6 +1037,14 @@
     <string name="msg_iqplus_motiv_5">Muy bien, %1$s. Cada nivel te acerca a la meta de estar entre los mejores.</string>
     <string name="msg_iqplus_motiv_6">%1$s, no pares ahora. ¡Ya casi alcanzas el Ranking IQ+!</string>
 
+    <string name="clasificaciones_por_iqplus">Clasificación por índice IQ⁺</string>
+
+    <string name="indice_iqplus">Índice IQ⁺</string>
+
+    <string name="iqplus_ranking_title">Ranking del índice IQ⁺</string>
+
+    <string name="share_iqplus_ranking_message">¡Estoy en la posición %1$d del Ranking IQ⁺ de SUMAMENTE con un IQ⁺ de %2$.3f! ¿Te animas a superarme?</string>
+
 
     <string name="default_username">Tú</string>
 

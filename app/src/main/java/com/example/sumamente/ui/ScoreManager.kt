@@ -962,7 +962,7 @@ object ScoreManager {
     }
 
 
-    private fun getCompletedLevels(): Set<Int> {
+    fun getCompletedLevels(): Set<Int> {
         return preferences.getStringSet(KEY_COMPLETED_LEVELS, emptySet())
             ?.map { it.toInt() }?.toSet() ?: emptySet()
     }
@@ -2367,6 +2367,100 @@ object ScoreManager {
                 getCompletedLevelsGenioPlusPrincipiante().size +
                 getCompletedLevelsGenioPlus().size +
                 getCompletedLevelsGenioPlusPro().size
+    }
+
+    fun getTiempoPromedioGlobal(): Double {
+        val totalTiempo =
+            totalTimeNumerosPlus +
+                    totalTimeDeciPlus +
+                    totalTimeRomas +
+                    totalTimeAlfaNumeros +
+                    totalTimeSumaResta +
+                    totalTimeMasPlus +
+                    totalTimeGenioPlus
+
+        val totalJuegos =
+            totalGamesNumerosPlus +
+                    totalGamesDeciPlus +
+                    totalGamesRomas +
+                    totalGamesAlfaNumeros +
+                    totalGamesSumaResta +
+                    totalGamesMasPlus +
+                    totalGamesGenioPlus
+
+        return if (totalJuegos > 0) totalTiempo / totalJuegos else 1.0
+    }
+
+    fun haJugadoAlMenosUnNivelEnCadaJuegoYGrado(): Boolean {
+        return getCompletedLevelsPrincipiante().isNotEmpty() &&
+                getCompletedLevels().isNotEmpty() &&
+                getCompletedLevelsPro().isNotEmpty() &&
+                getCompletedLevelsDeciPlusPrincipiante().isNotEmpty() &&
+                getCompletedLevelsDeciPlus().isNotEmpty() &&
+                getCompletedLevelsDeciPlusPro().isNotEmpty() &&
+                getCompletedLevelsRomasPrincipiante().isNotEmpty() &&
+                getCompletedLevelsRomas().isNotEmpty() &&
+                getCompletedLevelsRomasPro().isNotEmpty() &&
+                getCompletedLevelsAlfaNumerosPrincipiante().isNotEmpty() &&
+                getCompletedLevelsAlfaNumeros().isNotEmpty() &&
+                getCompletedLevelsAlfaNumerosPro().isNotEmpty() &&
+                getCompletedLevelsSumaRestaPrincipiante().isNotEmpty() &&
+                getCompletedLevelsSumaResta().isNotEmpty() &&
+                getCompletedLevelsSumaRestaPro().isNotEmpty() &&
+                getCompletedLevelsMasPlusPrincipiante().isNotEmpty() &&
+                getCompletedLevelsMasPlus().isNotEmpty() &&
+                getCompletedLevelsMasPlusPro().isNotEmpty() &&
+                getCompletedLevelsGenioPlusPrincipiante().isNotEmpty() &&
+                getCompletedLevelsGenioPlus().isNotEmpty() &&
+                getCompletedLevelsGenioPlusPro().isNotEmpty()
+    }
+
+    fun getMaxLevelForCombo(juego: String, grado: String): Int {
+        return when (juego) {
+            "NumerosPlus" -> when (grado) {
+                "Principiante" -> getCompletedLevelsPrincipiante().maxOrNull() ?: 0
+                "Avanzado" -> getCompletedLevels().maxOrNull() ?: 0
+                "Pro" -> getCompletedLevelsPro().maxOrNull() ?: 0
+                else -> 0
+            }
+            "DeciPlus" -> when (grado) {
+                "Principiante" -> getCompletedLevelsDeciPlusPrincipiante().maxOrNull() ?: 0
+                "Avanzado" -> getCompletedLevelsDeciPlus().maxOrNull() ?: 0
+                "Pro" -> getCompletedLevelsDeciPlusPro().maxOrNull() ?: 0
+                else -> 0
+            }
+            "Romas" -> when (grado) {
+                "Principiante" -> getCompletedLevelsRomasPrincipiante().maxOrNull() ?: 0
+                "Avanzado" -> getCompletedLevelsRomas().maxOrNull() ?: 0
+                "Pro" -> getCompletedLevelsRomasPro().maxOrNull() ?: 0
+                else -> 0
+            }
+            "AlfaNumeros" -> when (grado) {
+                "Principiante" -> getCompletedLevelsAlfaNumerosPrincipiante().maxOrNull() ?: 0
+                "Avanzado" -> getCompletedLevelsAlfaNumeros().maxOrNull() ?: 0
+                "Pro" -> getCompletedLevelsAlfaNumerosPro().maxOrNull() ?: 0
+                else -> 0
+            }
+            "SumaResta" -> when (grado) {
+                "Principiante" -> getCompletedLevelsSumaRestaPrincipiante().maxOrNull() ?: 0
+                "Avanzado" -> getCompletedLevelsSumaResta().maxOrNull() ?: 0
+                "Pro" -> getCompletedLevelsSumaRestaPro().maxOrNull() ?: 0
+                else -> 0
+            }
+            "MasPlus" -> when (grado) {
+                "Principiante" -> getCompletedLevelsMasPlusPrincipiante().maxOrNull() ?: 0
+                "Avanzado" -> getCompletedLevelsMasPlus().maxOrNull() ?: 0
+                "Pro" -> getCompletedLevelsMasPlusPro().maxOrNull() ?: 0
+                else -> 0
+            }
+            "GenioPlus" -> when (grado) {
+                "Principiante" -> getCompletedLevelsGenioPlusPrincipiante().maxOrNull() ?: 0
+                "Avanzado" -> getCompletedLevelsGenioPlus().maxOrNull() ?: 0
+                "Pro" -> getCompletedLevelsGenioPlusPro().maxOrNull() ?: 0
+                else -> 0
+            }
+            else -> 0
+        }
     }
 
 }

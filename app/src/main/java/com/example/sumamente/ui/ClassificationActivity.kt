@@ -28,6 +28,7 @@ class ClassificationActivity : AppCompatActivity() {
     private lateinit var btnComoFunciona: LinearLayout
     private lateinit var btnVerClasificacion: LinearLayout
     private lateinit var btnClasificacionVelocidad: LinearLayout
+    private lateinit var btnClasificacionIQPlus: LinearLayout
     private lateinit var btnClose: ImageView
     private lateinit var btnBack: ImageView
     private lateinit var mediaPlayer: MediaPlayer
@@ -50,6 +51,7 @@ class ClassificationActivity : AppCompatActivity() {
         btnComoFunciona = findViewById(R.id.btn_como_funciona)
         btnVerClasificacion = findViewById(R.id.btn_ver_clasificacion)
         btnClasificacionVelocidad = findViewById(R.id.btn_clasificacion_velocidad)
+        btnClasificacionIQPlus = findViewById(R.id.btn_clasificacion_iqplus)
         btnClose = findViewById(R.id.btn_close)
         btnBack = findViewById(R.id.btn_back)
     }
@@ -114,6 +116,14 @@ class ClassificationActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+
+        btnClasificacionIQPlus.setOnClickListener {
+            applyBounceEffect(it) {
+                val intent = Intent(this, IQPlusRankingActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
     }
 
     private fun showHowItWorksDialog() {
