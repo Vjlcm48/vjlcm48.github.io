@@ -1073,6 +1073,13 @@
 
     <string name="share_iqplus_ranking_message">I\'m in position %1$d of the SUMAMENTE IQ⁺ Ranking with an IQ⁺ of %2$.3f! Can you beat me?</string>
 
+    <string name="precision_global_title">Global Precision</string>
+    <string name="velocidad_promedio_title">Global Average Speed</string>
+    <string name="precision_global_explanation">Global precision measures the percentage of correct answers across all your games. It is calculated as:\n\n(Correct answers ÷ Total games) × 100%</string>
+    <string name="velocidad_promedio_explanation">Global average speed is the average time you take to respond. It is calculated as:\n\nTotal time ÷ Number of completed games</string>
+    <string name="info_precision">Precision information</string>
+    <string name="info_velocidad">Speed information</string>
+
     <string name="default_username">You</string>
 
 

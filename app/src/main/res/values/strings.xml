@@ -1045,6 +1045,12 @@
 
     <string name="share_iqplus_ranking_message">¡Estoy en la posición %1$d del Ranking IQ⁺ de SUMAMENTE con un IQ⁺ de %2$.3f! ¿Te animas a superarme?</string>
 
+    <string name="precision_global_title">Precisión Global</string>
+    <string name="velocidad_promedio_title">Velocidad Promedio Global</string>
+    <string name="precision_global_explanation">La precisión global mide el porcentaje de aciertos en todos tus juegos. Se calcula como:\n\n(Respuestas correctas ÷ Total de juegos) × 100%</string>
+    <string name="velocidad_promedio_explanation">La velocidad promedio global es el tiempo promedio que tardas en responder. Se calcula como:\n\nTiempo total ÷ Número de juegos completados</string>
+    <string name="info_precision">Información sobre precisión</string>
+    <string name="info_velocidad">Información sobre velocidad</string>
 
     <string name="default_username">Tú</string>
 
