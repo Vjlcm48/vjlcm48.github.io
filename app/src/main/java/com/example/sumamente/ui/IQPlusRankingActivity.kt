@@ -36,6 +36,28 @@ class IQPlusRankingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ScoreManager.init(this)
+        ScoreManager.initPrincipiante(this)
+        ScoreManager.initPro(this)
+        ScoreManager.initDeciPlus(this)
+        ScoreManager.initDeciPlusPrincipiante(this)
+        ScoreManager.initDeciPlusPro(this)
+        ScoreManager.initRomas(this)
+        ScoreManager.initRomasPrincipiante(this)
+        ScoreManager.initRomasPro(this)
+        ScoreManager.initAlfaNumeros(this)
+        ScoreManager.initAlfaNumerosPrincipiante(this)
+        ScoreManager.initAlfaNumerosPro(this)
+        ScoreManager.initSumaResta(this)
+        ScoreManager.initSumaRestaPrincipiante(this)
+        ScoreManager.initSumaRestaPro(this)
+        ScoreManager.initMasPlus(this)
+        ScoreManager.initMasPlusPrincipiante(this)
+        ScoreManager.initMasPlusPro(this)
+        ScoreManager.initGenioPlus(this)
+        ScoreManager.initGenioPlusPrincipiante(this)
+        ScoreManager.initGenioPlusPro(this)
+
         setContentView(R.layout.activity_iqplus_ranking)
 
         sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
@@ -54,7 +76,7 @@ class IQPlusRankingActivity : AppCompatActivity() {
         btnShareRanking = findViewById(R.id.btnShareRanking)
         spinnerFiltro = findViewById(R.id.spinnerFiltro)
         btnBack = findViewById(R.id.btnBack)
-        loadingIndicator = ProgressBar(this).apply { visibility = View.GONE }
+        loadingIndicator = findViewById(R.id.loadingIndicator)
     }
 
     private fun setupRecyclerView() {
