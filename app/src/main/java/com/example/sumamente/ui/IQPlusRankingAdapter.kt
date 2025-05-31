@@ -114,7 +114,7 @@ class IQPlusRankingAdapter(
             if (item.isCurrentUser && onIQPlusClick != null) {
 
                 holder.tvIQPlus.isPressed = false
-                holder.tvIQPlus.refreshDrawableState() // Fuerza el update inmediato
+                holder.tvIQPlus.refreshDrawableState()
 
                 onIQPlusClick.invoke()
             }
