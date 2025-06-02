@@ -115,6 +115,10 @@ class LevelResultActivitySumaResta : AppCompatActivity() {
         ScoreManager.correctGamesGlobal += 1
         ScoreManager.totalGamesSumaResta += 1
         ScoreManager.totalGamesSumaRestaAvanzado += 1
+
+        ScoreManager.totalGamesSumaRestaExitos += 1
+        ScoreManager.totalTimeSumaRestaExitos += timeSpentInSeconds
+
         ScoreManager.totalTimeSumaResta += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndSumaResta()
 

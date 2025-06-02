@@ -104,6 +104,10 @@ class LevelResultActivityGenioPlusPrincipiante : AppCompatActivity() {
         ScoreManager.correctGamesGlobal += 1
         ScoreManager.totalGamesGenioPlus += 1
         ScoreManager.totalGamesGenioPlusPrincipiante += 1
+
+        ScoreManager.totalGamesGenioPlusExitos += 1
+        ScoreManager.totalTimeGenioPlusExitos += timeSpentInSeconds
+
         ScoreManager.totalTimeGenioPlus += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndGenioPlus()
 

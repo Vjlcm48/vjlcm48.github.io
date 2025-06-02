@@ -116,6 +116,10 @@ class LevelResultActivityRomasPro : AppCompatActivity() {
         ScoreManager.correctGamesGlobal += 1
         ScoreManager.totalGamesRomas += 1
         ScoreManager.totalGamesRomasPro += 1
+
+        ScoreManager.totalGamesRomasExitos += 1
+        ScoreManager.totalTimeRomasExitos += timeSpentInSeconds
+
         ScoreManager.totalTimeRomas += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndRomas()
 

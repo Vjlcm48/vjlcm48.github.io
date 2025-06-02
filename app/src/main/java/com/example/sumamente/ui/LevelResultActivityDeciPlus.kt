@@ -118,6 +118,10 @@ class LevelResultActivityDeciPlus : AppCompatActivity() {
         ScoreManager.correctGamesGlobal += 1
         ScoreManager.totalGamesDeciPlus += 1
         ScoreManager.totalGamesDeciPlusAvanzado += 1
+
+        ScoreManager.totalGamesDeciPlusExitos += 1
+        ScoreManager.totalTimeDeciPlusExitos += timeSpentInSeconds
+
         ScoreManager.totalTimeDeciPlus += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndDeciPlus()
 

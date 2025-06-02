@@ -264,16 +264,16 @@ class IQPlusRankingActivity : AppCompatActivity() {
 
                 val clickableSpan = object : ClickableSpan() {
                     override fun onClick(widget: View) {
-                        // 1. Activa el flash (efecto amarillo)
+
                         iqPlusFlash = true
                         (widget as TextView).text = hacerIQPlusInteractivo(texto, iqPlus)
 
-                        // 2. Espera 150ms y regresa a azul
+
                         handlerFlash.postDelayed({
                             iqPlusFlash = false
                             widget.text = hacerIQPlusInteractivo(texto, iqPlus)
 
-                            // 3. Espera 80ms más y abre el diálogo
+
                             handlerFlash.postDelayed({
                                 mostrarDialogoEstadisticas()
                             }, 80)
@@ -285,12 +285,12 @@ class IQPlusRankingActivity : AppCompatActivity() {
                         ds.isUnderlineText = false
 
                         if (iqPlusFlash) {
-                            // Efecto flash: amarillo vibrante
+
                             ds.color = ContextCompat.getColor(this@IQPlusRankingActivity, R.color.yellow_dark)
                             ds.isFakeBoldText = true
                             ds.setShadowLayer(4f, 0f, 0f, Color.DKGRAY)
                         } else {
-                            // Normal: azul principal branding
+
                             ds.color = ContextCompat.getColor(this@IQPlusRankingActivity, R.color.blue_primary)
                             ds.isFakeBoldText = true
                             ds.setShadowLayer(2f, 1f, 1f, Color.GRAY)
@@ -299,7 +299,7 @@ class IQPlusRankingActivity : AppCompatActivity() {
                 }
 
                 spannableString.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                // No necesitas otros spans de color/negrita, ya lo maneja el ClickableSpan
+
             }
         }
 
@@ -382,13 +382,13 @@ class IQPlusRankingActivity : AppCompatActivity() {
 object IQPlusCombos {
     val ALL = listOf(
         // NÚMEROS+
-        Combo("NumerosPlus", "Principiante", 4.0),
-        Combo("NumerosPlus", "Avanzado", 7.0),
-        Combo("NumerosPlus", "Pro", 10.0),
+        Combo("NumerosPlus", "Principiante", 2.0),
+        Combo("NumerosPlus", "Avanzado", 5.0),
+        Combo("NumerosPlus", "Pro", 8.0),
         // DECI+
-        Combo("DeciPlus", "Principiante", 5.0),
-        Combo("DeciPlus", "Avanzado", 8.0),
-        Combo("DeciPlus", "Pro", 11.0),
+        Combo("DeciPlus", "Principiante", 4.0),
+        Combo("DeciPlus", "Avanzado", 7.0),
+        Combo("DeciPlus", "Pro", 10.0),
         // ROMAS
         Combo("Romas", "Principiante", 6.0),
         Combo("Romas", "Avanzado", 9.0),
@@ -402,13 +402,13 @@ object IQPlusCombos {
         Combo("SumaResta", "Avanzado", 11.0),
         Combo("SumaResta", "Pro", 14.0),
         // MAS+
-        Combo("MasPlus", "Principiante", 9.0),
-        Combo("MasPlus", "Avanzado", 12.0),
-        Combo("MasPlus", "Pro", 15.0),
+        Combo("MasPlus", "Principiante", 10.0),
+        Combo("MasPlus", "Avanzado", 13.0),
+        Combo("MasPlus", "Pro", 16.0),
         // GENIO+
-        Combo("GenioPlus", "Principiante", 10.0),
-        Combo("GenioPlus", "Avanzado", 13.0),
-        Combo("GenioPlus", "Pro", 16.0)
+        Combo("GenioPlus", "Principiante", 12.0),
+        Combo("GenioPlus", "Avanzado", 15.0),
+        Combo("GenioPlus", "Pro", 18.0)
     )
     data class Combo(val juego: String, val grado: String, val peso: Double)
 }

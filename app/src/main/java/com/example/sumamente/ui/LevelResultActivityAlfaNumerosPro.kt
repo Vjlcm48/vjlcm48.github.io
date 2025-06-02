@@ -115,6 +115,10 @@ class LevelResultActivityAlfaNumerosPro : AppCompatActivity() {
         ScoreManager.correctGamesGlobal += 1
         ScoreManager.totalGamesAlfaNumeros += 1
         ScoreManager.totalGamesAlfaNumerosPro += 1
+
+        ScoreManager.totalGamesAlfaNumerosExitos += 1
+        ScoreManager.totalTimeAlfaNumerosExitos += timeSpentInSeconds
+
         ScoreManager.totalTimeAlfaNumeros += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndAlfaNumeros()
 

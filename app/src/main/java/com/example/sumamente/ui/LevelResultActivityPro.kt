@@ -116,6 +116,11 @@ class LevelResultActivityPro : AppCompatActivity() {
         ScoreManager.totalGamesNumerosPlus += 1
         ScoreManager.totalGamesNumerosPlusPro += 1
         ScoreManager.correctGamesGlobal += 1
+
+        // Nuevos contadores exitosos//
+        ScoreManager.totalGamesNumerosPlusExitos += 1
+        ScoreManager.totalTimeNumerosPlusExitos += timeSpentInSeconds
+
         ScoreManager.totalTimeNumerosPlus += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndNumerosPlus()
 

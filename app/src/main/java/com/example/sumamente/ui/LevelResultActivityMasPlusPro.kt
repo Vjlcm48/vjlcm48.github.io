@@ -117,6 +117,10 @@ class LevelResultActivityMasPlusPro : AppCompatActivity() {
         ScoreManager.correctGamesGlobal += 1
         ScoreManager.totalGamesMasPlus += 1
         ScoreManager.totalGamesMasPlusPro += 1
+
+        ScoreManager.totalGamesMasPlusExitos += 1
+        ScoreManager.totalTimeMasPlusExitos += timeSpentInSeconds
+
         ScoreManager.totalTimeMasPlus += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndMasPlus()
 
