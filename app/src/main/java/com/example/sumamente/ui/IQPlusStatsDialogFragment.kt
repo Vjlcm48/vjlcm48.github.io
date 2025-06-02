@@ -1,11 +1,13 @@
 package com.example.sumamente.ui
 
-import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
+import android.widget.Button
 import androidx.fragment.app.DialogFragment
 import com.example.sumamente.R
 import java.util.Locale
@@ -23,12 +25,22 @@ class IQPlusStatsDialogFragment : DialogFragment() {
         }
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val view = layoutInflater.inflate(R.layout.dialog_iqplus_stats, null)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflar el layout personalizado
+        val view = inflater.inflate(R.layout.dialog_iqplus_stats, container, false)
+
+        // Fondo transparente para que los bordes redondeados se vean bien
+        dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
         val tvPrecision: TextView = view.findViewById(R.id.tvPrecisionValue)
         val tvTiempo: TextView = view.findViewById(R.id.tvTiempoValue)
         val infoPrecision: ImageButton = view.findViewById(R.id.info_precision)
         val infoVelocidad: ImageButton = view.findViewById(R.id.info_velocidad)
+        val btnAceptar: Button = view.findViewById(R.id.btnAceptar)
 
         val precision = arguments?.getDouble("precision") ?: 0.0
         val tiempo = arguments?.getDouble("tiempo") ?: 0.0
@@ -37,37 +49,40 @@ class IQPlusStatsDialogFragment : DialogFragment() {
         tvTiempo.text = String.format(Locale.ROOT, "%.2f s", tiempo)
 
         infoPrecision.setOnClickListener {
-            showExplanationDialog(getString(R.string.precision_global_title), getString(R.string.precision_global_explanation))
+            showExplanationDialog(
+                getString(R.string.precision_global_title),
+                getString(R.string.precision_global_explanation)
+            )
         }
 
         infoVelocidad.setOnClickListener {
-            showExplanationDialog(getString(R.string.velocidad_promedio_title), getString(R.string.velocidad_promedio_explanation))
+            showExplanationDialog(
+                getString(R.string.velocidad_promedio_title),
+                getString(R.string.velocidad_promedio_explanation)
+            )
         }
 
-        val dialog = AlertDialog.Builder(requireContext())
-            .setTitle(getString(R.string.indice_iqplus))
-            .setView(view)
-            .setPositiveButton(android.R.string.ok) { dialog: DialogInterface, _: Int ->
-                dialog.dismiss()
-            }
-            .create()
-
-
-        dialog.setOnShowListener {
-            val titleView = dialog.findViewById<TextView>(androidx.appcompat.R.id.alertTitle)
-            titleView?.textSize = 21.6f
-            titleView?.setTypeface(null, android.graphics.Typeface.BOLD)
+        btnAceptar.setOnClickListener {
+            dismiss()
         }
 
-        return dialog
-
+        return view
     }
 
     private fun showExplanationDialog(title: String, explanation: String) {
-        AlertDialog.Builder(requireContext())
+        val dialog = androidx.appcompat.app.AlertDialog.Builder(requireContext())
             .setTitle(title)
             .setMessage(explanation)
-            .setPositiveButton(android.R.string.ok, null)
-            .show()
+            .setPositiveButton(R.string.btn_accept, null)
+            .create()
+
+        dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_background_with_border)
+
+        dialog.show()
+        // Pone el texto del botón en negrita
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE)
+            .setTypeface(null, android.graphics.Typeface.BOLD)
     }
+
+
 }

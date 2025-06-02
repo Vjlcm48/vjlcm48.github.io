@@ -60,7 +60,6 @@
             android:textStyle="bold"
             android:clickable="true"
             android:focusable="true"
-            android:background="?android:attr/selectableItemBackground"
             tools:text="1.245" />
 
     </LinearLayout>

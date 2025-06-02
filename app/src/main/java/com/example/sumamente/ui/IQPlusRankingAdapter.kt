@@ -112,13 +112,27 @@ class IQPlusRankingAdapter(
 
         holder.tvIQPlus.setOnClickListener {
             if (item.isCurrentUser && onIQPlusClick != null) {
-
-                holder.tvIQPlus.isPressed = false
-                holder.tvIQPlus.refreshDrawableState()
-
-                onIQPlusClick.invoke()
+                // 1. Animación moderna (efecto escala y sombra)
+                holder.tvIQPlus.animate()
+                    .scaleX(1.1f)
+                    .scaleY(1.1f)
+                    .setDuration(100)
+                    .withEndAction {
+                        holder.tvIQPlus.animate()
+                            .scaleX(1f)
+                            .scaleY(1f)
+                            .setDuration(100)
+                            .withEndAction {
+                                // 2. Lanza el diálogo solo después de la animación
+                                onIQPlusClick.invoke()
+                            }
+                            .start()
+                    }
+                    .start()
+                // (Opcional: para dar un efecto extra, puedes también cambiar color temporalmente o agregar sombra, si quieres más instrucciones sobre esto avísame)
             }
         }
+
     }
 
     override fun getItemCount() = rankingList.size

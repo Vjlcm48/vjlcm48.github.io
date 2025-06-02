@@ -200,7 +200,7 @@ class RankingActivity : AppCompatActivity() {
                 tvMsgGlobalRanking.apply {
                     visibility = View.VISIBLE
                     text = combinedMsg
-                    textSize = 36f
+                    textSize = 24f
                     gravity = Gravity.CENTER
                 }
                 recyclerView.visibility = View.GONE

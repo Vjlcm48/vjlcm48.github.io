@@ -2,7 +2,6 @@ package com.example.sumamente.ui
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -11,8 +10,6 @@ import android.text.Spanned
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
-import android.text.style.ForegroundColorSpan
-import android.text.style.StyleSpan
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -40,6 +37,8 @@ class IQPlusRankingActivity : AppCompatActivity() {
 
     private val rankingIQPlus: MutableList<IQPlusRankingItem> = mutableListOf()
     private val rankingIQPlusFiltrado: MutableList<IQPlusRankingItem> = mutableListOf()
+    private var iqPlusFlash = false
+    private val handlerFlash = Handler(Looper.getMainLooper())
 
     private lateinit var sharedPreferences: android.content.SharedPreferences
 
@@ -176,7 +175,7 @@ class IQPlusRankingActivity : AppCompatActivity() {
         tvMsgIQPlus.apply {
             visibility = View.VISIBLE
             text = startMsg
-            textSize = 18f
+            textSize = 24f
             setTextColor(ContextCompat.getColor(this@IQPlusRankingActivity, android.R.color.black))
         }
     }
@@ -242,15 +241,16 @@ class IQPlusRankingActivity : AppCompatActivity() {
         tvMsgIQPlus.apply {
             visibility = View.VISIBLE
             text = spannableText
-            textSize = 18f
+            textSize = 24f
             setTextColor(ContextCompat.getColor(this@IQPlusRankingActivity, android.R.color.black))
             movementMethod = LinkMovementMethod.getInstance()
         }
+        tvMsgIQPlus.highlightColor = Color.TRANSPARENT
+
     }
 
     private fun hacerIQPlusInteractivo(texto: String, iqPlus: Double): SpannableString {
         val spannableString = SpannableString(texto)
-
         val iqPlusFormateado = String.format(Locale.ROOT, "%.2f", iqPlus)
         val pattern = Pattern.compile("\\b\\d+\\.\\d{2}\\b")
         val matcher = pattern.matcher(texto)
@@ -264,35 +264,48 @@ class IQPlusRankingActivity : AppCompatActivity() {
 
                 val clickableSpan = object : ClickableSpan() {
                     override fun onClick(widget: View) {
-                        mostrarDialogoEstadisticas()
+                        // 1. Activa el flash (efecto amarillo)
+                        iqPlusFlash = true
+                        (widget as TextView).text = hacerIQPlusInteractivo(texto, iqPlus)
+
+                        // 2. Espera 150ms y regresa a azul
+                        handlerFlash.postDelayed({
+                            iqPlusFlash = false
+                            widget.text = hacerIQPlusInteractivo(texto, iqPlus)
+
+                            // 3. Espera 80ms más y abre el diálogo
+                            handlerFlash.postDelayed({
+                                mostrarDialogoEstadisticas()
+                            }, 80)
+                        }, 150)
                     }
 
                     override fun updateDrawState(ds: TextPaint) {
                         super.updateDrawState(ds)
                         ds.isUnderlineText = false
-                        ds.color = ContextCompat.getColor(this@IQPlusRankingActivity, R.color.blue_primary)
-                        ds.isFakeBoldText = true // Hacer bold
-                        ds.setShadowLayer(2f, 1f, 1f, Color.GRAY)
+
+                        if (iqPlusFlash) {
+                            // Efecto flash: amarillo vibrante
+                            ds.color = ContextCompat.getColor(this@IQPlusRankingActivity, R.color.yellow_dark)
+                            ds.isFakeBoldText = true
+                            ds.setShadowLayer(4f, 0f, 0f, Color.DKGRAY)
+                        } else {
+                            // Normal: azul principal branding
+                            ds.color = ContextCompat.getColor(this@IQPlusRankingActivity, R.color.blue_primary)
+                            ds.isFakeBoldText = true
+                            ds.setShadowLayer(2f, 1f, 1f, Color.GRAY)
+                        }
                     }
                 }
 
                 spannableString.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-
-
-                spannableString.setSpan(
-                    ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_primary)),
-                    start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
-
-                spannableString.setSpan(
-                    StyleSpan(Typeface.BOLD),
-                    start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
+                // No necesitas otros spans de color/negrita, ya lo maneja el ClickableSpan
             }
         }
 
         return spannableString
     }
+
 
     private fun getCombosCompletados(): Int {
         var combosCompletados = 0
