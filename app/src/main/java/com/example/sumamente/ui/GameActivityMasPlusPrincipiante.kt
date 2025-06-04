@@ -730,13 +730,6 @@ class GameActivityMasPlusPrincipiante : AppCompatActivity() {
             manualAnswerEditText.startAnimation(shake)
             calculateTimeSpent()
 
-            ScoreManager.totalGamesGlobal++
-            ScoreManager.correctGamesGlobal++
-            ScoreManager.totalGamesMasPlus++
-            ScoreManager.totalTimeMasPlus += timeSpentInSeconds
-            ScoreManager.saveStatsGlobalAndMasPlus()
-
-
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -755,11 +748,6 @@ class GameActivityMasPlusPrincipiante : AppCompatActivity() {
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
                 calculateTimeSpent()
-
-                ScoreManager.totalGamesGlobal++
-                ScoreManager.totalGamesMasPlus++
-                ScoreManager.saveStatsGlobalAndMasPlus()
-
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     manualAnswerEditText.background = originalBackground
@@ -883,8 +871,6 @@ class GameActivityMasPlusPrincipiante : AppCompatActivity() {
             selectedButton.startAnimation(shake)
             calculateTimeSpent()
 
-
-
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -905,11 +891,6 @@ class GameActivityMasPlusPrincipiante : AppCompatActivity() {
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
                 calculateTimeSpent()
-
-                ScoreManager.totalGamesGlobal++
-                ScoreManager.totalGamesMasPlus++
-                ScoreManager.saveStatsGlobalAndMasPlus()
-
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     navigateToLevelResult(false)

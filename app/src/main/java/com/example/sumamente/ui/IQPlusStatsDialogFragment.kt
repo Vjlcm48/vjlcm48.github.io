@@ -30,10 +30,10 @@ class IQPlusStatsDialogFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflar el layout personalizado
+
         val view = inflater.inflate(R.layout.dialog_iqplus_stats, container, false)
 
-        // Fondo transparente para que los bordes redondeados se vean bien
+
         dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         val tvPrecision: TextView = view.findViewById(R.id.tvPrecisionValue)
@@ -45,7 +45,10 @@ class IQPlusStatsDialogFragment : DialogFragment() {
         val precision = arguments?.getDouble("precision") ?: 0.0
         val tiempo = arguments?.getDouble("tiempo") ?: 0.0
 
-        tvPrecision.text = String.format(Locale.ROOT, "%.2f%%", precision * 100)
+        val aciertos = ScoreManager.correctGamesGlobal
+        val jugados = ScoreManager.totalGamesGlobal
+        tvPrecision.text = String.format(Locale.ROOT, "%.2f%% (%d/%d)", precision * 100, aciertos, jugados)
+
         tvTiempo.text = String.format(Locale.ROOT, "%.2f s", tiempo)
 
         infoPrecision.setOnClickListener {
@@ -79,7 +82,7 @@ class IQPlusStatsDialogFragment : DialogFragment() {
         dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_background_with_border)
 
         dialog.show()
-        // Pone el texto del botón en negrita
+
         dialog.getButton(DialogInterface.BUTTON_POSITIVE)
             .setTypeface(null, android.graphics.Typeface.BOLD)
     }

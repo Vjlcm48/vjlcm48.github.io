@@ -799,12 +799,6 @@ class GameActivityAlfaNumerosPro : AppCompatActivity() {
 
             calculateTimeSpent()
 
-            ScoreManager.totalGamesGlobal++
-            ScoreManager.correctGamesGlobal++
-            ScoreManager.totalGamesAlfaNumeros++
-            ScoreManager.totalTimeAlfaNumeros += timeSpentInSeconds
-            ScoreManager.saveStatsGlobalAndAlfaNumeros()
-
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -821,10 +815,6 @@ class GameActivityAlfaNumerosPro : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
-
-                ScoreManager.totalGamesGlobal++
-                ScoreManager.totalGamesAlfaNumeros++
-                ScoreManager.saveStatsGlobalAndAlfaNumeros()
 
                 ScoreManager.incrementConsecutiveFailuresAlfaNumerosPro(currentLevel)
 
@@ -923,12 +913,6 @@ class GameActivityAlfaNumerosPro : AppCompatActivity() {
 
             calculateTimeSpent()
 
-            ScoreManager.totalGamesGlobal++
-            ScoreManager.correctGamesGlobal++
-            ScoreManager.totalGamesAlfaNumeros++
-            ScoreManager.totalTimeAlfaNumeros += timeSpentInSeconds
-            ScoreManager.saveStatsGlobalAndAlfaNumeros()
-
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -948,10 +932,6 @@ class GameActivityAlfaNumerosPro : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
-
-                ScoreManager.totalGamesGlobal++
-                ScoreManager.totalGamesAlfaNumeros++
-                ScoreManager.saveStatsGlobalAndAlfaNumeros()
 
                 ScoreManager.incrementConsecutiveFailuresAlfaNumerosPro(currentLevel)
 

@@ -687,12 +687,6 @@ class GameActivityRomasPrincipiante : AppCompatActivity() {
 
             calculateTimeSpent()
 
-            ScoreManager.totalGamesGlobal++
-            ScoreManager.correctGamesGlobal++
-            ScoreManager.totalGamesRomas++
-            ScoreManager.totalTimeRomas += timeSpentInSeconds
-            ScoreManager.saveStatsGlobalAndRomas()
-
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -709,10 +703,6 @@ class GameActivityRomasPrincipiante : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
-
-                ScoreManager.totalGamesGlobal++
-                ScoreManager.totalGamesRomas++
-                ScoreManager.saveStatsGlobalAndRomas()
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     manualAnswerEditText.background = originalBackground
@@ -809,11 +799,6 @@ class GameActivityRomasPrincipiante : AppCompatActivity() {
 
             calculateTimeSpent()
 
-            ScoreManager.totalGamesGlobal++
-            ScoreManager.correctGamesGlobal++
-            ScoreManager.totalGamesRomas++
-            ScoreManager.totalTimeRomas += timeSpentInSeconds
-            ScoreManager.saveStatsGlobalAndRomas()
 
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
@@ -834,10 +819,6 @@ class GameActivityRomasPrincipiante : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
-
-                ScoreManager.totalGamesGlobal++
-                ScoreManager.totalGamesRomas++
-                ScoreManager.saveStatsGlobalAndRomas()
 
                 ScoreManager.incrementConsecutiveFailuresRomasPrincipiante(currentLevel)
                 Handler(Looper.getMainLooper()).postDelayed({

@@ -647,12 +647,6 @@ class GameActivityPro : AppCompatActivity() {
 
             calculateTimeSpent()
 
-            ScoreManager.totalGamesGlobal++
-            ScoreManager.correctGamesGlobal++
-            ScoreManager.totalGamesNumerosPlus++
-            ScoreManager.totalTimeNumerosPlus += timeSpentInSeconds
-            ScoreManager.saveStatsGlobalAndNumerosPlus()
-
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -669,10 +663,6 @@ class GameActivityPro : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
-
-                ScoreManager.totalGamesGlobal++
-                ScoreManager.totalGamesNumerosPlus++
-                ScoreManager.saveStatsGlobalAndNumerosPlus()
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     manualAnswerEditText.background = originalBackground
@@ -770,11 +760,6 @@ class GameActivityPro : AppCompatActivity() {
 
             calculateTimeSpent()
 
-            ScoreManager.totalGamesGlobal++
-            ScoreManager.correctGamesGlobal++
-            ScoreManager.totalGamesNumerosPlus++
-            ScoreManager.totalTimeNumerosPlus += timeSpentInSeconds
-            ScoreManager.saveStatsGlobalAndNumerosPlus()
 
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
@@ -796,9 +781,6 @@ class GameActivityPro : AppCompatActivity() {
 
                 calculateTimeSpent()
 
-                ScoreManager.totalGamesGlobal++
-                ScoreManager.totalGamesNumerosPlus++
-                ScoreManager.saveStatsGlobalAndNumerosPlus()
 
                 ScoreManager.incrementConsecutiveFailuresPro(currentLevel)
                 Handler(Looper.getMainLooper()).postDelayed({

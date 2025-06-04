@@ -673,13 +673,6 @@ class GameActivitySumaResta : AppCompatActivity() {
 
             calculateTimeSpent()
 
-            ScoreManager.totalGamesGlobal++
-            ScoreManager.correctGamesGlobal++
-            ScoreManager.totalGamesSumaResta++
-            ScoreManager.totalTimeSumaResta += timeSpentInSeconds
-            ScoreManager.saveStatsGlobalAndSumaResta()
-
-
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -696,10 +689,6 @@ class GameActivitySumaResta : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
-
-                ScoreManager.totalGamesGlobal++
-                ScoreManager.totalGamesSumaResta++
-                ScoreManager.saveStatsGlobalAndSumaResta()
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     manualAnswerEditText.background = originalBackground
@@ -794,13 +783,6 @@ class GameActivitySumaResta : AppCompatActivity() {
 
             calculateTimeSpent()
 
-            ScoreManager.totalGamesGlobal++
-            ScoreManager.correctGamesGlobal++
-            ScoreManager.totalGamesSumaResta++
-            ScoreManager.totalTimeSumaResta += timeSpentInSeconds
-            ScoreManager.saveStatsGlobalAndSumaResta()
-
-
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -820,11 +802,6 @@ class GameActivitySumaResta : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
-
-                ScoreManager.totalGamesGlobal++
-                ScoreManager.totalGamesSumaResta++
-                ScoreManager.saveStatsGlobalAndSumaResta()
-
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     navigateToLevelResult(false)

@@ -56,6 +56,7 @@ class LevelResultActivityPro : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         setContentView(R.layout.activity_level_result_pro)
 
@@ -103,6 +104,7 @@ class LevelResultActivityPro : AppCompatActivity() {
         unlockLevelTextView.visibility = View.INVISIBLE
         repeatLevelTextView.visibility = View.INVISIBLE
 
+
         if (isSuccessful) {
             handleSuccessScenario()
         } else {
@@ -111,12 +113,14 @@ class LevelResultActivityPro : AppCompatActivity() {
     }
 
     private fun handleSuccessScenario() {
+
         pointsEarned = calculatePoints()
 
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.totalGamesNumerosPlus += 1
         ScoreManager.totalGamesNumerosPlusPro += 1
         ScoreManager.correctGamesGlobal += 1
+
 
         // Nuevos contadores exitosos//
         ScoreManager.totalGamesNumerosPlusExitos += 1
@@ -155,9 +159,11 @@ class LevelResultActivityPro : AppCompatActivity() {
     }
 
     private fun handleFailureScenario() {
+
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.totalGamesNumerosPlus += 1
         ScoreManager.totalGamesNumerosPlusPro += 1
+
         ScoreManager.totalTimeNumerosPlus += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndNumerosPlus()
 

@@ -433,6 +433,7 @@ object ScoreManager {
 
 
     fun init(context: Context) {
+
         ensurePreferencesInitialized(context)
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         currentScore = preferences.getInt(KEY_CURRENT_SCORE, 0)
@@ -461,6 +462,7 @@ object ScoreManager {
 
     }
     fun initPrincipiante(context: Context) {
+
         ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesPrincipiante = context.getSharedPreferences(PREFS_NAME_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScorePrincipiante = preferencesPrincipiante.getInt(KEY_CURRENT_SCORE_PRINCIPIANTE, 0)
@@ -474,6 +476,7 @@ object ScoreManager {
         }
     }
     fun initPro(context: Context) {
+
         ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesPro = context.getSharedPreferences(PREFS_NAME_PRO, Context.MODE_PRIVATE)
         currentScorePro = preferencesPro.getInt(KEY_CURRENT_SCORE_PRO, 0)

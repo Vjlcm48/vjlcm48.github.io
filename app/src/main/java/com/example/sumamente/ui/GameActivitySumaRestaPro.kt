@@ -243,63 +243,63 @@ class GameActivitySumaRestaPro : AppCompatActivity() {
         when (level) {
             in 1..7 -> {
                 smallNumbers.addAll(generateRandomNumbers(3, 1..6))
-                largeNumbers.addAll(generateRandomNumbers(2, 7..12)) // Aumentado en 1 y rango hasta 12
+                largeNumbers.addAll(generateRandomNumbers(2, 7..12))
                 smallNegatives.addAll(generateRandomNumbers(2, -5..-1))
-                largeNegatives.addAll(generateRandomNumbers(1, -12..-6)) // Rango hasta -12
+                largeNegatives.addAll(generateRandomNumbers(1, -12..-6))
             }
             in 8..14 -> {
                 smallNumbers.addAll(generateRandomNumbers(4, 1..6))
-                largeNumbers.addAll(generateRandomNumbers(3, 7..12)) // Aumentado en 1 y rango hasta 12
+                largeNumbers.addAll(generateRandomNumbers(3, 7..12))
                 smallNegatives.addAll(generateRandomNumbers(2, -5..-1))
-                largeNegatives.addAll(generateRandomNumbers(2, -12..-6)) // Rango hasta -12
+                largeNegatives.addAll(generateRandomNumbers(2, -12..-6))
             }
             in 15..21 -> {
                 smallNumbers.addAll(generateRandomNumbers(5, 1..6))
-                largeNumbers.addAll(generateRandomNumbers(3, 7..12)) // Aumentado en 1 y rango hasta 12
+                largeNumbers.addAll(generateRandomNumbers(3, 7..12))
                 smallNegatives.addAll(generateRandomNumbers(3, -5..-1))
-                largeNegatives.addAll(generateRandomNumbers(2, -12..-6)) // Rango hasta -12
+                largeNegatives.addAll(generateRandomNumbers(2, -12..-6))
             }
             in 22..28 -> {
                 smallNumbers.addAll(generateRandomNumbers(5, 1..6))
-                largeNumbers.addAll(generateRandomNumbers(4, 7..12)) // Aumentado en 1 y rango hasta 12
+                largeNumbers.addAll(generateRandomNumbers(4, 7..12))
                 smallNegatives.addAll(generateRandomNumbers(3, -5..-1))
-                largeNegatives.addAll(generateRandomNumbers(3, -12..-6)) // Rango hasta -12
+                largeNegatives.addAll(generateRandomNumbers(3, -12..-6))
             }
             in 29..35 -> {
                 smallNumbers.addAll(generateRandomNumbers(4, 1..6))
-                largeNumbers.addAll(generateRandomNumbers(5, 7..12)) // Aumentado en 1 y rango hasta 12
+                largeNumbers.addAll(generateRandomNumbers(5, 7..12))
                 smallNegatives.addAll(generateRandomNumbers(4, -5..-1))
-                largeNegatives.addAll(generateRandomNumbers(3, -12..-6)) // Rango hasta -12
+                largeNegatives.addAll(generateRandomNumbers(3, -12..-6))
             }
             in 36..42 -> {
-                smallNumbers.addAll(generateRandomNumbers(8, 1..14)) // Rango hasta 14
-                largeNumbers.addAll(generateRandomNumbers(1, 7..12)) // Añadido 1 nuevo
+                smallNumbers.addAll(generateRandomNumbers(8, 1..14))
+                largeNumbers.addAll(generateRandomNumbers(1, 7..12))
                 smallNegatives.addAll(generateRandomNumbers(4, -5..-1))
-                largeNegatives.addAll(generateRandomNumbers(4, -12..-6)) // Rango hasta -12
+                largeNegatives.addAll(generateRandomNumbers(4, -12..-6))
             }
             in 43..49 -> {
-                smallNumbers.addAll(generateRandomNumbers(8, 1..14)) // Rango hasta 14
-                largeNumbers.addAll(generateRandomNumbers(1, 7..12)) // Añadido 1 nuevo
+                smallNumbers.addAll(generateRandomNumbers(8, 1..14))
+                largeNumbers.addAll(generateRandomNumbers(1, 7..12))
                 smallNegatives.addAll(generateRandomNumbers(5, -5..-1))
-                largeNegatives.addAll(generateRandomNumbers(4, -12..-6)) // Rango hasta -12
+                largeNegatives.addAll(generateRandomNumbers(4, -12..-6))
             }
             in 50..56 -> {
-                smallNumbers.addAll(generateRandomNumbers(8, 1..14)) // Rango hasta 14
-                largeNumbers.addAll(generateRandomNumbers(1, 7..12)) // Añadido 1 nuevo
+                smallNumbers.addAll(generateRandomNumbers(8, 1..14))
+                largeNumbers.addAll(generateRandomNumbers(1, 7..12))
                 smallNegatives.addAll(generateRandomNumbers(5, -5..-1))
-                largeNegatives.addAll(generateRandomNumbers(5, -12..-6)) // Rango hasta -12
+                largeNegatives.addAll(generateRandomNumbers(5, -12..-6))
             }
             in 57..63 -> {
-                smallNumbers.addAll(generateRandomNumbers(8, 1..14)) // Rango hasta 14
-                largeNumbers.addAll(generateRandomNumbers(1, 7..12)) // Añadido 1 nuevo
+                smallNumbers.addAll(generateRandomNumbers(8, 1..14))
+                largeNumbers.addAll(generateRandomNumbers(1, 7..12))
                 smallNegatives.addAll(generateRandomNumbers(6, -5..-1))
-                largeNegatives.addAll(generateRandomNumbers(5, -12..-6)) // Rango hasta -12
+                largeNegatives.addAll(generateRandomNumbers(5, -12..-6))
             }
             in 64..70 -> {
-                smallNumbers.addAll(generateRandomNumbers(8, 1..14)) // Rango hasta 14
-                largeNumbers.addAll(generateRandomNumbers(1, 7..12)) // Añadido 1 nuevo
+                smallNumbers.addAll(generateRandomNumbers(8, 1..14))
+                largeNumbers.addAll(generateRandomNumbers(1, 7..12))
                 smallNegatives.addAll(generateRandomNumbers(6, -5..-1))
-                largeNegatives.addAll(generateRandomNumbers(6, -12..-6)) // Rango hasta -12
+                largeNegatives.addAll(generateRandomNumbers(6, -12..-6))
             }
         }
 
@@ -350,7 +350,7 @@ class GameActivitySumaRestaPro : AppCompatActivity() {
     private fun calculateTimePerNumber() {
         timePerNumberList.clear()
         val level = currentLevel
-        // Cambiado de 1.65 a 1.55 segundos para el primer número
+
         var firstNumberTime = 1.55
 
         val blockNumber = (level - 1) / 5
@@ -472,7 +472,7 @@ class GameActivitySumaRestaPro : AppCompatActivity() {
 
         startHeartbeatAnimation()
 
-        chronometerTimer = object : CountDownTimer(5000, 75) { // Reducido de 7000 a 5000 ms para pro (más difícil)
+        chronometerTimer = object : CountDownTimer(5000, 75) {
             override fun onTick(millisUntilFinished: Long) {
                 val elapsedMillis = 5000 - millisUntilFinished
                 val elapsedSeconds = elapsedMillis / 1000.0
@@ -510,7 +510,7 @@ class GameActivitySumaRestaPro : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                val finalTime = "5.00" // Cambiado a 5.00
+                val finalTime = "5.00"
                 val spannableString = SpannableString(finalTime)
 
                 spannableString.setSpan(
@@ -663,13 +663,6 @@ class GameActivitySumaRestaPro : AppCompatActivity() {
 
             calculateTimeSpent()
 
-            ScoreManager.totalGamesGlobal++
-            ScoreManager.correctGamesGlobal++
-            ScoreManager.totalGamesSumaResta++
-            ScoreManager.totalTimeSumaResta += timeSpentInSeconds
-            ScoreManager.saveStatsGlobalAndSumaResta()
-
-
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -686,10 +679,6 @@ class GameActivitySumaRestaPro : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
-
-                ScoreManager.totalGamesGlobal++
-                ScoreManager.totalGamesSumaResta++
-                ScoreManager.saveStatsGlobalAndSumaResta()
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     manualAnswerEditText.background = originalBackground
@@ -759,7 +748,7 @@ class GameActivitySumaRestaPro : AppCompatActivity() {
     private fun startAnswerTimer() {
         startTime = System.currentTimeMillis()
         answerTimer?.cancel()
-        answerTimer = object : CountDownTimer(5000, 75) { // Reducido de 7000 a 5000 ms para pro (más difícil)
+        answerTimer = object : CountDownTimer(5000, 75) {
             override fun onTick(millisUntilFinished: Long) {}
             override fun onFinish() {
                 navigateToLevelResult(false)
@@ -784,13 +773,6 @@ class GameActivitySumaRestaPro : AppCompatActivity() {
 
             calculateTimeSpent()
 
-            ScoreManager.totalGamesGlobal++
-            ScoreManager.correctGamesGlobal++
-            ScoreManager.totalGamesSumaResta++
-            ScoreManager.totalTimeSumaResta += timeSpentInSeconds
-            ScoreManager.saveStatsGlobalAndSumaResta()
-
-
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -810,11 +792,6 @@ class GameActivitySumaRestaPro : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
-
-                ScoreManager.totalGamesGlobal++
-                ScoreManager.totalGamesSumaResta++
-                ScoreManager.saveStatsGlobalAndSumaResta()
-
 
                 ScoreManager.incrementConsecutiveFailuresSumaRestaPro(currentLevel)
 

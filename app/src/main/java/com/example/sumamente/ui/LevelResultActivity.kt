@@ -56,6 +56,7 @@ class LevelResultActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         setContentView(R.layout.activity_level_result)
 
@@ -111,6 +112,7 @@ class LevelResultActivity : AppCompatActivity() {
     }
 
     private fun handleSuccessScenario() {
+
         pointsEarned = calculatePoints()
 
         ScoreManager.totalGamesGlobal += 1
@@ -155,9 +157,11 @@ class LevelResultActivity : AppCompatActivity() {
     }
 
     private fun handleFailureScenario() {
+
         ScoreManager.totalGamesGlobal += 1
         ScoreManager.totalGamesNumerosPlus += 1
         ScoreManager.totalGamesNumerosPlusAvanzado += 1
+
         ScoreManager.totalTimeNumerosPlus += timeSpentInSeconds
         ScoreManager.saveStatsGlobalAndNumerosPlus()
 

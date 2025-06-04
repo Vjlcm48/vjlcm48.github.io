@@ -849,13 +849,6 @@ class GameActivityGenioPlusPro : AppCompatActivity() {
 
             calculateTimeSpent()
 
-            ScoreManager.totalGamesGlobal++
-            ScoreManager.correctGamesGlobal++
-            ScoreManager.totalGamesGenioPlus++
-            ScoreManager.totalTimeGenioPlus += timeSpentInSeconds
-            ScoreManager.saveStatsGlobalAndGenioPlus()
-
-
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -873,10 +866,6 @@ class GameActivityGenioPlusPro : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
-
-                ScoreManager.totalGamesGlobal++
-                ScoreManager.totalGamesGenioPlus++
-                ScoreManager.saveStatsGlobalAndGenioPlus()
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     manualAnswerEditText.background = originalBackground
@@ -974,13 +963,6 @@ class GameActivityGenioPlusPro : AppCompatActivity() {
 
             calculateTimeSpent()
 
-            ScoreManager.totalGamesGlobal++
-            ScoreManager.correctGamesGlobal++
-            ScoreManager.totalGamesGenioPlus++
-            ScoreManager.totalTimeGenioPlus += timeSpentInSeconds
-            ScoreManager.saveStatsGlobalAndGenioPlus()
-
-
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
             }, 1500)
@@ -1001,10 +983,6 @@ class GameActivityGenioPlusPro : AppCompatActivity() {
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
-
-                ScoreManager.totalGamesGlobal++
-                ScoreManager.totalGamesGenioPlus++
-                ScoreManager.saveStatsGlobalAndGenioPlus()
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     navigateToLevelResult(false)
