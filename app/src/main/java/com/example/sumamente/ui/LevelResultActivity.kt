@@ -142,6 +142,16 @@ class LevelResultActivity : AppCompatActivity() {
         ScoreManager.saveScore()
 
         showSuccessDialog()
+
+        val factor = obtenerFactorCorreccion(currentLevel)
+        val velocidad = 1 / ScoreManager.getTiempoPromedioNumerosPlus()
+        val precision = ScoreManager.correctGamesGlobal.toDouble() /
+                ScoreManager.totalGamesGlobal.toDouble()
+
+        val aporte = (factor * velocidad * precision * 5).toInt()
+        ScoreManager.lastIqComponentByGame["NumerosPlus"] = aporte
+        ScoreManager.saveStatsGlobalAndNumerosPlus()
+
     }
 
     private fun handleFailureScenario() {
@@ -153,6 +163,21 @@ class LevelResultActivity : AppCompatActivity() {
 
         updateScoreToZero()
         showFailureDialog()
+
+        ScoreManager.lastIqComponentByGame["NumerosPlus"] = 0
+        ScoreManager.saveStatsGlobalAndNumerosPlus()
+
+    }
+
+    private fun obtenerFactorCorreccion(maxNivel: Int): Double {
+        return when (maxNivel) {
+            in 1..14 -> 0.80
+            in 15..28 -> 0.85
+            in 29..42 -> 0.90
+            in 43..56 -> 0.95
+            in 57..70 -> 1.00
+            else -> 0.0
+        }
     }
 
     private fun calculatePoints(): Int {
@@ -514,6 +539,7 @@ class LevelResultActivity : AppCompatActivity() {
             mediaPlayer?.start()
         }
     }
+
 
     private fun navigateToInstructions() {
         val intent = Intent(this, InstructionsActivity::class.java)

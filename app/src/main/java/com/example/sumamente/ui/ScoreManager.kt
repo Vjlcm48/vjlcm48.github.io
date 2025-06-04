@@ -3,8 +3,14 @@ package com.example.sumamente.ui
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+
 
 object ScoreManager {
+
+    private val gson = Gson()
+    private val mapType = object : TypeToken<MutableMap<String, Int>>() {}.type
 
     lateinit var preferences: SharedPreferences
 
@@ -17,6 +23,8 @@ object ScoreManager {
     //Constantes globales//
     private const val KEY_TOTAL_GAMES_GLOBAL = "total_games_global"
     private const val KEY_CORRECT_GAMES_GLOBAL = "correct_games_global"
+
+    private const val KEY_LAST_IQ_COMPONENTS = "last_iq_components"
 
 
     private const val PREFS_NAME = "ScorePrefs"
@@ -183,6 +191,9 @@ object ScoreManager {
 
     var totalGamesGlobal: Int = 0
     var correctGamesGlobal: Int = 0
+
+    var lastIqComponentByGame: MutableMap<String, Int> = mutableMapOf()
+
 
     var currentScore: Int = 0
     var unlockedLevels: Int = 2
@@ -443,6 +454,10 @@ object ScoreManager {
         // --- NUEVOS CONTADORES DE ÉXITO ---
         totalGamesNumerosPlusExitos = preferences.getInt(KEY_TOTAL_GAMES_NUMEROS_PLUS_EXITOS, 0)
         totalTimeNumerosPlusExitos = preferences.getFloat(KEY_TOTAL_TIME_NUMEROS_PLUS_EXITOS, 0f).toDouble()
+
+        val storedMap = preferences.getString(KEY_LAST_IQ_COMPONENTS, null)
+        lastIqComponentByGame = if (storedMap != null) gson.fromJson(storedMap, mapType) else mutableMapOf()
+
     }
     fun initPrincipiante(context: Context) {
         ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
@@ -496,6 +511,9 @@ object ScoreManager {
 
         totalGamesDeciPlusExitos = preferences.getInt(KEY_TOTAL_GAMES_DECI_PLUS_EXITOS, 0)
         totalTimeDeciPlusExitos = preferences.getFloat(KEY_TOTAL_TIME_DECI_PLUS_EXITOS, 0f).toDouble()
+
+        val storedMap = preferences.getString(KEY_LAST_IQ_COMPONENTS, null)
+        lastIqComponentByGame = if (storedMap != null) gson.fromJson(storedMap, mapType) else mutableMapOf()
     }
     fun initDeciPlusPrincipiante(context: Context) {
         ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
@@ -549,6 +567,9 @@ object ScoreManager {
 
         totalGamesRomasExitos = preferences.getInt(KEY_TOTAL_GAMES_ROMAS_EXITOS, 0)
         totalTimeRomasExitos = preferences.getFloat(KEY_TOTAL_TIME_ROMAS_EXITOS, 0f).toDouble()
+
+        val storedMap = preferences.getString(KEY_LAST_IQ_COMPONENTS, null)
+        lastIqComponentByGame = if (storedMap != null) gson.fromJson(storedMap, mapType) else mutableMapOf()
     }
     fun initRomasPrincipiante(context: Context) {
         ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
@@ -602,6 +623,9 @@ object ScoreManager {
 
         totalGamesAlfaNumerosExitos = preferences.getInt(KEY_TOTAL_GAMES_ALFANUMEROS_EXITOS, 0)
         totalTimeAlfaNumerosExitos = preferences.getFloat(KEY_TOTAL_TIME_ALFANUMEROS_EXITOS, 0f).toDouble()
+
+        val storedMap = preferences.getString(KEY_LAST_IQ_COMPONENTS, null)
+        lastIqComponentByGame = if (storedMap != null) gson.fromJson(storedMap, mapType) else mutableMapOf()
     }
     fun initAlfaNumerosPrincipiante(context: Context) {
         ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
@@ -652,6 +676,9 @@ object ScoreManager {
 
         totalGamesSumaRestaExitos = preferences.getInt(KEY_TOTAL_GAMES_SUMARESTA_EXITOS, 0)
         totalTimeSumaRestaExitos = preferences.getFloat(KEY_TOTAL_TIME_SUMARESTA_EXITOS, 0f).toDouble()
+
+        val storedMap = preferences.getString(KEY_LAST_IQ_COMPONENTS, null)
+        lastIqComponentByGame = if (storedMap != null) gson.fromJson(storedMap, mapType) else mutableMapOf()
     }
 
     fun initSumaRestaPrincipiante(context: Context) {
@@ -706,6 +733,9 @@ object ScoreManager {
 
         totalGamesMasPlusExitos = preferences.getInt(KEY_TOTAL_GAMES_MAS_PLUS_EXITOS, 0)
         totalTimeMasPlusExitos = preferences.getFloat(KEY_TOTAL_TIME_MAS_PLUS_EXITOS, 0f).toDouble()
+
+        val storedMap = preferences.getString(KEY_LAST_IQ_COMPONENTS, null)
+        lastIqComponentByGame = if (storedMap != null) gson.fromJson(storedMap, mapType) else mutableMapOf()
     }
     fun initMasPlusPrincipiante(context: Context) {
         ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
@@ -759,6 +789,9 @@ object ScoreManager {
 
         totalGamesGenioPlusExitos = preferences.getInt(KEY_TOTAL_GAMES_GENIO_PLUS_EXITOS, 0)
         totalTimeGenioPlusExitos = preferences.getFloat(KEY_TOTAL_TIME_GENIO_PLUS_EXITOS, 0f).toDouble()
+
+        val storedMap = preferences.getString(KEY_LAST_IQ_COMPONENTS, null)
+        lastIqComponentByGame = if (storedMap != null) gson.fromJson(storedMap, mapType) else mutableMapOf()
     }
     fun initGenioPlusPrincipiante(context: Context) {
         ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
@@ -819,6 +852,8 @@ object ScoreManager {
             putInt("total_games_numeros_plus_avanzado", totalGamesNumerosPlusAvanzado)
             putInt("total_games_numeros_plus_principiante", totalGamesNumerosPlusPrincipiante)
             putInt("total_games_numeros_plus_pro", totalGamesNumerosPlusPro)
+
+            putString(KEY_LAST_IQ_COMPONENTS, gson.toJson(lastIqComponentByGame))
         }
     }
 
@@ -855,16 +890,19 @@ object ScoreManager {
         preferences.edit {
             putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
             putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
-        }
-        preferencesDeciPlus.edit {
+
             putInt(KEY_TOTAL_GAMES_DECI_PLUS, totalGamesDeciPlus)
             putFloat(KEY_TOTAL_TIME_DECI_PLUS, totalTimeDeciPlus.toFloat())
+
+            // --- NUEVOS CONTADORES DE ÉXITO ---
+            putInt(KEY_TOTAL_GAMES_DECI_PLUS_EXITOS, totalGamesDeciPlusExitos)
+            putFloat(KEY_TOTAL_TIME_DECI_PLUS_EXITOS, totalTimeDeciPlusExitos.toFloat())
+
             putInt("total_games_deci_plus_avanzado", totalGamesDeciPlusAvanzado)
             putInt("total_games_deci_plus_principiante", totalGamesDeciPlusPrincipiante)
             putInt("total_games_deci_plus_pro", totalGamesDeciPlusPro)
 
-            putInt(KEY_TOTAL_GAMES_DECI_PLUS_EXITOS, totalGamesDeciPlusExitos)
-            putFloat(KEY_TOTAL_TIME_DECI_PLUS_EXITOS, totalTimeDeciPlusExitos.toFloat())
+            putString(KEY_LAST_IQ_COMPONENTS, gson.toJson(lastIqComponentByGame))
         }
     }
     fun getTiempoPromedioDeciPlus(): Double {
@@ -897,18 +935,23 @@ object ScoreManager {
         preferences.edit {
             putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
             putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
-        }
-        preferencesRomas.edit {
+
             putInt(KEY_TOTAL_GAMES_ROMAS, totalGamesRomas)
             putFloat(KEY_TOTAL_TIME_ROMAS, totalTimeRomas.toFloat())
+
+            // --- NUEVOS CONTADORES DE ÉXITO ---
+            putInt(KEY_TOTAL_GAMES_ROMAS_EXITOS, totalGamesRomasExitos)
+            putFloat(KEY_TOTAL_TIME_ROMAS_EXITOS, totalTimeRomasExitos.toFloat())
+
             putInt("total_games_romas_avanzado", totalGamesRomasAvanzado)
             putInt("total_games_romas_principiante", totalGamesRomasPrincipiante)
             putInt("total_games_romas_pro", totalGamesRomasPro)
 
-            putInt(KEY_TOTAL_GAMES_ROMAS_EXITOS, totalGamesRomasExitos)
-            putFloat(KEY_TOTAL_TIME_ROMAS_EXITOS, totalTimeRomasExitos.toFloat())
+            // Mapa con los aportes IQ+ de cada juego
+            putString(KEY_LAST_IQ_COMPONENTS, gson.toJson(lastIqComponentByGame))
         }
     }
+
     fun getTiempoPromedioRomas(): Double {
         return if (totalGamesRomasExitos > 0) {
             totalTimeRomasExitos / totalGamesRomasExitos
@@ -939,16 +982,20 @@ object ScoreManager {
         preferences.edit {
             putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
             putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
-        }
-        preferencesAlfaNumeros.edit {
+
             putInt(KEY_TOTAL_GAMES_ALFANUMEROS, totalGamesAlfaNumeros)
             putFloat(KEY_TOTAL_TIME_ALFANUMEROS, totalTimeAlfaNumeros.toFloat())
+
+            // --- NUEVOS CONTADORES DE ÉXITO ---
+            putInt(KEY_TOTAL_GAMES_ALFANUMEROS_EXITOS, totalGamesAlfaNumerosExitos)
+            putFloat(KEY_TOTAL_TIME_ALFANUMEROS_EXITOS, totalTimeAlfaNumerosExitos.toFloat())
+
             putInt("total_games_alfanumeros_avanzado", totalGamesAlfaNumerosAvanzado)
             putInt("total_games_alfanumeros_principiante", totalGamesAlfaNumerosPrincipiante)
             putInt("total_games_alfanumeros_pro", totalGamesAlfaNumerosPro)
 
-            putInt(KEY_TOTAL_GAMES_ALFANUMEROS_EXITOS, totalGamesAlfaNumerosExitos)
-            putFloat(KEY_TOTAL_TIME_ALFANUMEROS_EXITOS, totalTimeAlfaNumerosExitos.toFloat())
+            // Mapa con los aportes IQ+ de cada juego
+            putString(KEY_LAST_IQ_COMPONENTS, gson.toJson(lastIqComponentByGame))
         }
     }
     fun getTiempoPromedioAlfaNumeros(): Double {
@@ -981,16 +1028,20 @@ object ScoreManager {
         preferences.edit {
             putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
             putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
-        }
-        preferencesSumaResta.edit {
+
             putInt(KEY_TOTAL_GAMES_SUMARESTA, totalGamesSumaResta)
             putFloat(KEY_TOTAL_TIME_SUMARESTA, totalTimeSumaResta.toFloat())
+
+            // --- NUEVOS CONTADORES DE ÉXITO ---
+            putInt(KEY_TOTAL_GAMES_SUMARESTA_EXITOS, totalGamesSumaRestaExitos)
+            putFloat(KEY_TOTAL_TIME_SUMARESTA_EXITOS, totalTimeSumaRestaExitos.toFloat())
+
             putInt("total_games_sumaresta_avanzado", totalGamesSumaRestaAvanzado)
             putInt("total_games_sumaresta_principiante", totalGamesSumaRestaPrincipiante)
             putInt("total_games_sumaresta_pro", totalGamesSumaRestaPro)
 
-            putInt(KEY_TOTAL_GAMES_SUMARESTA_EXITOS, totalGamesSumaRestaExitos)
-            putFloat(KEY_TOTAL_TIME_SUMARESTA_EXITOS, totalTimeSumaRestaExitos.toFloat())
+            // Mapa con los aportes IQ+ de cada juego
+            putString(KEY_LAST_IQ_COMPONENTS, gson.toJson(lastIqComponentByGame))
         }
     }
     fun getTiempoPromedioSumaResta(): Double {
@@ -1023,16 +1074,20 @@ object ScoreManager {
         preferences.edit {
             putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
             putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
-        }
-        preferencesMasPlus.edit {
+
             putInt(KEY_TOTAL_GAMES_MAS_PLUS, totalGamesMasPlus)
             putFloat(KEY_TOTAL_TIME_MAS_PLUS, totalTimeMasPlus.toFloat())
+
+            // --- NUEVOS CONTADORES DE ÉXITO ---
+            putInt(KEY_TOTAL_GAMES_MAS_PLUS_EXITOS, totalGamesMasPlusExitos)
+            putFloat(KEY_TOTAL_TIME_MAS_PLUS_EXITOS, totalTimeMasPlusExitos.toFloat())
+
             putInt("total_games_masplus_avanzado", totalGamesMasPlusAvanzado)
             putInt("total_games_masplus_principiante", totalGamesMasPlusPrincipiante)
             putInt("total_games_masplus_pro", totalGamesMasPlusPro)
 
-            putInt(KEY_TOTAL_GAMES_MAS_PLUS_EXITOS, totalGamesMasPlusExitos)
-            putFloat(KEY_TOTAL_TIME_MAS_PLUS_EXITOS, totalTimeMasPlusExitos.toFloat())
+            // Mapa con los aportes IQ+ de cada juego
+            putString(KEY_LAST_IQ_COMPONENTS, gson.toJson(lastIqComponentByGame))
         }
     }
     fun getTiempoPromedioMasPlus(): Double {
@@ -1065,18 +1120,23 @@ object ScoreManager {
         preferences.edit {
             putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
             putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
-        }
-        preferencesGenioPlus.edit {
+
             putInt(KEY_TOTAL_GAMES_GENIO_PLUS, totalGamesGenioPlus)
             putFloat(KEY_TOTAL_TIME_GENIO_PLUS, totalTimeGenioPlus.toFloat())
+
+            // --- NUEVOS CONTADORES DE ÉXITO ---
+            putInt(KEY_TOTAL_GAMES_GENIO_PLUS_EXITOS, totalGamesGenioPlusExitos)
+            putFloat(KEY_TOTAL_TIME_GENIO_PLUS_EXITOS, totalTimeGenioPlusExitos.toFloat())
+
             putInt("total_games_genioplus_avanzado", totalGamesGenioPlusAvanzado)
             putInt("total_games_genioplus_principiante", totalGamesGenioPlusPrincipiante)
             putInt("total_games_genioplus_pro", totalGamesGenioPlusPro)
 
-            putInt(KEY_TOTAL_GAMES_GENIO_PLUS_EXITOS, totalGamesGenioPlusExitos)
-            putFloat(KEY_TOTAL_TIME_GENIO_PLUS_EXITOS, totalTimeGenioPlusExitos.toFloat())
+            // Mapa con los aportes IQ+ de cada juego
+            putString(KEY_LAST_IQ_COMPONENTS, gson.toJson(lastIqComponentByGame))
         }
     }
+
     fun getTiempoPromedioGenioPlus(): Double {
         return if (totalGamesGenioPlusExitos > 0) {
             totalTimeGenioPlusExitos / totalGamesGenioPlusExitos
@@ -1084,8 +1144,7 @@ object ScoreManager {
     }
 
 
-
-    fun getCompletedLevels(): Set<Int> {
+    private fun getCompletedLevels(): Set<Int> {
         return preferences.getStringSet(KEY_COMPLETED_LEVELS, emptySet())
             ?.map { it.toInt() }?.toSet() ?: emptySet()
     }
@@ -2445,6 +2504,8 @@ object ScoreManager {
     fun resetStatsAndTimes() {
         totalGamesGlobal = 0
         correctGamesGlobal = 0
+
+        lastIqComponentByGame.clear()
 
         totalGamesNumerosPlus = 0
         totalTimeNumerosPlus = 0.0

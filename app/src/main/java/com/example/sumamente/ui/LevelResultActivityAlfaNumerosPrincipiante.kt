@@ -140,6 +140,14 @@ class LevelResultActivityAlfaNumerosPrincipiante : AppCompatActivity() {
         ScoreManager.saveScoreAlfaNumerosPrincipiante()
 
         showSuccessDialog()
+
+        val factor = obtenerFactorCorreccion(currentLevel)
+        val velocidad = 1 / ScoreManager.getTiempoPromedioAlfaNumeros()
+        val precision = ScoreManager.correctGamesGlobal.toDouble() / ScoreManager.totalGamesGlobal.toDouble()
+
+        val aporte = (factor * velocidad * precision * 7).toInt()
+        ScoreManager.lastIqComponentByGame["AlfaNumeros"] = aporte
+        ScoreManager.saveStatsGlobalAndAlfaNumeros()
     }
 
     private fun handleFailureScenario() {
@@ -151,6 +159,20 @@ class LevelResultActivityAlfaNumerosPrincipiante : AppCompatActivity() {
 
         updateScoreToZero()
         showFailureDialog()
+
+        ScoreManager.lastIqComponentByGame["AlfaNumeros"] = 0
+        ScoreManager.saveStatsGlobalAndAlfaNumeros()
+    }
+
+    private fun obtenerFactorCorreccion(maxNivel: Int): Double {
+        return when (maxNivel) {
+            in 1..14 -> 0.80
+            in 15..28 -> 0.85
+            in 29..42 -> 0.90
+            in 43..56 -> 0.95
+            in 57..70 -> 1.00
+            else -> 0.0
+        }
     }
 
     private fun calculatePoints(): Int {

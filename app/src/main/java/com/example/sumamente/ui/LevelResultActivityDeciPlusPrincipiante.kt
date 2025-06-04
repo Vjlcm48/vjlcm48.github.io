@@ -143,6 +143,14 @@ class LevelResultActivityDeciPlusPrincipiante : AppCompatActivity() {
         ScoreManager.saveScoreDeciPlusPrincipiante()
 
         showSuccessDialog()
+
+        val factor = obtenerFactorCorreccion(currentLevel)
+        val velocidad = 1 / ScoreManager.getTiempoPromedioDeciPlus()
+        val precision = ScoreManager.correctGamesGlobal.toDouble() / ScoreManager.totalGamesGlobal.toDouble()
+
+        val aporte = (factor * velocidad * precision * 4).toInt()
+        ScoreManager.lastIqComponentByGame["DeciPlus"] = aporte
+        ScoreManager.saveStatsGlobalAndDeciPlus()
     }
 
     private fun handleFailureScenario() {
@@ -154,6 +162,20 @@ class LevelResultActivityDeciPlusPrincipiante : AppCompatActivity() {
 
         updateScoreToZero()
         showFailureDialog()
+
+        ScoreManager.lastIqComponentByGame["DeciPlus"] = 0
+        ScoreManager.saveStatsGlobalAndDeciPlus()
+    }
+
+    private fun obtenerFactorCorreccion(maxNivel: Int): Double {
+        return when (maxNivel) {
+            in 1..14 -> 0.80
+            in 15..28 -> 0.85
+            in 29..42 -> 0.90
+            in 43..56 -> 0.95
+            in 57..70 -> 1.00
+            else -> 0.0
+        }
     }
 
     private fun calculatePoints(): Int {

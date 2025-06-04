@@ -25,6 +25,7 @@ import java.util.Locale
 import java.util.regex.Pattern
 import kotlin.random.Random
 
+
 class IQPlusRankingActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
@@ -325,30 +326,9 @@ class IQPlusRankingActivity : AppCompatActivity() {
     private fun getUsuarioActualPais(): String =
         sharedPreferences.getString("savedCountryCode", "us") ?: "us"
 
-    private fun calcularIQPlus(): Double {
-        val precisionGlobal = ScoreManager.getPrecisionGlobal()
-        val tiempoPromedio = ScoreManager.getTiempoPromedioGlobal()
-        val velocidadGlobal = if (tiempoPromedio > 0.0) 1.0 / tiempoPromedio else 1.0
+    private fun calcularIQPlus(): Double =
+        ScoreManager.lastIqComponentByGame.values.sum().toDouble()
 
-        var sumaIQ = 0.0
-        for (combo in IQPlusCombos.ALL) {
-            val maxNivel = ScoreManager.getMaxLevelForCombo(combo.juego, combo.grado)
-            val factorCorreccion = obtenerFactorCorreccion(maxNivel)
-            sumaIQ += combo.peso * precisionGlobal * velocidadGlobal * factorCorreccion
-        }
-            return String.format(Locale.US, "%.3f", sumaIQ).toDouble()
-    }
-
-    private fun obtenerFactorCorreccion(maxNivel: Int): Double {
-        return when (maxNivel) {
-            in 1..14 -> 0.80
-            in 15..28 -> 0.85
-            in 29..42 -> 0.90
-            in 43..56 -> 0.95
-            in 57..70 -> 1.00
-            else -> 0.0
-        }
-    }
 
     private fun haJugadoTodosLosCombos(): Boolean {
         return ScoreManager.haJugadoAlMenosUnNivelEnCadaJuegoYGrado()

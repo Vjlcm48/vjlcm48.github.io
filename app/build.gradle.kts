@@ -76,5 +76,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.lottie)
     implementation(libs.photoview)
+    implementation(libs.gson)
 
 }
