@@ -782,6 +782,13 @@ class TutorialActivityGenioPlus : AppCompatActivity() {
     }
 
     private fun showTooltip(anchorView: View, titleResId: Int, messageResId: Int) {
+
+        if (isFinishing || isDestroyed ||
+            anchorView.windowToken == null || !anchorView.isAttachedToWindow) {
+            return
+        }
+
+
         val inflater = LayoutInflater.from(this)
         val popupView = inflater.inflate(R.layout.dialog_tooltip, rootLayout, false)
         val titleTextView = popupView.findViewById<TextView>(R.id.dialog_title)
@@ -877,6 +884,7 @@ class TutorialActivityGenioPlus : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         releaseAllMediaPlayers()
+        handler.removeCallbacksAndMessages(null)
     }
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {

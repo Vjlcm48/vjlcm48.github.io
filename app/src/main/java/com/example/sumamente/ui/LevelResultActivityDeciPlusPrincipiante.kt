@@ -44,6 +44,7 @@ class LevelResultActivityDeciPlusPrincipiante : AppCompatActivity() {
     private var isSuccessful = false
     private var attempts = 0
     private var timeSpentInSeconds = 0.0
+    private var rawTimeSpent = 0.0 // C1 //
     private var pointsEarned = 0
     private var mediaPlayer: MediaPlayer? = null
 
@@ -66,6 +67,14 @@ class LevelResultActivityDeciPlusPrincipiante : AppCompatActivity() {
         isSuccessful = intent.getBooleanExtra("IS_SUCCESSFUL", false)
         attempts = intent.getIntExtra("ATTEMPTS", 0)
         timeSpentInSeconds = intent.getDoubleExtra("TIME_SPENT", 0.0)
+
+        // C2 //
+        rawTimeSpent = intent.getDoubleExtra("TIME_SPENT", 0.0)
+        val useManualAnswer = intent.getBooleanExtra("USE_MANUAL_ANSWER", false)
+        timeSpentInSeconds = rawTimeSpent
+        if (useManualAnswer) {
+            timeSpentInSeconds *= 0.7
+        }
 
         numberList = intent.getDoubleArrayExtra("NUMBER_LIST")
         correctAnswer = intent.getDoubleExtra("CORRECT_ANSWER", 0.0)
@@ -205,17 +214,13 @@ class LevelResultActivityDeciPlusPrincipiante : AppCompatActivity() {
         val precisionGlobal = ScoreManager.getPrecisionGlobal()
         val velocidadBonus = 50.0
 
-
-        var tiempoPromedio = if (ScoreManager.totalGamesDeciPlus > 0) {
+        val tiempoPromedio = if (ScoreManager.totalGamesDeciPlus > 0) {
             (ScoreManager.totalTimeDeciPlus + timeSpentInSeconds) / (ScoreManager.totalGamesDeciPlus + 1)
         } else {
             timeSpentInSeconds
         }
 
-        val useManualAnswer = intent.getBooleanExtra("USE_MANUAL_ANSWER", false)
-        if (useManualAnswer) {
-            tiempoPromedio *= 0.7
-        }
+        // C3 ELIMINAR EL 0.7 //
 
         val puntosPorVelocidad = if (tiempoPromedio > 0) {
             (velocidadBonus * (1.0 / tiempoPromedio))
@@ -354,7 +359,8 @@ class LevelResultActivityDeciPlusPrincipiante : AppCompatActivity() {
 
                                         override fun onAnimationEnd(animation: android.view.animation.Animation?) {
 
-                                            val formattedTime = String.format(Locale.getDefault(), "%.2f", timeSpentInSeconds)
+                                            // Cambio de variable para tiempo real mostrado C4 //
+                                            val formattedTime = String.format(Locale.getDefault(), "%.2f", rawTimeSpent)
                                             val tiempoEmpleadoText = getString(R.string.tiempo_empleado, formattedTime)
                                             val spannableTime = SpannableString(tiempoEmpleadoText)
                                             val startIdxTime = tiempoEmpleadoText.indexOf(formattedTime)
