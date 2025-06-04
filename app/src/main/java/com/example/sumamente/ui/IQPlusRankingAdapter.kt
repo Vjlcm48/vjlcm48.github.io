@@ -47,9 +47,7 @@ class IQPlusRankingAdapter(
             holder.ivFlag.setImageResource(R.drawable.ve)
         }
 
-
-        holder.tvIQPlus.text = String.format(Locale.ROOT, "%.3f", item.iqPlus)
-
+        holder.tvIQPlus.text = String.format(Locale.ROOT, "%.2f", item.iqPlus)
 
         if (item.isCurrentUser) {
 
@@ -123,13 +121,13 @@ class IQPlusRankingAdapter(
                             .scaleY(1f)
                             .setDuration(100)
                             .withEndAction {
-                                // 2. Lanza el diálogo solo después de la animación
+
                                 onIQPlusClick.invoke()
                             }
                             .start()
                     }
                     .start()
-                // (Opcional: para dar un efecto extra, puedes también cambiar color temporalmente o agregar sombra, si quieres más instrucciones sobre esto avísame)
+
             }
         }
 

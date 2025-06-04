@@ -10,7 +10,8 @@ import com.google.gson.reflect.TypeToken
 object ScoreManager {
 
     private val gson = Gson()
-    private val mapType = object : TypeToken<MutableMap<String, Int>>() {}.type
+    private val mapType = object : TypeToken<MutableMap<String, Double>>() {}.type
+
 
     lateinit var preferences: SharedPreferences
 
@@ -192,7 +193,7 @@ object ScoreManager {
     var totalGamesGlobal: Int = 0
     var correctGamesGlobal: Int = 0
 
-    var lastIqComponentByGame: MutableMap<String, Int> = mutableMapOf()
+    var lastIqComponentByGame: MutableMap<String, Double> = mutableMapOf()
 
 
     var currentScore: Int = 0
@@ -947,7 +948,6 @@ object ScoreManager {
             putInt("total_games_romas_principiante", totalGamesRomasPrincipiante)
             putInt("total_games_romas_pro", totalGamesRomasPro)
 
-            // Mapa con los aportes IQ+ de cada juego
             putString(KEY_LAST_IQ_COMPONENTS, gson.toJson(lastIqComponentByGame))
         }
     }
@@ -994,7 +994,7 @@ object ScoreManager {
             putInt("total_games_alfanumeros_principiante", totalGamesAlfaNumerosPrincipiante)
             putInt("total_games_alfanumeros_pro", totalGamesAlfaNumerosPro)
 
-            // Mapa con los aportes IQ+ de cada juego
+
             putString(KEY_LAST_IQ_COMPONENTS, gson.toJson(lastIqComponentByGame))
         }
     }
@@ -1040,7 +1040,6 @@ object ScoreManager {
             putInt("total_games_sumaresta_principiante", totalGamesSumaRestaPrincipiante)
             putInt("total_games_sumaresta_pro", totalGamesSumaRestaPro)
 
-            // Mapa con los aportes IQ+ de cada juego
             putString(KEY_LAST_IQ_COMPONENTS, gson.toJson(lastIqComponentByGame))
         }
     }
@@ -1086,7 +1085,6 @@ object ScoreManager {
             putInt("total_games_masplus_principiante", totalGamesMasPlusPrincipiante)
             putInt("total_games_masplus_pro", totalGamesMasPlusPro)
 
-            // Mapa con los aportes IQ+ de cada juego
             putString(KEY_LAST_IQ_COMPONENTS, gson.toJson(lastIqComponentByGame))
         }
     }
@@ -1132,7 +1130,6 @@ object ScoreManager {
             putInt("total_games_genioplus_principiante", totalGamesGenioPlusPrincipiante)
             putInt("total_games_genioplus_pro", totalGamesGenioPlusPro)
 
-            // Mapa con los aportes IQ+ de cada juego
             putString(KEY_LAST_IQ_COMPONENTS, gson.toJson(lastIqComponentByGame))
         }
     }
@@ -1142,7 +1139,6 @@ object ScoreManager {
             totalTimeGenioPlusExitos / totalGamesGenioPlusExitos
         } else 1.0
     }
-
 
     private fun getCompletedLevels(): Set<Int> {
         return preferences.getStringSet(KEY_COMPLETED_LEVELS, emptySet())

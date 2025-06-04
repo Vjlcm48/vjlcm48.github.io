@@ -20,6 +20,7 @@ import com.airbnb.lottie.LottieAnimationView
 import com.example.sumamente.R
 import java.util.Locale
 import kotlin.math.max
+import kotlin.math.roundToInt
 
 class LevelResultActivityMasPlusPrincipiante : AppCompatActivity() {
 
@@ -146,10 +147,10 @@ class LevelResultActivityMasPlusPrincipiante : AppCompatActivity() {
         showSuccessDialog()
 
         val factor = obtenerFactorCorreccion(currentLevel)
-        val velocidad = 1 / ScoreManager.getTiempoPromedioMasPlus()
+        val velocidad = 1 / ScoreManager.getTiempoPromedioGlobal()
         val precision = ScoreManager.correctGamesGlobal.toDouble() / ScoreManager.totalGamesGlobal.toDouble()
 
-        val aporte = (factor * velocidad * precision * 10).toInt()
+        val aporte = ((factor * velocidad * precision * 10) * 100).roundToInt() / 100.0
         ScoreManager.lastIqComponentByGame["MasPlus"] = aporte
         ScoreManager.saveStatsGlobalAndMasPlus()
     }
@@ -164,7 +165,7 @@ class LevelResultActivityMasPlusPrincipiante : AppCompatActivity() {
         updateScoreToZero()
         showFailureDialog()
 
-        ScoreManager.lastIqComponentByGame["MasPlus"] = 0
+        ScoreManager.lastIqComponentByGame["MasPlus"] = 0.0
         ScoreManager.saveStatsGlobalAndMasPlus()
     }
 

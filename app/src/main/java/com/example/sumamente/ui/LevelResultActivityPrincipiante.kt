@@ -20,6 +20,7 @@ import com.airbnb.lottie.LottieAnimationView
 import com.example.sumamente.R
 import java.util.Locale
 import kotlin.math.max
+import kotlin.math.roundToInt
 
 class LevelResultActivityPrincipiante : AppCompatActivity() {
 
@@ -144,11 +145,11 @@ class LevelResultActivityPrincipiante : AppCompatActivity() {
         showSuccessDialog()
 
         val factor = obtenerFactorCorreccion(currentLevel)
-        val velocidad = 1 / ScoreManager.getTiempoPromedioNumerosPlus()
+        val velocidad = 1 / ScoreManager.getTiempoPromedioGlobal()
         val precision = ScoreManager.correctGamesGlobal.toDouble() /
                 ScoreManager.totalGamesGlobal.toDouble()
 
-        val aporte = (factor * velocidad * precision * 2).toInt()
+        val aporte = ((factor * velocidad * precision * 2) * 100).roundToInt() / 100.0
         ScoreManager.lastIqComponentByGame["NumerosPlus"] = aporte
         ScoreManager.saveStatsGlobalAndNumerosPlus()
     }
@@ -163,7 +164,7 @@ class LevelResultActivityPrincipiante : AppCompatActivity() {
         updateScoreToZero()
         showFailureDialog()
 
-        ScoreManager.lastIqComponentByGame["NumerosPlus"] = 0
+        ScoreManager.lastIqComponentByGame["NumerosPlus"] = 0.0
         ScoreManager.saveStatsGlobalAndNumerosPlus()
     }
 
