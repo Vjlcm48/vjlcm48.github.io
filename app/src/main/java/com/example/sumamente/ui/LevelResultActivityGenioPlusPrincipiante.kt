@@ -145,7 +145,7 @@ class LevelResultActivityGenioPlusPrincipiante : AppCompatActivity() {
         val precision = ScoreManager.correctGamesGlobal.toDouble() / ScoreManager.totalGamesGlobal.toDouble()
 
         val aporte = ((factor * velocidad * precision * 12) * 100).roundToInt() / 100.0
-        ScoreManager.lastIqComponentByGame["GenioPlus"] = aporte
+        ScoreManager.updateIqComponent("GenioPlus", "Principiante", aporte)
         ScoreManager.saveStatsGlobalAndGenioPlus()
     }
 
@@ -159,7 +159,7 @@ class LevelResultActivityGenioPlusPrincipiante : AppCompatActivity() {
         updateScoreToZero()
         showFailureDialog()
 
-        ScoreManager.lastIqComponentByGame["GenioPlus"] = 0.0
+        ScoreManager.updateIqComponent("GenioPlus", "Principiante", 0.0)
         ScoreManager.saveStatsGlobalAndGenioPlus()
     }
 
@@ -406,7 +406,7 @@ class LevelResultActivityGenioPlusPrincipiante : AppCompatActivity() {
 
         rankingChangedTextView.setOnClickListener {
             finish()
-            navigateToHome()
+            navigateToClassification()
         }
 
         repeatLevelTextView.setOnClickListener {
@@ -458,7 +458,7 @@ class LevelResultActivityGenioPlusPrincipiante : AppCompatActivity() {
 
         rankingChangedTextView.setOnClickListener {
             finish()
-            navigateToHome()
+            navigateToClassification()
         }
 
         repeatLevelTextView.setOnClickListener {
@@ -553,4 +553,11 @@ class LevelResultActivityGenioPlusPrincipiante : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+    private fun navigateToClassification() {
+        val intent = Intent(this, ClassificationActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
 }

@@ -156,7 +156,7 @@ class LevelResultActivitySumaRestaPro : AppCompatActivity() {
         val precision = ScoreManager.correctGamesGlobal.toDouble() / ScoreManager.totalGamesGlobal.toDouble()
 
         val aporte = ((factor * velocidad * precision * 14) * 100).roundToInt() / 100.0
-        ScoreManager.lastIqComponentByGame["SumaResta"] = aporte
+        ScoreManager.updateIqComponent("SumaResta", "Pro", aporte)
         ScoreManager.saveStatsGlobalAndSumaResta()
 
     }
@@ -171,7 +171,7 @@ class LevelResultActivitySumaRestaPro : AppCompatActivity() {
         updateScoreToZero()
         showFailureDialog()
 
-        ScoreManager.lastIqComponentByGame["SumaResta"] = 0.0
+        ScoreManager.updateIqComponent("SumaResta", "Pro", 0.0)
         ScoreManager.saveStatsGlobalAndSumaResta()
     }
 
@@ -418,7 +418,7 @@ class LevelResultActivitySumaRestaPro : AppCompatActivity() {
 
         rankingChangedTextView.setOnClickListener {
             finish()
-            navigateToHome()
+            navigateToClassification()
         }
 
         repeatLevelTextView.setOnClickListener {
@@ -471,7 +471,7 @@ class LevelResultActivitySumaRestaPro : AppCompatActivity() {
 
         rankingChangedTextView.setOnClickListener {
             finish()
-            navigateToHome()
+            navigateToClassification()
         }
 
         repeatLevelTextView.setOnClickListener {
@@ -559,4 +559,11 @@ class LevelResultActivitySumaRestaPro : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+    private fun navigateToClassification() {
+        val intent = Intent(this, ClassificationActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
 }

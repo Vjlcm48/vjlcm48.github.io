@@ -156,7 +156,7 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
         val precision = ScoreManager.correctGamesGlobal.toDouble() / ScoreManager.totalGamesGlobal.toDouble()
 
         val aporte = ((factor * velocidad * precision * 10) * 100).roundToInt() / 100.0
-        ScoreManager.lastIqComponentByGame["AlfaNumeros"] = aporte
+        ScoreManager.updateIqComponent("AlfaNumeros", "Avanzado", aporte)
         ScoreManager.saveStatsGlobalAndAlfaNumeros()
 
     }
@@ -171,7 +171,7 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
         updateScoreToZero()
         showFailureDialog()
 
-        ScoreManager.lastIqComponentByGame["AlfaNumeros"] = 0.0
+        ScoreManager.updateIqComponent("AlfaNumeros", "Avanzado", 0.0)
         ScoreManager.saveStatsGlobalAndAlfaNumeros()
     }
 
@@ -420,7 +420,7 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
 
         rankingChangedTextView.setOnClickListener {
             finish()
-            navigateToHome()
+            navigateToClassification()
         }
 
         repeatLevelTextView.setOnClickListener {
@@ -473,7 +473,7 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
 
         rankingChangedTextView.setOnClickListener {
             finish()
-            navigateToHome()
+            navigateToClassification()
         }
 
         repeatLevelTextView.setOnClickListener {
@@ -561,4 +561,11 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+    private fun navigateToClassification() {
+        val intent = Intent(this, ClassificationActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
 }

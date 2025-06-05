@@ -158,7 +158,7 @@ class LevelResultActivityDeciPlusPro : AppCompatActivity() {
                 ScoreManager.totalGamesGlobal.toDouble()
 
         val aporte = ((factor * velocidad * precision * 10) * 100).roundToInt() / 100.0
-        ScoreManager.lastIqComponentByGame["DeciPlus"] = aporte
+        ScoreManager.updateIqComponent("DeciPlus", "Pro", aporte)
         ScoreManager.saveStatsGlobalAndDeciPlus()
 
     }
@@ -173,7 +173,7 @@ class LevelResultActivityDeciPlusPro : AppCompatActivity() {
         updateScoreToZero()
         showFailureDialog()
 
-        ScoreManager.lastIqComponentByGame["DeciPlus"] = 0.0
+        ScoreManager.updateIqComponent("DeciPlus", "Pro", 0.0)
         ScoreManager.saveStatsGlobalAndDeciPlus()
     }
 
@@ -423,7 +423,7 @@ class LevelResultActivityDeciPlusPro : AppCompatActivity() {
 
         rankingChangedTextView.setOnClickListener {
             finish()
-            navigateToHome()
+            navigateToClassification()
         }
 
         repeatLevelTextView.setOnClickListener {
@@ -476,7 +476,7 @@ class LevelResultActivityDeciPlusPro : AppCompatActivity() {
 
         rankingChangedTextView.setOnClickListener {
             finish()
-            navigateToHome()
+            navigateToClassification()
         }
 
         repeatLevelTextView.setOnClickListener {
@@ -564,4 +564,11 @@ class LevelResultActivityDeciPlusPro : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+    private fun navigateToClassification() {
+        val intent = Intent(this, ClassificationActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
 }

@@ -602,7 +602,7 @@ class GameActivityGenioPlus : AppCompatActivity() {
     private fun calculateTimePerElement() {
         timePerElementList.clear()
         val level = currentLevel
-        var firstNumberTime = 2.20
+        var firstNumberTime = 2.75
 
         val blockNumber = (level - 1) / 5
         firstNumberTime -= blockNumber * 0.07

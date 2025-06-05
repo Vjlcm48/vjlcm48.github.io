@@ -157,7 +157,7 @@ class LevelResultActivityRomasPrincipiante : AppCompatActivity() {
         val precision = ScoreManager.correctGamesGlobal.toDouble() / ScoreManager.totalGamesGlobal.toDouble()
 
         val aporte = ((factor * velocidad * precision * 6) * 100).roundToInt() / 100.0
-        ScoreManager.lastIqComponentByGame["Romas"] = aporte
+        ScoreManager.updateIqComponent("Romas", "Principiante", aporte)
         ScoreManager.saveStatsGlobalAndRomas()
     }
 
@@ -171,7 +171,7 @@ class LevelResultActivityRomasPrincipiante : AppCompatActivity() {
         updateScoreToZero()
         showFailureDialog()
 
-        ScoreManager.lastIqComponentByGame["Romas"] = 0.0
+        ScoreManager.updateIqComponent("Romas", "Principiante", 0.0)
         ScoreManager.saveStatsGlobalAndRomas()
     }
 
@@ -420,7 +420,7 @@ class LevelResultActivityRomasPrincipiante : AppCompatActivity() {
 
         rankingChangedTextView.setOnClickListener {
             finish()
-            navigateToHome()
+            navigateToClassification()
         }
 
         repeatLevelTextView.setOnClickListener {
@@ -473,7 +473,7 @@ class LevelResultActivityRomasPrincipiante : AppCompatActivity() {
 
         rankingChangedTextView.setOnClickListener {
             finish()
-            navigateToHome()
+            navigateToClassification()
         }
 
         repeatLevelTextView.setOnClickListener {
@@ -561,4 +561,11 @@ class LevelResultActivityRomasPrincipiante : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+    private fun navigateToClassification() {
+        val intent = Intent(this, ClassificationActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
 }

@@ -2669,6 +2669,10 @@ object ScoreManager {
         }
     }
 
+    fun updateIqComponent(juego: String, grado: String, valor: Double) {
+        lastIqComponentByGame["${juego}_${grado}"] = valor
+    }
+
 }
 
 

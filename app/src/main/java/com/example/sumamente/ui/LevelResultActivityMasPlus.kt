@@ -160,7 +160,7 @@ class LevelResultActivityMasPlus : AppCompatActivity() {
         val precision = ScoreManager.correctGamesGlobal.toDouble() / ScoreManager.totalGamesGlobal.toDouble()
 
         val aporte = ((factor * velocidad * precision * 13) * 100).roundToInt() / 100.0
-        ScoreManager.lastIqComponentByGame["MasPlus"] = aporte
+        ScoreManager.updateIqComponent("MasPlus", "Avanzado", aporte)
         ScoreManager.saveStatsGlobalAndMasPlus()
     }
 
@@ -174,7 +174,7 @@ class LevelResultActivityMasPlus : AppCompatActivity() {
         updateScoreToZero()
         showFailureDialog()
 
-        ScoreManager.lastIqComponentByGame["MasPlus"] = 0.0
+        ScoreManager.updateIqComponent("MasPlus", "Avanzado", 0.0)
         ScoreManager.saveStatsGlobalAndMasPlus()
     }
 
@@ -422,7 +422,7 @@ class LevelResultActivityMasPlus : AppCompatActivity() {
 
         rankingChangedTextView.setOnClickListener {
             finish()
-            navigateToHome()
+            navigateToClassification()
         }
 
         repeatLevelTextView.setOnClickListener {
@@ -475,7 +475,7 @@ class LevelResultActivityMasPlus : AppCompatActivity() {
 
         rankingChangedTextView.setOnClickListener {
             finish()
-            navigateToHome()
+            navigateToClassification()
         }
 
         repeatLevelTextView.setOnClickListener {
@@ -563,4 +563,11 @@ class LevelResultActivityMasPlus : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+    private fun navigateToClassification() {
+        val intent = Intent(this, ClassificationActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
 }
