@@ -327,7 +327,7 @@ class IQPlusRankingActivity : AppCompatActivity() {
         sharedPreferences.getString("savedCountryCode", "us") ?: "us"
 
     private fun calcularIQPlus(): Double =
-        ScoreManager.lastIqComponentByGame.values.sum().toDouble()
+        ScoreManager.lastIqComponentByGame.values.sum()
 
 
     private fun haJugadoTodosLosCombos(): Boolean {

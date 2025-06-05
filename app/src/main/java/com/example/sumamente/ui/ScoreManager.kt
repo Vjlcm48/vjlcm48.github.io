@@ -6,12 +6,10 @@ import androidx.core.content.edit
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-
 object ScoreManager {
 
     private val gson = Gson()
     private val mapType = object : TypeToken<MutableMap<String, Double>>() {}.type
-
 
     lateinit var preferences: SharedPreferences
 
@@ -2595,7 +2593,6 @@ object ScoreManager {
 
         return if (totalJuegos > 0) totalTiempo / totalJuegos else 1.0
     }
-
 
     fun haJugadoAlMenosUnNivelEnCadaJuegoYGrado(): Boolean {
         return getCompletedLevelsPrincipiante().isNotEmpty() &&
