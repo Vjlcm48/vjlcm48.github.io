@@ -143,6 +143,10 @@ class LevelResultActivitySumaResta : AppCompatActivity() {
             ScoreManager.addCompletedLevelSumaResta(currentLevel)
         }
 
+// Conteo para pines //
+        CondecoracionTracker.marcarNivelConTimestamp("SumaResta", "Pro", currentLevel)
+        CondecoracionTracker.verificarYEntregarPines()
+
         if (currentLevel >= ScoreManager.unlockedLevelsSumaResta) {
             ScoreManager.unlockedLevelsSumaResta = currentLevel + 1
         }

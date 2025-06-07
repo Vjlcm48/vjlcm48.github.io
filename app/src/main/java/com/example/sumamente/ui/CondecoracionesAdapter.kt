@@ -33,17 +33,33 @@ class CondecoracionesAdapter(
         private val tvNombre: TextView = itemView.findViewById(R.id.tv_condecoracion_nombre)
         private val tvDescripcion: TextView = itemView.findViewById(R.id.tv_condecoracion_descripcion)
         private val redDotSmall: View = itemView.findViewById(R.id.red_dot_small)
+        private val tvFecha: TextView = itemView.findViewById(R.id.tv_condecoracion_fecha)
+        private val redDotTitulo: View = itemView.findViewById(R.id.red_dot_titulo)
 
         fun bind(condecoracion: Condecoracion) {
             imgCondecoracion.setImageResource(condecoracion.imagen)
             tvNombre.text = condecoracion.nombre
             tvDescripcion.text = condecoracion.descripcion
 
-            // Mostrar punto rojo solo para pines nuevos (no vistos)
+
             if (condecoracion.tipo == TipoCondecoracion.PIN && condecoracion.esNuevo) {
                 redDotSmall.visibility = View.VISIBLE
             } else {
                 redDotSmall.visibility = View.GONE
+            }
+
+
+            if (condecoracion.tipo == TipoCondecoracion.PIN && !condecoracion.fechaObtencion.isNullOrEmpty()) {
+                tvFecha.text = itemView.context.getString(R.string.date_obtained, condecoracion.fechaObtencion)
+                tvFecha.visibility = View.VISIBLE
+            } else {
+                tvFecha.visibility = View.GONE
+            }
+
+            if (condecoracion.tipo == TipoCondecoracion.PIN && condecoracion.esNuevo) {
+                redDotTitulo.visibility = View.VISIBLE
+            } else {
+                redDotTitulo.visibility = View.GONE
             }
 
             imgCondecoracion.setOnClickListener {

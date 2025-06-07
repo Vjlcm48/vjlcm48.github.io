@@ -146,6 +146,10 @@ class LevelResultActivityDeciPlus : AppCompatActivity() {
             ScoreManager.addCompletedLevelDeciPlus(currentLevel)
         }
 
+        // Conteo para pines //
+        CondecoracionTracker.marcarNivelConTimestamp("DeciPlus", "Avanzado", currentLevel)
+        CondecoracionTracker.verificarYEntregarPines()
+
         if (currentLevel >= ScoreManager.unlockedLevelsDeciPlus) {
             ScoreManager.unlockedLevelsDeciPlus = currentLevel + 1
         }

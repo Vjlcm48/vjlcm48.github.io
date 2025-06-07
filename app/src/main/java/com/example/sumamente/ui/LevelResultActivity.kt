@@ -150,6 +150,7 @@ class LevelResultActivity : AppCompatActivity() {
             ScoreManager.addCompletedLevel(currentLevel)
         }
 
+        // Conteo para pines //
         CondecoracionTracker.marcarNivelConTimestamp("NumerosPlus", "Avanzado", currentLevel)
         CondecoracionTracker.verificarYEntregarPines()
 

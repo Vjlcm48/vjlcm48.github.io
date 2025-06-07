@@ -143,6 +143,10 @@ class LevelResultActivitySumaRestaPrincipiante : AppCompatActivity() {
             ScoreManager.addCompletedLevelSumaRestaPrincipiante(currentLevel)
         }
 
+        // Conteo para pines //
+        CondecoracionTracker.marcarNivelConTimestamp("SumaResta", "Principiante", currentLevel)
+        CondecoracionTracker.verificarYEntregarPines()
+
         if (currentLevel >= ScoreManager.unlockedLevelsSumaRestaPrincipiante) {
             ScoreManager.unlockedLevelsSumaRestaPrincipiante = currentLevel + 1
         }

@@ -149,6 +149,10 @@ class LevelResultActivityPro : AppCompatActivity() {
             ScoreManager.addCompletedLevelPro(currentLevel)
         }
 
+        // Conteo para pines //
+        CondecoracionTracker.marcarNivelConTimestamp("NumerosPlus", "Pro", currentLevel)
+        CondecoracionTracker.verificarYEntregarPines()
+
         if (currentLevel >= ScoreManager.unlockedLevelsPro) {
             ScoreManager.unlockedLevelsPro = currentLevel + 1
         }

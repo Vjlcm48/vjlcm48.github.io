@@ -41,6 +41,21 @@
 
         </FrameLayout>
 
+        <!-- Fecha debajo de la imagen -->
+        <TextView
+            android:id="@+id/tv_condecoracion_fecha"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@android:color/black"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/frameLayout_condecoracion"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout_condecoracion"
+            tools:text="Obtenido: 07/06/2025" />
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -51,14 +66,32 @@
             app:layout_constraintStart_toEndOf="@+id/frameLayout_condecoracion"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/tv_condecoracion_nombre"
+            <!-- FrameLayout para título con punto rojo -->
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_bold"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                tools:text="@string/pin_invictus" />
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_condecoracion_nombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    tools:text="@string/pin_invictus" />
+
+                <!-- Punto rojo en esquina superior derecha del título -->
+                <View
+                    android:id="@+id/red_dot_titulo"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@drawable/red_dot_small"
+                    android:visibility="gone" />
+
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/tv_condecoracion_descripcion"

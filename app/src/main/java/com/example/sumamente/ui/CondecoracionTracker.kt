@@ -12,19 +12,16 @@ object CondecoracionTracker {
     private val gson = Gson()
     private lateinit var preferences: SharedPreferences
 
-    // Constantes para SharedPreferences
     private const val PREFS_NAME = "CondecoracionPrefs"
     private const val KEY_COMPLETED_LEVELS_JSON = "completed_levels_json"
     private const val KEY_PINS_OBTAINED = "pins_obtained"
     private const val KEY_CARRY_OVER_LEVELS = "carry_over_levels"
     private const val KEY_LAST_PIN_CHECK_DATE = "last_pin_check_date"
     private const val KEY_NEW_PINS_INDICATOR = "new_pins_indicator"
-
-    // 2.1. Nuevas constantes para puntos rojos individuales
     private const val KEY_TROPHY_RED_DOT = "trophy_red_dot_visible"
     private const val KEY_MIS_CONDECORACIONES_RED_DOT = "mis_condecoraciones_red_dot_visible"
 
-    // Data classes
+
     data class CompletedLevel(
         val game: String,
         val grade: String,
@@ -35,10 +32,10 @@ object CondecoracionTracker {
     )
 
     data class PinObtained(
-        val tipo: String, // "VICTORIS", "OPTIMUM", "INVICTUS"
+        val tipo: String,
         val fechaObtencion: Long,
         val nivelesConsumidos: List<CompletedLevel>,
-        var visto: Boolean = false // Nuevo campo para controlar si fue visto
+        var visto: Boolean = false
     )
 
     enum class PinType(val requiredLevels: Int) {
@@ -47,18 +44,16 @@ object CondecoracionTracker {
         INVICTUS(50)
     }
 
-    // Variables globales
     private var completedLevelsUnified: MutableList<CompletedLevel> = mutableListOf()
     private var pinesObtenidos: MutableList<PinObtained> = mutableListOf()
     private var carryOverLevels: MutableList<CompletedLevel> = mutableListOf()
     private var lastPinCheckDate: String = ""
     private var hasNewPinsIndicator: Boolean = false
 
-    // 2.1. Nuevas variables para puntos rojos
     private var trophyRedDotVisible: Boolean = false
     private var misCondecoracionesRedDotVisible: Boolean = false
 
-    // 1.4. Función de inicialización del tracker
+
     fun init(context: Context) {
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         loadCompletedLevelsUnified()
@@ -67,12 +62,10 @@ object CondecoracionTracker {
         lastPinCheckDate = preferences.getString(KEY_LAST_PIN_CHECK_DATE, "") ?: ""
         hasNewPinsIndicator = preferences.getBoolean(KEY_NEW_PINS_INDICATOR, false)
 
-        // 2.1. Cargar estados de puntos rojos
         trophyRedDotVisible = preferences.getBoolean(KEY_TROPHY_RED_DOT, false)
         misCondecoracionesRedDotVisible = preferences.getBoolean(KEY_MIS_CONDECORACIONES_RED_DOT, false)
     }
 
-    // 1.5. Funciones de carga/guardado de datos
     private fun loadCompletedLevelsUnified() {
         val jsonString = preferences.getString(KEY_COMPLETED_LEVELS_JSON, null)
         completedLevelsUnified = if (jsonString != null) {
@@ -121,23 +114,20 @@ object CondecoracionTracker {
         }
     }
 
-    // 1.6b. Función para marcar nivel con timestamp (enfoque híbrido)
     fun marcarNivelConTimestamp(game: String, grade: String, level: Int) {
         val currentTime = System.currentTimeMillis()
         val completedLevel = CompletedLevel(game, grade, level, currentTime)
 
-        // Verificar si ya existe para evitar duplicados
         val existe = completedLevelsUnified.any {
             it.game == game && it.grade == grade && it.level == level && !it.consumidoEnPin
         }
 
-        // Verificar que el nivel no esté ya consumido en un pin anterior
         val nivelYaConsumido = completedLevelsUnified.any {
             it.game == game && it.grade == grade && it.level == level && it.consumidoEnPin
         }
 
         if (nivelYaConsumido) {
-            return // No permitir re-registrar un nivel ya consumido
+            return
         }
 
         if (!existe) {
@@ -146,11 +136,9 @@ object CondecoracionTracker {
         }
     }
 
-    // 1.7. Función principal de verificación diaria de pines - CORREGIDA
     fun verificarYEntregarPines() {
         val currentDate = getCurrentDateChicago()
 
-        // SOLO procesar si es un nuevo día (no procesar día actual)
         if (lastPinCheckDate != currentDate) {
             val yesterday = getYesterdayDateChicago()
             procesarPinesDelDia(yesterday)
@@ -161,45 +149,40 @@ object CondecoracionTracker {
         }
     }
 
-    // 1.8. Función de procesamiento y entrega de pines - CORREGIDA
+
     private fun procesarPinesDelDia(fecha: String) {
-        // Obtener niveles del día anterior + carry-over vigente
+
         val nivelesDelDia = getNivelesDelDia(fecha)
         val carryOverVigente = getCarryOverVigente()
         val nivelesDisponibles = (nivelesDelDia + carryOverVigente).toMutableList()
 
-        // Limpiar carry-over expirado
+
         limpiarCarryOverExpirado()
 
         if (nivelesDisponibles.size >= 30) {
-            // Procesar entrega por bloques con prioridad
+
             var pinesEntregados = 0
 
-            // INVICTUS (50+)
             while (nivelesDisponibles.size >= 50) {
                 entregarPin(PinType.INVICTUS, nivelesDisponibles)
                 pinesEntregados++
             }
 
-            // OPTIMUM (40+)
             while (nivelesDisponibles.size >= 40) {
                 entregarPin(PinType.OPTIMUM, nivelesDisponibles)
                 pinesEntregados++
             }
 
-            // VICTORIS (30+)
             while (nivelesDisponibles.size >= 30) {
                 entregarPin(PinType.VICTORIS, nivelesDisponibles)
                 pinesEntregados++
             }
 
-            // Niveles sobrantes van a carry-over
             if (nivelesDisponibles.isNotEmpty()) {
                 carryOverLevels.addAll(nivelesDisponibles)
                 saveCarryOverLevels()
             }
 
-            // ACTIVAR PUNTOS ROJOS SOLO AQUÍ (después de entregar pines)
             if (pinesEntregados > 0) {
                 hasNewPinsIndicator = true
                 trophyRedDotVisible = true
@@ -214,16 +197,14 @@ object CondecoracionTracker {
         }
     }
 
-    // FUNCIÓN CORREGIDA - SIN activación de puntos rojos
     private fun entregarPin(pinType: PinType, nivelesDisponibles: MutableList<CompletedLevel>) {
         val nivelesParaPin = nivelesDisponibles.take(pinType.requiredLevels).toMutableList()
 
-        // Marcar niveles como consumidos
+
         nivelesParaPin.forEach { nivel ->
             nivel.consumidoEnPin = true
             nivel.pinAsignado = pinType.name
 
-            // Actualizar en la lista principal
             val index = completedLevelsUnified.indexOfFirst {
                 it.game == nivel.game && it.grade == nivel.grade && it.level == nivel.level
             }
@@ -232,7 +213,6 @@ object CondecoracionTracker {
             }
         }
 
-        // Crear pin (nuevo pin siempre no visto)
         val pin = PinObtained(
             tipo = pinType.name,
             fechaObtencion = System.currentTimeMillis(),
@@ -242,15 +222,13 @@ object CondecoracionTracker {
 
         pinesObtenidos.add(pin)
 
-        // Remover niveles usados de disponibles
         nivelesDisponibles.removeAll(nivelesParaPin)
 
-        // Guardar cambios - SOLO pines, NO puntos rojos
+
         saveCompletedLevelsUnified()
         savePinesObtenidos()
     }
 
-    // 1.9. Funciones auxiliares de fecha (zona Chicago)
     private fun getCurrentDateChicago(): String {
         val chicagoZone = TimeZone.getTimeZone("America/Chicago")
         val calendar = Calendar.getInstance(chicagoZone)
@@ -278,7 +256,6 @@ object CondecoracionTracker {
         return dateStr == targetDate
     }
 
-    // 1.10. Funciones para carry-over y limpieza
     private fun getCarryOverVigente(): List<CompletedLevel> {
         val yesterday = getYesterdayDateChicago()
         return carryOverLevels.filter { nivel ->
@@ -294,7 +271,6 @@ object CondecoracionTracker {
         saveCarryOverLevels()
     }
 
-    // 2.2. Funciones para marcar pines como "vistos"
     fun clearTrophyRedDot() {
         trophyRedDotVisible = false
         preferences.edit {
@@ -310,7 +286,7 @@ object CondecoracionTracker {
     }
 
     fun marcarPinesComoVistos() {
-        // Marcar todos los pines no vistos como vistos
+
         var cambiosRealizados = false
         pinesObtenidos.forEach { pin ->
             if (!pin.visto) {
@@ -324,7 +300,20 @@ object CondecoracionTracker {
         }
     }
 
-    // 2.3. Funciones para consultar estado de puntos rojos
+    fun marcarPinIndividualComoVisto(pinTipo: String, fechaObtencion: Long) {
+        var cambiosRealizados = false
+        pinesObtenidos.forEach { pin ->
+            if (pin.tipo == pinTipo && pin.fechaObtencion == fechaObtencion && !pin.visto) {
+                pin.visto = true
+                cambiosRealizados = true
+            }
+        }
+
+        if (cambiosRealizados) {
+            savePinesObtenidos()
+        }
+    }
+
     fun shouldShowTrophyRedDot(): Boolean = trophyRedDotVisible
 
     fun shouldShowMisCondecoracionesRedDot(): Boolean = misCondecoracionesRedDotVisible

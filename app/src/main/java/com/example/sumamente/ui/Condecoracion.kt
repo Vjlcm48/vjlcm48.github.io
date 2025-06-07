@@ -5,7 +5,8 @@ data class Condecoracion(
     val nombre: String,
     val descripcion: String,
     val imagen: Int,
-    val esNuevo: Boolean = false
+    val esNuevo: Boolean = false,
+    val fechaObtencion: String? = null
 )
 
 enum class TipoCondecoracion {

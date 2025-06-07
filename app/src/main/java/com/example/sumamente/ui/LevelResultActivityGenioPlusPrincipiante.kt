@@ -132,6 +132,9 @@ class LevelResultActivityGenioPlusPrincipiante : AppCompatActivity() {
             ScoreManager.addCompletedLevelGenioPlusPrincipiante(currentLevel)
         }
 
+        CondecoracionTracker.marcarNivelConTimestamp("GenioPlus", "Principiante", currentLevel)
+        CondecoracionTracker.verificarYEntregarPines()
+
         if (currentLevel >= ScoreManager.unlockedLevelsGenioPlusPrincipiante) {
             ScoreManager.unlockedLevelsGenioPlusPrincipiante = currentLevel + 1
         }

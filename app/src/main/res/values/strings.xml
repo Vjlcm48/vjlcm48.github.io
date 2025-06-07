@@ -1054,5 +1054,7 @@
 
     <string name="default_username">Tú</string>
 
+    <string name="date_obtained">Obtenido: %s</string>
+
 
 </resources>

@@ -143,6 +143,10 @@ class LevelResultActivityAlfaNumeros : AppCompatActivity() {
             ScoreManager.addCompletedLevelAlfaNumeros(currentLevel)
         }
 
+// Conteo para pines //
+        CondecoracionTracker.marcarNivelConTimestamp("AlfaNumeros", "Avanzado", currentLevel)
+        CondecoracionTracker.verificarYEntregarPines()
+
         if (currentLevel >= ScoreManager.unlockedLevelsAlfaNumeros) {
             ScoreManager.unlockedLevelsAlfaNumeros = currentLevel + 1
         }

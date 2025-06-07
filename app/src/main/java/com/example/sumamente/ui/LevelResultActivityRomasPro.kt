@@ -144,6 +144,9 @@ class LevelResultActivityRomasPro : AppCompatActivity() {
             ScoreManager.addCompletedLevelRomasPro(currentLevel)
         }
 
+        CondecoracionTracker.marcarNivelConTimestamp("Romas", "Pro", currentLevel)
+        CondecoracionTracker.verificarYEntregarPines()
+
         if (currentLevel >= ScoreManager.unlockedLevelsRomasPro) {
             ScoreManager.unlockedLevelsRomasPro = currentLevel + 1
         }

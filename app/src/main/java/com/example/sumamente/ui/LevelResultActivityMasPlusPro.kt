@@ -145,6 +145,10 @@ class LevelResultActivityMasPlusPro : AppCompatActivity() {
             ScoreManager.addCompletedLevelMasPlusPro(currentLevel)
         }
 
+// Conteo para pines //
+        CondecoracionTracker.marcarNivelConTimestamp("MasPlus", "Pro", currentLevel)
+        CondecoracionTracker.verificarYEntregarPines()
+
         if (currentLevel >= ScoreManager.unlockedLevelsMasPlusPro) {
             ScoreManager.unlockedLevelsMasPlusPro = currentLevel + 1
         }

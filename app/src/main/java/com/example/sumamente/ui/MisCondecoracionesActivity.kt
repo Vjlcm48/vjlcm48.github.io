@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sumamente.R
+import java.util.Calendar
+import java.util.Locale
 
 class MisCondecoracionesActivity : AppCompatActivity() {
 
@@ -98,7 +100,8 @@ class MisCondecoracionesActivity : AppCompatActivity() {
                     nombre = nombre,
                     descripcion = descripcion,
                     imagen = imagen,
-                    esNuevo = !pin.visto
+                    esNuevo = !pin.visto,
+                    fechaObtencion = formatearFecha(pin.fechaObtencion)
                 )
             )
         }
@@ -132,6 +135,17 @@ class MisCondecoracionesActivity : AppCompatActivity() {
         }
     }
 
+    private fun formatearFecha(timestamp: Long): String {
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = timestamp
+        return String.format(
+            Locale.getDefault(), "%02d/%02d/%d",
+            calendar.get(Calendar.MONTH) + 1,
+            calendar.get(Calendar.DAY_OF_MONTH),
+            calendar.get(Calendar.YEAR)
+        )
+    }
+
     private fun setupRecyclerView() {
         adapter = CondecoracionesAdapter(condecoraciones) { condecoracion ->
             mostrarImagenAmpliada(condecoracion)
@@ -143,6 +157,28 @@ class MisCondecoracionesActivity : AppCompatActivity() {
 
 
     private fun mostrarImagenAmpliada(condecoracion: Condecoracion) {
+
+        if (condecoracion.tipo == TipoCondecoracion.PIN && condecoracion.esNuevo) {
+
+            val pines = CondecoracionTracker.getAllPines()
+            val pinCorrespondiente = pines.find { pin ->
+                pin.tipo == condecoracion.nombre && !pin.visto
+            }
+
+            pinCorrespondiente?.let { pin ->
+                CondecoracionTracker.marcarPinIndividualComoVisto(pin.tipo, pin.fechaObtencion)
+
+
+                val position = condecoraciones.indexOfFirst {
+                    it.tipo == TipoCondecoracion.PIN && it.nombre == condecoracion.nombre
+                }
+                if (position != -1) {
+                    condecoraciones[position] = condecoraciones[position].copy(esNuevo = false)
+                    adapter.notifyItemChanged(position)
+                }
+            }
+        }
+
         val dialog = ImagenAmpliadaDialog(
             this,
             condecoracion.nombre,

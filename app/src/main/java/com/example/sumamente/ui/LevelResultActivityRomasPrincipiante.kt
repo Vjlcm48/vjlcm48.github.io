@@ -144,6 +144,10 @@ class LevelResultActivityRomasPrincipiante : AppCompatActivity() {
             ScoreManager.addCompletedLevelRomasPrincipiante(currentLevel)
         }
 
+        // Conteo para pines //
+        CondecoracionTracker.marcarNivelConTimestamp("Romas", "Principiante", currentLevel)
+        CondecoracionTracker.verificarYEntregarPines()
+
         if (currentLevel >= ScoreManager.unlockedLevelsRomasPrincipiante) {
             ScoreManager.unlockedLevelsRomasPrincipiante = currentLevel + 1
         }
