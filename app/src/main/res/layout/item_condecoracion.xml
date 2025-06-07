@@ -13,16 +13,33 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/img_condecoracion"
+        <FrameLayout
+            android:id="@+id/frameLayout_condecoracion"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:contentDescription="@string/condecoracion_image"
-            android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_pin_invictus" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_condecoracion"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:contentDescription="@string/condecoracion_image"
+                android:scaleType="fitCenter"
+                tools:src="@drawable/ic_pin_invictus" />
+
+            <View
+                android:id="@+id/red_dot_small"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="2dp"
+                android:background="@drawable/red_dot_small"
+                android:visibility="gone" />
+
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -31,7 +48,7 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/img_condecoracion"
+            app:layout_constraintStart_toEndOf="@+id/frameLayout_condecoracion"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView

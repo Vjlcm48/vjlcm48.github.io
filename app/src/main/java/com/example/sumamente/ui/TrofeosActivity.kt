@@ -37,15 +37,23 @@ class TrofeosActivity : AppCompatActivity() {
     private lateinit var mediaPlayer: MediaPlayer
 
 
+    private lateinit var misCondecoracionesRedDot: View
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trofeos)
 
         instanceRef = WeakReference(this)
 
+        CondecoracionTracker.init(this)
+
         initViews()
         initMusic()
         setupButtons()
+
+        CondecoracionTracker.verificarYEntregarPines()
+        updateMisCondecoracionesRedDot()
     }
 
 
@@ -59,6 +67,8 @@ class TrofeosActivity : AppCompatActivity() {
         btnApexSupremus = findViewById(R.id.btn_apex_supremus)
         btnClose = findViewById(R.id.btn_close)
         btnBack = findViewById(R.id.btn_back)
+
+        misCondecoracionesRedDot = findViewById(R.id.mis_condecoraciones_red_dot)
     }
 
 
@@ -133,11 +143,25 @@ class TrofeosActivity : AppCompatActivity() {
             }
         }
 
+
         btnMisCondecoraciones.setOnClickListener {
             applyBounceEffect(it) {
+
+                CondecoracionTracker.clearMisCondecoracionesRedDot()
+                updateMisCondecoracionesRedDot()
+
                 val intent = Intent(this, MisCondecoracionesActivity::class.java)
                 startActivity(intent)
             }
+        }
+    }
+
+
+    private fun updateMisCondecoracionesRedDot() {
+        if (CondecoracionTracker.shouldShowMisCondecoracionesRedDot()) {
+            misCondecoracionesRedDot.visibility = View.VISIBLE
+        } else {
+            misCondecoracionesRedDot.visibility = View.GONE
         }
     }
 

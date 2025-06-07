@@ -52,16 +52,36 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/trophy_icon"
-        android:layout_width="35dp"
-        android:layout_height="40dp"
+    <!-- 3.1. Container para trophy_icon con punto rojo -->
+    <FrameLayout
+        android:id="@+id/trophy_container"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginStart="108dp"
         android:layout_marginTop="40dp"
-        android:contentDescription="@string/trophy"
-        android:src="@drawable/ic_trofeo"
         app:layout_constraintStart_toEndOf="@id/profile_text"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/trophy_icon"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/trophy"
+            android:src="@drawable/ic_trofeo" />
+
+        <!-- 3.2. Punto rojo en esquina superior derecha -->
+        <View
+            android:id="@+id/trophy_red_dot"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:background="@drawable/red_dot_big"
+            android:visibility="gone" />
+
+    </FrameLayout>
 
     <ImageView
         android:id="@+id/settings_icon"

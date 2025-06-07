@@ -2670,6 +2670,7 @@ object ScoreManager {
         lastIqComponentByGame["${juego}_${grado}"] = valor
     }
 
+
 }
 
 

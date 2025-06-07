@@ -63,6 +63,7 @@ class LevelResultActivity : AppCompatActivity() {
         setContentView(R.layout.activity_level_result)
 
         ScoreManager.init(this)
+        CondecoracionTracker.init(this)
 
         currentLevel = intent.getIntExtra("LEVEL", 1)
         isSuccessful = intent.getBooleanExtra("IS_SUCCESSFUL", false)
@@ -148,6 +149,9 @@ class LevelResultActivity : AppCompatActivity() {
         if (!ScoreManager.hasCompletedLevel(currentLevel)) {
             ScoreManager.addCompletedLevel(currentLevel)
         }
+
+        CondecoracionTracker.marcarNivelConTimestamp("NumerosPlus", "Avanzado", currentLevel)
+        CondecoracionTracker.verificarYEntregarPines()
 
         if (currentLevel >= ScoreManager.unlockedLevels) {
             ScoreManager.unlockedLevels = currentLevel + 1

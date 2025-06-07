@@ -1,5 +1,6 @@
 package com.example.sumamente.ui
 
+import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -25,6 +26,12 @@ class MisCondecoracionesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mis_condecoraciones)
+
+
+        CondecoracionTracker.init(this)
+
+
+        CondecoracionTracker.marcarPinesComoVistos()
 
         initViews()
         setupButtons()
@@ -55,18 +62,46 @@ class MisCondecoracionesActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadCondecoraciones() {
 
+    private fun loadCondecoraciones() {
         condecoraciones.clear()
 
-        condecoraciones.add(
-            Condecoracion(
-                tipo = TipoCondecoracion.PIN,
-                nombre = "INVICTUS",
-                descripcion = getString(R.string.logro_pin_invictus),
-                imagen = R.drawable.ic_pin_invictus
+
+        val pines = CondecoracionTracker.getAllPines()
+        pines.forEach { pin ->
+            val (nombre, descripcion, imagen) = when (pin.tipo) {
+                "VICTORIS" -> Triple(
+                    "VICTORIS",
+                    "Completaste 30 niveles perfectos en 24 horas",
+                    R.drawable.ic_pin_victoris
+                )
+                "OPTIMUM" -> Triple(
+                    "OPTIMUM",
+                    "Completaste 40 niveles perfectos en 24 horas",
+                    R.drawable.ic_pin_optimum
+                )
+                "INVICTUS" -> Triple(
+                    "INVICTUS",
+                    "Completaste 50 niveles perfectos en 24 horas",
+                    R.drawable.ic_pin_invictus
+                )
+                else -> Triple(
+                    "PIN",
+                    "Pin de reconocimiento obtenido",
+                    R.drawable.ic_pin_victoris
+                )
+            }
+
+            condecoraciones.add(
+                Condecoracion(
+                    tipo = TipoCondecoracion.PIN,
+                    nombre = nombre,
+                    descripcion = descripcion,
+                    imagen = imagen,
+                    esNuevo = !pin.visto
+                )
             )
-        )
+        }
 
 
         condecoraciones.add(
@@ -78,7 +113,6 @@ class MisCondecoracionesActivity : AppCompatActivity() {
             )
         )
 
-
         condecoraciones.add(
             Condecoracion(
                 tipo = TipoCondecoracion.TROFEO,
@@ -87,6 +121,7 @@ class MisCondecoracionesActivity : AppCompatActivity() {
                 imagen = R.drawable.ic_trofeo_gradus
             )
         )
+
 
         if (condecoraciones.isEmpty()) {
             emptyStateTextView.visibility = View.VISIBLE
@@ -99,13 +134,13 @@ class MisCondecoracionesActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         adapter = CondecoracionesAdapter(condecoraciones) { condecoracion ->
-
             mostrarImagenAmpliada(condecoracion)
         }
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
     }
+
 
     private fun mostrarImagenAmpliada(condecoracion: Condecoracion) {
         val dialog = ImagenAmpliadaDialog(
@@ -115,6 +150,7 @@ class MisCondecoracionesActivity : AppCompatActivity() {
         )
         dialog.show()
     }
+
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
         val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.9f).setDuration(50)
@@ -134,7 +170,7 @@ class MisCondecoracionesActivity : AppCompatActivity() {
         animatorSet.playSequentially(scaleDown, scaleUp)
 
         animatorSet.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: android.animation.Animator) {
+            override fun onAnimationEnd(animation: Animator) {
                 onAnimationEnd()
             }
         })

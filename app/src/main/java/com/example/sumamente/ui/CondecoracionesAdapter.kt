@@ -8,9 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sumamente.R
 
+
 class CondecoracionesAdapter(
     private val condecoraciones: List<Condecoracion>,
-    private val onImageClick: (Condecoracion) -> Unit
+    private val onImageClick: (Condecoracion) -> Unit,
+
 ) : RecyclerView.Adapter<CondecoracionesAdapter.CondecoracionViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CondecoracionViewHolder {
@@ -30,11 +32,19 @@ class CondecoracionesAdapter(
         private val imgCondecoracion: ImageView = itemView.findViewById(R.id.img_condecoracion)
         private val tvNombre: TextView = itemView.findViewById(R.id.tv_condecoracion_nombre)
         private val tvDescripcion: TextView = itemView.findViewById(R.id.tv_condecoracion_descripcion)
+        private val redDotSmall: View = itemView.findViewById(R.id.red_dot_small)
 
         fun bind(condecoracion: Condecoracion) {
             imgCondecoracion.setImageResource(condecoracion.imagen)
             tvNombre.text = condecoracion.nombre
             tvDescripcion.text = condecoracion.descripcion
+
+            // Mostrar punto rojo solo para pines nuevos (no vistos)
+            if (condecoracion.tipo == TipoCondecoracion.PIN && condecoracion.esNuevo) {
+                redDotSmall.visibility = View.VISIBLE
+            } else {
+                redDotSmall.visibility = View.GONE
+            }
 
             imgCondecoracion.setOnClickListener {
                 onImageClick(condecoracion)

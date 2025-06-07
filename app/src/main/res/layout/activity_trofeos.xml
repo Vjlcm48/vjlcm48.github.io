@@ -176,26 +176,44 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/btn_mis_condecoraciones"
+            <!-- 5.1. Container para btn_mis_condecoraciones con punto rojo -->
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
-                android:background="@drawable/premio_boton_background"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:gravity="center"
-                android:clickable="true"
-                android:focusable="true">
+                android:layout_marginVertical="8dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/btn_mis_condecoraciones"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/mis_condecoraciones"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    android:background="@drawable/premio_boton_background"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mis_condecoraciones"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- 5.1. Punto rojo en esquina superior derecha -->
+                <View
+                    android:id="@+id/mis_condecoraciones_red_dot"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/red_dot_big"
+                    android:visibility="gone" />
+
+            </FrameLayout>
 
             <LinearLayout
                 android:id="@+id/btn_apex_supremus"

@@ -19,6 +19,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -37,6 +38,9 @@ class MainGameActivity : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var preferenceChangeListener: SharedPreferences.OnSharedPreferenceChangeListener
 
+    private lateinit var trophyContainer: FrameLayout
+    private lateinit var trophyRedDot: View
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         window.exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
@@ -45,6 +49,8 @@ class MainGameActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         setContentView(R.layout.activity_main_game)
 
+        CondecoracionTracker.init(this)
+
         locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
         profileText = findViewById(R.id.profile_text)
 
@@ -52,8 +58,11 @@ class MainGameActivity : AppCompatActivity() {
         val homeIcon = findViewById<ImageView>(R.id.home_icon)
         val statisticsIcon = findViewById<ImageView>(R.id.statistics_icon)
         val settingsIcon = findViewById<ImageView>(R.id.settings_icon)
-        val trophyIcon = findViewById<ImageView>(R.id.trophy_icon)
+        findViewById<ImageView>(R.id.trophy_icon)
         val calendarIcon = findViewById<ImageView>(R.id.calendar_icon)
+
+        trophyContainer = findViewById(R.id.trophy_container)
+        trophyRedDot = findViewById(R.id.trophy_red_dot)
 
         mediaPlayer = MediaPlayer.create(this, R.raw.fondomusicals1)
         mediaPlayer.isLooping = true
@@ -142,12 +151,24 @@ class MainGameActivity : AppCompatActivity() {
             }
         }
 
-        trophyIcon.setOnClickListener {
+        trophyContainer.setOnClickListener {
             applyBounceEffect(it) {
+
+                CondecoracionTracker.clearTrophyRedDot()
+                updateTrophyRedDot()
+
                 mediaPlayer.fadeOut()
                 val intent = Intent(this, TrofeosActivity::class.java)
                 startActivity(intent)
             }
+        }
+    }
+
+    private fun updateTrophyRedDot() {
+        if (CondecoracionTracker.shouldShowTrophyRedDot()) {
+            trophyRedDot.visibility = View.VISIBLE
+        } else {
+            trophyRedDot.visibility = View.GONE
         }
     }
 
@@ -246,6 +267,8 @@ class MainGameActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
+        CondecoracionTracker.verificarYEntregarPines()
+        updateTrophyRedDot()
 
         val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
         if (soundEnabled && !mediaPlayer.isPlaying) {
