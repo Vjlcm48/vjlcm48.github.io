@@ -205,8 +205,8 @@ class ClassificationActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        if (mediaPlayer.isPlaying) {
-            mediaPlayer.pause()
+        if (this::mediaPlayer.isInitialized) {
+            if (mediaPlayer.isPlaying) mediaPlayer.pause()
         }
     }
 

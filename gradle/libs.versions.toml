@@ -1,17 +1,17 @@
 [versions]
 agp = "8.10.1"
 constraintlayoutVersion = "2.2.0"
-firebaseBom = "33.14.0"
+firebaseBom = "33.15.0"
 gson = "2.11.0"
 kotlin = "2.1.0"
 coreKtx = "1.16.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-lifecycleRuntimeKtx = "2.9.0"
+lifecycleRuntimeKtx = "2.9.1"
 activityCompose = "1.10.1"
-composeBom = "2025.05.01"
-appcompat = "1.7.0"
+composeBom = "2025.06.00"
+appcompat = "1.7.1"
 lottie = "4.2.0"
 material = "1.12.0"
 activity = "1.10.1"
@@ -20,6 +20,7 @@ gridlayout = "1.1.0"
 testing = "1.0.0"
 composeCompiler = "1.5.15"
 photoview = "2.3.0"
+workRuntimeKtx = "2.10.1"
 
 
 [libraries]
@@ -50,6 +51,7 @@ androidx-gridlayout = { group = "androidx.gridlayout", name = "gridlayout", vers
 testing = { group = "com.google.assistant.appactions", name = "testing", version.ref = "testing" }
 compose-compiler = { group = "androidx.compose.compiler", name = "compiler", version.ref = "composeCompiler" }
 photoview = { module = "com.github.chrisbanes:PhotoView", version.ref = "photoview" }
+androidx-work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workRuntimeKtx" }
 
 
 [plugins]

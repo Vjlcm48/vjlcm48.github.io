@@ -29,11 +29,11 @@ class MisCondecoracionesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mis_condecoraciones)
 
-
         CondecoracionTracker.init(this)
 
-
         CondecoracionTracker.marcarPinesComoVistos()
+        CondecoracionTracker.marcarCoronasComoVistas()
+        CondecoracionTracker.marcarCondecoracionesTop10ComoVistas()
 
         initViews()
         setupButtons()
@@ -67,7 +67,6 @@ class MisCondecoracionesActivity : AppCompatActivity() {
 
     private fun loadCondecoraciones() {
         condecoraciones.clear()
-
 
         val pines = CondecoracionTracker.getAllPines()
         pines.forEach { pin ->
@@ -106,6 +105,115 @@ class MisCondecoracionesActivity : AppCompatActivity() {
             )
         }
 
+        val coronas = CondecoracionTracker.getCoronasActivas()
+        coronas.forEach { corona ->
+            val (nombre, descripcion, imagen) = when (corona.tipoCorona) {
+                "VOLUCER" -> Triple(
+                    getString(R.string.corona_volucer),
+                    corona.mensaje,
+                    R.drawable.ic_corona_volucer_alas
+                )
+                "CELERIS" -> Triple(
+                    getString(R.string.corona_celeris),
+                    corona.mensaje,
+                    R.drawable.ic_corona_celeris_alas
+                )
+                "VELOCITAS" -> Triple(
+                    getString(R.string.corona_velocitas),
+                    corona.mensaje,
+                    R.drawable.ic_corona_velocitas_alas
+                )
+                else -> Triple(
+                    "CORONA",
+                    corona.mensaje,
+                    R.drawable.ic_corona_velocitas_alas
+                )
+            }
+
+            condecoraciones.add(
+                Condecoracion(
+                    tipo = TipoCondecoracion.CORONA,
+                    nombre = nombre,
+                    descripcion = descripcion,
+                    imagen = imagen,
+                    esNuevo = corona.esNueva,
+                    fechaObtencion = formatearFecha(corona.fechaAsignacion)
+                )
+            )
+        }
+
+        // Cargar condecoraciones Top 10
+        val condecoracionesTop10 = CondecoracionTracker.getCondecoracionesTop10()
+        condecoracionesTop10.forEach { condecoracion ->
+            val (nombre, descripcion, imagen) = when (condecoracion.tipoCondecoracion) {
+                "EXCELSITUR" -> Triple(
+                    getString(R.string.condecoracion_excelsitur),
+                    condecoracion.mensaje,
+                    R.drawable.ic_corona_excelsitur
+                )
+                "SUMMUM" -> Triple(
+                    getString(R.string.condecoracion_summum),
+                    condecoracion.mensaje,
+                    R.drawable.ic_corona_summum
+                )
+                "MAGNANIMOUS" -> Triple(
+                    getString(R.string.condecoracion_magnanimous),
+                    condecoracion.mensaje,
+                    R.drawable.ic_antorcha_magnanimous
+                )
+                "VENERABILIS" -> Triple(
+                    getString(R.string.condecoracion_venerabilis),
+                    condecoracion.mensaje,
+                    R.drawable.ic_antorcha_venerabilis
+                )
+                "GLORIOSUS" -> Triple(
+                    getString(R.string.condecoracion_gloriosus),
+                    condecoracion.mensaje,
+                    R.drawable.ic_antorcha_gloriosus
+                )
+                "ILLUSTRIS" -> Triple(
+                    getString(R.string.condecoracion_illustris),
+                    condecoracion.mensaje,
+                    R.drawable.ic_estrella_illustris
+                )
+                "PRAESTANS" -> Triple(
+                    getString(R.string.condecoracion_praestans),
+                    condecoracion.mensaje,
+                    R.drawable.ic_estrella_praestans
+                )
+                "INSIGNIS" -> Triple(
+                    getString(R.string.condecoracion_insignis),
+                    condecoracion.mensaje,
+                    R.drawable.ic_estrella_insignis
+                )
+                "VIRTUOSUS" -> Triple(
+                    getString(R.string.condecoracion_virtuosus),
+                    condecoracion.mensaje,
+                    R.drawable.ic_estrella_virtuosus
+                )
+                "HONORABILIS" -> Triple(
+                    getString(R.string.condecoracion_honorabilis),
+                    condecoracion.mensaje,
+                    R.drawable.ic_estrella_honorabilis
+                )
+                else -> Triple(
+                    "TOP 10",
+                    condecoracion.mensaje,
+                    R.drawable.ic_estrella_honorabilis
+                )
+            }
+
+            condecoraciones.add(
+                Condecoracion(
+                    tipo = TipoCondecoracion.TOP10,
+                    nombre = nombre,
+                    descripcion = descripcion,
+                    imagen = imagen,
+                    esNuevo = condecoracion.esNueva,
+                    fechaObtencion = formatearFecha(condecoracion.fechaAsignacion)
+                )
+            )
+        }
 
         condecoraciones.add(
             Condecoracion(
@@ -133,6 +241,8 @@ class MisCondecoracionesActivity : AppCompatActivity() {
             emptyStateTextView.visibility = View.GONE
             recyclerView.visibility = View.VISIBLE
         }
+
+
     }
 
     private fun formatearFecha(timestamp: Long): String {
@@ -179,6 +289,52 @@ class MisCondecoracionesActivity : AppCompatActivity() {
             }
         }
 
+        if (condecoracion.tipo == TipoCondecoracion.CORONA && condecoracion.esNuevo) {
+            val coronas = CondecoracionTracker.getCoronasActivas()
+            val coronaCorrespondiente = coronas.find { corona ->
+                corona.tipoCorona == condecoracion.nombre && corona.esNueva
+            }
+
+            coronaCorrespondiente?.let { corona ->
+                CondecoracionTracker.marcarCoronaIndividualComoVista(
+                    corona.juego,
+                    corona.tipoCorona,
+                    corona.fechaAsignacion
+                )
+
+                val position = condecoraciones.indexOfFirst {
+                    it.tipo == TipoCondecoracion.CORONA && it.nombre == condecoracion.nombre
+                }
+                if (position != -1) {
+                    condecoraciones[position] = condecoraciones[position].copy(esNuevo = false)
+                    adapter.notifyItemChanged(position)
+                }
+            }
+        }
+
+        if (condecoracion.tipo == TipoCondecoracion.TOP10 && condecoracion.esNuevo) {
+            val condecoracionesTop10 = CondecoracionTracker.getCondecoracionesTop10()
+            val condecoracionCorrespondiente = condecoracionesTop10.find { top10 ->
+                top10.tipoCondecoracion == condecoracion.nombre && top10.esNueva
+            }
+
+            condecoracionCorrespondiente?.let { top10 ->
+                CondecoracionTracker.marcarCondecoracionTop10IndividualComoVista(
+                    top10.posicion,
+                    top10.tipoCondecoracion,
+                    top10.fechaAsignacion
+                )
+
+                val position = condecoraciones.indexOfFirst {
+                    it.tipo == TipoCondecoracion.TOP10 && it.nombre == condecoracion.nombre
+                }
+                if (position != -1) {
+                    condecoraciones[position] = condecoraciones[position].copy(esNuevo = false)
+                    adapter.notifyItemChanged(position)
+                }
+            }
+        }
+
         val dialog = ImagenAmpliadaDialog(
             this,
             condecoracion.nombre,
@@ -213,4 +369,5 @@ class MisCondecoracionesActivity : AppCompatActivity() {
 
         animatorSet.start()
     }
+
 }

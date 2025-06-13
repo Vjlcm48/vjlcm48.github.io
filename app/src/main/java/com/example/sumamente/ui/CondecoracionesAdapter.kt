@@ -13,7 +13,7 @@ class CondecoracionesAdapter(
     private val condecoraciones: List<Condecoracion>,
     private val onImageClick: (Condecoracion) -> Unit,
 
-) : RecyclerView.Adapter<CondecoracionesAdapter.CondecoracionViewHolder>() {
+    ) : RecyclerView.Adapter<CondecoracionesAdapter.CondecoracionViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CondecoracionViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -42,24 +42,19 @@ class CondecoracionesAdapter(
             tvDescripcion.text = condecoracion.descripcion
 
 
-            if (condecoracion.tipo == TipoCondecoracion.PIN && condecoracion.esNuevo) {
+            if ((condecoracion.tipo == TipoCondecoracion.PIN || condecoracion.tipo == TipoCondecoracion.CORONA || condecoracion.tipo == TipoCondecoracion.TOP10) && condecoracion.esNuevo) {
                 redDotSmall.visibility = View.VISIBLE
+                redDotTitulo.visibility = View.VISIBLE
             } else {
                 redDotSmall.visibility = View.GONE
+                redDotTitulo.visibility = View.GONE
             }
 
-
-            if (condecoracion.tipo == TipoCondecoracion.PIN && !condecoracion.fechaObtencion.isNullOrEmpty()) {
+            if ((condecoracion.tipo == TipoCondecoracion.PIN || condecoracion.tipo == TipoCondecoracion.CORONA || condecoracion.tipo == TipoCondecoracion.TOP10) && !condecoracion.fechaObtencion.isNullOrEmpty()) {
                 tvFecha.text = itemView.context.getString(R.string.date_obtained, condecoracion.fechaObtencion)
                 tvFecha.visibility = View.VISIBLE
             } else {
                 tvFecha.visibility = View.GONE
-            }
-
-            if (condecoracion.tipo == TipoCondecoracion.PIN && condecoracion.esNuevo) {
-                redDotTitulo.visibility = View.VISIBLE
-            } else {
-                redDotTitulo.visibility = View.GONE
             }
 
             imgCondecoracion.setOnClickListener {

@@ -1084,4 +1084,78 @@
 
     <string name="date_obtained">Obtained: %s</string>
 
+    <!-- CORONAS DE VELOCIDAD - Nombres -->
+    <string name="corona_volucer">VOLUCER</string>
+    <string name="corona_celeris">CELERIS</string>
+    <string name="corona_velocitas">VELOCITAS</string>
+
+    <!-- CORONAS DE VELOCIDAD - Mensajes VELOCITAS (Inglés) -->
+    <string name="corona_velocitas_msg_1">Excellent speed, <b>%1$s</b>! You achieved 3rd place in <b>%2$s</b>. The VELOCITAS crown is yours.</string>
+    <string name="corona_velocitas_msg_2">Impressive quickness in <b>%2$s</b>, <b>%1$s</b>! You\'ve earned the VELOCITAS crown for your 3rd place.</string>
+    <string name="corona_velocitas_msg_3"><b>%1$s</b>, your speed in <b>%2$s</b> has taken you to the podium. VELOCITAS crown unlocked!</string>
+    <string name="corona_velocitas_msg_4">Bronze in speed for <b>%1$s</b>! 3rd place in <b>%2$s</b> grants you the VELOCITAS crown.</string>
+
+    <!-- CORONAS DE VELOCIDAD - Mensajes CELERIS (Inglés) -->
+    <string name="corona_celeris_msg_1">Exceptional speed, <b>%1$s</b>! 2nd place in <b>%2$s</b> crowns you with CELERIS.</string>
+    <string name="corona_celeris_msg_2"><b>%1$s</b>, your quickness in <b>%2$s</b> is admirable. The CELERIS crown is rightfully yours!</string>
+    <string name="corona_celeris_msg_3">Silver in speed! <b>%1$s</b> has conquered 2nd place in <b>%2$s</b>, earning the CELERIS crown.</string>
+    <string name="corona_celeris_msg_4">Incredible time in <b>%2$s</b>, <b>%1$s</b>! Your 2nd place makes you worthy of the CELERIS crown.</string>
+
+    <!-- CORONAS DE VELOCIDAD - Mensajes VOLUCER (Inglés) -->
+    <string name="corona_volucer_msg_1">SPEED CHAMPION! <b>%1$s</b> dominates <b>%2$s</b> with 1st place. VOLUCER crown conquered!</string>
+    <string name="corona_volucer_msg_2"><b>%1$s</b>, you are pure speed in <b>%2$s</b>. 1st place grants you the prestigious VOLUCER crown.</string>
+    <string name="corona_volucer_msg_3">GOLD in speed for <b>%1$s</b>! Absolute dominance in <b>%2$s</b> crowns you with VOLUCER.</string>
+    <string name="corona_volucer_msg_4">Speed legend! <b>%1$s</b> conquers 1st place in <b>%2$s</b> and rises with the VOLUCER crown.</string>
+
+    <!-- EXCELSITUR (1st place) -->
+    <string name="msg_top10_excelsitur_1">%1$s, you are our mental champion. The <b>%2$s</b> award is yours for conquering <b>1st place</b>. An amazing achievement!</string>
+    <string name="msg_top10_excelsitur_2">Bravo, %1$s! <b>1st place</b> crowns you with the <b>%2$s</b> honor. Your intelligence knows no bounds!</string>
+    <string name="msg_top10_excelsitur_3">Congratulations, %1$s! You\'ve reached <b>1st place</b> and earned the coveted <b>%2$s</b>. Keep reigning!</string>
+
+    <!-- SUMMUM (2nd place) -->
+    <string name="msg_top10_summum_1">%1$s, just one step from the top. <b>2nd place</b> distinguishes you with the <b>%2$s</b> award. Don\'t stop!</string>
+    <string name="msg_top10_summum_2">Excellent, %1$s! <b>2nd place</b> worldwide is yours, along with the <b>%2$s</b> honor. Keep improving!</string>
+    <string name="msg_top10_summum_3">So proud, %1$s: you have earned the <b>%2$s</b> for your <b>2nd place</b>. A grand achievement!</string>
+
+    <!-- MAGNANIMOUS (3rd place) -->
+    <string name="msg_top10_magnanimous_1">%1$s, your brilliance led you to <b>3rd place</b> globally. The <b>%2$s</b> award proves your skill.</string>
+    <string name="msg_top10_magnanimous_2">Amazing, %1$s! <b>%2$s</b> shines for you thanks to your <b>3rd place</b>. You\'re a role model!</string>
+    <string name="msg_top10_magnanimous_3">%1$s, your talent stands out: <b>3rd place</b> and the <b>%2$s</b> award are now yours.</string>
+
+    <!-- VENERABILIS (4th place) -->
+    <string name="msg_top10_venerabilis_1">%1$s, the admirable <b>%2$s</b> recognizes your arrival at <b>4th place</b> worldwide. Keep inspiring!</string>
+    <string name="msg_top10_venerabilis_2">Strength and perseverance, %1$s! <b>4th place</b> is yours, accompanied by the <b>%2$s</b> honor.</string>
+    <string name="msg_top10_venerabilis_3">%1$s, reaching <b>4th place</b> and receiving the <b>%2$s</b> award shows your great capability.</string>
+
+    <!-- GLORIOSUS (5th place) -->
+    <string name="msg_top10_gloriosus_1">Celebration, %1$s! You\'ve earned the <b>%2$s</b> award for your <b>5th place</b> in the global ranking.</string>
+    <string name="msg_top10_gloriosus_2">%1$s, your effort puts you at <b>5th place</b> and grants you the <b>%2$s</b> honor. Keep shining!</string>
+    <string name="msg_top10_gloriosus_3">%1$s, <b>5th place</b> is yours, and the <b>%2$s</b> award recognizes your dedication and drive.</string>
+
+    <!-- ILLUSTRIS (6th place) -->
+    <string name="msg_top10_illustris_1">%1$s, the brilliant <b>%2$s</b> award is yours after reaching <b>6th place</b>. Such talent!</string>
+    <string name="msg_top10_illustris_2">Incredible, %1$s! You\'ve reached <b>6th place</b> and received the illustrious <b>%2$s</b>. Go for more!</string>
+    <string name="msg_top10_illustris_3">%1$s, your name shines at <b>6th place</b> and the <b>%2$s</b> award confirms it.</string>
+
+    <!-- PRAESTANS (7th place) -->
+    <string name="msg_top10_praestans_1">%1$s, your prestige grows: <b>7th place</b> and the <b>%2$s</b> award are now part of your story.</string>
+    <string name="msg_top10_praestans_2">Great work, %1$s! <b>%2$s</b> is your reward for achieving <b>7th place</b> worldwide.</string>
+    <string name="msg_top10_praestans_3">%1$s, you stand out among thousands: <b>7th place</b> grants you the <b>%2$s</b> award.</string>
+
+    <!-- INSIGNIS (8th place) -->
+    <string name="msg_top10_insignis_1">%1$s, your name stands out at <b>8th place</b> globally. You\'ve earned the distinguished <b>%2$s</b>.</string>
+    <string name="msg_top10_insignis_2">Such pride, %1$s! <b>8th place</b> is yours along with the <b>%2$s</b> award. Keep growing!</string>
+    <string name="msg_top10_insignis_3">%1$s, your skill placed you at <b>8th place</b>, earning the <b>%2$s</b> award.</string>
+
+    <!-- VIRTUOSUS (9th place) -->
+    <string name="msg_top10_virtuosus_1">%1$s, your effort is rewarded: the <b>%2$s</b> award is yours after reaching <b>9th place</b>.</string>
+    <string name="msg_top10_virtuosus_2">Keep it up, %1$s! <b>%2$s</b> comes to you thanks to your great <b>9th place</b>.</string>
+    <string name="msg_top10_virtuosus_3">%1$s, reaching <b>9th place</b> globally makes you a true <b>%2$s</b>.</string>
+
+    <!-- HONORABILIS (10th place) -->
+    <string name="msg_top10_honorabilis_1">%1$s, you did it! <b>10th place</b> globally grants you the <b>%2$s</b> award. Enjoy this honor!</string>
+    <string name="msg_top10_honorabilis_2">%1$s, your name appears among the greats: <b>%2$s</b> and <b>10th place</b> now belong to you.</string>
+    <string name="msg_top10_honorabilis_3">You inspire everyone, %1$s! The <b>%2$s</b> award celebrates your <b>10th place</b> in the ranking.</string>
+
+
 </resources>

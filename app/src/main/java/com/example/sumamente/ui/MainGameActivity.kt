@@ -14,6 +14,7 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.media.MediaPlayer
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -22,6 +23,7 @@ import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -29,6 +31,7 @@ import com.example.sumamente.R
 import com.google.android.material.transition.platform.MaterialSharedAxis
 import java.util.Locale
 import androidx.core.content.edit
+
 
 class MainGameActivity : AppCompatActivity() {
 
@@ -41,6 +44,7 @@ class MainGameActivity : AppCompatActivity() {
     private lateinit var trophyContainer: FrameLayout
     private lateinit var trophyRedDot: View
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
 
         window.exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
@@ -50,6 +54,8 @@ class MainGameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main_game)
 
         CondecoracionTracker.init(this)
+
+        scheduleDailyCondecoracionesWork()
 
         locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
         profileText = findViewById(R.id.profile_text)
@@ -155,6 +161,7 @@ class MainGameActivity : AppCompatActivity() {
             applyBounceEffect(it) {
 
                 CondecoracionTracker.clearTrophyRedDot()
+                CondecoracionTracker.clearMisCondecoracionesRedDot()
                 updateTrophyRedDot()
 
                 mediaPlayer.fadeOut()
@@ -197,6 +204,29 @@ class MainGameActivity : AppCompatActivity() {
 
         animatorSet.start()
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun scheduleDailyCondecoracionesWork() {
+        val zoneId = java.time.ZoneId.of("America/Chicago")
+        val now     = java.time.ZonedDateTime.now(zoneId)
+        val next0h  = now.withHour(0).withMinute(0).withSecond(0).withNano(0)
+            .let { if (now >= it) it.plusDays(1) else it }
+        val delayMs = java.time.Duration.between(now, next0h).toMillis()
+
+        val work = androidx.work.PeriodicWorkRequestBuilder<
+                com.example.sumamente.ui.utils.DailyCondecoracionesWorker
+                >(24, java.util.concurrent.TimeUnit.HOURS)
+            .setInitialDelay(delayMs, java.util.concurrent.TimeUnit.MILLISECONDS)
+            .build()
+
+        androidx.work.WorkManager.getInstance(this)
+            .enqueueUniquePeriodicWork(
+                "daily_condecoraciones",
+                androidx.work.ExistingPeriodicWorkPolicy.KEEP,
+                work
+            )
+    }
+
 
     @Suppress("DEPRECATION")
     private fun getLocationAndSetFlag() {
@@ -268,6 +298,8 @@ class MainGameActivity : AppCompatActivity() {
         super.onResume()
 
         CondecoracionTracker.verificarYEntregarPines()
+        CondecoracionTracker.verificarYActualizarCoronasDeVelocidad(this)
+        CondecoracionTracker.verificarYActualizarCondecoracionesTop10(this)
         updateTrophyRedDot()
 
         val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)

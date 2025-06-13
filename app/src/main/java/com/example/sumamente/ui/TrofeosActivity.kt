@@ -84,15 +84,20 @@ class TrofeosActivity : AppCompatActivity() {
 
         btnClose.setOnClickListener {
             applyBounceEffect(it) {
+
+                stopAndReleaseMusic()
+
                 val intent = Intent(this, MainGameActivity::class.java)
                 startActivity(intent)
                 finish()
             }
         }
 
-
         btnBack.setOnClickListener {
             applyBounceEffect(it) {
+
+                stopAndReleaseMusic()
+
                 val intent = Intent(this, MainGameActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -155,6 +160,19 @@ class TrofeosActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun stopAndReleaseMusic() {
+        if (this::mediaPlayer.isInitialized) {
+            try { if (mediaPlayer.isPlaying) mediaPlayer.stop() } catch (_: Exception) {}
+            mediaPlayer.release()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        stopAndReleaseMusic()
+    }
+
 
 
     private fun updateMisCondecoracionesRedDot() {

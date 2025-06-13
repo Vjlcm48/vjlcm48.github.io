@@ -3,6 +3,7 @@ package com.example.sumamente.ui
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import com.example.sumamente.R
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.util.*
@@ -20,6 +21,10 @@ object CondecoracionTracker {
     private const val KEY_NEW_PINS_INDICATOR = "new_pins_indicator"
     private const val KEY_TROPHY_RED_DOT = "trophy_red_dot_visible"
     private const val KEY_MIS_CONDECORACIONES_RED_DOT = "mis_condecoraciones_red_dot_visible"
+    private const val KEY_CORONAS_ACTIVAS = "coronas_activas"
+    private const val KEY_LAST_CORONA_CHECK_DATE = "last_corona_check_date"
+    private const val KEY_CONDECORACIONES_TOP10 = "condecoraciones_top10"
+    private const val KEY_LAST_TOP10_CHECK_DATE = "last_top10_check_date"
 
 
     data class CompletedLevel(
@@ -44,15 +49,35 @@ object CondecoracionTracker {
         INVICTUS(50)
     }
 
+    data class CoronaActiva(
+        val juego: String,
+        val tipoCorona: String,
+        val fechaAsignacion: Long,
+        val esNueva: Boolean = true,
+        val mensaje: String // NUEVO CAMPO
+    )
+
+    data class CondecoracionTop10(
+        val posicion: Int,
+        val tipoCondecoracion: String,
+        val fechaAsignacion: Long,
+        val esNueva: Boolean = true,
+        val mensaje: String
+    )
+
     private var completedLevelsUnified: MutableList<CompletedLevel> = mutableListOf()
     private var pinesObtenidos: MutableList<PinObtained> = mutableListOf()
     private var carryOverLevels: MutableList<CompletedLevel> = mutableListOf()
     private var lastPinCheckDate: String = ""
     private var hasNewPinsIndicator: Boolean = false
+    private var coronasActivas: MutableList<CoronaActiva> = mutableListOf()
+    private var lastCoronaCheckDate: String = ""
+
+    private var condecoracionesTop10: MutableList<CondecoracionTop10> = mutableListOf()
+    private var lastTop10CheckDate: String = ""
 
     private var trophyRedDotVisible: Boolean = false
     private var misCondecoracionesRedDotVisible: Boolean = false
-
 
     fun init(context: Context) {
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
@@ -61,10 +86,16 @@ object CondecoracionTracker {
         loadCarryOverLevels()
         lastPinCheckDate = preferences.getString(KEY_LAST_PIN_CHECK_DATE, "") ?: ""
         hasNewPinsIndicator = preferences.getBoolean(KEY_NEW_PINS_INDICATOR, false)
-
         trophyRedDotVisible = preferences.getBoolean(KEY_TROPHY_RED_DOT, false)
         misCondecoracionesRedDotVisible = preferences.getBoolean(KEY_MIS_CONDECORACIONES_RED_DOT, false)
+
+        loadCoronasActivas()
+        lastCoronaCheckDate = preferences.getString(KEY_LAST_CORONA_CHECK_DATE, "") ?: ""
+
+        loadCondecoracionesTop10()
+        lastTop10CheckDate = preferences.getString(KEY_LAST_TOP10_CHECK_DATE, "") ?: ""
     }
+
 
     private fun loadCompletedLevelsUnified() {
         val jsonString = preferences.getString(KEY_COMPLETED_LEVELS_JSON, null)
@@ -121,15 +152,10 @@ object CondecoracionTracker {
         val existe = completedLevelsUnified.any {
             it.game == game && it.grade == grade && it.level == level && !it.consumidoEnPin
         }
-
         val nivelYaConsumido = completedLevelsUnified.any {
             it.game == game && it.grade == grade && it.level == level && it.consumidoEnPin
         }
-
-        if (nivelYaConsumido) {
-            return
-        }
-
+        if (nivelYaConsumido) return
         if (!existe) {
             completedLevelsUnified.add(completedLevel)
             saveCompletedLevelsUnified()
@@ -138,7 +164,6 @@ object CondecoracionTracker {
 
     fun verificarYEntregarPines() {
         val currentDate = getCurrentDateChicago()
-
         if (lastPinCheckDate != currentDate) {
             val yesterday = getYesterdayDateChicago()
             procesarPinesDelDia(yesterday)
@@ -149,49 +174,34 @@ object CondecoracionTracker {
         }
     }
 
-
     private fun procesarPinesDelDia(fecha: String) {
-
         val nivelesDelDia = getNivelesDelDia(fecha)
         val carryOverVigente = getCarryOverVigente()
         val nivelesDisponibles = (nivelesDelDia + carryOverVigente).toMutableList()
-
-
         limpiarCarryOverExpirado()
-
         if (nivelesDisponibles.size >= 30) {
-
             var pinesEntregados = 0
-
             while (nivelesDisponibles.size >= 50) {
                 entregarPin(PinType.INVICTUS, nivelesDisponibles)
                 pinesEntregados++
             }
-
             while (nivelesDisponibles.size >= 40) {
                 entregarPin(PinType.OPTIMUM, nivelesDisponibles)
                 pinesEntregados++
             }
-
             while (nivelesDisponibles.size >= 30) {
                 entregarPin(PinType.VICTORIS, nivelesDisponibles)
                 pinesEntregados++
             }
-
             if (nivelesDisponibles.isNotEmpty()) {
                 carryOverLevels.addAll(nivelesDisponibles)
                 saveCarryOverLevels()
             }
-
             if (pinesEntregados > 0) {
                 hasNewPinsIndicator = true
-                trophyRedDotVisible = true
-                misCondecoracionesRedDotVisible = true
-
+                updateRedDotsStatus()
                 preferences.edit {
                     putBoolean(KEY_NEW_PINS_INDICATOR, true)
-                    putBoolean(KEY_TROPHY_RED_DOT, true)
-                    putBoolean(KEY_MIS_CONDECORACIONES_RED_DOT, true)
                 }
             }
         }
@@ -199,12 +209,9 @@ object CondecoracionTracker {
 
     private fun entregarPin(pinType: PinType, nivelesDisponibles: MutableList<CompletedLevel>) {
         val nivelesParaPin = nivelesDisponibles.take(pinType.requiredLevels).toMutableList()
-
-
         nivelesParaPin.forEach { nivel ->
             nivel.consumidoEnPin = true
             nivel.pinAsignado = pinType.name
-
             val index = completedLevelsUnified.indexOfFirst {
                 it.game == nivel.game && it.grade == nivel.grade && it.level == nivel.level
             }
@@ -212,19 +219,14 @@ object CondecoracionTracker {
                 completedLevelsUnified[index] = nivel
             }
         }
-
         val pin = PinObtained(
             tipo = pinType.name,
             fechaObtencion = System.currentTimeMillis(),
             nivelesConsumidos = nivelesParaPin,
             visto = false
         )
-
         pinesObtenidos.add(pin)
-
         nivelesDisponibles.removeAll(nivelesParaPin)
-
-
         saveCompletedLevelsUnified()
         savePinesObtenidos()
     }
@@ -286,7 +288,6 @@ object CondecoracionTracker {
     }
 
     fun marcarPinesComoVistos() {
-
         var cambiosRealizados = false
         pinesObtenidos.forEach { pin ->
             if (!pin.visto) {
@@ -294,9 +295,9 @@ object CondecoracionTracker {
                 cambiosRealizados = true
             }
         }
-
         if (cambiosRealizados) {
             savePinesObtenidos()
+            updateRedDotsStatus()
         }
     }
 
@@ -308,15 +309,482 @@ object CondecoracionTracker {
                 cambiosRealizados = true
             }
         }
-
         if (cambiosRealizados) {
             savePinesObtenidos()
+            updateRedDotsStatus()
         }
     }
 
-    fun shouldShowTrophyRedDot(): Boolean = trophyRedDotVisible
-
-    fun shouldShowMisCondecoracionesRedDot(): Boolean = misCondecoracionesRedDotVisible
-
     fun getAllPines(): List<PinObtained> = pinesObtenidos.toList()
+
+
+    private fun loadCoronasActivas() {
+        val jsonString = preferences.getString(KEY_CORONAS_ACTIVAS, null)
+        coronasActivas = if (jsonString != null) {
+            gson.fromJson(jsonString, object : TypeToken<MutableList<CoronaActiva>>() {}.type)
+        } else {
+            mutableListOf()
+        }
+    }
+
+    private fun saveCoronasActivas() {
+        val jsonString = gson.toJson(coronasActivas)
+        preferences.edit {
+            putString(KEY_CORONAS_ACTIVAS, jsonString)
+        }
+    }
+
+    private fun loadCondecoracionesTop10() {
+        val jsonString = preferences.getString(KEY_CONDECORACIONES_TOP10, null)
+        condecoracionesTop10 = if (jsonString != null) {
+            gson.fromJson(jsonString, object : TypeToken<MutableList<CondecoracionTop10>>() {}.type)
+        } else {
+            mutableListOf()
+        }
+    }
+
+    private fun saveCondecoracionesTop10() {
+        val jsonString = gson.toJson(condecoracionesTop10)
+        preferences.edit {
+            putString(KEY_CONDECORACIONES_TOP10, jsonString)
+        }
+    }
+
+    fun getCondecoracionesTop10(): List<CondecoracionTop10> = condecoracionesTop10.toList()
+
+    fun getCoronasActivas(): List<CoronaActiva> = coronasActivas.toList()
+
+    fun verificarYActualizarCoronasDeVelocidad(context: Context) {
+        val currentDate = getCurrentDateChicago()
+        if (lastCoronaCheckDate != currentDate) {
+            procesarCoronasDelDia(context)
+            lastCoronaCheckDate = currentDate
+            preferences.edit {
+                putString(KEY_LAST_CORONA_CHECK_DATE, currentDate)
+            }
+        }
+    }
+
+    fun verificarYActualizarCondecoracionesTop10(context: Context) {
+        val currentDate = getCurrentDateChicago()
+        if (lastTop10CheckDate != currentDate) {
+            procesarCondecoracionesTop10DelDia(context)
+            lastTop10CheckDate = currentDate
+            preferences.edit {
+                putString(KEY_LAST_TOP10_CHECK_DATE, currentDate)
+            }
+        }
+    }
+
+    private fun procesarCondecoracionesTop10DelDia(context: Context) {
+        val posicionUsuario = consultarPosicionRankingGlobal(context)
+        actualizarCondecoracionTop10DelUsuario(posicionUsuario, context)
+    }
+
+    private fun consultarPosicionRankingGlobal(context: Context): Int {
+
+        ScoreManager.ensurePreferencesInitialized(context)
+        ScoreManager.init(context)
+        ScoreManager.initPrincipiante(context)
+        ScoreManager.initPro(context)
+        ScoreManager.initDeciPlus(context)
+        ScoreManager.initDeciPlusPrincipiante(context)
+        ScoreManager.initDeciPlusPro(context)
+        ScoreManager.initRomas(context)
+        ScoreManager.initRomasPrincipiante(context)
+        ScoreManager.initRomasPro(context)
+        ScoreManager.initAlfaNumeros(context)
+        ScoreManager.initAlfaNumerosPrincipiante(context)
+        ScoreManager.initAlfaNumerosPro(context)
+        ScoreManager.initSumaResta(context)
+        ScoreManager.initSumaRestaPrincipiante(context)
+        ScoreManager.initSumaRestaPro(context)
+        ScoreManager.initMasPlus(context)
+        ScoreManager.initMasPlusPrincipiante(context)
+        ScoreManager.initMasPlusPro(context)
+        ScoreManager.initGenioPlus(context)
+        ScoreManager.initGenioPlusPrincipiante(context)
+        ScoreManager.initGenioPlusPro(context)
+
+
+        val totalLevels = ScoreManager.getTotalUniqueLevelsCompletedAllGames()
+        if (totalLevels < 36) {
+            return -1
+        }
+
+
+        return 1
+    }
+
+    private fun actualizarCondecoracionTop10DelUsuario(posicion: Int, context: Context) {
+        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val usuarioActual = sharedPreferences.getString("savedUserName", "Usuario") ?: "Usuario"
+
+
+        condecoracionesTop10.clear()
+
+        if (posicion in 1..10) {
+            val tipoCondecoracion = when (posicion) {
+                1 -> "EXCELSITUR"
+                2 -> "SUMMUM"
+                3 -> "MAGNANIMOUS"
+                4 -> "VENERABILIS"
+                5 -> "GLORIOSUS"
+                6 -> "ILLUSTRIS"
+                7 -> "PRAESTANS"
+                8 -> "INSIGNIS"
+                9 -> "VIRTUOSUS"
+                10 -> "HONORABILIS"
+                else -> ""
+            }
+
+            val mensaje = generarMensajeTop10(tipoCondecoracion, usuarioActual, context)
+
+            condecoracionesTop10.add(
+                CondecoracionTop10(
+                    posicion = posicion,
+                    tipoCondecoracion = tipoCondecoracion,
+                    fechaAsignacion = System.currentTimeMillis(),
+                    esNueva = true,
+                    mensaje = mensaje
+                )
+            )
+
+            updateRedDotsStatus()
+            saveCondecoracionesTop10()
+        } else {
+
+            if (condecoracionesTop10.isNotEmpty()) {
+                saveCondecoracionesTop10()
+                updateRedDotsStatus()
+            }
+        }
+    }
+
+    private fun generarMensajeTop10(tipoCondecoracion: String, nombreUsuario: String, context: Context): String {
+        val random = kotlin.random.Random.nextInt(1, 4)
+
+        val stringResId = when (tipoCondecoracion) {
+            "EXCELSITUR" -> when (random) {
+                1 -> R.string.msg_top10_excelsitur_1
+                2 -> R.string.msg_top10_excelsitur_2
+                else -> R.string.msg_top10_excelsitur_3
+            }
+            "SUMMUM" -> when (random) {
+                1 -> R.string.msg_top10_summum_1
+                2 -> R.string.msg_top10_summum_2
+                else -> R.string.msg_top10_summum_3
+            }
+            "MAGNANIMOUS" -> when (random) {
+                1 -> R.string.msg_top10_magnanimous_1
+                2 -> R.string.msg_top10_magnanimous_2
+                else -> R.string.msg_top10_magnanimous_3
+            }
+            "VENERABILIS" -> when (random) {
+                1 -> R.string.msg_top10_venerabilis_1
+                2 -> R.string.msg_top10_venerabilis_2
+                else -> R.string.msg_top10_venerabilis_3
+            }
+            "GLORIOSUS" -> when (random) {
+                1 -> R.string.msg_top10_gloriosus_1
+                2 -> R.string.msg_top10_gloriosus_2
+                else -> R.string.msg_top10_gloriosus_3
+            }
+            "ILLUSTRIS" -> when (random) {
+                1 -> R.string.msg_top10_illustris_1
+                2 -> R.string.msg_top10_illustris_2
+                else -> R.string.msg_top10_illustris_3
+            }
+            "PRAESTANS" -> when (random) {
+                1 -> R.string.msg_top10_praestans_1
+                2 -> R.string.msg_top10_praestans_2
+                else -> R.string.msg_top10_praestans_3
+            }
+            "INSIGNIS" -> when (random) {
+                1 -> R.string.msg_top10_insignis_1
+                2 -> R.string.msg_top10_insignis_2
+                else -> R.string.msg_top10_insignis_3
+            }
+            "VIRTUOSUS" -> when (random) {
+                1 -> R.string.msg_top10_virtuosus_1
+                2 -> R.string.msg_top10_virtuosus_2
+                else -> R.string.msg_top10_virtuosus_3
+            }
+            "HONORABILIS" -> when (random) {
+                1 -> R.string.msg_top10_honorabilis_1
+                2 -> R.string.msg_top10_honorabilis_2
+                else -> R.string.msg_top10_honorabilis_3
+            }
+            else -> R.string.msg_top10_honorabilis_1
+        }
+
+        return context.getString(stringResId, nombreUsuario, tipoCondecoracion)
+    }
+
+    private fun procesarCoronasDelDia(context: Context) {
+        val juegos = listOf(
+            "NumerosPlus", "DeciPlus", "Romas",
+            "AlfaNumeros", "SumaResta", "MasPlus", "GenioPlus"
+        )
+        juegos.forEach { juego ->
+            val top3Ranking = consultarRankingExistente(juego, context)
+            actualizarCoronasDelJuego(juego, top3Ranking, context)
+        }
+    }
+
+    private fun consultarRankingExistente(juego: String, context: Context): List<String> {
+
+        when (juego) {
+            "NumerosPlus" -> {
+                ScoreManager.ensurePreferencesInitialized(context)
+                ScoreManager.initPrincipiante(context)
+                ScoreManager.init(context)
+                ScoreManager.initPro(context)
+            }
+            "DeciPlus" -> {
+                ScoreManager.ensurePreferencesInitialized(context)
+                ScoreManager.initDeciPlusPrincipiante(context)
+                ScoreManager.initDeciPlus(context)
+                ScoreManager.initDeciPlusPro(context)
+            }
+            "Romas" -> {
+                ScoreManager.ensurePreferencesInitialized(context)
+                ScoreManager.initRomasPrincipiante(context)
+                ScoreManager.initRomas(context)
+                ScoreManager.initRomasPro(context)
+            }
+            "AlfaNumeros" -> {
+                ScoreManager.ensurePreferencesInitialized(context)
+                ScoreManager.initAlfaNumerosPrincipiante(context)
+                ScoreManager.initAlfaNumeros(context)
+                ScoreManager.initAlfaNumerosPro(context)
+            }
+            "SumaResta" -> {
+                ScoreManager.ensurePreferencesInitialized(context)
+                ScoreManager.initSumaRestaPrincipiante(context)
+                ScoreManager.initSumaResta(context)
+                ScoreManager.initSumaRestaPro(context)
+            }
+            "MasPlus" -> {
+                ScoreManager.ensurePreferencesInitialized(context)
+                ScoreManager.initMasPlusPrincipiante(context)
+                ScoreManager.initMasPlus(context)
+                ScoreManager.initMasPlusPro(context)
+            }
+            "GenioPlus" -> {
+                ScoreManager.ensurePreferencesInitialized(context)
+                ScoreManager.initGenioPlusPrincipiante(context)
+                ScoreManager.initGenioPlus(context)
+                ScoreManager.initGenioPlusPro(context)
+            }
+        }
+
+        val isEligible = when (juego) {
+            "NumerosPlus" -> ScoreManager.isEligibleForSpeedRankingNumerosPlus()
+            "DeciPlus" -> ScoreManager.isEligibleForSpeedRankingDeciPlus()
+            "Romas" -> ScoreManager.isEligibleForSpeedRankingRomas()
+            "AlfaNumeros" -> ScoreManager.isEligibleForSpeedRankingAlfaNumeros()
+            "SumaResta" -> ScoreManager.isEligibleForSpeedRankingSumaResta()
+            "MasPlus" -> ScoreManager.isEligibleForSpeedRankingMasPlus()
+            "GenioPlus" -> ScoreManager.isEligibleForSpeedRankingGenioPlus()
+            else -> false
+        }
+
+        if (!isEligible) {
+            return emptyList()
+        }
+
+        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val username = sharedPreferences.getString("savedUserName", "Usuario") ?: "Usuario"
+
+        return listOf(username)
+    }
+
+    private fun actualizarCoronasDelJuego(juego: String, top3Ranking: List<String>, context: Context) {
+        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val usuarioActual = sharedPreferences.getString("savedUserName", "Usuario") ?: "Usuario"
+        val coronasExistentes = coronasActivas.filter { it.juego == juego }
+        val posicionUsuario = top3Ranking.indexOf(usuarioActual)
+        val nuevaCorona = when (posicionUsuario) {
+            0 -> "VOLUCER"
+            1 -> "CELERIS"
+            2 -> "VELOCITAS"
+            else -> null
+        }
+        if (nuevaCorona != null) {
+            val coronaExistente = coronasExistentes.find { it.tipoCorona == nuevaCorona }
+            if (coronaExistente == null) {
+
+                coronasActivas.removeAll { it.juego == juego }
+
+                val mensaje = generarMensajeCorona(
+                    tipoCorona = nuevaCorona,
+                    nombreUsuario = usuarioActual,
+                    nombreJuego = mapearNombreJuego(juego, context),
+                    context = context
+                )
+                coronasActivas.add(
+                    CoronaActiva(
+                        juego = juego,
+                        tipoCorona = nuevaCorona,
+                        fechaAsignacion = System.currentTimeMillis(),
+                        esNueva = true,
+                        mensaje = mensaje
+                    )
+                )
+
+                updateRedDotsStatus()
+                saveCoronasActivas()
+            }
+
+        } else {
+
+            if (coronasExistentes.isNotEmpty()) {
+                coronasActivas.removeAll { it.juego == juego }
+                saveCoronasActivas()
+                updateRedDotsStatus()
+            }
+        }
+    }
+
+    private fun generarMensajeCorona(tipoCorona: String, nombreUsuario: String, nombreJuego: String, context: Context): String {
+        val random = kotlin.random.Random.nextInt(1, 5)
+
+        val stringResId = when (tipoCorona) {
+            "VOLUCER" -> when (random) {
+                1 -> R.string.corona_volucer_msg_1
+                2 -> R.string.corona_volucer_msg_2
+                3 -> R.string.corona_volucer_msg_3
+                else -> R.string.corona_volucer_msg_4
+            }
+            "CELERIS" -> when (random) {
+                1 -> R.string.corona_celeris_msg_1
+                2 -> R.string.corona_celeris_msg_2
+                3 -> R.string.corona_celeris_msg_3
+                else -> R.string.corona_celeris_msg_4
+            }
+            "VELOCITAS" -> when (random) {
+                1 -> R.string.corona_velocitas_msg_1
+                2 -> R.string.corona_velocitas_msg_2
+                3 -> R.string.corona_velocitas_msg_3
+                else -> R.string.corona_velocitas_msg_4
+            }
+            else -> R.string.corona_velocitas_msg_1
+        }
+
+        return context.getString(stringResId, nombreUsuario, nombreJuego)
+    }
+
+    private fun mapearNombreJuego(juegoInterno: String, context: Context): String {
+        return when (juegoInterno) {
+            "NumerosPlus" -> context.getString(R.string.game_numeros_plus)
+            "DeciPlus" -> context.getString(R.string.game_deci_plus)
+            "Romas" -> context.getString(R.string.game_romas)
+            "AlfaNumeros" -> context.getString(R.string.game_alfa_numeros)
+            "SumaResta" -> context.getString(R.string.game_sumaresta)
+            "MasPlus" -> context.getString(R.string.game_mas_plus)
+            "GenioPlus" -> context.getString(R.string.game_genio_plus)
+            else -> juegoInterno
+        }
+    }
+
+
+    private fun hasNewCrowns(): Boolean {
+        return coronasActivas.any { it.esNueva }
+    }
+
+    private fun hasNewTop10(): Boolean {
+        return condecoracionesTop10.any { it.esNueva }
+    }
+
+    private fun updateRedDotsStatus() {
+        val hasNewPins = pinesObtenidos.any { !it.visto }
+        val hasNewCrowns = hasNewCrowns()
+        val hasNewTop10 = hasNewTop10()
+        trophyRedDotVisible = hasNewPins || hasNewCrowns || hasNewTop10
+        misCondecoracionesRedDotVisible = hasNewPins || hasNewCrowns || hasNewTop10
+        preferences.edit {
+            putBoolean(KEY_TROPHY_RED_DOT, hasNewPins || hasNewCrowns || hasNewTop10)
+            putBoolean(KEY_MIS_CONDECORACIONES_RED_DOT, hasNewPins || hasNewCrowns || hasNewTop10)
+        }
+    }
+
+    fun marcarCoronasComoVistas() {
+        var cambiosRealizados = false
+        coronasActivas.forEach { corona ->
+            if (corona.esNueva) {
+                val index = coronasActivas.indexOf(corona)
+                if (index != -1) {
+                    coronasActivas[index] = corona.copy(esNueva = false)
+                    cambiosRealizados = true
+                }
+            }
+        }
+        if (cambiosRealizados) {
+            saveCoronasActivas()
+            updateRedDotsStatus()
+        }
+    }
+
+    fun marcarCoronaIndividualComoVista(juego: String, tipoCorona: String, fechaAsignacion: Long) {
+        var cambiosRealizados = false
+        coronasActivas.forEach { corona ->
+            if (corona.juego == juego &&
+                corona.tipoCorona == tipoCorona &&
+                corona.fechaAsignacion == fechaAsignacion &&
+                corona.esNueva
+            ) {
+                val index = coronasActivas.indexOf(corona)
+                if (index != -1) {
+                    coronasActivas[index] = corona.copy(esNueva = false)
+                    cambiosRealizados = true
+                }
+            }
+        }
+        if (cambiosRealizados) {
+            saveCoronasActivas()
+            updateRedDotsStatus()
+        }
+    }
+
+    fun marcarCondecoracionesTop10ComoVistas() {
+        var cambiosRealizados = false
+        condecoracionesTop10.forEach { condecoracion ->
+            if (condecoracion.esNueva) {
+                val index = condecoracionesTop10.indexOf(condecoracion)
+                if (index != -1) {
+                    condecoracionesTop10[index] = condecoracion.copy(esNueva = false)
+                    cambiosRealizados = true
+                }
+            }
+        }
+        if (cambiosRealizados) {
+            saveCondecoracionesTop10()
+            updateRedDotsStatus()
+        }
+    }
+
+    fun marcarCondecoracionTop10IndividualComoVista(posicion: Int, tipoCondecoracion: String, fechaAsignacion: Long) {
+        var cambiosRealizados = false
+        condecoracionesTop10.forEach { condecoracion ->
+            if (condecoracion.posicion == posicion &&
+                condecoracion.tipoCondecoracion == tipoCondecoracion &&
+                condecoracion.fechaAsignacion == fechaAsignacion &&
+                condecoracion.esNueva
+            ) {
+                val index = condecoracionesTop10.indexOf(condecoracion)
+                if (index != -1) {
+                    condecoracionesTop10[index] = condecoracion.copy(esNueva = false)
+                    cambiosRealizados = true
+                }
+            }
+        }
+        if (cambiosRealizados) {
+            saveCondecoracionesTop10()
+            updateRedDotsStatus()
+        }
+    }
+
+    fun shouldShowTrophyRedDot(): Boolean = trophyRedDotVisible || hasNewCrowns() || hasNewTop10()
+    fun shouldShowMisCondecoracionesRedDot(): Boolean = misCondecoracionesRedDotVisible || hasNewCrowns() || hasNewTop10()
 }
