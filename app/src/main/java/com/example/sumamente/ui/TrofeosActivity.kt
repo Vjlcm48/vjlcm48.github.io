@@ -163,10 +163,18 @@ class TrofeosActivity : AppCompatActivity() {
 
     private fun stopAndReleaseMusic() {
         if (this::mediaPlayer.isInitialized) {
-            try { if (mediaPlayer.isPlaying) mediaPlayer.stop() } catch (_: Exception) {}
-            mediaPlayer.release()
+            try {
+                // Solo intenta parar si no está liberado ya
+                try {
+                    if (mediaPlayer.isPlaying) mediaPlayer.stop()
+                } catch (_: Exception) {}
+                try {
+                    mediaPlayer.release()
+                } catch (_: Exception) {}
+            } catch (_: Exception) {}
         }
     }
+
 
     override fun onPause() {
         super.onPause()
@@ -210,16 +218,12 @@ class TrofeosActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
+        stopAndReleaseMusic()
         super.onDestroy()
-        if (this::mediaPlayer.isInitialized) {
-            if (mediaPlayer.isPlaying) {
-                mediaPlayer.stop()
-            }
-            mediaPlayer.release()
-        }
         instanceRef?.clear()
         instanceRef = null
     }
+
 
 
 }

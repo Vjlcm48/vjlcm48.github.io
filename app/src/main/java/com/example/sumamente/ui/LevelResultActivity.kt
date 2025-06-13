@@ -561,6 +561,7 @@ class LevelResultActivity : AppCompatActivity() {
                 mediaPlayer = null
             }
 
+
             // Crear nuevo MediaPlayer
             mediaPlayer = MediaPlayer.create(this, soundResourceId)
             mediaPlayer?.let { mp ->

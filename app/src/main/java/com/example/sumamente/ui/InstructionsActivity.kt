@@ -17,6 +17,11 @@ import androidx.core.content.ContextCompat
 import com.example.sumamente.R
 import androidx.core.view.isVisible
 import androidx.core.content.edit
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
 
 class InstructionsActivity : AppCompatActivity() {
 
@@ -51,7 +56,13 @@ class InstructionsActivity : AppCompatActivity() {
         tvDifficulty = findViewById(R.id.tv_difficulty)
         tvScore = findViewById(R.id.tv_score)
 
-        setupInfoBar()
+        // 1. Inicialización de ScoreManager y setupInfoBar en un hilo secundario para evitar ANR
+        lifecycleScope.launch(Dispatchers.IO) {
+            ScoreManager.init(this@InstructionsActivity)
+            withContext(Dispatchers.Main) {
+                setupInfoBar()
+            }
+        }
 
         val btnClose = findViewById<ImageView>(R.id.btn_close)
         val btnStart = findViewById<Button>(R.id.btn_start)
@@ -60,6 +71,14 @@ class InstructionsActivity : AppCompatActivity() {
         val tvTimeLimit = findViewById<TextView>(R.id.tv_time_limit)
         val tvRepeatedNumbersMessage = findViewById<TextView>(R.id.tv_repeated_numbers)
         val tvNegativeNumberWarning = findViewById<TextView>(R.id.tv_negative_numbers)
+
+        // 2. Activar aceleración hardware en vistas animadas antes de las animaciones
+        tvLevel.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+        tvInstructions.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+        tvRepeatedNumbersMessage.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+        tvNegativeNumberWarning.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+        tvTimeLimit.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+        btnStart.setLayerType(View.LAYER_TYPE_HARDWARE, null)
 
         level = intent.getIntExtra("LEVEL", 1)
         val timeLimit = timeLimits[level] ?: throw IllegalStateException(
@@ -115,7 +134,8 @@ class InstructionsActivity : AppCompatActivity() {
             btnClose.isEnabled = true
         }
 
-        val fadeInDuration = 500L
+        // 3. Animaciones optimizadas: reducir duración y evitar secuencia bloqueante
+        val fadeInDuration = 250L
         val levelAnimation = ObjectAnimator.ofFloat(tvLevel, "alpha", 0f, 1f).setDuration(fadeInDuration)
         val instructionsAnimation = ObjectAnimator.ofFloat(tvInstructions, "alpha", 0f, 1f).setDuration(fadeInDuration)
         val repeatedNumbersAnimation = ObjectAnimator.ofFloat(tvRepeatedNumbersMessage, "alpha", 0f, 1f).setDuration(fadeInDuration)
@@ -160,9 +180,30 @@ class InstructionsActivity : AppCompatActivity() {
         startButtonAnimatorSet.playTogether(startButtonScaleX, startButtonScaleY, startButtonAlpha)
         animationsList.add(startButtonAnimatorSet)
 
-        animatorSet.playSequentially(animationsList)
+        // 4. Animaciones en paralelo, escalonadas con startDelay para suavidad
+        animationsList.forEachIndexed { idx, anim ->
+            anim.startDelay = 100L * idx
+        }
+        animatorSet.playTogether(animationsList)
+
+        // 5. Restaurar aceleración software cuando terminan las animaciones
+        animatorSet.addListener(object : Animator.AnimatorListener {
+            override fun onAnimationStart(animation: Animator) {}
+            override fun onAnimationEnd(animation: Animator) {
+                tvLevel.setLayerType(View.LAYER_TYPE_NONE, null)
+                tvInstructions.setLayerType(View.LAYER_TYPE_NONE, null)
+                tvRepeatedNumbersMessage.setLayerType(View.LAYER_TYPE_NONE, null)
+                tvNegativeNumberWarning.setLayerType(View.LAYER_TYPE_NONE, null)
+                tvTimeLimit.setLayerType(View.LAYER_TYPE_NONE, null)
+                btnStart.setLayerType(View.LAYER_TYPE_NONE, null)
+            }
+            override fun onAnimationCancel(animation: Animator) {}
+            override fun onAnimationRepeat(animation: Animator) {}
+        })
+
         animatorSet.start()
 
+        // Botón de inicio animado (esto lo mantienes igual)
         btnStart.setOnClickListener {
             val scaleDownX = ObjectAnimator.ofFloat(btnStart, "scaleX", 1f, 0.9f).setDuration(50)
             val scaleDownY = ObjectAnimator.ofFloat(btnStart, "scaleY", 1f, 0.9f).setDuration(50)
@@ -194,6 +235,7 @@ class InstructionsActivity : AppCompatActivity() {
             })
         }
     }
+
 
     private fun setupInfoBar() {
         tvGameName.text = getString(R.string.game_numeros_plus)

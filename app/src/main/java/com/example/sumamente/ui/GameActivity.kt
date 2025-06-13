@@ -81,7 +81,7 @@ class GameActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         setContentView(R.layout.activity_game)
 
-        ScoreManager.init(this)
+        ScoreManager.initLight(this)
 
         val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val responseMode = prefs.getString("selectedResponseMode", intent.getStringExtra("RESPONSE_MODE"))

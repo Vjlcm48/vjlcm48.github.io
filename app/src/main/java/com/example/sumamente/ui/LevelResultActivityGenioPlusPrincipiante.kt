@@ -524,17 +524,68 @@ class LevelResultActivityGenioPlusPrincipiante : AppCompatActivity() {
     }
 
     private fun playSound(soundResourceId: Int) {
-        if (mediaPlayer != null) {
-            mediaPlayer?.release()
-            mediaPlayer = null
-        }
         val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
-        if (soundEnabled) {
-            mediaPlayer = MediaPlayer.create(this, soundResourceId)
-            mediaPlayer?.setOnCompletionListener {
-                it.release()
+        if (!soundEnabled) return
+
+        try {
+            // Liberar MediaPlayer anterior de forma segura
+            mediaPlayer?.let { mp ->
+                try {
+                    if (mp.isPlaying) {
+                        mp.stop()
+                    }
+                    mp.release()
+                } catch (e: Exception) {
+                    android.util.Log.e("MediaPlayer", "Error al liberar MediaPlayer anterior", e)
+                }
+                mediaPlayer = null
             }
-            mediaPlayer?.start()
+
+            // Crear nuevo MediaPlayer
+            mediaPlayer = MediaPlayer.create(this, soundResourceId)
+            mediaPlayer?.let { mp ->
+                // Configurar listeners
+                mp.setOnCompletionListener { player ->
+                    try {
+                        player.release()
+                        if (mediaPlayer == player) {
+                            mediaPlayer = null
+                        }
+                    } catch (e: Exception) {
+                        android.util.Log.e("MediaPlayer", "Error en OnCompletionListener", e)
+                    }
+                }
+
+                mp.setOnErrorListener { player, what, extra ->
+                    android.util.Log.e("MediaPlayer", "Error reproduciendo sonido: what=$what, extra=$extra")
+                    try {
+                        player.release()
+                        if (mediaPlayer == player) {
+                            mediaPlayer = null
+                        }
+                    } catch (e: Exception) {
+                        android.util.Log.e("MediaPlayer", "Error liberando MediaPlayer en OnError", e)
+                    }
+                    true // Indica que manejamos el error
+                }
+
+                // Iniciar reproducción
+                mp.start()
+
+            } ?: run {
+                android.util.Log.e("MediaPlayer", "No se pudo crear MediaPlayer para recurso: $soundResourceId")
+            }
+
+        } catch (e: Exception) {
+            android.util.Log.e("MediaPlayer", "Excepción general al reproducir sonido", e)
+            mediaPlayer?.let { mp ->
+                try {
+                    mp.release()
+                } catch (releaseException: Exception) {
+                    android.util.Log.e("MediaPlayer", "Error al liberar en catch", releaseException)
+                }
+                mediaPlayer = null
+            }
         }
     }
 

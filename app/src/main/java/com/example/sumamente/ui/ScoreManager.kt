@@ -459,6 +459,20 @@ object ScoreManager {
         lastIqComponentByGame = if (storedMap != null) gson.fromJson(storedMap, mapType) else mutableMapOf()
 
     }
+    fun initLight(context: Context) {
+        ensurePreferencesInitialized(context)
+        preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+
+        currentScore      = preferences.getInt(KEY_CURRENT_SCORE, 0)
+        unlockedLevels    = preferences.getInt(KEY_UNLOCKED_LEVELS, 2)
+        totalGamesNumerosPlus = preferences.getInt(KEY_TOTAL_GAMES_NUMEROS_PLUS, 0)
+        totalTimeNumerosPlus  = preferences.getFloat(KEY_TOTAL_TIME_NUMEROS_PLUS, 0f).toDouble()
+        totalGamesNumerosPlusExitos = preferences.getInt(KEY_TOTAL_GAMES_NUMEROS_PLUS_EXITOS, 0)
+        totalTimeNumerosPlusExitos  = preferences.getFloat(KEY_TOTAL_TIME_NUMEROS_PLUS_EXITOS, 0f).toDouble()
+        totalGamesGlobal    = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
+        correctGamesGlobal  = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
+    }
+
     fun initPrincipiante(context: Context) {
 
         ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
