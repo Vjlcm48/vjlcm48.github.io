@@ -25,7 +25,7 @@ object CondecoracionTracker {
     private const val KEY_LAST_CORONA_CHECK_DATE = "last_corona_check_date"
     private const val KEY_CONDECORACIONES_TOP10 = "condecoraciones_top10"
     private const val KEY_LAST_TOP10_CHECK_DATE = "last_top10_check_date"
-
+    private const val KEY_MEDALLAS_OBTENIDAS = "medallas_obtenidas"
 
     data class CompletedLevel(
         val game: String,
@@ -54,7 +54,7 @@ object CondecoracionTracker {
         val tipoCorona: String,
         val fechaAsignacion: Long,
         val esNueva: Boolean = true,
-        val mensaje: String // NUEVO CAMPO
+        val mensaje: String
     )
 
     data class CondecoracionTop10(
@@ -64,6 +64,29 @@ object CondecoracionTracker {
         val esNueva: Boolean = true,
         val mensaje: String
     )
+
+    data class MedallaObtenida(
+        val tipo: String,
+        val nivelesRequeridos: Int,
+        val fechaObtencion: Long,
+        val nivelesConsumidos: Int,
+        var vista: Boolean = false
+    )
+
+    enum class MedallaType(val requiredLevels: Int, val nombreMedalla: String) {
+        INITIUM(12, "INITIUM"),
+        FIDELIS(24, "FIDELIS"),
+        VIRTUS(36, "VIRTUS"),
+        AUDAX(400, "AUDAX"),
+        FORTIS(500, "FORTIS"),
+        TENAX(600, "TENAX"),
+        INTREPIDUS(700, "INTREPIDUS"),
+        SAPIENS(800, "SAPIENS"),
+        EXEMPLAR(900, "EXEMPLAR"),
+        GLORIAM(1000, "GLORIAM"),
+        MAGNUS(1100, "MAGNUS"),
+        IMMORTALIS(1200, "IMMORTALIS")
+    }
 
     private var completedLevelsUnified: MutableList<CompletedLevel> = mutableListOf()
     private var pinesObtenidos: MutableList<PinObtained> = mutableListOf()
@@ -75,6 +98,7 @@ object CondecoracionTracker {
 
     private var condecoracionesTop10: MutableList<CondecoracionTop10> = mutableListOf()
     private var lastTop10CheckDate: String = ""
+    private var medallasObtenidas: MutableList<MedallaObtenida> = mutableListOf()
 
     private var trophyRedDotVisible: Boolean = false
     private var misCondecoracionesRedDotVisible: Boolean = false
@@ -94,8 +118,9 @@ object CondecoracionTracker {
 
         loadCondecoracionesTop10()
         lastTop10CheckDate = preferences.getString(KEY_LAST_TOP10_CHECK_DATE, "") ?: ""
-    }
 
+        loadMedallas()
+    }
 
     private fun loadCompletedLevelsUnified() {
         val jsonString = preferences.getString(KEY_COMPLETED_LEVELS_JSON, null)
@@ -347,6 +372,85 @@ object CondecoracionTracker {
         val jsonString = gson.toJson(condecoracionesTop10)
         preferences.edit {
             putString(KEY_CONDECORACIONES_TOP10, jsonString)
+        }
+    }
+
+    private fun loadMedallas() {
+        val jsonString = preferences.getString(KEY_MEDALLAS_OBTENIDAS, null)
+        medallasObtenidas = if (jsonString != null) {
+            gson.fromJson(jsonString, object : TypeToken<MutableList<MedallaObtenida>>() {}.type)
+        } else {
+            mutableListOf()
+        }
+    }
+
+    private fun saveMedallas() {
+        val jsonString = gson.toJson(medallasObtenidas)
+        preferences.edit {
+            putString(KEY_MEDALLAS_OBTENIDAS, jsonString)
+        }
+    }
+
+    fun verificarYEntregarMedallas(callback: (MedallaObtenida?) -> Unit) {
+        val nuevaMedalla = procesarMedallasDelUsuario()
+        callback(nuevaMedalla)
+    }
+
+    private fun procesarMedallasDelUsuario(): MedallaObtenida? {
+        val totalNivelesUnicos = ScoreManager.getTotalUniqueLevelsCompletedAllGames()
+
+        for (tipoMedalla in MedallaType.entries) {
+            if (totalNivelesUnicos >= tipoMedalla.requiredLevels) {
+                val yaObtenida = medallasObtenidas.any { it.tipo == tipoMedalla.nombreMedalla }
+
+                if (!yaObtenida) {
+                    val nuevaMedalla = MedallaObtenida(
+                        tipo = tipoMedalla.nombreMedalla,
+                        nivelesRequeridos = tipoMedalla.requiredLevels,
+                        fechaObtencion = System.currentTimeMillis(),
+                        nivelesConsumidos = totalNivelesUnicos,
+                        vista = false
+                    )
+
+                    medallasObtenidas.add(nuevaMedalla)
+                    saveMedallas()
+                    updateRedDotsStatus()
+
+                    return nuevaMedalla
+                }
+            }
+        }
+
+        return null
+    }
+
+    fun getMedallasObtenidas(): List<MedallaObtenida> = medallasObtenidas.toList()
+
+    fun marcarMedallasComoVistas() {
+        var cambiosRealizados = false
+        medallasObtenidas.forEach { medalla ->
+            if (!medalla.vista) {
+                medalla.vista = true
+                cambiosRealizados = true
+            }
+        }
+        if (cambiosRealizados) {
+            saveMedallas()
+            updateRedDotsStatus()
+        }
+    }
+
+    fun marcarMedallaIndividualComoVista(tipo: String, fechaObtencion: Long) {
+        var cambiosRealizados = false
+        medallasObtenidas.forEach { medalla ->
+            if (medalla.tipo == tipo && medalla.fechaObtencion == fechaObtencion && !medalla.vista) {
+                medalla.vista = true
+                cambiosRealizados = true
+            }
+        }
+        if (cambiosRealizados) {
+            saveMedallas()
+            updateRedDotsStatus()
         }
     }
 
@@ -697,15 +801,20 @@ object CondecoracionTracker {
         return condecoracionesTop10.any { it.esNueva }
     }
 
+    private fun hasNewMedals(): Boolean {
+        return medallasObtenidas.any { !it.vista }
+    }
+
     private fun updateRedDotsStatus() {
         val hasNewPins = pinesObtenidos.any { !it.visto }
         val hasNewCrowns = hasNewCrowns()
         val hasNewTop10 = hasNewTop10()
-        trophyRedDotVisible = hasNewPins || hasNewCrowns || hasNewTop10
-        misCondecoracionesRedDotVisible = hasNewPins || hasNewCrowns || hasNewTop10
+        val hasNewMedals = hasNewMedals()
+        trophyRedDotVisible = hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals
+        misCondecoracionesRedDotVisible = hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals
         preferences.edit {
-            putBoolean(KEY_TROPHY_RED_DOT, hasNewPins || hasNewCrowns || hasNewTop10)
-            putBoolean(KEY_MIS_CONDECORACIONES_RED_DOT, hasNewPins || hasNewCrowns || hasNewTop10)
+            putBoolean(KEY_TROPHY_RED_DOT, hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals)
+            putBoolean(KEY_MIS_CONDECORACIONES_RED_DOT, hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals)
         }
     }
 
@@ -785,6 +894,6 @@ object CondecoracionTracker {
         }
     }
 
-    fun shouldShowTrophyRedDot(): Boolean = trophyRedDotVisible || hasNewCrowns() || hasNewTop10()
-    fun shouldShowMisCondecoracionesRedDot(): Boolean = misCondecoracionesRedDotVisible || hasNewCrowns() || hasNewTop10()
+    fun shouldShowTrophyRedDot(): Boolean = trophyRedDotVisible || hasNewCrowns() || hasNewTop10() || hasNewMedals()
+    fun shouldShowMisCondecoracionesRedDot(): Boolean = misCondecoracionesRedDotVisible || hasNewCrowns() || hasNewTop10() || hasNewMedals()
 }

@@ -157,7 +157,7 @@ class LevelResultActivityPrincipiante : AppCompatActivity() {
 
         ScoreManager.saveScorePrincipiante()
 
-        showSuccessDialog()
+        verificarMedallasAntesDeMostrarExito()
 
         val factor = obtenerFactorCorreccion(currentLevel)
         val velocidad = 1 / ScoreManager.getTiempoPromedioGlobal()
@@ -183,6 +183,32 @@ class LevelResultActivityPrincipiante : AppCompatActivity() {
 
         ScoreManager.updateIqComponent("NumerosPlus", "Principiante", 0.0)
         ScoreManager.saveStatsGlobalAndNumerosPlus()
+    }
+
+    private fun verificarMedallasAntesDeMostrarExito() {
+        CondecoracionTracker.verificarYEntregarMedallas { nuevaMedalla ->
+            if (nuevaMedalla != null) {
+                mostrarAnimacionMedalla(nuevaMedalla) {
+                    showSuccessDialog()
+                }
+            } else {
+                showSuccessDialog()
+            }
+        }
+    }
+
+    private fun mostrarAnimacionMedalla(medalla: CondecoracionTracker.MedallaObtenida, onComplete: () -> Unit) {
+        val medallasObtenidas = CondecoracionTracker.getMedallasObtenidas().size
+        val medallasRestantes = 12 - medallasObtenidas
+
+        val dialog = MedallAnimationDialog(
+            this,
+            medalla.tipo,
+            medallasObtenidas,
+            medallasRestantes,
+            onComplete
+        )
+        dialog.show()
     }
 
     private fun obtenerFactorCorreccion(maxNivel: Int): Double {

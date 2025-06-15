@@ -34,6 +34,7 @@ class MisCondecoracionesActivity : AppCompatActivity() {
         CondecoracionTracker.marcarPinesComoVistos()
         CondecoracionTracker.marcarCoronasComoVistas()
         CondecoracionTracker.marcarCondecoracionesTop10ComoVistas()
+        CondecoracionTracker.marcarMedallasComoVistas()
 
         initViews()
         setupButtons()
@@ -142,7 +143,6 @@ class MisCondecoracionesActivity : AppCompatActivity() {
             )
         }
 
-        // Cargar condecoraciones Top 10
         val condecoracionesTop10 = CondecoracionTracker.getCondecoracionesTop10()
         condecoracionesTop10.forEach { condecoracion ->
             val (nombre, descripcion, imagen) = when (condecoracion.tipoCondecoracion) {
@@ -215,6 +215,22 @@ class MisCondecoracionesActivity : AppCompatActivity() {
             )
         }
 
+        val medallas = CondecoracionTracker.getMedallasObtenidas()
+        medallas.forEach { medalla ->
+            val (nombre, descripcion, imagen) = mapearMedalla(medalla.tipo)
+
+            condecoraciones.add(
+                Condecoracion(
+                    tipo = TipoCondecoracion.MEDALLA,
+                    nombre = nombre,
+                    descripcion = descripcion,
+                    imagen = imagen,
+                    esNuevo = !medalla.vista,
+                    fechaObtencion = formatearFecha(medalla.fechaObtencion)
+                )
+            )
+        }
+
         condecoraciones.add(
             Condecoracion(
                 tipo = TipoCondecoracion.MEDALLA,
@@ -263,6 +279,76 @@ class MisCondecoracionesActivity : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
+    }
+
+    private fun mapearMedalla(tipoMedalla: String): Triple<String, String, Int> {
+        return when (tipoMedalla) {
+            "INITIUM" -> Triple(
+                "INITIUM",
+                getString(R.string.medalla_desc_initium),
+                R.drawable.ic_medalla_initium_cintas
+            )
+            "FIDELIS" -> Triple(
+                "FIDELIS",
+                getString(R.string.medalla_desc_fidelis),
+                R.drawable.ic_medalla_fidelis_cintas
+            )
+            "VIRTUS" -> Triple(
+                "VIRTUS",
+                getString(R.string.medalla_desc_virtus),
+                R.drawable.ic_medalla_virtus_cintas
+            )
+            "AUDAX" -> Triple(
+                "AUDAX",
+                getString(R.string.medalla_desc_audax),
+                R.drawable.ic_medalla_audax_cintas
+            )
+            "FORTIS" -> Triple(
+                "FORTIS",
+                getString(R.string.medalla_desc_fortis),
+                R.drawable.ic_medalla_fortis_cintas
+            )
+            "TENAX" -> Triple(
+                "TENAX",
+                getString(R.string.medalla_desc_tenax),
+                R.drawable.ic_medalla_tenax_cintas
+            )
+            "INTREPIDUS" -> Triple(
+                "INTREPIDUS",
+                getString(R.string.medalla_desc_intrepidus),
+                R.drawable.ic_medalla_intrepidus_cintas
+            )
+            "SAPIENS" -> Triple(
+                "SAPIENS",
+                getString(R.string.medalla_desc_sapiens),
+                R.drawable.ic_medalla_sapiens_cintas
+            )
+            "EXEMPLAR" -> Triple(
+                "EXEMPLAR",
+                getString(R.string.medalla_desc_exemplar),
+                R.drawable.ic_medalla_exemplar_cintas
+            )
+            "GLORIAM" -> Triple(
+                "GLORIAM",
+                getString(R.string.medalla_desc_gloriam),
+                R.drawable.ic_medalla_gloriam_cintas
+            )
+            "MAGNUS" -> Triple(
+                "MAGNUS",
+                getString(R.string.medalla_desc_magnus),
+                R.drawable.ic_medalla_magnus_cintas
+            )
+            "IMMORTALIS" -> Triple(
+                "IMMORTALIS",
+                getString(R.string.medalla_desc_immortalis),
+                R.drawable.ic_medalla_immortalis_cintas
+            )
+            else -> Triple(
+                "MEDALLA",
+                "Medalla de reconocimiento obtenida",
+                R.drawable.ic_medalla_initium_cintas
+            )
+        }
     }
 
 
@@ -327,6 +413,25 @@ class MisCondecoracionesActivity : AppCompatActivity() {
 
                 val position = condecoraciones.indexOfFirst {
                     it.tipo == TipoCondecoracion.TOP10 && it.nombre == condecoracion.nombre
+                }
+                if (position != -1) {
+                    condecoraciones[position] = condecoraciones[position].copy(esNuevo = false)
+                    adapter.notifyItemChanged(position)
+                }
+            }
+        }
+
+        if (condecoracion.tipo == TipoCondecoracion.MEDALLA && condecoracion.esNuevo) {
+            val medallas = CondecoracionTracker.getMedallasObtenidas()
+            val medallaCorrespondiente = medallas.find { medalla ->
+                medalla.tipo == condecoracion.nombre && !medalla.vista
+            }
+
+            medallaCorrespondiente?.let { medalla ->
+                CondecoracionTracker.marcarMedallaIndividualComoVista(medalla.tipo, medalla.fechaObtencion)
+
+                val position = condecoraciones.indexOfFirst {
+                    it.tipo == TipoCondecoracion.MEDALLA && it.nombre == condecoracion.nombre
                 }
                 if (position != -1) {
                     condecoraciones[position] = condecoraciones[position].copy(esNuevo = false)

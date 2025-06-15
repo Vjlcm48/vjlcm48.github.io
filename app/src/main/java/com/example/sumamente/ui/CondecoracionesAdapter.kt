@@ -42,7 +42,7 @@ class CondecoracionesAdapter(
             tvDescripcion.text = condecoracion.descripcion
 
 
-            if ((condecoracion.tipo == TipoCondecoracion.PIN || condecoracion.tipo == TipoCondecoracion.CORONA || condecoracion.tipo == TipoCondecoracion.TOP10) && condecoracion.esNuevo) {
+            if ((condecoracion.tipo == TipoCondecoracion.PIN || condecoracion.tipo == TipoCondecoracion.CORONA || condecoracion.tipo == TipoCondecoracion.TOP10 || condecoracion.tipo == TipoCondecoracion.MEDALLA) && condecoracion.esNuevo) {
                 redDotSmall.visibility = View.VISIBLE
                 redDotTitulo.visibility = View.VISIBLE
             } else {
@@ -50,7 +50,7 @@ class CondecoracionesAdapter(
                 redDotTitulo.visibility = View.GONE
             }
 
-            if ((condecoracion.tipo == TipoCondecoracion.PIN || condecoracion.tipo == TipoCondecoracion.CORONA || condecoracion.tipo == TipoCondecoracion.TOP10) && !condecoracion.fechaObtencion.isNullOrEmpty()) {
+            if ((condecoracion.tipo == TipoCondecoracion.PIN || condecoracion.tipo == TipoCondecoracion.CORONA || condecoracion.tipo == TipoCondecoracion.TOP10 || condecoracion.tipo == TipoCondecoracion.MEDALLA) && !condecoracion.fechaObtencion.isNullOrEmpty()) {
                 tvFecha.text = itemView.context.getString(R.string.date_obtained, condecoracion.fechaObtencion)
                 tvFecha.visibility = View.VISIBLE
             } else {

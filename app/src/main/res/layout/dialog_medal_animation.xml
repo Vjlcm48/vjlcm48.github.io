@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#99000000">
+
+    <!-- Contenedor principal centrado -->
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/dialog_background_rounded"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Botón cerrar (X) en esquina superior derecha -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/btn_cerrar"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentEnd="true"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="8dp"
+                android:src="@drawable/ic_close"
+                android:contentDescription="@string/close_button_desc" />
+        </RelativeLayout>
+
+        <!-- Contenedor del círculo y medalla -->
+        <RelativeLayout
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp">
+
+            <!-- Círculo de fondo blanco -->
+            <ImageView
+                android:id="@+id/iv_circulo"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/circle_white_shadow"
+                android:elevation="4dp"
+                android:contentDescription="@string/medal_circle_background"/>
+
+            <!-- Medalla -->
+            <ImageView
+                android:id="@+id/iv_medalla"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_centerInParent="true"
+                android:elevation="6dp"
+                android:scaleType="centerInside"
+                android:contentDescription="@string/medal_image"/>
+
+        </RelativeLayout>
+
+        <!-- Título de la medalla -->
+        <TextView
+            android:id="@+id/tv_titulo_medalla"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:lineSpacingExtra="2dp" />
+
+        <!-- Descripción de la medalla -->
+        <TextView
+            android:id="@+id/tv_descripcion_medalla"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            android:lineSpacingExtra="4dp" />
+
+        <!-- Contador de medallas -->
+        <TextView
+            android:id="@+id/tv_contador_medallas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <!-- Mensaje de motivación -->
+        <TextView
+            android:id="@+id/tv_motivacion_medalla"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textColor="@color/blue_primary"
+            android:textSize="14sp"
+            android:lineSpacingExtra="2dp" />
+
+        <!-- Botón Entendido -->
+        <Button
+            android:id="@+id/btn_entendido"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/button_background"
+            android:text="@string/entendido"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:elevation="2dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
