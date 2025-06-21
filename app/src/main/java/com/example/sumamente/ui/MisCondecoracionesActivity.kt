@@ -34,7 +34,9 @@ class MisCondecoracionesActivity : AppCompatActivity() {
         CondecoracionTracker.marcarPinesComoVistos()
         CondecoracionTracker.marcarCoronasComoVistas()
         CondecoracionTracker.marcarCondecoracionesTop10ComoVistas()
-        CondecoracionTracker.marcarMedallasComoVistas()
+        // ⚠️  Quitar o comentar las dos siguientes líneas:
+        /// CondecoracionTracker.marcarMedallasComoVistas()
+        /// CondecoracionTracker.marcarTrofeosComoVistos()
 
         initViews()
         setupButtons()
@@ -64,7 +66,6 @@ class MisCondecoracionesActivity : AppCompatActivity() {
             }
         }
     }
-
 
     private fun loadCondecoraciones() {
         condecoraciones.clear()
@@ -249,6 +250,20 @@ class MisCondecoracionesActivity : AppCompatActivity() {
             )
         )
 
+        val trofeos = CondecoracionTracker.getTrofeosObtenidos()
+        trofeos.forEach { trofeo ->
+            val (nombre, descripcion, imagen) = mapearTrofeo(trofeo.nombreTrofeo)
+            condecoraciones.add(
+                Condecoracion(
+                    tipo = TipoCondecoracion.TROFEO,
+                    nombre = nombre,
+                    descripcion = descripcion,
+                    imagen = imagen,
+                    esNuevo = !trofeo.visto,
+                    fechaObtencion = formatearFecha(trofeo.fechaObtencion)
+                )
+            )
+        }
 
         if (condecoraciones.isEmpty()) {
             emptyStateTextView.visibility = View.VISIBLE
@@ -257,7 +272,6 @@ class MisCondecoracionesActivity : AppCompatActivity() {
             emptyStateTextView.visibility = View.GONE
             recyclerView.visibility = View.VISIBLE
         }
-
 
     }
 
@@ -351,6 +365,40 @@ class MisCondecoracionesActivity : AppCompatActivity() {
         }
     }
 
+    private fun mapearTrofeo(nombreTrofeo: String): Triple<String, String, Int> {
+        return when (nombreTrofeo) {
+            // NUMEROS+
+            "INITIA" -> Triple("INITIA", getString(R.string.logro_trofeo_initia), R.drawable.ic_trofeo_initia)
+            "CONSTANTIA" -> Triple("CONSTANTIA", getString(R.string.logro_trofeo_constantia), R.drawable.ic_trofeo_constantia)
+            "CONFECTUS" -> Triple("CONFECTUS", getString(R.string.logro_trofeo_confectus), R.drawable.ic_trofeo_confectus)
+            // DECIPLUS
+            "VIA" -> Triple("VIA", getString(R.string.logro_trofeo_via), R.drawable.ic_trofeo_via)
+            "ALTUS" -> Triple("ALTUS", getString(R.string.logro_trofeo_altus), R.drawable.ic_trofeo_altus)
+            "PERSEVERANTIA" -> Triple("PERSEVERANTIA", getString(R.string.logro_trofeo_perseverantia), R.drawable.ic_trofeo_perseverantia)
+            // ROMAS
+            "GRADUS" -> Triple("GRADUS", getString(R.string.logro_trofeo_gradus), R.drawable.ic_trofeo_gradus)
+            "FORTITUDO" -> Triple("FORTITUDO", getString(R.string.logro_trofeo_fortitudo), R.drawable.ic_trofeo_fortitudo)
+            "METAM" -> Triple("METAM", getString(R.string.logro_trofeo_metam), R.drawable.ic_trofeo_metam)
+            // ALFANUMEROS
+            "FUNDAMENTUM" -> Triple("FUNDAMENTUM", getString(R.string.logro_trofeo_fundamentum), R.drawable.ic_trofeo_fundamentum)
+            "PRAEMIUM" -> Triple("PRAEMIUM", getString(R.string.logro_trofeo_praemium), R.drawable.ic_trofeo_praemium)
+            "GLORIFICUS" -> Triple("GLORIFICUS", getString(R.string.logro_trofeo_glorificus), R.drawable.ic_trofeo_glorificus)
+            // SUMARESTA
+            "SCALA" -> Triple("SCALA", getString(R.string.logro_trofeo_scala), R.drawable.ic_trofeo_scala)
+            "TENACITAS" -> Triple("TENACITAS", getString(R.string.logro_trofeo_tenacitas), R.drawable.ic_trofeo_tenacitas)
+            "PERFECTUS" -> Triple("PERFECTUS", getString(R.string.logro_trofeo_perfectus), R.drawable.ic_trofeo_perfectus)
+            // MASPLUS
+            "ORIGO" -> Triple("ORIGO", getString(R.string.logro_trofeo_origo), R.drawable.ic_trofeo_origo)
+            "PROFICIUM" -> Triple("PROFICIUM", getString(R.string.logro_trofeo_proficium), R.drawable.ic_trofeo_proficium)
+            "EXEMPLARITAS" -> Triple("EXEMPLARITAS", getString(R.string.logro_trofeo_exemplaritas), R.drawable.ic_trofeo_exemplaritas)
+            // GENIOPLUS
+            "ASCENSUS" -> Triple("ASCENSUS", getString(R.string.logro_trofeo_ascensus), R.drawable.ic_trofeo_ascensus)
+            "MAGNIFICUS" -> Triple("MAGNIFICUS", getString(R.string.logro_trofeo_magnificus), R.drawable.ic_trofeo_magnificus)
+            "POTENS" -> Triple("POTENS", getString(R.string.logro_trofeo_potens), R.drawable.ic_trofeo_potens)
+            // Fallback
+            else -> Triple("TROFEO", "Trofeo de reconocimiento obtenido", R.drawable.ic_trofeo_initia)
+        }
+    }
 
     private fun mostrarImagenAmpliada(condecoracion: Condecoracion) {
 
@@ -440,6 +488,25 @@ class MisCondecoracionesActivity : AppCompatActivity() {
             }
         }
 
+        if (condecoracion.tipo == TipoCondecoracion.TROFEO && condecoracion.esNuevo) {
+            val trofeos = CondecoracionTracker.getTrofeosObtenidos()
+            val trofeoCorrespondiente = trofeos.find { trofeo ->
+                trofeo.nombreTrofeo == condecoracion.nombre && !trofeo.visto
+            }
+            trofeoCorrespondiente?.let { trofeo ->
+                // Marcar como visto
+                CondecoracionTracker.marcarTrofeoIndividualComoVisto(trofeo.juego, trofeo.grado, trofeo.fechaObtencion)
+
+                val position = condecoraciones.indexOfFirst {
+                    it.tipo == TipoCondecoracion.TROFEO && it.nombre == condecoracion.nombre
+                }
+                if (position != -1) {
+                    condecoraciones[position] = condecoraciones[position].copy(esNuevo = false)
+                    adapter.notifyItemChanged(position)
+                }
+            }
+        }
+
         val dialog = ImagenAmpliadaDialog(
             this,
             condecoracion.nombre,
@@ -447,7 +514,6 @@ class MisCondecoracionesActivity : AppCompatActivity() {
         )
         dialog.show()
     }
-
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
         val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.9f).setDuration(50)

@@ -1,19 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#99000000">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="400dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/dialog_background_rounded"
+    android:orientation="vertical"
+    android:padding="24dp">
 
-    <!-- Contenedor principal centrado -->
-    <LinearLayout
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="@drawable/dialog_background_rounded"
-        android:orientation="vertical"
-        android:padding="24dp">
-
-        <!-- Botón cerrar (X) en esquina superior derecha -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -31,8 +23,8 @@
                 android:contentDescription="@string/close_button_desc" />
         </RelativeLayout>
 
-        <!-- Contenedor del círculo y medalla -->
         <RelativeLayout
+            android:id="@+id/layout_medalla_container"
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:layout_gravity="center_horizontal"
@@ -48,7 +40,6 @@
                 android:elevation="4dp"
                 android:contentDescription="@string/medal_circle_background"/>
 
-            <!-- Medalla -->
             <ImageView
                 android:id="@+id/iv_medalla"
                 android:layout_width="120dp"
@@ -60,31 +51,67 @@
 
         </RelativeLayout>
 
-        <!-- Título de la medalla -->
+    <!-- 1. BLOQUE EXCLUSIVO PARA DOBLE CELEBRACIÓN -->
+    <LinearLayout
+        android:id="@+id/layout_doble_celebracion"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone">
+
+        <!-- ► NUEVO id: tv_titulo_doble  -->
         <TextView
-            android:id="@+id/tv_titulo_medalla"
+            android:id="@+id/tv_titulo_doble"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             android:lineSpacingExtra="2dp" />
 
-        <!-- Descripción de la medalla -->
+        <!-- ► NUEVO id: tv_descripcion_doble -->
         <TextView
-            android:id="@+id/tv_descripcion_medalla"
+            android:id="@+id/tv_descripcion_doble"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:textColor="@color/gray"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:lineSpacingExtra="4dp" />
+    </LinearLayout>
 
-        <!-- Contador de medallas -->
-        <TextView
+    <!-- 2. TEXTO NORMAL PARA MEDALLAS / TROFEOS -->
+    <TextView
+        android:id="@+id/tv_titulo_medalla"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:lineSpacingExtra="2dp" />
+
+    <TextView
+        android:id="@+id/tv_descripcion_medalla"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:textColor="@color/gray"
+        android:textSize="14sp"
+        android:lineSpacingExtra="4dp" />
+
+
+
+
+    <TextView
             android:id="@+id/tv_contador_medallas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -94,7 +121,7 @@
             android:textSize="15sp"
             android:textStyle="bold" />
 
-        <!-- Mensaje de motivación -->
+
         <TextView
             android:id="@+id/tv_motivacion_medalla"
             android:layout_width="match_parent"
@@ -105,19 +132,17 @@
             android:textSize="14sp"
             android:lineSpacingExtra="2dp" />
 
-        <!-- Botón Entendido -->
         <Button
             android:id="@+id/btn_entendido"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="48dp"
             android:layout_marginTop="24dp"
             android:background="@drawable/button_background"
+            android:elevation="2dp"
             android:text="@string/entendido"
             android:textColor="@android:color/white"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:elevation="2dp" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 
-</RelativeLayout>

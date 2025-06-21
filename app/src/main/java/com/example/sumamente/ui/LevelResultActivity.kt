@@ -1,7 +1,7 @@
 package com.example.sumamente.ui
 
-import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Typeface
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -10,8 +10,10 @@ import android.os.Looper
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.StyleSpan
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
@@ -52,14 +54,13 @@ class LevelResultActivity : AppCompatActivity() {
     private lateinit var reviewExerciseTextView: TextView
 
     private var mediaPlayer: MediaPlayer? = null
-    private lateinit var sharedPreferences: android.content.SharedPreferences
-
+    private lateinit var sharedPreferences: SharedPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_level_result)
 
         ScoreManager.init(this)
@@ -78,13 +79,11 @@ class LevelResultActivity : AppCompatActivity() {
             timeSpentInSeconds *= 0.7
         }
 
-
         numberList = intent.getIntArrayExtra("NUMBER_LIST")
         correctAnswer = intent.getIntExtra("CORRECT_ANSWER", 0)
         userResponses = intent.getIntArrayExtra("USER_RESPONSES")
         val exclIndex = intent.getIntExtra("EXCLUDED_INDEX", -1)
         excludedIndex = if (exclIndex >= 0) exclIndex else null
-
         mainMessageTextView = findViewById(R.id.mainMessageTextView)
         pointsTextView = findViewById(R.id.pointsTextView)
         checkImageView = findViewById(R.id.checkImageView)
@@ -191,26 +190,85 @@ class LevelResultActivity : AppCompatActivity() {
 
     private fun verificarMedallasAntesDeMostrarExito() {
         CondecoracionTracker.verificarYEntregarMedallas { nuevaMedalla ->
-            if (nuevaMedalla != null) {
-                mostrarAnimacionMedalla(nuevaMedalla) {
-                    showSuccessDialog()
-                }
+
+            if (nuevaMedalla != null && currentLevel == 4) {
+                verificarTrofeosParaDobleCondecoracion(nuevaMedalla)
+            } else if (nuevaMedalla != null) {
+                mostrarAnimacionMedalla(nuevaMedalla)
+            } else if (currentLevel == 4) {
+                verificarTrofeosAntesDeMostrarExito()
             } else {
                 showSuccessDialog()
             }
         }
     }
 
-    private fun mostrarAnimacionMedalla(medalla: CondecoracionTracker.MedallaObtenida, onComplete: () -> Unit) {
+    private fun verificarTrofeosParaDobleCondecoracion(nuevaMedalla: CondecoracionTracker.MedallaObtenida) {
+        CondecoracionTracker.verificarYEntregarTrofeos("NumerosPlus", "Avanzado") { nuevoTrofeo ->
+            if (nuevoTrofeo != null) {
+                mostrarDobleCelebracion(nuevaMedalla, nuevoTrofeo)
+            } else {
+                mostrarAnimacionMedalla(nuevaMedalla)
+            }
+        }
+    }
+
+    private fun verificarTrofeosAntesDeMostrarExito() {
+        CondecoracionTracker.verificarYEntregarTrofeos("NumerosPlus", "Avanzado") { nuevoTrofeo ->
+            if (nuevoTrofeo != null) {
+                mostrarAnimacionTrofeo(nuevoTrofeo)
+            } else {
+                showSuccessDialog()
+            }
+        }
+    }
+
+    private fun mostrarDobleCelebracion(
+        medalla: CondecoracionTracker.MedallaObtenida,
+        trofeo: CondecoracionTracker.TrofeoObtenido
+    ) {
+        val dialog = CondecoracionAnimationDialog(
+            context = this,
+            tipoCondecoracion = TipoCondecoracion.DOBLE_CELEBRACION,
+            onAnimationComplete = {
+                mostrarAnimacionMedalla(medalla) {
+                    mostrarAnimacionTrofeo(trofeo)
+                }
+            }
+        )
+        dialog.show()
+    }
+
+    private fun mostrarAnimacionTrofeo(
+        trofeo: CondecoracionTracker.TrofeoObtenido,
+        onComplete: (() -> Unit)? = null
+    ) {
+        val dialog = CondecoracionAnimationDialog(
+            this,
+            tipoCondecoracion = TipoCondecoracion.TROFEO,
+            nombreTrofeo = trofeo.nombreTrofeo,
+            onAnimationComplete = {
+                onComplete?.invoke() ?: showSuccessDialog()
+            }
+        )
+        dialog.show()
+    }
+
+    private fun mostrarAnimacionMedalla(
+        medalla: CondecoracionTracker.MedallaObtenida,
+        onComplete: (() -> Unit)? = null
+    ) {
         val medallasObtenidas = CondecoracionTracker.getMedallasObtenidas().size
         val medallasRestantes = 12 - medallasObtenidas
 
-        val dialog = MedallAnimationDialog(
+        val dialog = CondecoracionAnimationDialog(
             this,
-            medalla.tipo,
-            medallasObtenidas,
-            medallasRestantes,
-            onComplete
+            medallaTipo = medalla.tipo,
+            medallasObtenidas = medallasObtenidas,
+            medallasRestantes = medallasRestantes,
+            onAnimationComplete = {
+                onComplete?.invoke() ?: showSuccessDialog()
+            }
         )
         dialog.show()
     }
@@ -335,10 +393,10 @@ class LevelResultActivity : AppCompatActivity() {
             val fadeOut = AnimationUtils.loadAnimation(this, R.anim.dialog_fade_out)
             animationView.startAnimation(fadeOut)
 
-            fadeOut.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
-                override fun onAnimationStart(animation: android.view.animation.Animation?) {}
+            fadeOut.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: Animation?) {}
 
-                override fun onAnimationEnd(animation: android.view.animation.Animation?) {
+                override fun onAnimationEnd(animation: Animation?) {
                     animationView.setAnimation("confetti_animation.json")
                     val fadeIn = AnimationUtils.loadAnimation(this@LevelResultActivity, R.anim.dialog_fade_in)
                     animationView.startAnimation(fadeIn)
@@ -360,18 +418,18 @@ class LevelResultActivity : AppCompatActivity() {
                     val pointsAnimation = AnimationUtils.loadAnimation(this@LevelResultActivity, R.anim.points_appear_from_back)
                     pointsTextView.startAnimation(pointsAnimation)
 
-                    pointsAnimation.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
-                        override fun onAnimationStart(animation: android.view.animation.Animation?) {}
+                    pointsAnimation.setAnimationListener(object : Animation.AnimationListener {
+                        override fun onAnimationStart(animation: Animation?) {}
 
-                        override fun onAnimationEnd(animation: android.view.animation.Animation?) {
+                        override fun onAnimationEnd(animation: Animation?) {
                             checkImageView.visibility = View.VISIBLE
                             val checkAnimation = AnimationUtils.loadAnimation(this@LevelResultActivity, R.anim.check_appear)
                             checkImageView.startAnimation(checkAnimation)
 
-                            checkAnimation.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
-                                override fun onAnimationStart(animation: android.view.animation.Animation?) {}
+                            checkAnimation.setAnimationListener(object : Animation.AnimationListener {
+                                override fun onAnimationStart(animation: Animation?) {}
 
-                                override fun onAnimationEnd(animation: android.view.animation.Animation?) {
+                                override fun onAnimationEnd(animation: Animation?) {
                                     val puntosNumerosPlus = ScoreManager.currentScore
                                     val puntajeActualText = getString(R.string.puntaje_actual, puntosNumerosPlus)
                                     val spannablePuntajeActual = SpannableString(puntajeActualText)
@@ -388,10 +446,10 @@ class LevelResultActivity : AppCompatActivity() {
                                     currentScoreTextView.startAnimation(puntajeActualAnimation)
                                     starImageView.startAnimation(puntajeActualAnimation)
 
-                                    puntajeActualAnimation.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
-                                        override fun onAnimationStart(animation: android.view.animation.Animation?) {}
+                                    puntajeActualAnimation.setAnimationListener(object : Animation.AnimationListener {
+                                        override fun onAnimationStart(animation: Animation?) {}
 
-                                        override fun onAnimationEnd(animation: android.view.animation.Animation?) {
+                                        override fun onAnimationEnd(animation: Animation?) {
 
                                             // Cambio de variable para tiempo real mostrado C4 //
                                             val formattedTime = String.format(Locale.getDefault(), "%.2f", rawTimeSpent)
@@ -406,10 +464,10 @@ class LevelResultActivity : AppCompatActivity() {
                                             val timeAnimation = AnimationUtils.loadAnimation(this@LevelResultActivity, R.anim.points_appear_from_back)
                                             timeSpentTextView.startAnimation(timeAnimation)
 
-                                            timeAnimation.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
-                                                override fun onAnimationStart(animation: android.view.animation.Animation?) {}
+                                            timeAnimation.setAnimationListener(object : Animation.AnimationListener {
+                                                override fun onAnimationStart(animation: Animation?) {}
 
-                                                override fun onAnimationEnd(animation: android.view.animation.Animation?) {
+                                                override fun onAnimationEnd(animation: Animation?) {
                                                     checkBlueImageView.visibility = View.VISIBLE
                                                     val checkBlueAnimation = AnimationUtils.loadAnimation(this@LevelResultActivity, R.anim.check_appear)
                                                     checkBlueImageView.startAnimation(checkBlueAnimation)
@@ -432,23 +490,23 @@ class LevelResultActivity : AppCompatActivity() {
                                                     }, 900)
                                                 }
 
-                                                override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
+                                                override fun onAnimationRepeat(animation: Animation?) {}
                                             })
                                         }
 
-                                        override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
+                                        override fun onAnimationRepeat(animation: Animation?) {}
                                     })
                                 }
 
-                                override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
+                                override fun onAnimationRepeat(animation: Animation?) {}
                             })
                         }
 
-                        override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
+                        override fun onAnimationRepeat(animation: Animation?) {}
                     })
                 }
 
-                override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
+                override fun onAnimationRepeat(animation: Animation?) {}
             })
         }, 2000)
 
@@ -582,7 +640,7 @@ class LevelResultActivity : AppCompatActivity() {
                     }
                     mp.release()
                 } catch (e: Exception) {
-                    android.util.Log.e("MediaPlayer", "Error al liberar MediaPlayer anterior", e)
+                    Log.e("MediaPlayer", "Error al liberar MediaPlayer anterior", e)
                 }
                 mediaPlayer = null
             }
@@ -599,19 +657,19 @@ class LevelResultActivity : AppCompatActivity() {
                             mediaPlayer = null
                         }
                     } catch (e: Exception) {
-                        android.util.Log.e("MediaPlayer", "Error en OnCompletionListener", e)
+                        Log.e("MediaPlayer", "Error en OnCompletionListener", e)
                     }
                 }
 
                 mp.setOnErrorListener { player, what, extra ->
-                    android.util.Log.e("MediaPlayer", "Error reproduciendo sonido: what=$what, extra=$extra")
+                    Log.e("MediaPlayer", "Error reproduciendo sonido: what=$what, extra=$extra")
                     try {
                         player.release()
                         if (mediaPlayer == player) {
                             mediaPlayer = null
                         }
                     } catch (e: Exception) {
-                        android.util.Log.e("MediaPlayer", "Error liberando MediaPlayer en OnError", e)
+                        Log.e("MediaPlayer", "Error liberando MediaPlayer en OnError", e)
                     }
                     true // Indica que manejamos el error
                 }
@@ -620,16 +678,16 @@ class LevelResultActivity : AppCompatActivity() {
                 mp.start()
 
             } ?: run {
-                android.util.Log.e("MediaPlayer", "No se pudo crear MediaPlayer para recurso: $soundResourceId")
+                Log.e("MediaPlayer", "No se pudo crear MediaPlayer para recurso: $soundResourceId")
             }
 
         } catch (e: Exception) {
-            android.util.Log.e("MediaPlayer", "Excepción general al reproducir sonido", e)
+            Log.e("MediaPlayer", "Excepción general al reproducir sonido", e)
             mediaPlayer?.let { mp ->
                 try {
                     mp.release()
                 } catch (releaseException: Exception) {
-                    android.util.Log.e("MediaPlayer", "Error al liberar en catch", releaseException)
+                    Log.e("MediaPlayer", "Error al liberar en catch", releaseException)
                 }
                 mediaPlayer = null
             }

@@ -1178,5 +1178,73 @@
     <string name="medal_circle_background">Círculo de fondo para medalla</string>
     <string name="medal_image">Imagen de la medalla obtenida</string>
 
+    <!-- NOMBRES DE TROFEOS INDIVIDUALES -->
+    <!-- 🏆 TROFEOS NÚMEROS⁺ -->
+    <string name="trofeo_initia">INITIA</string>
+    <string name="trofeo_constantia">CONSTANTIA</string>
+    <string name="trofeo_confectus">CONFECTUS</string>
+
+    <!-- 🏆 TROFEOS DECI⁺ -->
+    <string name="trofeo_via">VIA</string>
+    <string name="trofeo_altus">ALTUS</string>
+    <string name="trofeo_perseverantia">PERSEVERANTIA</string>
+
+    <!-- 🏆 TROFEOS ROMAS -->
+    <string name="trofeo_gradus">GRADUS</string>
+    <string name="trofeo_fortitudo">FORTITUDO</string>
+    <string name="trofeo_metam">METAM</string>
+
+    <!-- 🏆 TROFEOS ALFANÚMEROS -->
+    <string name="trofeo_fundamentum">FUNDAMENTUM</string>
+    <string name="trofeo_praemium">PRAEMIUM</string>
+    <string name="trofeo_glorificus">GLORIFICUS</string>
+
+    <!-- 🏆 TROFEOS SUMARESTA -->
+    <string name="trofeo_scala">SCALA</string>
+    <string name="trofeo_tenacitas">TENACITAS</string>
+    <string name="trofeo_perfectus">PERFECTUS</string>
+
+    <!-- 🏆 TROFEOS MÁS⁺ -->
+    <string name="trofeo_origo">ORIGO</string>
+    <string name="trofeo_proficium">PROFICIUM</string>
+    <string name="trofeo_exemplaritas">EXEMPLARITAS</string>
+
+    <!-- 🏆 TROFEOS GENIO⁺ -->
+    <string name="trofeo_ascensus">ASCENSUS</string>
+    <string name="trofeo_magnificus">MAGNIFICUS</string>
+    <string name="trofeo_potens">POTENS</string>
+
+    <!-- TÍTULOS DE DIÁLOGO PARA TROFEOS -->
+    <string name="trofeo_titulo_initia">🏆 ¡TROFEO INITIA CONQUISTADO! 🏆</string>
+    <string name="trofeo_titulo_constantia">🏆 ¡TROFEO CONSTANTIA OBTENIDO! 🏆</string>
+    <string name="trofeo_titulo_confectus">🏆 ¡TROFEO CONFECTUS GANADO! 🏆</string>
+    <string name="trofeo_titulo_via">🏆 ¡TROFEO VIA DESBLOQUEADO! 🏆</string>
+    <string name="trofeo_titulo_altus">🏆 ¡TROFEO ALTUS ALCANZADO! 🏆</string>
+    <string name="trofeo_titulo_perseverantia">🏆 ¡TROFEO PERSEVERANTIA LOGRADO! 🏆</string>
+    <string name="trofeo_titulo_gradus">🏆 ¡TROFEO GRADUS CONQUISTADO! 🏆</string>
+    <string name="trofeo_titulo_fortitudo">🏆 ¡TROFEO FORTITUDO DOMINADO! 🏆</string>
+    <string name="trofeo_titulo_metam">🏆 ¡TROFEO METAM CORONADO! 🏆</string>
+    <string name="trofeo_titulo_fundamentum">🏆 ¡TROFEO FUNDAMENTUM CIMENTADO! 🏆</string>
+    <string name="trofeo_titulo_praemium">🏆 ¡TROFEO PRAEMIUM PREMIADO! 🏆</string>
+    <string name="trofeo_titulo_glorificus">🏆 ¡TROFEO GLORIFICUS GLORIFICADO! 🏆</string>
+    <string name="trofeo_titulo_scala">🏆 ¡TROFEO SCALA ESCALADO! 🏆</string>
+    <string name="trofeo_titulo_tenacitas">🏆 ¡TROFEO TENACITAS TEMPLADO! 🏆</string>
+    <string name="trofeo_titulo_perfectus">🏆 ¡TROFEO PERFECTUS PERFECCIONADO! 🏆</string>
+    <string name="trofeo_titulo_origo">🏆 ¡TROFEO ORIGO ORIGINADO! 🏆</string>
+    <string name="trofeo_titulo_proficium">🏆 ¡TROFEO PROFICIUM PROGRESADO! 🏆</string>
+    <string name="trofeo_titulo_exemplaritas">🏆 ¡TROFEO EXEMPLARITAS EJEMPLARIZADO! 🏆</string>
+    <string name="trofeo_titulo_ascensus">🏆 ¡TROFEO ASCENSUS ASCENDIDO! 🏆</string>
+    <string name="trofeo_titulo_magnificus">🏆 ¡TROFEO MAGNIFICUS MAGNIFICADO! 🏆</string>
+    <string name="trofeo_titulo_potens">🏆 ¡TROFEO POTENS POTENCIADO! 🏆</string>
+
+    <!-- CONTADOR DINÁMICO DE TROFEOS -->
+    <string name="trofeo_contador_progreso">🏆 Tienes %1$d trofeos, faltan %2$d</string>
+
+    <string name="trofeo_motiv_1">🏆 ¡Este es tu primer trofeo! Te faltan 20 más por conquistar</string>
+    <string name="trofeo_motiv_21">🏆 ¡COLECCIÓN DE TROFEOS COMPLETA! ¡Eres un maestro de SUMAMENTE!</string>
+
+    <!-- MENSAJE DOBLE CELEBRACIÓN -->
+    <string name="doble_celebracion_titulo">🎊 ¡DOBLE CELEBRACIÓN! 🎊</string>
+    <string name="doble_celebracion_mensaje">¡Has obtenido una nueva medalla y un nuevo trofeo! Celebramos tus méritos excepcionales</string>
 
 </resources>

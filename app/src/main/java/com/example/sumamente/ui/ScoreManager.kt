@@ -25,7 +25,6 @@ object ScoreManager {
 
     private const val KEY_LAST_IQ_COMPONENTS = "last_iq_components"
 
-
     private const val PREFS_NAME = "ScorePrefs"
     private const val KEY_CURRENT_SCORE = "current_score"
     private const val KEY_UNLOCKED_LEVELS = "unlocked_levels"
@@ -1481,15 +1480,15 @@ object ScoreManager {
     // --- NÚMEROS PLUS ---
 
     fun getUniqueLevelsPlayedNumerosPlusPrincipiante(): Int {
-        return getCompletedLevelsPrincipiante().size.coerceAtMost(12)
+        return getCompletedLevelsPrincipiante().size
     }
 
     fun getUniqueLevelsPlayedNumerosPlusAvanzado(): Int {
-        return getCompletedLevels().size.coerceAtMost(12)
+        return getCompletedLevels().size
     }
 
     fun getUniqueLevelsPlayedNumerosPlusPro(): Int {
-        return getCompletedLevelsPro().size.coerceAtMost(12)
+        return getCompletedLevelsPro().size
     }
 
     fun getMissingLevelsNumerosPlusPrincipiante(): Int {
@@ -1526,15 +1525,15 @@ object ScoreManager {
     // --- DECI PLUS ---
 
     fun getUniqueLevelsPlayedDeciPlusPrincipiante(): Int {
-        return getCompletedLevelsDeciPlusPrincipiante().size.coerceAtMost(12)
+        return getCompletedLevelsDeciPlusPrincipiante().size
     }
 
     fun getUniqueLevelsPlayedDeciPlusAvanzado(): Int {
-        return getCompletedLevelsDeciPlus().size.coerceAtMost(12)
+        return getCompletedLevelsDeciPlus().size
     }
 
     fun getUniqueLevelsPlayedDeciPlusPro(): Int {
-        return getCompletedLevelsDeciPlusPro().size.coerceAtMost(12)
+        return getCompletedLevelsDeciPlusPro().size
     }
 
     fun getMissingLevelsDeciPlusPrincipiante(): Int {
@@ -1570,15 +1569,15 @@ object ScoreManager {
     // --- ROMAS ---
 
     fun getUniqueLevelsPlayedRomasPrincipiante(): Int {
-        return getCompletedLevelsRomasPrincipiante().size.coerceAtMost(12)
+        return getCompletedLevelsRomasPrincipiante().size
     }
 
     fun getUniqueLevelsPlayedRomasAvanzado(): Int {
-        return getCompletedLevelsRomas().size.coerceAtMost(12)
+        return getCompletedLevelsRomas().size
     }
 
     fun getUniqueLevelsPlayedRomasPro(): Int {
-        return getCompletedLevelsRomasPro().size.coerceAtMost(12)
+        return getCompletedLevelsRomasPro().size
     }
 
     fun getMissingLevelsRomasPrincipiante(): Int {
@@ -1614,15 +1613,15 @@ object ScoreManager {
     // --- ALFANUMEROS ---
 
     fun getUniqueLevelsPlayedAlfaNumerosPrincipiante(): Int {
-        return getCompletedLevelsAlfaNumerosPrincipiante().size.coerceAtMost(12)
+        return getCompletedLevelsAlfaNumerosPrincipiante().size
     }
 
     fun getUniqueLevelsPlayedAlfaNumerosAvanzado(): Int {
-        return getCompletedLevelsAlfaNumeros().size.coerceAtMost(12)
+        return getCompletedLevelsAlfaNumeros().size
     }
 
     fun getUniqueLevelsPlayedAlfaNumerosPro(): Int {
-        return getCompletedLevelsAlfaNumerosPro().size.coerceAtMost(12)
+        return getCompletedLevelsAlfaNumerosPro().size
     }
 
     fun getMissingLevelsAlfaNumerosPrincipiante(): Int {
@@ -1658,15 +1657,15 @@ object ScoreManager {
     // --- SUMARESTA ---
 
     fun getUniqueLevelsPlayedSumaRestaPrincipiante(): Int {
-        return getCompletedLevelsSumaRestaPrincipiante().size.coerceAtMost(12)
+        return getCompletedLevelsSumaRestaPrincipiante().size
     }
 
     fun getUniqueLevelsPlayedSumaRestaAvanzado(): Int {
-        return getCompletedLevelsSumaResta().size.coerceAtMost(12)
+        return getCompletedLevelsSumaResta().size
     }
 
     fun getUniqueLevelsPlayedSumaRestaPro(): Int {
-        return getCompletedLevelsSumaRestaPro().size.coerceAtMost(12)
+        return getCompletedLevelsSumaRestaPro().size
     }
 
     fun getMissingLevelsSumaRestaPrincipiante(): Int {
@@ -1702,15 +1701,15 @@ object ScoreManager {
     // --- MASPLUS ---
 
     fun getUniqueLevelsPlayedMasPlusPrincipiante(): Int {
-        return getCompletedLevelsMasPlusPrincipiante().size.coerceAtMost(12)
+        return getCompletedLevelsMasPlusPrincipiante().size
     }
 
     fun getUniqueLevelsPlayedMasPlusAvanzado(): Int {
-        return getCompletedLevelsMasPlus().size.coerceAtMost(12)
+        return getCompletedLevelsMasPlus().size
     }
 
     fun getUniqueLevelsPlayedMasPlusPro(): Int {
-        return getCompletedLevelsMasPlusPro().size.coerceAtMost(12)
+        return getCompletedLevelsMasPlusPro().size
     }
 
     fun getMissingLevelsMasPlusPrincipiante(): Int {
@@ -1746,15 +1745,15 @@ object ScoreManager {
     // --- GENIOPLUS ---
 
     fun getUniqueLevelsPlayedGenioPlusPrincipiante(): Int {
-        return getCompletedLevelsGenioPlusPrincipiante().size.coerceAtMost(12)
+        return getCompletedLevelsGenioPlusPrincipiante().size
     }
 
     fun getUniqueLevelsPlayedGenioPlusAvanzado(): Int {
-        return getCompletedLevelsGenioPlus().size.coerceAtMost(12)
+        return getCompletedLevelsGenioPlus().size
     }
 
     fun getUniqueLevelsPlayedGenioPlusPro(): Int {
-        return getCompletedLevelsGenioPlusPro().size.coerceAtMost(12)
+        return getCompletedLevelsGenioPlusPro().size
     }
 
     fun getMissingLevelsGenioPlusPrincipiante(): Int {
@@ -2683,7 +2682,6 @@ object ScoreManager {
     fun updateIqComponent(juego: String, grado: String, valor: Double) {
         lastIqComponentByGame["${juego}_${grado}"] = valor
     }
-
 
 }
 

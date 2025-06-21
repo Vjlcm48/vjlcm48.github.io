@@ -26,6 +26,7 @@ object CondecoracionTracker {
     private const val KEY_CONDECORACIONES_TOP10 = "condecoraciones_top10"
     private const val KEY_LAST_TOP10_CHECK_DATE = "last_top10_check_date"
     private const val KEY_MEDALLAS_OBTENIDAS = "medallas_obtenidas"
+    private const val KEY_TROFEOS_OBTENIDOS = "trofeos_obtenidos"
 
     data class CompletedLevel(
         val game: String,
@@ -73,10 +74,18 @@ object CondecoracionTracker {
         var vista: Boolean = false
     )
 
+    data class TrofeoObtenido(
+        val juego: String,
+        val grado: String,
+        val nombreTrofeo: String,
+        val fechaObtencion: Long,
+        var visto: Boolean = false
+    )
+
     enum class MedallaType(val requiredLevels: Int, val nombreMedalla: String) {
-        INITIUM(12, "INITIUM"),
-        FIDELIS(24, "FIDELIS"),
-        VIRTUS(36, "VIRTUS"),
+        INITIUM(2, "INITIUM"),
+        FIDELIS(4, "FIDELIS"),
+        VIRTUS(6, "VIRTUS"),
         AUDAX(400, "AUDAX"),
         FORTIS(500, "FORTIS"),
         TENAX(600, "TENAX"),
@@ -99,6 +108,7 @@ object CondecoracionTracker {
     private var condecoracionesTop10: MutableList<CondecoracionTop10> = mutableListOf()
     private var lastTop10CheckDate: String = ""
     private var medallasObtenidas: MutableList<MedallaObtenida> = mutableListOf()
+    private var trofeosObtenidos: MutableList<TrofeoObtenido> = mutableListOf()
 
     private var trophyRedDotVisible: Boolean = false
     private var misCondecoracionesRedDotVisible: Boolean = false
@@ -120,6 +130,7 @@ object CondecoracionTracker {
         lastTop10CheckDate = preferences.getString(KEY_LAST_TOP10_CHECK_DATE, "") ?: ""
 
         loadMedallas()
+        loadTrofeos()
     }
 
     private fun loadCompletedLevelsUnified() {
@@ -426,19 +437,6 @@ object CondecoracionTracker {
 
     fun getMedallasObtenidas(): List<MedallaObtenida> = medallasObtenidas.toList()
 
-    fun marcarMedallasComoVistas() {
-        var cambiosRealizados = false
-        medallasObtenidas.forEach { medalla ->
-            if (!medalla.vista) {
-                medalla.vista = true
-                cambiosRealizados = true
-            }
-        }
-        if (cambiosRealizados) {
-            saveMedallas()
-            updateRedDotsStatus()
-        }
-    }
 
     fun marcarMedallaIndividualComoVista(tipo: String, fechaObtencion: Long) {
         var cambiosRealizados = false
@@ -450,6 +448,172 @@ object CondecoracionTracker {
         }
         if (cambiosRealizados) {
             saveMedallas()
+            updateRedDotsStatus()
+        }
+    }
+
+    private fun loadTrofeos() {
+        val jsonString = preferences.getString(KEY_TROFEOS_OBTENIDOS, null)
+        trofeosObtenidos = if (jsonString != null) {
+            gson.fromJson(jsonString, object : TypeToken<MutableList<TrofeoObtenido>>() {}.type)
+        } else {
+            mutableListOf()
+        }
+    }
+
+    private fun saveTrofeos() {
+        val jsonString = gson.toJson(trofeosObtenidos)
+        preferences.edit {
+            putString(KEY_TROFEOS_OBTENIDOS, jsonString)
+        }
+    }
+
+    fun verificarYEntregarTrofeos(juego: String, grado: String, callback: (TrofeoObtenido?) -> Unit) {
+        val nuevoTrofeo = procesarTrofeoDelUsuario(juego, grado)
+        callback(nuevoTrofeo)
+    }
+
+    private fun procesarTrofeoDelUsuario(juego: String, grado: String): TrofeoObtenido? {
+        val nivelesCompletados = obtenerNivelesCompletadosPorJuegoGrado(juego, grado)
+
+        if (nivelesCompletados >= 4) {
+            val nombreTrofeo = mapearJuegoGradoATrofeo(juego, grado)
+            val yaObtenido = trofeosObtenidos.any {
+                it.juego == juego && it.grado == grado
+            }
+
+            if (!yaObtenido) {
+                val nuevoTrofeo = TrofeoObtenido(
+                    juego = juego,
+                    grado = grado,
+                    nombreTrofeo = nombreTrofeo,
+                    fechaObtencion = System.currentTimeMillis(),
+                    visto = false
+                )
+
+                trofeosObtenidos.add(nuevoTrofeo)
+                saveTrofeos()
+                updateRedDotsStatus()
+
+                return nuevoTrofeo
+            }
+        }
+
+        return null
+    }
+
+    private fun mapearJuegoGradoATrofeo(juego: String, grado: String): String {
+        return when (juego) {
+            "NumerosPlus" -> when (grado) {
+                "Principiante" -> "INITIA"
+                "Avanzado" -> "CONSTANTIA"
+                "Pro" -> "CONFECTUS"
+                else -> ""
+            }
+            "DeciPlus" -> when (grado) {
+                "Principiante" -> "VIA"
+                "Avanzado" -> "ALTUS"
+                "Pro" -> "PERSEVERANTIA"
+                else -> ""
+            }
+            "Romas" -> when (grado) {
+                "Principiante" -> "GRADUS"
+                "Avanzado" -> "FORTITUDO"
+                "Pro" -> "METAM"
+                else -> ""
+            }
+            "AlfaNumeros" -> when (grado) {
+                "Principiante" -> "FUNDAMENTUM"
+                "Avanzado" -> "PRAEMIUM"
+                "Pro" -> "GLORIFICUS"
+                else -> ""
+            }
+            "SumaResta" -> when (grado) {
+                "Principiante" -> "SCALA"
+                "Avanzado" -> "TENACITAS"
+                "Pro" -> "PERFECTUS"
+                else -> ""
+            }
+            "MasPlus" -> when (grado) {
+                "Principiante" -> "ORIGO"
+                "Avanzado" -> "PROFICIUM"
+                "Pro" -> "EXEMPLARITAS"
+                else -> ""
+            }
+            "GenioPlus" -> when (grado) {
+                "Principiante" -> "ASCENSUS"
+                "Avanzado" -> "MAGNIFICUS"
+                "Pro" -> "POTENS"
+                else -> ""
+            }
+            else -> ""
+        }
+    }
+
+    private fun obtenerNivelesCompletadosPorJuegoGrado(juego: String, grado: String): Int {
+        return when (juego) {
+            "NumerosPlus" -> when (grado) {
+                "Principiante" -> ScoreManager.getUniqueLevelsPlayedNumerosPlusPrincipiante()
+                "Avanzado" -> ScoreManager.getUniqueLevelsPlayedNumerosPlusAvanzado()
+                "Pro" -> ScoreManager.getUniqueLevelsPlayedNumerosPlusPro()
+                else -> 0
+            }
+            "DeciPlus" -> when (grado) {
+                "Principiante" -> ScoreManager.getUniqueLevelsPlayedDeciPlusPrincipiante()
+                "Avanzado" -> ScoreManager.getUniqueLevelsPlayedDeciPlusAvanzado()
+                "Pro" -> ScoreManager.getUniqueLevelsPlayedDeciPlusPro()
+                else -> 0
+            }
+            "Romas" -> when (grado) {
+                "Principiante" -> ScoreManager.getUniqueLevelsPlayedRomasPrincipiante()
+                "Avanzado" -> ScoreManager.getUniqueLevelsPlayedRomasAvanzado()
+                "Pro" -> ScoreManager.getUniqueLevelsPlayedRomasPro()
+                else -> 0
+            }
+            "AlfaNumeros" -> when (grado) {
+                "Principiante" -> ScoreManager.getUniqueLevelsPlayedAlfaNumerosPrincipiante()
+                "Avanzado" -> ScoreManager.getUniqueLevelsPlayedAlfaNumerosAvanzado()
+                "Pro" -> ScoreManager.getUniqueLevelsPlayedAlfaNumerosPro()
+                else -> 0
+            }
+            "SumaResta" -> when (grado) {
+                "Principiante" -> ScoreManager.getUniqueLevelsPlayedSumaRestaPrincipiante()
+                "Avanzado" -> ScoreManager.getUniqueLevelsPlayedSumaRestaAvanzado()
+                "Pro" -> ScoreManager.getUniqueLevelsPlayedSumaRestaPro()
+                else -> 0
+            }
+            "MasPlus" -> when (grado) {
+                "Principiante" -> ScoreManager.getUniqueLevelsPlayedMasPlusPrincipiante()
+                "Avanzado" -> ScoreManager.getUniqueLevelsPlayedMasPlusAvanzado()
+                "Pro" -> ScoreManager.getUniqueLevelsPlayedMasPlusPro()
+                else -> 0
+            }
+            "GenioPlus" -> when (grado) {
+                "Principiante" -> ScoreManager.getUniqueLevelsPlayedGenioPlusPrincipiante()
+                "Avanzado" -> ScoreManager.getUniqueLevelsPlayedGenioPlusAvanzado()
+                "Pro" -> ScoreManager.getUniqueLevelsPlayedGenioPlusPro()
+                else -> 0
+            }
+            else -> 0
+        }
+    }
+
+    fun getTrofeosObtenidos(): List<TrofeoObtenido> = trofeosObtenidos.toList()
+
+
+    fun marcarTrofeoIndividualComoVisto(juego: String, grado: String, fechaObtencion: Long) {
+        var cambiosRealizados = false
+        trofeosObtenidos.forEach { trofeo ->
+            if (trofeo.juego == juego &&
+                trofeo.grado == grado &&
+                trofeo.fechaObtencion == fechaObtencion &&
+                !trofeo.visto) {
+                trofeo.visto = true
+                cambiosRealizados = true
+            }
+        }
+        if (cambiosRealizados) {
+            saveTrofeos()
             updateRedDotsStatus()
         }
     }
@@ -805,16 +969,23 @@ object CondecoracionTracker {
         return medallasObtenidas.any { !it.vista }
     }
 
+    private fun hasNewTrophies(): Boolean {
+        return trofeosObtenidos.any { !it.visto }
+    }
+
     private fun updateRedDotsStatus() {
         val hasNewPins = pinesObtenidos.any { !it.visto }
         val hasNewCrowns = hasNewCrowns()
         val hasNewTop10 = hasNewTop10()
         val hasNewMedals = hasNewMedals()
-        trophyRedDotVisible = hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals
-        misCondecoracionesRedDotVisible = hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals
+        val hasNewTrophies = hasNewTrophies()
+
+        trophyRedDotVisible = hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals || hasNewTrophies
+        misCondecoracionesRedDotVisible = hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals || hasNewTrophies
+
         preferences.edit {
-            putBoolean(KEY_TROPHY_RED_DOT, hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals)
-            putBoolean(KEY_MIS_CONDECORACIONES_RED_DOT, hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals)
+            putBoolean(KEY_TROPHY_RED_DOT, hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals || hasNewTrophies)
+            putBoolean(KEY_MIS_CONDECORACIONES_RED_DOT, hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals || hasNewTrophies)
         }
     }
 
@@ -894,6 +1065,6 @@ object CondecoracionTracker {
         }
     }
 
-    fun shouldShowTrophyRedDot(): Boolean = trophyRedDotVisible || hasNewCrowns() || hasNewTop10() || hasNewMedals()
-    fun shouldShowMisCondecoracionesRedDot(): Boolean = misCondecoracionesRedDotVisible || hasNewCrowns() || hasNewTop10() || hasNewMedals()
+    fun shouldShowTrophyRedDot(): Boolean = trophyRedDotVisible || hasNewCrowns() || hasNewTop10() || hasNewMedals() || hasNewTrophies()
+    fun shouldShowMisCondecoracionesRedDot(): Boolean = misCondecoracionesRedDotVisible || hasNewCrowns() || hasNewTop10() || hasNewMedals() || hasNewTrophies()
 }

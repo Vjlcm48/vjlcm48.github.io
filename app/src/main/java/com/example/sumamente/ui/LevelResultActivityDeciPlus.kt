@@ -61,7 +61,7 @@ class LevelResultActivityDeciPlus : AppCompatActivity() {
         setContentView(R.layout.activity_level_result_deci_plus)
 
         ScoreManager.initDeciPlus(this)
-
+        CondecoracionTracker.init(this)
 
         currentLevel = intent.getIntExtra("LEVEL", 1)
         isSuccessful = intent.getBooleanExtra("IS_SUCCESSFUL", false)
@@ -185,26 +185,96 @@ class LevelResultActivityDeciPlus : AppCompatActivity() {
 
     private fun verificarMedallasAntesDeMostrarExito() {
         CondecoracionTracker.verificarYEntregarMedallas { nuevaMedalla ->
-            if (nuevaMedalla != null) {
-                mostrarAnimacionMedalla(nuevaMedalla) {
-                    showSuccessDialog()
-                }
+            // Asegura que el trofeo sólo se entregue al completar el nivel 70 por primera vez
+            if (nuevaMedalla != null && currentLevel == 70) {
+                // Caso: El usuario recibe medalla + trofeo por terminar el nivel 70
+                verificarTrofeosParaDobleCondecoracion(nuevaMedalla)
+            } else if (nuevaMedalla != null) {
+                // Solo medalla
+                mostrarAnimacionMedalla(nuevaMedalla)
+            } else if (currentLevel == 70) {
+                // Solo trofeo
+                verificarTrofeosAntesDeMostrarExito()
             } else {
+                // Sin condecoraciones
                 showSuccessDialog()
             }
         }
     }
 
-    private fun mostrarAnimacionMedalla(medalla: CondecoracionTracker.MedallaObtenida, onComplete: () -> Unit) {
+    // 1. Verificar y entregar trofeo + medalla (doble celebración)
+    private fun verificarTrofeosParaDobleCondecoracion(nuevaMedalla: CondecoracionTracker.MedallaObtenida) {
+        // Intenta entregar el trofeo solo si no ha sido entregado antes para este juego/grado
+        CondecoracionTracker.verificarYEntregarTrofeos("DeciPlus", "Avanzado") { nuevoTrofeo ->
+            if (nuevoTrofeo != null) {
+                mostrarDobleCelebracion(nuevaMedalla, nuevoTrofeo)
+            } else {
+                // Por si acaso ya existiera el trofeo, mostrar sólo la medalla
+                mostrarAnimacionMedalla(nuevaMedalla)
+            }
+        }
+    }
+
+    // 2. Verificar y entregar sólo trofeo
+    private fun verificarTrofeosAntesDeMostrarExito() {
+        CondecoracionTracker.verificarYEntregarTrofeos("DeciPlus", "Avanzado") { nuevoTrofeo ->
+            if (nuevoTrofeo != null) {
+                mostrarAnimacionTrofeo(nuevoTrofeo)
+            } else {
+                // Si ya lo tiene, muestra el diálogo normal de éxito
+                showSuccessDialog()
+            }
+        }
+    }
+
+    private fun mostrarDobleCelebracion(
+        medalla: CondecoracionTracker.MedallaObtenida,
+        trofeo: CondecoracionTracker.TrofeoObtenido
+    ) {
+        val dialog = CondecoracionAnimationDialog(
+            context = this,
+            tipoCondecoracion = TipoCondecoracion.DOBLE_CELEBRACION,
+            onAnimationComplete = {
+                mostrarAnimacionMedalla(medalla) {
+                    mostrarAnimacionTrofeo(trofeo)
+                }
+            }
+        )
+        dialog.show()
+    }
+
+    // 4. Animación individual de trofeo
+    private fun mostrarAnimacionTrofeo(
+        trofeo: CondecoracionTracker.TrofeoObtenido,
+        onComplete: (() -> Unit)? = null
+    ) {
+        val dialog = CondecoracionAnimationDialog(
+            this,
+            tipoCondecoracion = TipoCondecoracion.TROFEO,
+            nombreTrofeo = trofeo.nombreTrofeo,
+            onAnimationComplete = {
+                onComplete?.invoke() ?: showSuccessDialog()
+            }
+        )
+        dialog.show()
+    }
+
+    private fun mostrarAnimacionMedalla(
+        medalla: CondecoracionTracker.MedallaObtenida,
+        onComplete: (() -> Unit)? = null // Parámetro opcional para callback
+    ) {
         val medallasObtenidas = CondecoracionTracker.getMedallasObtenidas().size
         val medallasRestantes = 12 - medallasObtenidas
 
-        val dialog = MedallAnimationDialog(
+        val dialog = CondecoracionAnimationDialog(
             this,
-            medalla.tipo,
-            medallasObtenidas,
-            medallasRestantes,
-            onComplete
+            tipoCondecoracion = TipoCondecoracion.MEDALLA,
+            medallaTipo = medalla.tipo,
+            medallasObtenidas = medallasObtenidas,
+            medallasRestantes = medallasRestantes,
+            onAnimationComplete = {
+                onComplete?.invoke() ?: showSuccessDialog()
+            }
         )
         dialog.show()
     }

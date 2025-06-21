@@ -11,5 +11,6 @@ data class Condecoracion(
 
 enum class TipoCondecoracion {
     PIN, MEDALLA, TROFEO, CORONA, TOP10,
+    DOBLE_CELEBRACION,
     @Suppress("unused") APEX
 }

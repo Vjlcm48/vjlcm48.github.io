@@ -181,26 +181,85 @@ class LevelResultActivitySumaRestaPrincipiante : AppCompatActivity() {
 
     private fun verificarMedallasAntesDeMostrarExito() {
         CondecoracionTracker.verificarYEntregarMedallas { nuevaMedalla ->
-            if (nuevaMedalla != null) {
-                mostrarAnimacionMedalla(nuevaMedalla) {
-                    showSuccessDialog()
-                }
+
+            if (nuevaMedalla != null && currentLevel == 70) {
+                verificarTrofeosParaDobleCondecoracion(nuevaMedalla)
+            } else if (nuevaMedalla != null) {
+                mostrarAnimacionMedalla(nuevaMedalla)
+            } else if (currentLevel == 70) {
+                verificarTrofeosAntesDeMostrarExito()
             } else {
                 showSuccessDialog()
             }
         }
     }
 
-    private fun mostrarAnimacionMedalla(medalla: CondecoracionTracker.MedallaObtenida, onComplete: () -> Unit) {
+    private fun verificarTrofeosParaDobleCondecoracion(nuevaMedalla: CondecoracionTracker.MedallaObtenida) {
+        CondecoracionTracker.verificarYEntregarTrofeos("SumaResta", "Principiante") { nuevoTrofeo ->
+            if (nuevoTrofeo != null) {
+                mostrarDobleCelebracion(nuevaMedalla, nuevoTrofeo)
+            } else {
+                mostrarAnimacionMedalla(nuevaMedalla)
+            }
+        }
+    }
+
+    private fun verificarTrofeosAntesDeMostrarExito() {
+        CondecoracionTracker.verificarYEntregarTrofeos("SumaResta", "Principiante") { nuevoTrofeo ->
+            if (nuevoTrofeo != null) {
+                mostrarAnimacionTrofeo(nuevoTrofeo)
+            } else {
+                showSuccessDialog()
+            }
+        }
+    }
+
+    private fun mostrarDobleCelebracion(
+        medalla: CondecoracionTracker.MedallaObtenida,
+        trofeo: CondecoracionTracker.TrofeoObtenido
+    ) {
+        val dialog = CondecoracionAnimationDialog(
+            context = this,
+            tipoCondecoracion = TipoCondecoracion.DOBLE_CELEBRACION,
+            onAnimationComplete = {
+                mostrarAnimacionMedalla(medalla) {
+                    mostrarAnimacionTrofeo(trofeo)
+                }
+            }
+        )
+        dialog.show()
+    }
+
+    private fun mostrarAnimacionTrofeo(
+        trofeo: CondecoracionTracker.TrofeoObtenido,
+        onComplete: (() -> Unit)? = null
+    ) {
+        val dialog = CondecoracionAnimationDialog(
+            this,
+            tipoCondecoracion = TipoCondecoracion.TROFEO,
+            nombreTrofeo = trofeo.nombreTrofeo,
+            onAnimationComplete = {
+                onComplete?.invoke() ?: showSuccessDialog()
+            }
+        )
+        dialog.show()
+    }
+
+    private fun mostrarAnimacionMedalla(
+        medalla: CondecoracionTracker.MedallaObtenida,
+        onComplete: (() -> Unit)? = null
+    ) {
         val medallasObtenidas = CondecoracionTracker.getMedallasObtenidas().size
         val medallasRestantes = 12 - medallasObtenidas
 
-        val dialog = MedallAnimationDialog(
+        val dialog = CondecoracionAnimationDialog(
             this,
-            medalla.tipo,
-            medallasObtenidas,
-            medallasRestantes,
-            onComplete
+            medallaTipo = medalla.tipo,
+            medallasObtenidas = medallasObtenidas,
+            medallasRestantes = medallasRestantes,
+            onAnimationComplete = {
+                onComplete?.invoke() ?: showSuccessDialog()
+            }
         )
         dialog.show()
     }
