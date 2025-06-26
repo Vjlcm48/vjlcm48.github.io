@@ -2,18 +2,18 @@ plugins {
     id("com.google.gms.google-services")
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("org.jetbrains.kotlin.plugin.compose") version "2.1.0"
+    id("org.jetbrains.kotlin.plugin.compose") version "2.2.0"
 }
 
 
 android {
     namespace = "com.example.sumamente"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.sumamente"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -33,9 +33,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
+    kotlin {
+        jvmToolchain(8)
     }
+
     buildFeatures {
         compose = true
     }

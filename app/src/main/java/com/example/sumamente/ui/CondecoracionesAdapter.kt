@@ -86,6 +86,10 @@ class CondecoracionesAdapter(
                     val trofeos = CondecoracionTracker.getTrofeosObtenidos()
                     trofeos.any { it.nombreTrofeo == condecoracion.nombre && !it.visto }
                 }
+                TipoCondecoracion.APEX -> {
+                    val apex = CondecoracionTracker.getApexSupremus()
+                    apex?.let { !it.vista } ?: false
+                }
                 else -> false
             }
 
@@ -97,7 +101,7 @@ class CondecoracionesAdapter(
                 redDotTitulo.visibility = View.GONE
             }
 
-            if ((condecoracion.tipo == TipoCondecoracion.PIN || condecoracion.tipo == TipoCondecoracion.CORONA || condecoracion.tipo == TipoCondecoracion.TOP10 || condecoracion.tipo == TipoCondecoracion.MEDALLA|| condecoracion.tipo == TipoCondecoracion.TROFEO) && !condecoracion.fechaObtencion.isNullOrEmpty()) {
+            if ((condecoracion.tipo == TipoCondecoracion.PIN || condecoracion.tipo == TipoCondecoracion.CORONA || condecoracion.tipo == TipoCondecoracion.TOP10 || condecoracion.tipo == TipoCondecoracion.MEDALLA|| condecoracion.tipo == TipoCondecoracion.TROFEO || condecoracion.tipo == TipoCondecoracion.APEX) && !condecoracion.fechaObtencion.isNullOrEmpty()) {
                 tvFecha.text = itemView.context.getString(R.string.date_obtained, condecoracion.fechaObtencion)
                 tvFecha.visibility = View.VISIBLE
             } else {
@@ -105,6 +109,19 @@ class CondecoracionesAdapter(
             }
 
             imgCondecoracion.setOnClickListener {
+                // Marcar como vista si tiene punto rojo
+                when (condecoracion.tipo) {
+                    TipoCondecoracion.APEX -> {
+                        val apex = CondecoracionTracker.getApexSupremus()
+                        if (apex != null && !apex.vista) {
+                            CondecoracionTracker.marcarApexComoVista()
+                            val pos = adapterPosition
+                            if (pos != RecyclerView.NO_POSITION) notifyItemChanged(pos)
+                        }
+                    }
+                    // Los demás casos ya están manejados en onImageClick
+                    else -> {}
+                }
                 onImageClick(condecoracion)
             }
         }

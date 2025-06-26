@@ -213,10 +213,68 @@ class LevelResultActivity : AppCompatActivity() {
         }
     }
 
+    private fun verificarApexParaTrofeo(
+        trofeo: CondecoracionTracker.TrofeoObtenido,
+        onComplete: (() -> Unit)? = null
+    ) {
+        CondecoracionTracker.verificarYEntregarApexSupremus { nuevaApex ->
+            val totalTrofeos = CondecoracionTracker.getTrofeosObtenidos().size
+
+            if (nuevaApex != null && totalTrofeos >= 1) { // Para pruebas: 1, en producción: 21
+                // Doble celebración: Trofeo #21 + APEX SUPREMUS
+                mostrarDobleCelebracionApex(trofeo, onComplete)
+            } else if (nuevaApex != null) {
+                // Solo APEX (caso improbable pero por seguridad)
+                mostrarAnimacionApex {
+                    onComplete?.invoke() ?: mostrarAnimacionTrofeo(trofeo)
+                }
+            } else {
+                // Solo trofeo
+                mostrarAnimacionTrofeo(trofeo) {
+                    onComplete?.invoke() ?: showSuccessDialog()
+                }
+            }
+        }
+    }
+
+    // LevelResultActivity.kt
+    private fun mostrarDobleCelebracionApex(
+        trofeo: CondecoracionTracker.TrofeoObtenido,
+        onComplete: (() -> Unit)? = null
+    ) {
+        stopCurrentSound()
+
+        val dialog = CondecoracionAnimationDialog(
+            context = this,
+            tipoCondecoracion = TipoCondecoracion.DOBLE_CELEBRACION_APEX,
+            onAnimationComplete = {
+                mostrarAnimacionTrofeo(trofeo) {
+                    mostrarAnimacionApex {
+                        onComplete?.invoke() ?: showSuccessDialog()
+                    }
+                }
+            }
+        )
+        dialog.show()
+    }
+
+    private fun mostrarAnimacionApex(
+        onComplete: (() -> Unit)? = null
+    ) {
+        val dialog = CondecoracionAnimationDialog(
+            this,
+            tipoCondecoracion = TipoCondecoracion.APEX,
+            onAnimationComplete = {
+                onComplete?.invoke() ?: showSuccessDialog()
+            }
+        )
+        dialog.show()
+    }
+
     private fun verificarTrofeosAntesDeMostrarExito() {
         CondecoracionTracker.verificarYEntregarTrofeos("NumerosPlus", "Avanzado") { nuevoTrofeo ->
             if (nuevoTrofeo != null) {
-                mostrarAnimacionTrofeo(nuevoTrofeo)
+                verificarApexParaTrofeo(nuevoTrofeo)
             } else {
                 showSuccessDialog()
             }
@@ -227,6 +285,9 @@ class LevelResultActivity : AppCompatActivity() {
         medalla: CondecoracionTracker.MedallaObtenida,
         trofeo: CondecoracionTracker.TrofeoObtenido
     ) {
+
+        stopCurrentSound()
+
         val dialog = CondecoracionAnimationDialog(
             context = this,
             tipoCondecoracion = TipoCondecoracion.DOBLE_CELEBRACION,
@@ -624,6 +685,18 @@ class LevelResultActivity : AppCompatActivity() {
                 }
             }
             true
+        }
+    }
+
+    private fun stopCurrentSound() {
+        try {
+            mediaPlayer?.let { mp ->
+                if (mp.isPlaying) mp.stop()
+                mp.release()
+                mediaPlayer = null
+            }
+        } catch (e: Exception) {
+            Log.e("MediaPlayer", "Error al detener audio", e)
         }
     }
 

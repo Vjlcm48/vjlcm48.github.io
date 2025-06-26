@@ -1275,4 +1275,16 @@
     <string name="doble_celebracion_titulo">🎊 DOUBLE CELEBRATION! 🎊</string>
     <string name="doble_celebracion_mensaje">You have obtained a new medal and a new trophy! We celebrate your exceptional merits</string>
 
+    <!-- 1.1 - DOUBLE CELEBRATION (LAST TROPHY + APEX SUPREMUS) -->
+    <string name="doble_celebracion_apex_titulo">🏆✨ SUPREME DOUBLE CELEBRATION! ✨🏆</string>
+    <string name="doble_celebracion_apex_mensaje">You have obtained the last trophy you needed and the glorious APEX SUPREMUS decoration. The SUMMIT belongs to you! 👑</string>
+
+    <!-- 1.2 - APEX SUPREMUS ANIMATION -->
+    <string name="apex_titulo">🌟 APEX SUPREMUS ACHIEVED! 🌟</string>
+    <string name="apex_descripcion">1490 levels completed, you are worthy of the APEX SUPREMUS! 🏆✨ Your dedication and mental mastery have taken you to the absolute peak of SUMAMENTE. 👑</string>
+
+    <!-- 1.3 - NOMBRE PARA "MIS CONDECORACIONES LOGRADAS" -->
+    <string name="condecoracion_apex_supremus">APEX SUPREMUS</string>
+
+
 </resources>

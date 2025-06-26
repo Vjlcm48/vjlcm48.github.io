@@ -25,8 +25,6 @@ class CondecoracionAnimationDialog(
     private val nombreTrofeo: String = "", // <--- NUEVO: para trofeos
     private val onAnimationComplete: () -> Unit
 ) : Dialog(context) {
-    // ... resto igual
-
 
     private lateinit var ivMedalla: ImageView
     private lateinit var ivCirculo: ImageView
@@ -62,10 +60,14 @@ class CondecoracionAnimationDialog(
             TipoCondecoracion.MEDALLA -> configurarMedalla()
             TipoCondecoracion.TROFEO -> configurarTrofeo()
             TipoCondecoracion.DOBLE_CELEBRACION -> configurarParaDobleCelebracion()
+            TipoCondecoracion.DOBLE_CELEBRACION_APEX -> configurarParaDobleCelebracionApex()
+            TipoCondecoracion.APEX -> configurarApex()
             else -> configurarMedalla()
         }
 
-        if (tipoCondecoracion != TipoCondecoracion.DOBLE_CELEBRACION) {
+        // CondecoracionAnimationDialog.kt – onCreate()
+        if (tipoCondecoracion != TipoCondecoracion.DOBLE_CELEBRACION &&
+            tipoCondecoracion != TipoCondecoracion.DOBLE_CELEBRACION_APEX) {
             iniciarAnimacion()
         }
 
@@ -182,6 +184,61 @@ class CondecoracionAnimationDialog(
                 cerrarDialog()
             }.start()
         }, 2900)
+    }
+
+    private fun configurarParaDobleCelebracionApex() {
+        // Mostrar solo el bloque especial
+        layoutDobleCelebracion.visibility = View.VISIBLE
+
+        layoutMedallaContainer.visibility = View.GONE
+        tvTitulo.visibility = View.GONE
+        tvDescripcion.visibility = View.GONE
+        tvContador.visibility = View.GONE
+        tvMotivacion.visibility = View.GONE
+        btnEntendido.visibility = View.GONE
+
+        // Textos de doble celebración APEX
+        tvTituloDoble.text = context.getString(R.string.doble_celebracion_apex_titulo)
+        tvTituloDoble.alpha = 0f
+
+        tvDescripcionDoble.text = context.getString(R.string.doble_celebracion_apex_mensaje)
+        tvDescripcionDoble.alpha = 0f
+
+        btnCerrar.alpha = 1f
+        btnCerrar.visibility = View.VISIBLE
+
+        mediaPlayerTrompeta?.release()
+        mediaPlayerTrompeta = MediaPlayer.create(context, R.raw.trompeta5)
+        mediaPlayerTrompeta?.start()
+
+        // Animaciones de aparición
+        tvTituloDoble.animate().alpha(1f).setDuration(350).start()
+        handler.postDelayed({
+            tvDescripcionDoble.animate().alpha(1f).setDuration(350).start()
+        }, 1000)
+
+        // Desvanecer y cerrar
+        handler.postDelayed({
+            tvTituloDoble.animate().alpha(0f).setDuration(200).start()
+            tvDescripcionDoble.animate().alpha(0f).setDuration(200).withEndAction {
+                cerrarDialog()
+            }.start()
+        }, 2900)
+    }
+
+    private fun configurarApex() {
+        layoutDobleCelebracion.visibility = View.GONE
+
+        // Usar imagen de APEX SUPREMUS (debe existir en drawable)
+        ivMedalla.setImageResource(R.drawable.ic_trofeo_apex_mobius) // Verificar nombre del recurso
+        ivCirculo.setImageResource(R.drawable.circle_gold_apex) // O usar circle_white_shadow
+
+        tvTitulo.text = context.getString(R.string.apex_titulo)
+        tvDescripcion.text = context.getString(R.string.apex_descripcion)
+
+        // No mostrar contador ni motivación para APEX
+        tvContador.visibility = View.GONE
+        tvMotivacion.visibility = View.GONE
     }
 
 

@@ -34,9 +34,6 @@ class MisCondecoracionesActivity : AppCompatActivity() {
         CondecoracionTracker.marcarPinesComoVistos()
         CondecoracionTracker.marcarCoronasComoVistas()
         CondecoracionTracker.marcarCondecoracionesTop10ComoVistas()
-        // ⚠️  Quitar o comentar las dos siguientes líneas:
-        /// CondecoracionTracker.marcarMedallasComoVistas()
-        /// CondecoracionTracker.marcarTrofeosComoVistos()
 
         initViews()
         setupButtons()
@@ -265,6 +262,20 @@ class MisCondecoracionesActivity : AppCompatActivity() {
             )
         }
 
+        val apex = CondecoracionTracker.getApexSupremus()
+        apex?.let {
+            condecoraciones.add(
+                Condecoracion(
+                    tipo = TipoCondecoracion.APEX,
+                    nombre = getString(R.string.apex_titulo),
+                    descripcion = getString(R.string.apex_descripcion),
+                    imagen = R.drawable.ic_trofeo_apex_mobius,
+                    esNuevo = !it.vista,
+                    fechaObtencion = formatearFecha(it.fechaObtencion)
+                )
+            )
+        }
+
         if (condecoraciones.isEmpty()) {
             emptyStateTextView.visibility = View.VISIBLE
             recyclerView.visibility = View.GONE
@@ -469,6 +480,20 @@ class MisCondecoracionesActivity : AppCompatActivity() {
             }
         }
 
+        if (condecoracion.tipo == TipoCondecoracion.APEX && condecoracion.esNuevo) {
+
+            CondecoracionTracker.marcarApexComoVista()
+
+            val position = condecoraciones.indexOfFirst {
+                it.tipo == TipoCondecoracion.APEX
+            }
+            if (position != -1) {
+                condecoraciones[position] =
+                    condecoraciones[position].copy(esNuevo = false)
+                adapter.notifyItemChanged(position)
+            }
+        }
+
         if (condecoracion.tipo == TipoCondecoracion.MEDALLA && condecoracion.esNuevo) {
             val medallas = CondecoracionTracker.getMedallasObtenidas()
             val medallaCorrespondiente = medallas.find { medalla ->
@@ -503,6 +528,19 @@ class MisCondecoracionesActivity : AppCompatActivity() {
                 if (position != -1) {
                     condecoraciones[position] = condecoraciones[position].copy(esNuevo = false)
                     adapter.notifyItemChanged(position)
+                }
+            }
+        }
+
+        if (condecoracion.tipo == TipoCondecoracion.APEX && condecoracion.esNuevo) {
+            val apexObj = CondecoracionTracker.getApexSupremus()
+            if (apexObj != null && !apexObj.vista) {
+                CondecoracionTracker.marcarApexComoVista()
+
+                val pos = condecoraciones.indexOfFirst { it.tipo == TipoCondecoracion.APEX }
+                if (pos != -1) {
+                    condecoraciones[pos] = condecoraciones[pos].copy(esNuevo = false)
+                    adapter.notifyItemChanged(pos)
                 }
             }
         }

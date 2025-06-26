@@ -27,6 +27,7 @@ object CondecoracionTracker {
     private const val KEY_LAST_TOP10_CHECK_DATE = "last_top10_check_date"
     private const val KEY_MEDALLAS_OBTENIDAS = "medallas_obtenidas"
     private const val KEY_TROFEOS_OBTENIDOS = "trofeos_obtenidos"
+    private const val KEY_APEX_SUPREMUS_OBTENIDA = "apex_supremus_obtenida"
 
     data class CompletedLevel(
         val game: String,
@@ -82,10 +83,15 @@ object CondecoracionTracker {
         var visto: Boolean = false
     )
 
+    data class ApexSupremusObtenida(
+        val fechaObtencion: Long,
+        var vista: Boolean = false
+    )
+
     enum class MedallaType(val requiredLevels: Int, val nombreMedalla: String) {
         INITIUM(2, "INITIUM"),
-        FIDELIS(4, "FIDELIS"),
-        VIRTUS(6, "VIRTUS"),
+        FIDELIS(6, "FIDELIS"),
+        VIRTUS(8, "VIRTUS"),
         AUDAX(400, "AUDAX"),
         FORTIS(500, "FORTIS"),
         TENAX(600, "TENAX"),
@@ -109,6 +115,7 @@ object CondecoracionTracker {
     private var lastTop10CheckDate: String = ""
     private var medallasObtenidas: MutableList<MedallaObtenida> = mutableListOf()
     private var trofeosObtenidos: MutableList<TrofeoObtenido> = mutableListOf()
+    private var apexSupremusObtenida: ApexSupremusObtenida? = null
 
     private var trophyRedDotVisible: Boolean = false
     private var misCondecoracionesRedDotVisible: Boolean = false
@@ -131,6 +138,7 @@ object CondecoracionTracker {
 
         loadMedallas()
         loadTrofeos()
+        loadApexSupremus()
     }
 
     private fun loadCompletedLevelsUnified() {
@@ -468,6 +476,22 @@ object CondecoracionTracker {
         }
     }
 
+    private fun loadApexSupremus() {
+        val jsonString = preferences.getString(KEY_APEX_SUPREMUS_OBTENIDA, null)
+        apexSupremusObtenida = if (jsonString != null) {
+            gson.fromJson(jsonString, ApexSupremusObtenida::class.java)
+        } else {
+            null
+        }
+    }
+
+    private fun saveApexSupremus() {
+        val jsonString = gson.toJson(apexSupremusObtenida)
+        preferences.edit {
+            putString(KEY_APEX_SUPREMUS_OBTENIDA, jsonString)
+        }
+    }
+
     fun verificarYEntregarTrofeos(juego: String, grado: String, callback: (TrofeoObtenido?) -> Unit) {
         val nuevoTrofeo = procesarTrofeoDelUsuario(juego, grado)
         callback(nuevoTrofeo)
@@ -615,6 +639,48 @@ object CondecoracionTracker {
         if (cambiosRealizados) {
             saveTrofeos()
             updateRedDotsStatus()
+        }
+    }
+
+    fun verificarYEntregarApexSupremus(callback: (ApexSupremusObtenida?) -> Unit) {
+        val nuevaApex = procesarApexDelUsuario()
+        callback(nuevaApex)
+    }
+
+    private fun procesarApexDelUsuario(): ApexSupremusObtenida? {
+        val totalNivelesUnicos = ScoreManager.getTotalUniqueLevelsCompletedAllGames()
+        val totalTrofeos = trofeosObtenidos.size
+
+        // Para pruebas: 4 niveles, en producción será 1490
+        if (totalNivelesUnicos >= 4 && totalTrofeos >= 1) {
+            val yaObtenida = apexSupremusObtenida != null
+
+            if (!yaObtenida) {
+                val nuevaApex = ApexSupremusObtenida(
+                    fechaObtencion = System.currentTimeMillis(),
+                    vista = false
+                )
+
+                apexSupremusObtenida = nuevaApex
+                saveApexSupremus()
+                updateRedDotsStatus()
+
+                return nuevaApex
+            }
+        }
+
+        return null
+    }
+
+    fun getApexSupremus(): ApexSupremusObtenida? = apexSupremusObtenida
+
+    fun marcarApexComoVista() {
+        apexSupremusObtenida?.let { apex ->
+            if (!apex.vista) {
+                apexSupremusObtenida = apex.copy(vista = true)
+                saveApexSupremus()
+                updateRedDotsStatus()
+            }
         }
     }
 
@@ -970,7 +1036,9 @@ object CondecoracionTracker {
     }
 
     private fun hasNewTrophies(): Boolean {
-        return trofeosObtenidos.any { !it.visto }
+        val hasNewRegularTrophies = trofeosObtenidos.any { !it.visto }
+        val hasNewApex = apexSupremusObtenida?.let { !it.vista } ?: false
+        return hasNewRegularTrophies || hasNewApex
     }
 
     private fun updateRedDotsStatus() {
