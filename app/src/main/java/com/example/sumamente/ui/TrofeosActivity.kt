@@ -32,10 +32,11 @@ class TrofeosActivity : AppCompatActivity() {
     private lateinit var btnTrofeo: LinearLayout
     private lateinit var btnMisCondecoraciones: LinearLayout
     private lateinit var btnApexSupremus: LinearLayout
+    private lateinit var btnTop10: LinearLayout
+    private lateinit var btnLos7Mejores: LinearLayout
     private lateinit var btnClose: ImageView
     private lateinit var btnBack: ImageView
     private lateinit var mediaPlayer: MediaPlayer
-
 
     private lateinit var misCondecoracionesRedDot: View
 
@@ -56,7 +57,6 @@ class TrofeosActivity : AppCompatActivity() {
         updateMisCondecoracionesRedDot()
     }
 
-
     private fun initViews() {
         tvTituloTrofeos = findViewById(R.id.tv_titulo_trofeos)
         btnPin = findViewById(R.id.btn_pin)
@@ -65,6 +65,8 @@ class TrofeosActivity : AppCompatActivity() {
         btnTrofeo = findViewById(R.id.btn_trofeo)
         btnMisCondecoraciones = findViewById(R.id.btn_mis_condecoraciones)
         btnApexSupremus = findViewById(R.id.btn_apex_supremus)
+        btnTop10 = findViewById(R.id.btn_top_10)
+        btnLos7Mejores = findViewById(R.id.btn_los_7_mejores)
         btnClose = findViewById(R.id.btn_close)
         btnBack = findViewById(R.id.btn_back)
 
@@ -134,7 +136,7 @@ class TrofeosActivity : AppCompatActivity() {
             }
         }
 
-        findViewById<LinearLayout>(R.id.btn_top_10).setOnClickListener {
+        btnTop10.setOnClickListener {
             applyBounceEffect(it) {
                 val intent = Intent(this, Top10Activity::class.java)
                 startActivity(intent)
@@ -159,12 +161,19 @@ class TrofeosActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+
+        btnLos7Mejores.setOnClickListener {
+            applyBounceEffect(it) {
+                val intent = Intent(this, Los7MejoresActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
 
     private fun stopAndReleaseMusic() {
         if (this::mediaPlayer.isInitialized) {
             try {
-                // Solo intenta parar si no está liberado ya
+
                 try {
                     if (mediaPlayer.isPlaying) mediaPlayer.stop()
                 } catch (_: Exception) {}
@@ -180,7 +189,6 @@ class TrofeosActivity : AppCompatActivity() {
         super.onPause()
         stopAndReleaseMusic()
     }
-
 
 
     private fun updateMisCondecoracionesRedDot() {
@@ -223,7 +231,5 @@ class TrofeosActivity : AppCompatActivity() {
         instanceRef?.clear()
         instanceRef = null
     }
-
-
 
 }

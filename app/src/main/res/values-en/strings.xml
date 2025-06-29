@@ -1392,4 +1392,24 @@
     <string name="integral_ranking_scroll_description">Scrollable content for integral ranking</string>
 
 
+    <string name="condecoracion_discipulus_optimus_7">DISCIPULUS OPTIMUS</string>
+    <string name="condecoracion_intellectus_primus_6">INTELLECTUS PRIMUS</string>
+    <string name="condecoracion_consilium_magnus_5">CONSILIUM MAGNUS</string>
+    <string name="condecoracion_doctrinae_princeps_4">DOCTRINAE PRINCEPS</string>
+    <string name="condecoracion_luminis_rex_3">LUMINIS REX</string>
+    <string name="condecoracion_mentis_aurea_2">MENTIS AUREA</string>
+    <string name="condecoracion_sapiens_supremus_1">SAPIENS SUPREMUS</string>
+
+    <string name="significado_discipulus_optimus_7">The best student</string>
+    <string name="significado_intellectus_primus_6">First in intelligence</string>
+    <string name="significado_consilium_magnus_5">Great wisdom</string>
+    <string name="significado_doctrinae_princeps_4">Prince of knowledge</string>
+    <string name="significado_luminis_rex_3">King of light</string>
+    <string name="significado_mentis_aurea_2">Golden mind</string>
+    <string name="significado_sapiens_supremus_1">The wisest</string>
+
+    <string name="los_7_mejores">The Top 7</string>
+
+
+
 </resources>

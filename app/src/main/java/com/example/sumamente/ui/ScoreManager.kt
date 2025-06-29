@@ -491,11 +491,20 @@ object ScoreManager {
         return positions.sum().toDouble() / rankings.size
     }
 
-
     fun init(context: Context) {
 
         ensurePreferencesInitialized(context)
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+
+        if (!::preferencesPrincipiante.isInitialized) {
+            preferencesPrincipiante =
+                context.getSharedPreferences(PREFS_NAME_PRINCIPIANTE, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesPro.isInitialized) {
+            preferencesPro =
+                context.getSharedPreferences(PREFS_NAME_PRO, Context.MODE_PRIVATE)
+        }
+
         currentScore = preferences.getInt(KEY_CURRENT_SCORE, 0)
         unlockedLevels = preferences.getInt(KEY_UNLOCKED_LEVELS, 2)
 

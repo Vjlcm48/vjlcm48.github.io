@@ -399,6 +399,11 @@
             android:theme="@style/Theme.SumaMente" />
 
         <activity
+            android:name=".ui.Los7MejoresActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
             android:name=".ui.DesafiosActivity"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
@@ -581,6 +586,11 @@
 
         <activity
             android:name=".ui.IQPlusRankingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name=".ui.IntegralRankingActivity"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 

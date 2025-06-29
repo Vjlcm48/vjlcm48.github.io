@@ -33,7 +33,27 @@ class IntegralRankingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_integral_ranking)
 
-        ScoreManager.ensurePreferencesInitialized(this)
+        ScoreManager.init(this)
+        ScoreManager.initPrincipiante(this)
+        ScoreManager.initPro(this)
+        ScoreManager.initDeciPlus(this)
+        ScoreManager.initDeciPlusPrincipiante(this)
+        ScoreManager.initDeciPlusPro(this)
+        ScoreManager.initRomas(this)
+        ScoreManager.initRomasPrincipiante(this)
+        ScoreManager.initRomasPro(this)
+        ScoreManager.initAlfaNumeros(this)
+        ScoreManager.initAlfaNumerosPrincipiante(this)
+        ScoreManager.initAlfaNumerosPro(this)
+        ScoreManager.initSumaResta(this)
+        ScoreManager.initSumaRestaPrincipiante(this)
+        ScoreManager.initSumaRestaPro(this)
+        ScoreManager.initMasPlus(this)
+        ScoreManager.initMasPlusPrincipiante(this)
+        ScoreManager.initMasPlusPro(this)
+        ScoreManager.initGenioPlus(this)
+        ScoreManager.initGenioPlusPrincipiante(this)
+        ScoreManager.initGenioPlusPro(this)
         sharedPreferences = ScoreManager.preferences
 
         initViews()
@@ -73,17 +93,16 @@ class IntegralRankingActivity : AppCompatActivity() {
     }
 
     private fun loadIntegralRankingData() {
-        // Reset de visibilidad
+
         loadingIndicator.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
         tvMsgIntegralRanking.visibility = View.GONE
         tvProgressIndicator.visibility = View.GONE
         rankingListContainer.visibility = View.GONE
 
-        // Simula carga breve (800 ms) →
         Handler(Looper.getMainLooper()).postDelayed({
-            val rankingsStatus = checkUserRankingsStatus()      // ← NUEVA lógica
-            val rankingsCount  = rankingsStatus.count { it }    // cuántos rankings sí
+            val rankingsStatus = checkUserRankingsStatus()
+            val rankingsCount  = rankingsStatus.count { it }
 
             loadingIndicator.visibility = View.GONE
 
@@ -99,10 +118,9 @@ class IntegralRankingActivity : AppCompatActivity() {
     }
 
     private fun checkUserRankingsStatus(): List<Boolean> {
-        // Garantiza que SharedPreferences esté lista (solo 1 llamada ligera)
+
         ScoreManager.ensurePreferencesInitialized(this)
 
-        // Devuelve true/false para cada ranking en el orden establecido
         return listOf(
             ScoreManager.isUserInRanking("GLOBAL"),
             ScoreManager.isUserInRanking("VEL_NUMEROS"),
@@ -207,12 +225,11 @@ class IntegralRankingActivity : AppCompatActivity() {
         }
     }
 
-    private fun showIntegralRanking(integralScore: Double) {   // ← nombre limpio
+    private fun showIntegralRanking(integralScore: Double) {
         tvProgressIndicator.visibility = View.GONE
         tvMsgIntegralRanking.visibility = View.GONE
         rankingListContainer.visibility = View.GONE
 
-        // Ya TENEMOS el puntaje; no recalculamos
 
         val username    = sharedPreferences.getString("savedUserName", getString(R.string.default_username))
             ?: getString(R.string.default_username)
