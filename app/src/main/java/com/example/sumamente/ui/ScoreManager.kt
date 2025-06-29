@@ -428,6 +428,69 @@ object ScoreManager {
     private lateinit var preferencesGenioPlusPrincipiante: SharedPreferences
     private lateinit var preferencesGenioPlusPro: SharedPreferences
 
+    // NUEVO: modelo genérico de posición en un ranking
+    data class RankingEntry(val userName: String, val valor: Double)
+
+    // ────────── HELPERS DE ELEGIBILIDAD (100 % conectados con tu lógica real) ──────────
+
+    /** ► GLOBAL: mínimo 36 niveles únicos superados en todos los juegos */
+    private fun isEligibleForGlobalRanking(): Boolean =
+        getTotalUniqueLevelsCompletedAllGames() >= RankingActivity.MIN_LEVELS_REQUIRED
+
+    /** ► VELOCIDAD (7 juegos): usa las funciones que ya tienes para cada ranking */
+    private fun isEligibleSpeedNumerosPlus()   = isEligibleForSpeedRankingNumerosPlus()
+    private fun isEligibleSpeedDeciPlus()      = isEligibleForSpeedRankingDeciPlus()
+    private fun isEligibleSpeedAlfaNumeros()   = isEligibleForSpeedRankingAlfaNumeros()
+    private fun isEligibleSpeedRomas()         = isEligibleForSpeedRankingRomas()
+    private fun isEligibleSpeedSumaResta()     = isEligibleForSpeedRankingSumaResta()
+    private fun isEligibleSpeedMasPlus()       = isEligibleForSpeedRankingMasPlus()
+    private fun isEligibleSpeedGenioPlus()     = isEligibleForSpeedRankingGenioPlus()
+
+    /** ► IQ⁺: al menos un nivel jugado en cada juego y grado */
+    private fun isEligibleIQPlusRanking(): Boolean =
+        haJugadoAlMenosUnNivelEnCadaJuegoYGrado()
+
+
+    fun getRankingList(rankingName: String): List<RankingEntry> {
+        val me = preferences.getString("savedUserName", "User")!!
+        return when (rankingName) {
+            "GLOBAL"        -> if (isEligibleForGlobalRanking())      listOf(RankingEntry(me, 1.0)) else emptyList()
+            "VEL_NUMEROS"   -> if (isEligibleSpeedNumerosPlus())      listOf(RankingEntry(me, 1.0)) else emptyList()
+            "VEL_DECI"      -> if (isEligibleSpeedDeciPlus())         listOf(RankingEntry(me, 1.0)) else emptyList()
+            "VEL_ALFANUM"   -> if (isEligibleSpeedAlfaNumeros())      listOf(RankingEntry(me, 1.0)) else emptyList()
+            "VEL_ROMAS"     -> if (isEligibleSpeedRomas())            listOf(RankingEntry(me, 1.0)) else emptyList()
+            "VEL_SUMARESTA" -> if (isEligibleSpeedSumaResta())        listOf(RankingEntry(me, 1.0)) else emptyList()
+            "VEL_MAS"       -> if (isEligibleSpeedMasPlus())          listOf(RankingEntry(me, 1.0)) else emptyList()
+            "VEL_GENIOS"    -> if (isEligibleSpeedGenioPlus())        listOf(RankingEntry(me, 1.0)) else emptyList()
+            "IQ_PLUS"       -> if (isEligibleIQPlusRanking())         listOf(RankingEntry(me, 1.0)) else emptyList()
+            else            -> emptyList()
+        }
+    }
+
+
+    /** Posición real (1-based) o -1 si no aparece. */
+    fun getUserPositionInRanking(rankingName: String): Int {
+        val me = preferences.getString("savedUserName", "User")!!
+        return getRankingList(rankingName).indexOfFirst { it.userName == me }.let { if (it >= 0) it + 1 else -1 }
+    }
+
+    /** ¿Aparece o no?  -> true / false */
+    fun isUserInRanking(rankingName: String): Boolean =
+        getUserPositionInRanking(rankingName) > 0
+
+    /** Suma las 9 posiciones y las divide entre 9 (>-1 si todavía falta alguno). */
+    fun getIntegralScore(): Double {
+        val rankings = listOf(
+            "GLOBAL", "VEL_NUMEROS", "VEL_DECI", "VEL_ALFANUM", "VEL_ROMAS",
+            "VEL_SUMARESTA", "VEL_MAS", "VEL_GENIOS", "IQ_PLUS"
+        )
+        val positions = rankings.map { pos ->
+            val p = getUserPositionInRanking(pos)
+            if (p > 0) p else (getRankingList(pos).size + 1)   // penaliza si no aparece
+        }
+        return positions.sum().toDouble() / rankings.size
+    }
+
 
     fun init(context: Context) {
 

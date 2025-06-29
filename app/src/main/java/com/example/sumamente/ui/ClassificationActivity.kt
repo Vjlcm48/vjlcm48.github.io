@@ -4,7 +4,6 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
@@ -29,6 +28,7 @@ class ClassificationActivity : AppCompatActivity() {
     private lateinit var btnVerClasificacion: LinearLayout
     private lateinit var btnClasificacionVelocidad: LinearLayout
     private lateinit var btnClasificacionIQPlus: LinearLayout
+    private lateinit var btnClasificacionIntegral: LinearLayout
     private lateinit var btnClose: ImageView
     private lateinit var btnBack: ImageView
     private lateinit var mediaPlayer: MediaPlayer
@@ -39,7 +39,8 @@ class ClassificationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_classification)
 
-        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        ScoreManager.ensurePreferencesInitialized(this)
+        sharedPreferences = ScoreManager.preferences
 
         initViews()
         setupButtons()
@@ -52,6 +53,7 @@ class ClassificationActivity : AppCompatActivity() {
         btnVerClasificacion = findViewById(R.id.btn_ver_clasificacion)
         btnClasificacionVelocidad = findViewById(R.id.btn_clasificacion_velocidad)
         btnClasificacionIQPlus = findViewById(R.id.btn_clasificacion_iqplus)
+        btnClasificacionIntegral = findViewById(R.id.btn_clasificacion_integral)
         btnClose = findViewById(R.id.btn_close)
         btnBack = findViewById(R.id.btn_back)
     }
@@ -120,6 +122,13 @@ class ClassificationActivity : AppCompatActivity() {
         btnClasificacionIQPlus.setOnClickListener {
             applyBounceEffect(it) {
                 val intent = Intent(this, IQPlusRankingActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        btnClasificacionIntegral.setOnClickListener {
+            applyBounceEffect(it) {
+                val intent = Intent(this, IntegralRankingActivity::class.java)
                 startActivity(intent)
             }
         }

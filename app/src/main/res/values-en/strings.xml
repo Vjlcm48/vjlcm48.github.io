@@ -1286,5 +1286,110 @@
     <!-- 1.3 - NOMBRE PARA "MIS CONDECORACIONES LOGRADAS" -->
     <string name="condecoracion_apex_supremus">APEX SUPREMUS</string>
 
+    <string name="ranking_integral_s">Integral Ranking S⁺:</string>
+
+    <string name="ranking_integral_progreso_1">You\'re on the right track, %1$s! You already appear in %2$d SUMAMENTE rankings. Only %3$d more to access the exclusive Integral Ranking.</string>
+    <string name="ranking_integral_progreso_2">%1$s, your progress is remarkable: you\'re present in %2$d rankings. Conquer the remaining %3$d to become part of the elite!</string>
+    <string name="ranking_integral_progreso_3">Congratulations %1$s! You\'ve entered %2$d rankings. Just %3$d more to reach the integral challenge.</string>
+    <string name="ranking_integral_progreso_4">%1$s, your name already appears in %2$d rankings. Only %3$d more and you\'ll unlock the Integral Ranking.</string>
+    <string name="ranking_integral_progreso_5">Keep it up, %1$s! You\'re in %2$d out of 9 rankings. Just %3$d more to go.</string>
+    <string name="ranking_integral_progreso_6">%1$s, each ranking added gets you closer to your goal. Now you appear in %2$d and need %3$d more. Don’t stop!</string>
+    <string name="ranking_integral_progreso_7">Let’s go, %1$s! Real progress: you’re in %2$d rankings and have %3$d left to conquer.</string>
+    <string name="ranking_integral_progreso_8">%1$s, you\'re close to the Integral Ranking: %2$d reached, %3$d to go.</string>
+    <string name="ranking_integral_progreso_9">Your name stands out in %2$d rankings, %1$s. Just %3$d more and you\'ll be among the best.</string>
+    <string name="ranking_integral_progreso_10">%1$s, add another achievement! You\'re in %2$d rankings. Only %3$d left to reach the integral goal.</string>
+    <string name="ranking_integral_progreso_11">%1$s, you\'re overcoming challenges: %2$d rankings already have your name. Go for the remaining %3$d!</string>
+    <string name="ranking_integral_progreso_12">Amazing progress, %1$s! You appear in %2$d rankings and only %3$d left for the big goal.</string>
+
+    <!-- Status: user ALREADY appears -->
+    <string name="ranking_estado_aparece_1">You already appear</string>
+    <string name="ranking_estado_aparece_2">Conquered!</string>
+    <string name="ranking_estado_aparece_3">Present!</string>
+    <string name="ranking_estado_aparece_4">Achieved</string>
+    <string name="ranking_estado_aparece_5">Unlocked!</string>
+
+    <!-- Status: user does NOT appear -->
+    <string name="ranking_estado_no_aparece_1">Not yet listed</string>
+    <string name="ranking_estado_no_aparece_2">Pending</string>
+    <string name="ranking_estado_no_aparece_3">To be achieved</string>
+    <string name="ranking_estado_no_aparece_4">Still missing</string>
+    <string name="ranking_estado_no_aparece_5">Not registered</string>
+
+    <string name="ranking_global_name">1.- Global Ranking:</string>
+    <string name="ranking_vel_numeros">2.- Speed RANKING NUMEROS⁺:</string>
+    <string name="ranking_vel_deci">3.- Speed RANKING DECI⁺:</string>
+    <string name="ranking_vel_alfanumeros">4.- Speed RANKING ALFANUMEROS⁺:</string>
+    <string name="ranking_vel_romas">5.- Speed RANKING ROMAS⁺:</string>
+    <string name="ranking_vel_sumaresta">6.- Speed RANKING SUMARESTA⁺:</string>
+    <string name="ranking_vel_mas">7.- Speed RANKING MAS⁺:</string>
+    <string name="ranking_vel_genios">8.- Speed RANKING GENIOS⁺:</string>
+    <string name="ranking_iq">9.- IQ⁺ Index Ranking:</string>
+
+    <string name="clasificacion_integral_s">S⁺ Integral Ranking</string>
+
+    <!-- Agregar estos recursos al final de strings.xml, justo antes de </resources> -->
+
+    <!-- Mensajes combinados para ranking integral -->
+    <string name="ranking_integral_combined_message">%1$s\n\n%2$s</string>
+
+    <!-- Indicador de progreso -->
+    <string name="ranking_progress_indicator">%1$d/9 rankings</string>
+
+    <!-- Arrays para mensajes de ranking integral info - INGLÉS -->
+    <string-array name="ranking_integral_info_messages">
+        <item>Hello, %1$s! To appear in the Integral S⁺ Ranking you need to be present in all 9 SUMAMENTE rankings.</item>
+        <item>%1$s, the Integral S⁺ Ranking is exclusive for those who appear in all app rankings.</item>
+        <item>%1$s, you don\'t meet the requirements for the Integral Ranking yet. You need to appear in all 9 rankings.</item>
+        <item>Come on, %1$s! The Integral S⁺ Ranking awaits you when you\'re in all rankings.</item>
+        <item>%1$s, your integral classification will appear when you participate in all 9 SUMAMENTE rankings.</item>
+        <item>Ready for the challenge, %1$s? Access all rankings and unlock the Integral S⁺ Ranking.</item>
+    </string-array>
+
+    <!-- Arrays para mensajes motivacionales - INGLÉS -->
+    <string-array name="ranking_integral_motiv_messages">
+        <item>You can do it! Each unlocked ranking brings you closer to the elite.</item>
+        <item>Exclusivity has its price. Show that you deserve to be among the best!</item>
+        <item>Don\'t stop! The Integral S⁺ Ranking is reserved for the most dedicated.</item>
+        <item>Every game counts. Keep advancing toward the absolute summit!</item>
+        <item>The goal is clear! Master all rankings and join the SUMAMENTE elite.</item>
+        <item>Persistence is the key! Each new ranking brings you closer to integral glory.</item>
+    </string-array>
+
+    <!-- Arrays para mensajes de progreso (usando los que ya existen) -->
+    <string-array name="ranking_integral_progreso_messages">
+        <item>@string/ranking_integral_progreso_1</item>
+        <item>@string/ranking_integral_progreso_2</item>
+        <item>@string/ranking_integral_progreso_3</item>
+        <item>@string/ranking_integral_progreso_4</item>
+        <item>@string/ranking_integral_progreso_5</item>
+        <item>@string/ranking_integral_progreso_6</item>
+        <item>@string/ranking_integral_progreso_7</item>
+        <item>@string/ranking_integral_progreso_8</item>
+        <item>@string/ranking_integral_progreso_9</item>
+        <item>@string/ranking_integral_progreso_10</item>
+        <item>@string/ranking_integral_progreso_11</item>
+        <item>@string/ranking_integral_progreso_12</item>
+    </string-array>
+
+    <!-- Arrays para estados de ranking (usando los que ya existen) -->
+    <string-array name="ranking_estado_aparece_messages">
+        <item>@string/ranking_estado_aparece_1</item>
+        <item>@string/ranking_estado_aparece_2</item>
+        <item>@string/ranking_estado_aparece_3</item>
+        <item>@string/ranking_estado_aparece_4</item>
+        <item>@string/ranking_estado_aparece_5</item>
+    </string-array>
+
+    <string-array name="ranking_estado_no_aparece_messages">
+        <item>@string/ranking_estado_no_aparece_1</item>
+        <item>@string/ranking_estado_no_aparece_2</item>
+        <item>@string/ranking_estado_no_aparece_3</item>
+        <item>@string/ranking_estado_no_aparece_4</item>
+        <item>@string/ranking_estado_no_aparece_5</item>
+    </string-array>
+
+    <!-- Agregar este string al final de strings.xml -->
+    <string name="integral_ranking_scroll_description">Scrollable content for integral ranking</string>
+
 
 </resources>
