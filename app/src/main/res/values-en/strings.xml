@@ -221,7 +221,7 @@
     <string name="jugar_un_nuevo_nivel">Play a new level</string>
     <string name="btn_cancel">Cancel</string>
     <string name="bien_hecho">Well done!</string>
-    <string name="vamos_bien">We’re doing great!</string>
+    <string name="vamos_bien">We\’re doing great!</string>
     <string name="gran_esfuerzo">Great effort!</string>
     <string name="lo_lograste">You did it!</string>
     <string name="buen_avance">Good progress!</string>
@@ -232,7 +232,7 @@
     <string name="mejorando">Improving!</string>
     <string name="persistencia">Persistence!</string>
     <string name="buen_intento">Good try!</string>
-    <string name="vas_bien">You’re doing well!</string>
+    <string name="vas_bien">You\’re doing well!</string>
     <string name="has_agotado_tus_intentos">You have used all your attempts!</string>
     <string name="se_agoto_el_tiempo">Oops! Time is up</string>
     <string name="level_failed">Level not passed!</string>
@@ -241,10 +241,10 @@
     <string name="check_blue_description">Blue check</string>
     <string name="check_description">Green check indicating success</string>
     <string name="chronometer_whole_text">%1$s.</string>
-    <string name="game_numeros_plus">NUMBERS⁺</string>
+    <string name="game_numeros_plus">NÚMEROS⁺</string>
     <string name="game_deci_plus">DECI⁺</string>
-    <string name="game_mas_plus">MORE⁺</string>
-    <string name="game_genio_plus">GENIUS⁺</string>
+    <string name="game_mas_plus">MÁS⁺</string>
+    <string name="game_genio_plus">GENIO⁺</string>
     <string name="game_romas">ROMAS</string>
     <string name="select_data_to_reset">Select the data you want to reset</string>
     <string name="reset_score">Reset score</string>
@@ -265,10 +265,10 @@
     <string name="reset_progress">Reset progress</string>
     <string name="reset_progress_subtitle">Reset game progress</string>
     <string name="repeated_numbers_message_dinamic">The numbers %1$s are repeated. Add them correctly!</string>
-    <string name="game_sumaresta">SUMADD</string>
+    <string name="game_sumaresta">SUMARESTA</string>
     <string name="error_invalid_username_length">The name must be between 4 and 12 characters long.</string>
     <string name="error_username_taken">Oops! It seems someone is already using \nthat name, try another one.</string>
-    <string name="game_alfa_numeros">ALPHANUMBERS</string>
+    <string name="game_alfa_numeros">ALFANÚMEROS</string>
     <string name="repeated_numbers_message">The yellow numbers are repeated. Add them correctly!</string>
     <string name="repeated_numbers_message_more">The blue numbers are repeated. Add them carefully!</string>
     <string name="negative_numbers_warning">Be careful, some numbers might be %1$s. Add them correctly!</string>
@@ -577,9 +577,9 @@
     <string name="help_selected">Help selected</string>
     <string name="error_time_limit_not_found">Time limit not found for level %1$d</string>
     <string name="text_alfa">ALPHA</string>
-    <string name="text_numeros">NUMBERS</string>
-    <string name="text_suma">SUM</string>
-    <string name="text_resta">SUBTRACT</string>
+    <string name="text_numeros">NÚMEROS</string>
+    <string name="text_suma">SUMA</string>
+    <string name="text_resta">RESTA</string>
     <string name="toast_select_option">Select at least one option</string>
     <string name="sum_and_subtract_instruction">Solve the operations considering positive and negative numbers.</string>
     <string name="general_instructions">Add the integers, decimals, Roman numerals, and letters. Some may be negative!</string>
@@ -695,7 +695,7 @@
     <string name="user_responses_format">Your answers were: %d %d</string>
     <string name="level_locked_by_failures">You must complete the previous level to unlock this level again</string>
 
-    <string name="desafios_mensaje">SUMAMENTE CHALLENGES! Compete and win prizes with players from around the world. We will notify you when the next event takes place. Get ready to shine!</string>
+    <string name="desafios_mensaje">SumaMente CHALLENGES! Compete and win prizes with players from around the world. We will notify you when the next event takes place. Get ready to shine!</string>
 
     <string name="monday_short">Mon</string>
     <string name="tuesday_short">Tue</string>
@@ -730,7 +730,7 @@
     <string name="clasificaciones_por_velocidad">Speed Ranking</string>
 
     <string name="clasificaciones_titulo_dialog">HOW THE CLASSIFICATION SYSTEM WORKS?</string>
-    <string name="clasificaciones_subtitulo_puntos">How you earn points in SUMAMENTE!</string>
+    <string name="clasificaciones_subtitulo_puntos">How you earn points in SumaMente!</string>
     <string name="clasificaciones_puntos_correctas">Points for correct answers</string>
     <string name="clasificaciones_puntos_correctas_1">• Each game gives you points when you answer correctly</string>
     <string name="clasificaciones_puntos_correctas_2">• If you get all your answers right, you receive all your points</string>
@@ -774,9 +774,9 @@
     <string name="corona_volucer_1">The top 1% of the fastest. Your mind is a flash of light. This crown honors the legendary.</string>
 
     <!-- 🏆 TROPHIES NUMBERS⁺ -->
-    <string name="trofeo_initia_numeros_principiante">Begin your journey. Master NUMBERS⁺ Beginner and this trophy marks your start.</string>
-    <string name="trofeo_constantia_numeros_avanzado">Keep pushing forward. Face every challenge in NUMBERS⁺ Advanced.</string>
-    <string name="trofeo_confectus_numeros_pro">Leave nothing behind. Reach the end of NUMBERS⁺ Pro and earn CONFECTUS.</string>
+    <string name="trofeo_initia_numeros_principiante">Begin your journey. Master NÚMEROS⁺ Beginner and this trophy marks your start.</string>
+    <string name="trofeo_constantia_numeros_avanzado">Keep pushing forward. Face every challenge in NÚMEROS⁺ Advanced.</string>
+    <string name="trofeo_confectus_numeros_pro">Leave nothing behind. Reach the end of NÚMEROS⁺ Pro and earn CONFECTUS.</string>
 
     <!-- 🏆 TROPHIES DECI⁺ -->
     <string name="trofeo_via_deci_principiante">Start your decimal journey. Complete DECI⁺ Beginner and rise above.</string>
@@ -789,24 +789,24 @@
     <string name="trofeo_metam_romas_pro">Reach the Roman finish line. Beat every ROMAS Pro level and claim this trophy.</string>
 
     <!-- 🏆 TROPHIES ALPHANUMBERS -->
-    <string name="trofeo_fundamentum_alfanumeros_principiante">Lay the foundations of mastery. Complete ALPHANUMBERS Beginner with no gaps.</string>
-    <string name="trofeo_praemium_alfanumeros_avanzado">Earn your prize letter by letter. Advance through all ALPHANUMBERS Advanced levels.</string>
-    <string name="trofeo_glorificus_alfanumeros_pro">Chase glory. Master ALPHANUMBERS Pro and let your mind shine.</string>
+    <string name="trofeo_fundamentum_alfanumeros_principiante">Lay the foundations of mastery. Complete ALFANÚMEROS Beginner with no gaps.</string>
+    <string name="trofeo_praemium_alfanumeros_avanzado">Earn your prize letter by letter. Advance through all ALFANÚMEROS Advanced levels.</string>
+    <string name="trofeo_glorificus_alfanumeros_pro">Chase glory. Master ALFANÚMEROS Pro and let your mind shine.</string>
 
     <!-- 🏆 TROPHIES SUMADD -->
-    <string name="trofeo_scala_sumaresta_principiante">Climb steadily. Rise level by level until you conquer SUMADD Beginner.</string>
-    <string name="trofeo_tenacitas_sumaresta_avanzado">Only the tenacious go far. Face and complete SUMADD Advanced.</string>
-    <string name="trofeo_perfectus_sumaresta_pro">Strive for perfection. Finish SUMADD Pro without giving up.</string>
+    <string name="trofeo_scala_sumaresta_principiante">Climb steadily. Rise level by level until you conquer SUMARESTA Beginner.</string>
+    <string name="trofeo_tenacitas_sumaresta_avanzado">Only the tenacious go far. Face and complete SUMARESTA Advanced.</string>
+    <string name="trofeo_perfectus_sumaresta_pro">Strive for perfection. Finish SUMARESTA Pro without giving up.</string>
 
     <!-- 🏆 TROPHIES MORE⁺ -->
-    <string name="trofeo_origo_mas_principiante">Everything starts here. Complete MORE⁺ Beginner and unlock your origin.</string>
-    <string name="trofeo_proficium_mas_avanzado">Make progress your mission. Advance through all MORE⁺ Advanced challenges.</string>
-    <string name="trofeo_exemplaritas_mas_pro">Become a model to follow. Finish MORE⁺ Pro and honor your example.</string>
+    <string name="trofeo_origo_mas_principiante">Everything starts here. Complete MÁS⁺ Beginner and unlock your origin.</string>
+    <string name="trofeo_proficium_mas_avanzado">Make progress your mission. Advance through all MÁS⁺ Advanced challenges.</string>
+    <string name="trofeo_exemplaritas_mas_pro">Become a model to follow. Finish MÁS⁺ Pro and honor your example.</string>
 
     <!-- 🏆 TROPHIES GENIUS⁺ -->
-    <string name="trofeo_ascensus_genio_principiante">Begin your rise to genius. Complete GENIUS⁺ Beginner.</string>
-    <string name="trofeo_magnificus_genio_avanzado">Let your intellect shine. Overcome every level of GENIUS⁺ Advanced.</string>
-    <string name="trofeo_potens_genio_pro">Unleash your full potential. Conquer GENIUS⁺ Pro without looking back.</string>
+    <string name="trofeo_ascensus_genio_principiante">Begin your rise to genius. Complete GENIO⁺ Beginner.</string>
+    <string name="trofeo_magnificus_genio_avanzado">Let your intellect shine. Overcome every level of GENIO⁺ Advanced.</string>
+    <string name="trofeo_potens_genio_pro">Unleash your full potential. Conquer GENIO⁺ Pro without looking back.</string>
 
     <string name="previous">Previous</string>
     <string name="next">Next</string>
@@ -842,7 +842,7 @@
 
     <string name="condecoracion_suprema">Supreme Decoration</string>
     <string name="apex_supremus_descripcion">Only supreme victors shall possess it…</string>
-    <string name="apex_supremus_info">This distinguished honor is awarded exclusively to those who complete all Sumamente challenges.</string>
+    <string name="apex_supremus_info">This distinguished honor is awarded exclusively to those who complete all SumaMente challenges.</string>
 
     <string name="ranking_global">Global Ranking</string>
     <string name="posicion">Position</string>
@@ -873,9 +873,9 @@
     <string name="logro_medalla_magnus">Magnificent achievement! By completing 1100 different games, you\'ve obtained the grand MAGNUS medal.</string>
     <string name="logro_medalla_immortalis">Immortal feat! You\'ve culminated 1200 unique challenges, consecrating yourself with the legendary IMMORTALIS medal.</string>
 
-    <string name="logro_trofeo_initia">You mastered numbers! You\'ve completed all 70 levels of NUMBERS⁺ Beginner, earning the INITIA trophy.</string>
-    <string name="logro_trofeo_constantia">Advanced numerical mastery! You conquered all 70 levels of NUMBERS⁺ Advanced, claiming the CONSTANTIA trophy.</string>
-    <string name="logro_trofeo_confectus">Supreme expert in numbers! All 70 levels of NUMBERS⁺ Pro have fallen before you, granting you the CONFECTUS trophy.</string>
+    <string name="logro_trofeo_initia">You mastered numbers! You\'ve completed all 70 levels of NÚMEROS⁺ Beginner, earning the INITIA trophy.</string>
+    <string name="logro_trofeo_constantia">Advanced numerical mastery! You conquered all 70 levels of NÚMEROS⁺ Advanced, claiming the CONSTANTIA trophy.</string>
+    <string name="logro_trofeo_confectus">Supreme expert in numbers! All 70 levels of NÚMEROS⁺ Pro have fallen before you, granting you the CONFECTUS trophy.</string>
 
     <string name="logro_trofeo_via">Brilliant start with decimals! You completed all levels of DECI⁺ Beginner, winning the VIA trophy.</string>
     <string name="logro_trofeo_altus">Decimal precision proven! The 70 levels of DECI⁺ Advanced are yours, deserving the prestigious ALTUS trophy.</string>
@@ -885,21 +885,21 @@
     <string name="logro_trofeo_fortitudo">Imperial power in Roman numerals! You\'ve completely overcome ROMAS Advanced, winning the FORTITUDO trophy.</string>
     <string name="logro_trofeo_metam">Total Roman domination! All 70 challenges of ROMAS Pro have been conquered, rewarding you with the glorious METAM trophy.</string>
 
-    <string name="logro_trofeo_fundamentum">Alphanumeric foundations mastered! You completed ALPHANUMBERS Beginner, obtaining the FUNDAMENTUM trophy.</string>
-    <string name="logro_trofeo_praemium">Confirmed alphanumeric genius! All 70 levels of ALPHANUMBERS Advanced are history, rewarding you with the PRAEMIUM trophy.</string>
-    <string name="logro_trofeo_glorificus">Supreme alphanumeric mastery! You\'ve defeated all challenges of ALPHANUMBERS Pro, reaching the magnificent GLORIFICUS trophy.</string>
+    <string name="logro_trofeo_fundamentum">Alphanumeric foundations mastered! You completed ALFANÚMEROS Beginner, obtaining the FUNDAMENTUM trophy.</string>
+    <string name="logro_trofeo_praemium">Confirmed alphanumeric genius! All 70 levels of ALFANÚMEROS Advanced are history, rewarding you with the PRAEMIUM trophy.</string>
+    <string name="logro_trofeo_glorificus">Supreme alphanumeric mastery! You\'ve defeated all challenges of ALFANÚMEROS Pro, reaching the magnificent GLORIFICUS trophy.</string>
 
-    <string name="logro_trofeo_scala">Mental calculation on the rise! You conquered all 70 levels of SUMADD Beginner, earning the SCALA trophy.</string>
-    <string name="logro_trofeo_tenacitas">Addition and subtraction mastery! All levels of SUMADD Advanced completed, rewarding you with the TENACITAS trophy.</string>
-    <string name="logro_trofeo_perfectus">Perfection in calculation! You\'ve mastered all 70 challenges of SUMADD Pro, achieving the coveted PERFECTUS trophy.</string>
+    <string name="logro_trofeo_scala">Mental calculation on the rise! You conquered all 70 levels of SUMARESTA Beginner, earning the SCALA trophy.</string>
+    <string name="logro_trofeo_tenacitas">Addition and subtraction mastery! All levels of SUMARESTA Advanced completed, rewarding you with the TENACITAS trophy.</string>
+    <string name="logro_trofeo_perfectus">Perfection in calculation! You\'ve mastered all 70 challenges of SUMARESTA Pro, achieving the coveted PERFECTUS trophy.</string>
 
-    <string name="logro_trofeo_origo">Origin of your mathematical dominance! You completed MORE⁺ Beginner, winning the important ORIGO trophy.</string>
-    <string name="logro_trofeo_proficium">Exemplary mathematical progress! All 70 levels of MORE⁺ Advanced have fallen, granting you the prestigious PROFICIUM trophy.</string>
-    <string name="logro_trofeo_exemplaritas">Example of mathematical excellence! You\'ve overcome all challenges of MORE⁺ Pro, achieving the extraordinary EXEMPLARITAS trophy.</string>
+    <string name="logro_trofeo_origo">Origin of your mathematical dominance! You completed MÁS⁺ Beginner, winning the important ORIGO trophy.</string>
+    <string name="logro_trofeo_proficium">Exemplary mathematical progress! All 70 levels of MÁS⁺ Advanced have fallen, granting you the prestigious PROFICIUM trophy.</string>
+    <string name="logro_trofeo_exemplaritas">Example of mathematical excellence! You\'ve overcome all challenges of MÁS⁺ Pro, achieving the extraordinary EXEMPLARITAS trophy.</string>
 
-    <string name="logro_trofeo_ascensus">Ascent towards genius! You completed all 70 levels of GENIUS⁺ Beginner, earning the coveted ASCENSUS trophy.</string>
-    <string name="logro_trofeo_magnificus">Magnificent mental capacity! You\'ve mastered GENIUS⁺ Advanced completely, winning the impressive MAGNIFICUS trophy.</string>
-    <string name="logro_trofeo_potens">Unlimited mental power! All 70 challenges of GENIUS⁺ Pro have been conquered, crowning you with the legendary POTENS trophy.</string>
+    <string name="logro_trofeo_ascensus">Ascent towards genius! You completed all 70 levels of GENIO⁺ Beginner, earning the coveted ASCENSUS trophy.</string>
+    <string name="logro_trofeo_magnificus">Magnificent mental capacity! You\'ve mastered GENIO⁺ Advanced completely, winning the impressive MAGNIFICUS trophy.</string>
+    <string name="logro_trofeo_potens">Unlimited mental power! All 70 challenges of GENIO⁺ Pro have been conquered, crowning you with the legendary POTENS trophy.</string>
 
     <string name="logro_top10_honorabilis">You\'ve reached 10th place in the global ranking! Your performance has earned you the HONORABILIS decoration.</string>
     <string name="logro_top10_virtuosus">Excellent performance! You\'ve positioned yourself in 9th place of the global ranking, deserving the VIRTUOSUS decoration.</string>
@@ -912,7 +912,7 @@
     <string name="logro_top10_summum">Almost at the top! You\'ve secured the impressive 2nd place in the global ranking, reaching the highest SUMMUM decoration.</string>
     <string name="logro_top10_excelsitur">Undisputed mental champion! You\'ve conquered the 1st position in the global ranking, consecrating yourself with the supreme EXCELSITUR decoration.</string>
 
-    <string name="logro_apex_supremus">LEGENDARY FEAT! You\'ve completed all 1490 levels of SUMAMENTE, demonstrating extraordinary dedication and mental mastery. The ultimate APEX SUPREMUS "MCDXC" decoration is yours by right.</string>
+    <string name="logro_apex_supremus">LEGENDARY FEAT! You\'ve completed all 1490 levels of SumaMente, demonstrating extraordinary dedication and mental mastery. The ultimate APEX SUPREMUS "MCDXC" decoration is yours by right.</string>
     <string name="no_condecoraciones">You haven\'t earned any decorations yet. Keep playing to get them!</string>
 
     <string name="speed_classification_title">Speed Classification</string>
@@ -1038,7 +1038,7 @@
     <string name="msg_motiv_global_levels_12">The goal is near! Keep playing to reach the global ranking.</string>
 
     <string name="msg_iqplus_start_1">%1$s, play 21 rounds—at least one in each game and each difficulty level—to appear in the IQ+ Ranking.</string>
-    <string name="msg_iqplus_start_2">Hello, %1$s! Start your journey in SUMAMENTE by playing at least one level in every game and difficulty to compete in the IQ+ Ranking.</string>
+    <string name="msg_iqplus_start_2">Hello, %1$s! Start your journey in SumaMente by playing at least one level in every game and difficulty to compete in the IQ+ Ranking.</string>
     <string name="msg_iqplus_start_3">%1$s, you haven\'t started your IQ+ Ranking journey yet. Play a level in every game and difficulty to see your position and build your index.</string>
     <string name="msg_iqplus_start_4">Let\'s go, %1$s! When you complete a level in every game and difficulty, you\'ll see your IQ+ and compare yourself with other players.</string>
     <string name="msg_iqplus_start_5">%1$s, the first step to stand out in the IQ+ Ranking is to play 21 levels—one in every game and difficulty. Get started today!</string>
@@ -1047,7 +1047,7 @@
     <string name="msg_iqplus_info_1">Your current IQ+ index is: %1$.2f.</string>
     <string name="msg_iqplus_info_2">For now, your IQ+ is %1$.2f points. Keep playing to improve it!</string>
     <string name="msg_iqplus_info_3">Provisional IQ+ index: %1$.2f. Play every game and difficulty to compete in the ranking.</string>
-    <string name="msg_iqplus_info_4">You\'re developing your IQ+ in SUMAMENTE: %1$.2f.</string>
+    <string name="msg_iqplus_info_4">You\'re developing your IQ+ in SumaMente: %1$.2f.</string>
     <string name="msg_iqplus_info_5">IQ+ calculated so far: %1$.2f. Every new level counts.</string>
     <string name="msg_iqplus_info_6">This is your current IQ+: %1$.2f. Complete all games and difficulties to unlock the ranking!</string>
 
@@ -1060,7 +1060,7 @@
 
     <string name="msg_iqplus_motiv_1">Keep going! Each new game brings you closer to your place in the IQ+ Ranking.</string>
     <string name="msg_iqplus_motiv_2">Keep moving forward; soon you\'ll be ranked and know your position.</string>
-    <string name="msg_iqplus_motiv_3">You\'re about to become one of the best in SUMAMENTE. Don\'t stop now!</string>
+    <string name="msg_iqplus_motiv_3">You\'re about to become one of the best in SumaMente. Don\'t stop now!</string>
     <string name="msg_iqplus_motiv_4">Great progress, %1$s! Just a bit more and you\'ll be competing with the best in the IQ+ Ranking.</string>
     <string name="msg_iqplus_motiv_5">Well done, %1$s. Each level brings you closer to your goal of being among the best.</string>
     <string name="msg_iqplus_motiv_6">%1$s, don\'t stop now. You\'re almost in the IQ+ Ranking!</string>
@@ -1071,7 +1071,7 @@
 
     <string name="iqplus_ranking_title">IQ⁺ Index Ranking</string>
 
-    <string name="share_iqplus_ranking_message">I\'m in position %1$d of the SUMAMENTE IQ⁺ Ranking with an IQ⁺ of %2$.3f! Can you beat me?</string>
+    <string name="share_iqplus_ranking_message">I\'m in position %1$d of the SumaMente IQ⁺ Ranking with an IQ⁺ of %2$.3f! Can you beat me?</string>
 
     <string name="precision_global_title">Global Precision</string>
     <string name="velocidad_promedio_title">Global Average Speed</string>
@@ -1197,7 +1197,7 @@
     <string name="medalla_motiv_exemplar">🌟 Glory awaits you: GLORIAM - just 100 more levels towards the summit</string>
     <string name="medalla_motiv_gloriam">🏆 Greatness approaching: MAGNUS - 100 more challenges for magnificence</string>
     <string name="medalla_motiv_magnus">✨ Towards immortality: IMMORTALIS - 100 final games for the legend</string>
-    <string name="medalla_motiv_immortalis">🏆 Medal collection COMPLETE! You\'re a SUMAMENTE legend!</string>
+    <string name="medalla_motiv_immortalis">🏆 Medal collection COMPLETE! You\'re a SumaMente legend!</string>
 
     <!-- DYNAMIC MEDAL COUNTER -->
     <string name="medalla_contador_progreso">📈 You have %1$d medals, %2$d remaining</string>
@@ -1269,7 +1269,7 @@
     <string name="trofeo_contador_progreso">🏆 You have %1$d trophies, %2$d remaining</string>
 
     <string name="trofeo_motiv_1">🏆 This is your first trophy! 20 more to conquer</string>
-    <string name="trofeo_motiv_21">🏆 TROPHY COLLECTION COMPLETE! You are a SUMAMENTE master!</string>
+    <string name="trofeo_motiv_21">🏆 TROPHY COLLECTION COMPLETE! You are a SumaMente master!</string>
 
     <!-- DOUBLE CELEBRATION MESSAGE -->
     <string name="doble_celebracion_titulo">🎊 DOUBLE CELEBRATION! 🎊</string>
@@ -1281,14 +1281,14 @@
 
     <!-- 1.2 - APEX SUPREMUS ANIMATION -->
     <string name="apex_titulo">🌟 APEX SUPREMUS ACHIEVED! 🌟</string>
-    <string name="apex_descripcion">1490 levels completed, you are worthy of the APEX SUPREMUS! 🏆✨ Your dedication and mental mastery have taken you to the absolute peak of SUMAMENTE. 👑</string>
+    <string name="apex_descripcion">1490 levels completed, you are worthy of the APEX SUPREMUS! 🏆✨ Your dedication and mental mastery have taken you to the absolute peak of SumaMente. 👑</string>
 
     <!-- 1.3 - NOMBRE PARA "MIS CONDECORACIONES LOGRADAS" -->
     <string name="condecoracion_apex_supremus">APEX SUPREMUS</string>
 
     <string name="ranking_integral_s">Integral Ranking S⁺:</string>
 
-    <string name="ranking_integral_progreso_1">You\'re on the right track, %1$s! You already appear in %2$d SUMAMENTE rankings. Only %3$d more to access the exclusive Integral Ranking.</string>
+    <string name="ranking_integral_progreso_1">You\'re on the right track, %1$s! You already appear in %2$d SumaMente rankings. Only %3$d more to access the exclusive Integral Ranking.</string>
     <string name="ranking_integral_progreso_2">%1$s, your progress is remarkable: you\'re present in %2$d rankings. Conquer the remaining %3$d to become part of the elite!</string>
     <string name="ranking_integral_progreso_3">Congratulations %1$s! You\'ve entered %2$d rankings. Just %3$d more to reach the integral challenge.</string>
     <string name="ranking_integral_progreso_4">%1$s, your name already appears in %2$d rankings. Only %3$d more and you\'ll unlock the Integral Ranking.</string>
@@ -1321,7 +1321,7 @@
     <string name="ranking_vel_alfanumeros">4.- Speed RANKING ALFANUMEROS⁺:</string>
     <string name="ranking_vel_romas">5.- Speed RANKING ROMAS⁺:</string>
     <string name="ranking_vel_sumaresta">6.- Speed RANKING SUMARESTA⁺:</string>
-    <string name="ranking_vel_mas">7.- Speed RANKING MAS⁺:</string>
+    <string name="ranking_vel_mas">7.- Speed RANKING MÁS⁺:</string>
     <string name="ranking_vel_genios">8.- Speed RANKING GENIOS⁺:</string>
     <string name="ranking_iq">9.- IQ⁺ Index Ranking:</string>
 
@@ -1337,11 +1337,11 @@
 
     <!-- Arrays para mensajes de ranking integral info - INGLÉS -->
     <string-array name="ranking_integral_info_messages">
-        <item>Hello, %1$s! To appear in the Integral S⁺ Ranking you need to be present in all 9 SUMAMENTE rankings.</item>
+        <item>Hello, %1$s! To appear in the Integral S⁺ Ranking you need to be present in all 9 SumaMente rankings.</item>
         <item>%1$s, the Integral S⁺ Ranking is exclusive for those who appear in all app rankings.</item>
         <item>%1$s, you don\'t meet the requirements for the Integral Ranking yet. You need to appear in all 9 rankings.</item>
         <item>Come on, %1$s! The Integral S⁺ Ranking awaits you when you\'re in all rankings.</item>
-        <item>%1$s, your integral classification will appear when you participate in all 9 SUMAMENTE rankings.</item>
+        <item>%1$s, your integral classification will appear when you participate in all 9 SumaMente rankings.</item>
         <item>Ready for the challenge, %1$s? Access all rankings and unlock the Integral S⁺ Ranking.</item>
     </string-array>
 
@@ -1351,7 +1351,7 @@
         <item>Exclusivity has its price. Show that you deserve to be among the best!</item>
         <item>Don\'t stop! The Integral S⁺ Ranking is reserved for the most dedicated.</item>
         <item>Every game counts. Keep advancing toward the absolute summit!</item>
-        <item>The goal is clear! Master all rankings and join the SUMAMENTE elite.</item>
+        <item>The goal is clear! Master all rankings and join the SumaMente elite.</item>
         <item>Persistence is the key! Each new ranking brings you closer to integral glory.</item>
     </string-array>
 
@@ -1471,7 +1471,7 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
     <string name="logro_excellentia_singulari_2">%1$s, your excellence is unmatched. You\'ve gained EXCELLENTIA SINGULARI.</string>
 
     <string name="logro_gloria_integralis_1">Integral glory for you, %1$s! The highest recognition is yours.</string>
-    <string name="logro_gloria_integralis_2">Sumamente applauds you, %1$s: you\'ve reached GLORIA INTEGRALIS.</string>
+    <string name="logro_gloria_integralis_2">SumaMente applauds you, %1$s: you\'ve reached GLORIA INTEGRALIS.</string>
 
     <string name="top5_ranking_integral">Top 5 of the Integral Ranking</string>
 

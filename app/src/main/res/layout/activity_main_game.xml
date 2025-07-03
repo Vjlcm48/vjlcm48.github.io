@@ -70,7 +70,7 @@
             android:contentDescription="@string/trophy"
             android:src="@drawable/ic_trofeo" />
 
-        <!-- 3.2. Punto rojo en esquina superior derecha -->
+
         <View
             android:id="@+id/trophy_red_dot"
             android:layout_width="12dp"
