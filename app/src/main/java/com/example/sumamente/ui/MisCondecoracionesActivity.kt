@@ -34,6 +34,8 @@ class MisCondecoracionesActivity : AppCompatActivity() {
         CondecoracionTracker.marcarPinesComoVistos()
         CondecoracionTracker.marcarCoronasComoVistas()
         CondecoracionTracker.marcarCondecoracionesTop10ComoVistas()
+        CondecoracionTracker.marcarCondecoracionesIQ7ComoVistas()
+        CondecoracionTracker.marcarCondecoracionesTop5IntegralComoVistas()
 
         initViews()
         setupButtons()
@@ -209,6 +211,36 @@ class MisCondecoracionesActivity : AppCompatActivity() {
                     imagen = imagen,
                     esNuevo = condecoracion.esNueva,
                     fechaObtencion = formatearFecha(condecoracion.fechaAsignacion)
+                )
+            )
+        }
+
+        val condecoracionesIQ7 = CondecoracionTracker.getCondecoracionesIQ7()
+        condecoracionesIQ7.forEach { condecoracionIQ7 ->
+            val (nombre, descripcion, imagen) = mapearCondecoracionIQ7(condecoracionIQ7.posicion)
+            condecoraciones.add(
+                Condecoracion(
+                    tipo = TipoCondecoracion.IQ7,
+                    nombre = nombre,
+                    descripcion = descripcion,
+                    imagen = imagen,
+                    esNuevo = condecoracionIQ7.esNueva,
+                    fechaObtencion = formatearFecha(condecoracionIQ7.fechaAsignacion)
+                )
+            )
+        }
+
+        val condecoracionesTop5Integral = CondecoracionTracker.getCondecoracionesTop5Integral()
+        condecoracionesTop5Integral.forEach { condecoracionTop5 ->
+            val (nombre, descripcion, imagen) = mapearCondecoracionTop5Integral(condecoracionTop5.posicion)
+            condecoraciones.add(
+                Condecoracion(
+                    tipo = TipoCondecoracion.TOP5_INTEGRAL,
+                    nombre = nombre,
+                    descripcion = descripcion,
+                    imagen = imagen,
+                    esNuevo = condecoracionTop5.esNueva,
+                    fechaObtencion = formatearFecha(condecoracionTop5.fechaAsignacion)
                 )
             )
         }
@@ -411,6 +443,87 @@ class MisCondecoracionesActivity : AppCompatActivity() {
         }
     }
 
+    private fun mapearCondecoracionIQ7(posicion: Int): Triple<String, String, Int> {
+        return when (posicion) {
+            1 -> Triple(
+                getString(R.string.condecoracion_sapiens_supremus),
+                getString(R.string.logro_iq7_sapiens_supremus),
+                R.drawable.ic_sapiens_supremus_1
+            )
+            2 -> Triple(
+                getString(R.string.condecoracion_mentis_aurea),
+                getString(R.string.logro_iq7_mentis_aurea),
+                R.drawable.ic_mentis_aurea_2
+            )
+            3 -> Triple(
+                getString(R.string.condecoracion_luminis_rex),
+                getString(R.string.logro_iq7_luminis_rex),
+                R.drawable.ic_luminis_rex_3
+            )
+            4 -> Triple(
+                getString(R.string.condecoracion_doctrinae_princeps),
+                getString(R.string.logro_iq7_doctrinae_princeps),
+                R.drawable.ic_doctrinae_princeps_4
+            )
+            5 -> Triple(
+                getString(R.string.condecoracion_consilium_magnus),
+                getString(R.string.logro_iq7_consilium_magnus),
+                R.drawable.ic_consilium_magnus_5
+            )
+            6 -> Triple(
+                getString(R.string.condecoracion_intellectus_primus),
+                getString(R.string.logro_iq7_intellectus_primus),
+                R.drawable.ic_intellectus_primus_6
+            )
+            7 -> Triple(
+                getString(R.string.condecoracion_discipulus_optimus),
+                getString(R.string.logro_iq7_discipulus_optimus),
+                R.drawable.ic_discipulus_optimus_7
+            )
+            else -> Triple(
+                "",
+                "",
+                R.drawable.ic_discipulus_optimus_7
+            )
+        }
+    }
+
+    private fun mapearCondecoracionTop5Integral(posicion: Int): Triple<String, String, Int> {
+        return when (posicion) {
+            1 -> Triple(
+                getString(R.string.condecoracion_imperium_supremus),
+                getString(R.string.logro_imperium_supremus_1),
+                R.drawable.ic_imperium_supremus_i
+            )
+            2 -> Triple(
+                getString(R.string.condecoracion_magnus_honor),
+                getString(R.string.logro_magnus_honor_1),
+                R.drawable.ic_magnus_honor_ii
+            )
+            3 -> Triple(
+                getString(R.string.condecoracion_virtus_totalis),
+                getString(R.string.logro_virtus_totalis_1),
+                R.drawable.ic_virtus_totalis_iii
+            )
+            4 -> Triple(
+                getString(R.string.condecoracion_excellentia_singulari),
+                getString(R.string.logro_excellentia_singulari_1),
+                R.drawable.ic_excellentia_singulari_iv
+            )
+            5 -> Triple(
+                getString(R.string.condecoracion_gloria_integralis),
+                getString(R.string.logro_gloria_integralis_1),
+                R.drawable.ic_gloria_integralis_v
+            )
+            else -> Triple(
+                "",
+                "",
+                R.drawable.ic_gloria_integralis_v
+            )
+        }
+    }
+
+
     private fun mostrarImagenAmpliada(condecoracion: Condecoracion) {
 
         if (condecoracion.tipo == TipoCondecoracion.PIN && condecoracion.esNuevo) {
@@ -472,6 +585,52 @@ class MisCondecoracionesActivity : AppCompatActivity() {
 
                 val position = condecoraciones.indexOfFirst {
                     it.tipo == TipoCondecoracion.TOP10 && it.nombre == condecoracion.nombre
+                }
+                if (position != -1) {
+                    condecoraciones[position] = condecoraciones[position].copy(esNuevo = false)
+                    adapter.notifyItemChanged(position)
+                }
+            }
+        }
+
+        if (condecoracion.tipo == TipoCondecoracion.IQ7 && condecoracion.esNuevo) {
+            val condecoracionesIQ7 = CondecoracionTracker.getCondecoracionesIQ7()
+            val condecoracionCorrespondiente = condecoracionesIQ7.find { iq7 ->
+                mapearCondecoracionIQ7(iq7.posicion).first == condecoracion.nombre && iq7.esNueva
+            }
+
+            condecoracionCorrespondiente?.let { iq7 ->
+                CondecoracionTracker.marcarCondecoracionIQ7IndividualComoVista(
+                    iq7.posicion,
+                    iq7.tipoCondecoracion,
+                    iq7.fechaAsignacion
+                )
+
+                val position = condecoraciones.indexOfFirst {
+                    it.tipo == TipoCondecoracion.IQ7 && it.nombre == condecoracion.nombre
+                }
+                if (position != -1) {
+                    condecoraciones[position] = condecoraciones[position].copy(esNuevo = false)
+                    adapter.notifyItemChanged(position)
+                }
+            }
+        }
+
+        if (condecoracion.tipo == TipoCondecoracion.TOP5_INTEGRAL && condecoracion.esNuevo) {
+            val condecoracionesTop5Integral = CondecoracionTracker.getCondecoracionesTop5Integral()
+            val condecoracionCorrespondiente = condecoracionesTop5Integral.find { top5 ->
+                mapearCondecoracionTop5Integral(top5.posicion).first == condecoracion.nombre && top5.esNueva
+            }
+
+            condecoracionCorrespondiente?.let { top5 ->
+                CondecoracionTracker.marcarCondecoracionTop5IntegralIndividualComoVista(
+                    top5.posicion,
+                    top5.tipoCondecoracion,
+                    top5.fechaAsignacion
+                )
+
+                val position = condecoraciones.indexOfFirst {
+                    it.tipo == TipoCondecoracion.TOP5_INTEGRAL && it.nombre == condecoracion.nombre
                 }
                 if (position != -1) {
                     condecoraciones[position] = condecoraciones[position].copy(esNuevo = false)

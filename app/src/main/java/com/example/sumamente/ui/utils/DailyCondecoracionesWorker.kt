@@ -21,6 +21,8 @@ class DailyCondecoracionesWorker(
             CondecoracionTracker.verificarYEntregarPines()
             CondecoracionTracker.verificarYActualizarCoronasDeVelocidad(applicationContext)
             CondecoracionTracker.verificarYActualizarCondecoracionesTop10(applicationContext)
+            CondecoracionTracker.verificarYActualizarCondecoracionesIQ7(applicationContext)
+            CondecoracionTracker.verificarYActualizarCondecoracionesTop5Integral(applicationContext)
 
             Result.success()
         } catch (e: Exception) {

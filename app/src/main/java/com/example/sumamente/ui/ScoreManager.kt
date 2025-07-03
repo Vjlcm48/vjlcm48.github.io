@@ -428,16 +428,13 @@ object ScoreManager {
     private lateinit var preferencesGenioPlusPrincipiante: SharedPreferences
     private lateinit var preferencesGenioPlusPro: SharedPreferences
 
-    // NUEVO: modelo genérico de posición en un ranking
+
     data class RankingEntry(val userName: String, val valor: Double)
 
-    // ────────── HELPERS DE ELEGIBILIDAD (100 % conectados con tu lógica real) ──────────
-
-    /** ► GLOBAL: mínimo 36 niveles únicos superados en todos los juegos */
     private fun isEligibleForGlobalRanking(): Boolean =
         getTotalUniqueLevelsCompletedAllGames() >= RankingActivity.MIN_LEVELS_REQUIRED
 
-    /** ► VELOCIDAD (7 juegos): usa las funciones que ya tienes para cada ranking */
+
     private fun isEligibleSpeedNumerosPlus()   = isEligibleForSpeedRankingNumerosPlus()
     private fun isEligibleSpeedDeciPlus()      = isEligibleForSpeedRankingDeciPlus()
     private fun isEligibleSpeedAlfaNumeros()   = isEligibleForSpeedRankingAlfaNumeros()
@@ -446,7 +443,7 @@ object ScoreManager {
     private fun isEligibleSpeedMasPlus()       = isEligibleForSpeedRankingMasPlus()
     private fun isEligibleSpeedGenioPlus()     = isEligibleForSpeedRankingGenioPlus()
 
-    /** ► IQ⁺: al menos un nivel jugado en cada juego y grado */
+
     private fun isEligibleIQPlusRanking(): Boolean =
         haJugadoAlMenosUnNivelEnCadaJuegoYGrado()
 
@@ -468,17 +465,15 @@ object ScoreManager {
     }
 
 
-    /** Posición real (1-based) o -1 si no aparece. */
     fun getUserPositionInRanking(rankingName: String): Int {
         val me = preferences.getString("savedUserName", "User")!!
         return getRankingList(rankingName).indexOfFirst { it.userName == me }.let { if (it >= 0) it + 1 else -1 }
     }
 
-    /** ¿Aparece o no?  -> true / false */
     fun isUserInRanking(rankingName: String): Boolean =
         getUserPositionInRanking(rankingName) > 0
 
-    /** Suma las 9 posiciones y las divide entre 9 (>-1 si todavía falta alguno). */
+
     fun getIntegralScore(): Double {
         val rankings = listOf(
             "GLOBAL", "VEL_NUMEROS", "VEL_DECI", "VEL_ALFANUM", "VEL_ROMAS",
@@ -486,7 +481,7 @@ object ScoreManager {
         )
         val positions = rankings.map { pos ->
             val p = getUserPositionInRanking(pos)
-            if (p > 0) p else (getRankingList(pos).size + 1)   // penaliza si no aparece
+            if (p > 0) p else (getRankingList(pos).size + 1)
         }
         return positions.sum().toDouble() / rankings.size
     }
@@ -522,7 +517,7 @@ object ScoreManager {
         totalGamesNumerosPlus = preferences.getInt(KEY_TOTAL_GAMES_NUMEROS_PLUS, 0)
         totalTimeNumerosPlus = preferences.getFloat(KEY_TOTAL_TIME_NUMEROS_PLUS, 0f).toDouble()
 
-        // --- NUEVOS CONTADORES DE ÉXITO ---
+
         totalGamesNumerosPlusExitos = preferences.getInt(KEY_TOTAL_GAMES_NUMEROS_PLUS_EXITOS, 0)
         totalTimeNumerosPlusExitos = preferences.getFloat(KEY_TOTAL_TIME_NUMEROS_PLUS_EXITOS, 0f).toDouble()
 
@@ -573,8 +568,6 @@ object ScoreManager {
         }
     }
 
-
-
     fun initDeciPlus(context: Context) {
         ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
         preferencesDeciPlus = context.getSharedPreferences(PREFS_NAME_DECI_PLUS, Context.MODE_PRIVATE)
@@ -603,7 +596,7 @@ object ScoreManager {
         lastIqComponentByGame = if (storedMap != null) gson.fromJson(storedMap, mapType) else mutableMapOf()
     }
     fun initDeciPlusPrincipiante(context: Context) {
-        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
+        ensurePreferencesInitialized(context)
         preferencesDeciPlusPrincipiante = context.getSharedPreferences(PREFS_NAME_DECI_PLUS_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScoreDeciPlusPrincipiante = preferencesDeciPlusPrincipiante.getInt(KEY_CURRENT_SCORE_DECI_PLUS_PRINCIPIANTE, 0)
         unlockedLevelsDeciPlusPrincipiante = preferencesDeciPlusPrincipiante.getInt(KEY_UNLOCKED_LEVELS_DECI_PLUS_PRINCIPIANTE, 2)
@@ -628,8 +621,6 @@ object ScoreManager {
             }
         }
     }
-
-
 
     fun initRomas(context: Context) {
         ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
@@ -2701,6 +2692,28 @@ object ScoreManager {
                 getCompletedLevelsGenioPlusPrincipiante().isNotEmpty() &&
                 getCompletedLevelsGenioPlus().isNotEmpty() &&
                 getCompletedLevelsGenioPlusPro().isNotEmpty()
+    }
+
+    fun getUserPositionInRankingIntegral(): Int {
+        val rankingsStatus = listOf(
+            isUserInRanking("GLOBAL"),
+            isUserInRanking("VEL_NUMEROS"),
+            isUserInRanking("VEL_DECI"),
+            isUserInRanking("VEL_ALFANUM"),
+            isUserInRanking("VEL_ROMAS"),
+            isUserInRanking("VEL_SUMARESTA"),
+            isUserInRanking("VEL_MAS"),
+            isUserInRanking("VEL_GENIOS"),
+            isUserInRanking("IQ_PLUS")
+        )
+
+        val rankingsCount = rankingsStatus.count { it }
+
+        return if (rankingsCount == 9) {
+            1
+        } else {
+            -1
+        }
     }
 
     fun getMaxLevelForCombo(juego: String, grado: String): Int {

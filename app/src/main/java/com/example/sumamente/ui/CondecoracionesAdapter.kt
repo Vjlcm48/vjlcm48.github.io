@@ -41,7 +41,6 @@ class CondecoracionesAdapter(
             tvNombre.text = condecoracion.nombre
             tvDescripcion.text = condecoracion.descripcion
 
-            // Verificación dinámica del estado de los puntos rojos
             val deberiasMostrarPuntoRojo = when (condecoracion.tipo) {
                 TipoCondecoracion.PIN -> {
                     val pines = CondecoracionTracker.getAllPines()
@@ -78,6 +77,39 @@ class CondecoracionesAdapter(
                         nombreTop10 == condecoracion.nombre && top10.esNueva
                     }
                 }
+
+                TipoCondecoracion.IQ7 -> {
+                    val condecoracionesIQ7 = CondecoracionTracker.getCondecoracionesIQ7()
+                    condecoracionesIQ7.any { iq7 ->
+                        val nombreIQ7 = when (iq7.tipoCondecoracion) {
+                            "SAPIENS_SUPREMUS" -> itemView.context.getString(R.string.condecoracion_sapiens_supremus)
+                            "MENTIS_AUREA" -> itemView.context.getString(R.string.condecoracion_mentis_aurea)
+                            "LUMINIS_REX" -> itemView.context.getString(R.string.condecoracion_luminis_rex)
+                            "DOCTRINAE_PRINCEPS" -> itemView.context.getString(R.string.condecoracion_doctrinae_princeps)
+                            "CONSILIUM_MAGNUS" -> itemView.context.getString(R.string.condecoracion_consilium_magnus)
+                            "INTELLECTUS_PRIMUS" -> itemView.context.getString(R.string.condecoracion_intellectus_primus)
+                            "DISCIPULUS_OPTIMUS" -> itemView.context.getString(R.string.condecoracion_discipulus_optimus)
+                            else -> iq7.tipoCondecoracion
+                        }
+                        nombreIQ7 == condecoracion.nombre && iq7.esNueva
+                    }
+                }
+
+                TipoCondecoracion.TOP5_INTEGRAL -> {
+                    val condecoracionesTop5Integral = CondecoracionTracker.getCondecoracionesTop5Integral()
+                    condecoracionesTop5Integral.any { top5 ->
+                        val nombreTop5 = when (top5.tipoCondecoracion) {
+                            "IMPERIUM_SUPREMUS" -> itemView.context.getString(R.string.condecoracion_imperium_supremus)
+                            "MAGNUS_HONOR" -> itemView.context.getString(R.string.condecoracion_magnus_honor)
+                            "VIRTUS_TOTALIS" -> itemView.context.getString(R.string.condecoracion_virtus_totalis)
+                            "EXCELLENTIA_SINGULARI" -> itemView.context.getString(R.string.condecoracion_excellentia_singulari)
+                            "GLORIA_INTEGRALIS" -> itemView.context.getString(R.string.condecoracion_gloria_integralis)
+                            else -> top5.tipoCondecoracion
+                        }
+                        nombreTop5 == condecoracion.nombre && top5.esNueva
+                    }
+                }
+
                 TipoCondecoracion.MEDALLA -> {
                     val medallas = CondecoracionTracker.getMedallasObtenidas()
                     medallas.any { it.tipo == condecoracion.nombre && !it.vista }
@@ -101,7 +133,7 @@ class CondecoracionesAdapter(
                 redDotTitulo.visibility = View.GONE
             }
 
-            if ((condecoracion.tipo == TipoCondecoracion.PIN || condecoracion.tipo == TipoCondecoracion.CORONA || condecoracion.tipo == TipoCondecoracion.TOP10 || condecoracion.tipo == TipoCondecoracion.MEDALLA|| condecoracion.tipo == TipoCondecoracion.TROFEO || condecoracion.tipo == TipoCondecoracion.APEX) && !condecoracion.fechaObtencion.isNullOrEmpty()) {
+            if ((condecoracion.tipo == TipoCondecoracion.PIN || condecoracion.tipo == TipoCondecoracion.CORONA || condecoracion.tipo == TipoCondecoracion.TOP10 || condecoracion.tipo == TipoCondecoracion.IQ7 || condecoracion.tipo == TipoCondecoracion.TOP5_INTEGRAL || condecoracion.tipo == TipoCondecoracion.MEDALLA|| condecoracion.tipo == TipoCondecoracion.TROFEO || condecoracion.tipo == TipoCondecoracion.APEX) && !condecoracion.fechaObtencion.isNullOrEmpty()) {
                 tvFecha.text = itemView.context.getString(R.string.date_obtained, condecoracion.fechaObtencion)
                 tvFecha.visibility = View.VISIBLE
             } else {
@@ -119,7 +151,7 @@ class CondecoracionesAdapter(
                             if (pos != RecyclerView.NO_POSITION) notifyItemChanged(pos)
                         }
                     }
-                    // Los demás casos ya están manejados en onImageClick
+
                     else -> {}
                 }
                 onImageClick(condecoracion)

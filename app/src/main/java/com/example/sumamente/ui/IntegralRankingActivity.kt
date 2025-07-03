@@ -54,7 +54,7 @@ class IntegralRankingActivity : AppCompatActivity() {
         ScoreManager.initGenioPlus(this)
         ScoreManager.initGenioPlusPrincipiante(this)
         ScoreManager.initGenioPlusPro(this)
-        sharedPreferences = ScoreManager.preferences
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
 
         initViews()
         setupButtons()

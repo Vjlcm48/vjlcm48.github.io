@@ -32,7 +32,6 @@ android {
         }
     }
 
-    // --- SOLUCIÓN: Cambia Java 8 por Java 17 ---
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17

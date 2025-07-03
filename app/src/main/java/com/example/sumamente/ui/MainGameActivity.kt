@@ -5,7 +5,6 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
@@ -23,14 +22,13 @@ import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 import com.example.sumamente.R
 import com.google.android.material.transition.platform.MaterialSharedAxis
 import java.util.Locale
-import androidx.core.content.edit
 
 
 class MainGameActivity : AppCompatActivity() {
@@ -44,13 +42,13 @@ class MainGameActivity : AppCompatActivity() {
     private lateinit var trophyContainer: FrameLayout
     private lateinit var trophyRedDot: View
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         window.exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
 
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_main_game)
 
         CondecoracionTracker.init(this)
@@ -205,17 +203,31 @@ class MainGameActivity : AppCompatActivity() {
         animatorSet.start()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun scheduleDailyCondecoracionesWork() {
-        val zoneId = java.time.ZoneId.of("America/Chicago")
-        val now     = java.time.ZonedDateTime.now(zoneId)
-        val next0h  = now.withHour(0).withMinute(0).withSecond(0).withNano(0)
-            .let { if (now >= it) it.plusDays(1) else it }
-        val delayMs = java.time.Duration.between(now, next0h).toMillis()
+        val delayMs = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val zoneId = java.time.ZoneId.of("America/Chicago")
+            val now = java.time.ZonedDateTime.now(zoneId)
+            val next0h = now.withHour(0).withMinute(0).withSecond(0).withNano(0)
+                .let { if (now >= it) it.plusDays(1) else it }
+            java.time.Duration.between(now, next0h).toMillis()
+        } else {
+            val chicagoZone = java.util.TimeZone.getTimeZone("America/Chicago")
+            val now = java.util.Calendar.getInstance(chicagoZone)
+            val nextMidnight = java.util.Calendar.getInstance(chicagoZone).apply {
+                add(java.util.Calendar.DAY_OF_MONTH, 1)
+                set(java.util.Calendar.HOUR_OF_DAY, 0)
+                set(java.util.Calendar.MINUTE, 0)
+                set(java.util.Calendar.SECOND, 0)
+                set(java.util.Calendar.MILLISECOND, 0)
+            }
+            nextMidnight.timeInMillis - now.timeInMillis
+        }
 
-        val work = androidx.work.PeriodicWorkRequestBuilder<
-                com.example.sumamente.ui.utils.DailyCondecoracionesWorker
-                >(24, java.util.concurrent.TimeUnit.HOURS)
+        val work = androidx.work.PeriodicWorkRequest.Builder(
+            com.example.sumamente.ui.utils.DailyCondecoracionesWorker::class.java,
+            24,
+            java.util.concurrent.TimeUnit.HOURS
+        )
             .setInitialDelay(delayMs, java.util.concurrent.TimeUnit.MILLISECONDS)
             .build()
 
@@ -226,7 +238,6 @@ class MainGameActivity : AppCompatActivity() {
                 work
             )
     }
-
 
     @Suppress("DEPRECATION")
     private fun getLocationAndSetFlag() {

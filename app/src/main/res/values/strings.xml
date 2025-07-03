@@ -1382,6 +1382,72 @@
 
     <string name="los_7_mejores">Los 7 mejores</string>
 
+    <string name="condecoracion_sapiens_supremus">SAPIENS SUPREMUS</string>
+    <string name="condecoracion_mentis_aurea">MENTIS AUREA</string>
+    <string name="condecoracion_luminis_rex">LUMINIS REX</string>
+    <string name="condecoracion_doctrinae_princeps">DOCTRINAE PRINCEPS</string>
+    <string name="condecoracion_consilium_magnus">CONSILIUM MAGNUS</string>
+    <string name="condecoracion_intellectus_primus">INTELLECTUS PRIMUS</string>
+    <string name="condecoracion_discipulus_optimus">DISCIPULUS OPTIMUS</string>
+
+    <string name="logro_iq7_sapiens_supremus">
+¡Has alcanzado la cima del intelecto! Primer lugar en el ranking IQ⁺ y ahora poseedor de la suprema condecoración SAPIENS SUPREMUS.
+</string>
+
+    <string name="logro_iq7_mentis_aurea">
+¡Mente dorada! Tu agudeza te ha llevado al segundo puesto del ranking IQ⁺, conquistando la condecoración MENTIS AUREA.
+</string>
+
+    <string name="logro_iq7_luminis_rex">
+¡Rey de la luz académica! El tercer lugar del ranking IQ⁺ es tuyo, brillando con la condecoración LUMINIS REX.
+</string>
+
+    <string name="logro_iq7_doctrinae_princeps">
+¡Príncipe del saber! Has alcanzado el cuarto puesto del ranking IQ⁺ y la condecoración DOCTRINAE PRINCEPS es tuya.
+</string>
+
+    <string name="logro_iq7_consilium_magnus">
+¡Gran consejero! Tu sabiduría te sitúa en el quinto lugar del ranking IQ⁺ y te concede la condecoración CONSILIUM MAGNUS.
+</string>
+
+    <string name="logro_iq7_intellectus_primus">
+¡Primer intelecto! Sexto en el ranking IQ⁺, destacas con la condecoración INTELLECTUS PRIMUS.
+</string>
+
+    <string name="logro_iq7_discipulus_optimus">
+¡Discípulo óptimo! Tu esfuerzo y constancia te han llevado al séptimo lugar del ranking IQ⁺, logrando la condecoración DISCIPULUS OPTIMUS.
+</string>
+
+    <!-- 🏅 CONDECORACIONES INTEGRALES -->
+    <string name="condecoracion_imperium_supremus">IMPERIUM SUPREMUS</string>
+    <string name="condecoracion_magnus_honor">MAGNUS HONOR</string>
+    <string name="condecoracion_virtus_totalis">VIRTUS TOTALIS</string>
+    <string name="condecoracion_excellentia_singulari">EXCELLENTIA SINGULARI</string>
+    <string name="condecoracion_gloria_integralis">GLORIA INTEGRALIS</string>
+
+    <string name="significado_imperium_supremus">PODER SUPREMO. ¿Serás capaz de conquistarlo?</string>
+    <string name="significado_magnus_honor">GRAN HONOR. Demuestra que eres digno, ¡alcánzalo!</string>
+    <string name="significado_virtus_totalis">VIRTUD TOTAL. Solo para quienes lo entregan todo.</string>
+    <string name="significado_excellentia_singulari">EXCELENCIA ÚNICA. Aspira a lo más alto, esfuérzate.</string>
+    <string name="significado_gloria_integralis">GLORIA INTEGRAL. Tu nombre merece brillar aquí.</string>
+
+    <string name="logro_imperium_supremus_1">¡%1$s, tu supremacía mental es absoluta! Has obtenido IMPERIUM SUPREMUS.</string>
+    <string name="logro_imperium_supremus_2">Nadie se compara a ti, %1$s. El dominio total es tuyo con IMPERIUM SUPREMUS.</string>
+
+    <string name="logro_magnus_honor_1">¡Honor máximo alcanzado, %1$s! MAGNUS HONOR reconoce tu grandeza.</string>
+    <string name="logro_magnus_honor_2">El reconocimiento más alto es tuyo, %1$s. MAGNUS HONOR corona tu esfuerzo.</string>
+
+    <string name="logro_virtus_totalis_1">¡Virtud total lograda, %1$s! VIRTUS TOTALIS celebra tu excelencia mental.</string>
+    <string name="logro_virtus_totalis_2">%1$s, tu disciplina y mente brillante te han dado VIRTUS TOTALIS.</string>
+
+    <string name="logro_excellentia_singulari_1">¡Excelencia singular, %1$s! Solo los mejores reciben EXCELLENTIA SINGULARI.</string>
+    <string name="logro_excellentia_singulari_2">%1$s, tu excelencia es única. Has ganado EXCELLENTIA SINGULARI.</string>
+
+    <string name="logro_gloria_integralis_1">¡Gloria integral para ti, %1$s! El máximo reconocimiento es tuyo.</string>
+    <string name="logro_gloria_integralis_2">Sumamente te aplaude, %1$s: has alcanzado GLORIA INTEGRALIS.</string>
+
+    <string name="top5_ranking_integral">Los 5 mejores del Ranking Integral</string>
+
 
 
 </resources>

@@ -1391,7 +1391,6 @@
     <!-- Agregar este string al final de strings.xml -->
     <string name="integral_ranking_scroll_description">Scrollable content for integral ranking</string>
 
-
     <string name="condecoracion_discipulus_optimus_7">DISCIPULUS OPTIMUS</string>
     <string name="condecoracion_intellectus_primus_6">INTELLECTUS PRIMUS</string>
     <string name="condecoracion_consilium_magnus_5">CONSILIUM MAGNUS</string>
@@ -1409,6 +1408,72 @@
     <string name="significado_sapiens_supremus_1">The wisest</string>
 
     <string name="los_7_mejores">The Top 7</string>
+
+    <string name="condecoracion_sapiens_supremus">SAPIENS SUPREMUS</string>
+    <string name="condecoracion_mentis_aurea">MENTIS AUREA</string>
+    <string name="condecoracion_luminis_rex">LUMINIS REX</string>
+    <string name="condecoracion_doctrinae_princeps">DOCTRINAE PRINCEPS</string>
+    <string name="condecoracion_consilium_magnus">CONSILIUM MAGNUS</string>
+    <string name="condecoracion_intellectus_primus">INTELLECTUS PRIMUS</string>
+    <string name="condecoracion_discipulus_optimus">DISCIPULUS OPTIMUS</string>
+
+    <string name="logro_iq7_sapiens_supremus">
+You have reached the pinnacle of intellect! First place in the IQ⁺ ranking and now holder of the supreme distinction SAPIENS SUPREMUS.
+</string>
+
+    <string name="logro_iq7_mentis_aurea">
+Golden mind! Your sharpness has brought you to the second place in the IQ⁺ ranking, earning you the distinction MENTIS AUREA.
+</string>
+
+    <string name="logro_iq7_luminis_rex">
+King of academic brilliance! The third place in the IQ⁺ ranking is yours, shining with the distinction LUMINIS REX.
+</string>
+
+    <string name="logro_iq7_doctrinae_princeps">
+Prince of knowledge! You have achieved fourth place in the IQ⁺ ranking and earned the distinction DOCTRINAE PRINCEPS.
+</string>
+
+    <string name="logro_iq7_consilium_magnus">
+Great advisor! Your wisdom has placed you fifth in the IQ⁺ ranking and awarded you the distinction CONSILIUM MAGNUS.
+</string>
+
+    <string name="logro_iq7_intellectus_primus">
+First intellect! Sixth in the IQ⁺ ranking, you stand out with the distinction INTELLECTUS PRIMUS.
+</string>
+
+    <string name="logro_iq7_discipulus_optimus">
+Optimum disciple! Your effort and perseverance have brought you to seventh place in the IQ⁺ ranking, earning the distinction DISCIPULUS OPTIMUS.
+</string>
+
+    <!-- 🏅 CONDECORACIONES INTEGRALES -->
+    <string name="condecoracion_imperium_supremus">IMPERIUM SUPREMUS</string>
+    <string name="condecoracion_magnus_honor">MAGNUS HONOR</string>
+    <string name="condecoracion_virtus_totalis">VIRTUS TOTALIS</string>
+    <string name="condecoracion_excellentia_singulari">EXCELLENTIA SINGULARI</string>
+    <string name="condecoracion_gloria_integralis">GLORIA INTEGRALIS</string>
+
+    <string name="significado_imperium_supremus">SUPREME POWER. Will you dare to conquer it?</string>
+    <string name="significado_magnus_honor">GREAT HONOR. Prove you\'re worthy, go for it!</string>
+    <string name="significado_virtus_totalis">TOTAL VIRTUE. Only for those who give their all.</string>
+    <string name="significado_excellentia_singulari">SINGULAR EXCELLENCE. Aim for the top, strive for it.</string>
+    <string name="significado_gloria_integralis">INTEGRAL GLORY. Your name deserves to shine here.</string>
+
+    <string name="logro_imperium_supremus_1">%1$s, your mental supremacy is absolute! You have achieved IMPERIUM SUPREMUS.</string>
+    <string name="logro_imperium_supremus_2">No one compares to you, %1$s. Total dominion is yours with IMPERIUM SUPREMUS.</string>
+
+    <string name="logro_magnus_honor_1">Maximum honor achieved, %1$s! MAGNUS HONOR recognizes your greatness.</string>
+    <string name="logro_magnus_honor_2">The highest recognition is yours, %1$s. MAGNUS HONOR crowns your effort.</string>
+
+    <string name="logro_virtus_totalis_1">Total virtue accomplished, %1$s! VIRTUS TOTALIS celebrates your mental excellence.</string>
+    <string name="logro_virtus_totalis_2">%1$s, your discipline and brilliant mind have earned you VIRTUS TOTALIS.</string>
+
+    <string name="logro_excellentia_singulari_1">Singular excellence, %1$s! Only the best receive EXCELLENTIA SINGULARI.</string>
+    <string name="logro_excellentia_singulari_2">%1$s, your excellence is unmatched. You\'ve gained EXCELLENTIA SINGULARI.</string>
+
+    <string name="logro_gloria_integralis_1">Integral glory for you, %1$s! The highest recognition is yours.</string>
+    <string name="logro_gloria_integralis_2">Sumamente applauds you, %1$s: you\'ve reached GLORIA INTEGRALIS.</string>
+
+    <string name="top5_ranking_integral">Top 5 of the Integral Ranking</string>
 
 
 

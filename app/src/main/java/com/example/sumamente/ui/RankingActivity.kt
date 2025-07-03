@@ -1,6 +1,5 @@
 package com.example.sumamente.ui
 
-import android.content.Context
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
@@ -65,7 +64,7 @@ class RankingActivity : AppCompatActivity() {
         ScoreManager.initGenioPlusPrincipiante(this)
         ScoreManager.initGenioPlusPro(this)
 
-        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         initViews()
         setupButtons()
         setupMusic()

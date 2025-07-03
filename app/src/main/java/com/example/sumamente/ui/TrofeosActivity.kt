@@ -34,6 +34,8 @@ class TrofeosActivity : AppCompatActivity() {
     private lateinit var btnApexSupremus: LinearLayout
     private lateinit var btnTop10: LinearLayout
     private lateinit var btnLos7Mejores: LinearLayout
+
+    private lateinit var btnLos5Mejores: LinearLayout
     private lateinit var btnClose: ImageView
     private lateinit var btnBack: ImageView
     private lateinit var mediaPlayer: MediaPlayer
@@ -67,12 +69,12 @@ class TrofeosActivity : AppCompatActivity() {
         btnApexSupremus = findViewById(R.id.btn_apex_supremus)
         btnTop10 = findViewById(R.id.btn_top_10)
         btnLos7Mejores = findViewById(R.id.btn_los_7_mejores)
+        btnLos5Mejores = findViewById(R.id.btn_los_5_mejores)
         btnClose = findViewById(R.id.btn_close)
         btnBack = findViewById(R.id.btn_back)
 
         misCondecoracionesRedDot = findViewById(R.id.mis_condecoraciones_red_dot)
     }
-
 
     private fun initMusic() {
 
@@ -150,7 +152,6 @@ class TrofeosActivity : AppCompatActivity() {
             }
         }
 
-
         btnMisCondecoraciones.setOnClickListener {
             applyBounceEffect(it) {
 
@@ -165,6 +166,13 @@ class TrofeosActivity : AppCompatActivity() {
         btnLos7Mejores.setOnClickListener {
             applyBounceEffect(it) {
                 val intent = Intent(this, Los7MejoresActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        btnLos5Mejores.setOnClickListener {
+            applyBounceEffect(it) {
+                val intent = Intent(this, Los5MejoresActivity::class.java)
                 startActivity(intent)
             }
         }
