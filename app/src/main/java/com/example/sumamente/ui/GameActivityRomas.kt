@@ -290,7 +290,7 @@ class GameActivityRomas : AppCompatActivity() {
 
         ensureNoConsecutiveDuplicates()
 
-        for (i in 0 until numNegatives) {
+        repeat(numNegatives) {
             val positiveIndices = numberList.indices.filter { numberList[it] > 0 }
             if (positiveIndices.isNotEmpty()) {
                 val indexToNegate = positiveIndices.random()
