@@ -110,7 +110,7 @@ class IQPlusRankingAdapter(
 
         holder.tvIQPlus.setOnClickListener {
             if (item.isCurrentUser && onIQPlusClick != null) {
-                // 1. Animación moderna (efecto escala y sombra)
+
                 holder.tvIQPlus.animate()
                     .scaleX(1.1f)
                     .scaleY(1.1f)

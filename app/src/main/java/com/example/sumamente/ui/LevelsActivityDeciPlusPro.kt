@@ -50,7 +50,7 @@ class LevelsActivityDeciPlusPro : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("MyPrefsDeciPlus", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
         ScoreManager.initDeciPlusPro(this)
         setContentView(R.layout.activity_levels_deci_plus)
 
@@ -125,7 +125,7 @@ class LevelsActivityDeciPlusPro : AppCompatActivity() {
                         applyBounceEffect(this) {
                             mediaPlayer.start()
 
-                            val prefs = getSharedPreferences("MyPrefsDeciPlus", Context.MODE_PRIVATE)
+                            val prefs = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
                             val storedModeName = prefs.getString("selectedResponseModeDialogDeciPlusPro", null)
                             val storedMode = if (storedModeName != null) ResponseModeDeciPlus.valueOf(storedModeName) else null
 

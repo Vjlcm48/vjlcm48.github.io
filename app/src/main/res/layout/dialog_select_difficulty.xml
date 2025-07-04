@@ -66,7 +66,6 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/tv_star_principiante"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="13dp"
@@ -76,7 +75,6 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/tv_difficulty_subtitle_principiante"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_difficulty_title_principiante"
@@ -111,7 +109,6 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/tv_star_avanzado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="13dp"
@@ -121,7 +118,6 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/tv_difficulty_subtitle_avanzado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_difficulty_title_avanzado"
@@ -155,7 +151,6 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/tv_star_pro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="13dp"
@@ -165,7 +160,6 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/tv_difficulty_subtitle_pro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_difficulty_title_pro"

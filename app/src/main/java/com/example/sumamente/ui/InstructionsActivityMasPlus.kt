@@ -3,7 +3,6 @@ package com.example.sumamente.ui
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
@@ -87,7 +86,7 @@ class InstructionsActivityMasPlus : AppCompatActivity() {
 
         btnClose.setOnClickListener {
             btnClose.isEnabled = false
-            val prefs = getSharedPreferences("MyPrefsMasPlus", Context.MODE_PRIVATE)
+            val prefs = getSharedPreferences("MyPrefsMasPlus", MODE_PRIVATE)
             val storedModeName = prefs.getString("selectedResponseModeMasPlus", null)
             if (storedModeName == null) {
 
@@ -148,7 +147,7 @@ class InstructionsActivityMasPlus : AppCompatActivity() {
                 override fun onAnimationEnd(animation: Animator) {
                     val mode = responseMode
                     if (mode != null) {
-                        val prefs = getSharedPreferences("MyPrefsMasPlus", Context.MODE_PRIVATE)
+                        val prefs = getSharedPreferences("MyPrefsMasPlus", MODE_PRIVATE)
                         prefs.edit { putString("selectedResponseModeMasPlus", mode.name) }
                     }
                     val intent = Intent(this@InstructionsActivityMasPlus, GameActivityMasPlus::class.java)

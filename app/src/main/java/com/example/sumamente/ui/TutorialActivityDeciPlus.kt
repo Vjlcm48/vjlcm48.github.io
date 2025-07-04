@@ -6,7 +6,6 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -28,10 +27,10 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 import com.airbnb.lottie.LottieAnimationView
 import com.example.sumamente.R
 import java.util.Locale
-import androidx.core.content.edit
 
 class TutorialActivityDeciPlus : AppCompatActivity() {
 
@@ -83,7 +82,7 @@ class TutorialActivityDeciPlus : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val prefs = getSharedPreferences("MyPrefsDeciPlus", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
         val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsDeciPlus", false)
         if (hasSeenInstructions) {
             val intent = Intent(this, LevelsActivityDeciPlus::class.java)
@@ -663,7 +662,7 @@ class TutorialActivityDeciPlus : AppCompatActivity() {
 
     private fun markTutorialAsSeenAndNavigate() {
         stopBackgroundMusic()
-        val prefs = getSharedPreferences("MyPrefsDeciPlus", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
         prefs.edit { putBoolean("hasSeenInstructionsDeciPlus", true) }
 
         val intent = DifficultySelectionActivity.createIntent(this, "DeciPlus")

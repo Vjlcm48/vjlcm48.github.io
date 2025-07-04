@@ -15,10 +15,8 @@
     <string name="instruction_text">Enter your username.\nUse between 4 and 12 characters</string>
     <string name="btn_accept">Accept</string>
     <string name="content_description_check_icon">Check Icon</string>
-    <string name="content_description_username_input">Username text</string>
     <string name="hint_username_input">Username</string>
     <string name="app_logo">App Logo</string>
-    <string name="flag">Flag</string>
     <string name="trophy">Trophy</string>
     <string name="settings">Settings</string>
     <string name="home">Home</string>
@@ -29,8 +27,6 @@
     <string name="calendar_text">Challenges</string>
     <string name="close">Close</string>
     <string name="level_locked_message">Complete the previous levels to unlock this level.</string>
-    <string name="lock">Locked Lock</string>
-    <string name="unlock">Unlocked Lock</string>
     <string name="level_1">Level 1</string>
     <string name="level_2">Level 2</string>
     <string name="level_3">Level 3</string>
@@ -102,26 +98,13 @@
     <string name="level_69">Level 69</string>
     <string name="level_70">Level 70</string>
     <string name="scroll_view_description">Scrollable container for levels</string>
-    <string name="theme">Theme</string>
     <string name="sound">Sound</string>
     <string name="notifications">Notifications</string>
-    <string name="language">Language</string>
-    <string name="account">Account</string>
     <string name="share">Share</string>
-    <string name="content_description_icon_theme">Theme icon</string>
-    <string name="content_description_icon_sound">Sound icon</string>
-    <string name="content_description_icon_notifications">Notifications icon</string>
-    <string name="content_description_icon_language">Language icon</string>
-    <string name="content_description_icon_account">Account icon</string>
-    <string name="content_description_icon_share">Share icon</string>
-    <string name="content_description_icon_rules">Rules icon</string>
-    <string name="content_description_icon_settings">Settings icon</string>
     <string name="switch_sound_desc">Turn sound on or off</string>
     <string name="switch_notifications_desc">Enable or disable notifications</string>
     <string name="volume_vibration">Turn sounds on or off</string>
     <string name="notifications_history">Enable or disable notifications</string>
-    <string name="dark_theme_font_size">Dark theme or light theme</string>
-    <string name="language_subtitle">Switch to your preferred language</string>
     <string name="profile">Profile</string>
     <string name="profile_subtitle">Username, your flag</string>
     <string name="share_subtitle">Share the app with friends</string>
@@ -131,24 +114,13 @@
     <string name="ads">Ads</string>
     <string name="ads_subtitle">Remove ads</string>
     <string name="switch_ads_desc">Switch to enable/disable ads</string>
-    <string name="btn_start">START</string>
-    <string name="tv_level">Level</string>
     <string name="level_title">LEVEL %1$d/70</string>
-    <string name="instructions_text">Level instructions</string>
     <string name="time_limit_text">Maximum resolution time: %.2f seconds</string>
     <string name="start_button_text">START</string>
     <string name="close_button_description">Close instructions window</string>
-    <string name="content_description_close_button">Button to close the instructions window</string>
-    <string name="content_description_start_button">Button to start the game</string>
-    <string name="points_text">POINTS: %1$d</string>
-    <string name="time_up">TIME IS UP</string>
-    <string name="repeat_level_question">DO YOU WANT TO REPEAT THIS LEVEL?</string>
     <string name="btn_yes">YES</string>
     <string name="btn_no">NO</string>
     <string name="back">Back</string>
-    <string name="question_placeholder">CHOOSE YOUR ANSWER</string>
-    <string name="correct_message">Correct! Points earned: %1$d, Time used: %2$.2f s</string>
-    <string name="incorrect_message">Incorrect. Points lost: %1$d</string>
     <string name="exit_confirmation">Do you want to exit the game?</string>
     <string name="progress_ring_description">Progress ring showing the remaining time</string>
     <string name="prompt_choose_correct_answer">CHOOSE THE\nCORRECT ANSWER</string>
@@ -156,25 +128,8 @@
     <string name="respuesta_2">Answer 2</string>
     <string name="respuesta_3">Answer 3</string>
     <string name="respuesta_4">Answer 4</string>
-    <string name="max_attempts_message">You have reached the maximum allowed attempts to repeat the level</string>
     <string name="score_label">SCORE: %1$d</string>
-    <string name="level_completed">LEVEL COMPLETED</string>
-    <string name="try_again">TRY AGAIN</string>
-    <string name="points_earned">Points earned: %1$d</string>
-    <string name="repeat_level">REPEAT LEVEL</string>
     <string name="new_game">NEW GAME</string>
-    <string name="exit">X</string>
-    <string name="incorrect">INCORRECT</string>
-    <string name="incorrect_answer_remaining_attempts">Incorrect answer. You have %1$d attempt(s) left.</string>
-    <string name="no_more_attempts">You have used all your attempts.</string>
-    <string name="attempts_left">You have %1$d attempt(s) left.</string>
-    <string name="btn_try_again">TRY AGAIN</string>
-    <string name="incorrect_answer">Incorrect answer.</string>
-    <string name="exit_confirmation_game">Are you sure you want to exit?</string>
-    <string name="time_up_title">TIME IS UP</string>
-    <string name="time_up_message">The time is up.</string>
-    <string name="max_attempts_reached">YOU HAVE REACHED THE MAXIMUM ALLOWED ATTEMPTS.</string>
-    <string name="response_time">Response time: %1$s seconds</string>
     <string name="dialog_title">Response Mode</string>
     <string name="seleccion_simple">Simple Selection</string>
     <string name="escribe_tu_respuesta">Write Your Answer</string>
@@ -191,22 +146,13 @@
     <string name="write_answer_message">Manually write the correct answer.</string>
     <string name="enter_answer_hint">Write your answer</string>
     <string name="submit">Submit</string>
-    <string name="initial_time">0.00 Seconds</string>
-    <string name="chronometer_time">%1$s Seconds</string>
     <string name="vamos_text">Here We Go</string>
-    <string name="initial_time_value">0.00</string>
-    <string name="time_unit">Seconds</string>
-    <string name="fixed_time">7.00 Seconds</string>
-    <string name="decimal_format">.%1$s</string>
-    <string name="fixed_seconds">7</string>
-    <string name="fixed_decimals">.00</string>
     <string name="genial">Awesome!</string>
     <string name="buen_trabajo">Good job</string>
     <string name="puntos_obtenidos">Points earned: %1$d</string>
     <string name="clasificacion_cambiada">New ranking. See</string>
     <string name="repetir_nivel">Repeat level</string>
     <string name="cerrar">Close</string>
-    <string name="btn_ok">OK</string>
     <string name="perfecto">Perfect!</string>
     <string name="increible">Incredible!</string>
     <string name="asombroso">Amazing!</string>
@@ -219,7 +165,6 @@
     <string name="fenomenal">Phenomenal!</string>
     <string name="esplendido">Splendid!</string>
     <string name="jugar_un_nuevo_nivel">Play a new level</string>
-    <string name="btn_cancel">Cancel</string>
     <string name="bien_hecho">Well done!</string>
     <string name="vamos_bien">We\’re doing great!</string>
     <string name="gran_esfuerzo">Great effort!</string>
@@ -235,12 +180,10 @@
     <string name="vas_bien">You\’re doing well!</string>
     <string name="has_agotado_tus_intentos">You have used all your attempts!</string>
     <string name="se_agoto_el_tiempo">Oops! Time is up</string>
-    <string name="level_failed">Level not passed!</string>
     <string name="tiempo_empleado">Time: %1$s sec</string>
     <string name="select_game_to_reset">Select the game to reset</string>
     <string name="check_blue_description">Blue check</string>
     <string name="check_description">Green check indicating success</string>
-    <string name="chronometer_whole_text">%1$s.</string>
     <string name="game_numeros_plus">NÚMEROS⁺</string>
     <string name="game_deci_plus">DECI⁺</string>
     <string name="game_mas_plus">MÁS⁺</string>
@@ -261,7 +204,6 @@
     <string name="edit_flag">Flag</string>
     <string name="star_icon">Star icon</string>
     <string name="default_score">0</string>
-    <string name="game_numeros_plus_score">%1$s %2$d ★</string>
     <string name="reset_progress">Reset progress</string>
     <string name="reset_progress_subtitle">Reset game progress</string>
     <string name="repeated_numbers_message_dinamic">The numbers %1$s are repeated. Add them correctly!</string>
@@ -348,10 +290,6 @@
     <string name="country_fr">France</string>
     <string name="country_ga">Gabon</string>
     <string name="country_gb">United Kingdom</string>
-    <string name="country_gb_eng">England</string>
-    <string name="country_gb_nir">Northern Ireland</string>
-    <string name="country_gb_sct">Scotland</string>
-    <string name="country_gb_wls">Wales</string>
     <string name="country_gd">Grenada</string>
     <string name="country_ge">Georgia</string>
     <string name="country_gf">French Guiana</string>
@@ -454,12 +392,7 @@
     <string name="country_ph">Philippines</string>
     <string name="country_pk">Pakistan</string>
     <string name="country_pl">Poland</string>
-    <string name="country_pm">Saint Pierre and Miquelon</string>
-    <string name="country_pn">Pitcairn Islands</string>
-    <string name="country_pr">Puerto Rico</string>
-    <string name="country_ps">Palestine</string>
     <string name="country_pt">Portugal</string>
-    <string name="country_pw">Palau</string>
     <string name="country_py">Paraguay</string>
     <string name="country_qa">Qatar</string>
     <string name="country_re">Réunion</string>
@@ -473,60 +406,42 @@
     <string name="country_sd">Sudan</string>
     <string name="country_se">Sweden</string>
     <string name="country_sg">Singapore</string>
-    <string name="country_sh">Saint Helena</string>
     <string name="country_si">Slovenia</string>
-    <string name="country_sj">Svalbard and Jan Mayen</string>
     <string name="country_sk">Slovakia</string>
     <string name="country_sl">Sierra Leone</string>
     <string name="country_sm">San Marino</string>
     <string name="country_sn">Senegal</string>
     <string name="country_so">Somalia</string>
     <string name="country_sr">Suriname</string>
-    <string name="country_ss">South Sudan</string>
     <string name="country_st">São Tomé and Príncipe</string>
     <string name="country_sv">El Salvador</string>
-    <string name="country_sx">Sint Maarten</string>
     <string name="country_sy">Syria</string>
     <string name="country_sz">Eswatini</string>
-    <string name="country_tc">Turks and Caicos Islands</string>
     <string name="country_td">Chad</string>
-    <string name="country_tf">French Southern Territories</string>
     <string name="country_tg">Togo</string>
     <string name="country_th">Thailand</string>
     <string name="country_tj">Tajikistan</string>
-    <string name="country_tk">Tokelau</string>
     <string name="country_tl">East Timor</string>
     <string name="country_tm">Turkmenistan</string>
     <string name="country_tn">Tunisia</string>
-    <string name="country_to">Tonga</string>
     <string name="country_tr">Turkey</string>
     <string name="country_tt">Trinidad and Tobago</string>
-    <string name="country_tv">Tuvalu</string>
     <string name="country_tw">Taiwan</string>
     <string name="country_tz">Tanzania</string>
     <string name="country_ua">Ukraine</string>
     <string name="country_ug">Uganda</string>
-    <string name="country_um">U.S. Outlying Islands</string>
     <string name="country_us">United States</string>
     <string name="country_uy">Uruguay</string>
     <string name="country_uz">Uzbekistan</string>
     <string name="country_va">Vatican City</string>
-    <string name="country_vc">Saint Vincent and the Grenadines</string>
     <string name="country_ve">Venezuela</string>
-    <string name="country_vg">British Virgin Islands</string>
-    <string name="country_vi">U.S. Virgin Islands</string>
     <string name="country_vn">Vietnam</string>
-    <string name="country_vu">Vanuatu</string>
-    <string name="country_wf">Wallis and Futuna</string>
-    <string name="country_ws">Samoa</string>
     <string name="country_ye">Yemen</string>
-    <string name="country_yt">Mayotte</string>
     <string name="country_za">South Africa</string>
     <string name="country_zm">Zambia</string>
     <string name="country_zw">Zimbabwe</string>
     <string name="title_select_flag">Select Flag</string>
     <string name="hint_search_country">Type the country name</string>
-    <string name="btn_save_selection">Save Selection</string>
     <string name="close_button">Close</string>
     <string name="search_icon">Search</string>
     <string name="flag_image">Country flag image</string>
@@ -534,22 +449,11 @@
     <string name="current_flag_image">Current flag image</string>
     <string name="confirmation">Confirmation</string>
     <string name="confirm_change_flag">Are you sure you want to change the flag?</string>
-    <string name="select_language">Select your preferred language</string>
-    <string name="spanish">Spanish</string>
-    <string name="english">English</string>
-    <string name="chinese">Mandarin Chinese</string>
-    <string name="hindi">Hindi</string>
-    <string name="portuguese">Portuguese</string>
-    <string name="arabic">Arabic</string>
-    <string name="indonesian">Indonesian</string>
-    <string name="confirm_language_change">Change language?</string>
-    <string name="confirm_language_message">Are you sure you want to change the language?</string>
     <string name="instructions_level_1_10">Add all the numbers</string>
     <string name="instructions_level_11_20">Add all the numbers</string>
     <string name="instructions_level_31_35">Add all the numbers</string>
     <string name="instructions_level_36_40">Add all the numbers</string>
     <string name="instructions_level_51_60">Add all the numbers</string>
-    <string name="instructions_level_61_70">Add all the numbers</string>
     <string name="exception_first">Add all the numbers except the first one</string>
     <string name="exception_second">Add all the numbers except the second one</string>
     <string name="exception_third">Add all the numbers except the third one</string>
@@ -560,7 +464,6 @@
     <string name="instructions_romans_31_35">Add all the ROMAN numbers</string>
     <string name="instructions_romans_36_40">Add all the ROMAN numbers</string>
     <string name="instructions_romans_51_60">Add all the ROMAN numbers</string>
-    <string name="instructions_romans_61_70">Add all the ROMAN numbers</string>
     <string name="instructions_romans_default">Add all the ROMAN numbers</string>
     <string name="exception_romans_first">Add all the ROMAN numbers except the first one</string>
     <string name="exception_romans_second">Add all the ROMAN numbers except the second one</string>
@@ -574,7 +477,6 @@
     <string name="ads_enabled">Ads enabled</string>
     <string name="ads_disabled">Ads disabled</string>
     <string name="share_with_friends">Share with friends selected</string>
-    <string name="help_selected">Help selected</string>
     <string name="error_time_limit_not_found">Time limit not found for level %1$d</string>
     <string name="text_alfa">ALPHA</string>
     <string name="text_numeros">NÚMEROS</string>
@@ -584,7 +486,6 @@
     <string name="sum_and_subtract_instruction">Solve the operations considering positive and negative numbers.</string>
     <string name="general_instructions">Add the integers, decimals, Roman numerals, and letters. Some may be negative!</string>
 
-    <string name="segundos">seconds</string>
     <string name="escoge_tu_modo_de_respuesta">Choose the \nresponse mode \nyou like the most</string>
     <string name="instructions_numeros_intro">
     Welcome to the \ntutorial of:
@@ -660,9 +561,6 @@
 
     <string name="score_format">Points: %d</string>
 
-    <string name="number_1">1</string>
-    <string name="number_19">19</string>
-
     <string name="descubre_como_jugar">Discover how to play</string>
     <string name="jugar">PLAY</string>
     <string name="repetir">REPLAY</string>
@@ -716,13 +614,8 @@
     <string name="medalla">Consistent perseverance</string>
     <string name="trofeo">Complete mastery</string>
 
-    <string name="en_construccion">Under construction</string>
-
     <string name="correct_answer_format_romas">Correct answer: %s</string>
     <string name="user_responses_format_romas">Your responses: %s</string>
-
-    <string name="pause_tutorial">Pause tutorial</string>
-    <string name="play_tutorial">Play tutorial</string>
 
     <string name="clasificaciones_titulo">CLASSIFICATIONS</string>
     <string name="clasificaciones_como_funciona">How the classification system works?</string>
@@ -730,7 +623,6 @@
     <string name="clasificaciones_por_velocidad">Speed Ranking</string>
 
     <string name="clasificaciones_titulo_dialog">HOW THE CLASSIFICATION SYSTEM WORKS?</string>
-    <string name="clasificaciones_subtitulo_puntos">How you earn points in SumaMente!</string>
     <string name="clasificaciones_puntos_correctas">Points for correct answers</string>
     <string name="clasificaciones_puntos_correctas_1">• Each game gives you points when you answer correctly</string>
     <string name="clasificaciones_puntos_correctas_2">• If you get all your answers right, you receive all your points</string>
@@ -769,9 +661,9 @@
     <string name="medalla_immortalis_1200">Your legacy will transcend. Complete 1200 games to be immortalized.</string>
 
     <!-- 🟥 CROWNS -->
-    <string name="corona_velocitas_10">Speed is in your essence. Beat 90% of players and this crown is yours.</string>
-    <string name="corona_celeris_6">A lightning-fast mind. Beat 94% of users and this crown will appear for you.</string>
-    <string name="corona_volucer_1">The top 1% of the fastest. Your mind is a flash of light. This crown honors the legendary.</string>
+    <string name="corona_volucer_1">For the fastest mind. Only those who take first place deserve this legendary crown.</string>
+    <string name="corona_celeris_6">For those who conquer second place in speed. The Celeris crown rewards your quickness and perseverance.</string>
+    <string name="corona_velocitas_10">Third place in speed is also worthy of honor. This crown recognizes your mental agility.</string>
 
     <!-- 🏆 TROPHIES NUMBERS⁺ -->
     <string name="trofeo_initia_numeros_principiante">Begin your journey. Master NÚMEROS⁺ Beginner and this trophy marks your start.</string>
@@ -845,33 +737,14 @@
     <string name="apex_supremus_info">This distinguished honor is awarded exclusively to those who complete all SumaMente challenges.</string>
 
     <string name="ranking_global">Global Ranking</string>
-    <string name="posicion">Position</string>
-    <string name="usuario">User</string>
     <string name="pais">Country</string>
     <string name="puntaje">Score</string>
     <string name="ranking_sin_datos">No ranking data available</string>
     <string name="bandera_pais">Country flag</string>
 
-    <string name="logro_pin_victoris">You conquered 30 different challenges without errors in a single day, earning the VICTORIS pin!</string>
-    <string name="logro_pin_optimum">Your precision is exceptional: 40 levels completed flawlessly in 24 hours have granted you the OPTIMUM pin.</string>
     <string name="logro_pin_invictus">Excellence distinguishes you for solving 50 different challenges perfectly in one day, achieving the prestigious INVICTUS pin.</string>
 
-    <string name="logro_corona_velocitas">Your speed in %1$s is impressive! You\'re among the top 10%% of fastest players, crowning yourself with VELOCITAS.</string>
-    <string name="logro_corona_celeris">Extraordinary reflexes in %1$s! Your quickness places you in the exclusive top 4%%, earning you the CELERIS crown.</string>
-    <string name="logro_corona_volucer">Legendary speed in %1$s! You\'ve reached the elite 1%% in mental agility, claiming the prestigious VOLUCER crown.</string>
-
     <string name="logro_medalla_initium">You\'ve completed 100 unique games! Your dedication has earned you the INITIUM medal, the beginning of your collection.</string>
-    <string name="logro_medalla_fidelis">200 games completed! Your consistency is admirable, thus achieving the FIDELIS medal.</string>
-    <string name="logro_medalla_virtus">The VIRTUS medal is yours for overcoming 300 different challenges. Your mental courage shows with every game!</string>
-    <string name="logro_medalla_audax">400 games mastered! Your boldness has led you to conquer the prestigious AUDAX medal.</string>
-    <string name="logro_medalla_fortis">You\'ve demonstrated mental strength in 500 different games, deserving the exceptional FORTIS medal.</string>
-    <string name="logro_medalla_tenax">Perseverance has its reward! 600 completed games crown you with the TENAX medal.</string>
-    <string name="logro_medalla_intrepidus">Your fearless spirit has overcome 700 challenges, granting you the respected INTREPIDUS medal.</string>
-    <string name="logro_medalla_sapiens">Wisdom comes with practice: 800 completed games make you worthy of the SAPIENS medal.</string>
-    <string name="logro_medalla_exemplar">You\'re an example of determination! 900 conquered games have awarded you the exemplary EXEMPLAR medal.</string>
-    <string name="logro_medalla_gloriam">Glory to your perseverance! You\'ve conquered 1000 challenges, reaching the glorious GLORIAM medal.</string>
-    <string name="logro_medalla_magnus">Magnificent achievement! By completing 1100 different games, you\'ve obtained the grand MAGNUS medal.</string>
-    <string name="logro_medalla_immortalis">Immortal feat! You\'ve culminated 1200 unique challenges, consecrating yourself with the legendary IMMORTALIS medal.</string>
 
     <string name="logro_trofeo_initia">You mastered numbers! You\'ve completed all 70 levels of NÚMEROS⁺ Beginner, earning the INITIA trophy.</string>
     <string name="logro_trofeo_constantia">Advanced numerical mastery! You conquered all 70 levels of NÚMEROS⁺ Advanced, claiming the CONSTANTIA trophy.</string>
@@ -901,28 +774,14 @@
     <string name="logro_trofeo_magnificus">Magnificent mental capacity! You\'ve mastered GENIO⁺ Advanced completely, winning the impressive MAGNIFICUS trophy.</string>
     <string name="logro_trofeo_potens">Unlimited mental power! All 70 challenges of GENIO⁺ Pro have been conquered, crowning you with the legendary POTENS trophy.</string>
 
-    <string name="logro_top10_honorabilis">You\'ve reached 10th place in the global ranking! Your performance has earned you the HONORABILIS decoration.</string>
-    <string name="logro_top10_virtuosus">Excellent performance! You\'ve positioned yourself in 9th place of the global ranking, deserving the VIRTUOSUS decoration.</string>
-    <string name="logro_top10_insignis">Notable mental ability! You\'ve conquered 8th position in the global ranking, winning the distinguished INSIGNIS decoration.</string>
-    <string name="logro_top10_praestans">You stand out among thousands! The 7th place of the global ranking is yours, along with the prestigious PRAESTANS decoration.</string>
-    <string name="logro_top10_illustris">Illustrious intelligence! You\'ve climbed to 6th position in the global ranking, achieving the brilliant ILLUSTRIS decoration.</string>
-    <string name="logro_top10_gloriosus">Glorious achievement! You\'ve established yourself in 5th place of the global ranking, crowning yourself with the GLORIOSUS decoration.</string>
-    <string name="logro_top10_venerabilis">Venerable skill! You\'ve reached the prestigious 4th position in the global ranking, obtaining the admirable VENERABILIS decoration.</string>
-    <string name="logro_top10_magnanimous">Among the world\'s best! The 3rd place in the global ranking reflects your magnanimous prowess, awarded with the MAGNANIMOUS decoration.</string>
-    <string name="logro_top10_summum">Almost at the top! You\'ve secured the impressive 2nd place in the global ranking, reaching the highest SUMMUM decoration.</string>
-    <string name="logro_top10_excelsitur">Undisputed mental champion! You\'ve conquered the 1st position in the global ranking, consecrating yourself with the supreme EXCELSITUR decoration.</string>
-
-    <string name="logro_apex_supremus">LEGENDARY FEAT! You\'ve completed all 1490 levels of SumaMente, demonstrating extraordinary dedication and mental mastery. The ultimate APEX SUPREMUS "MCDXC" decoration is yours by right.</string>
     <string name="no_condecoraciones">You haven\'t earned any decorations yet. Keep playing to get them!</string>
 
     <string name="speed_classification_title">Speed Classification</string>
     <string name="speed_ranking_title">Speed Ranking</string>
-    <string name="speed_ranking_game_title">%1$s - %2$s</string>
     <string name="select_game_speed">Select a game to view its speed ranking</string>
 
     <!-- Time format -->
     <string name="time_format_seconds">%s sec</string>
-    <string name="average_time_label">Average time:</string>
 
     <!-- Ranking headers -->
     <string name="ranking_position_header">Pos.</string>
@@ -930,21 +789,12 @@
     <string name="ranking_time_header">Time</string>
 
     <!-- Loading states -->
-    <string name="loading_speed_ranking">Loading speed ranking…</string>
     <string name="empty_speed_ranking">No speed data available</string>
 
     <!-- Informational messages -->
-    <string name="speed_ranking_info">Ranking based on average response time</string>
-    <string name="current_user_indicator">You</string>
 
-    <string name="msg_need_more_games_global">Play at least 20 games in two different games to see your global ranking.</string>
     <string name="msg_need_more_games_speed">Play at least 10 games of %1$s in at least two difficulty levels to see your speed ranking.</string>
-    <string name="msg_progress_remaining_global">You need: %1$d more games and %2$d different game(s).</string>
 
-    <string name="msg_need_more_games_combined">%1$s\n%2$s</string>
-
-
-    <string name="msg_progress_remaining_speed_3modes">You need: %1$d more games in total, %2$d in Beginner, %3$d in Advanced, %4$d in Pro.</string>
 
     <string name="speed_avg_1">Your average response speed is: &lt;b&gt;%s sec&lt;/b&gt;.</string>
     <string name="speed_avg_2">So far, your average time is &lt;b&gt;%s sec&lt;/b&gt; per response.</string>
@@ -1208,39 +1058,18 @@
 
     <!-- INDIVIDUAL TROPHY NAMES -->
     <!-- 🏆 NÚMEROS⁺ TROPHIES -->
-    <string name="trofeo_initia">INITIA</string>
-    <string name="trofeo_constantia">CONSTANTIA</string>
-    <string name="trofeo_confectus">CONFECTUS</string>
 
     <!-- 🏆 DECI⁺ TROPHIES -->
-    <string name="trofeo_via">VIA</string>
-    <string name="trofeo_altus">ALTUS</string>
-    <string name="trofeo_perseverantia">PERSEVERANTIA</string>
 
     <!-- 🏆 ROMAS TROPHIES -->
-    <string name="trofeo_gradus">GRADUS</string>
-    <string name="trofeo_fortitudo">FORTITUDO</string>
-    <string name="trofeo_metam">METAM</string>
 
     <!-- 🏆 ALFANÚMEROS TROPHIES -->
-    <string name="trofeo_fundamentum">FUNDAMENTUM</string>
-    <string name="trofeo_praemium">PRAEMIUM</string>
-    <string name="trofeo_glorificus">GLORIFICUS</string>
 
     <!-- 🏆 SUMARESTA TROPHIES -->
-    <string name="trofeo_scala">SCALA</string>
-    <string name="trofeo_tenacitas">TENACITAS</string>
-    <string name="trofeo_perfectus">PERFECTUS</string>
 
     <!-- 🏆 MÁS⁺ TROPHIES -->
-    <string name="trofeo_origo">ORIGO</string>
-    <string name="trofeo_proficium">PROFICIUM</string>
-    <string name="trofeo_exemplaritas">EXEMPLARITAS</string>
 
     <!-- 🏆 GENIO⁺ TROPHIES -->
-    <string name="trofeo_ascensus">ASCENSUS</string>
-    <string name="trofeo_magnificus">MAGNIFICUS</string>
-    <string name="trofeo_potens">POTENS</string>
 
     <!-- DIALOG TITLES FOR TROPHIES -->
     <string name="trofeo_titulo_initia">🏆 INITIA TROPHY CONQUERED! 🏆</string>
@@ -1284,7 +1113,6 @@
     <string name="apex_descripcion">1490 levels completed, you are worthy of the APEX SUPREMUS! 🏆✨ Your dedication and mental mastery have taken you to the absolute peak of SumaMente. 👑</string>
 
     <!-- 1.3 - NOMBRE PARA "MIS CONDECORACIONES LOGRADAS" -->
-    <string name="condecoracion_apex_supremus">APEX SUPREMUS</string>
 
     <string name="ranking_integral_s">Integral Ranking S⁺:</string>
 
@@ -1474,7 +1302,6 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
     <string name="logro_gloria_integralis_2">SumaMente applauds you, %1$s: you\'ve reached GLORIA INTEGRALIS.</string>
 
     <string name="top5_ranking_integral">Top 5 of the Integral Ranking</string>
-
 
 
 </resources>

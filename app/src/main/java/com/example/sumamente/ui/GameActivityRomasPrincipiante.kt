@@ -4,7 +4,6 @@ import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
-import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
 import android.media.MediaPlayer
@@ -81,12 +80,12 @@ class GameActivityRomasPrincipiante : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("MyPrefsRomas", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
         setContentView(R.layout.activity_game_romas_principiante)
 
         ScoreManager.initRomasPrincipiante(this)
 
-        val prefs = getSharedPreferences("MyPrefsRomas", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
         val responseMode = intent.getStringExtra("RESPONSE_MODE_ROMAS") ?: prefs.getString("selectedResponseModeRomasPrincipiante", null)
 
         if (responseMode != null) {
@@ -488,7 +487,7 @@ class GameActivityRomasPrincipiante : AppCompatActivity() {
         if (useManualAnswer) {
             manualAnswerEditText.post {
                 manualAnswerEditText.requestFocus()
-                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.showSoftInput(manualAnswerEditText, InputMethodManager.SHOW_IMPLICIT)
             }
         }
@@ -615,7 +614,7 @@ class GameActivityRomasPrincipiante : AppCompatActivity() {
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
             manualAnswerEditText.requestFocus()
 
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             imm.showSoftInput(manualAnswerEditText, InputMethodManager.SHOW_IMPLICIT)
         }
 

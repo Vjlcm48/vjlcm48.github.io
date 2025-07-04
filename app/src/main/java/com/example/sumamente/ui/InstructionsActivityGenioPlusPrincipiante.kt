@@ -3,7 +3,6 @@ package com.example.sumamente.ui
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
@@ -14,9 +13,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.example.sumamente.R
-import androidx.core.view.isVisible
 import androidx.core.content.edit
+import androidx.core.view.isVisible
+import com.example.sumamente.R
 
 class InstructionsActivityGenioPlusPrincipiante : AppCompatActivity() {
 
@@ -45,7 +44,7 @@ class InstructionsActivityGenioPlusPrincipiante : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("MyPrefsGenioPlus", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_instructions_genio_plus)
 
         val btnClose = findViewById<ImageView>(R.id.btn_close)
@@ -103,7 +102,7 @@ class InstructionsActivityGenioPlusPrincipiante : AppCompatActivity() {
 
         btnClose.setOnClickListener {
             btnClose.isEnabled = false
-            val prefs = getSharedPreferences("MyPrefsGenioPlus", Context.MODE_PRIVATE)
+            val prefs = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
             val storedModeName = prefs.getString("selectedResponseModeGenioPlusPrincipiante", null)
             if (storedModeName == null) {
 
@@ -185,7 +184,7 @@ class InstructionsActivityGenioPlusPrincipiante : AppCompatActivity() {
                 override fun onAnimationEnd(animation: Animator) {
                     val mode = responseMode
                     if (mode != null) {
-                        val prefs = getSharedPreferences("MyPrefsGenioPlus", Context.MODE_PRIVATE)
+                        val prefs = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
                         prefs.edit { putString("selectedResponseModeGenioPlusPrincipiante", mode.name) }
                     }
                     val intent = Intent(this@InstructionsActivityGenioPlusPrincipiante, GameActivityGenioPlusPrincipiante::class.java)

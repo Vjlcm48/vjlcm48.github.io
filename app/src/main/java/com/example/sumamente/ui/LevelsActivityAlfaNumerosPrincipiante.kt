@@ -49,7 +49,7 @@ class LevelsActivityAlfaNumerosPrincipiante : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("MyPrefsAlfaNumeros", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
         setContentView(R.layout.activity_levels_alfa_numeros_principiante)
 
         ScoreManager.initAlfaNumerosPrincipiante(this)
@@ -172,7 +172,7 @@ class LevelsActivityAlfaNumerosPrincipiante : AppCompatActivity() {
                     setOnClickListener {
                         applyBounceEffect(this) {
                             mediaPlayer.start()
-                            val prefs = getSharedPreferences("MyPrefsAlfaNumeros", Context.MODE_PRIVATE)
+                            val prefs = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
                             val storedModeName = prefs.getString("selectedResponseModeAlfaNumerosPrincipiante", null)
                             val storedMode = if (storedModeName != null) ResponseModeAlfaNumeros.valueOf(storedModeName) else null
 

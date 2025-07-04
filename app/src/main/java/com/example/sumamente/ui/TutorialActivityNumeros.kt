@@ -1,8 +1,11 @@
 package com.example.sumamente.ui
 
-import android.animation.*
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -14,14 +17,20 @@ import android.view.WindowManager
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.*
+import android.widget.Button
+import android.widget.GridLayout
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.PopupWindow
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import com.airbnb.lottie.LottieAnimationView
 import com.example.sumamente.R
-import java.util.*
+import java.util.Locale
 
 class TutorialActivityNumeros : AppCompatActivity() {
 
@@ -73,7 +82,7 @@ class TutorialActivityNumeros : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsNumeros", false)
         if (hasSeenInstructions) {
             startActivity(Intent(this, LevelsActivity::class.java))
@@ -594,7 +603,7 @@ class TutorialActivityNumeros : AppCompatActivity() {
 
     private fun markTutorialAsSeenAndNavigate() {
         stopBackgroundMusic()
-        val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         prefs.edit { putBoolean("hasSeenInstructionsNumeros", true) }
 
         val intent = Intent(this, DifficultySelectionActivity::class.java)

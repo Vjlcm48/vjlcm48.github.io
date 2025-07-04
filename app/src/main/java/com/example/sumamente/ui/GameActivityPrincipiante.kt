@@ -4,7 +4,6 @@ import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
-import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
 import android.media.MediaPlayer
@@ -78,12 +77,12 @@ class GameActivityPrincipiante : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_game_principiante)
 
         ScoreManager.initPrincipiante(this)
 
-        val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         val responseMode = prefs.getString("selectedResponseModePrincipiante", intent.getStringExtra("RESPONSE_MODE"))
 
         if (responseMode != null) {
@@ -450,7 +449,7 @@ class GameActivityPrincipiante : AppCompatActivity() {
         if (useManualAnswer) {
             manualAnswerEditText.post {
                 manualAnswerEditText.requestFocus()
-                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.showSoftInput(manualAnswerEditText, InputMethodManager.SHOW_IMPLICIT)
             }
         }
@@ -577,7 +576,7 @@ class GameActivityPrincipiante : AppCompatActivity() {
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
             manualAnswerEditText.requestFocus()
 
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             imm.showSoftInput(manualAnswerEditText, InputMethodManager.SHOW_IMPLICIT)
         }
 

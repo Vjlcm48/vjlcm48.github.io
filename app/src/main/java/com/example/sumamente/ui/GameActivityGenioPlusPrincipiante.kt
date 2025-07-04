@@ -4,7 +4,6 @@ import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
-import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
 import android.media.MediaPlayer
@@ -33,12 +32,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.example.sumamente.R
+import com.example.sumamente.ui.utils.isPositiveNumber
 import java.util.Locale
 import kotlin.math.pow
 import kotlin.math.round
 import kotlin.math.sqrt
 import kotlin.random.Random
-import com.example.sumamente.ui.utils.isPositiveNumber
 
 class GameActivityGenioPlusPrincipiante : AppCompatActivity() {
 
@@ -108,12 +107,12 @@ class GameActivityGenioPlusPrincipiante : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("MyPrefsGenioPlus", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_game_genio_plus)
 
         ScoreManager.initGenioPlusPrincipiante(this)
 
-        val prefs = getSharedPreferences("MyPrefsGenioPlus", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
         val responseMode = prefs.getString("selectedResponseModeGenioPlusPrincipiante", intent.getStringExtra("RESPONSE_MODE"))
 
         if (responseMode != null) {
@@ -663,7 +662,7 @@ class GameActivityGenioPlusPrincipiante : AppCompatActivity() {
         if (useManualAnswer) {
             manualAnswerEditText.post {
                 manualAnswerEditText.requestFocus()
-                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.showSoftInput(manualAnswerEditText, InputMethodManager.SHOW_IMPLICIT)
             }
         }
@@ -789,7 +788,7 @@ class GameActivityGenioPlusPrincipiante : AppCompatActivity() {
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
             manualAnswerEditText.requestFocus()
 
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             imm.showSoftInput(manualAnswerEditText, InputMethodManager.SHOW_IMPLICIT)
         }
 

@@ -41,7 +41,7 @@
 
         </FrameLayout>
 
-        <!-- Fecha debajo de la imagen -->
+
         <TextView
             android:id="@+id/tv_condecoracion_fecha"
             android:layout_width="80dp"
@@ -80,7 +80,6 @@
                     android:textSize="18sp"
                     tools:text="@string/pin_invictus" />
 
-                <!-- Punto rojo en esquina superior derecha del título -->
                 <View
                     android:id="@+id/red_dot_titulo"
                     android:layout_width="8dp"

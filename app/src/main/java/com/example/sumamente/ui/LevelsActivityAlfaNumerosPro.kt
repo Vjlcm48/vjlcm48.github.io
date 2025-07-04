@@ -49,7 +49,7 @@ class LevelsActivityAlfaNumerosPro : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("MyPrefsAlfaNumeros", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
         setContentView(R.layout.activity_levels_alfanumeros_pro)
 
         ScoreManager.initAlfaNumerosPro(this)
@@ -156,7 +156,9 @@ class LevelsActivityAlfaNumerosPro : AppCompatActivity() {
                     setOnClickListener {
                         applyBounceEffect(this) {
                             mediaPlayer.start()
-                            val prefs       = getSharedPreferences("MyPrefsAlfaNumeros", Context.MODE_PRIVATE)
+                            val prefs       = getSharedPreferences("MyPrefsAlfaNumeros",
+                                MODE_PRIVATE
+                            )
                             val storedMode  = prefs.getString("selectedResponseModeAlfaNumerosPro", null)
                             val modeEnum    = storedMode?.let { ResponseModeAlfaNumeros.valueOf(it) }
 

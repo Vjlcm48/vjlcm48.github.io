@@ -4,7 +4,6 @@ import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Typeface
@@ -87,7 +86,7 @@ class GameActivityDeciPlusPro : AppCompatActivity() {
 
         ScoreManager.initDeciPlusPro(this)
 
-        val sharedPreferencesDeciPlus = getSharedPreferences("MyPrefsDeciPlus", Context.MODE_PRIVATE)
+        val sharedPreferencesDeciPlus = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
         val responseModeName = sharedPreferencesDeciPlus.getString(
             "selectedResponseModeDialogDeciPlusPro",
             intent.getStringExtra("RESPONSE_MODE")
@@ -273,7 +272,7 @@ class GameActivityDeciPlusPro : AppCompatActivity() {
                 else -> 0
             }
 
-            for (i in 0 until numNegatives) {
+            repeat(numNegatives) {
                 val positiveIndices = numberList.indices.filter { numberList[it] > 0 }
                 if (positiveIndices.isNotEmpty()) {
                     val indexToNegate = positiveIndices.random()
@@ -434,7 +433,7 @@ class GameActivityDeciPlusPro : AppCompatActivity() {
         if (useManualAnswer) {
             manualAnswerEditText.post {
                 manualAnswerEditText.requestFocus()
-                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.showSoftInput(manualAnswerEditText, InputMethodManager.SHOW_IMPLICIT)
             }
         }
@@ -561,7 +560,7 @@ class GameActivityDeciPlusPro : AppCompatActivity() {
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
             manualAnswerEditText.requestFocus()
 
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             imm.showSoftInput(manualAnswerEditText, InputMethodManager.SHOW_IMPLICIT)
         }
 

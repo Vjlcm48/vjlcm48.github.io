@@ -49,7 +49,7 @@ class LevelsActivitySumaResta : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("MyPrefsSumaResta", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
         setContentView(R.layout.activity_levels_suma_resta)
 
         ScoreManager.initSumaResta(this)
@@ -167,7 +167,9 @@ class LevelsActivitySumaResta : AppCompatActivity() {
                         applyBounceEffect(this) {
                             mediaPlayer.start()
 
-                            val sharedPreferencesSumaResta = getSharedPreferences("MyPrefsSumaResta", Context.MODE_PRIVATE)
+                            val sharedPreferencesSumaResta = getSharedPreferences("MyPrefsSumaResta",
+                                MODE_PRIVATE
+                            )
                             val storedModeName = sharedPreferencesSumaResta.getString("selectedResponseModeSumaResta", null)
                             val storedMode = if (storedModeName != null) ResponseModeSumaResta.valueOf(storedModeName) else null
 

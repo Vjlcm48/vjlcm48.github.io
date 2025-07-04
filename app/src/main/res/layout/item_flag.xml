@@ -24,7 +24,6 @@
             android:background="@android:color/transparent" />
 
         <TextView
-            android:id="@+id/countryNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"

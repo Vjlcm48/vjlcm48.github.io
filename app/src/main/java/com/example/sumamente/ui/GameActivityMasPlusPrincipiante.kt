@@ -4,7 +4,6 @@ import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Typeface
@@ -83,12 +82,12 @@ class GameActivityMasPlusPrincipiante : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("MyPrefsMasPlus", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefsMasPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_game_mas_plus)
 
         ScoreManager.initMasPlusPrincipiante(this)
 
-        val prefs = getSharedPreferences("MyPrefsMasPlus", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("MyPrefsMasPlus", MODE_PRIVATE)
         val responseMode = prefs.getString("selectedResponseModeMasPlusPrincipiante", intent.getStringExtra("RESPONSE_MODE_MASPLUS"))
 
         if (responseMode != null) {
@@ -574,7 +573,7 @@ class GameActivityMasPlusPrincipiante : AppCompatActivity() {
         if (useManualAnswer) {
             manualAnswerEditText.post {
                 manualAnswerEditText.requestFocus()
-                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.showSoftInput(manualAnswerEditText, InputMethodManager.SHOW_IMPLICIT)
             }
         }
@@ -694,7 +693,7 @@ class GameActivityMasPlusPrincipiante : AppCompatActivity() {
         if (useManualAnswer) {
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
             manualAnswerEditText.requestFocus()
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             imm.showSoftInput(manualAnswerEditText, InputMethodManager.SHOW_IMPLICIT)
         }
 

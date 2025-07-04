@@ -3,7 +3,6 @@ package com.example.sumamente.ui
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
@@ -14,9 +13,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.example.sumamente.R
-import androidx.core.view.isVisible
 import androidx.core.content.edit
+import androidx.core.view.isVisible
+import com.example.sumamente.R
 
 class InstructionsActivityPro : AppCompatActivity() {
 
@@ -44,7 +43,7 @@ class InstructionsActivityPro : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_instructions_pro)
 
         tvGameName = findViewById(R.id.tv_game_name)
@@ -178,7 +177,7 @@ class InstructionsActivityPro : AppCompatActivity() {
                 override fun onAnimationEnd(animation: Animator) {
                     val mode = responseMode
                     if (mode != null) {
-                        val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                        val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
                         prefs.edit { putString("selectedResponseModePro", mode.name) }
                     }
                     val intent = Intent(this@InstructionsActivityPro, GameActivityPro::class.java)

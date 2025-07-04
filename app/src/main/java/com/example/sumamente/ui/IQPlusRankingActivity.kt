@@ -1,6 +1,5 @@
 package com.example.sumamente.ui
 
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
@@ -73,7 +72,7 @@ class IQPlusRankingActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_iqplus_ranking)
 
-        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         initViews()
         setupRecyclerView()
         setupShareButton()

@@ -108,7 +108,7 @@ class CondecoracionAnimationDialog(
     private fun configurarMedalla() {
         val recursos = obtenerRecursosMedalla(medallaTipo)
 
-        layoutDobleCelebracion.visibility = View.GONE   // ► ocultar bloque especial
+        layoutDobleCelebracion.visibility = View.GONE
 
         ivMedalla.setImageResource(recursos.imagenId)
         tvTitulo.text = context.getString(recursos.tituloId)
@@ -120,7 +120,7 @@ class CondecoracionAnimationDialog(
     private fun configurarTrofeo() {
         val recursos = obtenerRecursosTrofeo(nombreTrofeo)
 
-        layoutDobleCelebracion.visibility = View.GONE   // ► ocultar bloque especial
+        layoutDobleCelebracion.visibility = View.GONE
 
         ivMedalla.setImageResource(recursos.imagenId)
         ivCirculo.setImageResource(R.drawable.circle_silver_trophy)
@@ -146,11 +146,10 @@ class CondecoracionAnimationDialog(
 
     private fun configurarParaDobleCelebracion() {
 
-        // ► mostrar solo el bloque especial
         layoutDobleCelebracion.visibility = View.VISIBLE
 
-        layoutMedallaContainer.visibility = View.GONE   // oculta el bloque de 160 dp
-        tvTitulo.visibility = View.GONE          // texto normal oculto
+        layoutMedallaContainer.visibility = View.GONE
+        tvTitulo.visibility = View.GONE
         tvDescripcion.visibility = View.GONE
         tvContador.visibility = View.GONE
         tvMotivacion.visibility = View.GONE
@@ -171,13 +170,11 @@ class CondecoracionAnimationDialog(
         mediaPlayerTrompeta = MediaPlayer.create(context, R.raw.trompeta5)
         mediaPlayerTrompeta?.start()
 
-        // Animaciones de aparición
         tvTituloDoble.animate().alpha(1f).setDuration(350).start()
         handler.postDelayed({
             tvDescripcionDoble.animate().alpha(1f).setDuration(350).start()
         }, 1000)
 
-        // Desvanecer y cerrar
         handler.postDelayed({
             tvTituloDoble.animate().alpha(0f).setDuration(200).start()
             tvDescripcionDoble.animate().alpha(0f).setDuration(200).withEndAction {
@@ -187,7 +184,7 @@ class CondecoracionAnimationDialog(
     }
 
     private fun configurarParaDobleCelebracionApex() {
-        // Mostrar solo el bloque especial
+
         layoutDobleCelebracion.visibility = View.VISIBLE
 
         layoutMedallaContainer.visibility = View.GONE
@@ -211,13 +208,12 @@ class CondecoracionAnimationDialog(
         mediaPlayerTrompeta = MediaPlayer.create(context, R.raw.trompeta5)
         mediaPlayerTrompeta?.start()
 
-        // Animaciones de aparición
+
         tvTituloDoble.animate().alpha(1f).setDuration(350).start()
         handler.postDelayed({
             tvDescripcionDoble.animate().alpha(1f).setDuration(350).start()
         }, 1000)
 
-        // Desvanecer y cerrar
         handler.postDelayed({
             tvTituloDoble.animate().alpha(0f).setDuration(200).start()
             tvDescripcionDoble.animate().alpha(0f).setDuration(200).withEndAction {
@@ -229,9 +225,8 @@ class CondecoracionAnimationDialog(
     private fun configurarApex() {
         layoutDobleCelebracion.visibility = View.GONE
 
-        // Usar imagen de APEX SUPREMUS (debe existir en drawable)
-        ivMedalla.setImageResource(R.drawable.ic_trofeo_apex_mobius) // Verificar nombre del recurso
-        ivCirculo.setImageResource(R.drawable.circle_gold_apex) // O usar circle_white_shadow
+        ivMedalla.setImageResource(R.drawable.ic_trofeo_apex_mobius)
+        ivCirculo.setImageResource(R.drawable.circle_gold_apex)
 
         tvTitulo.text = context.getString(R.string.apex_titulo)
         tvDescripcion.text = context.getString(R.string.apex_descripcion)

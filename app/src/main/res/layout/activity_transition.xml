@@ -12,14 +12,12 @@
         android:layout_centerInParent="true" />
 
     <View
-        android:id="@+id/innerCircleView"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:background="@drawable/inner_circle"
         android:layout_centerInParent="true" />
 
     <TextView
-        android:id="@+id/loadingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/loading_text"
@@ -31,7 +29,6 @@
         android:fontFamily="@font/roboto_bold" />
 
     <com.example.sumamente.ui.LoadingView
-        android:id="@+id/loading_view"
         android:layout_width="177dp"
         android:layout_height="177dp"
         android:layout_centerInParent="true" />

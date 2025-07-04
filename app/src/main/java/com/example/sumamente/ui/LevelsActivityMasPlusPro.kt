@@ -50,7 +50,7 @@ class LevelsActivityMasPlusPro : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("MyPrefsMasPlus", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefsMasPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_levels_mas_plus)
 
         ScoreManager.initMasPlusPro(this)
@@ -160,7 +160,7 @@ class LevelsActivityMasPlusPro : AppCompatActivity() {
                         applyBounceEffect(this) {
                             mediaPlayer.start()
 
-                            val prefs = getSharedPreferences("MyPrefsMasPlus", Context.MODE_PRIVATE)
+                            val prefs = getSharedPreferences("MyPrefsMasPlus", MODE_PRIVATE)
                             val storedModeName = prefs.getString("selectedResponseModeMasPlusPro", null)
                             val storedMode = if (storedModeName != null) ResponseModeMasPlusPro.valueOf(storedModeName) else null
 

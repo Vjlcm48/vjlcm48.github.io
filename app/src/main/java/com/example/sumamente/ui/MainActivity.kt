@@ -1,7 +1,6 @@
 package com.example.sumamente.ui
 
 import android.app.ActivityOptions
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.media.MediaPlayer
@@ -24,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setTheme(R.style.Theme_SumaMente)
         setContentView(R.layout.activity_splash_screen)
 

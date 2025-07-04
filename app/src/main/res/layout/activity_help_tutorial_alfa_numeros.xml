@@ -249,6 +249,7 @@
             android:textColor="@android:color/white" />
     </LinearLayout>
 
+    <!-- Aquí eliminé el check verde -->
     <ImageView
         android:id="@+id/check_escribe_respuesta"
         android:layout_width="30dp"

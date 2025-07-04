@@ -249,6 +249,7 @@
             android:textColor="@android:color/white" />
     </LinearLayout>
 
+    <!-- Aquí eliminé el check verde -->
     <ImageView
         android:id="@+id/check_escribe_respuesta"
         android:layout_width="30dp"
@@ -258,6 +259,7 @@
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/tv_step_two"

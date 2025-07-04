@@ -50,7 +50,7 @@ class LevelsActivityRomasPro : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ScoreManager.initRomasPro(this)
-        sharedPreferences = getSharedPreferences("MyPrefsRomas", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
         setContentView(R.layout.activity_levels_romas_pro)
 
         mediaPlayer = MediaPlayer.create(this, R.raw.clicbotones)
@@ -164,7 +164,7 @@ class LevelsActivityRomasPro : AppCompatActivity() {
                     setOnClickListener {
                         applyBounceEffect(this) {
                             mediaPlayer.start()
-                            val prefs = getSharedPreferences("MyPrefsRomas", Context.MODE_PRIVATE)
+                            val prefs = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
                             val storedModeName = prefs.getString("selectedResponseModeRomasPro", null)
                             val storedMode = if (storedModeName != null) ResponseModeRomas.valueOf(storedModeName) else null
 

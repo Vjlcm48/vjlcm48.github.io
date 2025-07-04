@@ -44,7 +44,7 @@ class LevelResultActivity : AppCompatActivity() {
     private var isSuccessful = false
     private var attempts = 0
     private var timeSpentInSeconds = 0.0
-    private var rawTimeSpent = 0.0 // C1 //
+    private var rawTimeSpent = 0.0
     private var pointsEarned = 0
 
     private var numberList: IntArray? = null
@@ -220,16 +220,16 @@ class LevelResultActivity : AppCompatActivity() {
         CondecoracionTracker.verificarYEntregarApexSupremus { nuevaApex ->
             val totalTrofeos = CondecoracionTracker.getTrofeosObtenidos().size
 
-            if (nuevaApex != null && totalTrofeos >= 1) { // Para pruebas: 1, en producción: 21
-                // Doble celebración: Trofeo #21 + APEX SUPREMUS
+            if (nuevaApex != null && totalTrofeos >= 1) {
+
                 mostrarDobleCelebracionApex(trofeo, onComplete)
             } else if (nuevaApex != null) {
-                // Solo APEX (caso improbable pero por seguridad)
+
                 mostrarAnimacionApex {
                     onComplete?.invoke() ?: mostrarAnimacionTrofeo(trofeo)
                 }
             } else {
-                // Solo trofeo
+
                 mostrarAnimacionTrofeo(trofeo) {
                     onComplete?.invoke() ?: showSuccessDialog()
                 }
@@ -237,7 +237,6 @@ class LevelResultActivity : AppCompatActivity() {
         }
     }
 
-    // LevelResultActivity.kt
     private fun mostrarDobleCelebracionApex(
         trofeo: CondecoracionTracker.TrofeoObtenido,
         onComplete: (() -> Unit)? = null

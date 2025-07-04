@@ -62,7 +62,7 @@ class DifficultySelectionActivity : AppCompatActivity() {
             else -> "MyPrefs"
         }
 
-        sharedPreferences = getSharedPreferences(prefsName, Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences(prefsName, MODE_PRIVATE)
         setContentView(R.layout.activity_difficulty_selection)
 
         val tvGameName = findViewById<TextView>(R.id.tv_game_name)

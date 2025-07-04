@@ -6,7 +6,6 @@
     android:gravity="center">
 
     <LinearLayout
-        android:id="@+id/profile_edit_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -25,7 +24,6 @@
             android:layout_marginBottom="8dp" />
 
         <TextView
-            android:id="@+id/title_profile_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title_profile_edit"

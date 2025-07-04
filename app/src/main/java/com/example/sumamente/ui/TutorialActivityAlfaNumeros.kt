@@ -6,7 +6,6 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -30,10 +29,10 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 import com.airbnb.lottie.LottieAnimationView
 import com.example.sumamente.R
 import java.util.Locale
-import androidx.core.content.edit
 
 class TutorialActivityAlfaNumeros : AppCompatActivity() {
 
@@ -85,7 +84,7 @@ class TutorialActivityAlfaNumeros : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val prefs = getSharedPreferences("MyPrefsAlfaNumeros", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
         val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsAlfaNumeros", false)
         if (hasSeenInstructions) {
             val intent = Intent(this, LevelsActivityAlfaNumeros::class.java)
@@ -136,7 +135,6 @@ class TutorialActivityAlfaNumeros : AppCompatActivity() {
         numbersContainer = findViewById(R.id.layout_numbers_container)
         chronometerTextView = findViewById(R.id.tv_chronometer_demo)
         answerButtonsLayout = findViewById(R.id.layout_answer_buttons)
-
         btnAnswer1 = findViewById(R.id.btn_answer_1_demo)
         btnAnswer2 = findViewById(R.id.btn_answer_2_demo)
         btnAnswer3 = findViewById(R.id.btn_answer_3_demo)
@@ -148,7 +146,9 @@ class TutorialActivityAlfaNumeros : AppCompatActivity() {
         starImageView = findViewById(R.id.iv_star)
         btnUnderstood = findViewById(R.id.btn_understood)
         btnClose = findViewById(R.id.btn_close_instructions)
+
         checkEscribeRespuesta = findViewById(R.id.check_escribe_respuesta)
+
         progressRing = findViewById(R.id.progress_ring)
         tvNumber = findViewById(R.id.tv_number)
         tvStepIntroPartA = findViewById(R.id.tv_step_intro_part_a)
@@ -168,6 +168,7 @@ class TutorialActivityAlfaNumeros : AppCompatActivity() {
             }
         }
     }
+
 
     private fun positionCheckRelativeTo(
         targetView: View,
@@ -528,7 +529,7 @@ class TutorialActivityAlfaNumeros : AppCompatActivity() {
         btnSendAnswer.visibility = View.VISIBLE
 
         etUserAnswer.requestFocus()
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(etUserAnswer, InputMethodManager.SHOW_IMPLICIT)
 
         lottieHandChrono.visibility = View.VISIBLE
@@ -609,7 +610,7 @@ class TutorialActivityAlfaNumeros : AppCompatActivity() {
     }
 
     private fun hideSoftKeyboard() {
-        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         val currentFocusedView = currentFocus
         if (currentFocusedView != null) {
             inputMethodManager.hideSoftInputFromWindow(currentFocusedView.windowToken, 0)
@@ -727,7 +728,7 @@ class TutorialActivityAlfaNumeros : AppCompatActivity() {
 
     private fun markTutorialAsSeenAndNavigate() {
         stopBackgroundMusic()
-        val prefs = getSharedPreferences("MyPrefsAlfaNumeros", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
         prefs.edit { putBoolean("hasSeenInstructionsAlfaNumeros", true) }
 
         val intent = DifficultySelectionActivity.createIntent(this, "AlfaNumeros")

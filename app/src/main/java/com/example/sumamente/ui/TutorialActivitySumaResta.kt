@@ -6,7 +6,6 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -28,10 +27,10 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 import com.airbnb.lottie.LottieAnimationView
 import com.example.sumamente.R
 import java.util.Locale
-import androidx.core.content.edit
 
 class TutorialActivitySumaResta : AppCompatActivity() {
 
@@ -82,7 +81,7 @@ class TutorialActivitySumaResta : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val prefs = getSharedPreferences("MyPrefsSumaResta", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
         val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsSumaResta", false)
         if (hasSeenInstructions) {
             val intent = Intent(this, LevelsActivitySumaResta::class.java)
@@ -673,7 +672,7 @@ class TutorialActivitySumaResta : AppCompatActivity() {
 
     private fun markTutorialAsSeenAndNavigate() {
         stopBackgroundMusic()
-        val prefs = getSharedPreferences("MyPrefsSumaResta", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
         prefs.edit { putBoolean("hasSeenInstructionsSumaResta", true) }
 
         val intent = DifficultySelectionActivity.createIntent(this, "Sumaresta")

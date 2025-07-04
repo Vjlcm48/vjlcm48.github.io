@@ -4,14 +4,12 @@
     android:viewportWidth="48"
     android:viewportHeight="48">
 
-    <!-- Heptágono regular con relleno blanco y borde negro -->
     <path
         android:fillColor="#FFFFFFFF"
         android:strokeColor="#FF000000"
         android:strokeWidth="3"
         android:pathData="M24,4L39.6,11.5L43.5,28.5L32.7,42L15.3,42L4.5,28.5L8.4,11.5Z" />
 
-    <!-- Letra S centrada -->
     <group
         android:scaleX="1.25"
         android:scaleY="1.25"
@@ -34,7 +32,6 @@
                 s-1.79,4 -4,4z"/>
     </group>
 
-    <!-- Signo + como superíndice -->
     <group
         android:scaleX="1.1"
         android:scaleY="1.1"

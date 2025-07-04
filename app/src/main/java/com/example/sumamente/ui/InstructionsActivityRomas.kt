@@ -3,7 +3,6 @@ package com.example.sumamente.ui
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
@@ -14,9 +13,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.example.sumamente.R
-import androidx.core.view.isVisible
 import androidx.core.content.edit
+import androidx.core.view.isVisible
+import com.example.sumamente.R
 
 class InstructionsActivityRomas : AppCompatActivity() {
 
@@ -45,7 +44,7 @@ class InstructionsActivityRomas : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferencesRomas = getSharedPreferences("MyPrefsRomas", Context.MODE_PRIVATE)
+        sharedPreferencesRomas = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
         setContentView(R.layout.activity_instructions_romas)
 
         val btnClose = findViewById<ImageView>(R.id.btn_close)
@@ -177,7 +176,7 @@ class InstructionsActivityRomas : AppCompatActivity() {
                 override fun onAnimationEnd(animation: Animator) {
                     val mode = responseMode
                     if (mode != null) {
-                        val prefs = getSharedPreferences("MyPrefsRomas", Context.MODE_PRIVATE)
+                        val prefs = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
                         prefs.edit { putString("selectedResponseModeRomas", mode.name) }
                     }
                     val intent = Intent(this@InstructionsActivityRomas, GameActivityRomas::class.java)

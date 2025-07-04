@@ -4,7 +4,6 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Spannable
@@ -100,7 +99,7 @@ class GameSelectionActivity : AppCompatActivity() {
 
         btnNumerosPlus.setOnClickListener {
             applyBounceEffect(it) {
-                val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
                 val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsNumeros", false)
 
                 if (hasSeenInstructions) {
@@ -131,7 +130,7 @@ class GameSelectionActivity : AppCompatActivity() {
 
         btnDeciPlus.setOnClickListener {
             applyBounceEffect(it) {
-                val prefs = getSharedPreferences("MyPrefsDeciPlus", Context.MODE_PRIVATE)
+                val prefs = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
                 val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsDeciPlus", false)
 
                 if (hasSeenInstructions) {
@@ -161,7 +160,7 @@ class GameSelectionActivity : AppCompatActivity() {
 
         btnRomas.setOnClickListener {
             applyBounceEffect(it) {
-                val prefs = getSharedPreferences("MyPrefsRomas", Context.MODE_PRIVATE)
+                val prefs = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
                 val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsRomas", false)
 
                 if (hasSeenInstructions) {
@@ -191,7 +190,7 @@ class GameSelectionActivity : AppCompatActivity() {
 
         btnAlfaNumeros.setOnClickListener {
             applyBounceEffect(it) {
-                val prefs = getSharedPreferences("MyPrefsAlfaNumeros", Context.MODE_PRIVATE)
+                val prefs = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
                 val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsAlfaNumeros", false)
 
                 if (hasSeenInstructions) {
@@ -221,7 +220,7 @@ class GameSelectionActivity : AppCompatActivity() {
 
         btnSumaresta.setOnClickListener {
             applyBounceEffect(it) {
-                val prefs = getSharedPreferences("MyPrefsSumaResta", Context.MODE_PRIVATE)
+                val prefs = getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
                 val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsSumaResta", false)
 
                 if (hasSeenInstructions) {
@@ -251,7 +250,7 @@ class GameSelectionActivity : AppCompatActivity() {
 
         btnMasPlus.setOnClickListener {
             applyBounceEffect(it) {
-                val prefs = getSharedPreferences("MyPrefsMasPlus", Context.MODE_PRIVATE)
+                val prefs = getSharedPreferences("MyPrefsMasPlus", MODE_PRIVATE)
                 val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsMasPlus", false)
 
                 if (hasSeenInstructions) {
@@ -281,7 +280,7 @@ class GameSelectionActivity : AppCompatActivity() {
 
         btnGenioPlus.setOnClickListener {
             applyBounceEffect(it) {
-                val prefs = getSharedPreferences("MyPrefsGenioPlus", Context.MODE_PRIVATE)
+                val prefs = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
                 val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsGenioPlus", false)
 
                 if (hasSeenInstructions) {

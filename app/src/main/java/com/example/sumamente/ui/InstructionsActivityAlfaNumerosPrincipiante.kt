@@ -3,7 +3,6 @@ package com.example.sumamente.ui
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
@@ -14,9 +13,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.example.sumamente.R
-import androidx.core.view.isVisible
 import androidx.core.content.edit
+import androidx.core.view.isVisible
+import com.example.sumamente.R
 
 class InstructionsActivityAlfaNumerosPrincipiante : AppCompatActivity() {
 
@@ -44,7 +43,7 @@ class InstructionsActivityAlfaNumerosPrincipiante : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferencesAlfaNumeros = getSharedPreferences("MyPrefsAlfaNumeros", Context.MODE_PRIVATE)
+        sharedPreferencesAlfaNumeros = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
         setContentView(R.layout.activity_instructions_alfanumeros_principiante)
 
         tvGameName = findViewById(R.id.tv_game_name)
@@ -106,7 +105,7 @@ class InstructionsActivityAlfaNumerosPrincipiante : AppCompatActivity() {
 
         btnClose.setOnClickListener {
             btnClose.isEnabled = false
-            val prefs = getSharedPreferences("MyPrefsAlfaNumeros", Context.MODE_PRIVATE)
+            val prefs = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
             val storedModeName = prefs.getString("selectedResponseModeAlfaNumerosPrincipiante", null)
             if (storedModeName == null) {
                 val intent = Intent(this, ResponseModeDialogAlfaNumerosPrincipiante::class.java)
@@ -185,7 +184,7 @@ class InstructionsActivityAlfaNumerosPrincipiante : AppCompatActivity() {
                 override fun onAnimationEnd(animation: Animator) {
                     val mode = responseMode
                     if (mode != null) {
-                        val prefs = getSharedPreferences("MyPrefsAlfaNumeros", Context.MODE_PRIVATE)
+                        val prefs = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
                         prefs.edit { putString("selectedResponseModeAlfaNumerosPrincipiante", mode.name) }
                     }
                     val intent = Intent(this@InstructionsActivityAlfaNumerosPrincipiante, GameActivityAlfaNumerosPrincipiante::class.java)

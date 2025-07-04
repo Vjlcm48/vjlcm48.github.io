@@ -6,7 +6,6 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -497,7 +496,7 @@ class HelpTutorialActivityGenioPlus : AppCompatActivity() {
         btnSendAnswer.visibility = View.VISIBLE
 
         etUserAnswer.requestFocus()
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(etUserAnswer, InputMethodManager.SHOW_IMPLICIT)
 
         lottieHandChrono.visibility = View.VISIBLE
@@ -572,7 +571,7 @@ class HelpTutorialActivityGenioPlus : AppCompatActivity() {
     }
 
     private fun hideSoftKeyboard() {
-        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         val currentFocusedView = currentFocus
         if (currentFocusedView != null) {
             inputMethodManager.hideSoftInputFromWindow(currentFocusedView.windowToken, 0)

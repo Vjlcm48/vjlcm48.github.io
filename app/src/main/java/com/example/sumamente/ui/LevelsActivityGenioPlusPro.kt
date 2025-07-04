@@ -50,7 +50,7 @@ class LevelsActivityGenioPlusPro : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("MyPrefsGenioPlus", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_levels_genio_plus)
 
         ScoreManager.initGenioPlusPro(this)
@@ -156,7 +156,7 @@ class LevelsActivityGenioPlusPro : AppCompatActivity() {
                         applyBounceEffect(this) {
                             mediaPlayer.start()
 
-                            val prefs = getSharedPreferences("MyPrefsGenioPlus", Context.MODE_PRIVATE)
+                            val prefs = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
                             val storedModeName = prefs.getString("selectedResponseModeGenioPlusPro", null)
                             val storedMode = if (storedModeName != null) ResponseModeGenioPlusPro.valueOf(storedModeName) else null
 

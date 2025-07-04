@@ -51,7 +51,6 @@
 
         </RelativeLayout>
 
-    <!-- 1. BLOQUE EXCLUSIVO PARA DOBLE CELEBRACIÓN -->
     <LinearLayout
         android:id="@+id/layout_doble_celebracion"
         android:layout_width="match_parent"

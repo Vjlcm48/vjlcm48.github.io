@@ -1,6 +1,5 @@
 package com.example.sumamente.ui
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
 import android.media.MediaPlayer
@@ -58,7 +57,7 @@ class LevelResultActivityPro : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_level_result_pro)
 
         ScoreManager.initPro(this)
@@ -190,43 +189,43 @@ class LevelResultActivityPro : AppCompatActivity() {
 
     private fun verificarMedallasAntesDeMostrarExito() {
         CondecoracionTracker.verificarYEntregarMedallas { nuevaMedalla ->
-            // Asegura que el trofeo sólo se entregue al completar el nivel 70 por primera vez
+
             if (nuevaMedalla != null && currentLevel == 70) {
-                // Caso: El usuario recibe medalla + trofeo por terminar el nivel 70
+
                 verificarTrofeosParaDobleCondecoracion(nuevaMedalla)
             } else if (nuevaMedalla != null) {
-                // Solo medalla
+
                 mostrarAnimacionMedalla(nuevaMedalla)
             } else if (currentLevel == 70) {
-                // Solo trofeo
+
                 verificarTrofeosAntesDeMostrarExito()
             } else {
-                // Sin condecoraciones
+
                 showSuccessDialog()
             }
         }
     }
 
-    // 1. Verificar y entregar trofeo + medalla (doble celebración)
+
     private fun verificarTrofeosParaDobleCondecoracion(nuevaMedalla: CondecoracionTracker.MedallaObtenida) {
-        // Intenta entregar el trofeo solo si no ha sido entregado antes para este juego/grado
+
         CondecoracionTracker.verificarYEntregarTrofeos("NumerosPlus", "Pro") { nuevoTrofeo ->
             if (nuevoTrofeo != null) {
                 mostrarDobleCelebracion(nuevaMedalla, nuevoTrofeo)
             } else {
-                // Por si acaso ya existiera el trofeo, mostrar sólo la medalla
+
                 mostrarAnimacionMedalla(nuevaMedalla)
             }
         }
     }
 
-    // 2. Verificar y entregar sólo trofeo
+
     private fun verificarTrofeosAntesDeMostrarExito() {
         CondecoracionTracker.verificarYEntregarTrofeos("NumerosPlus", "Pro") { nuevoTrofeo ->
             if (nuevoTrofeo != null) {
                 mostrarAnimacionTrofeo(nuevoTrofeo)
             } else {
-                // Si ya lo tiene, muestra el diálogo normal de éxito
+
                 showSuccessDialog()
             }
         }
@@ -266,7 +265,7 @@ class LevelResultActivityPro : AppCompatActivity() {
 
     private fun mostrarAnimacionMedalla(
         medalla: CondecoracionTracker.MedallaObtenida,
-        onComplete: (() -> Unit)? = null // Parámetro opcional para callback
+        onComplete: (() -> Unit)? = null
     ) {
         val medallasObtenidas = CondecoracionTracker.getMedallasObtenidas().size
         val medallasRestantes = 12 - medallasObtenidas

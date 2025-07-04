@@ -6,7 +6,6 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -30,10 +29,10 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 import com.airbnb.lottie.LottieAnimationView
 import com.example.sumamente.R
 import java.util.Locale
-import androidx.core.content.edit
 
 class TutorialActivityGenioPlus : AppCompatActivity() {
 
@@ -85,7 +84,7 @@ class TutorialActivityGenioPlus : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val prefs = getSharedPreferences("MyPrefsGenioPlus", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
         val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsGenioPlus", false)
         if (hasSeenInstructions) {
             val intent = Intent(this, LevelsActivityGenioPlus::class.java)
@@ -514,7 +513,7 @@ class TutorialActivityGenioPlus : AppCompatActivity() {
         btnSendAnswer.visibility = View.VISIBLE
 
         etUserAnswer.requestFocus()
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(etUserAnswer, InputMethodManager.SHOW_IMPLICIT)
 
         lottieHandChrono.visibility = View.VISIBLE
@@ -589,7 +588,7 @@ class TutorialActivityGenioPlus : AppCompatActivity() {
     }
 
     private fun hideSoftKeyboard() {
-        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         val currentFocusedView = currentFocus
         if (currentFocusedView != null) {
             inputMethodManager.hideSoftInputFromWindow(currentFocusedView.windowToken, 0)
@@ -708,7 +707,7 @@ class TutorialActivityGenioPlus : AppCompatActivity() {
 
     private fun markTutorialAsSeenAndNavigate() {
         stopBackgroundMusic()
-        val prefs = getSharedPreferences("MyPrefsGenioPlus", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
         prefs.edit { putBoolean("hasSeenInstructionsGenioPlus", true) }
 
         val intent = DifficultySelectionActivity.createIntent(this, "GenioPlus")

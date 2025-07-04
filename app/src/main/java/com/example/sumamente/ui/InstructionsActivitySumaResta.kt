@@ -3,7 +3,6 @@ package com.example.sumamente.ui
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
@@ -43,7 +42,7 @@ class InstructionsActivitySumaResta : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferencesSumaResta = getSharedPreferences("MyPrefsSumaResta", Context.MODE_PRIVATE)
+        sharedPreferencesSumaResta = getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
         setContentView(R.layout.activity_instructions_suma_resta)
 
         tvGameName = findViewById(R.id.tv_game_name)
@@ -105,7 +104,7 @@ class InstructionsActivitySumaResta : AppCompatActivity() {
 
         btnClose.setOnClickListener {
             btnClose.isEnabled = false
-            val prefs = getSharedPreferences("MyPrefsSumaResta", Context.MODE_PRIVATE)
+            val prefs = getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
             val storedModeName = prefs.getString("selectedResponseModeSumaResta", null)
             if (storedModeName == null) {
 
@@ -187,7 +186,7 @@ class InstructionsActivitySumaResta : AppCompatActivity() {
                 override fun onAnimationEnd(animation: Animator) {
                     val mode = responseMode
                     if (mode != null) {
-                        val prefs = getSharedPreferences("MyPrefsSumaResta", Context.MODE_PRIVATE)
+                        val prefs = getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
                         prefs.edit { putString("selectedResponseModeSumaResta", mode.name) }
                     }
                     val intent = Intent(this@InstructionsActivitySumaResta, GameActivitySumaResta::class.java)

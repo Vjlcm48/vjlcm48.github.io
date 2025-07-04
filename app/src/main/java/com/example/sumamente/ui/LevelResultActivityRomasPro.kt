@@ -1,6 +1,5 @@
 package com.example.sumamente.ui
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
 import android.media.MediaPlayer
@@ -57,7 +56,7 @@ class LevelResultActivityRomasPro : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("MyPrefsRomas", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
         setContentView(R.layout.activity_level_result_romas_pro)
 
         ScoreManager.initRomasPro(this)

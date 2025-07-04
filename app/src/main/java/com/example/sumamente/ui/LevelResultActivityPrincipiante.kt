@@ -1,6 +1,5 @@
 package com.example.sumamente.ui
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
 import android.media.MediaPlayer
@@ -58,7 +57,7 @@ class LevelResultActivityPrincipiante : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_level_result_principiante)
 
         ScoreManager.initPrincipiante(this)

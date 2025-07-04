@@ -49,7 +49,7 @@ class LevelsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_levels)
 
         ScoreManager.init(this)
@@ -161,7 +161,7 @@ class LevelsActivity : AppCompatActivity() {
                     setOnClickListener {
                         applyBounceEffect(this) {
                             mediaPlayer.start()
-                            val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                            val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
                             val storedModeName = prefs.getString("selectedResponseMode", null)
                             val storedMode = if (storedModeName != null) ResponseMode.valueOf(storedModeName) else null
 

@@ -1,14 +1,13 @@
 package com.example.sumamente.ui
 
 import android.app.ActivityOptions
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import com.example.sumamente.R
 import androidx.core.content.edit
+import com.example.sumamente.R
 
 class TransitionActivity : AppCompatActivity() {
 
@@ -16,7 +15,7 @@ class TransitionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_transition)
 
         clearAppDataOnLaunch()

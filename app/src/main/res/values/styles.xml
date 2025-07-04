@@ -13,27 +13,5 @@
         <item name="android:windowBackground">@drawable/background_gradient</item>
     </style>
 
-    <style name="Theme.SumaMente.Dialog" parent="Theme.MaterialComponents.DayNight.Dialog">
-        <item name="colorPrimary">@color/blue_primary</item>
-        <item name="colorAccent">@color/green_accent</item>
-        <item name="android:windowBackground">@drawable/background_gradient</item>
-    </style>
-
-    <style name="Theme.SumaMente.Dialog.NoActionBar" parent="Theme.MaterialComponents.DayNight.Dialog">
-        <item name="colorPrimary">@color/blue_primary</item>
-        <item name="colorAccent">@color/green_accent</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowActionBar">false</item>
-    </style>
-
-    <style name="CustomDialogAnimation">
-        <item name="android:windowEnterAnimation">@anim/dialog_fade_in</item>
-        <item name="android:windowExitAnimation">@anim/dialog_fade_out</item>
-    </style>
-
-
-    <style name="CustomDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:windowAnimationStyle">@style/CustomDialogAnimation</item>
-    </style>
 
 </resources>

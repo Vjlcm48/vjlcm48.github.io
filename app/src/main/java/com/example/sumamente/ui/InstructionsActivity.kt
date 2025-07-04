@@ -3,7 +3,6 @@ package com.example.sumamente.ui
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
@@ -14,10 +13,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.example.sumamente.R
-import androidx.core.view.isVisible
 import androidx.core.content.edit
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import com.example.sumamente.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -49,14 +48,13 @@ class InstructionsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_instructions)
 
         tvGameName = findViewById(R.id.tv_game_name)
         tvDifficulty = findViewById(R.id.tv_difficulty)
         tvScore = findViewById(R.id.tv_score)
 
-        // 1. Inicialización de ScoreManager y setupInfoBar en un hilo secundario para evitar ANR
         lifecycleScope.launch(Dispatchers.IO) {
             ScoreManager.init(this@InstructionsActivity)
             withContext(Dispatchers.Main) {
@@ -72,7 +70,6 @@ class InstructionsActivity : AppCompatActivity() {
         val tvRepeatedNumbersMessage = findViewById<TextView>(R.id.tv_repeated_numbers)
         val tvNegativeNumberWarning = findViewById<TextView>(R.id.tv_negative_numbers)
 
-        // 2. Activar aceleración hardware en vistas animadas antes de las animaciones
         tvLevel.setLayerType(View.LAYER_TYPE_HARDWARE, null)
         tvInstructions.setLayerType(View.LAYER_TYPE_HARDWARE, null)
         tvRepeatedNumbersMessage.setLayerType(View.LAYER_TYPE_HARDWARE, null)
@@ -134,7 +131,6 @@ class InstructionsActivity : AppCompatActivity() {
             btnClose.isEnabled = true
         }
 
-        // 3. Animaciones optimizadas: reducir duración y evitar secuencia bloqueante
         val fadeInDuration = 250L
         val levelAnimation = ObjectAnimator.ofFloat(tvLevel, "alpha", 0f, 1f).setDuration(fadeInDuration)
         val instructionsAnimation = ObjectAnimator.ofFloat(tvInstructions, "alpha", 0f, 1f).setDuration(fadeInDuration)
@@ -180,13 +176,11 @@ class InstructionsActivity : AppCompatActivity() {
         startButtonAnimatorSet.playTogether(startButtonScaleX, startButtonScaleY, startButtonAlpha)
         animationsList.add(startButtonAnimatorSet)
 
-        // 4. Animaciones en paralelo, escalonadas con startDelay para suavidad
         animationsList.forEachIndexed { idx, anim ->
             anim.startDelay = 100L * idx
         }
         animatorSet.playTogether(animationsList)
 
-        // 5. Restaurar aceleración software cuando terminan las animaciones
         animatorSet.addListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(animation: Animator) {}
             override fun onAnimationEnd(animation: Animator) {
@@ -203,7 +197,6 @@ class InstructionsActivity : AppCompatActivity() {
 
         animatorSet.start()
 
-        // Botón de inicio animado (esto lo mantienes igual)
         btnStart.setOnClickListener {
             val scaleDownX = ObjectAnimator.ofFloat(btnStart, "scaleX", 1f, 0.9f).setDuration(50)
             val scaleDownY = ObjectAnimator.ofFloat(btnStart, "scaleY", 1f, 0.9f).setDuration(50)
@@ -219,7 +212,7 @@ class InstructionsActivity : AppCompatActivity() {
                 override fun onAnimationEnd(animation: Animator) {
                     val mode = responseMode
                     if (mode != null) {
-                        val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                        val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
                         prefs.edit { putString("selectedResponseMode", mode.name) }
                     }
                     val intent = Intent(this@InstructionsActivity, GameActivity::class.java)
