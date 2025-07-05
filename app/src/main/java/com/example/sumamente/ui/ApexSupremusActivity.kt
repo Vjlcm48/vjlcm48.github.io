@@ -10,14 +10,9 @@ import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sumamente.R
-import java.lang.ref.WeakReference
 
 class ApexSupremusActivity : AppCompatActivity() {
 
-    companion object {
-        private var instanceRef: WeakReference<ApexSupremusActivity>? = null
-
-    }
 
     private lateinit var btnClose: ImageView
     private lateinit var btnBack: ImageView
@@ -27,8 +22,6 @@ class ApexSupremusActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_apex_supremus)
-
-        instanceRef = WeakReference(this)
 
         initViews()
         initMusic()
@@ -119,8 +112,7 @@ class ApexSupremusActivity : AppCompatActivity() {
             }
             mediaPlayer.release()
         }
-        instanceRef?.clear()
-        instanceRef = null
+
     }
 }
 

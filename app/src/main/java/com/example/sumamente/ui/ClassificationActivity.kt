@@ -16,14 +16,13 @@ import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toDrawable
 import com.example.sumamente.R
 
 class ClassificationActivity : AppCompatActivity() {
 
-    private lateinit var tvTituloClasificaciones: TextView
+
     private lateinit var btnComoFunciona: LinearLayout
     private lateinit var btnVerClasificacion: LinearLayout
     private lateinit var btnClasificacionVelocidad: LinearLayout
@@ -48,7 +47,7 @@ class ClassificationActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        tvTituloClasificaciones = findViewById(R.id.tv_titulo_clasificaciones)
+
         btnComoFunciona = findViewById(R.id.btn_como_funciona)
         btnVerClasificacion = findViewById(R.id.btn_ver_clasificacion)
         btnClasificacionVelocidad = findViewById(R.id.btn_clasificacion_velocidad)
