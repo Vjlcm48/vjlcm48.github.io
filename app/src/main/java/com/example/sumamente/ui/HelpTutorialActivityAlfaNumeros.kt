@@ -20,7 +20,6 @@ import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
-import android.widget.GridLayout
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -46,11 +45,7 @@ class HelpTutorialActivityAlfaNumeros : AppCompatActivity() {
     private lateinit var vamosTextView: TextView
     private lateinit var numbersContainer: LinearLayout
     private lateinit var chronometerTextView: TextView
-    private lateinit var answerButtonsLayout: GridLayout
-    private lateinit var btnAnswer1: Button
-    private lateinit var btnAnswer2: Button
-    private lateinit var btnAnswer3: Button
-    private lateinit var btnAnswer4: Button
+
     private lateinit var confettiAnimation: LottieAnimationView
     private lateinit var finalMessageTextView: TextView
     private lateinit var finalTimeTextView: TextView
@@ -123,12 +118,7 @@ class HelpTutorialActivityAlfaNumeros : AppCompatActivity() {
         vamosTextView = findViewById(R.id.tv_vamos_instructions)
         numbersContainer = findViewById(R.id.layout_numbers_container)
         chronometerTextView = findViewById(R.id.tv_chronometer_demo)
-        answerButtonsLayout = findViewById(R.id.layout_answer_buttons)
 
-        btnAnswer1 = findViewById(R.id.btn_answer_1_demo)
-        btnAnswer2 = findViewById(R.id.btn_answer_2_demo)
-        btnAnswer3 = findViewById(R.id.btn_answer_3_demo)
-        btnAnswer4 = findViewById(R.id.btn_answer_4_demo)
         confettiAnimation = findViewById(R.id.lottie_confetti)
         finalMessageTextView = findViewById(R.id.tv_final_message)
         finalTimeTextView = findViewById(R.id.tv_final_time)
