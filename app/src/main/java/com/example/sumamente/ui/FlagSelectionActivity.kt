@@ -18,7 +18,6 @@ import android.widget.ImageView
 import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.GridLayoutManager
@@ -26,7 +25,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sumamente.R
 import java.util.Locale
 
-class FlagSelectionActivity : AppCompatActivity() {
+class FlagSelectionActivity : BaseActivity()  {
 
     private lateinit var flagsRecyclerView: RecyclerView
     private lateinit var searchEditText: androidx.appcompat.widget.AppCompatEditText

@@ -8,12 +8,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sumamente.R
 import kotlin.math.abs
 
-class CoronasActivity : AppCompatActivity() {
+class CoronasActivity : BaseActivity()  {
 
     private lateinit var viewPager: ViewPager2
     private lateinit var btnBack: ImageView

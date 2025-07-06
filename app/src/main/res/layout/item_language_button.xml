@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@drawable/premio_boton_background"
+    android:paddingHorizontal="20dp"
+    android:paddingVertical="12dp"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- Flag -->
+    <ImageView
+        android:id="@+id/flag_image"
+        android:layout_width="32dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="16dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/flag_image" />
+
+    <!-- Language Name -->
+    <TextView
+        android:id="@+id/language_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/blue_primary_darker"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="start|center_vertical" />
+
+    <!-- Check Mark -->
+    <ImageView
+        android:id="@+id/check_mark"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ic_check_green"
+        android:visibility="gone"
+        android:contentDescription="@string/check_description" />
+
+</LinearLayout>

@@ -12,10 +12,9 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import com.example.sumamente.R
 
-class NotificationsActivity : AppCompatActivity() {
+class NotificationsActivity : BaseActivity()  {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

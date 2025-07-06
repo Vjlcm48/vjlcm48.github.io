@@ -11,7 +11,6 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,7 +20,7 @@ import java.util.Locale
 import kotlin.math.max
 import kotlin.random.Random
 
-class SpeedRankingActivity : AppCompatActivity() {
+class SpeedRankingActivity : BaseActivity()  {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var loadingIndicator: ProgressBar
@@ -225,8 +224,9 @@ class SpeedRankingActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             val gameType = intent.getStringExtra(EXTRA_GAME_TYPE) ?: return@postDelayed
 
+
             val result = when (gameType) {
-                SpeedClassificationActivity.GAME_NUMEROS_PLUS -> arrayOf(
+                SpeedClassificationActivity.GAME_NUMEROS_PLUS -> arrayOf<Any>(
                     ScoreManager.getUniqueLevelsPlayedNumerosPlusPrincipiante(),
                     ScoreManager.getUniqueLevelsPlayedNumerosPlusAvanzado(),
                     ScoreManager.getUniqueLevelsPlayedNumerosPlusPro(),
@@ -236,7 +236,7 @@ class SpeedRankingActivity : AppCompatActivity() {
                     ScoreManager.getMissingLevelsNumerosPlusAvanzado(),
                     ScoreManager.getMissingLevelsNumerosPlusPro()
                 )
-                SpeedClassificationActivity.GAME_DECI_PLUS -> arrayOf(
+                SpeedClassificationActivity.GAME_DECI_PLUS -> arrayOf<Any>(
                     ScoreManager.getUniqueLevelsPlayedDeciPlusPrincipiante(),
                     ScoreManager.getUniqueLevelsPlayedDeciPlusAvanzado(),
                     ScoreManager.getUniqueLevelsPlayedDeciPlusPro(),
@@ -246,7 +246,7 @@ class SpeedRankingActivity : AppCompatActivity() {
                     ScoreManager.getMissingLevelsDeciPlusAvanzado(),
                     ScoreManager.getMissingLevelsDeciPlusPro()
                 )
-                SpeedClassificationActivity.GAME_ROMAS -> arrayOf(
+                SpeedClassificationActivity.GAME_ROMAS -> arrayOf<Any>(
                     ScoreManager.getUniqueLevelsPlayedRomasPrincipiante(),
                     ScoreManager.getUniqueLevelsPlayedRomasAvanzado(),
                     ScoreManager.getUniqueLevelsPlayedRomasPro(),
@@ -256,7 +256,7 @@ class SpeedRankingActivity : AppCompatActivity() {
                     ScoreManager.getMissingLevelsRomasAvanzado(),
                     ScoreManager.getMissingLevelsRomasPro()
                 )
-                SpeedClassificationActivity.GAME_ALFA_NUMEROS -> arrayOf(
+                SpeedClassificationActivity.GAME_ALFA_NUMEROS -> arrayOf<Any>(
                     ScoreManager.getUniqueLevelsPlayedAlfaNumerosPrincipiante(),
                     ScoreManager.getUniqueLevelsPlayedAlfaNumerosAvanzado(),
                     ScoreManager.getUniqueLevelsPlayedAlfaNumerosPro(),
@@ -266,7 +266,7 @@ class SpeedRankingActivity : AppCompatActivity() {
                     ScoreManager.getMissingLevelsAlfaNumerosAvanzado(),
                     ScoreManager.getMissingLevelsAlfaNumerosPro()
                 )
-                SpeedClassificationActivity.GAME_SUMA_RESTA -> arrayOf(
+                SpeedClassificationActivity.GAME_SUMA_RESTA -> arrayOf<Any>(
                     ScoreManager.getUniqueLevelsPlayedSumaRestaPrincipiante(),
                     ScoreManager.getUniqueLevelsPlayedSumaRestaAvanzado(),
                     ScoreManager.getUniqueLevelsPlayedSumaRestaPro(),
@@ -276,7 +276,7 @@ class SpeedRankingActivity : AppCompatActivity() {
                     ScoreManager.getMissingLevelsSumaRestaAvanzado(),
                     ScoreManager.getMissingLevelsSumaRestaPro()
                 )
-                SpeedClassificationActivity.GAME_MAS_PLUS -> arrayOf(
+                SpeedClassificationActivity.GAME_MAS_PLUS -> arrayOf<Any>(
                     ScoreManager.getUniqueLevelsPlayedMasPlusPrincipiante(),
                     ScoreManager.getUniqueLevelsPlayedMasPlusAvanzado(),
                     ScoreManager.getUniqueLevelsPlayedMasPlusPro(),
@@ -286,7 +286,7 @@ class SpeedRankingActivity : AppCompatActivity() {
                     ScoreManager.getMissingLevelsMasPlusAvanzado(),
                     ScoreManager.getMissingLevelsMasPlusPro()
                 )
-                SpeedClassificationActivity.GAME_GENIO_PLUS -> arrayOf(
+                SpeedClassificationActivity.GAME_GENIO_PLUS -> arrayOf<Any>(
                     ScoreManager.getUniqueLevelsPlayedGenioPlusPrincipiante(),
                     ScoreManager.getUniqueLevelsPlayedGenioPlusAvanzado(),
                     ScoreManager.getUniqueLevelsPlayedGenioPlusPro(),
@@ -296,7 +296,7 @@ class SpeedRankingActivity : AppCompatActivity() {
                     ScoreManager.getMissingLevelsGenioPlusAvanzado(),
                     ScoreManager.getMissingLevelsGenioPlusPro()
                 )
-                else -> arrayOf(0, 0, 0, 0f, false, 0, 0, 0)
+                else -> arrayOf<Any>(0, 0, 0, 0f, false, 0, 0, 0)
             }
 
             val uniquePrincipiante = result[0] as Int

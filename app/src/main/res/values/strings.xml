@@ -1,7 +1,7 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">HEPTACREATION</string>
     <string name="loading_text">Cargando…</string>
-    <string name="next_activity_text">Next Activity</string>
+    <string name="next_activity_text">Próxima Actividad</string>
     <string name="notification_app_name">SumaMente</string>
     <string name="btn_allow">Permitir</string>
     <string name="btn_deny">No permitir</string>
@@ -14,7 +14,7 @@
     <string name="content_description_btn_deny">Botón para denegar notificaciones</string>
     <string name="instruction_text">Escribe tu nombre de usuario.\nUtiliza entre 4 y 12 caracteres</string>
     <string name="btn_accept">Aceptar</string>
-    <string name="content_description_check_icon">Check Icon</string>
+    <string name="content_description_check_icon">Icono de verificación</string>
     <string name="hint_username_input">Nombre usuario</string>
     <string name="app_logo">Logo de la aplicación</string>
     <string name="trophy">Trofeo</string>
@@ -97,7 +97,7 @@
     <string name="level_68">Nivel 68</string>
     <string name="level_69">Nivel 69</string>
     <string name="level_70">Nivel 70</string>
-    <string name="scroll_view_description">Scrollable container for levels</string>
+    <string name="scroll_view_description">Contenedor desplazable de niveles</string>
     <string name="sound">Sonido</string>
     <string name="notifications">Notificaciones</string>
     <string name="share">Compartir</string>
@@ -113,7 +113,7 @@
     <string name="home_text">Inicio</string>
     <string name="ads">Publicidad</string>
     <string name="ads_subtitle">Elimina los anuncios</string>
-    <string name="switch_ads_desc">Switch para activar/desactivar publicidad</string>
+    <string name="switch_ads_desc">Permite activar/desactivar la publicidad</string>
     <string name="level_title">NIVEL %1$d/70</string>
     <string name="time_limit_text">Tiempo max de resolución: %.2f segundos</string>
     <string name="start_button_text">COMENZAR</string>
@@ -195,7 +195,7 @@
     <string name="accept">Aceptar</string>
     <string name="puntaje_actual">Puntaje actual: %1$d</string>
     <string name="confirmation_message">¿Estás seguro que deseas reiniciar los datos seleccionados?</string>
-    <string name="yes">SI</string>
+    <string name="yes">SÍ</string>
     <string name="no">NO</string>
     <string name="edit_username_desc">Modificar el nombre de usuario</string>
     <string name="edit_flag_desc">Modificar la bandera</string>
@@ -214,6 +214,7 @@
     <string name="repeated_numbers_message">Los números amarillos son repetidos. ¡Súmalos bien!</string>
     <string name="repeated_numbers_message_more">Los números azules son repetidos. ¡Súmalos bien!</string>
     <string name="negative_numbers_warning">Cuidado, algunos números pueden ser  %1$s. ¡Súmalos correctamente!</string>
+
     <string name="country_ad">Andorra</string>
     <string name="country_ae">Emiratos Árabes Unidos</string>
     <string name="country_af">Afganistán</string>
@@ -686,9 +687,9 @@
     <string name="trofeo_perfectus_sumaresta_pro">Busca la perfección en cada jugada. Culmina SUMARESTA Pro sin rendirte.</string>
 
     <!-- 🏆 TROFEOS MAS⁺ -->
-    <string name="trofeo_origo_mas_principiante">Todo empieza aquí. Supera MAS⁺ Principiante y desbloquea tu origen.</string>
-    <string name="trofeo_proficium_mas_avanzado">Haz del progreso tu bandera. Avanza por cada desafío de MAS⁺ Avanzado.</string>
-    <string name="trofeo_exemplaritas_mas_pro">Conviértete en referente. Termina MAS⁺ Pro y honra tu ejemplo.</string>
+    <string name="trofeo_origo_mas_principiante">Todo empieza aquí. Supera MÁS⁺ Principiante y desbloquea tu origen.</string>
+    <string name="trofeo_proficium_mas_avanzado">Haz del progreso tu bandera. Avanza por cada desafío de MÁS⁺ Avanzado.</string>
+    <string name="trofeo_exemplaritas_mas_pro">Conviértete en referente. Termina MÁS⁺ Pro y honra tu ejemplo.</string>
 
     <!-- 🏆 TROFEOS GENIOS⁺ -->
     <string name="trofeo_ascensus_genio_principiante">Inicia el ascenso a tu genialidad. Completa Genio⁺ Principiante.</string>
@@ -897,9 +898,9 @@
     <string name="msg_iqplus_levels_info_1">%1$s, has jugado en %2$d juegos y grados diferentes. Te faltan %3$d para aparecer en el Ranking IQ+.</string>
     <string name="msg_iqplus_levels_info_2">%1$s, tu cuenta suma %2$d partidas en diferentes juegos y grados. Solo te faltan %3$d para desbloquear tu ranking IQ+.</string>
     <string name="msg_iqplus_levels_info_3">%1$s, vas avanzando: %2$d jugados, %3$d por jugar. ¡Sigue así para alcanzar el ranking IQ+!</string>
-    <string name="msg_iqplus_levels_info_4">Has jugado en %2$d juegos y grados distintos. Faltan %3$d para desbloquear el ranking IQ+.</string>
-    <string name="msg_iqplus_levels_info_5">Tu progreso: %2$d jugados, %3$d por jugar. ¡Ya casi puedes ver tu posición en el ranking IQ+!</string>
-    <string name="msg_iqplus_levels_info_6">Llevas %2$d partidas diferentes; cuando completes %3$d más, aparecerás en el Ranking IQ+.</string>
+    <string name="msg_iqplus_levels_info_4" tools:ignore="StringFormatCount">Has jugado en %2$d juegos y grados distintos. Faltan %3$d para desbloquear el ranking IQ+.</string>
+    <string name="msg_iqplus_levels_info_5" tools:ignore="StringFormatCount">Tu progreso: %2$d jugados, %3$d por jugar. ¡Ya casi puedes ver tu posición en el ranking IQ+!</string>
+    <string name="msg_iqplus_levels_info_6" tools:ignore="StringFormatCount">Llevas %2$d partidas diferentes; cuando completes %3$d más, aparecerás en el Ranking IQ+.</string>
 
     <string name="msg_iqplus_motiv_1">¡Sigue así! Cada juego nuevo te acerca a tu lugar en el Ranking IQ+.</string>
     <string name="msg_iqplus_motiv_2">Continúa avanzando, pronto podrás verte rankeado y conocer tu posición.</string>
@@ -1049,20 +1050,6 @@
     <string name="medal_circle_background">Círculo de fondo para medalla</string>
     <string name="medal_image">Imagen de la medalla obtenida</string>
 
-    <!-- NOMBRES DE TROFEOS INDIVIDUALES -->
-    <!-- 🏆 TROFEOS NÚMEROS⁺ -->
-
-    <!-- 🏆 TROFEOS DECI⁺ -->
-
-    <!-- 🏆 TROFEOS ROMAS -->
-
-    <!-- 🏆 TROFEOS ALFANÚMEROS -->
-
-    <!-- 🏆 TROFEOS SUMARESTA -->
-
-    <!-- 🏆 TROFEOS MÁS⁺ -->
-
-    <!-- 🏆 TROFEOS GENIO⁺ -->
 
     <!-- TÍTULOS DE DIÁLOGO PARA TROFEOS -->
     <string name="trofeo_titulo_initia">🏆 ¡TROFEO INITIA CONQUISTADO! 🏆</string>
@@ -1143,7 +1130,7 @@
     <string name="ranking_vel_alfanumeros">4.- R. Velocidad ALFANÚMEROS⁺:</string>
     <string name="ranking_vel_romas">5.- R. Velocidad ROMAS⁺:</string>
     <string name="ranking_vel_sumaresta">6.- R. Velocidad SUMARESTA⁺:</string>
-    <string name="ranking_vel_mas">7.- R. Velocidad MAS⁺:</string>
+    <string name="ranking_vel_mas">7.- R. Velocidad MÁS⁺:</string>
     <string name="ranking_vel_genios">8.- R. Velocidad Genio⁺:</string>
     <string name="ranking_iq">9.- Ranking del índice IQ⁺:</string>
 
@@ -1296,10 +1283,31 @@
     <string name="logro_gloria_integralis_2">SumaMente te aplaude, %1$s: has alcanzado GLORIA INTEGRALIS.</string>
 
     <string name="top5_ranking_integral">Los 5 mejores del Ranking Integral</string>
-    <string name="_1">1</string>
-    <string name="_2">2</string>
-    <string name="_3">3</string>
-    <string name="_4">4</string>
+
+    <string name="language_spanish">Español</string>
+    <string name="language_english">English</string>
+    <string name="language_portuguese">Português</string>
+    <string name="language_hindi">हिन्दी (Hindi)</string>
+    <string name="language_french">Français</string>
+    <string name="language_german">Deutsch</string>
+    <string name="language_indonesian">Bahasa Indonesia</string>
+    <string name="language_japanese">日本語 (Nihongo)</string>
+    <string name="language_korean">한국어 (Hangugeo)</string>
+
+    <string name="choose_language">Elige tu idioma</string>
+
+    <string name="language_selection_required_message">Para continuar, por favor selecciona tu idioma preferido de la lista.</string>
+
+    <string name="confirm_change_language_message">¿Estás seguro que quieres cambiar el idioma?</string>
+
+    <string name="language">Idioma</string>
+    <string name="language_subtitle">Cambiar el idioma de la aplicación</string>
+
+    <string name="changing_language">Cambiando idioma…</string>
+
+
+
+
 
 
 </resources>

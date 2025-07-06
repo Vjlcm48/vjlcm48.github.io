@@ -13,7 +13,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.sumamente.R
 import kotlin.math.abs
 
-class Los5MejoresActivity : AppCompatActivity() {
+class Los5MejoresActivity : AppCompatActivity()  {
 
     private lateinit var viewPager: ViewPager2
     private lateinit var btnBack: ImageView

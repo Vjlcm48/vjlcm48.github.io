@@ -1,0 +1,1281 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">HEPTACREATION</string>
+    <string name="loading_text">Chargement…</string>
+    <string name="next_activity_text">Activité suivante</string>
+    <string name="notification_app_name">SumaMente</string>
+    <string name="btn_allow">Autoriser</string>
+    <string name="btn_deny">Ne pas autoriser</string>
+    <string name="notification_text">Voulez-vous permettre à SumaMente de vous envoyer des notifications ?</string>
+    <string name="content_description_bell_icon">Icône de cloche</string>
+    <string name="content_description_icon">Icône officielle de SumaMente</string>
+    <string name="content_description_app_name">Nom de l’application</string>
+    <string name="content_description_notification_text">Question concernant l’autorisation des notifications de l’application SumaMente</string>
+    <string name="content_description_btn_allow">Bouton pour autoriser les notifications</string>
+    <string name="content_description_btn_deny">Bouton pour refuser les notifications</string>
+    <string name="instruction_text">Écris ton nom d’utilisateur.\nUtilise entre 4 et 12 caractères</string>
+    <string name="btn_accept">Accepter</string>
+    <string name="content_description_check_icon">Icône de validation</string>
+    <string name="hint_username_input">Nom d’utilisateur</string>
+    <string name="app_logo">Logo de l’application</string>
+    <string name="trophy">Trophée</string>
+    <string name="settings">Paramètres</string>
+    <string name="home">Accueil</string>
+    <string name="statistics">Statistiques</string>
+    <string name="statistics_text">Classement</string>
+    <string name="username">Nom d’utilisateur</string>
+    <string name="calendar">Calendrier</string>
+    <string name="calendar_text">Défis</string>
+    <string name="close">Fermer</string>
+    <string name="level_locked_message">Terminez les niveaux précédents pour débloquer ce niveau.</string>
+    <string name="level_1">Niveau 1</string>
+    <string name="level_2">Niveau 2</string>
+    <string name="level_3">Niveau 3</string>
+    <string name="level_4">Niveau 4</string>
+    <string name="level_5">Niveau 5</string>
+    <string name="level_6">Niveau 6</string>
+    <string name="level_7">Niveau 7</string>
+    <string name="level_8">Niveau 8</string>
+    <string name="level_9">Niveau 9</string>
+    <string name="level_10">Niveau 10</string>
+    <string name="level_11">Niveau 11</string>
+    <string name="level_12">Niveau 12</string>
+    <string name="level_13">Niveau 13</string>
+    <string name="level_14">Niveau 14</string>
+    <string name="level_15">Niveau 15</string>
+    <string name="level_16">Niveau 16</string>
+    <string name="level_17">Niveau 17</string>
+    <string name="level_18">Niveau 18</string>
+    <string name="level_19">Niveau 19</string>
+    <string name="level_20">Niveau 20</string>
+    <string name="level_21">Niveau 21</string>
+    <string name="level_22">Niveau 22</string>
+    <string name="level_23">Niveau 23</string>
+    <string name="level_24">Niveau 24</string>
+    <string name="level_25">Niveau 25</string>
+    <string name="level_26">Niveau 26</string>
+    <string name="level_27">Niveau 27</string>
+    <string name="level_28">Niveau 28</string>
+    <string name="level_29">Niveau 29</string>
+    <string name="level_30">Niveau 30</string>
+    <string name="level_31">Niveau 31</string>
+    <string name="level_32">Niveau 32</string>
+    <string name="level_33">Niveau 33</string>
+    <string name="level_34">Niveau 34</string>
+    <string name="level_35">Niveau 35</string>
+    <string name="level_36">Niveau 36</string>
+    <string name="level_37">Niveau 37</string>
+    <string name="level_38">Niveau 38</string>
+    <string name="level_39">Niveau 39</string>
+    <string name="level_40">Niveau 40</string>
+    <string name="level_41">Niveau 41</string>
+    <string name="level_42">Niveau 42</string>
+    <string name="level_43">Niveau 43</string>
+    <string name="level_44">Niveau 44</string>
+    <string name="level_45">Niveau 45</string>
+    <string name="level_46">Niveau 46</string>
+    <string name="level_47">Niveau 47</string>
+    <string name="level_48">Niveau 48</string>
+    <string name="level_49">Niveau 49</string>
+    <string name="level_50">Niveau 50</string>
+    <string name="level_51">Niveau 51</string>
+    <string name="level_52">Niveau 52</string>
+    <string name="level_53">Niveau 53</string>
+    <string name="level_54">Niveau 54</string>
+    <string name="level_55">Niveau 55</string>
+    <string name="level_56">Niveau 56</string>
+    <string name="level_57">Niveau 57</string>
+    <string name="level_58">Niveau 58</string>
+    <string name="level_59">Niveau 59</string>
+    <string name="level_60">Niveau 60</string>
+    <string name="level_61">Niveau 61</string>
+    <string name="level_62">Niveau 62</string>
+    <string name="level_63">Niveau 63</string>
+    <string name="level_64">Niveau 64</string>
+    <string name="level_65">Niveau 65</string>
+    <string name="level_66">Niveau 66</string>
+    <string name="level_67">Niveau 67</string>
+    <string name="level_68">Niveau 68</string>
+    <string name="level_69">Niveau 69</string>
+    <string name="level_70">Niveau 70</string>
+    <string name="scroll_view_description">Conteneur défilant pour les niveaux</string>
+    <string name="sound">Son</string>
+    <string name="notifications">Notifications</string>
+    <string name="share">Partager</string>
+    <string name="switch_sound_desc">Activer ou désactiver le son</string>
+    <string name="switch_notifications_desc">Activer ou désactiver les notifications</string>
+    <string name="volume_vibration">Activer ou désactiver les sons</string>
+    <string name="notifications_history">Activer ou désactiver les notifications</string>
+    <string name="profile">Profil</string>
+    <string name="profile_subtitle">Nom d’utilisateur, votre drapeau</string>
+    <string name="share_subtitle">Partager l’application avec des amis</string>
+    <string name="help">Aide</string>
+    <string name="help_subtitle">Comment jouer</string>
+    <string name="home_text">Accueil</string>
+    <string name="ads">Publicité</string>
+    <string name="ads_subtitle">Supprimez les annonces</string>
+    <string name="switch_ads_desc">Activer/désactiver la publicité</string>
+    <string name="level_title">NIVEAU %1$d/70</string>
+    <string name="time_limit_text">Temps max de résolution : %.2f secondes</string>
+    <string name="start_button_text">COMMENCER</string>
+    <string name="close_button_description">Fermer la fenêtre d’instructions</string>
+    <string name="btn_yes">OUI</string>
+    <string name="btn_no">NON</string>
+    <string name="back">Retour</string>
+    <string name="exit_confirmation">Voulez-vous quitter le jeu ?</string>
+    <string name="progress_ring_description">Anneau de progression affichant le temps restant</string>
+    <string name="prompt_choose_correct_answer">CHOISISSEZ LA BONNE\nRÉPONSE</string>
+    <string name="respuesta_1">Réponse 1</string>
+    <string name="respuesta_2">Réponse 2</string>
+    <string name="respuesta_3">Réponse 3</string>
+    <string name="respuesta_4">Réponse 4</string>
+    <string name="score_label">SCORE : %1$d</string>
+    <string name="new_game">NOUVELLE PARTIE</string>
+    <string name="dialog_title">Mode de Réponse</string>
+    <string name="seleccion_simple">Sélection simple</string>
+    <string name="escribe_tu_respuesta">Écris ta réponse</string>
+    <string name="info_seleccion_simple">Informations sur la Sélection simple</string>
+    <string name="info_escribe_respuesta">Informations sur "Écris ta réponse"</string>
+    <string name="check_seleccion_simple">Check de sélection simple</string>
+    <string name="check_escribe_respuesta">Check de "Écris ta réponse"</string>
+    <string name="title_dialog">Titre</string>
+    <string name="dialog_message">Message</string>
+    <string name="close_button_desc">Fermer</string>
+    <string name="selection_simple_title">Sélection simple</string>
+    <string name="selection_simple_message">Choisissez la bonne réponse parmi plusieurs options.</string>
+    <string name="write_answer_title">Écris ta réponse</string>
+    <string name="write_answer_message">Écris manuellement la bonne réponse.</string>
+    <string name="enter_answer_hint">Écris ta réponse</string>
+    <string name="submit">Envoyer</string>
+    <string name="vamos_text">Allons-y</string>
+    <string name="genial">Génial !</string>
+    <string name="buen_trabajo">Bon travail</string>
+    <string name="puntos_obtenidos">Points obtenus : %1$d</string>
+    <string name="clasificacion_cambiada">Nouvelle classification. Voir</string>
+    <string name="repetir_nivel">Répéter le niveau</string>
+    <string name="cerrar">Fermer</string>
+    <string name="perfecto">Parfait !</string>
+    <string name="increible">Incroyable !</string>
+    <string name="asombroso">Épatant !</string>
+    <string name="excelente">Excellent !</string>
+    <string name="fantastico">Fantastique !</string>
+    <string name="imparable">Imbattable !</string>
+    <string name="brillante">Brillant !</string>
+    <string name="magistral">Magistral !</string>
+    <string name="soberbio">Superbe !</string>
+    <string name="fenomenal">Phénoménal !</string>
+    <string name="esplendido">Splendide !</string>
+    <string name="jugar_un_nuevo_nivel">Jouer un nouveau niveau</string>
+    <string name="bien_hecho">Bien joué !</string>
+    <string name="vamos_bien">On avance bien !</string>
+    <string name="gran_esfuerzo">Bel effort !</string>
+    <string name="lo_lograste">Tu as réussi !</string>
+    <string name="buen_avance">Beau progrès !</string>
+    <string name="sigue_asi">Continue comme ça !</string>
+    <string name="asi_es">C’est ça !</string>
+    <string name="muy_bien">Très bien !</string>
+    <string name="casi_perfecto">Presque parfait !</string>
+    <string name="mejorando">En amélioration !</string>
+    <string name="persistencia">Persévérance !</string>
+    <string name="buen_intento">Bon essai !</string>
+    <string name="vas_bien">Tu avances bien !</string>
+    <string name="has_agotado_tus_intentos">Tu as épuisé tes essais !</string>
+    <string name="se_agoto_el_tiempo">Oups ! Le temps est écoulé</string>
+    <string name="tiempo_empleado">Temps : %1$s sec</string>
+    <string name="select_game_to_reset">Sélectionnez le jeu à réinitialiser</string>
+    <string name="check_blue_description">Check bleu</string>
+    <string name="check_description">Check vert indiquant le succès</string>
+
+    <!-- Nombres de juegos y marcas se mantienen igual -->
+    <string name="game_numeros_plus">NÚMEROS⁺</string>
+    <string name="game_deci_plus">DECI⁺</string>
+    <string name="game_mas_plus">MÁS⁺</string>
+    <string name="game_genio_plus">GENIO⁺</string>
+    <string name="game_romas">ROMAS</string>
+
+    <string name="select_data_to_reset">Sélectionnez les données à réinitialiser</string>
+    <string name="reset_score">Réinitialiser le score</string>
+    <string name="reset_response_mode">Réinitialiser le mode de réponse</string>
+    <string name="accept">Accepter</string>
+    <string name="puntaje_actual">Score actuel : %1$d</string>
+    <string name="confirmation_message">Êtes-vous sûr de vouloir réinitialiser les données sélectionnées ?</string>
+    <string name="yes">OUI</string>
+    <string name="no">NON</string>
+    <string name="edit_username_desc">Modifier le nom d’utilisateur</string>
+    <string name="edit_flag_desc">Modifier le drapeau</string>
+    <string name="title_profile_edit">Quelles données souhaitez-vous modifier ?</string>
+    <string name="edit_username">Nom d’utilisateur</string>
+    <string name="edit_flag">Drapeau</string>
+    <string name="star_icon">Icône étoile</string>
+    <string name="default_score">0</string>
+    <string name="reset_progress">Réinitialiser la progression</string>
+    <string name="reset_progress_subtitle">Réinitialiser la progression du jeu</string>
+    <string name="repeated_numbers_message_dinamic">Les nombres %1$s sont répétés. Additionne-les correctement !</string>
+    <string name="game_sumaresta">SUMARESTA</string>
+    <string name="error_invalid_username_length">Le nom doit comporter entre 4 et 12 caractères.</string>
+    <string name="error_username_taken">Oups ! Ce nom est déjà utilisé.\nEssaie-en un autre.</string>
+    <string name="game_alfa_numeros">ALFANÚMEROS</string>
+    <string name="repeated_numbers_message">Les nombres jaunes sont répétés. Additionne-les bien !</string>
+    <string name="repeated_numbers_message_more">Les nombres bleus sont répétés. Additionne-les bien !</string>
+    <string name="negative_numbers_warning">Attention, certains nombres peuvent être %1$s. Additionne-les correctement !</string>
+
+    <string name="country_ad">Andorre</string>
+    <string name="country_ae">Émirats arabes unis</string>
+    <string name="country_af">Afghanistan</string>
+    <string name="country_ag">Antigua-et-Barbuda</string>
+    <string name="country_ai">Anguilla</string>
+    <string name="country_al">Albanie</string>
+    <string name="country_am">Arménie</string>
+    <string name="country_ao">Angola</string>
+    <string name="country_aq">Antarctique</string>
+    <string name="country_ar">Argentine</string>
+    <string name="country_at">Autriche</string>
+    <string name="country_au">Australie</string>
+    <string name="country_aw">Aruba</string>
+    <string name="country_ax">Îles Åland</string>
+    <string name="country_az">Azerbaïdjan</string>
+    <string name="country_ba">Bosnie-Herzégovine</string>
+    <string name="country_bb">Barbade</string>
+    <string name="country_bd">Bangladesh</string>
+    <string name="country_be">Belgique</string>
+    <string name="country_bf">Burkina Faso</string>
+    <string name="country_bg">Bulgarie</string>
+    <string name="country_bh">Bahreïn</string>
+    <string name="country_bi">Burundi</string>
+    <string name="country_bj">Bénin</string>
+    <string name="country_bl">Saint-Barthélemy</string>
+    <string name="country_bm">Bermudes</string>
+    <string name="country_bn">Brunei</string>
+    <string name="country_bo">Bolivie</string>
+    <string name="country_bq">Pays-Bas caribéens</string>
+    <string name="country_br">Brésil</string>
+    <string name="country_bs">Bahamas</string>
+    <string name="country_bt">Bhoutan</string>
+    <string name="country_bv">Île Bouvet</string>
+    <string name="country_bw">Botswana</string>
+
+    <string name="country_ly">Libye</string>
+    <string name="country_ma">Maroc</string>
+    <string name="country_mc">Monaco</string>
+    <string name="country_md">Moldavie</string>
+    <string name="country_me">Monténégro</string>
+    <string name="country_mf">Saint-Martin</string>
+    <string name="country_mg">Madagascar</string>
+    <string name="country_mh">Îles Marshall</string>
+    <string name="country_mk">Macédoine du Nord</string>
+    <string name="country_ml">Mali</string>
+    <string name="country_mm">Myanmar</string>
+    <string name="country_mn">Mongolie</string>
+    <string name="country_mo">Macao</string>
+    <string name="country_mp">Îles Mariannes du Nord</string>
+    <string name="country_mq">Martinique</string>
+    <string name="country_mr">Mauritanie</string>
+    <string name="country_ms">Montserrat</string>
+    <string name="country_mt">Malte</string>
+    <string name="country_mu">Maurice</string>
+    <string name="country_mv">Maldives</string>
+    <string name="country_mw">Malawi</string>
+    <string name="country_mx">Mexique</string>
+    <string name="country_my">Malaisie</string>
+    <string name="country_mz">Mozambique</string>
+    <string name="country_na">Namibie</string>
+    <string name="country_nc">Nouvelle-Calédonie</string>
+    <string name="country_ne">Niger</string>
+    <string name="country_nf">Île Norfolk</string>
+    <string name="country_ng">Nigéria</string>
+    <string name="country_ni">Nicaragua</string>
+    <string name="country_nl">Pays-Bas</string>
+    <string name="country_no">Norvège</string>
+    <string name="country_np">Népal</string>
+    <string name="country_nr">Nauru</string>
+    <string name="country_nu">Niue</string>
+    <string name="country_nz">Nouvelle-Zélande</string>
+    <string name="country_om">Oman</string>
+    <string name="country_pa">Panama</string>
+    <string name="country_pe">Pérou</string>
+    <string name="country_pf">Polynésie française</string>
+    <string name="country_pg">Papouasie-Nouvelle-Guinée</string>
+    <string name="country_ph">Philippines</string>
+    <string name="country_pk">Pakistan</string>
+    <string name="country_pl">Pologne</string>
+    <string name="country_pt">Portugal</string>
+    <string name="country_py">Paraguay</string>
+    <string name="country_qa">Qatar</string>
+    <string name="country_re">La Réunion</string>
+    <string name="country_ro">Roumanie</string>
+    <string name="country_rs">Serbie</string>
+    <string name="country_by">Biélorussie</string>
+    <string name="country_bz">Belize</string>
+    <string name="country_ca">Canada</string>
+    <string name="country_cc">Îles Cocos</string>
+    <string name="country_cd">République démocratique du Congo</string>
+    <string name="country_cf">République centrafricaine</string>
+    <string name="country_cg">Congo</string>
+    <string name="country_ch">Suisse</string>
+    <string name="country_ci">Côte d\'Ivoire</string>
+    <string name="country_ck">Îles Cook</string>
+    <string name="country_cl">Chili</string>
+    <string name="country_cm">Cameroun</string>
+    <string name="country_cn">Chine</string>
+    <string name="country_co">Colombie</string>
+    <string name="country_cr">Costa Rica</string>
+    <string name="country_cu">Cuba</string>
+    <string name="country_cv">Cap-Vert</string>
+    <string name="country_cw">Curaçao</string>
+    <string name="country_cx">Île Christmas</string>
+    <string name="country_cy">Chypre</string>
+    <string name="country_cz">Tchéquie</string>
+    <string name="country_de">Allemagne</string>
+    <string name="country_dj">Djibouti</string>
+    <string name="country_dk">Danemark</string>
+    <string name="country_dm">Dominique</string>
+    <string name="country_dominican_republic">République dominicaine</string>
+    <string name="country_dz">Algérie</string>
+    <string name="country_ec">Équateur</string>
+    <string name="country_ee">Estonie</string>
+    <string name="country_eg">Égypte</string>
+    <string name="country_eh">Sahara occidental</string>
+    <string name="country_er">Érythrée</string>
+    <string name="country_es">Espagne</string>
+    <string name="country_et">Éthiopie</string>
+    <string name="country_fi">Finlande</string>
+    <string name="country_fj">Fidji</string>
+    <string name="country_fk">Îles Malouines</string>
+    <string name="country_fm">Micronésie</string>
+    <string name="country_fo">Îles Féroé</string>
+    <string name="country_fr">France</string>
+    <string name="country_ga">Gabon</string>
+    <string name="country_gb">Royaume-Uni</string>
+    <string name="country_gd">Grenade</string>
+    <string name="country_ge">Géorgie</string>
+    <string name="country_gf">Guyane française</string>
+    <string name="country_gg">Guernesey</string>
+    <string name="country_gh">Ghana</string>
+    <string name="country_gi">Gibraltar</string>
+    <string name="country_gl">Groenland</string>
+    <string name="country_gm">Gambie</string>
+    <string name="country_gn">Guinée</string>
+    <string name="country_gp">Guadeloupe</string>
+    <string name="country_gq">Guinée équatoriale</string>
+    <string name="country_gr">Grèce</string>
+    <string name="country_gs">Géorgie du Sud-et-les Îles Sandwich du Sud</string>
+    <string name="country_gt">Guatemala</string>
+    <string name="country_gu">Guam</string>
+    <string name="country_gw">Guinée-Bissau</string>
+    <string name="country_gy">Guyana</string>
+    <string name="country_hk">Hong Kong</string>
+    <string name="country_hm">Îles Heard-et-MacDonald</string>
+    <string name="country_hn">Honduras</string>
+    <string name="country_hr">Croatie</string>
+    <string name="country_ht">Haïti</string>
+    <string name="country_hu">Hongrie</string>
+    <string name="country_id">Indonésie</string>
+    <string name="country_ie">Irlande</string>
+    <string name="country_il">Israël</string>
+    <string name="country_im">Île de Man</string>
+    <string name="country_in">Inde</string>
+    <string name="country_io">Territoire britannique de l\'océan Indien</string>
+    <string name="country_iq">Irak</string>
+    <string name="country_ir">Iran</string>
+    <string name="country_is">Islande</string>
+    <string name="country_it">Italie</string>
+    <string name="country_je">Jersey</string>
+    <string name="country_jm">Jamaïque</string>
+    <string name="country_jo">Jordanie</string>
+    <string name="country_jp">Japon</string>
+    <string name="country_ke">Kenya</string>
+    <string name="country_kg">Kirghizistan</string>
+    <string name="country_kh">Cambodge</string>
+    <string name="country_ki">Kiribati</string>
+    <string name="country_km">Comores</string>
+    <string name="country_kn">Saint-Christophe-et-Niévès</string>
+    <string name="country_kp">Corée du Nord</string>
+    <string name="country_kr">Corée du Sud</string>
+    <string name="country_kw">Koweït</string>
+    <string name="country_ky">Îles Caïmans</string>
+    <string name="country_kz">Kazakhstan</string>
+    <string name="country_la">Laos</string>
+    <string name="country_lb">Liban</string>
+    <string name="country_lc">Sainte-Lucie</string>
+    <string name="country_li">Liechtenstein</string>
+    <string name="country_lk">Sri Lanka</string>
+    <string name="country_lr">Libéria</string>
+    <string name="country_ls">Lesotho</string>
+    <string name="country_lt">Lituanie</string>
+    <string name="country_lu">Luxembourg</string>
+    <string name="country_lv">Lettonie</string>
+    <string name="country_ru">Russie</string>
+    <string name="country_rw">Rwanda</string>
+    <string name="country_sa">Arabie saoudite</string>
+    <string name="country_sb">Îles Salomon</string>
+    <string name="country_sc">Seychelles</string>
+    <string name="country_sd">Soudan</string>
+    <string name="country_se">Suède</string>
+    <string name="country_sg">Singapour</string>
+    <string name="country_si">Slovénie</string>
+    <string name="country_sk">Slovaquie</string>
+    <string name="country_sl">Sierra Leone</string>
+    <string name="country_sm">Saint-Marin</string>
+    <string name="country_sn">Sénégal</string>
+    <string name="country_so">Somalie</string>
+    <string name="country_sr">Suriname</string>
+    <string name="country_st">Sao Tomé-et-Principe</string>
+    <string name="country_sv">El Salvador</string>
+    <string name="country_sy">Syrie</string>
+    <string name="country_sz">Eswatini</string>
+    <string name="country_td">Tchad</string>
+    <string name="country_tg">Togo</string>
+    <string name="country_th">Thaïlande</string>
+    <string name="country_tj">Tadjikistan</string>
+    <string name="country_tl">Timor oriental</string>
+    <string name="country_tm">Turkménistan</string>
+    <string name="country_tn">Tunisie</string>
+    <string name="country_tr">Turquie</string>
+    <string name="country_tt">Trinité-et-Tobago</string>
+    <string name="country_tw">Taïwan</string>
+    <string name="country_tz">Tanzanie</string>
+    <string name="country_ua">Ukraine</string>
+    <string name="country_ug">Ouganda</string>
+    <string name="country_us">États-Unis</string>
+    <string name="country_uy">Uruguay</string>
+    <string name="country_uz">Ouzbékistan</string>
+    <string name="country_va">Vatican</string>
+    <string name="country_ve">Venezuela</string>
+    <string name="country_vn">Vietnam</string>
+    <string name="country_ye">Yémen</string>
+    <string name="country_za">Afrique du Sud</string>
+    <string name="country_zm">Zambie</string>
+    <string name="country_zw">Zimbabwe</string>
+    <string name="title_select_flag">Sélectionner le drapeau</string>
+    <string name="hint_search_country">Tapez le nom du pays</string>
+    <string name="close_button">Fermer</string>
+    <string name="search_icon">Rechercher</string>
+    <string name="flag_image">Image du drapeau du pays</string>
+    <string name="current_flag">Drapeau actuel</string>
+    <string name="current_flag_image">Image du drapeau actuel</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="confirm_change_flag">Êtes-vous sûr de vouloir changer le drapeau ?</string>
+    <string name="instructions_level_1_10">Additionnez tous les nombres</string>
+    <string name="instructions_level_11_20">Additionnez tous les nombres</string>
+    <string name="instructions_level_31_35">Additionnez tous les nombres</string>
+    <string name="instructions_level_36_40">Additionnez tous les nombres</string>
+    <string name="instructions_level_51_60">Additionnez tous les nombres</string>
+    <string name="exception_first">Additionnez tous les nombres sauf le premier</string>
+    <string name="exception_second">Additionnez tous les nombres sauf le deuxième</string>
+    <string name="exception_third">Additionnez tous les nombres sauf le troisième</string>
+    <string name="exception_last">Additionnez tous les nombres sauf le dernier</string>
+    <string name="default_instructions">Additionnez tous les nombres</string>
+    <string name="instructions_romans_1_10">Additionnez tous les nombres ROMAINS</string>
+    <string name="instructions_romans_11_20">Additionnez tous les nombres ROMAINS</string>
+    <string name="instructions_romans_31_35">Additionnez tous les nombres ROMAINS</string>
+    <string name="instructions_romans_36_40">Additionnez tous les nombres ROMAINS</string>
+    <string name="instructions_romans_51_60">Additionnez tous les nombres ROMAINS</string>
+    <string name="instructions_romans_default">Additionnez tous les nombres ROMAINS</string>
+    <string name="exception_romans_first">Additionnez tous les nombres ROMAINS sauf le premier</string>
+    <string name="exception_romans_second">Additionnez tous les nombres ROMAINS sauf le deuxième</string>
+    <string name="exception_romans_third">Additionnez tous les nombres ROMAINS sauf le troisième</string>
+    <string name="exception_romans_last">Additionnez tous les nombres ROMAINS sauf le dernier</string>
+    <string name="invalid_manual_answer">Veuillez saisir un nombre valide</string>
+    <string name="sound_enabled">Son activé</string>
+    <string name="sound_disabled">Son désactivé</string>
+    <string name="notifications_enabled">Notifications activées</string>
+    <string name="notifications_disabled">Notifications désactivées</string>
+    <string name="ads_enabled">Publicité activée</string>
+    <string name="ads_disabled">Publicité désactivée</string>
+    <string name="share_with_friends">Partager avec des amis sélectionné</string>
+    <string name="error_time_limit_not_found">Limite de temps non trouvée pour le niveau %1$d</string>
+    <string name="text_alfa">ALPHA</string>
+    <string name="text_numeros">NOMBRES</string>
+    <string name="text_suma">ADDITION</string>
+    <string name="text_resta">SOUSTRACTION</string>
+    <string name="toast_select_option">Sélectionnez au moins une option</string>
+    <string name="sum_and_subtract_instruction">Résolvez les opérations en tenant compte des nombres positifs et négatifs.</string>
+    <string name="general_instructions">Additionnez les nombres entiers, décimaux, romains et les lettres. Certains peuvent être négatifs !</string>
+    <string name="escoge_tu_modo_de_respuesta">Choisissez le mode \nde réponse que \nvous préférez</string>
+    <string name="instructions_numeros_intro">
+    Bienvenue dans le \ntutoriel de :
+</string>
+    <string name="entendido">Compris</string>
+    <string name="default_chronometer">00.00</string>
+    <string name="answer_option_1">8</string>
+    <string name="answer_option_2">9</string>
+    <string name="answer_option_3">10</string>
+    <string name="answer_option_4">11</string>
+
+    <string name="answer_deci_option_1">0.8</string>
+    <string name="answer_deci_option_2">0.9</string>
+    <string name="answer_deci_option_3">0.7</string>
+    <string name="answer_deci_option_4">1.2</string>
+
+    <string name="answer_sumaresta_option_1">13</string>
+    <string name="answer_sumaresta_option_2">14</string>
+    <string name="answer_sumaresta_option_3">11</string>
+    <string name="answer_sumaresta_option_4">12</string>
+
+    <string name="formatted_time">Temps utilisé : %s secondes</string>
+    <string name="formatted_points">Points obtenus : %d</string>
+    <string name="chronometer_value">%s</string>
+
+    <string name="tutorial_step_intro_part_a"><![CDATA[
+Nous allons te montrer en 3
+étapes simples
+comment jouer…
+]]></string>
+    <string name="tutorial_step_intro_part_b">Commençons.</string>
+    <string name="tutorial_step_one">Première étape : Décide comment tu veux jouer, c’est toi qui contrôles !</string>
+    <string name="tutorial_step_two">Deuxième étape : Des nombres vont apparaître. Additionne les \npositifs, soustrais les \nnégatifs. \nConcentre-toi et prépare-toi ! \nVoyons un exemple :</string>
+    <string name="tutorial_deci_step_two">Deuxième étape : Des nombres décimaux vont apparaître. Additionne les \npositifs, soustrais les \nnégatifs. \nReste attentif ! \nVoyons un exemple :</string>
+
+    <string name="tutorial_romas_step_two">Deuxième étape : \nDes nombres \nROMAINS vont apparaître. \nAdditionne les positifs, \nsoustrais les négatifs. \nReste attentif ! \nVoyons un exemple :</string>
+
+    <string name="tutorial_alfa_numeros_step_two">Deuxième étape : \nDes lettres et des \nnombres vont apparaître. \nA=1, B=2 etc., etc. \nAdditionne les positifs, \nsoustrais les négatifs. \nReste attentif ! \nVoyons un exemple :</string>
+
+    <string name="tutorial_mas_step_two">Deuxième étape : \nDes lettres, des \nnombres, des nombres ROMAINS \net DÉCIMAUX vont apparaître. \nAdditionne les positifs, \nsoustrais les négatifs. \nReste attentif ! \nVoyons un exemple :</string>
+
+    <string name="tutorial_genio_step_two">Deuxième étape : \nDes lettres, des \nnombres, des fractions \net des RACINES CARRÉES vont apparaître. \nAdditionne les positifs, \nsoustrais les négatifs. \nReste attentif ! \nVoyons un exemple :</string>
+
+    <string name="tutorial_step_three_part_one"><![CDATA[
+Troisième étape : Calcule
+le résultat des
+nombres que tu as vus.
+]]></string>
+    <string name="tutorial_step_three_part_two"><![CDATA[
+Écris ou choisis la
+bonne réponse avant
+que le temps
+ne s’écoule !
+]]></string>
+    <string name="tutorial_result_message"><![CDATA[
+Super ! Maintenant, nous allons voir
+combien de temps tu as utilisé
+et combien de points
+tu as gagnés. 😊
+]]></string>
+    <string name="tutorial_closing_message"><![CDATA[
+Tu es prêt !
+Il est temps de jouer
+et de t’amuser. 🚀
+]]></string>
+
+    <string name="score_format">Points : %d</string>
+
+    <string name="descubre_como_jugar">Découvre comment jouer</string>
+    <string name="jugar">JOUER</string>
+    <string name="repetir">RÉPÉTER</string>
+
+    <string name="difficulty_selection_title">Sélectionne la difficulté</string>
+
+    <string name="difficulty_principiante">Débutant</string>
+    <string name="difficulty_subtitle_principiante">Basique, un jeu d’enfant… 🍰</string>
+
+    <string name="difficulty_avanzado">Avancé</string>
+    <string name="difficulty_subtitle_avanzado">Intéressant, stimulons ces neurones… 🧠</string>
+
+    <string name="difficulty_pro">Pro</string>
+    <string name="difficulty_subtitle_pro">Uniquement pour les élus… 👑</string>
+
+    <string name="difficulty_exit_dialog_title">Confirmation</string>
+    <string name="difficulty_exit_dialog_message">Es-tu sûr de vouloir quitter sans choisir un niveau de difficulté ? Tu devras en choisir un la prochaine fois.</string>
+    <string name="difficulty_exit_dialog_positive">Quitter</string>
+    <string name="difficulty_exit_dialog_negative">Annuler</string>
+
+    <string name="difficulty_one_star">★</string>
+    <string name="difficulty_two_stars">★★</string>
+    <string name="difficulty_three_stars">★★★</string>
+
+    <string name="change_difficulty">Changer la difficulté</string>
+
+    <string name="review_exercise">Vérifier ma réponse</string>
+    <string name="exercise_title">L’exercice était :</string>
+    <string name="correct_answer_format">La bonne réponse est : %d</string>
+    <string name="user_responses_format">Tes réponses étaient : %d %d</string>
+    <string name="level_locked_by_failures">Tu dois terminer le niveau précédent pour débloquer ce niveau à nouveau</string>
+
+    <string name="desafios_mensaje">Défis SumaMente ! Affronte des joueurs du monde entier et gagne des prix. Nous t’avertirons du prochain événement. Prépare-toi à briller !</string>
+
+    <string name="monday_short">Lu</string>
+    <string name="tuesday_short">Ma</string>
+    <string name="wednesday_short">Me</string>
+    <string name="thursday_short">Je</string>
+    <string name="friday_short">Ve</string>
+    <string name="saturday_short">Sa</string>
+    <string name="sunday_short">Di</string>
+
+    <string name="correct_answer_format_deci">Bonne réponse : %s</string>
+    <string name="user_responses_format_deci">Vos réponses : %s</string>
+
+    <string name="skip_tutorial">Ignorer le tutoriel</string>
+
+    <string name="premio_titulo">Vos efforts, vos récompenses…</string>
+    <string name="pin_reconocimiento">Réalisations spéciales</string>
+    <string name="corona_laureles">Vitesse supérieure</string>
+    <string name="medalla">Persévérance constante</string>
+    <string name="trofeo">Maîtrise complète</string>
+
+    <string name="correct_answer_format_romas">Bonne réponse : %s</string>
+    <string name="user_responses_format_romas">Vos réponses : %s</string>
+
+    <string name="clasificaciones_titulo">CLASSEMENTS</string>
+    <string name="clasificaciones_como_funciona">Comment fonctionne le système de classement ?</string>
+    <string name="clasificaciones_ver_mi">Classement mondial</string>
+    <string name="clasificaciones_por_velocidad">Classement par vitesse</string>
+
+    <string name="clasificaciones_titulo_dialog">COMMENT FONCTIONNE LE SYSTÈME DE CLASSEMENT ?</string>
+    <string name="clasificaciones_puntos_correctas">Points pour les bonnes réponses</string>
+    <string name="clasificaciones_puntos_correctas_1">• Chaque jeu vous donne des points lorsque vous répondez correctement</string>
+    <string name="clasificaciones_puntos_correctas_2">• Si vous répondez correctement à toutes vos questions, vous recevez tous vos points</string>
+    <string name="clasificaciones_puntos_correctas_3">• Si vous faites des erreurs, vous recevez moins de points</string>
+    <string name="clasificaciones_puntos_velocidad">Points de vitesse</string>
+    <string name="clasificaciones_puntos_velocidad_1">• Être rapide vous donne plus de points !</string>
+    <string name="clasificaciones_puntos_velocidad_2">• Si vous répondez en 1 seconde, vous recevez les points normaux</string>
+    <string name="clasificaciones_puntos_velocidad_3">• Si vous êtes plus rapide, vous gagnez plus de points !</string>
+    <string name="clasificaciones_puntos_velocidad_4">• Si vous prenez plus de temps, vous recevez moins de points</string>
+    <string name="clasificaciones_juegos_niveles">Jeux et niveaux</string>
+    <string name="clasificaciones_juegos_niveles_1">• Il y a 7 jeux différents : NÚMEROS⁺, DECI⁺, ROMAS, SUMARESTA, ALFANÚMEROS, MÁS⁺ et GENIO⁺</string>
+    <string name="clasificaciones_juegos_niveles_2">• Chaque jeu a 3 niveaux : Débutant, Avancé et Pro</string>
+    <string name="clasificaciones_juegos_niveles_3">• Les jeux plus difficiles et les niveaux plus élevés vous donnent plus de points</string>
+    <string name="clasificaciones_practica">Pratiquez et améliorez-vous !</string>
+    <string name="clasificaciones_practica_1">• Vous pouvez rejouer à n\'importe quel jeu quand vous le souhaitez</string>
+    <string name="clasificaciones_practica_2">• Jouez autant de fois que vous voulez pour améliorer votre temps moyen</string>
+    <string name="clasificaciones_practica_3">• Pratiquez tous les jours pour augmenter votre vitesse et votre précision !</string>
+
+    <string name="pin_victoris">30 niveaux. Aucune erreur. 24 heures. VICTORIS… Seuls les vainqueurs comprendront.</string>
+    <string name="pin_optimum">40 niveaux. Aucune faute. Un seul jour. OPTIMUM… Seuls les optimaux résistent.</string>
+    <string name="pin_invictus">50 niveaux. Imbattable. 24 heures. INVICTUS… Seuls les indomptables y parviennent.</string>
+
+    <string name="medalla_initium_100">Le voyage ne fait que commencer. Atteignez 100 jeux terminés et vous obtiendrez INITIUM.</string>
+    <string name="medalla_fidelis_200">Votre constance sera reconnue. Atteignez 200 jeux et cette médaille sera la vôtre.</string>
+    <string name="medalla_virtus_300">Entraînez-vous chaque jour. En atteignant 300 jeux, vous démontrerez la vertu de la discipline.</string>
+    <string name="medalla_audax_400">Seuls les courageux continuent. Conquérez 400 jeux sans hésiter.</string>
+    <string name="medalla_fortis_500">Votre esprit est ferme. Atteignez 500 jeux et renforcez votre légende.</string>
+    <string name="medalla_tenax_600">Ne vous arrêtez pas. En terminant 600 jeux, votre ténacité brillera.</string>
+    <string name="medalla_intrepidus_700">Affrontez chaque défi sans peur. Cette médaille est à vous en atteignant 700 jeux.</string>
+    <string name="medalla_sapiens_800">La sagesse s\'acquiert par l\'expérience. 800 jeux terminés le prouveront.</string>
+    <string name="medalla_exemplar_900">Soyez l\'exemple. En atteignant 900 jeux, tout le monde saura que vous n\'avez jamais abandonné.</string>
+    <string name="medalla_gloriam_1000">Osez atteindre le sommet. 1000 jeux vous mèneront à la gloire.</string>
+    <string name="medalla_magnus_1100">La grandeur se construit avec l\'effort. Atteignez 1100 jeux et vous recevrez MAGNUS.</string>
+    <string name="medalla_immortalis_1200">Votre héritage transcendera. En terminant 1200 jeux, cette médaille vous immortalisera.</string>
+
+    <string name="corona_volucer_1">Pour l\'esprit le plus rapide. Seul celui qui occupe la première place mérite cette couronne légendaire.</string>
+    <string name="corona_celeris_6">Pour celui qui conquiert la deuxième place en vitesse. La couronne Celeris récompense votre rapidité et votre constance.</string>
+    <string name="corona_velocitas_10">La troisième place en vitesse est également digne d\'honneur. Cette couronne reconnaît votre agilité mentale.</string>
+
+    <string name="trofeo_initia_numeros_principiante">Commencez votre voyage. Maîtrisez NÚMEROS⁺ Débutant et ce trophée sera votre point de départ.</string>
+    <string name="trofeo_constantia_numeros_avanzado">Continuez d\'avancer sans abandonner. Parcourez chaque défi dans NÚMEROS⁺ Avancé.</string>
+    <string name="trofeo_confectus_numeros_pro">Ne laissez rien d\'incomplet. Atteignez la fin de NÚMEROS⁺ Pro et obtenez CONFECTUS.</string>
+
+    <string name="trofeo_via_deci_principiante">Tracez votre chemin parmi les décimales. Terminez DECI⁺ Débutant et commencez à vous démarquer.</string>
+    <string name="trofeo_altus_deci_avanzado">Visez haut. Terminez DECI⁺ Avancé et ALTUS sera à vous.</string>
+    <string name="trofeo_perseverantia_deci_pro">Ne vous arrêtez pas. Conquérez chaque jeu de DECI⁺ Pro avec une discipline inébranlable.</string>
+
+    <string name="trofeo_gradus_romas_principiante">Avancez pas à pas. Surmontez ROMAS Débutant et laissez votre empreinte impériale.</string>
+    <string name="trofeo_fortitudo_romas_avanzado">Démontrez votre force. Affrontez les défis de ROMAS Avancé jusqu\'à la fin.</string>
+    <string name="trofeo_metam_romas_pro">Atteignez l\'objectif romain. Vainquez chaque niveau de ROMAS Pro et conquérez cet emblème.</string>
+
+    <string name="trofeo_fundamentum_alfanumeros_principiante">Construisez la base de votre maîtrise. Terminez ALFANÚMEROS Débutant sans laisser de lacunes.</string>
+    <string name="trofeo_praemium_alfanumeros_avanzado">Gagnez ce prix lettre par lettre. Avancez dans tout ALFANÚMEROS Avancé.</string>
+    <string name="trofeo_glorificus_alfanumeros_pro">Allez vers la gloire. Maîtrisez ALFANÚMEROS Pro et faites briller votre esprit.</string>
+
+    <string name="trofeo_scala_sumaresta_principiante">Montez avec fermeté. Gravissez échelon par échelon jusqu\'à conquérir SUMARESTA Débutant.</string>
+    <string name="trofeo_tenacitas_sumaresta_avanzado">Seuls les tenaces vont loin. Affrontez et terminez SUMARESTA Avancé.</string>
+    <string name="trofeo_perfectus_sumaresta_pro">Recherchez la perfection à chaque coup. Terminez SUMARESTA Pro sans abandonner.</string>
+
+    <string name="trofeo_origo_mas_principiante">Tout commence ici. Surmontez MÁS⁺ Débutant et débloquez votre origine.</string>
+    <string name="trofeo_proficium_mas_avanzado">Faites du progrès votre étendard. Avancez à travers chaque défi de MÁS⁺ Avancé.</string>
+    <string name="trofeo_exemplaritas_mas_pro">Devenez une référence. Terminez MÁS⁺ Pro et honorez votre exemple.</string>
+
+    <string name="trofeo_ascensus_genio_principiante">Commencez l\'ascension vers votre génie. Terminez GENIO⁺ Débutant.</string>
+    <string name="trofeo_magnificus_genio_avanzado">Laissez briller votre intellect. Traversez chaque niveau de GENIO⁺ Avancé.</string>
+    <string name="trofeo_potens_genio_pro">Libérez votre potentiel maximum. Conquérez GENIO⁺ Pro sans regarder en arrière.</string>
+
+    <string name="previous">Précédent</string>
+    <string name="next">Suivant</string>
+
+    <string name="mis_condecoraciones">Mes décorations obtenues</string>
+    <string name="top_10">Top 10</string>
+    <string name="condecoracion_image">Image de décoration</string>
+    <string name="condecoracion_honorabilis">Dixième place. Digne de reconnaissance.</string>
+    <string name="condecoracion_virtuosus">Neuvième place. Maîtrise avec discipline.</string>
+    <string name="condecoracion_insignis">Huitième place. Laisse sa marque dans le classement.</string>
+    <string name="condecoracion_praestans">Septième place. Se distingue à chaque défi.</string>
+    <string name="condecoracion_illustris">Sixième place. Sa lumière ne passe pas inaperçue.</string>
+    <string name="condecoracion_gloriosus">Cinquième place. Triomphe avec honneur.</string>
+    <string name="condecoracion_venerabilis">Quatrième place. Admiré pour sa constance.</string>
+    <string name="condecoracion_magnanimous">Troisième place. Grand en points et en esprit.</string>
+    <string name="condecoracion_summum">Deuxième place. Seul un autre s\'élève plus haut.</string>
+    <string name="condecoracion_excelsitur">Sommet absolu. Occupe la première place du classement mondial.</string>
+
+    <string name="position_1">Nº1</string>
+    <string name="position_2">Nº2</string>
+    <string name="position_3">Nº3</string>
+    <string name="position_4">Nº4</string>
+    <string name="position_5">Nº5</string>
+    <string name="position_6">Nº6</string>
+    <string name="position_7">Nº7</string>
+    <string name="position_8">Nº8</string>
+    <string name="position_9">Nº9</string>
+    <string name="position_10">Nº10</string>
+
+    <string name="user_response_single_format">Votre réponse : %d</string>
+
+    <string name="condecoracion_suprema">Décoration Suprême</string>
+    <string name="apex_supremus_descripcion">Seuls les vainqueurs suprêmes pourront l\'obtenir…</string>
+    <string name="apex_supremus_info">Cette prestigieuse décoration n\'est accordée qu\'à ceux qui complètent tous les défis de SumaMente.</string>
+
+    <string name="ranking_global">Classement Mondial</string>
+    <string name="pais">Pays</string>
+    <string name="puntaje">Score</string>
+    <string name="ranking_sin_datos">Aucune donnée de classement disponible</string>
+    <string name="bandera_pais">Drapeau du pays</string>
+
+    <string name="logro_pin_invictus">L\'excellence vous distingue, 50 défis en un jour, obtenant INVICTUS.</string>
+
+    <string name="logro_medalla_initium">Vous avez terminé 100 parties uniques ! Votre dévouement vous a valu la médaille INITIUM, le début de votre collection.</string>
+
+    <string name="logro_trofeo_initia">Vous avez maîtrisé les nombres ! Vous avez terminé les 70 niveaux de NOMBRES⁺ Débutant, obtenant le trophée INITIA.</string>
+    <string name="logro_trofeo_constantia">Maîtrise numérique avancée ! Vous avez surmonté les 70 niveaux de NOMBRES⁺ Avancé, conquérant le trophée CONSTANTIA.</string>
+    <string name="logro_trofeo_confectus">Expert suprême en nombres ! Les 70 niveaux de NOMBRES⁺ Pro ont cédé devant vous, vous accordant le trophée CONFECTUS.</string>
+
+    <string name="logro_trofeo_via">Début brillant avec les décimales ! Vous avez terminé tous les niveaux de DECI⁺ Débutant, gagnant le trophée VIA.</string>
+    <string name="logro_trofeo_altus">Précision décimale prouvée ! Les 70 niveaux de DECI⁺ Avancé sont vôtres, méritant le prestigieux trophée ALTUS.</string>
+    <string name="logro_trofeo_perseverantia">Maîtrise décimale absolue ! Vous avez conquis tous les niveaux de DECI⁺ Pro, remportant le trophée PERSEVERANTIA.</string>
+
+    <string name="logro_trofeo_gradus">Comme un ancien romain ! Vous avez maîtrisé les 70 niveaux de ROMAS Débutant, obtenant le précieux trophée GRADUS.</string>
+    <string name="logro_trofeo_fortitudo">Puissance impériale en chiffres romains ! Vous avez entièrement surmonté ROMAS Avancé, gagnant le trophée FORTITUDO.</string>
+    <string name="logro_trofeo_metam">Domination romaine totale ! Les 70 défis de ROMAS Pro ont été conquis, vous récompensant avec le glorieux trophée METAM.</string>
+
+    <string name="logro_trofeo_fundamentum">Fondements alphanumériques maîtrisés ! Vous avez terminé ALFANÚMEROS Débutant, obtenant le trophée FUNDAMENTUM.</string>
+    <string name="logro_trofeo_praemium">Génie alphanumérique confirmé ! Les 70 niveaux d\'ALFANÚMEROS Avancé appartiennent au passé, vous récompensant avec le trophée PRAEMIUM.</string>
+    <string name="logro_trofeo_glorificus">Maîtrise alphanumérique suprême ! Vous avez vaincu tous les défis d\'ALFANÚMEROS Pro, atteignant le magnifique trophée GLORIFICUS.</string>
+
+    <string name="logro_trofeo_scala">Calcul mental en ascension ! Vous avez surmonté les 70 niveaux de SUMARESTA Débutant, obtenant le trophée SCALA.</string>
+    <string name="logro_trofeo_tenacitas">Addition et soustraction avec maîtrise ! Tous les niveaux de SUMARESTA Avancé terminés, vous récompensant avec le trophée TENACITAS.</string>
+    <string name="logro_trofeo_perfectus">Perfection dans le calcul ! Vous avez maîtrisé les 70 défis de SUMARESTA Pro, atteignant le convoité trophée PERFECTUS.</string>
+
+    <string name="logro_trofeo_origo">Origine de votre domination mathématique ! Vous avez terminé MÁS⁺ Débutant, gagnant l\'important trophée ORIGO.</string>
+    <string name="logro_trofeo_proficium">Progrès mathématique exemplaire ! Les 70 niveaux de MÁS⁺ Avancé ont cédé, vous accordant le prestigieux trophée PROFICIUM.</string>
+    <string name="logro_trofeo_exemplaritas">Exemple d\'excellence mathématique ! Vous avez surmonté tous les défis de MÁS⁺ Pro, obtenant l\'extraordinaire trophée EXEMPLARITAS.</string>
+
+    <string name="logro_trofeo_ascensus">Ascension vers le génie ! Vous avez terminé les 70 niveaux de GENIO⁺ Débutant, obtenant le convoité trophée ASCENSUS.</string>
+    <string name="logro_trofeo_magnificus">Capacité mentale magnifique ! Vous avez entièrement maîtrisé GENIO⁺ Avancé, gagnant l\'impressionnant trophée MAGNIFICUS.</string>
+    <string name="logro_trofeo_potens">Puissance mentale sans limites ! Les 70 défis de GENIO⁺ Pro ont été conquis, vous couronnant avec le légendaire trophée POTENS.</string>
+
+    <string name="no_condecoraciones">Vous n\'avez encore obtenu aucune décoration. Continuez à jouer pour les obtenir !</string>
+
+    <string name="speed_classification_title">Classification par Vitesse</string>
+    <string name="speed_ranking_title">Classement de Vitesse</string>
+    <string name="select_game_speed">Sélectionnez un jeu pour voir son classement de vitesse</string>
+
+    <string name="time_format_seconds">%s sec</string>
+
+    <string name="ranking_position_header">Pos.</string>
+    <string name="ranking_player_header">Joueur</string>
+    <string name="ranking_time_header">Temps</string>
+
+    <string name="empty_speed_ranking">Aucune donnée de vitesse disponible</string>
+
+    <string name="msg_need_more_games_speed">Jouez au moins 36 niveaux de %1$s, 12 dans chacun des degrés de difficulté pour voir votre classement de vitesse.</string>
+
+    <string name="speed_avg_1">Ta moyenne de vitesse de réponse est : &lt;b&gt;%s sec&lt;/b&gt;.</string>
+    <string name="speed_avg_2">Jusqu\'à présent, ton temps moyen est de &lt;b&gt;%s sec&lt;/b&gt; par réponse.</string>
+    <string name="speed_avg_3">Moyenne de réponse actuelle : &lt;b&gt;%s sec&lt;/b&gt;.</string>
+    <string name="speed_avg_4">Tu marques un temps moyen de &lt;b&gt;%s sec&lt;/b&gt;.</string>
+    <string name="speed_avg_5">Actuellement, tu réponds en moyenne en &lt;b&gt;%s sec&lt;/b&gt;.</string>
+    <string name="speed_avg_6">Temps moyen de réponse : &lt;b&gt;%s sec&lt;/b&gt;.</string>
+    <string name="speed_avg_7">Pour l’instant, ta meilleure moyenne de vitesse est de &lt;b&gt;%s sec&lt;/b&gt;.</string>
+    <string name="speed_avg_8">Rapide ! Ta moyenne jusqu’à maintenant est de &lt;b&gt;%s sec&lt;/b&gt;.</string>
+    <string name="speed_avg_9">En moyenne, tu réponds toutes les &lt;b&gt;%s sec&lt;/b&gt;.</string>
+    <string name="speed_avg_10">Moyenne de vitesse enregistrée : &lt;b&gt;%s sec&lt;/b&gt;.</string>
+    <string name="speed_avg_11">Bon rythme ! Ta moyenne de réponse est de &lt;b&gt;%s sec&lt;/b&gt;.</string>
+    <string name="speed_avg_12">Voilà où tu en es : moyenne de vitesse &lt;b&gt;%s sec&lt;/b&gt; par réponse.</string>
+
+    <string name="speed_info_1">Pour apparaître dans ce classement, il te manque seulement &lt;b&gt;%1$s&lt;/b&gt; parties : &lt;b&gt;%2$s&lt;/b&gt; débutant, &lt;b&gt;%3$s&lt;/b&gt; avancé et &lt;b&gt;%4$s&lt;/b&gt; pro.</string>
+    <string name="speed_info_2">Continue à jouer pour voir ton classement : il manque &lt;b&gt;%1$s&lt;/b&gt; parties (&lt;b&gt;%2$s&lt;/b&gt; déb., &lt;b&gt;%3$s&lt;/b&gt; av., &lt;b&gt;%4$s&lt;/b&gt; pro).</string>
+    <string name="speed_info_3">Tu as encore du chemin à faire, joue &lt;b&gt;%1$s&lt;/b&gt; parties de plus : &lt;b&gt;%2$s&lt;/b&gt; débutant, &lt;b&gt;%3$s&lt;/b&gt; avancé et &lt;b&gt;%4$s&lt;/b&gt; pro pour débloquer le classement.</string>
+    <string name="speed_info_4">%5$s, il te suffit de compléter &lt;b&gt;%1$s&lt;/b&gt; parties : &lt;b&gt;%2$s&lt;/b&gt; débutant, &lt;b&gt;%3$s&lt;/b&gt; avancé et &lt;b&gt;%4$s&lt;/b&gt; pro.</string>
+    <string name="speed_info_5">Il te manque encore un peu, %5$s : &lt;b&gt;%1$s&lt;/b&gt; parties (&lt;b&gt;%2$s&lt;/b&gt; déb., &lt;b&gt;%3$s&lt;/b&gt; av., &lt;b&gt;%4$s&lt;/b&gt; pro) et tu pourras voir ta place dans ce classement.</string>
+    <string name="speed_info_6">Courage, %5$s ! Joue &lt;b&gt;%1$s&lt;/b&gt; parties (&lt;b&gt;%2$s&lt;/b&gt; déb., &lt;b&gt;%3$s&lt;/b&gt; av., &lt;b&gt;%4$s&lt;/b&gt; pro) et tu entreras dans le classement.</string>
+    <string name="speed_info_7">Tu as déjà bien avancé ! Il te manque seulement &lt;b&gt;%1$s&lt;/b&gt; parties : &lt;b&gt;%2$s&lt;/b&gt; débutant, &lt;b&gt;%3$s&lt;/b&gt; avancé et &lt;b&gt;%4$s&lt;/b&gt; pro pour apparaître dans le classement.</string>
+    <string name="speed_info_8">Tu es de plus en plus près de voir ta position. Il manque &lt;b&gt;%1$s&lt;/b&gt; parties (&lt;b&gt;%2$s&lt;/b&gt; déb., &lt;b&gt;%3$s&lt;/b&gt; av., &lt;b&gt;%4$s&lt;/b&gt; pro) pour remplir la condition.</string>
+    <string name="speed_info_9">Le classement t’attend, seulement &lt;b&gt;%1$s&lt;/b&gt; parties de plus : &lt;b&gt;%2$s&lt;/b&gt; débutant, &lt;b&gt;%3$s&lt;/b&gt; avancé et &lt;b&gt;%4$s&lt;/b&gt; pro.</string>
+    <string name="speed_info_10">%5$s, ton effort se voit. Il ne te manque que &lt;b&gt;%1$s&lt;/b&gt; parties : &lt;b&gt;%2$s&lt;/b&gt; débutant, &lt;b&gt;%3$s&lt;/b&gt; avancé et &lt;b&gt;%4$s&lt;/b&gt; pro.</string>
+    <string name="speed_info_11">Très bon progrès, %5$s ! Joue &lt;b&gt;%1$s&lt;/b&gt; parties (&lt;b&gt;%2$s&lt;/b&gt; déb., &lt;b&gt;%3$s&lt;/b&gt; av., &lt;b&gt;%4$s&lt;/b&gt; pro) et tu débloqueras ton classement.</string>
+    <string name="speed_info_12">Continue comme ça, %5$s. Plus que &lt;b&gt;%1$s&lt;/b&gt; parties (&lt;b&gt;%2$s&lt;/b&gt; déb., &lt;b&gt;%3$s&lt;/b&gt; av., &lt;b&gt;%4$s&lt;/b&gt; pro) et tu feras partie du classement de vitesse.</string>
+    <string name="speed_info_13">Tu y es presque ! Il te manque seulement &lt;b&gt;%1$s&lt;/b&gt; parties : &lt;b&gt;%2$s&lt;/b&gt; débutant, &lt;b&gt;%3$s&lt;/b&gt; avancé et &lt;b&gt;%4$s&lt;/b&gt; pro pour apparaître dans le classement.</string>
+    <string name="speed_info_14">Dernière ligne droite : &lt;b&gt;%1$s&lt;/b&gt; parties (&lt;b&gt;%2$s&lt;/b&gt; déb., &lt;b&gt;%3$s&lt;/b&gt; av., &lt;b&gt;%4$s&lt;/b&gt; pro) et tu apparaîtras dans la liste.</string>
+    <string name="speed_info_15">L’objectif est tout près, il ne manque que &lt;b&gt;%1$s&lt;/b&gt; parties (&lt;b&gt;%2$s&lt;/b&gt; débutant, &lt;b&gt;%3$s&lt;/b&gt; avancé et &lt;b&gt;%4$s&lt;/b&gt; pro).</string>
+    <string name="speed_info_16">%5$s, tu y es presque : encore &lt;b&gt;%1$s&lt;/b&gt; parties (&lt;b&gt;%2$s&lt;/b&gt; déb., &lt;b&gt;%3$s&lt;/b&gt; av., &lt;b&gt;%4$s&lt;/b&gt; pro) et ton nom apparaîtra dans le classement.</string>
+    <string name="speed_info_17">Avancée impressionnante, %5$s ! Seulement &lt;b&gt;%1$s&lt;/b&gt; parties (&lt;b&gt;%2$s&lt;/b&gt; déb., &lt;b&gt;%3$s&lt;/b&gt; av., &lt;b&gt;%4$s&lt;/b&gt; pro) et tu seras classé(e).</string>
+    <string name="speed_info_18">C’est la dernière ligne droite, %5$s. Termine &lt;b&gt;%1$s&lt;/b&gt; parties (&lt;b&gt;%2$s&lt;/b&gt; déb., &lt;b&gt;%3$s&lt;/b&gt; av., &lt;b&gt;%4$s&lt;/b&gt; pro) et rejoins les plus rapides.</string>
+
+    <!-- Motivation -->
+    <string name="speed_motiv_1">Tu peux le faire !</string>
+    <string name="speed_motiv_2">Chaque partie compte, continue comme ça.</string>
+    <string name="speed_motiv_3">La vitesse est ton alliée, ne t’arrête pas !</string>
+    <string name="speed_motiv_4">Tu avances bien, %1$s ! Ce n’est que le début.</string>
+    <string name="speed_motiv_5">Petit à petit, %1$s, tu te rapproches de ton objectif.</string>
+    <string name="speed_motiv_6">Tu montres déjà ton potentiel, %1$s !</string>
+    <string name="speed_motiv_7">Tu es déjà dans le rythme, continue ainsi !</string>
+    <string name="speed_motiv_8">Ton effort porte ses fruits.</string>
+    <string name="speed_motiv_9">La persévérance est la clé, ne lâche rien !</string>
+    <string name="speed_motiv_10">Imbattable, %1$s ! Tu te rapproches à chaque fois.</string>
+    <string name="speed_motiv_11">On sent déjà ton progrès, %1$s, ne t’arrête pas !</string>
+    <string name="speed_motiv_12">Beau travail, %1$s ! C’est ainsi qu’on va loin.</string>
+    <string name="speed_motiv_13">Derniers pas, la ligne d’arrivée est proche !</string>
+    <string name="speed_motiv_14">C’est ce que font les champions, et tu en es un !</string>
+    <string name="speed_motiv_15">Ne t’arrête pas maintenant, tu es à un pas du classement !</string>
+    <string name="speed_motiv_16">Inspirant, %1$s ! Le classement est presque à toi.</string>
+    <string name="speed_motiv_17">Wow, %1$s ! Peu de gens vont aussi loin, continue fort.</string>
+    <string name="speed_motiv_18">Tu vas très loin, %1$s ! Montre ce dont tu es capable.</string>
+
+
+    <!-- Ranking global, con y sin usuario -->
+    <string name="msg_need_more_games_global_1">Salut, %1$s ! Joue 36 niveaux pour voir ton classement global.</string>
+    <string name="msg_need_more_games_global_2">%1$s, tu dois jouer 36 niveaux pour débloquer ta place dans le classement global.</string>
+    <string name="msg_need_more_games_global_3">Tu n’apparais pas encore dans le classement, %1$s. Joue 36 niveaux et ton classement global s’affichera ici.</string>
+    <string name="msg_need_more_games_global_4">Allez, %1$s ! Quand tu auras terminé 36 niveaux, tu pourras voir ta position dans le classement global.</string>
+    <string name="msg_need_more_games_global_5">%1$s, ton classement global apparaîtra automatiquement après 36 niveaux joués.</string>
+    <string name="msg_need_more_games_global_6">Prêt pour le défi, %1$s ? Joue 36 niveaux et entre dans le classement global.</string>
+
+
+    <string name="msg_info_global_levels_1">%1$s, tu as joué %2$d niveaux. Il t’en manque %3$d pour entrer dans le classement global.</string>
+    <string name="msg_info_global_levels_2">Beau progrès, %1$s ! Tu as joué %2$d niveaux et il ne t’en manque que %3$d pour voir ton classement.</string>
+    <string name="msg_info_global_levels_3">%1$s, ton compte totalise %2$d niveaux joués. Il t’en manque %3$d pour débloquer le classement global.</string>
+    <string name="msg_info_global_levels_4">%1$s, tu as joué %2$d sur 36 niveaux. Il ne manque que %3$d pour entrer dans le classement.</string>
+    <string name="msg_info_global_levels_5">%1$s, tu as déjà complété %2$d niveaux. Joue encore %3$d pour apparaître dans le classement global.</string>
+    <string name="msg_info_global_levels_6">%1$s, il te reste %3$d niveaux pour atteindre les 36 nécessaires. Tu en as déjà joué %2$d !</string>
+
+
+    <string name="msg_info_global_levels_7">Tu as joué %1$d niveaux. Il t’en manque %2$d pour apparaître dans le classement global.</string>
+    <string name="msg_info_global_levels_8">Tu es sur la bonne voie ! %1$d niveaux joués, plus que %2$d et tu seras dans le classement.</string>
+    <string name="msg_info_global_levels_9">Tu as joué %1$d niveaux. Il t’en manque seulement %2$d pour débloquer ton classement global.</string>
+    <string name="msg_info_global_levels_10">Progrès ! %1$d niveaux joués sur 36. Il reste %2$d pour le classement global.</string>
+    <string name="msg_info_global_levels_11">Tu as déjà complété %1$d niveaux. Il ne manque que %2$d pour voir ta position dans le classement.</string>
+    <string name="msg_info_global_levels_12">Tu es à %2$d niveaux du classement global. Tu en as déjà joué %1$d.</string>
+
+    <string name="msg_motiv_global_levels_1">Tu peux y arriver, %1$s ! Chaque niveau te rapproche du classement global.</string>
+    <string name="msg_motiv_global_levels_2">%1$s, continue comme ça. Le classement global est de plus en plus proche !</string>
+    <string name="msg_motiv_global_levels_3">Ne t’arrête pas, %1$s. Ton effort sera bientôt récompensé !</string>
+    <string name="msg_motiv_global_levels_4">Continue à jouer, %1$s ! Le classement global t’attend.</string>
+    <string name="msg_motiv_global_levels_5">%1$s, chaque partie compte. Tu y es presque pour le classement global !</string>
+    <string name="msg_motiv_global_levels_6">Courage, %1$s ! Bientôt tu verras ton nom parmi les meilleurs.</string>
+
+
+    <string name="msg_motiv_global_levels_7">N’abandonne pas ! Chaque niveau te rapproche du classement global.</string>
+    <string name="msg_motiv_global_levels_8">Tu es tout près ! Encore un petit effort pour y arriver.</string>
+    <string name="msg_motiv_global_levels_9">Continue à avancer ! Le classement global est à portée de main.</string>
+    <string name="msg_motiv_global_levels_10">Excellent travail ! Continue et bientôt tu apparaîtras dans le classement.</string>
+    <string name="msg_motiv_global_levels_11">Encore plus de niveaux ! Le classement global t’attend.</string>
+    <string name="msg_motiv_global_levels_12">L’objectif est proche ! Continue à jouer pour atteindre le classement global.</string>
+
+
+    <!-- IQ+ -->
+    <string name="msg_iqplus_start_1">%1$s, joue 21 parties, au moins une dans chaque jeu et chaque niveau de difficulté… et tu apparaîtras dans le classement IQ+.</string>
+    <string name="msg_iqplus_start_2">Salut, %1$s ! Commence ton parcours dans SumaMente en jouant au moins un niveau dans chaque jeu et chaque difficulté pour participer au classement IQ+.</string>
+    <string name="msg_iqplus_start_3">%1$s, tu n’as pas encore commencé dans le classement IQ+. Joue un niveau dans tous les jeux et tous les niveaux pour voir ta position et construire ton indice.</string>
+    <string name="msg_iqplus_start_4">Allez, %1$s ! Lorsque tu auras complété un niveau dans chaque jeu et difficulté, tu pourras voir ton IQ+ et te comparer aux autres joueurs.</string>
+    <string name="msg_iqplus_start_5">%1$s, la première étape pour te distinguer dans le classement IQ+ est de jouer 21 niveaux, au moins un dans chaque jeu et difficulté. Lance-toi et commence dès aujourd’hui !</string>
+    <string name="msg_iqplus_start_6">Prêt pour un défi, %1$s ? Participe à au moins 21 jeux différents, un dans chaque niveau, et débloque ta place dans le classement IQ+.</string>
+
+    <string name="msg_iqplus_info_1">Ton indice IQ+ actuel est : %1$.2f.</string>
+    <string name="msg_iqplus_info_2">Pour l’instant, ton IQ+ est de %1$.2f points. Continue à jouer pour l’améliorer !</string>
+    <string name="msg_iqplus_info_3">Indice IQ+ provisoire : %1$.2f. Joue dans tous les jeux et tous les niveaux pour entrer dans le classement.</string>
+    <string name="msg_iqplus_info_4">Tu développes ton IQ+ dans SumaMente : %1$.2f.</string>
+    <string name="msg_iqplus_info_5">IQ+ calculé jusqu’à maintenant : %1$.2f. Chaque nouveau niveau compte.</string>
+    <string name="msg_iqplus_info_6">Voici ton IQ+ : %1$.2f. Complète tous les jeux et niveaux pour débloquer le classement !</string>
+
+    <string name="msg_iqplus_levels_info_1">%1$s, tu as joué dans %2$d jeux et niveaux différents. Il t’en manque %3$d pour apparaître dans le classement IQ+.</string>
+    <string name="msg_iqplus_levels_info_2">%1$s, ton compte totalise %2$d parties dans différents jeux et niveaux. Il t’en manque seulement %3$d pour débloquer ton classement IQ+.</string>
+    <string name="msg_iqplus_levels_info_3">%1$s, tu progresses : %2$d joués, %3$d à jouer. Continue ainsi pour atteindre le classement IQ+ !</string>
+    <string name="msg_iqplus_levels_info_4" tools:ignore="StringFormatCount">Tu as joué dans %2$d jeux et niveaux différents. Il en reste %3$d à débloquer pour le classement IQ+.</string>
+    <string name="msg_iqplus_levels_info_5" tools:ignore="StringFormatCount">Ton progrès : %2$d joués, %3$d à jouer. Tu pourras bientôt voir ta position dans le classement IQ+ !</string>
+    <string name="msg_iqplus_levels_info_6" tools:ignore="StringFormatCount">Tu as joué %2$d parties différentes ; lorsque tu en auras complété %3$d de plus, tu apparaîtras dans le classement IQ+.</string>
+
+    <string name="msg_iqplus_motiv_1">Continuez ainsi ! Chaque nouveau jeu vous rapproche de votre place au classement IQ+.</string>
+    <string name="msg_iqplus_motiv_2">Continuez d\'avancer, vous pourrez bientôt vous voir classé et connaître votre position.</string>
+    <string name="msg_iqplus_motiv_3">Vous êtes sur le point de faire partie des meilleurs de SumaMente. Ne vous arrêtez pas !</string>
+    <string name="msg_iqplus_motiv_4">Excellent progrès, %1$s ! Encore un peu et vous rivaliserez avec les meilleurs du classement IQ+.</string>
+    <string name="msg_iqplus_motiv_5">Très bien, %1$s. Chaque niveau vous rapproche de l\'objectif d\'être parmi les meilleurs.</string>
+    <string name="msg_iqplus_motiv_6">%1$s, n\'arrêtez pas maintenant. Vous avez presque atteint le classement IQ+ !</string>
+
+    <string name="clasificaciones_por_iqplus">Classement par indice IQ⁺</string>
+
+    <string name="indice_iqplus">Indice IQ⁺</string>
+
+    <string name="iqplus_ranking_title">Classement de l\'indice IQ⁺</string>
+
+    <string name="share_iqplus_ranking_message">Je suis en position %1$d du classement IQ⁺ de SumaMente avec un IQ⁺ de %2$.3f ! Oserez-vous me dépasser ?</string>
+
+    <string name="precision_global_title">Précision Globale</string>
+    <string name="velocidad_promedio_title">Vitesse Moyenne Globale</string>
+    <string name="precision_global_explanation">La précision globale mesure le pourcentage de succès dans tous vos jeux. Elle est calculée comme :\n\n(Réponses correctes ÷ Total de jeux) × 100%</string>
+    <string name="velocidad_promedio_explanation">La vitesse moyenne globale est le temps moyen que vous mettez pour répondre. Elle est calculée comme :\n\nTemps total ÷ Nombre de jeux terminés</string>
+    <string name="info_precision">Informations sur la précision</string>
+    <string name="info_velocidad">Informations sur la vitesse</string>
+
+    <string name="default_username">Vous</string>
+
+    <string name="date_obtained">Obtenu : %s</string>
+
+    <string name="corona_volucer">VOLUCER</string>
+    <string name="corona_celeris">CELERIS</string>
+    <string name="corona_velocitas">VELOCITAS</string>
+
+    <string name="corona_velocitas_msg_1">Excellente vitesse, <b>%1$s</b> ! Vous avez obtenu la 3e place en <b>%2$s</b>. La couronne VELOCITAS est à vous.</string>
+    <string name="corona_velocitas_msg_2">Rapidité impressionnante en <b>%2$s</b>, <b>%1$s</b> ! Vous avez gagné la couronne VELOCITAS pour votre 3e place.</string>
+    <string name="corona_velocitas_msg_3"><b>%1$s</b>, votre vitesse en <b>%2$s</b> vous a mené au podium. Couronne VELOCITAS débloquée !</string>
+    <string name="corona_velocitas_msg_4">Bronze en vitesse pour <b>%1$s</b> ! La 3e place en <b>%2$s</b> vous octroie la couronne VELOCITAS.</string>
+
+    <string name="corona_celeris_msg_1">Vitesse exceptionnelle, <b>%1$s</b> ! La 2e place en <b>%2$s</b> vous couronne de CELERIS.</string>
+    <string name="corona_celeris_msg_2"><b>%1$s</b>, votre rapidité en <b>%2$s</b> est admirable. La couronne CELERIS est à vous par vos propres mérites !</string>
+    <string name="corona_celeris_msg_3">Argent en vitesse ! <b>%1$s</b> a conquis la 2e place en <b>%2$s</b>, gagnant la couronne CELERIS.</string>
+    <string name="corona_celeris_msg_4">Temps incroyable en <b>%2$s</b>, <b>%1$s</b> ! Votre 2e place vous rend digne de la couronne CELERIS.</string>
+
+    <string name="corona_volucer_msg_1">CHAMPION DE VITESSE ! <b>%1$s</b> domine <b>%2$s</b> avec la 1re place. Couronne VOLUCER conquise !</string>
+    <string name="corona_volucer_msg_2"><b>%1$s</b>, vous êtes la vitesse pure en <b>%2$s</b>. La 1re place vous octroie la prestigieuse couronne VOLUCER.</string>
+    <string name="corona_volucer_msg_3">OR en vitesse pour <b>%1$s</b> ! La domination absolue en <b>%2$s</b> vous couronne de VOLUCER.</string>
+    <string name="corona_volucer_msg_4">Légende de la vitesse ! <b>%1$s</b> conquiert la 1re place en <b>%2$s</b> et s\'empare de la couronne VOLUCER.</string>
+
+    <string name="msg_top10_excelsitur_1">%1$s, vous êtes notre champion mental. La distinction <b>%2$s</b> est à vous en conquérant la <b>1re place</b>. Impressionnante réussite !</string>
+    <string name="msg_top10_excelsitur_2">Bravo, %1$s ! La <b>1re place</b> vous couronne de la distinction <b>%2$s</b>. Votre intelligence n\'a pas de limites !</string>
+    <string name="msg_top10_excelsitur_3">Félicitations, %1$s ! Vous avez atteint la <b>1re place</b> et avec elle, la tant convoitée <b>%2$s</b>. Continuez à régner !</string>
+
+    <string name="msg_top10_summum_1">%1$s, vous étiez à un pas du sommet. La <b>2e place</b> vous distingue avec la décoration <b>%2$s</b>. Ne vous arrêtez pas !</string>
+    <string name="msg_top10_summum_2">Excellent, %1$s ! La <b>2e place</b> mondiale est à vous, ainsi que la distinction <b>%2$s</b>. Continuez à vous dépasser !</string>
+    <string name="msg_top10_summum_3">Fierté totale, %1$s : vous avez obtenu la décoration <b>%2$s</b> pour votre <b>2e place</b>. Une grande réussite !</string>
+
+    <string name="msg_top10_magnanimous_1">%1$s, votre génialité vous a mené à la <b>3e place</b> mondiale. La distinction <b>%2$s</b> est la preuve de votre adresse.</string>
+    <string name="msg_top10_magnanimous_2">Énorme, %1$s ! <b>%2$s</b> brille pour vous grâce à votre <b>3e place</b>. Vous êtes un exemple pour tous !</string>
+    <string name="msg_top10_magnanimous_3">%1$s, votre talent ne passe pas inaperçu : la <b>3e place</b> et la décoration <b>%2$s</b> sont déjà à vous.</string>
+
+    <string name="msg_top10_venerabilis_1">%1$s, l\'admirable <b>%2$s</b> reconnaît votre arrivée à la <b>4e place</b> mondiale. Continuez à inspirer !</string>
+    <string name="msg_top10_venerabilis_2">Force et constance, %1$s ! La <b>4e place</b> est à vous et vous l\'accompagnez de la décoration <b>%2$s</b>.</string>
+    <string name="msg_top10_venerabilis_3">%1$s, atteindre la <b>4e place</b> et recevoir la décoration <b>%2$s</b> est la preuve de votre grande capacité.</string>
+
+    <string name="msg_top10_gloriosus_1">Célébration, %1$s ! Vous avez gagné la décoration <b>%2$s</b> pour votre <b>5e place</b> au classement mondial.</string>
+    <string name="msg_top10_gloriosus_2">%1$s, votre effort vous place à la <b>5e place</b> et vous octroie la décoration <b>%2$s</b>. Continuez de briller !</string>
+    <string name="msg_top10_gloriosus_3">%1$s, la <b>5e place</b> est à vous et la décoration <b>%2$s</b> reconnaît votre dévouement et votre engagement.</string>
+
+    <string name="msg_top10_illustris_1">%1$s, la brillante décoration <b>%2$s</b> est à vous après avoir atteint la <b>6e place</b>. Quel talent !</string>
+    <string name="msg_top10_illustris_2">Incroyable, %1$s ! Vous avez atteint la <b>6e place</b> et reçu l\'illustre <b>%2$s</b>. En avant pour plus !</string>
+    <string name="msg_top10_illustris_3">%1$s, votre nom brille à la <b>6e place</b> et la décoration <b>%2$s</b> le confirme.</string>
+
+    <string name="msg_top10_praestans_1">%1$s, votre prestige grandit : la <b>7e place</b> et la décoration <b>%2$s</b> font déjà partie de votre histoire.</string>
+    <string name="msg_top10_praestans_2">Excellent travail, %1$s ! <b>%2$s</b> est votre récompense pour avoir atteint la <b>7e place</b> mondiale.</string>
+    <string name="msg_top10_praestans_3">%1$s, vous vous distinguez parmi des milliers : la <b>7e place</b> vous octroie la décoration <b>%2$s</b>.</string>
+
+    <string name="msg_top10_insignis_1">%1$s, votre nom se démarque à la <b>8e place</b> mondiale. Vous avez gagné la distinguée <b>%2$s</b>.</string>
+    <string name="msg_top10_insignis_2">Quelle fierté, %1$s ! La <b>8e place</b> est à vous et avec elle la décoration <b>%2$s</b>. Continuez à grandir !</string>
+    <string name="msg_top10_insignis_3">%1$s, votre habileté vous positionne à la <b>8e place</b>, obtenant la décoration <b>%2$s</b>.</string>
+
+    <string name="msg_top10_virtuosus_1">%1$s, votre effort est récompensé : la décoration <b>%2$s</b> est à vous après avoir atteint la <b>9e place</b>.</string>
+    <string name="msg_top10_virtuosus_2">Continuez ainsi, %1$s ! <b>%2$s</b> vous est offerte grâce à votre excellente <b>9e place</b>.</string>
+    <string name="msg_top10_virtuosus_3">%1$s, atteindre la <b>9e place</b> mondiale vous transforme en un véritable <b>%2$s</b>.</string>
+
+    <string name="msg_top10_honorabilis_1">%1$s, vous y êtes parvenu ! La <b>10e place</b> mondiale vous octroie la décoration <b>%2$s</b>. Profitez de cet honneur !</string>
+    <string name="msg_top10_honorabilis_2">%1$s, votre nom apparaît parmi les grands : <b>%2$s</b> et la <b>10e place</b> vous appartiennent désormais.</string>
+    <string name="msg_top10_honorabilis_3">Vous inspirez tout le monde, %1$s ! La décoration <b>%2$s</b> reconnaît votre <b>10e place</b> au classement.</string>
+
+    <!-- TÍTULOS DE MEDALLAS -->
+    <string name="medalla_titulo_initium">🏅 MÉDAILLE INITIUM CONQUISE ! 🏅</string>
+    <string name="medalla_titulo_fidelis">🎖️ EXPLOIT FIDELIS DÉBLOQUÉ ! 🎖️</string>
+    <string name="medalla_titulo_virtus">⭐ HONNEUR VIRTUS ATTEINT ! ⭐</string>
+    <string name="medalla_titulo_audax">🔥 DISTINCTION AUDAX GAGNÉE ! 🔥</string>
+    <string name="medalla_titulo_fortis">💪 MÉDAILLE FORTIS OBTENUE ! 💪</string>
+    <string name="medalla_titulo_tenax">🎯 RECONNAISSANCE TENAX À VOUS ! 🎯</string>
+    <string name="medalla_titulo_intrepidus">⚡ GLOIRE INTREPIDUS ACCOMPLIE ! ⚡</string>
+    <string name="medalla_titulo_sapiens">🧠 SAGESSE SAPIENS MAÎTRISÉE ! 🧠</string>
+    <string name="medalla_titulo_exemplar">👑 TITRE EXEMPLAR COURONNÉ ! 👑</string>
+    <string name="medalla_titulo_gloriam">🌟 GLORIAM SUPRÊME ATTEINTE ! 🌟</string>
+    <string name="medalla_titulo_magnus">🏆 GRANDEUR MAGNUS CONQUISE ! 🏆</string>
+    <string name="medalla_titulo_immortalis">✨ LÉGENDE IMMORTALIS FORGÉE ! ✨</string>
+
+    <!-- MENSAJES REUTILIZABLES DE MEDALLAS -->
+    <string name="medalla_desc_initium">Vous avez terminé 100 parties uniques ! Votre dévouement vous a valu la médaille INITIUM, le début de votre collection.</string>
+    <string name="medalla_desc_fidelis">200 parties terminées ! Votre constance est admirable, obtenant ainsi la médaille FIDELIS.</string>
+    <string name="medalla_desc_virtus">La médaille VIRTUS est vôtre pour avoir surmonté 300 défis différents. Votre courage mental se démontre à chaque partie !</string>
+    <string name="medalla_desc_audax">400 parties maîtrisées ! Votre audace vous a menés à conquérir la prestigieuse médaille AUDAX.</string>
+    <string name="medalla_desc_fortis">Vous avez démontré une force mentale dans 500 parties distinctes, méritant l\'exceptionnelle médaille FORTIS.</string>
+    <string name="medalla_desc_tenax">La persévérance a sa récompense ! 600 parties terminées vous couronnent avec la médaille TENAX.</string>
+    <string name="medalla_desc_intrepidus">Votre esprit intrépide a surmonté 700 défis, vous accordant la respectée médaille INTREPIDUS.</string>
+    <string name="medalla_desc_sapiens">La sagesse s\'acquiert par la pratique : 800 parties terminées vous rendent digne de la médaille SAPIENS.</string>
+    <string name="medalla_desc_exemplar">Vous êtes un exemple de détermination ! 900 parties surmontées vous ont accordé l\'exemplaire médaille EXEMPLAR.</string>
+    <string name="medalla_desc_gloriam">Gloire à votre persévérance ! Vous avez conquis 1000 défis, atteignant la glorieuse médaille GLORIAM.</string>
+    <string name="medalla_desc_magnus">Exploit magnifique ! En terminant 1100 parties différentes, vous avez obtenu la grandiose médaille MAGNUS.</string>
+    <string name="medalla_desc_immortalis">Exploit immortel ! Vous avez culminé 1200 défis uniques, vous consacrant avec la légendaire médaille IMMORTALIS.</string>
+
+    <!-- MENSAJES DE MOTIVACIÓN DE MEDALLAS -->
+    <string name="medalla_motiv_initium">⭐ Objectif suivant : FIDELIS - terminez 100 nouveaux niveaux et cette médaille sera vôtre</string>
+    <string name="medalla_motiv_fidelis">🎯 Prochain défi : VIRTUS - ajoutez 100 parties de plus et vous débloquerez votre prochain exploit</string>
+    <string name="medalla_motiv_virtus">🚀 Votre prochaine conquête : AUDAX - 100 niveaux supplémentaires vous attendent</string>
+    <string name="medalla_motiv_audax">💫 Cap sur la grandeur : FORTIS - continuez avec 100 nouvelles parties</string>
+    <string name="medalla_motiv_fortis">⚡ Avancez vers : TENAX - 100 défis de plus et la gloire sera vôtre</string>
+    <string name="medalla_motiv_tenax">🔥 À l\'horizon : INTREPIDUS - persistez 100 parties de plus pour l\'atteindre</string>
+    <string name="medalla_motiv_intrepidus">🧠 Chemin vers la sagesse : SAPIENS - 100 nouveaux niveaux vous en rapprochent</string>
+    <string name="medalla_motiv_sapiens">👑 Votre destin : EXEMPLAR - terminez 100 parties supplémentaires et soyez un exemple</string>
+    <string name="medalla_motiv_exemplar">🌟 La gloire vous attend : GLORIAM - seulement 100 niveaux de plus vers le sommet</string>
+    <string name="medalla_motiv_gloriam">🏆 Grandeur proche : MAGNUS - 100 défis de plus pour la magnificence</string>
+    <string name="medalla_motiv_magnus">✨ Vers l\'immortalité : IMMORTALIS - 100 parties finales pour la légende</string>
+    <string name="medalla_motiv_immortalis">🏆 Collection de médailles COMPLÈTE ! Vous êtes une légende de SumaMente !</string>
+
+    <!-- CONTADOR DINÁMICO DE MEDALLAS -->
+    <string name="medalla_contador_progreso">📈 Vous avez %1$d médailles, il en manque %2$d</string>
+
+    <!-- Accessibility descriptions for medal dialog -->
+    <string name="medal_circle_background">Cercle d\'arrière-plan pour médaille</string>
+    <string name="medal_image">Image de la médaille obtenue</string>
+
+    <!-- TÍTULOS DE DIÁLOGO PARA TROFEOS -->
+    <string name="trofeo_titulo_initia">🏆 TROPHÉE INITIA CONQUIS ! 🏆</string>
+    <string name="trofeo_titulo_constantia">🏆 TROPHÉE CONSTANTIA OBTENU ! 🏆</string>
+    <string name="trofeo_titulo_confectus">🏆 TROPHÉE CONFECTUS GAGNÉ ! 🏆</string>
+    <string name="trofeo_titulo_via">🏆 TROPHÉE VIA DÉBLOQUÉ ! 🏆</string>
+    <string name="trofeo_titulo_altus">🏆 TROPHÉE ALTUS ATTEINT ! 🏆</string>
+    <string name="trofeo_titulo_perseverantia">🏆 TROPHÉE PERSEVERANTIA ACCOMPLI ! 🏆</string>
+    <string name="trofeo_titulo_gradus">🏆 TROPHÉE GRADUS CONQUIS ! 🏆</string>
+    <string name="trofeo_titulo_fortitudo">🏆 TROPHÉE FORTITUDO DOMINÉ ! 🏆</string>
+    <string name="trofeo_titulo_metam">🏆 TROPHÉE METAM COURONNÉ ! 🏆</string>
+    <string name="trofeo_titulo_fundamentum">🏆 TROPHÉE FUNDAMENTUM CIMENTÉ ! 🏆</string>
+    <string name="trofeo_titulo_praemium">🏆 TROPHÉE PRAEMIUM RÉCOMPENSÉ ! 🏆</string>
+    <string name="trofeo_titulo_glorificus">🏆 TROPHÉE GLORIFICUS GLORIFIÉ ! 🏆</string>
+    <string name="trofeo_titulo_scala">🏆 TROPHÉE SCALA ESCALADÉ ! 🏆</string>
+    <string name="trofeo_titulo_tenacitas">🏆 TROPHÉE TENACITAS TREMPÉ ! 🏆</string>
+    <string name="trofeo_titulo_perfectus">🏆 TROPHÉE PERFECTUS PERFECTIONNÉ ! 🏆</string>
+    <string name="trofeo_titulo_origo">🏆 TROPHÉE ORIGO ORIGINÉ ! 🏆</string>
+    <string name="trofeo_titulo_proficium">🏆 TROPHÉE PROFICIUM PROGRESSÉ ! 🏆</string>
+    <string name="trofeo_titulo_exemplaritas">🏆 TROPHÉE EXEMPLARITAS EXEMPLIFIÉ ! 🏆</string>
+    <string name="trofeo_titulo_ascensus">🏆 TROPHÉE ASCENSUS ASCENDÉ ! 🏆</string>
+    <string name="trofeo_titulo_magnificus">🏆 TROPHÉE MAGNIFICUS MAGNIFIÉ ! 🏆</string>
+    <string name="trofeo_titulo_potens">🏆 TROPHÉE POTENS POTENTIALISÉ ! 🏆</string>
+
+    <!-- CONTADOR DINÁMICO DE TROFEOS -->
+    <string name="trofeo_contador_progreso">🏆 Vous avez %1$d trophées, il en manque %2$d</string>
+
+    <string name="trofeo_motiv_1">🏆 C\'est votre premier trophée ! Il vous en manque 20 de plus à conquérir</string>
+    <string name="trofeo_motiv_21">🏆 COLLECTION DE TROPHÉES COMPLÈTE ! Vous êtes un maître de SumaMente !</string>
+
+    <!-- MENSAJE DOBLE CELEBRACIÓN -->
+    <string name="doble_celebracion_titulo">🎊 DOUBLE CÉLÉBRATION ! 🎊</string>
+    <string name="doble_celebracion_mensaje">Vous avez obtenu une nouvelle médaille et un nouveau trophée ! Nous célébrons vos mérites exceptionnels</string>
+
+    <!-- 1.1 - DOBLE CELEBRACIÓN (ÚLTIMO TROFEO + APEX SUPREMUS) -->
+    <string name="doble_celebracion_apex_titulo">🏆✨ DOUBLE CÉLÉBRATION SUPRÊME ! ✨🏆</string>
+    <string name="doble_celebracion_apex_mensaje">Vous avez obtenu le dernier trophée qui vous manquait et la glorieuse décoration APEX SUPREMUS. Le SOMMET vous appartient ! 👑</string>
+
+    <!-- 1.2 - ANIMACIÓN APEX SUPREMUS -->
+    <string name="apex_titulo">🌟 APEX SUPREMUS ACCOMPLI ! 🌟</string>
+    <string name="apex_descripcion">1490 niveaux terminés, vous êtes digne d\'APEX SUPREMUS ! 🏆✨ Votre dévouement et maîtrise mentale vous ont menés au sommet absolu de SumaMente. 👑</string>
+
+    <!-- 1.3 - NOMBRE PARA "MIS CONDECORACIONES LOGRADAS" -->
+
+    <string name="ranking_integral_s">Classement Intégral S⁺ :</string>
+
+    <!-- Mensajes informativos y motivacionales cuando el usuario ya está en 1-8 rankings -->
+    <string name="ranking_integral_progreso_1">Vous êtes sur la bonne voie, %1$s ! Vous figurez déjà dans %2$d classements de SumaMente. Il ne vous en manque que %3$d pour accéder au Classement Intégral exclusif.</string>
+    <string name="ranking_integral_progreso_2">%1$s, votre avancée est notable : vous êtes présent dans %2$d classements. Conquérez les %3$d restants pour faire partie de l\'élite !</string>
+    <string name="ranking_integral_progreso_3">Félicitations %1$s ! Vous avez réussi à entrer dans %2$d classements. Il vous en manque %3$d pour atteindre le défi intégral.</string>
+    <string name="ranking_integral_progreso_4">%1$s, votre nom apparaît déjà dans %2$d classements. Seulement %3$d de plus et vous débloquerez le Classement Intégral.</string>
+    <string name="ranking_integral_progreso_5">Continuez ainsi, %1$s ! Vous êtes dans %2$d des 9 classements. Avancez un peu plus et il ne vous en manque que %3$d.</string>
+    <string name="ranking_integral_progreso_6">%1$s, chaque classement ajouté vous rapproche de l\'objectif. Maintenant vous figurez dans %2$d et il vous en manque %3$d. N\'arrêtez pas !</string>
+    <string name="ranking_integral_progreso_7">Allez %1$s ! Votre progrès est réel : vous êtes déjà dans %2$d classements et il vous en reste %3$d à conquérir.</string>
+    <string name="ranking_integral_progreso_8">%1$s, faire partie du Classement Intégral est proche : %2$d atteints, %3$d à accomplir.</string>
+    <string name="ranking_integral_progreso_9">Votre nom ressort dans %2$d classements, %1$s. Seulement %3$d de plus et vous ferez partie des meilleurs.</string>
+    <string name="ranking_integral_progreso_10">%1$s, ajoutez un autre exploit ! Vous êtes déjà dans %2$d classements. Il en manque %3$d pour atteindre l\'objectif intégral.</string>
+    <string name="ranking_integral_progreso_11">%1$s, vous surmontez les défis : %2$d classements ont déjà votre nom. Allez chercher les %3$d qui vous manquent !</string>
+    <string name="ranking_integral_progreso_12">Avancée incroyable, %1$s ! Vous apparaissez dans %2$d classements et il ne manque que %3$d pour le grand objectif.</string>
+
+    <!-- Messages for rankings where the user ALREADY appears -->
+    <string name="ranking_estado_aparece_1">Tu apparais déjà</string>
+    <string name="ranking_estado_aparece_2">Conquis !</string>
+    <string name="ranking_estado_aparece_3">Présent !</string>
+    <string name="ranking_estado_aparece_4">Atteint</string>
+    <string name="ranking_estado_aparece_5">Réalisé !</string>
+
+    <!-- Messages for rankings where the user does NOT appear -->
+    <string name="ranking_estado_no_aparece_1">Tu n’apparais pas encore</string>
+    <string name="ranking_estado_no_aparece_2">En attente</string>
+    <string name="ranking_estado_no_aparece_3">À atteindre</string>
+    <string name="ranking_estado_no_aparece_4">Pas encore</string>
+    <string name="ranking_estado_no_aparece_5">Non enregistré</string>
+
+    <string name="ranking_global_name">1.- Ranking Global :</string>
+    <string name="ranking_vel_numeros">2.- R. Vitesse NÚMEROS⁺ :</string>
+    <string name="ranking_vel_deci">3.- R. Vitesse DECI⁺ :</string>
+    <string name="ranking_vel_alfanumeros">4.- R. Vitesse ALFANÚMEROS⁺ :</string>
+    <string name="ranking_vel_romas">5.- R. Vitesse ROMAS⁺ :</string>
+    <string name="ranking_vel_sumaresta">6.- R. Vitesse SUMARESTA⁺ :</string>
+    <string name="ranking_vel_mas">7.- R. Vitesse MÁS⁺ :</string>
+    <string name="ranking_vel_genios">8.- R. Vitesse GENIO⁺ :</string>
+    <string name="ranking_iq">9.- Ranking de l’indice IQ⁺ :</string>
+
+    <string name="clasificacion_integral_s">Clasificación Integral S⁺</string>
+
+    <!-- Combined message for integral ranking -->
+    <string name="ranking_integral_combined_message">%1$s\n\n%2$s</string>
+
+    <!-- Progress indicator -->
+    <string name="ranking_progress_indicator">%1$d/9 rankings</string>
+
+    <!-- Arrays for integral ranking info messages -->
+    <string-array name="ranking_integral_info_messages">
+        <item>Salut, %1$s ! Pour apparaître dans la Clasificación Integral S⁺, tu dois être présent dans les 9 rankings de SumaMente.</item>
+        <item>%1$s, la Clasificación Integral S⁺ est réservée à ceux qui figurent dans tous les rankings de l’application.</item>
+        <item>%1$s, tu ne remplis pas encore les conditions pour la Clasificación Integral. Tu dois apparaître dans les 9 rankings.</item>
+        <item>Allez, %1$s ! La Clasificación Integral S⁺ t’attend lorsque tu seras dans tous les rankings.</item>
+        <item>%1$s, ta clasificación integral apparaîtra lorsque tu participeras dans les 9 rankings de SumaMente.</item>
+        <item>Prêt pour le défi, %1$s ? Accède à tous les rankings et débloque la Clasificación Integral S⁺.</item>
+    </string-array>
+
+    <!-- Arrays for motivational messages -->
+    <string-array name="ranking_integral_motiv_messages">
+        <item>Tu peux le faire ! Chaque ranking débloqué te rapproche de l’élite.</item>
+        <item>L’exclusivité a un prix. Montre que tu mérites d’être parmi les meilleurs !</item>
+        <item>Ne t’arrête pas ! La Clasificación Integral S⁺ est réservée aux plus dévoués.</item>
+        <item>Chaque partie compte. Continue d’avancer vers le sommet absolu !</item>
+        <item>L’objectif est clair ! Maîtrise tous les rankings et rejoins l’élite de SumaMente.</item>
+        <item>La persévérance est la clé ! Chaque nouveau ranking te rapproche de la gloire intégrale.</item>
+    </string-array>
+
+
+    <!-- Array pour les messages de progrès (en utilisant ceux qui existent déjà) -->
+    <string-array name="ranking_integral_progreso_messages">
+        <item>@string/ranking_integral_progreso_1</item>
+        <item>@string/ranking_integral_progreso_2</item>
+        <item>@string/ranking_integral_progreso_3</item>
+        <item>@string/ranking_integral_progreso_4</item>
+        <item>@string/ranking_integral_progreso_5</item>
+        <item>@string/ranking_integral_progreso_6</item>
+        <item>@string/ranking_integral_progreso_7</item>
+        <item>@string/ranking_integral_progreso_8</item>
+        <item>@string/ranking_integral_progreso_9</item>
+        <item>@string/ranking_integral_progreso_10</item>
+        <item>@string/ranking_integral_progreso_11</item>
+        <item>@string/ranking_integral_progreso_12</item>
+    </string-array>
+
+    <!-- Array pour les états de classement (en utilisant ceux qui existent déjà) -->
+    <string-array name="ranking_estado_aparece_messages">
+        <item>@string/ranking_estado_aparece_1</item>
+        <item>@string/ranking_estado_aparece_2</item>
+        <item>@string/ranking_estado_aparece_3</item>
+        <item>@string/ranking_estado_aparece_4</item>
+        <item>@string/ranking_estado_aparece_5</item>
+    </string-array>
+
+    <string-array name="ranking_estado_no_aparece_messages">
+        <item>@string/ranking_estado_no_aparece_1</item>
+        <item>@string/ranking_estado_no_aparece_2</item>
+        <item>@string/ranking_estado_no_aparece_3</item>
+        <item>@string/ranking_estado_no_aparece_4</item>
+        <item>@string/ranking_estado_no_aparece_5</item>
+    </string-array>
+
+    <string name="integral_ranking_scroll_description">Contenu défilable du classement intégral</string>
+
+    <string name="condecoracion_discipulus_optimus_7">DISCIPULUS OPTIMUS</string>
+    <string name="condecoracion_intellectus_primus_6">INTELLECTUS PRIMUS</string>
+    <string name="condecoracion_consilium_magnus_5">CONSILIUM MAGNUS</string>
+    <string name="condecoracion_doctrinae_princeps_4">DOCTRINAE PRINCEPS</string>
+    <string name="condecoracion_luminis_rex_3">LUMINIS REX</string>
+    <string name="condecoracion_mentis_aurea_2">MENTIS AUREA</string>
+    <string name="condecoracion_sapiens_supremus_1">SAPIENS SUPREMUS</string>
+
+    <string name="significado_discipulus_optimus_7">Le meilleur étudiant</string>
+    <string name="significado_intellectus_primus_6">Premier en intelligence</string>
+    <string name="significado_consilium_magnus_5">Grande sagesse</string>
+    <string name="significado_doctrinae_princeps_4">Prince du savoir</string>
+    <string name="significado_luminis_rex_3">Roi de la lumière</string>
+    <string name="significado_mentis_aurea_2">Esprit doré</string>
+    <string name="significado_sapiens_supremus_1">Le plus sage</string>
+
+    <string name="los_7_mejores">Les 7 meilleurs</string>
+
+    <string name="condecoracion_sapiens_supremus">SAPIENS SUPREMUS</string>
+    <string name="condecoracion_mentis_aurea">MENTIS AUREA</string>
+    <string name="condecoracion_luminis_rex">LUMINIS REX</string>
+    <string name="condecoracion_doctrinae_princeps">DOCTRINAE PRINCEPS</string>
+    <string name="condecoracion_consilium_magnus">CONSILIUM MAGNUS</string>
+    <string name="condecoracion_intellectus_primus">INTELLECTUS PRIMUS</string>
+    <string name="condecoracion_discipulus_optimus">DISCIPULUS OPTIMUS</string>
+
+    <string name="logro_iq7_sapiens_supremus">
+Vous avez atteint le sommet de l\'intellect ! Première place au classement IQ⁺ et maintenant détenteur de la suprême distinction SAPIENS SUPREMUS.
+</string>
+
+    <string name="logro_iq7_mentis_aurea">
+Esprit doré ! Votre acuité vous a mené à la deuxième place du classement IQ⁺, conquérant la distinction MENTIS AUREA.
+</string>
+
+    <string name="logro_iq7_luminis_rex">
+Roi de la lumière académique ! La troisième place du classement IQ⁺ est à vous, brillant avec la distinction LUMINIS REX.
+</string>
+
+    <string name="logro_iq7_doctrinae_princeps">
+Prince du savoir ! Vous avez atteint la quatrième place du classement IQ⁺ et la distinction DOCTRINAE PRINCEPS est à vous.
+</string>
+
+    <string name="logro_iq7_consilium_magnus">
+Grand conseiller ! Votre sagesse vous place à la cinquième place du classement IQ⁺ et vous octroie la distinction CONSILIUM MAGNUS.
+</string>
+
+    <string name="logro_iq7_intellectus_primus">
+Premier intellect ! Sixième au classement IQ⁺, vous vous distinguez avec la distinction INTELLECTUS PRIMUS.
+</string>
+
+    <string name="logro_iq7_discipulus_optimus">
+Disciple optimal ! Votre effort et votre constance vous ont mené à la septième place du classement IQ⁺, obtenant la distinction DISCIPULUS OPTIMUS.
+</string>
+
+    <string name="condecoracion_imperium_supremus">IMPERIUM SUPREMUS</string>
+    <string name="condecoracion_magnus_honor">MAGNUS HONOR</string>
+    <string name="condecoracion_virtus_totalis">VIRTUS TOTALIS</string>
+    <string name="condecoracion_excellentia_singulari">EXCELLENTIA SINGULARI</string>
+    <string name="condecoracion_gloria_integralis">GLORIA INTEGRALIS</string>
+
+    <string name="significado_imperium_supremus">POUVOIR SUPRÊME. Serez-vous capable de le conquérir ?</string>
+    <string name="significado_magnus_honor">GRAND HONNEUR. Prouvez que vous en êtes digne, atteignez-le !</string>
+    <string name="significado_virtus_totalis">VERTU TOTALE. Seulement pour ceux qui donnent tout.</string>
+    <string name="significado_excellentia_singulari">EXCELLENCE UNIQUE. Visez le plus haut, faites des efforts.</string>
+    <string name="significado_gloria_integralis">GLOIRE INTÉGRALE. Votre nom mérite de briller ici.</string>
+
+    <string name="logro_imperium_supremus_1"><b>%1$s</b>, votre suprématie mentale est absolue ! Vous avez obtenu IMPERIUM SUPREMUS.</string>
+    <string name="logro_imperium_supremus_2">Personne ne vous égale, <b>%1$s</b>. La domination totale est vôtre avec IMPERIUM SUPREMUS.</string>
+
+    <string name="logro_magnus_honor_1">Honneur maximum atteint, <b>%1$s</b> ! MAGNUS HONOR reconnaît votre grandeur.</string>
+    <string name="logro_magnus_honor_2">La plus haute reconnaissance est vôtre, <b>%1$s</b>. MAGNUS HONOR couronne votre effort.</string>
+
+    <string name="logro_virtus_totalis_1">Vertu totale accomplie, <b>%1$s</b> ! VIRTUS TOTALIS célèbre votre excellence mentale.</string>
+    <string name="logro_virtus_totalis_2"><b>%1$s</b>, votre discipline et votre esprit brillant vous ont valu VIRTUS TOTALIS.</string>
+
+    <string name="logro_excellentia_singulari_1">Excellence singulière, <b>%1$s</b> ! Seuls les meilleurs reçoivent EXCELLENTIA SINGULARI.</string>
+    <string name="logro_excellentia_singulari_2"><b>%1$s</b>, votre excellence est unique. Vous avez gagné EXCELLENTIA SINGULARI.</string>
+
+    <string name="logro_gloria_integralis_1">Gloire intégrale pour vous, <b>%1$s</b> ! La reconnaissance maximale est à vous.</string>
+    <string name="logro_gloria_integralis_2">SumaMente vous applaudit, <b>%1$s</b> : vous avez atteint GLORIA INTEGRALIS.</string>
+
+    <string name="top5_ranking_integral">Les 5 meilleurs du classement intégral</string>
+
+    <string name="language_spanish">Español</string>
+    <string name="language_english">English</string>
+    <string name="language_portuguese">Português</string>
+    <string name="language_hindi">हिन्दी (Hindi)</string>
+    <string name="language_french">Français</string>
+    <string name="language_german">Deutsch</string>
+    <string name="language_indonesian">Bahasa Indonesia</string>
+    <string name="language_japanese">日本語 (Nihongo)</string>
+    <string name="language_korean">한국어 (Hangugeo)</string>
+
+    <string name="choose_language">Choisissez votre langue</string>
+
+    <string name="language_selection_required_message">Pour continuer, veuillez sélectionner votre langue préférée dans la liste.</string>
+
+    <string name="confirm_change_language_message">Es-tu sûr de vouloir changer la langue ?</string>
+
+    <string name="language">Langue</string>
+    <string name="language_subtitle">Changer la langue de l\'application</string>
+
+    <string name="changing_language">Changement de langue…</string>
+
+
+
+
+</resources>

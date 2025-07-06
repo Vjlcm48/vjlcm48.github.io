@@ -10,13 +10,12 @@ import android.text.Spanned
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.core.view.isVisible
 import com.example.sumamente.R
 
-class InstructionsActivityMasPlus : AppCompatActivity() {
+class InstructionsActivityMasPlus : BaseActivity()  {
 
     private var responseMode: ResponseModeMasPlus? = null
     private var level: Int = 1

@@ -14,14 +14,13 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieAnimationView
 import com.example.sumamente.R
 import java.util.Locale
 import kotlin.math.max
 import kotlin.math.roundToInt
 
-class LevelResultActivityAlfaNumerosPrincipiante : AppCompatActivity() {
+class LevelResultActivityAlfaNumerosPrincipiante : BaseActivity()  {
 
     private lateinit var mainMessageTextView: TextView
     private lateinit var pointsTextView: TextView

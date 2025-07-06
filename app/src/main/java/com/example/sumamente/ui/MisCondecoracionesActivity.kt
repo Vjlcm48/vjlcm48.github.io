@@ -9,14 +9,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sumamente.R
 import java.util.Calendar
 import java.util.Locale
 
-class MisCondecoracionesActivity : AppCompatActivity() {
+class MisCondecoracionesActivity : BaseActivity()  {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var emptyStateTextView: TextView

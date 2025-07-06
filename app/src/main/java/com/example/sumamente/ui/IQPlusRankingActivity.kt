@@ -14,7 +14,6 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +24,7 @@ import java.util.regex.Pattern
 import kotlin.random.Random
 
 
-class IQPlusRankingActivity : AppCompatActivity() {
+class IQPlusRankingActivity : BaseActivity()  {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: IQPlusRankingAdapter

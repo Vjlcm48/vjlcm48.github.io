@@ -9,11 +9,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.GridLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import com.example.sumamente.R
 
-class ExerciseReviewActivitySumaResta : AppCompatActivity() {
+class ExerciseReviewActivitySumaResta : BaseActivity()  {
 
     private lateinit var titleTextView: TextView
     private lateinit var numbersGridLayout: GridLayout

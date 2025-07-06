@@ -5,11 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import com.example.sumamente.R
 
-class TransitionActivity : AppCompatActivity() {
+class TransitionActivity : BaseActivity()  {
 
     private lateinit var sharedPreferences: android.content.SharedPreferences
 

@@ -11,11 +11,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import com.example.sumamente.R
 import java.lang.ref.WeakReference
 
-class TrofeosActivity : AppCompatActivity() {
+class TrofeosActivity : BaseActivity()  {
 
     companion object {
         private var instanceRef: WeakReference<TrofeosActivity>? = null

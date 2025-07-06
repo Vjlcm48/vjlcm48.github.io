@@ -22,7 +22,6 @@ import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
@@ -31,7 +30,7 @@ import com.google.android.material.transition.platform.MaterialSharedAxis
 import java.util.Locale
 
 
-class MainGameActivity : AppCompatActivity() {
+class MainGameActivity : BaseActivity()  {
 
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var locationManager: LocationManager

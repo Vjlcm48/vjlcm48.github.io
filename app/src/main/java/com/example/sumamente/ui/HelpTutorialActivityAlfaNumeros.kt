@@ -25,14 +25,13 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.airbnb.lottie.LottieAnimationView
 import com.example.sumamente.R
 import java.util.Locale
 
-class HelpTutorialActivityAlfaNumeros : AppCompatActivity() {
+class HelpTutorialActivityAlfaNumeros : BaseActivity()  {
 
     private lateinit var rootLayout: ConstraintLayout
     private lateinit var tvWelcomeText: TextView

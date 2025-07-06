@@ -16,7 +16,6 @@ import android.widget.Button
 import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.sumamente.R
 import java.text.SimpleDateFormat
@@ -24,7 +23,7 @@ import java.util.Calendar
 import java.util.Locale
 import java.util.TimeZone
 
-class DesafiosActivity : AppCompatActivity() {
+class DesafiosActivity : BaseActivity()   {
 
     private lateinit var tvAppName: TextView
     private lateinit var tvMensajeDesafios: TextView

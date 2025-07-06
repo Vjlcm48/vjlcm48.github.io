@@ -26,14 +26,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.example.sumamente.R
 import java.util.Locale
 import kotlin.random.Random
 
-class GameActivitySumaResta : AppCompatActivity() {
+class GameActivitySumaResta : BaseActivity()  {
 
     private lateinit var backArrow: ImageView
     private lateinit var levelTitle: TextView

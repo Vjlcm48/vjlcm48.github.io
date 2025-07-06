@@ -27,7 +27,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.example.sumamente.R
@@ -37,7 +36,7 @@ import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.random.Random
 
-class GameActivityDeciPlus : AppCompatActivity() {
+class GameActivityDeciPlus : BaseActivity()  {
 
     private lateinit var backArrow: ImageView
     private lateinit var levelTitle: TextView

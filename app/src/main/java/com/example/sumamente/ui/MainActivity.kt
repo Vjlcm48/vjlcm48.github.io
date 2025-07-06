@@ -8,10 +8,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import com.example.sumamente.R
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity()  {
 
     private lateinit var textViewName: TextView
     private lateinit var textViewNameBrillo: TextView
@@ -82,7 +81,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun transicionPantalla() {
-        val intent = Intent(this, TransitionActivity::class.java)
+        val intent = Intent(this, LanguageSelectionActivity::class.java)
         val options = ActivityOptions.makeCustomAnimation(this, android.R.anim.fade_in, android.R.anim.fade_out)
         startActivity(intent, options.toBundle())
         finish()

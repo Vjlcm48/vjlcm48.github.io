@@ -344,6 +344,14 @@
         </activity>
 
         <activity
+            android:name=".ui.LanguageSelectionActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.LanguageChangeActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.TransitionActivity"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />

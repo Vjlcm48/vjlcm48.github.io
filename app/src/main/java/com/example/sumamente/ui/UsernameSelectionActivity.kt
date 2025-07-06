@@ -16,11 +16,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import com.example.sumamente.R
 
-class UsernameSelectionActivity : AppCompatActivity() {
+class UsernameSelectionActivity : BaseActivity()  {
 
     private val occupiedUsernames = listOf("victor121$", "jose2376#", "maestro333$$", "r_marcano40")
     private lateinit var sharedPreferences: android.content.SharedPreferences

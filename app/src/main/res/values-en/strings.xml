@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">HEPTACREATION</string>
     <string name="loading_text">Loading…</string>
     <string name="next_activity_text">Next Activity</string>
@@ -904,9 +904,9 @@
     <string name="msg_iqplus_levels_info_1">%1$s, you have played in %2$d different games and difficulties. You need %3$d more to appear in the IQ+ Ranking.</string>
     <string name="msg_iqplus_levels_info_2">%1$s, you have completed %2$d rounds in different games and difficulties. Only %3$d more to unlock your IQ+ ranking.</string>
     <string name="msg_iqplus_levels_info_3">%1$s, you\'re progressing: %2$d played, %3$d left. Keep going to reach the IQ+ ranking!</string>
-    <string name="msg_iqplus_levels_info_4">You have played in %2$d different games and difficulties. %3$d left to unlock the IQ+ ranking.</string>
-    <string name="msg_iqplus_levels_info_5">Your progress: %2$d played, %3$d to go. You\'re almost ready to see your position in the IQ+ ranking!</string>
-    <string name="msg_iqplus_levels_info_6">You\'ve completed %2$d different rounds; when you finish %3$d more, you\'ll appear in the IQ+ Ranking.</string>
+    <string name="msg_iqplus_levels_info_4" tools:ignore="StringFormatCount">You have played in %2$d different games and difficulties. %3$d left to unlock the IQ+ ranking.</string>
+    <string name="msg_iqplus_levels_info_5" tools:ignore="StringFormatCount">Your progress: %2$d played, %3$d to go. You\'re almost ready to see your position in the IQ+ ranking!</string>
+    <string name="msg_iqplus_levels_info_6" tools:ignore="StringFormatCount">You\'ve completed %2$d different rounds; when you finish %3$d more, you\'ll appear in the IQ+ Ranking.</string>
 
     <string name="msg_iqplus_motiv_1">Keep going! Each new game brings you closer to your place in the IQ+ Ranking.</string>
     <string name="msg_iqplus_motiv_2">Keep moving forward; soon you\'ll be ranked and know your position.</string>
@@ -1056,20 +1056,6 @@
     <string name="medal_circle_background">Background circle for medal</string>
     <string name="medal_image">Image of the obtained medal</string>
 
-    <!-- INDIVIDUAL TROPHY NAMES -->
-    <!-- 🏆 NÚMEROS⁺ TROPHIES -->
-
-    <!-- 🏆 DECI⁺ TROPHIES -->
-
-    <!-- 🏆 ROMAS TROPHIES -->
-
-    <!-- 🏆 ALFANÚMEROS TROPHIES -->
-
-    <!-- 🏆 SUMARESTA TROPHIES -->
-
-    <!-- 🏆 MÁS⁺ TROPHIES -->
-
-    <!-- 🏆 GENIO⁺ TROPHIES -->
 
     <!-- DIALOG TITLES FOR TROPHIES -->
     <string name="trofeo_titulo_initia">🏆 INITIA TROPHY CONQUERED! 🏆</string>
@@ -1302,10 +1288,30 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
     <string name="logro_gloria_integralis_2">SumaMente applauds you, %1$s: you\'ve reached GLORIA INTEGRALIS.</string>
 
     <string name="top5_ranking_integral">Top 5 of the Integral Ranking</string>
-    <string name="_1">1</string>
-    <string name="_2">2</string>
-    <string name="_3">3</string>
-    <string name="_4">4</string>
+
+    <string name="language_spanish">Español</string>
+    <string name="language_english">English</string>
+    <string name="language_portuguese">Português</string>
+    <string name="language_hindi">हिन्दी (Hindi)</string>
+    <string name="language_french">Français</string>
+    <string name="language_german">Deutsch</string>
+    <string name="language_indonesian">Bahasa Indonesia</string>
+    <string name="language_japanese">日本語 (Nihongo)</string>
+    <string name="language_korean">한국어 (Hangugeo)</string>
+
+    <string name="choose_language">Choose your language</string>
+
+    <string name="language_selection_required_message">To continue, please select your preferred language from the list.</string>
+
+    <string name="confirm_change_language_message">Are you sure you want to change the language?</string>
+
+    <string name="language">Language</string>
+    <string name="language_subtitle">Change application language</string>
+
+    <string name="changing_language">Changing language…</string>
+
+
+
 
 
 </resources>

@@ -22,14 +22,13 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.core.graphics.drawable.toDrawable
 import com.example.sumamente.R
 import java.util.Locale
 
-class ResetProgressActivity : AppCompatActivity() {
+class ResetProgressActivity : BaseActivity()  {
 
     private var selectedGame: String? = null
     private var selectedDifficulty: String? = null

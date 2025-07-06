@@ -11,13 +11,14 @@
         android:id="@+id/app_logo"
         android:layout_width="110dp"
         android:layout_height="110dp"
-        android:layout_marginTop="22dp"
         android:layout_gravity="center"
+        android:layout_marginTop="4dp"
         android:contentDescription="@string/app_logo"
         android:src="@drawable/sumamentelt"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="330dp"
@@ -133,6 +134,44 @@
                         android:layout_width="53dp"
                         android:layout_height="53dp"
                         android:contentDescription="@string/switch_notifications_desc" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_language"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="11dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:contentDescription="@string/language"
+                        android:src="@drawable/ic_language" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/language"
+                            android:textColor="@color/black"
+                            android:textSize="16.5sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/language_subtitle"
+                            android:textColor="@color/gray"
+                            android:textSize="13.2sp" />
+                    </LinearLayout>
                 </LinearLayout>
 
 

@@ -18,11 +18,11 @@ import com.example.sumamente.R
 
 class CondecoracionAnimationDialog(
     context: Context,
-    private val tipoCondecoracion: TipoCondecoracion = TipoCondecoracion.MEDALLA, // <--- NUEVO
+    private val tipoCondecoracion: TipoCondecoracion = TipoCondecoracion.MEDALLA,
     private val medallaTipo: String = "",
     private val medallasObtenidas: Int = 0,
     private val medallasRestantes: Int = 0,
-    private val nombreTrofeo: String = "", // <--- NUEVO: para trofeos
+    private val nombreTrofeo: String = "",
     private val onAnimationComplete: () -> Unit
 ) : Dialog(context) {
 

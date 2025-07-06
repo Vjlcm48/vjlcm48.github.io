@@ -1,10 +1,9 @@
 package com.example.sumamente.ui
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.example.sumamente.R
 
-class NextActivity : AppCompatActivity() {
+class NextActivity : BaseActivity()  {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

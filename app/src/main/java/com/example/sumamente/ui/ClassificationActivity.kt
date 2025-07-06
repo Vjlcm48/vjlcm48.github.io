@@ -16,11 +16,10 @@ import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toDrawable
 import com.example.sumamente.R
 
-class ClassificationActivity : AppCompatActivity() {
+class ClassificationActivity : BaseActivity()  {
 
 
     private lateinit var btnComoFunciona: LinearLayout

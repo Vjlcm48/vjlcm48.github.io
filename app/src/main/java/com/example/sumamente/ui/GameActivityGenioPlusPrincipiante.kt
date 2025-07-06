@@ -28,7 +28,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.example.sumamente.R
@@ -39,7 +38,7 @@ import kotlin.math.round
 import kotlin.math.sqrt
 import kotlin.random.Random
 
-class GameActivityGenioPlusPrincipiante : AppCompatActivity() {
+class GameActivityGenioPlusPrincipiante : BaseActivity()  {
 
     data class GameElement(val value: String, val isNegative: Boolean = false)
 

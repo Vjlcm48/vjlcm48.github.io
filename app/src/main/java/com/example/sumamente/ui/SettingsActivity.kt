@@ -13,12 +13,11 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.edit
 import com.example.sumamente.R
 
-class SettingsActivity : AppCompatActivity() {
+class SettingsActivity : BaseActivity()  {
 
     private lateinit var sharedPreferences: SharedPreferences
 
@@ -43,6 +42,7 @@ class SettingsActivity : AppCompatActivity() {
         val linearShare = findViewById<LinearLayout>(R.id.linear_share)
         val linearHelp = findViewById<LinearLayout>(R.id.linear_help)
         val linearResetProgress = findViewById<LinearLayout>(R.id.linear_reset_progress)
+        val linearLanguage = findViewById<LinearLayout>(R.id.linear_language)
 
         btnCloseSettings.setOnClickListener { view ->
             applyBounceEffect(view) {
@@ -121,6 +121,13 @@ class SettingsActivity : AppCompatActivity() {
         linearResetProgress.setOnClickListener { view ->
             applyBounceEffect(view) {
                 val intent = Intent(this, ResetProgressActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        linearLanguage.setOnClickListener { view ->
+            applyBounceEffect(view) {
+                val intent = Intent(this, LanguageChangeActivity::class.java)
                 startActivity(intent)
             }
         }

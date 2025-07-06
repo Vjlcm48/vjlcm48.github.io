@@ -12,12 +12,11 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import com.example.sumamente.R
 import java.util.Locale
 
-class DifficultySelectionActivity : AppCompatActivity() {
+class DifficultySelectionActivity : BaseActivity()   {
 
     companion object {
 
