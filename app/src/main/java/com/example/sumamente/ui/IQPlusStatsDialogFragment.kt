@@ -47,9 +47,10 @@ class IQPlusStatsDialogFragment : DialogFragment() {
 
         val aciertos = ScoreManager.correctGamesGlobal
         val jugados = ScoreManager.totalGamesGlobal
-        tvPrecision.text = String.format(Locale.ROOT, "%.2f%% (%d/%d)", precision * 100, aciertos, jugados)
 
-        tvTiempo.text = String.format(Locale.ROOT, "%.2f s", tiempo)
+        tvPrecision.text = String.format(Locale.getDefault(), "%.2f%% (%d/%d)", precision * 100, aciertos, jugados)
+        tvTiempo.text = String.format(Locale.getDefault(), "%.2f s", tiempo)
+
 
         infoPrecision.setOnClickListener {
             showExplanationDialog(

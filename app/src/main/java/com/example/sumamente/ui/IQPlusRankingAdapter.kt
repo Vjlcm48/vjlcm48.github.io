@@ -47,7 +47,12 @@ class IQPlusRankingAdapter(
             holder.ivFlag.setImageResource(R.drawable.ve)
         }
 
-        holder.tvIQPlus.text = String.format(Locale.ROOT, "%.2f", item.iqPlus)
+        val iqPlusWithLabel = holder.itemView.context.getString(
+            R.string.integral_score_label,
+            item.iqPlus
+        )
+        holder.tvIQPlus.text = iqPlusWithLabel
+
 
         if (item.isCurrentUser) {
 

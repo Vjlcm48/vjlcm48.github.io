@@ -83,7 +83,12 @@ class IntegralRankingAdapter(
             holder.countryFlagImageView.setImageResource(R.drawable.ve)
         }
 
-        holder.integralScoreTextView.text = String.format(Locale.ROOT, "%.2f pts", item.integralScore)
+        val scoreWithLabel = holder.itemView.context.getString(
+            R.string.integral_score_label,
+            item.integralScore
+        )
+        holder.integralScoreTextView.text = scoreWithLabel
+
 
         if (item.isCurrentUser) {
             holder.container.setBackgroundColor(
