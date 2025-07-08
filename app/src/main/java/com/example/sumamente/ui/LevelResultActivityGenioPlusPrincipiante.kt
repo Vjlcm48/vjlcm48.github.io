@@ -385,13 +385,18 @@ class LevelResultActivityGenioPlusPrincipiante : BaseActivity()  {
                     }
 
                     pointsTextView.visibility = View.VISIBLE
+
+                    // LR1 Cambio para solucionar el formato de los decimales //
                     val puntosObtenidos = getString(R.string.puntos_obtenidos, pointsEarned)
                     val spannable = SpannableString(puntosObtenidos)
                     val puntosStr = pointsEarned.toString()
                     val startIdx = puntosObtenidos.indexOf(puntosStr)
                     val endIdx = startIdx + puntosStr.length
-                    spannable.setSpan(StyleSpan(Typeface.BOLD), startIdx, endIdx, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    if (startIdx >= 0 && endIdx <= puntosObtenidos.length) {
+                        spannable.setSpan(StyleSpan(Typeface.BOLD), startIdx, endIdx, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    }
                     pointsTextView.text = spannable
+                    // Fin del cambio LR1 //
 
                     val pointsAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityGenioPlusPrincipiante, R.anim.points_appear_from_back)
                     pointsTextView.startAnimation(pointsAnimation)
@@ -413,9 +418,14 @@ class LevelResultActivityGenioPlusPrincipiante : BaseActivity()  {
                                     val spannablePuntajeActual = SpannableString(puntajeActualText)
                                     val puntosStrActual = puntosGenios.toString()
                                     val startIdxActual = puntajeActualText.indexOf(puntosStrActual)
+
+                                    // LR2 Cambio para solucionar el formato de los decimales //
                                     val endIdxActual = startIdxActual + puntosStrActual.length
-                                    spannablePuntajeActual.setSpan(StyleSpan(Typeface.BOLD), startIdxActual, endIdxActual, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                                    if (startIdxActual >= 0 && endIdxActual <= puntajeActualText.length) {
+                                        spannablePuntajeActual.setSpan(StyleSpan(Typeface.BOLD), startIdxActual, endIdxActual, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                                    }
                                     currentScoreTextView.text = spannablePuntajeActual
+                                    // Fin del cambio LR2 //
 
                                     currentScoreTextView.visibility = View.VISIBLE
                                     starImageView.visibility = View.VISIBLE
@@ -428,14 +438,19 @@ class LevelResultActivityGenioPlusPrincipiante : BaseActivity()  {
                                         override fun onAnimationStart(animation: android.view.animation.Animation?) {}
 
                                         override fun onAnimationEnd(animation: android.view.animation.Animation?) {
-                                            // Cambio de variable para tiempo real mostrado C4 //
+                                            /// Cambio de variable para tiempo real mostrado C4 //
+                                            // LR3 Cambio para solucionar el formato de los decimales //
                                             val formattedTime = String.format(Locale.getDefault(), "%.2f", rawTimeSpent)
                                             val tiempoEmpleadoText = getString(R.string.tiempo_empleado, formattedTime)
                                             val spannableTime = SpannableString(tiempoEmpleadoText)
                                             val startIdxTime = tiempoEmpleadoText.indexOf(formattedTime)
                                             val endIdxTime = startIdxTime + formattedTime.length
-                                            spannableTime.setSpan(StyleSpan(Typeface.BOLD), startIdxTime, endIdxTime, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                                            if (startIdxTime >= 0 && endIdxTime <= tiempoEmpleadoText.length) {
+                                                spannableTime.setSpan(StyleSpan(Typeface.BOLD), startIdxTime, endIdxTime, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                                            }
                                             timeSpentTextView.text = spannableTime
+
+                                            // Fin del cambio LR3 //
 
                                             timeSpentTextView.visibility = View.VISIBLE
                                             val timeAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityGenioPlusPrincipiante, R.anim.points_appear_from_back)

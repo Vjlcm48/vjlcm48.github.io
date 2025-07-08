@@ -583,17 +583,24 @@ class GameActivityMasPlusPro : BaseActivity()  {
             override fun onTick(millisUntilFinished: Long) {
                 val elapsedMillis = 7000 - millisUntilFinished
                 val elapsedSeconds = elapsedMillis / 1000.0
+
+                // GA1 Cambio para solucionar el formato de los decimales //
                 val formattedTime = String.format(Locale.getDefault(), "%04.2f", elapsedSeconds)
                 val spannableString = SpannableString(formattedTime)
                 val decimalPointIndex = formattedTime.indexOf('.')
-                val endOfFraction = decimalPointIndex + 3
+                val decimalCommaIndex = formattedTime.indexOf(',')
+                val decimalSeparatorIndex = if (decimalPointIndex >= 0) decimalPointIndex else decimalCommaIndex
 
-                spannableString.setSpan(
-                    RelativeSizeSpan(0.75f),
-                    decimalPointIndex,
-                    endOfFraction,
-                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
+                if (decimalSeparatorIndex >= 0 && decimalSeparatorIndex + 3 <= formattedTime.length) {
+                    val endOfFraction = decimalSeparatorIndex + 3
+                    spannableString.setSpan(
+                        RelativeSizeSpan(0.75f),
+                        decimalSeparatorIndex,
+                        endOfFraction,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }
+                // Fin del cambio GA1 //
 
                 val textColor = when {
                     elapsedSeconds < 3.0 -> ContextCompat.getColor(this@GameActivityMasPlusPro, R.color.green_medium)
@@ -765,32 +772,35 @@ class GameActivityMasPlusPro : BaseActivity()  {
         val elapsedMillis = currentTime - chronometerStartTime
         timeSpentInSeconds = elapsedMillis / 1000.0
 
+        // GA2 Cambio para solucionar el formato de los decimales //
         val formattedTime = String.format(Locale.getDefault(), "%04.2f", timeSpentInSeconds)
         val spannableString = SpannableString(formattedTime)
         val decimalPointIndex = formattedTime.indexOf('.')
-        val endOfFraction = decimalPointIndex + 3
+        val decimalCommaIndex = formattedTime.indexOf(',')
+        val decimalSeparatorIndex = if (decimalPointIndex >= 0) decimalPointIndex else decimalCommaIndex
 
-        spannableString.setSpan(
-            RelativeSizeSpan(0.75f),
-            decimalPointIndex,
-            endOfFraction,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-
+        if (decimalSeparatorIndex >= 0 && decimalSeparatorIndex + 3 <= formattedTime.length) {
+            val endOfFraction = decimalSeparatorIndex + 3
+            spannableString.setSpan(
+                RelativeSizeSpan(0.75f),
+                decimalSeparatorIndex,
+                endOfFraction,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+        }
         val textColor = when {
             timeSpentInSeconds < 3.0 -> ContextCompat.getColor(this, R.color.green_medium)
             timeSpentInSeconds < 5.0 -> ContextCompat.getColor(this, R.color.orange_dark)
             else -> ContextCompat.getColor(this, R.color.red)
         }
-
         spannableString.setSpan(
             ForegroundColorSpan(textColor),
             0,
             formattedTime.length,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-
         chronometerTextView.text = spannableString
+        // Fin del cambio GA2 //
     }
 
     private fun showAnswerButtons() {

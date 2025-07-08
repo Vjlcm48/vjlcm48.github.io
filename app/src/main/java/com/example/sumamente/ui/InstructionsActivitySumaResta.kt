@@ -71,13 +71,19 @@ class InstructionsActivitySumaResta : BaseActivity()  {
         tvLevel.text = getString(R.string.level_title, level)
         tvInstructions.text = getLevelInstructions(level)
 
+        // IA1 Cambio para solucionar el formato de los decimales //
+        val locale = resources.configuration.locales[0]
         val formattedTimeLimit = getString(R.string.time_limit_text, timeLimit)
+        val displayedTime = String.format(locale, "%.2f", timeLimit)
+        val startBoldIndex = formattedTimeLimit.indexOf(displayedTime)
+        val endBoldIndex = if (startBoldIndex != -1) startBoldIndex + displayedTime.length else formattedTimeLimit.length
 
-        val startBoldIndex = formattedTimeLimit.indexOf(timeLimit.toString())
-        val endBoldIndex = formattedTimeLimit.length
-
-        val spannableTimeLimit = formatTextWithBold(formattedTimeLimit, startBoldIndex, endBoldIndex)
-        tvTimeLimit.text = spannableTimeLimit
+        tvTimeLimit.text = if (startBoldIndex != -1) {
+            formatTextWithBold(formattedTimeLimit, startBoldIndex, endBoldIndex)
+        } else {
+            formattedTimeLimit
+        }
+        // Fin del cambio IA1 //
 
         val repeatedNumbersMessage = getString(R.string.repeated_numbers_message)
         tvRepeatedNumbersMessage.text = formatStyledText(
