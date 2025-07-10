@@ -72,9 +72,8 @@ class TutorialActivityNumeros : BaseActivity()  {
     private val handler = Handler(Looper.getMainLooper())
     private var backgroundMusicPlayer: MediaPlayer? = null
     private var soundEffectPlayer: MediaPlayer? = null
-    private var responseModeDialog: ResponseModeDialog? = null
+
     private var currentNumberIndex = 0
-    private var selectedMode = ResponseMode.SIMPLE_SELECTION
 
     private val fixedNumbers = listOf(7, 3, 5, -3, 4, 4, -11)
 
@@ -216,10 +215,9 @@ class TutorialActivityNumeros : BaseActivity()  {
         val slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up)
         modeDialogContainer.startAnimation(slideUp)
 
-        responseModeDialog = ResponseModeDialog(this).apply {
+        ResponseModeDialog(this).apply {
             setOnResponseModeSelectedListener(object : ResponseModeDialog.OnResponseModeSelectedListener {
                 override fun onResponseModeSelected(mode: ResponseMode) {
-                    selectedMode = mode
                     hideModesDialog()
                 }
             })

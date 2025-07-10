@@ -71,9 +71,8 @@ class TutorialActivityMasPlus : BaseActivity()  {
     private val handler = Handler(Looper.getMainLooper())
     private var backgroundMusicPlayer: MediaPlayer? = null
     private var soundEffectPlayer: MediaPlayer? = null
-    private var responseModeDialog: ResponseModeDialogMasPlus? = null
     private var currentNumberIndex = 0
-    private var selectedModeMasPlus = ResponseModeMasPlus.TYPE_ANSWER
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -243,11 +242,10 @@ class TutorialActivityMasPlus : BaseActivity()  {
         val slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up)
         modeDialogContainer.startAnimation(slideUp)
 
-        responseModeDialog = ResponseModeDialogMasPlus(this).apply {
+        ResponseModeDialogMasPlus(this).apply {
             setOnResponseModeSelectedListener(object :
                 ResponseModeDialogMasPlus.OnResponseModeSelectedListenerMasPlus {
                 override fun onResponseModeSelected(mode: ResponseModeMasPlus) {
-                    selectedModeMasPlus = mode
                     hideModesDialogMasPlus()
                 }
             })

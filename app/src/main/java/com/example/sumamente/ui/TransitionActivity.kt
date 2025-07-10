@@ -10,11 +10,9 @@ import com.example.sumamente.R
 
 class TransitionActivity : BaseActivity()  {
 
-    private lateinit var sharedPreferences: android.content.SharedPreferences
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_transition)
 
         clearAppDataOnLaunch()

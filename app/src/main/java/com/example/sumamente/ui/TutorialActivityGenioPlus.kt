@@ -71,9 +71,7 @@ class TutorialActivityGenioPlus : BaseActivity()  {
     private val handler = Handler(Looper.getMainLooper())
     private var backgroundMusicPlayer: MediaPlayer? = null
     private var soundEffectPlayer: MediaPlayer? = null
-    private var responseModeDialog: ResponseModeDialogGenioPlus? = null
     private var currentNumberIndex = 0
-    private var selectedModeGenioPlus = ResponseModeGenioPlus.TYPE_ANSWER
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -243,11 +241,10 @@ class TutorialActivityGenioPlus : BaseActivity()  {
         val slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up)
         modeDialogContainer.startAnimation(slideUp)
 
-        responseModeDialog = ResponseModeDialogGenioPlus(this).apply {
+        ResponseModeDialogGenioPlus(this).apply {
             setOnResponseModeSelectedListener(object :
                 ResponseModeDialogGenioPlus.OnResponseModeSelectedListenerGenioPlus {
                 override fun onResponseModeSelected(mode: ResponseModeGenioPlus) {
-                    selectedModeGenioPlus = mode
                     hideModesDialogGenioPlus()
                 }
             })

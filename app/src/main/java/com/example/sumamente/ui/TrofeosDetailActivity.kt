@@ -7,7 +7,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sumamente.R
@@ -18,7 +17,7 @@ class TrofeosDetailActivity : BaseActivity()  {
     private lateinit var viewPager: ViewPager2
     private lateinit var btnBack: ImageView
     private lateinit var btnClose: ImageView
-    private lateinit var tvTituloTrofeos: TextView
+
     private lateinit var btnPrevious: ImageView
     private lateinit var btnNext: ImageView
 
@@ -37,7 +36,6 @@ class TrofeosDetailActivity : BaseActivity()  {
         viewPager = findViewById(R.id.viewPager)
         btnBack = findViewById(R.id.btn_back)
         btnClose = findViewById(R.id.btn_close)
-        tvTituloTrofeos = findViewById(R.id.tv_titulo_trofeos_detail)
         btnPrevious = findViewById(R.id.btn_previous)
         btnNext = findViewById(R.id.btn_next)
     }

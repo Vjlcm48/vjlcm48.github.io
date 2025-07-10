@@ -112,7 +112,7 @@ class LanguageSelectionActivity : BaseActivity()  {
 
             buttonLayout.setOnClickListener { view ->
                 applyBounceEffect(view) {
-                    selectLanguage(languageItem.code, index)
+                    selectLanguage(languageItem.code)
                 }
             }
 
@@ -129,7 +129,7 @@ class LanguageSelectionActivity : BaseActivity()  {
         }
     }
 
-    private fun selectLanguage(languageCode: String, index: Int) {
+    private fun selectLanguage(languageCode: String) {
 
         selectedLanguageCode = languageCode
 

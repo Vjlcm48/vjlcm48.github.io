@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.view.Window
@@ -17,12 +16,10 @@ import com.example.sumamente.R
 
 class ProfileEditDialog(context: Context) : Dialog(context) {
 
-    private lateinit var sharedPreferences: SharedPreferences
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+        override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         setContentView(R.layout.activity_profile_edit)
 
         window?.setBackgroundDrawableResource(R.drawable.dialog_background)

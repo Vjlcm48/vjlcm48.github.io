@@ -7,7 +7,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sumamente.R
@@ -18,7 +17,6 @@ class Los5MejoresActivity : AppCompatActivity()  {
     private lateinit var viewPager: ViewPager2
     private lateinit var btnBack: ImageView
     private lateinit var btnClose: ImageView
-    private lateinit var tvTituloLos5Mejores: TextView
     private lateinit var btnPrevious: ImageView
     private lateinit var btnNext: ImageView
 
@@ -35,7 +33,6 @@ class Los5MejoresActivity : AppCompatActivity()  {
         viewPager = findViewById(R.id.viewPager)
         btnBack = findViewById(R.id.btn_back)
         btnClose = findViewById(R.id.btn_close)
-        tvTituloLos5Mejores = findViewById(R.id.tv_titulo_los5mejores)
         btnPrevious = findViewById(R.id.btn_previous)
         btnNext = findViewById(R.id.btn_next)
     }

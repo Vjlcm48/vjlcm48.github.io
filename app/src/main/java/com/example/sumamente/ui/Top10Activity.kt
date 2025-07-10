@@ -7,7 +7,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sumamente.R
 import kotlin.math.abs
@@ -17,7 +16,6 @@ class Top10Activity : BaseActivity()  {
     private lateinit var viewPager: ViewPager2
     private lateinit var btnBack: ImageView
     private lateinit var btnClose: ImageView
-    private lateinit var tvTituloTop10: TextView
     private lateinit var btnPrevious: ImageView
     private lateinit var btnNext: ImageView
 
@@ -34,7 +32,6 @@ class Top10Activity : BaseActivity()  {
         viewPager = findViewById(R.id.viewPager)
         btnBack = findViewById(R.id.btn_back)
         btnClose = findViewById(R.id.btn_close)
-        tvTituloTop10 = findViewById(R.id.tv_titulo_top10)
         btnPrevious = findViewById(R.id.btn_previous)
         btnNext = findViewById(R.id.btn_next)
     }
