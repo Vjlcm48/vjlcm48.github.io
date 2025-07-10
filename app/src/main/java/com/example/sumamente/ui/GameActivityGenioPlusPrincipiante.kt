@@ -44,7 +44,6 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
 
     private lateinit var backArrow: ImageView
     private lateinit var levelTitle: TextView
-    private lateinit var logoImage: ImageView
     private lateinit var bottomNavHome: ImageView
     private lateinit var bottomNavChallenges: ImageView
     private lateinit var bottomNavStatistics: ImageView
@@ -63,7 +62,6 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
     private lateinit var blueCircle: View
     private lateinit var vamosTextView: TextView
     private lateinit var chronometerTextView: TextView
-    private lateinit var sharedPreferences: android.content.SharedPreferences
     private var userResponses = mutableListOf<Int>()
 
     private var currentLevel = 1
@@ -71,7 +69,6 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
     private val handler = Handler(Looper.getMainLooper())
     private var correctAnswer = 0
     private var attempts = 0
-    private var startTime: Long = 0
     private var answerTimer: CountDownTimer? = null
     private var useManualAnswer: Boolean = false
     private var timePerElementList = mutableListOf<Long>()
@@ -106,7 +103,7 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
+        getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_game_genio_plus)
 
         ScoreManager.initGenioPlusPrincipiante(this)
@@ -125,7 +122,6 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
 
         backArrow = findViewById(R.id.back_arrow)
         levelTitle = findViewById(R.id.tv_level)
-        logoImage = findViewById(R.id.icon_central)
         bottomNavHome = findViewById(R.id.home_icon)
         bottomNavChallenges = findViewById(R.id.calendar_icon)
         bottomNavStatistics = findViewById(R.id.statistics_icon)
@@ -919,7 +915,7 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
     }
 
     private fun startAnswerTimer() {
-        startTime = System.currentTimeMillis()
+        System.currentTimeMillis()
         answerTimer?.cancel()
         answerTimer = object : CountDownTimer(10000, 75) {
             override fun onTick(millisUntilFinished: Long) {}

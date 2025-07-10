@@ -36,7 +36,7 @@ class GameActivitySumaResta : BaseActivity()  {
 
     private lateinit var backArrow: ImageView
     private lateinit var levelTitle: TextView
-    private lateinit var logoImage: ImageView
+
     private lateinit var bottomNavHome: ImageView
     private lateinit var bottomNavChallenges: ImageView
     private lateinit var bottomNavStatistics: ImageView
@@ -61,7 +61,6 @@ class GameActivitySumaResta : BaseActivity()  {
     private val handler = Handler(Looper.getMainLooper())
     private var correctAnswer = 0
     private var attempts = 0
-    private var startTime: Long = 0
     private var answerTimer: CountDownTimer? = null
     private var useManualAnswer: Boolean = false
     private var timePerNumberList = mutableListOf<Long>()
@@ -71,11 +70,10 @@ class GameActivitySumaResta : BaseActivity()  {
     private var heartbeatAnimator: ObjectAnimator? = null
     private var soundPlayed = false
     private var timeSpentInSeconds: Double = 0.0
-    private lateinit var sharedPreferences: android.content.SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
+        getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
         setContentView(R.layout.activity_game_suma_resta)
 
         ScoreManager.init(this)
@@ -94,7 +92,6 @@ class GameActivitySumaResta : BaseActivity()  {
         excludedIndex = intent.getIntExtra("EXCLUDED_INDEX", -1)
         backArrow = findViewById(R.id.back_arrow)
         levelTitle = findViewById(R.id.tv_level)
-        logoImage = findViewById(R.id.icon_central)
         bottomNavHome = findViewById(R.id.home_icon)
         bottomNavChallenges = findViewById(R.id.calendar_icon)
         bottomNavStatistics = findViewById(R.id.statistics_icon)
@@ -764,7 +761,7 @@ class GameActivitySumaResta : BaseActivity()  {
     }
 
     private fun startAnswerTimer() {
-        startTime = System.currentTimeMillis()
+        System.currentTimeMillis()
         answerTimer?.cancel()
         answerTimer = object : CountDownTimer(7000, 75) {
             override fun onTick(millisUntilFinished: Long) {}
