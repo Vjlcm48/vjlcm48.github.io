@@ -198,7 +198,7 @@ class ResetProgressActivity : BaseActivity()  {
                 addRule(RelativeLayout.ALIGN_PARENT_TOP)
                 setMargins(0, 8.dpToPx(this@ResetProgressActivity), 8.dpToPx(this@ResetProgressActivity), 0)
             }
-            setImageResource(R.drawable.ic_close_black)
+            setImageResource(R.drawable.ic_close)
             contentDescription = getString(R.string.cerrar)
             isClickable = true
             isFocusable = true

@@ -182,6 +182,6 @@
         android:clickable="true"
         android:contentDescription="@string/cerrar"
         android:focusable="true"
-        android:src="@drawable/ic_close_black" />
+        android:src="@drawable/ic_close" />
 
 </RelativeLayout>
