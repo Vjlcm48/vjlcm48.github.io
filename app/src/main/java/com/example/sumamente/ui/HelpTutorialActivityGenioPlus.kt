@@ -709,7 +709,8 @@ class HelpTutorialActivityGenioPlus : BaseActivity()   {
         handler.postDelayed({
             lottieHandAnswer.alpha = 0f
             lottieHandAnswer.visibility = View.VISIBLE
-            showHandOnViewFor(duration = 2000, targetView = targetView)
+
+            showHandOnViewFor(targetView = targetView)
             lottieHandAnswer.animate()
                 .alpha(1f)
                 .setDuration(200)
@@ -733,7 +734,7 @@ class HelpTutorialActivityGenioPlus : BaseActivity()   {
     }
 
     private fun showHandOnViewFor(
-        duration: Long = 2000,
+
         targetView: View,
         onAnimationComplete: (() -> Unit)? = null,
         adjustX: Float = 27f,
@@ -756,7 +757,7 @@ class HelpTutorialActivityGenioPlus : BaseActivity()   {
             handler.postDelayed({
                 lottieHandAnswer.visibility = View.VISIBLE
                 onAnimationComplete?.invoke()
-            }, duration)
+            }, 2000)
         }
     }
 

@@ -1303,7 +1303,6 @@
     <string name="language">Idioma</string>
     <string name="language_subtitle">Cambiar el idioma de la aplicación</string>
 
-    <string name="changing_language">Cambiando idioma…</string>
 
     <string name="integral_score_label">%1$.2f pts</string>
 

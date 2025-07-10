@@ -395,7 +395,7 @@ class GameActivityMasPlusPrincipiante : BaseActivity()  {
 
         val usedUpSoFar = romanCount + letterCount + decimalCount
         val neededBeforeCombos = totalElements - combinationCount - usedUpSoFar
-        for (i in 1..neededBeforeCombos) {
+        repeat(neededBeforeCombos) {
             val randomInt = Random.nextInt(intRange.first, intRange.last + 1)
             generatedElements.add(MASPlusElementPrincipiante(randomInt.toString()))
         }

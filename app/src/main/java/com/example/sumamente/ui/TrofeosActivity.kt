@@ -10,7 +10,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
 import com.example.sumamente.R
 import java.lang.ref.WeakReference
 
@@ -24,7 +23,6 @@ class TrofeosActivity : BaseActivity()  {
         }
     }
 
-    private lateinit var tvTituloTrofeos: TextView
     private lateinit var btnPin: LinearLayout
     private lateinit var btnCorona: LinearLayout
     private lateinit var btnMedalla: LinearLayout
@@ -59,7 +57,7 @@ class TrofeosActivity : BaseActivity()  {
     }
 
     private fun initViews() {
-        tvTituloTrofeos = findViewById(R.id.tv_titulo_trofeos)
+
         btnPin = findViewById(R.id.btn_pin)
         btnCorona = findViewById(R.id.btn_corona)
         btnMedalla = findViewById(R.id.btn_medalla)

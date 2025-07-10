@@ -355,7 +355,7 @@ class GameActivityAlfaNumeros : BaseActivity()  {
         ensureNoConsecutiveDuplicates()
 
         val positiveIndices = elementList.indices.filter { elementList[it].isPositiveElement() }.toMutableList()
-        for (i in 0 until numNegatives) {
+        repeat(numNegatives) {
             if (positiveIndices.isNotEmpty()) {
                 val indexToNegate = positiveIndices.random()
                 val elem = elementList[indexToNegate]

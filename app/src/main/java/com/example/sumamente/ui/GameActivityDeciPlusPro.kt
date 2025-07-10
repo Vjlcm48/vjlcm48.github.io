@@ -302,16 +302,16 @@ class GameActivityDeciPlusPro : BaseActivity()  {
     private fun generateRandomDecimals(count: Int, max: Double): MutableList<Double> {
         val min = 0.1
         return MutableList(count) {
-            ((Random.nextDouble(min, max) * 10).roundToInt() / 10.0).roundTo(1)
+            ((Random.nextDouble(min, max) * 10).roundToInt() / 10.0).roundTo()
         }
     }
 
     private fun calculateSum(): Double {
-        var sum = numberList.sumOf { it.roundTo(1) }
+        var sum = numberList.sumOf { it.roundTo() }
         if (excludedIndex != null && excludedIndex!! in numberList.indices) {
-            sum -= numberList[excludedIndex!!].roundTo(1)
+            sum -= numberList[excludedIndex!!].roundTo()
         }
-        return sum.roundTo(1)
+        return sum.roundTo()
     }
 
     private fun calculateTimePerNumber() {
@@ -718,7 +718,7 @@ class GameActivityDeciPlusPro : BaseActivity()  {
         while (incorrectAnswers.size < 3 && attempts < maxAttempts) {
             attempts++
             val offset = Random.nextDouble(-rangeOffset.toDouble(), rangeOffset.toDouble())
-            val incorrectAnswer = (correctAnswer + offset * 0.1).roundTo(1)
+            val incorrectAnswer = (correctAnswer + offset * 0.1).roundTo()
 
             if (abs(incorrectAnswer - correctAnswer) >= 0.1 && incorrectAnswer !in incorrectAnswers) {
                 incorrectAnswers.add(incorrectAnswer)
@@ -727,7 +727,7 @@ class GameActivityDeciPlusPro : BaseActivity()  {
 
         if (incorrectAnswers.size < 3) {
             while (incorrectAnswers.size < 3) {
-                val randomAnswer = (Random.nextDouble(0.1, correctAnswer + rangeOffset * 0.1)).roundTo(1)
+                val randomAnswer = (Random.nextDouble(0.1, correctAnswer + rangeOffset * 0.1)).roundTo()
                 if (abs(randomAnswer - correctAnswer) >= 0.1 && randomAnswer !in incorrectAnswers) {
                     incorrectAnswers.add(randomAnswer)
                 }
@@ -847,8 +847,8 @@ class GameActivityDeciPlusPro : BaseActivity()  {
         finish()
     }
 
-    private fun Double.roundTo(decimals: Int): Double {
-        val factor = 10.0.pow(decimals)
+    private fun Double.roundTo(): Double {
+        val factor = 10.0.pow(1) 
         return (this * factor).roundToInt() / factor
     }
 }
