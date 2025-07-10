@@ -72,9 +72,8 @@ class HelpTutorialActivitySumaResta : BaseActivity()  {
     private val handler = Handler(Looper.getMainLooper())
     private var backgroundMusicPlayer: MediaPlayer? = null
     private var soundEffectPlayer: MediaPlayer? = null
-    private var responseModeDialog: ResponseModeDialogSumaResta? = null
     private var currentNumberIndex = 0
-    private var selectedModeSumaResta = ResponseModeSumaResta.SIMPLE_SELECTION
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -229,11 +228,10 @@ class HelpTutorialActivitySumaResta : BaseActivity()  {
         val slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up)
         modeDialogContainer.startAnimation(slideUp)
 
-        responseModeDialog = ResponseModeDialogSumaResta(this).apply {
+        ResponseModeDialogSumaResta(this).apply {
             setOnResponseModeSelectedListener(object :
                 ResponseModeDialogSumaResta.OnResponseModeSelectedListenerSumaResta {
                 override fun onResponseModeSelected(mode: ResponseModeSumaResta) {
-                    selectedModeSumaResta = mode
                     hideModesDialogSumaResta()
                 }
             })

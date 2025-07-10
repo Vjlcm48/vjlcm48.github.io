@@ -70,9 +70,8 @@ class HelpTutorialActivityRomas : BaseActivity()  {
     private val handler = Handler(Looper.getMainLooper())
     private var backgroundMusicPlayer: MediaPlayer? = null
     private var soundEffectPlayer: MediaPlayer? = null
-    private var responseModeDialog: ResponseModeDialogRomas? = null
     private var currentNumberIndex = 0
-    private var selectedModeRomas = ResponseModeRomas.TYPE_ANSWER_ROMAS
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -226,11 +225,10 @@ class HelpTutorialActivityRomas : BaseActivity()  {
         val slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up)
         modeDialogContainer.startAnimation(slideUp)
 
-        responseModeDialog = ResponseModeDialogRomas(this).apply {
+        ResponseModeDialogRomas(this).apply {
             setOnResponseModeSelectedListener(object :
                 ResponseModeDialogRomas.OnResponseModeSelectedListenerRomas {
                 override fun onResponseModeSelected(mode: ResponseModeRomas) {
-                    selectedModeRomas = mode
                     hideModesDialogRomas()
                 }
             })

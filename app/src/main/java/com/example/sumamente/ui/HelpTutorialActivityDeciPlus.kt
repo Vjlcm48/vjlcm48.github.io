@@ -72,9 +72,8 @@ class HelpTutorialActivityDeciPlus : BaseActivity()  {
     private val handler = Handler(Looper.getMainLooper())
     private var backgroundMusicPlayer: MediaPlayer? = null
     private var soundEffectPlayer: MediaPlayer? = null
-    private var responseModeDialog: ResponseModeDialogDeciPlus? = null
     private var currentNumberIndex = 0
-    private var selectedModeDeciPlus = ResponseModeDeciPlus.SIMPLE_SELECTION
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -211,11 +210,10 @@ class HelpTutorialActivityDeciPlus : BaseActivity()  {
         val slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up)
         modeDialogContainer.startAnimation(slideUp)
 
-        responseModeDialog = ResponseModeDialogDeciPlus(this).apply {
+        ResponseModeDialogDeciPlus(this).apply {
             setOnResponseModeSelectedListener(object :
                 ResponseModeDialogDeciPlus.OnResponseModeSelectedListenerDeciPlus {
                 override fun onResponseModeSelected(mode: ResponseModeDeciPlus) {
-                    selectedModeDeciPlus = mode
                     hideModesDialogDeciPlus()
                 }
             })

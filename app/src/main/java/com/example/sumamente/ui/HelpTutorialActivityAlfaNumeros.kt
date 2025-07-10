@@ -70,9 +70,8 @@ class HelpTutorialActivityAlfaNumeros : BaseActivity()  {
     private val handler = Handler(Looper.getMainLooper())
     private var backgroundMusicPlayer: MediaPlayer? = null
     private var soundEffectPlayer: MediaPlayer? = null
-    private var responseModeDialog: ResponseModeDialogAlfaNumeros? = null
     private var currentNumberIndex = 0
-    private var selectedModeAlfaNumeros = ResponseModeAlfaNumeros.TYPE_ANSWER
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -241,11 +240,10 @@ class HelpTutorialActivityAlfaNumeros : BaseActivity()  {
         val slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up)
         modeDialogContainer.startAnimation(slideUp)
 
-        responseModeDialog = ResponseModeDialogAlfaNumeros(this).apply {
+        ResponseModeDialogAlfaNumeros(this).apply {
             setOnResponseModeSelectedListener(object :
                 ResponseModeDialogAlfaNumeros.OnResponseModeSelectedListenerAlfaNumeros {
                 override fun onResponseModeSelected(mode: ResponseModeAlfaNumeros) {
-                    selectedModeAlfaNumeros = mode
                     hideModesDialogAlfaNumeros()
                 }
             })
