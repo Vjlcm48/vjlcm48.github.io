@@ -63,11 +63,12 @@ class LanguageSelectionActivity : BaseActivity()  {
 
             selectedLanguageCode = deviceLanguageCode
 
-            if (deviceLanguageCode == "en" || deviceLanguageCode == "es" || deviceLanguageCode == "fr") {
+            if (deviceLanguageCode == "en" || deviceLanguageCode == "es" || deviceLanguageCode == "fr" || deviceLanguageCode == "pt") {
                 setAppLanguage(deviceLanguageCode)
             } else {
                 setAppLanguage("en")
             }
+
         } else {
 
             selectedLanguageCode = "es"
@@ -135,11 +136,12 @@ class LanguageSelectionActivity : BaseActivity()  {
 
         highlightSelectedLanguage()
 
-        val appDisplayLanguage = if (languageCode == "es" || languageCode == "en" || languageCode == "fr") {
+        val appDisplayLanguage = if (languageCode == "es" || languageCode == "en" || languageCode == "fr" || languageCode == "pt") {
             languageCode
         } else {
             "en"
         }
+
 
         setAppLanguage(appDisplayLanguage)
 

@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sumamente.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.Locale
-import java.util.regex.Pattern
 import kotlin.random.Random
 
 
@@ -250,61 +249,48 @@ class IQPlusRankingActivity : BaseActivity()  {
 
     private fun hacerIQPlusInteractivo(texto: String, iqPlus: Double): SpannableString {
         val spannableString = SpannableString(texto)
-        val iqPlusFormateado = String.format(Locale.ROOT, "%.2f", iqPlus)
-        val pattern = Pattern.compile("\\b\\d+\\.\\d{2}\\b")
-        val matcher = pattern.matcher(texto)
+        val iqPlusComoTexto = String.format(Locale.getDefault(), "%.2f", iqPlus)
 
-        while (matcher.find()) {
-            val numeroEncontrado = texto.substring(matcher.start(), matcher.end())
+        val start = texto.indexOf(iqPlusComoTexto)
 
-            if (numeroEncontrado == iqPlusFormateado) {
-                val start = matcher.start()
-                val end = matcher.end()
+        if (start != -1) {
+            val end = start + iqPlusComoTexto.length
 
-                val clickableSpan = object : ClickableSpan() {
-                    override fun onClick(widget: View) {
+            val clickableSpan = object : ClickableSpan() {
+                override fun onClick(widget: View) {
+                    iqPlusFlash = true
+                    (widget as TextView).text = hacerIQPlusInteractivo(texto, iqPlus)
 
-                        iqPlusFlash = true
-                        (widget as TextView).text = hacerIQPlusInteractivo(texto, iqPlus)
-
+                    handlerFlash.postDelayed({
+                        iqPlusFlash = false
+                        widget.text = hacerIQPlusInteractivo(texto, iqPlus)
 
                         handlerFlash.postDelayed({
-                            iqPlusFlash = false
-                            widget.text = hacerIQPlusInteractivo(texto, iqPlus)
-
-
-                            handlerFlash.postDelayed({
-                                mostrarDialogoEstadisticas()
-                            }, 80)
-                        }, 150)
-                    }
-
-                    override fun updateDrawState(ds: TextPaint) {
-                        super.updateDrawState(ds)
-                        ds.isUnderlineText = false
-
-                        if (iqPlusFlash) {
-
-                            ds.color = ContextCompat.getColor(this@IQPlusRankingActivity, R.color.yellow_dark)
-                            ds.isFakeBoldText = true
-                            ds.setShadowLayer(4f, 0f, 0f, Color.DKGRAY)
-                        } else {
-
-                            ds.color = ContextCompat.getColor(this@IQPlusRankingActivity, R.color.blue_primary)
-                            ds.isFakeBoldText = true
-                            ds.setShadowLayer(2f, 1f, 1f, Color.GRAY)
-                        }
-                    }
+                            mostrarDialogoEstadisticas()
+                        }, 80)
+                    }, 150)
                 }
 
-                spannableString.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                override fun updateDrawState(ds: TextPaint) {
+                    super.updateDrawState(ds)
+                    ds.isUnderlineText = false
 
+                    if (iqPlusFlash) {
+                        ds.color = ContextCompat.getColor(this@IQPlusRankingActivity, R.color.yellow_dark)
+                        ds.isFakeBoldText = true
+                        ds.setShadowLayer(4f, 0f, 0f, Color.DKGRAY)
+                    } else {
+                        ds.color = ContextCompat.getColor(this@IQPlusRankingActivity, R.color.blue_primary)
+                        ds.isFakeBoldText = true
+                        ds.setShadowLayer(2f, 1f, 1f, Color.GRAY)
+                    }
+                }
             }
+            spannableString.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
 
         return spannableString
     }
-
 
     private fun getCombosCompletados(): Int {
         var combosCompletados = 0
