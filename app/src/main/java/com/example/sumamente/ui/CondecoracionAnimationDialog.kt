@@ -113,7 +113,7 @@ class CondecoracionAnimationDialog(
         ivMedalla.setImageResource(recursos.imagenId)
         tvTitulo.text = context.getString(recursos.tituloId)
         tvDescripcion.text = context.getString(recursos.descripcionId)
-        tvContador.text = context.getString(R.string.medalla_contador_progreso, medallasObtenidas, medallasRestantes)
+        tvContador.text = context.resources.getQuantityString(R.plurals.medalla_contador_progreso, medallasObtenidas, medallasObtenidas, medallasRestantes)
         tvMotivacion.text = context.getString(recursos.motivacionId)
     }
 
@@ -129,7 +129,13 @@ class CondecoracionAnimationDialog(
         tvDescripcion.text = context.getString(recursos.descripcionId)
         val trofeosObtenidos = CondecoracionTracker.getTrofeosObtenidos().size
         val trofeosFaltantes = 21 - trofeosObtenidos
-        tvContador.text = context.getString(R.string.trofeo_contador_progreso, trofeosObtenidos, trofeosFaltantes)
+        tvContador.text = context.resources.getQuantityString(
+            R.plurals.trofeo_contador_progreso,
+            trofeosObtenidos,
+            trofeosObtenidos,
+            trofeosFaltantes
+        )
+
         tvMotivacion.text = generarMensajeMotivacionTrofeo()
     }
 
@@ -140,7 +146,13 @@ class CondecoracionAnimationDialog(
         return when (trofeosObtenidos) {
             1 -> context.getString(R.string.trofeo_motiv_1)
             21 -> context.getString(R.string.trofeo_motiv_21)
-            else -> context.getString(R.string.trofeo_contador_progreso, trofeosObtenidos, trofeosFaltantes)
+            else -> context.resources.getQuantityString(
+                R.plurals.trofeo_contador_progreso,
+                trofeosObtenidos,
+                trofeosObtenidos,
+                trofeosFaltantes
+            )
+
         }
     }
 

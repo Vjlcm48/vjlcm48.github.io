@@ -478,7 +478,7 @@
     <string name="ads_disabled">Ads disabled</string>
     <string name="share_with_friends">Share with friends selected</string>
     <string name="error_time_limit_not_found">Time limit not found for level %1$d</string>
-    <string name="text_alfa">ALPHA</string>
+    <string name="text_alfa">ALFA</string>
     <string name="text_numeros">NÚMEROS</string>
     <string name="text_suma">SUMA</string>
     <string name="text_resta">RESTA</string>
@@ -856,20 +856,57 @@
     <string name="msg_need_more_games_global_6">Ready for the challenge, %1$s? Play 36 levels to enter the global ranking.</string>
 
     <!-- With user name -->
-    <string name="msg_info_global_levels_1">%1$s, you\’ve played %2$d levels. Only %3$d more to enter the global ranking.</string>
-    <string name="msg_info_global_levels_2">Great progress, %1$s! You\’ve completed %2$d levels and need just %3$d more to see your ranking.</string>
-    <string name="msg_info_global_levels_3">%1$s, your account shows %2$d levels played. Only %3$d more to unlock the global leaderboard.</string>
-    <string name="msg_info_global_levels_4">%1$s, you\’ve played %2$d out of 36 levels. Just %3$d more to join the leaderboard.</string>
-    <string name="msg_info_global_levels_5">%1$s, you\’ve finished %2$d levels. Play %3$d more to appear in the global ranking.</string>
-    <string name="msg_info_global_levels_6">%1$s, you\’re just %3$d levels away from the 36 needed. You\’ve already played %2$d!</string>
+    <plurals name="msg_info_global_levels_1">
+        <item quantity="one">%1$s, you\'ve played %2$d level. Only %3$d more to enter the global ranking.</item>
+        <item quantity="other">%1$s, you\'ve played %2$d levels. Only %3$d more to enter the global ranking.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_2">
+        <item quantity="one">Great progress, %1$s! You\'ve completed %2$d level and need just %3$d more to see your ranking.</item>
+        <item quantity="other">Great progress, %1$s! You\'ve completed %2$d levels and need just %3$d more to see your ranking.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_3">
+        <item quantity="one">%1$s, your account shows %2$d level played. Only %3$d more to unlock the global leaderboard.</item>
+        <item quantity="other">%1$s, your account shows %2$d levels played. Only %3$d more to unlock the global leaderboard.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_4">
+        <item quantity="one">%1$s, you\'ve played %2$d out of 36 levels. Just %3$d more to join the leaderboard.</item>
+        <item quantity="other">%1$s, you\'ve played %2$d out of 36 levels. Just %3$d more to join the leaderboard.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_5">
+        <item quantity="one">%1$s, you\'ve finished %2$d level. Play %3$d more to appear in the global ranking.</item>
+        <item quantity="other">%1$s, you\'ve finished %2$d levels. Play %3$d more to appear in the global ranking.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_6">
+        <item quantity="one">%1$s, you\'re just %3$d level away from the 36 needed. You\'ve already played %2$d!</item>
+        <item quantity="other">%1$s, you\'re just %3$d levels away from the 36 needed. You\'ve already played %2$d!</item>
+    </plurals>
+
 
     <!-- Without user name -->
-    <string name="msg_info_global_levels_7">You\’ve played %1$d levels. Only %2$d more to appear in the global ranking.</string>
-    <string name="msg_info_global_levels_8">You\’re on the right track! %1$d levels played, just %2$d more and you\’ll be ranked.</string>
-    <string name="msg_info_global_levels_9">%1$d levels completed. Only %2$d more to unlock your global ranking.</string>
-    <string name="msg_info_global_levels_10">Progress: %1$d out of 36 levels played. %2$d more to reach the global leaderboard.</string>
-    <string name="msg_info_global_levels_11">%1$d levels finished. Just %2$d more to see your spot in the ranking.</string>
-    <string name="msg_info_global_levels_12">Only %2$d more levels to join the global ranking. You\’ve already played %1$d!</string>
+    <plurals name="msg_info_global_levels_7">
+        <item quantity="one">You\'ve played %1$d level. Only %2$d more to appear in the global ranking.</item>
+        <item quantity="other">You\'ve played %1$d levels. Only %2$d more to appear in the global ranking.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_8">
+        <item quantity="one">You\'re on the right track! %1$d level played, just %2$d more and you\'ll be ranked.</item>
+        <item quantity="other">You\'re on the right track! %1$d levels played, just %2$d more and you\'ll be ranked.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_9">
+        <item quantity="one">%1$d level completed. Only %2$d more to unlock your global ranking.</item>
+        <item quantity="other">%1$d levels completed. Only %2$d more to unlock your global ranking.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_10">
+        <item quantity="one">Progress: %1$d out of 36 levels played. %2$d more to reach the global leaderboard.</item>
+        <item quantity="other">Progress: %1$d out of 36 levels played. %2$d more to reach the global leaderboard.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_11">
+        <item quantity="one">%1$d level finished. Just %2$d more to see your spot in the ranking.</item>
+        <item quantity="other">%1$d levels finished. Just %2$d more to see your spot in the ranking.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_12">
+        <item quantity="one">Only %2$d more level to join the global ranking. You\'ve already played %1$d!</item>
+        <item quantity="other">Only %2$d more levels to join the global ranking. You\'ve already played %1$d!</item>
+    </plurals>
 
     <!-- With user name -->
     <string name="msg_motiv_global_levels_1">You\’ve got this, %1$s! Every level gets you closer to the global ranking.</string>
@@ -901,12 +938,30 @@
     <string name="msg_iqplus_info_5">IQ+ calculated so far: %1$.2f. Every new level counts.</string>
     <string name="msg_iqplus_info_6">This is your current IQ+: %1$.2f. Complete all games and difficulties to unlock the ranking!</string>
 
-    <string name="msg_iqplus_levels_info_1">%1$s, you have played in %2$d different games and difficulties. You need %3$d more to appear in the IQ+ Ranking.</string>
-    <string name="msg_iqplus_levels_info_2">%1$s, you have completed %2$d rounds in different games and difficulties. Only %3$d more to unlock your IQ+ ranking.</string>
-    <string name="msg_iqplus_levels_info_3">%1$s, you\'re progressing: %2$d played, %3$d left. Keep going to reach the IQ+ ranking!</string>
-    <string name="msg_iqplus_levels_info_4" tools:ignore="StringFormatCount">You have played in %2$d different games and difficulties. %3$d left to unlock the IQ+ ranking.</string>
-    <string name="msg_iqplus_levels_info_5" tools:ignore="StringFormatCount">Your progress: %2$d played, %3$d to go. You\'re almost ready to see your position in the IQ+ ranking!</string>
-    <string name="msg_iqplus_levels_info_6" tools:ignore="StringFormatCount">You\'ve completed %2$d different rounds; when you finish %3$d more, you\'ll appear in the IQ+ Ranking.</string>
+    <plurals name="msg_iqplus_levels_info_1">
+        <item quantity="one">%1$s, you have played in %2$d different game and difficulty. You need %3$d more to appear in the IQ+ Ranking.</item>
+        <item quantity="other">%1$s, you have played in %2$d different games and difficulties. You need %3$d more to appear in the IQ+ Ranking.</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_2">
+        <item quantity="one">%1$s, you have completed %2$d round in different games and difficulties. Only %3$d more to unlock your IQ+ ranking.</item>
+        <item quantity="other">%1$s, you have completed %2$d rounds in different games and difficulties. Only %3$d more to unlock your IQ+ ranking.</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_3">
+        <item quantity="one">%1$s, you\'re progressing: %2$d played, %3$d left. Keep going to reach the IQ+ ranking!</item>
+        <item quantity="other">%1$s, you\'re progressing: %2$d played, %3$d left. Keep going to reach the IQ+ ranking!</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_4" tools:ignore="StringFormatCount">
+        <item quantity="one">You have played in %2$d different game and difficulty. %3$d left to unlock the IQ+ ranking.</item>
+        <item quantity="other">You have played in %2$d different games and difficulties. %3$d left to unlock the IQ+ ranking.</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_5" tools:ignore="StringFormatCount">
+        <item quantity="one">Your progress: %2$d played, %3$d to go. You\'re almost ready to see your position in the IQ+ ranking!</item>
+        <item quantity="other">Your progress: %2$d played, %3$d to go. You\'re almost ready to see your position in the IQ+ ranking!</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_6" tools:ignore="StringFormatCount">
+        <item quantity="one">You\'ve completed %2$d different round; when you finish %3$d more, you\'ll appear in the IQ+ Ranking.</item>
+        <item quantity="other">You\'ve completed %2$d different rounds; when you finish %3$d more, you\'ll appear in the IQ+ Ranking.</item>
+    </plurals>
 
     <string name="msg_iqplus_motiv_1">Keep going! Each new game brings you closer to your place in the IQ+ Ranking.</string>
     <string name="msg_iqplus_motiv_2">Keep moving forward; soon you\'ll be ranked and know your position.</string>
@@ -921,7 +976,7 @@
 
     <string name="iqplus_ranking_title">IQ⁺ Index Ranking</string>
 
-    <string name="share_iqplus_ranking_message">I\'m in position %1$d of the SumaMente IQ⁺ Ranking with an IQ⁺ of %2$.3f! Can you beat me?</string>
+    <string name="share_iqplus_ranking_message" tools:ignore="ImpliedQuantity">I\'m in position %1$d of the SumaMente IQ⁺ Ranking with an IQ⁺ of %2$.3f! Can you beat me?</string>
 
     <string name="precision_global_title">Global Precision</string>
     <string name="velocidad_promedio_title">Global Average Speed</string>
@@ -1050,7 +1105,10 @@
     <string name="medalla_motiv_immortalis">🏆 Medal collection COMPLETE! You\'re a SumaMente legend!</string>
 
     <!-- DYNAMIC MEDAL COUNTER -->
-    <string name="medalla_contador_progreso">📈 You have %1$d medals, %2$d remaining</string>
+    <plurals name="medalla_contador_progreso">
+        <item quantity="one">📈 You have %1$d medal, %2$d remaining</item>
+        <item quantity="other">📈 You have %1$d medals, %2$d remaining</item>
+    </plurals>
 
     <!-- Accessibility descriptions for medal dialog -->
     <string name="medal_circle_background">Background circle for medal</string>
@@ -1081,7 +1139,10 @@
     <string name="trofeo_titulo_potens">🏆 POTENS TROPHY EMPOWERED! 🏆</string>
 
     <!-- DYNAMIC TROPHY COUNTER -->
-    <string name="trofeo_contador_progreso">🏆 You have %1$d trophies, %2$d remaining</string>
+    <plurals name="trofeo_contador_progreso">
+        <item quantity="one">🏆 You have %1$d trophy, %2$d remaining</item>
+        <item quantity="other">🏆 You have %1$d trophies, %2$d remaining</item>
+    </plurals>
 
     <string name="trofeo_motiv_1">🏆 This is your first trophy! 20 more to conquer</string>
     <string name="trofeo_motiv_21">🏆 TROPHY COLLECTION COMPLETE! You are a SumaMente master!</string>
@@ -1102,18 +1163,65 @@
 
     <string name="ranking_integral_s">Integral Ranking S⁺:</string>
 
-    <string name="ranking_integral_progreso_1">You\'re on the right track, %1$s! You already appear in %2$d SumaMente rankings. Only %3$d more to access the exclusive Integral Ranking.</string>
-    <string name="ranking_integral_progreso_2">%1$s, your progress is remarkable: you\'re present in %2$d rankings. Conquer the remaining %3$d to become part of the elite!</string>
-    <string name="ranking_integral_progreso_3">Congratulations %1$s! You\'ve entered %2$d rankings. Just %3$d more to reach the integral challenge.</string>
-    <string name="ranking_integral_progreso_4">%1$s, your name already appears in %2$d rankings. Only %3$d more and you\'ll unlock the Integral Ranking.</string>
-    <string name="ranking_integral_progreso_5">Keep it up, %1$s! You\'re in %2$d out of 9 rankings. Just %3$d more to go.</string>
-    <string name="ranking_integral_progreso_6">%1$s, each ranking added gets you closer to your goal. Now you appear in %2$d and need %3$d more. Don’t stop!</string>
-    <string name="ranking_integral_progreso_7">Let’s go, %1$s! Real progress: you’re in %2$d rankings and have %3$d left to conquer.</string>
-    <string name="ranking_integral_progreso_8">%1$s, you\'re close to the Integral Ranking: %2$d reached, %3$d to go.</string>
-    <string name="ranking_integral_progreso_9">Your name stands out in %2$d rankings, %1$s. Just %3$d more and you\'ll be among the best.</string>
-    <string name="ranking_integral_progreso_10">%1$s, add another achievement! You\'re in %2$d rankings. Only %3$d left to reach the integral goal.</string>
-    <string name="ranking_integral_progreso_11">%1$s, you\'re overcoming challenges: %2$d rankings already have your name. Go for the remaining %3$d!</string>
-    <string name="ranking_integral_progreso_12">Amazing progress, %1$s! You appear in %2$d rankings and only %3$d left for the big goal.</string>
+    <plurals name="ranking_integral_progreso_1">
+        <item quantity="one">You\'re on the right track, %1$s! You already appear in %2$d SumaMente ranking. Only %3$d more to access the exclusive Integral Ranking.</item>
+        <item quantity="other">You\'re on the right track, %1$s! You already appear in %2$d SumaMente rankings. Only %3$d more to access the exclusive Integral Ranking.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_2">
+        <item quantity="one">%1$s, your progress is remarkable: you\'re present in %2$d ranking. Conquer the remaining %3$d to become part of the elite!</item>
+        <item quantity="other">%1$s, your progress is remarkable: you\'re present in %2$d rankings. Conquer the remaining %3$d to become part of the elite!</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_3">
+        <item quantity="one">Congratulations %1$s! You\'ve entered %2$d ranking. Just %3$d more to reach the integral challenge.</item>
+        <item quantity="other">Congratulations %1$s! You\'ve entered %2$d rankings. Just %3$d more to reach the integral challenge.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_4">
+        <item quantity="one">%1$s, your name already appears in %2$d ranking. Only %3$d more and you\'ll unlock the Integral Ranking.</item>
+        <item quantity="other">%1$s, your name already appears in %2$d rankings. Only %3$d more and you\'ll unlock the Integral Ranking.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_5">
+        <item quantity="one">Keep it up, %1$s! You\'re in %2$d out of 9 rankings. Just %3$d more to go.</item>
+        <item quantity="other">Keep it up, %1$s! You\'re in %2$d out of 9 rankings. Just %3$d more to go.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_6">
+        <item quantity="one">%1$s, each added ranking gets you closer. You now appear in %2$d ranking and need %3$d more. Don’t stop!</item>
+        <item quantity="other">%1$s, each added ranking gets you closer. You now appear in %2$d rankings and need %3$d more. Don’t stop!</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_7">
+        <item quantity="one">Let’s go, %1$s! Real progress: you’re in %2$d ranking and have %3$d left to conquer.</item>
+        <item quantity="other">Let’s go, %1$s! Real progress: you’re in %2$d rankings and have %3$d left to conquer.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_8">
+        <item quantity="one">%1$s, you\'re close to the Integral Ranking: %2$d reached, %3$d to go.</item>
+        <item quantity="other">%1$s, you\'re close to the Integral Ranking: %2$d reached, %3$d to go.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_9">
+        <item quantity="one">Your name stands out in %2$d ranking, %1$s. Just %3$d more and you\'ll be among the best.</item>
+        <item quantity="other">Your name stands out in %2$d rankings, %1$s. Just %3$d more and you\'ll be among the best.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_10">
+        <item quantity="one">%1$s, add another achievement! You\'re in %2$d ranking. Only %3$d left to reach the integral goal.</item>
+        <item quantity="other">%1$s, add another achievement! You\'re in %2$d rankings. Only %3$d left to reach the integral goal.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_11">
+        <item quantity="one">%1$s, you\'re overcoming challenges: %2$d ranking already has your name. Go for the remaining %3$d!</item>
+        <item quantity="other">%1$s, you\'re overcoming challenges: %2$d rankings already have your name. Go for the remaining %3$d!</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_12">
+        <item quantity="one">Amazing progress, %1$s! You appear in %2$d ranking and only %3$d left for the big goal.</item>
+        <item quantity="other">Amazing progress, %1$s! You appear in %2$d rankings and only %3$d left for the big goal.</item>
+    </plurals>
 
     <!-- Status: user ALREADY appears -->
     <string name="ranking_estado_aparece_1">You already appear</string>
@@ -1167,22 +1275,6 @@
         <item>Every game counts. Keep advancing toward the absolute summit!</item>
         <item>The goal is clear! Master all rankings and join the SumaMente elite.</item>
         <item>Persistence is the key! Each new ranking brings you closer to integral glory.</item>
-    </string-array>
-
-    <!-- Arrays para mensajes de progreso (usando los que ya existen) -->
-    <string-array name="ranking_integral_progreso_messages">
-        <item>@string/ranking_integral_progreso_1</item>
-        <item>@string/ranking_integral_progreso_2</item>
-        <item>@string/ranking_integral_progreso_3</item>
-        <item>@string/ranking_integral_progreso_4</item>
-        <item>@string/ranking_integral_progreso_5</item>
-        <item>@string/ranking_integral_progreso_6</item>
-        <item>@string/ranking_integral_progreso_7</item>
-        <item>@string/ranking_integral_progreso_8</item>
-        <item>@string/ranking_integral_progreso_9</item>
-        <item>@string/ranking_integral_progreso_10</item>
-        <item>@string/ranking_integral_progreso_11</item>
-        <item>@string/ranking_integral_progreso_12</item>
     </string-array>
 
     <!-- Arrays para estados de ranking (usando los que ya existen) -->

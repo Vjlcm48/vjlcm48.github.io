@@ -197,18 +197,21 @@ class IQPlusRankingActivity : BaseActivity()  {
             iqPlus
         )
 
-        val levelsInfoMsgIndex = Random.nextInt(6)
-        var levelsInfoMsg = getString(
-            when(levelsInfoMsgIndex) {
-                0 -> R.string.msg_iqplus_levels_info_1
-                1 -> R.string.msg_iqplus_levels_info_2
-                2 -> R.string.msg_iqplus_levels_info_3
-                3 -> R.string.msg_iqplus_levels_info_4
-                4 -> R.string.msg_iqplus_levels_info_5
-                else -> R.string.msg_iqplus_levels_info_6
-            },
+        val pluralsIds = arrayOf(
+            R.plurals.msg_iqplus_levels_info_1,
+            R.plurals.msg_iqplus_levels_info_2,
+            R.plurals.msg_iqplus_levels_info_3,
+            R.plurals.msg_iqplus_levels_info_4,
+            R.plurals.msg_iqplus_levels_info_5,
+            R.plurals.msg_iqplus_levels_info_6
+        )
+        val levelsInfoMsgIndex = Random.nextInt(pluralsIds.size)
+        var levelsInfoMsg = resources.getQuantityString(
+            pluralsIds[levelsInfoMsgIndex],
+            combosCompletados,
             nombre, combosCompletados, combosFaltantes
         )
+
 
         val motivMsgIndex = Random.nextInt(6)
         var motivMsg = getString(

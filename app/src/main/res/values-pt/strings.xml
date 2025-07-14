@@ -480,8 +480,8 @@
     <string name="error_time_limit_not_found">Limite de tempo para o nível %1$d não encontrado</string>
     <string name="text_alfa">ALFA</string>
     <string name="text_numeros">NÚMEROS</string>
-    <string name="text_suma">SOMA</string>
-    <string name="text_resta">SUBTRAÇÃO</string>
+    <string name="text_suma">SUMA</string>
+    <string name="text_resta">RESTA</string>
     <string name="toast_select_option">Selecione pelo menos uma opção</string>
     <string name="sum_and_subtract_instruction">Resolva as operações considerando números positivos e negativos.</string>
     <string name="general_instructions">Some os números inteiros, decimais, romanos e as letras. Alguns podem ser negativos!</string>
@@ -765,18 +765,81 @@
     <string name="msg_need_more_games_global_4">Vamos lá, %1$s! Quando completar 36 níveis, poderá ver sua posição no ranking global.</string>
     <string name="msg_need_more_games_global_5">%1$s, sua classificação global aparecerá automaticamente ao jogar 36 níveis.</string>
     <string name="msg_need_more_games_global_6">Pronto para o desafio, %1$s? Jogue 36 níveis e entre no ranking global.</string>
-    <string name="msg_info_global_levels_1">%1$s, você jogou %2$d níveis. Faltam %3$d para entrar no ranking global.</string>
-    <string name="msg_info_global_levels_2">Bom avanço, %1$s! Você tem %2$d níveis e faltam apenas %3$d para ver sua classificação.</string>
-    <string name="msg_info_global_levels_3">%1$s, sua conta soma %2$d níveis jogados. Faltam %3$d para desbloquear o ranking global.</string>
-    <string name="msg_info_global_levels_4">%1$s, você tem %2$d de 36 níveis jogados. Faltam apenas %3$d para entrar no ranking.</string>
-    <string name="msg_info_global_levels_5">%1$s, você já completou %2$d níveis. Jogue mais %3$d para aparecer no ranking global.</string>
-    <string name="msg_info_global_levels_6">%1$s, você está a %3$d níveis de alcançar os 36 necessários. Você já jogou %2$d!</string>
-    <string name="msg_info_global_levels_7">Você jogou %1$d níveis. Faltam %2$d para aparecer no ranking global.</string>
-    <string name="msg_info_global_levels_8">Você está no caminho certo! %1$d níveis jogados, mais %2$d e estará no ranking.</string>
-    <string name="msg_info_global_levels_9">Você tem %1$d níveis. Faltam apenas %2$d para desbloquear sua classificação global.</string>
-    <string name="msg_info_global_levels_10">Progresso! %1$d de 36 níveis jogados. Faltam %2$d para o ranking global.</string>
-    <string name="msg_info_global_levels_11">Você já completou %1$d níveis. Faltam apenas %2$d para ver sua posição no ranking.</string>
-    <string name="msg_info_global_levels_12">Você está a %2$d níveis do ranking global. Você já tem %1$d jogados.</string>
+
+    <!-- Con nombre de usuario -->
+    <plurals name="msg_info_global_levels_1">
+        <item quantity="one">%1$s, você jogou %2$d nível. Faltam apenas %3$d para entrar no ranking global.</item>
+        <item quantity="other">%1$s, você jogou %2$d níveis. Faltam apenas %3$d para entrar no ranking global.</item>
+        <item quantity="many">%1$s, você jogou %2$d níveis. Faltam apenas %3$d para entrar no ranking global.</item>
+    </plurals>
+
+    <plurals name="msg_info_global_levels_2">
+        <item quantity="one">Ótimo progresso, %1$s! Você completou %2$d nível e precisa de apenas mais %3$d para ver seu ranking.</item>
+        <item quantity="other">Ótimo progresso, %1$s! Você completou %2$d níveis e precisa de apenas mais %3$d para ver seu ranking.</item>
+        <item quantity="many">Ótimo progresso, %1$s! Você completou %2$d níveis e precisa de apenas mais %3$d para ver seu ranking.</item>
+    </plurals>
+
+    <plurals name="msg_info_global_levels_3">
+        <item quantity="one">%1$s, sua conta mostra %2$d nível jogado. Apenas mais %3$d para desbloquear o ranking global.</item>
+        <item quantity="other">%1$s, sua conta mostra %2$d níveis jogados. Apenas mais %3$d para desbloquear o ranking global.</item>
+        <item quantity="many">%1$s, sua conta mostra %2$d níveis jogados. Apenas mais %3$d para desbloquear o ranking global.</item>
+    </plurals>
+
+    <plurals name="msg_info_global_levels_4">
+        <item quantity="one">%1$s, você jogou %2$d de 36 níveis. Apenas mais %3$d para entrar no ranking.</item>
+        <item quantity="other">%1$s, você jogou %2$d de 36 níveis. Apenas mais %3$d para entrar no ranking.</item>
+        <item quantity="many">%1$s, você jogou %2$d de 36 níveis. Apenas mais %3$d para entrar no ranking.</item>
+    </plurals>
+
+    <plurals name="msg_info_global_levels_5">
+        <item quantity="one">%1$s, você terminou %2$d nível. Jogue mais %3$d para aparecer no ranking global.</item>
+        <item quantity="other">%1$s, você terminou %2$d níveis. Jogue mais %3$d para aparecer no ranking global.</item>
+        <item quantity="many">%1$s, você terminou %2$d níveis. Jogue mais %3$d para aparecer no ranking global.</item>
+    </plurals>
+
+    <plurals name="msg_info_global_levels_6">
+        <item quantity="one">%1$s, você está a %3$d nível dos 36 necessários. Você já jogou %2$d!</item>
+        <item quantity="other">%1$s, você está a %3$d níveis dos 36 necessários. Você já jogou %2$d!</item>
+        <item quantity="many">%1$s, você está a %3$d níveis dos 36 necessários. Você já jogou %2$d!</item>
+    </plurals>
+
+    <!-- Sin nombre de usuario -->
+    <plurals name="msg_info_global_levels_7">
+        <item quantity="one">Você jogou %1$d nível. Apenas mais %2$d para aparecer no ranking global.</item>
+        <item quantity="other">Você jogou %1$d níveis. Apenas mais %2$d para aparecer no ranking global.</item>
+        <item quantity="many">Você jogou %1$d níveis. Apenas mais %2$d para aparecer no ranking global.</item>
+    </plurals>
+
+    <plurals name="msg_info_global_levels_8">
+        <item quantity="one">Você está no caminho certo! %1$d nível jogado, apenas mais %2$d e você estará no ranking.</item>
+        <item quantity="other">Você está no caminho certo! %1$d níveis jogados, apenas mais %2$d e você estará no ranking.</item>
+        <item quantity="many">Você está no caminho certo! %1$d níveis jogados, apenas mais %2$d e você estará no ranking.</item>
+    </plurals>
+
+    <plurals name="msg_info_global_levels_9">
+        <item quantity="one">%1$d nível concluído. Apenas mais %2$d para desbloquear seu ranking global.</item>
+        <item quantity="other">%1$d níveis concluídos. Apenas mais %2$d para desbloquear seu ranking global.</item>
+        <item quantity="many">%1$d níveis concluídos. Apenas mais %2$d para desbloquear seu ranking global.</item>
+    </plurals>
+
+    <plurals name="msg_info_global_levels_10">
+        <item quantity="one">Progresso: %1$d de 36 nível jogado. Mais %2$d para alcançar o ranking global.</item>
+        <item quantity="other">Progresso: %1$d de 36 níveis jogados. Mais %2$d para alcançar o ranking global.</item>
+        <item quantity="many">Progresso: %1$d de 36 níveis jogados. Mais %2$d para alcançar o ranking global.</item>
+    </plurals>
+
+    <plurals name="msg_info_global_levels_11">
+        <item quantity="one">%1$d nível finalizado. Apenas mais %2$d para ver sua posição no ranking.</item>
+        <item quantity="other">%1$d níveis finalizados. Apenas mais %2$d para ver sua posição no ranking.</item>
+        <item quantity="many">%1$d níveis finalizados. Apenas mais %2$d para ver sua posição no ranking.</item>
+    </plurals>
+
+    <plurals name="msg_info_global_levels_12">
+        <item quantity="one">Apenas mais %2$d nível para entrar no ranking global. Você já jogou %1$d!</item>
+        <item quantity="other">Apenas mais %2$d níveis para entrar no ranking global. Você já jogou %1$d!</item>
+        <item quantity="many">Apenas mais %2$d níveis para entrar no ranking global. Você já jogou %1$d!</item>
+    </plurals>
+
     <string name="msg_motiv_global_levels_1">Você consegue, %1$s! Cada nível te aproxima do ranking global.</string>
     <string name="msg_motiv_global_levels_2">%1$s, continue assim. O ranking global está cada vez mais perto!</string>
     <string name="msg_motiv_global_levels_3">Não pare, %1$s. Seu esforço em breve será recompensado!</string>
@@ -801,12 +864,38 @@
     <string name="msg_iqplus_info_4">Você está desenvolvendo seu IQ+ em SumaMente: %1$.2f.</string>
     <string name="msg_iqplus_info_5">IQ+ calculado até agora: %1$.2f. Cada novo nível conta.</string>
     <string name="msg_iqplus_info_6">Assim vai seu IQ+: %1$.2f. Complete todos os jogos e graus para desbloquear o ranking!</string>
-    <string name="msg_iqplus_levels_info_1">%1$s, você jogou em %2$d jogos e graus diferentes. Faltam %3$d para aparecer no Ranking IQ+.</string>
-    <string name="msg_iqplus_levels_info_2">%1$s, sua conta soma %2$d partidas em diferentes jogos e graus. Faltam apenas %3$d para desbloquear seu ranking IQ+.</string>
-    <string name="msg_iqplus_levels_info_3">%1$s, você está avançando: %2$d jogados, %3$d por jogar. Continue assim para alcançar o ranking IQ+!</string>
-    <string name="msg_iqplus_levels_info_4" tools:ignore="StringFormatCount">Você jogou em %2$d jogos e graus distintos. Faltam %3$d para desbloquear o ranking IQ+.</string>
-    <string name="msg_iqplus_levels_info_5" tools:ignore="StringFormatCount">Seu progresso: %2$d jogados, %3$d por jogar. Você quase pode ver sua posição no ranking IQ+!</string>
-    <string name="msg_iqplus_levels_info_6" tools:ignore="StringFormatCount">Você tem %2$d partidas diferentes; quando completar mais %3$d, aparecerá no Ranking IQ+.</string>
+
+    <plurals name="msg_iqplus_levels_info_1">
+        <item quantity="one">%1$s, você jogou em %2$d jogo e dificuldade diferentes. Precisa de mais %3$d para aparecer no Ranking IQ+.</item>
+        <item quantity="other">%1$s, você jogou em %2$d jogos e dificuldades diferentes. Precisa de mais %3$d para aparecer no Ranking IQ+.</item>
+        <item quantity="many">%1$s, você jogou em %2$d jogos e dificuldades diferentes. Precisa de mais %3$d para aparecer no Ranking IQ+.</item>
+    </plurals>
+
+    <plurals name="msg_iqplus_levels_info_2">
+        <item quantity="one">%1$s, você completou %2$d rodada em diferentes jogos e dificuldades. Apenas mais %3$d para desbloquear seu ranking IQ+.</item>
+        <item quantity="other">%1$s, você completou %2$d rodadas em diferentes jogos e dificuldades. Apenas mais %3$d para desbloquear seu ranking IQ+.</item>
+        <item quantity="many">%1$s, você completou %2$d rodadas em diferentes jogos e dificuldades. Apenas mais %3$d para desbloquear seu ranking IQ+.</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_3">
+        <item quantity="one">%1$s, você está progredindo: %2$d jogado, %3$d restantes. Continue para alcançar o ranking IQ+!</item>
+        <item quantity="other">%1$s, você está progredindo: %2$d jogados, %3$d restantes. Continue para alcançar o ranking IQ+!</item>
+        <item quantity="many">%1$s, você está progredindo: %2$d jogados, %3$d restantes. Continue para alcançar o ranking IQ+!</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_4" tools:ignore="StringFormatCount">
+        <item quantity="one">Você jogou em %2$d jogo e dificuldade diferentes. Faltam %3$d para desbloquear o ranking IQ+.</item>
+        <item quantity="other">Você jogou em %2$d jogos e dificuldades diferentes. Faltam %3$d para desbloquear o ranking IQ+.</item>
+        <item quantity="many">Você jogou em %2$d jogos e dificuldades diferentes. Faltam %3$d para desbloquear o ranking IQ+.</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_5" tools:ignore="StringFormatCount">
+        <item quantity="one">Seu progresso: %2$d jogado, %3$d para jogar. Você está quase pronto para ver sua posição no ranking IQ+!</item>
+        <item quantity="other">Seu progresso: %2$d jogados, %3$d para jogar. Você está quase pronto para ver sua posição no ranking IQ+!</item>
+        <item quantity="many">Seu progresso: %2$d jogados, %3$d para jogar. Você está quase pronto para ver sua posição no ranking IQ+!</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_6" tools:ignore="StringFormatCount">
+        <item quantity="one">Você completou %2$d rodada diferente; quando terminar mais %3$d, você aparecerá no Ranking IQ+.</item>
+        <item quantity="other">Você completou %2$d rodadas diferentes; quando terminar mais %3$d, você aparecerá no Ranking IQ+.</item>
+        <item quantity="many">Você completou %2$d rodadas diferentes; quando terminar mais %3$d, você aparecerá no Ranking IQ+.</item>
+    </plurals>
     <string name="msg_iqplus_motiv_1">Continue assim! Cada novo jogo te aproxima do seu lugar no Ranking IQ+.</string>
     <string name="msg_iqplus_motiv_2">Continue avançando, em breve poderá ver-se ranqueado e conhecer sua posição.</string>
     <string name="msg_iqplus_motiv_3">Você está prestes a fazer parte dos melhores em SumaMente. Não pare!</string>
@@ -816,7 +905,9 @@
     <string name="clasificaciones_por_iqplus">Classificação por índice IQ⁺</string>
     <string name="indice_iqplus">Índice IQ⁺</string>
     <string name="iqplus_ranking_title">Ranking do índice IQ⁺</string>
-    <string name="share_iqplus_ranking_message">Estou na posição %1$d do Ranking IQ⁺ de SumaMente com um IQ⁺ de %2$.3f! Você se atreve a me superar?</string>
+
+    <string name="share_iqplus_ranking_message" tools:ignore="ImpliedQuantity">Estou na posição %1$d do Ranking IQ⁺ de SumaMente com um IQ⁺ de %2$.3f! Você se atreve a me superar?</string>
+
     <string name="precision_global_title">Precisão Global</string>
     <string name="velocidad_promedio_title">Velocidade Média Global</string>
     <string name="precision_global_explanation">A precisão global mede a porcentagem de acertos em todos os seus jogos. É calculada como:\n\n(Respostas corretas ÷ Total de jogos) × 100%</string>
@@ -906,7 +997,13 @@
     <string name="medalla_motiv_gloriam">🏆 Grandeza próxima: MAGNUS - mais 100 desafios para a magnificência</string>
     <string name="medalla_motiv_magnus">✨ Rumo à imortalidade: IMMORTALIS - 100 jogos finais para a lenda</string>
     <string name="medalla_motiv_immortalis">🏆 Coleção de medalhas COMPLETA! Você é uma lenda de SumaMente!</string>
-    <string name="medalla_contador_progreso">📈 Você tem %1$d medalhas, faltam %2$d</string>
+
+    <plurals name="medalla_contador_progreso">
+        <item quantity="one">📈 Você tem %1$d medalha, %2$d restantes</item>
+        <item quantity="other">📈 Você tem %1$d medalhas, %2$d restantes</item>
+        <item quantity="many">📈 Você tem %1$d medalhas, %2$d restantes</item>
+    </plurals>
+
     <string name="medal_circle_background">Círculo de fundo para medalha</string>
     <string name="medal_image">Imagem da medalha obtida</string>
     <string name="trofeo_titulo_initia">🏆 TROFÉU INITIA CONQUISTADO! 🏆</string>
@@ -930,7 +1027,13 @@
     <string name="trofeo_titulo_ascensus">🏆 TROFÉU ASCENSUS ASCENDIDO! 🏆</string>
     <string name="trofeo_titulo_magnificus">🏆 TROFÉU MAGNIFICUS MAGNIFICADO! 🏆</string>
     <string name="trofeo_titulo_potens">🏆 TROFÉU POTENS POTENCIALIZADO! 🏆</string>
-    <string name="trofeo_contador_progreso">🏆 Você tem %1$d troféus, faltam %2$d</string>
+
+    <plurals name="trofeo_contador_progreso">
+        <item quantity="one">🏆 Você tem %1$d troféu, %2$d restantes</item>
+        <item quantity="other">🏆 Você tem %1$d troféus, %2$d restantes</item>
+        <item quantity="many">🏆 Você tem %1$d troféus, %2$d restantes</item>
+    </plurals>
+
     <string name="trofeo_motiv_1">🏆 Este é seu primeiro troféu! Faltam mais 20 para conquistar</string>
     <string name="trofeo_motiv_21">🏆 COLEÇÃO DE TROFÉUS COMPLETA! Você é um mestre de SumaMente!</string>
     <string name="doble_celebracion_titulo">🎊 DUPLA CELEBRAÇÃO! 🎊</string>
@@ -940,18 +1043,78 @@
     <string name="apex_titulo">🌟 APEX SUPREMUS CONSEGUIDO! 🌟</string>
     <string name="apex_descripcion">1490 níveis completados, você é digno da APEX SUPREMUS! 🏆✨ Sua dedicação e maestria mental te levaram ao topo absoluto de SumaMente. 👑</string>
     <string name="ranking_integral_s">Ranking Integral S⁺:</string>
-    <string name="ranking_integral_progreso_1">Você está no caminho certo, %1$s! Já figura em %2$d rankings de SumaMente. Faltam apenas %3$d para acessar o exclusivo Ranking Integral.</string>
-    <string name="ranking_integral_progreso_2">%1$s, seu avanço é notável: está presente em %2$d rankings. Conquiste os %3$d restantes para fazer parte da elite!</string>
-    <string name="ranking_integral_progreso_3">Parabéns, %1$s! Você conseguiu entrar em %2$d rankings. Faltam %3$d para alcançar o desafio integral.</string>
-    <string name="ranking_integral_progreso_4">%1$s, seu nome já aparece em %2$d rankings. Apenas mais %3$d e desbloqueará o Ranking Integral.</string>
-    <string name="ranking_integral_progreso_5">Continue assim, %1$s! Você está em %2$d dos 9 rankings. Avance um pouco mais e faltarão apenas %3$d.</string>
-    <string name="ranking_integral_progreso_6">%1$s, cada ranking somado te aproxima do objetivo. Agora você figura em %2$d e faltam %3$d. Não pare!</string>
-    <string name="ranking_integral_progreso_7">Vamos, %1$s! Seu progresso é real: já está em %2$d rankings e restam %3$d para conquistar.</string>
-    <string name="ranking_integral_progreso_8">%1$s, fazer parte do Ranking Integral está perto: %2$d alcançados, %3$d a serem conquistados.</string>
-    <string name="ranking_integral_progreso_9">Seu nome se destaca em %2$d rankings, %1$s. Apenas mais %3$d e fará parte dos melhores.</string>
-    <string name="ranking_integral_progreso_10">%1$s, some mais uma conquista! Já está em %2$d rankings. Faltam %3$d para chegar à meta integral.</string>
-    <string name="ranking_integral_progreso_11">%1$s, você está superando desafios: %2$d rankings já têm seu nome. Vá pelos %3$d que faltam!</string>
-    <string name="ranking_integral_progreso_12">Avanço incrível, %1$s! Você aparece em %2$d rankings e faltam apenas %3$d para o grande objetivo.</string>
+
+    <plurals name="ranking_integral_progreso_1">
+        <item quantity="one">Você está no caminho certo, %1$s! Você já aparece em %2$d ranking do SumaMente. Faltam apenas %3$d para acessar o exclusivo Ranking Integral.</item>
+        <item quantity="other">Você está no caminho certo, %1$s! Você já aparece em %2$d rankings do SumaMente. Faltam apenas %3$d para acessar o exclusivo Ranking Integral.</item>
+        <item quantity="many">Você está no caminho certo, %1$s! Você já aparece em %2$d rankings do SumaMente. Faltam apenas %3$d para acessar o exclusivo Ranking Integral.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_2">
+        <item quantity="one">%1$s, seu progresso é notável: você está presente em %2$d ranking. Conquiste os %3$d restantes para fazer parte da elite!</item>
+        <item quantity="other">%1$s, seu progresso é notável: você está presente em %2$d rankings. Conquiste os %3$d restantes para fazer parte da elite!</item>
+        <item quantity="many">%1$s, seu progresso é notável: você está presente em %2$d rankings. Conquiste os %3$d restantes para fazer parte da elite!</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_3">
+        <item quantity="one">Parabéns, %1$s! Você entrou em %2$d ranking. Faltam apenas %3$d para alcançar o desafio integral.</item>
+        <item quantity="other">Parabéns, %1$s! Você entrou em %2$d rankings. Faltam apenas %3$d para alcançar o desafio integral.</item>
+        <item quantity="many">Parabéns, %1$s! Você entrou em %2$d rankings. Faltam apenas %3$d para alcançar o desafio integral.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_4">
+        <item quantity="one">%1$s, seu nome já aparece em %2$d ranking. Apenas mais %3$d e você desbloqueará o Ranking Integral.</item>
+        <item quantity="other">%1$s, seu nome já aparece em %2$d rankings. Apenas mais %3$d e você desbloqueará o Ranking Integral.</item>
+        <item quantity="many">%1$s, seu nome já aparece em %2$d rankings. Apenas mais %3$d e você desbloqueará o Ranking Integral.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_5">
+        <item quantity="one">Continue assim, %1$s! Você está em %2$d de 9 rankings. Faltam apenas mais %3$d.</item>
+        <item quantity="other">Continue assim, %1$s! Você está em %2$d de 9 rankings. Faltam apenas mais %3$d.</item>
+        <item quantity="many">Continue assim, %1$s! Você está em %2$d de 9 rankings. Faltam apenas mais %3$d.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_6">
+        <item quantity="one">%1$s, cada ranking adicionado te aproxima. Agora você aparece em %2$d ranking e faltam %3$d. Não pare!</item>
+        <item quantity="other">%1$s, cada ranking adicionado te aproxima. Agora você aparece em %2$d rankings e faltam %3$d. Não pare!</item>
+        <item quantity="many">%1$s, cada ranking adicionado te aproxima. Agora você aparece em %2$d rankings e faltam %3$d. Não pare!</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_7">
+        <item quantity="one">Vamos, %1$s! Progresso real: você está em %2$d ranking e faltam %3$d para conquistar.</item>
+        <item quantity="other">Vamos, %1$s! Progresso real: você está em %2$d rankings e faltam %3$d para conquistar.</item>
+        <item quantity="many">Vamos, %1$s! Progresso real: você está em %2$d rankings e faltam %3$d para conquistar.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_8">
+        <item quantity="one">%1$s, você está perto do Ranking Integral: %2$d alcançado, %3$d a alcançar.</item>
+        <item quantity="other">%1$s, você está perto do Ranking Integral: %2$d alcançados, %3$d a alcançar.</item>
+        <item quantity="many">%1$s, você está perto do Ranking Integral: %2$d alcançados, %3$d a alcançar.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_9">
+        <item quantity="one">Seu nome se destaca em %2$d ranking, %1$s. Apenas mais %3$d e você estará entre os melhores.</item>
+        <item quantity="other">Seu nome se destaca em %2$d rankings, %1$s. Apenas mais %3$d e você estará entre os melhores.</item>
+        <item quantity="many">Seu nome se destaca em %2$d rankings, %1$s. Apenas mais %3$d e você estará entre os melhores.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_10">
+        <item quantity="one">%1$s, some mais uma conquista! Você está em %2$d ranking. Faltam apenas %3$d para alcançar a meta integral.</item>
+        <item quantity="other">%1$s, some mais uma conquista! Você está em %2$d rankings. Faltam apenas %3$d para alcançar a meta integral.</item>
+        <item quantity="many">%1$s, some mais uma conquista! Você está em %2$d rankings. Faltam apenas %3$d para alcançar a meta integral.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_11">
+        <item quantity="one">%1$s, você está superando desafios: %2$d ranking já tem seu nome. Vá buscar os %3$d que faltam!</item>
+        <item quantity="other">%1$s, você está superando desafios: %2$d rankings já têm seu nome. Vá buscar os %3$d que faltam!</item>
+        <item quantity="many">%1$s, você está superando desafios: %2$d rankings já têm seu nome. Vá buscar os %3$d que faltam!</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_12">
+        <item quantity="one">Progresso incrível, %1$s! Você aparece em %2$d ranking e faltam apenas %3$d para o grande objetivo.</item>
+        <item quantity="other">Progresso incrível, %1$s! Você aparece em %2$d rankings e faltam apenas %3$d para o grande objetivo.</item>
+        <item quantity="many">Progresso incrível, %1$s! Você aparece em %2$d rankings e faltam apenas %3$d para o grande objetivo.</item>
+    </plurals>
     <string name="ranking_estado_aparece_1">Já aparece</string>
     <string name="ranking_estado_aparece_2">Conquistado!</string>
     <string name="ranking_estado_aparece_3">Presente!</string>
@@ -963,13 +1126,13 @@
     <string name="ranking_estado_no_aparece_4">Ainda não</string>
     <string name="ranking_estado_no_aparece_5">Sem registro</string>
     <string name="ranking_global_name">1.- Ranking Global:</string>
-    <string name="ranking_vel_numeros">2.- R. Velocidade NUMEROS⁺:</string>
+    <string name="ranking_vel_numeros">2.- R. Velocidade NÚMEROS⁺:</string>
     <string name="ranking_vel_deci">3.- R. Velocidade DECI⁺:</string>
     <string name="ranking_vel_alfanumeros">4.- R. Velocidade ALFANÚMEROS⁺:</string>
     <string name="ranking_vel_romas">5.- R. Velocidade ROMAS⁺:</string>
     <string name="ranking_vel_sumaresta">6.- R. Velocidade SUMARESTA⁺:</string>
     <string name="ranking_vel_mas">7.- R. Velocidade MÁS⁺:</string>
-    <string name="ranking_vel_genios">8.- R. Velocidade Genio⁺:</string>
+    <string name="ranking_vel_genios">8.- R. Velocidade GENIO⁺:</string>
     <string name="ranking_iq">9.- Ranking do índice IQ⁺:</string>
     <string name="clasificacion_integral_s">Classificação Integral S⁺</string>
     <string name="ranking_integral_combined_message">%1$s\n\n%2$s</string>
@@ -990,20 +1153,8 @@
         <item>A meta está clara! Domine todos os rankings e junte-se à elite de SumaMente.</item>
         <item>A persistência é a chave! Cada novo ranking te aproxima da glória integral.</item>
     </string-array>
-    <string-array name="ranking_integral_progreso_messages">
-        <item>@string/ranking_integral_progreso_1</item>
-        <item>@string/ranking_integral_progreso_2</item>
-        <item>@string/ranking_integral_progreso_3</item>
-        <item>@string/ranking_integral_progreso_4</item>
-        <item>@string/ranking_integral_progreso_5</item>
-        <item>@string/ranking_integral_progreso_6</item>
-        <item>@string/ranking_integral_progreso_7</item>
-        <item>@string/ranking_integral_progreso_8</item>
-        <item>@string/ranking_integral_progreso_9</item>
-        <item>@string/ranking_integral_progreso_10</item>
-        <item>@string/ranking_integral_progreso_11</item>
-        <item>@string/ranking_integral_progreso_12</item>
-    </string-array>
+
+
     <string-array name="ranking_estado_aparece_messages">
         <item>@string/ranking_estado_aparece_1</item>
         <item>@string/ranking_estado_aparece_2</item>

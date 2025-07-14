@@ -161,12 +161,31 @@ class IntegralRankingActivity : BaseActivity()  {
             ?: getString(R.string.default_username)
         val remaining = 9 - rankingsCount
 
-        val progressMessages = resources.getStringArray(R.array.ranking_integral_progreso_messages)
-        val progressMsgIndex = Random.nextInt(progressMessages.size)
-        val progressMsg = String.format(progressMessages[progressMsgIndex], username, rankingsCount, remaining)
+
+        val mensajesDeProgreso = listOf(
+            R.plurals.ranking_integral_progreso_1,
+            R.plurals.ranking_integral_progreso_2,
+            R.plurals.ranking_integral_progreso_3,
+            R.plurals.ranking_integral_progreso_4,
+            R.plurals.ranking_integral_progreso_5,
+            R.plurals.ranking_integral_progreso_6,
+            R.plurals.ranking_integral_progreso_7,
+            R.plurals.ranking_integral_progreso_8,
+            R.plurals.ranking_integral_progreso_9,
+            R.plurals.ranking_integral_progreso_10,
+            R.plurals.ranking_integral_progreso_11,
+            R.plurals.ranking_integral_progreso_12
+        )
+
+
+        val idDePluralAleatorio = mensajesDeProgreso.random()
+
+
+        val progressMsg = resources.getQuantityString(idDePluralAleatorio, rankingsCount, username, rankingsCount, remaining)
 
         tvProgressIndicator.apply {
             visibility = View.VISIBLE
+
             text = getString(R.string.ranking_progress_indicator, rankingsCount)
             textSize = 18f
             setTextColor(ContextCompat.getColor(this@IntegralRankingActivity, R.color.blue_primary_darker))

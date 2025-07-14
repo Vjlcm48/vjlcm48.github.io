@@ -147,23 +147,30 @@ class RankingActivity : BaseActivity()  {
 
                 val levelsRemaining = MIN_LEVELS_REQUIRED - totalLevels
 
+                val infoPluralsWithName = arrayOf(
+                    R.plurals.msg_info_global_levels_1,
+                    R.plurals.msg_info_global_levels_2,
+                    R.plurals.msg_info_global_levels_3,
+                    R.plurals.msg_info_global_levels_4,
+                    R.plurals.msg_info_global_levels_5,
+                    R.plurals.msg_info_global_levels_6
+                )
+                val infoPluralsWithoutName = arrayOf(
+                    R.plurals.msg_info_global_levels_7,
+                    R.plurals.msg_info_global_levels_8,
+                    R.plurals.msg_info_global_levels_9,
+                    R.plurals.msg_info_global_levels_10,
+                    R.plurals.msg_info_global_levels_11,
+                    R.plurals.msg_info_global_levels_12
+                )
 
-                val infoMsgsWithName = arrayOf(
-                    getString(R.string.msg_info_global_levels_1, username, totalLevels, levelsRemaining),
-                    getString(R.string.msg_info_global_levels_2, username, totalLevels, levelsRemaining),
-                    getString(R.string.msg_info_global_levels_3, username, totalLevels, levelsRemaining),
-                    getString(R.string.msg_info_global_levels_4, username, totalLevels, levelsRemaining),
-                    getString(R.string.msg_info_global_levels_5, username, totalLevels, levelsRemaining),
-                    getString(R.string.msg_info_global_levels_6, username, totalLevels, levelsRemaining)
-                )
-                val infoMsgsWithoutName = arrayOf(
-                    getString(R.string.msg_info_global_levels_7, totalLevels, levelsRemaining),
-                    getString(R.string.msg_info_global_levels_8, totalLevels, levelsRemaining),
-                    getString(R.string.msg_info_global_levels_9, totalLevels, levelsRemaining),
-                    getString(R.string.msg_info_global_levels_10, totalLevels, levelsRemaining),
-                    getString(R.string.msg_info_global_levels_11, totalLevels, levelsRemaining),
-                    getString(R.string.msg_info_global_levels_12, totalLevels, levelsRemaining)
-                )
+                val infoMsgsWithName = infoPluralsWithName.map {
+                    resources.getQuantityString(it, totalLevels, username, totalLevels, levelsRemaining)
+                }.toTypedArray()
+                val infoMsgsWithoutName = infoPluralsWithoutName.map {
+                    resources.getQuantityString(it, totalLevels, totalLevels, levelsRemaining)
+                }.toTypedArray()
+
 
                 val motivMsgsWithName = arrayOf(
                     getString(R.string.msg_motiv_global_levels_1, username),
