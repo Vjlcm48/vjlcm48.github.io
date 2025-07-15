@@ -55,7 +55,7 @@ class LevelResultActivitySumaRestaPro : BaseActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
-        setContentView(R.layout.activity_level_result_suma_resta_pro)
+        setContentView(R.layout.activity_level_result_suma_resta)
 
         ScoreManager.initSumaRestaPro(this)
 

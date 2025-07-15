@@ -29,7 +29,7 @@ class ResponseModeDialogSumaRestaPrincipiante(context: Context) : AppCompatDialo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.response_mode_dialog_suma_resta_principiante)
+        setContentView(R.layout.response_mode_dialog_suma_resta)
 
         window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
 

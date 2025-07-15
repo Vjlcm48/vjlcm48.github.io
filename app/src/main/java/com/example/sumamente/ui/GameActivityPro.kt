@@ -74,7 +74,7 @@ class GameActivityPro : BaseActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getSharedPreferences("MyPrefs", MODE_PRIVATE)
-        setContentView(R.layout.activity_game_pro)
+        setContentView(R.layout.activity_game)
 
         ScoreManager.initPro(this)
 

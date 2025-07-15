@@ -985,7 +985,7 @@ et de t’amuser. 🚀
 
     <string name="iqplus_ranking_title">Classement de l\'indice IQ⁺</string>
 
-    <string name="share_iqplus_ranking_message" tools:ignore="ImpliedQuantity">Je suis en position %1$d du classement IQ⁺ de SumaMente avec un IQ⁺ de %2$.3f ! Oserez-vous me dépasser ?</string>
+    <string name="share_iqplus_ranking_message">J\'ai atteint la position %1$d dans le Classement IQ⁺ de SumaMente avec un IQ⁺ de %2$.3f ! Oses-tu me surpasser ?</string>
 
     <string name="precision_global_title">Précision Globale</string>
     <string name="velocidad_promedio_title">Vitesse Moyenne Globale</string>

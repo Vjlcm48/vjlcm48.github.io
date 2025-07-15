@@ -77,7 +77,7 @@ class GameActivityDeciPlusPrincipiante : BaseActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
-        setContentView(R.layout.activity_game_deci_plus_principiante)
+        setContentView(R.layout.activity_game_deci_plus)
 
         ScoreManager.initDeciPlusPrincipiante(this)
 

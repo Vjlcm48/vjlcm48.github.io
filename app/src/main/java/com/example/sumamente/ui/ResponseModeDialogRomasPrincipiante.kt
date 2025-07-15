@@ -29,7 +29,7 @@ class ResponseModeDialogRomasPrincipiante(context: Context) : AppCompatDialog(co
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.response_mode_dialog_romas_principiante)
+        setContentView(R.layout.response_mode_dialog_romas)
 
         window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
 

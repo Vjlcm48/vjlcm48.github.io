@@ -56,7 +56,7 @@ class LevelResultActivityRomasPro : BaseActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
-        setContentView(R.layout.activity_level_result_romas_pro)
+        setContentView(R.layout.activity_level_result_romas)
 
         ScoreManager.initRomasPro(this)
         CondecoracionTracker.init(this)

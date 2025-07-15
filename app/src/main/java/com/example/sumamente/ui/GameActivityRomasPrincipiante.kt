@@ -77,7 +77,7 @@ class GameActivityRomasPrincipiante : BaseActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
-        setContentView(R.layout.activity_game_romas_principiante)
+        setContentView(R.layout.activity_game_romas)
 
         ScoreManager.initRomasPrincipiante(this)
 

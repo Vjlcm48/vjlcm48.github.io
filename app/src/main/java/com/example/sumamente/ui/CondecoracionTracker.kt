@@ -129,7 +129,7 @@ object CondecoracionTracker {
     private var pinesObtenidos: MutableList<PinObtained> = mutableListOf()
     private var carryOverLevels: MutableList<CompletedLevel> = mutableListOf()
     private var lastPinCheckDate: String = ""
-    private var hasNewPinsIndicator: Boolean = false
+//    private var hasNewPinsIndicator: Boolean = false 132 157 279
     private var coronasActivas: MutableList<CoronaActiva> = mutableListOf()
     private var lastCoronaCheckDate: String = ""
 
@@ -154,7 +154,7 @@ object CondecoracionTracker {
         loadPinesObtenidos()
         loadCarryOverLevels()
         lastPinCheckDate = preferences.getString(KEY_LAST_PIN_CHECK_DATE, "") ?: ""
-        hasNewPinsIndicator = preferences.getBoolean(KEY_NEW_PINS_INDICATOR, false)
+        // hasNewPinsIndicator = preferences.getBoolean(KEY_NEW_PINS_INDICATOR, false) 132 157 279
         trophyRedDotVisible = preferences.getBoolean(KEY_TROPHY_RED_DOT, false)
         misCondecoracionesRedDotVisible = preferences.getBoolean(KEY_MIS_CONDECORACIONES_RED_DOT, false)
 
@@ -276,7 +276,7 @@ object CondecoracionTracker {
                 saveCarryOverLevels()
             }
             if (pinesEntregados > 0) {
-                hasNewPinsIndicator = true
+                // hasNewPinsIndicator = true 132 157 279
                 updateRedDotsStatus()
                 preferences.edit {
                     putBoolean(KEY_NEW_PINS_INDICATOR, true)

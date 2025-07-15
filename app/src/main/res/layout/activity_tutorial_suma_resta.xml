@@ -275,7 +275,7 @@
     </GridLayout>
 
     <ImageView
-        android:id="@+id/check_seleccion_simple"
+        android:id="@+id/check_seleccion_simple_tsr"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/ic_check_green"

@@ -49,7 +49,7 @@ class LevelsActivityPrincipiante : BaseActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
-        setContentView(R.layout.activity_levels_principiante)
+        setContentView(R.layout.activity_levels)
 
         ScoreManager.initPrincipiante(this)
 

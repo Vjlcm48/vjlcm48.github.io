@@ -969,7 +969,7 @@
 
     <string name="iqplus_ranking_title">Ranking del índice IQ⁺</string>
 
-    <string name="share_iqplus_ranking_message" tools:ignore="ImpliedQuantity">¡Estoy en la posición %1$d del Ranking IQ⁺ de SumaMente con un IQ⁺ de %2$.3f! ¿Te animas a superarme?</string>
+    <string name="share_iqplus_ranking_message">¡Logré el puesto %1$d en el Ranking IQ⁺ de SumaMente con un IQ⁺ de %2$.3f! ¿Te animas a superarme?</string>
 
     <string name="precision_global_title">Precisión Global</string>
     <string name="velocidad_promedio_title">Velocidad Promedio Global</string>

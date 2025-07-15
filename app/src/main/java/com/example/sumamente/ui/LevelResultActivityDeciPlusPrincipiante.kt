@@ -57,7 +57,7 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
-        setContentView(R.layout.activity_level_result_deci_plus_principiante)
+        setContentView(R.layout.activity_level_result_deci_plus)
 
         ScoreManager.initDeciPlusPrincipiante(this)
         CondecoracionTracker.init(this)

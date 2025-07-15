@@ -49,7 +49,7 @@ class LevelsActivityPro : BaseActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
-        setContentView(R.layout.activity_levels_pro)
+        setContentView(R.layout.activity_levels)
 
         ScoreManager.initPro(this)
 

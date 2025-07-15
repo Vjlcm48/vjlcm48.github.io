@@ -57,7 +57,7 @@ class LevelResultActivityPro : BaseActivity()  {
         super.onCreate(savedInstanceState)
 
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
-        setContentView(R.layout.activity_level_result_pro)
+        setContentView(R.layout.activity_level_result)
 
         ScoreManager.initPro(this)
         CondecoracionTracker.init(this)

@@ -74,7 +74,7 @@ class GameActivitySumaRestaPrincipiante : BaseActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
-        setContentView(R.layout.activity_game_suma_resta_principiante)
+        setContentView(R.layout.activity_game_suma_resta)
 
         ScoreManager.initSumaRestaPrincipiante(this)
 

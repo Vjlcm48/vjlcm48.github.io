@@ -120,7 +120,7 @@ class TutorialActivityMasPlus : BaseActivity()  {
         starImageView = findViewById(R.id.iv_star)
         btnUnderstood = findViewById(R.id.btn_understood)
         btnClose = findViewById(R.id.btn_close_instructions)
-        checkEscribeRespuesta = findViewById(R.id.check_escribe_respuesta)
+        checkEscribeRespuesta = findViewById(R.id.check_escribe_respuesta_tm)
         progressRing = findViewById(R.id.progress_ring)
         tvNumber = findViewById(R.id.tv_number)
 

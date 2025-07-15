@@ -29,7 +29,7 @@ class ResponseModeDialogPro(context: Context) : AppCompatDialog(context) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.response_mode_dialog_pro)
+        setContentView(R.layout.response_mode_dialog)
 
         window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
 

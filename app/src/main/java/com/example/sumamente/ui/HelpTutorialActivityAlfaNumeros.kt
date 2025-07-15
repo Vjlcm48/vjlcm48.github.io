@@ -125,7 +125,7 @@ class HelpTutorialActivityAlfaNumeros : BaseActivity()  {
         btnPlay = findViewById(R.id.btn_understood)
         btnRepeat = findViewById(R.id.btn_repeat)
         btnClose = findViewById(R.id.btn_close_instructions)
-        checkEscribeRespuesta = findViewById(R.id.check_escribe_respuesta)
+        checkEscribeRespuesta = findViewById(R.id.check_escribe_respuesta_han)
         progressRing = findViewById(R.id.progress_ring)
         tvNumber = findViewById(R.id.tv_number)
 

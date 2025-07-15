@@ -50,7 +50,7 @@ class LevelsActivityRomasPrincipiante : BaseActivity()  {
         super.onCreate(savedInstanceState)
         ScoreManager.initRomasPrincipiante(this)
         sharedPreferences = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
-        setContentView(R.layout.activity_levels_romas_principiante)
+        setContentView(R.layout.activity_levels_romas)
 
         mediaPlayer = MediaPlayer.create(this, R.raw.clicbotones)
 

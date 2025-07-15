@@ -31,7 +31,7 @@ class ResponseModeDialogAlfaNumerosPro(context: Context) : AppCompatDialog(conte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.response_mode_dialog_alfanumeros_pro)
+        setContentView(R.layout.response_mode_dialog_alfanumeros)
 
 
         window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())

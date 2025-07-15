@@ -127,7 +127,7 @@ class TutorialActivityDeciPlus : BaseActivity()  {
         starImageView = findViewById(R.id.iv_star)
         btnUnderstood = findViewById(R.id.btn_understood)
         btnClose = findViewById(R.id.btn_close_instructions)
-        checkSeleccionSimple = findViewById(R.id.check_seleccion_simple)
+        checkSeleccionSimple = findViewById(R.id.check_seleccion_simple_td)
         progressRing = findViewById(R.id.progress_ring)
         tvNumber = findViewById(R.id.tv_number)
 

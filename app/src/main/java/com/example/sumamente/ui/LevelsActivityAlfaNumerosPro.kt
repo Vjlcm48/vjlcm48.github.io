@@ -49,7 +49,7 @@ class LevelsActivityAlfaNumerosPro : BaseActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
-        setContentView(R.layout.activity_levels_alfanumeros_pro)
+        setContentView(R.layout.activity_levels_alfa_numeros)
 
         ScoreManager.initAlfaNumerosPro(this)
 

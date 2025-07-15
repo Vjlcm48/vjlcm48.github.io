@@ -29,7 +29,7 @@ class ResponseModeDialogDeciPlusPrincipiante(context: Context) : AppCompatDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.response_mode_dialog_deci_plus_principiante)
+        setContentView(R.layout.response_mode_dialog_deci_plus)
 
         window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
 

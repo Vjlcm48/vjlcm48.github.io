@@ -14,7 +14,8 @@ import com.example.sumamente.R
 class LanguageChangeActivity : BaseActivity() {
 
     private lateinit var languageButtonsContainer: LinearLayout
-    private var selectedLanguageCode: String? = null
+
+    // private var selectedLanguageCode: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,8 +57,6 @@ class LanguageChangeActivity : BaseActivity() {
             Pair("ko", R.string.language_korean)
         )
 
-        val currentAppLocaleCode = resources.configuration.locales[0].language
-
         for ((code, nameResId) in languages) {
             val languageButtonView = LayoutInflater.from(this)
                 .inflate(R.layout.item_language_button, languageButtonsContainer, false) as LinearLayout
@@ -85,13 +84,8 @@ class LanguageChangeActivity : BaseActivity() {
 
             checkImageView.visibility = View.GONE
 
-            if (code == currentAppLocaleCode) {
-                selectedLanguageCode = code
-            }
-
             languageButtonView.setOnClickListener { view ->
                 applyBounceEffect(view) {
-                    selectedLanguageCode = code
                     showLanguageChangeConfirmationDialog(code)
                 }
             }

@@ -51,7 +51,7 @@ class LevelsActivityDeciPlusPrincipiante : BaseActivity()  {
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
         ScoreManager.initDeciPlusPrincipiante(this)
-        setContentView(R.layout.activity_levels_deci_plus_principiante)
+        setContentView(R.layout.activity_levels_deci_plus)
 
         mediaPlayer = MediaPlayer.create(this, R.raw.clicbotones)
 

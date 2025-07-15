@@ -118,7 +118,7 @@ class HelpTutorialActivityNumeros : BaseActivity()  {
         btnPlay = findViewById(R.id.btn_play)
         btnRepeat = findViewById(R.id.btn_repeat)
         btnClose = findViewById(R.id.btn_close_instructions)
-        checkSeleccionSimple = findViewById(R.id.check_seleccion_simple)
+        checkSeleccionSimple = findViewById(R.id.check_seleccion_simple_hn)
         progressRing = findViewById(R.id.progress_ring)
         tvNumber = findViewById(R.id.tv_number)
 

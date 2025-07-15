@@ -78,7 +78,7 @@ class GameActivityAlfaNumerosPrincipiante : BaseActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
-        setContentView(R.layout.activity_game_alfanumeros_principiante)
+        setContentView(R.layout.activity_game_alfanumeros)
 
         ScoreManager.initAlfaNumerosPrincipiante(this)
 
