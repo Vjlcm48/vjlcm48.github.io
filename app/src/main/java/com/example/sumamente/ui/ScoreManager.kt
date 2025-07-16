@@ -1328,6 +1328,14 @@ object ScoreManager {
         preferences.edit {
             putStringSet(KEY_COMPLETED_LEVELS, completedLevels.map { it.toString() }.toSet())
         }
+        if (hasCompletedLevel(1) && hasCompletedLevel(2) && unlockedLevels < 3) {
+            unlockedLevels = 3
+            saveScore()
+        }
+        else if (level >= 3 && level + 1 > unlockedLevels) {
+            unlockedLevels = level + 1
+            saveScore()
+        }
     }
 
     fun addCompletedLevelPrincipiante(level: Int) {
@@ -1336,7 +1344,15 @@ object ScoreManager {
         preferencesPrincipiante.edit {
             putStringSet(
                 KEY_COMPLETED_LEVELS_PRINCIPIANTE,
-                completedLevelsPrincipiante.map { it.toString() }.toSet())
+                completedLevelsPrincipiante.map { it.toString() }.toSet()
+            )
+        }
+        if (hasCompletedLevelPrincipiante(1) && hasCompletedLevelPrincipiante(2) && unlockedLevelsPrincipiante < 3) {
+            unlockedLevelsPrincipiante = 3
+            saveScorePrincipiante()
+        } else if (level >= 3 && level + 1 > unlockedLevelsPrincipiante) {
+            unlockedLevelsPrincipiante = level + 1
+            saveScorePrincipiante()
         }
     }
 
@@ -1346,7 +1362,15 @@ object ScoreManager {
         preferencesPro.edit {
             putStringSet(
                 KEY_COMPLETED_LEVELS_PRO,
-                completedLevelsPro.map { it.toString() }.toSet())
+                completedLevelsPro.map { it.toString() }.toSet()
+            )
+        }
+        if (hasCompletedLevelPro(1) && hasCompletedLevelPro(2) && unlockedLevelsPro < 3) {
+            unlockedLevelsPro = 3
+            saveScorePro()
+        } else if (level >= 3 && level + 1 > unlockedLevelsPro) {
+            unlockedLevelsPro = level + 1
+            saveScorePro()
         }
     }
 
@@ -1355,7 +1379,15 @@ object ScoreManager {
         completedLevelsDeciPlus.add(level)
         preferencesDeciPlus.edit {
             putStringSet(
-                KEY_COMPLETED_LEVELS_DECI_PLUS, completedLevelsDeciPlus.map { it.toString() }.toSet())
+                KEY_COMPLETED_LEVELS_DECI_PLUS, completedLevelsDeciPlus.map { it.toString() }.toSet()
+            )
+        }
+        if (hasCompletedLevelDeciPlus(1) && hasCompletedLevelDeciPlus(2) && unlockedLevelsDeciPlus < 3) {
+            unlockedLevelsDeciPlus = 3
+            saveScoreDeciPlus()
+        } else if (level >= 3 && level + 1 > unlockedLevelsDeciPlus) {
+            unlockedLevelsDeciPlus = level + 1
+            saveScoreDeciPlus()
         }
     }
 
@@ -1364,7 +1396,15 @@ object ScoreManager {
         completedLevelsDeciPlusPrincipiante.add(level)
         preferencesDeciPlusPrincipiante.edit {
             putStringSet(
-                KEY_COMPLETED_LEVELS_DECI_PLUS_PRINCIPIANTE, completedLevelsDeciPlusPrincipiante.map { it.toString() }.toSet())
+                KEY_COMPLETED_LEVELS_DECI_PLUS_PRINCIPIANTE, completedLevelsDeciPlusPrincipiante.map { it.toString() }.toSet()
+            )
+        }
+        if (hasCompletedLevelDeciPlusPrincipiante(1) && hasCompletedLevelDeciPlusPrincipiante(2) && unlockedLevelsDeciPlusPrincipiante < 3) {
+            unlockedLevelsDeciPlusPrincipiante = 3
+            saveScoreDeciPlusPrincipiante()
+        } else if (level >= 3 && level + 1 > unlockedLevelsDeciPlusPrincipiante) {
+            unlockedLevelsDeciPlusPrincipiante = level + 1
+            saveScoreDeciPlusPrincipiante()
         }
     }
 
@@ -1373,7 +1413,15 @@ object ScoreManager {
         completedLevelsDeciPlusPro.add(level)
         preferencesDeciPlusPro.edit {
             putStringSet(
-                KEY_COMPLETED_LEVELS_DECI_PLUS_PRO, completedLevelsDeciPlusPro.map { it.toString() }.toSet())
+                KEY_COMPLETED_LEVELS_DECI_PLUS_PRO, completedLevelsDeciPlusPro.map { it.toString() }.toSet()
+            )
+        }
+        if (hasCompletedLevelDeciPlusPro(1) && hasCompletedLevelDeciPlusPro(2) && unlockedLevelsDeciPlusPro < 3) {
+            unlockedLevelsDeciPlusPro = 3
+            saveScoreDeciPlusPro()
+        } else if (level >= 3 && level + 1 > unlockedLevelsDeciPlusPro) {
+            unlockedLevelsDeciPlusPro = level + 1
+            saveScoreDeciPlusPro()
         }
     }
 
@@ -1383,7 +1431,15 @@ object ScoreManager {
         preferencesRomas.edit {
             putStringSet(
                 KEY_COMPLETED_LEVELS_ROMAS,
-                completedLevelsRomas.map { it.toString() }.toSet())
+                completedLevelsRomas.map { it.toString() }.toSet()
+            )
+        }
+        if (hasCompletedLevelRomas(1) && hasCompletedLevelRomas(2) && unlockedLevelsRomas < 3) {
+            unlockedLevelsRomas = 3
+            saveScoreRomas()
+        } else if (level >= 3 && level + 1 > unlockedLevelsRomas) {
+            unlockedLevelsRomas = level + 1
+            saveScoreRomas()
         }
     }
 
@@ -1393,7 +1449,15 @@ object ScoreManager {
         preferencesRomasPrincipiante.edit {
             putStringSet(
                 KEY_COMPLETED_LEVELS_ROMAS_PRINCIPIANTE,
-                completedLevelsRomasPrincipiante.map { it.toString() }.toSet())
+                completedLevelsRomasPrincipiante.map { it.toString() }.toSet()
+            )
+        }
+        if (hasCompletedLevelRomasPrincipiante(1) && hasCompletedLevelRomasPrincipiante(2) && unlockedLevelsRomasPrincipiante < 3) {
+            unlockedLevelsRomasPrincipiante = 3
+            saveScoreRomasPrincipiante()
+        } else if (level >= 3 && level + 1 > unlockedLevelsRomasPrincipiante) {
+            unlockedLevelsRomasPrincipiante = level + 1
+            saveScoreRomasPrincipiante()
         }
     }
 
@@ -1403,7 +1467,15 @@ object ScoreManager {
         preferencesRomasPro.edit {
             putStringSet(
                 KEY_COMPLETED_LEVELS_ROMAS_PRO,
-                completedLevelsRomasPro.map { it.toString() }.toSet())
+                completedLevelsRomasPro.map { it.toString() }.toSet()
+            )
+        }
+        if (hasCompletedLevelRomasPro(1) && hasCompletedLevelRomasPro(2) && unlockedLevelsRomasPro < 3) {
+            unlockedLevelsRomasPro = 3
+            saveScoreRomasPro()
+        } else if (level >= 3 && level + 1 > unlockedLevelsRomasPro) {
+            unlockedLevelsRomasPro = level + 1
+            saveScoreRomasPro()
         }
     }
 
@@ -1413,7 +1485,15 @@ object ScoreManager {
         preferencesAlfaNumeros.edit {
             putStringSet(
                 KEY_COMPLETED_LEVELS_ALFANUMEROS,
-                completedLevelsAlfaNumeros.map { it.toString() }.toSet())
+                completedLevelsAlfaNumeros.map { it.toString() }.toSet()
+            )
+        }
+        if (hasCompletedLevelAlfaNumeros(1) && hasCompletedLevelAlfaNumeros(2) && unlockedLevelsAlfaNumeros < 3) {
+            unlockedLevelsAlfaNumeros = 3
+            saveScoreAlfaNumeros()
+        } else if (level >= 3 && level + 1 > unlockedLevelsAlfaNumeros) {
+            unlockedLevelsAlfaNumeros = level + 1
+            saveScoreAlfaNumeros()
         }
     }
 
@@ -1423,18 +1503,33 @@ object ScoreManager {
         preferencesAlfaNumerosPrincipiante.edit {
             putStringSet(
                 KEY_COMPLETED_LEVELS_ALFANUMEROS_PRINCIPIANTE,
-                completedLevelsAlfaNumerosPrincipiante.map { it.toString() }.toSet())
+                completedLevelsAlfaNumerosPrincipiante.map { it.toString() }.toSet()
+            )
+        }
+        if (hasCompletedLevelAlfaNumerosPrincipiante(1) && hasCompletedLevelAlfaNumerosPrincipiante(2) && unlockedLevelsAlfaNumerosPrincipiante < 3) {
+            unlockedLevelsAlfaNumerosPrincipiante = 3
+            saveScoreAlfaNumerosPrincipiante()
+        } else if (level >= 3 && level + 1 > unlockedLevelsAlfaNumerosPrincipiante) {
+            unlockedLevelsAlfaNumerosPrincipiante = level + 1
+            saveScoreAlfaNumerosPrincipiante()
         }
     }
 
     fun addCompletedLevelAlfaNumerosPro(level: Int) {
-        val completedLevels = getCompletedLevelsAlfaNumerosPro().toMutableSet()
-        completedLevels.add(level)
+        val completedLevelsAlfaNumerosPro = getCompletedLevelsAlfaNumerosPro().toMutableSet()
+        completedLevelsAlfaNumerosPro.add(level)
         preferencesAlfaNumerosPro.edit {
             putStringSet(
                 KEY_COMPLETED_LEVELS_ALFANUMEROS_PRO,
-                completedLevels.map { it.toString() }.toSet()
+                completedLevelsAlfaNumerosPro.map { it.toString() }.toSet()
             )
+        }
+        if (hasCompletedLevelAlfaNumerosPro(1) && hasCompletedLevelAlfaNumerosPro(2) && unlockedLevelsAlfaNumerosPro < 3) {
+            unlockedLevelsAlfaNumerosPro = 3
+            saveScoreAlfaNumerosPro()
+        } else if (level >= 3 && level + 1 > unlockedLevelsAlfaNumerosPro) {
+            unlockedLevelsAlfaNumerosPro = level + 1
+            saveScoreAlfaNumerosPro()
         }
     }
 
@@ -1444,7 +1539,15 @@ object ScoreManager {
         preferencesSumaResta.edit {
             putStringSet(
                 KEY_COMPLETED_LEVELS_SUMARESTA,
-                completedLevelsSumaResta.map { it.toString() }.toSet())
+                completedLevelsSumaResta.map { it.toString() }.toSet()
+            )
+        }
+        if (hasCompletedLevelSumaResta(1) && hasCompletedLevelSumaResta(2) && unlockedLevelsSumaResta < 3) {
+            unlockedLevelsSumaResta = 3
+            saveScoreSumaResta()
+        } else if (level >= 3 && level + 1 > unlockedLevelsSumaResta) {
+            unlockedLevelsSumaResta = level + 1
+            saveScoreSumaResta()
         }
     }
 
@@ -1454,7 +1557,15 @@ object ScoreManager {
         preferencesSumaRestaPrincipiante.edit {
             putStringSet(
                 KEY_COMPLETED_LEVELS_SUMARESTA_PRINCIPIANTE,
-                completedLevelsSumaRestaPrincipiante.map { it.toString() }.toSet())
+                completedLevelsSumaRestaPrincipiante.map { it.toString() }.toSet()
+            )
+        }
+        if (hasCompletedLevelSumaRestaPrincipiante(1) && hasCompletedLevelSumaRestaPrincipiante(2) && unlockedLevelsSumaRestaPrincipiante < 3) {
+            unlockedLevelsSumaRestaPrincipiante = 3
+            saveScoreSumaRestaPrincipiante()
+        } else if (level >= 3 && level + 1 > unlockedLevelsSumaRestaPrincipiante) {
+            unlockedLevelsSumaRestaPrincipiante = level + 1
+            saveScoreSumaRestaPrincipiante()
         }
     }
 
@@ -1464,7 +1575,15 @@ object ScoreManager {
         preferencesSumaRestaPro.edit {
             putStringSet(
                 KEY_COMPLETED_LEVELS_SUMARESTA_PRO,
-                completedLevelsSumaRestaPro.map { it.toString() }.toSet())
+                completedLevelsSumaRestaPro.map { it.toString() }.toSet()
+            )
+        }
+        if (hasCompletedLevelSumaRestaPro(1) && hasCompletedLevelSumaRestaPro(2) && unlockedLevelsSumaRestaPro < 3) {
+            unlockedLevelsSumaRestaPro = 3
+            saveScoreSumaRestaPro()
+        } else if (level >= 3 && level + 1 > unlockedLevelsSumaRestaPro) {
+            unlockedLevelsSumaRestaPro = level + 1
+            saveScoreSumaRestaPro()
         }
     }
 
@@ -1474,7 +1593,15 @@ object ScoreManager {
         preferencesMasPlus.edit {
             putStringSet(
                 KEY_COMPLETED_LEVELS_MAS_PLUS,
-                completedLevelsMasPlus.map { it.toString() }.toSet())
+                completedLevelsMasPlus.map { it.toString() }.toSet()
+            )
+        }
+        if (hasCompletedLevelMasPlus(1) && hasCompletedLevelMasPlus(2) && unlockedLevelsMasPlus < 3) {
+            unlockedLevelsMasPlus = 3
+            saveScoreMasPlus()
+        } else if (level >= 3 && level + 1 > unlockedLevelsMasPlus) {
+            unlockedLevelsMasPlus = level + 1
+            saveScoreMasPlus()
         }
     }
 
@@ -1484,7 +1611,15 @@ object ScoreManager {
         preferencesMasPlusPrincipiante.edit {
             putStringSet(
                 KEY_COMPLETED_LEVELS_MAS_PLUS_PRINCIPIANTE,
-                completedLevelsMasPlusPrincipiante.map { it.toString() }.toSet())
+                completedLevelsMasPlusPrincipiante.map { it.toString() }.toSet()
+            )
+        }
+        if (hasCompletedLevelMasPlusPrincipiante(1) && hasCompletedLevelMasPlusPrincipiante(2) && unlockedLevelsMasPlusPrincipiante < 3) {
+            unlockedLevelsMasPlusPrincipiante = 3
+            saveScoreMasPlusPrincipiante()
+        } else if (level >= 3 && level + 1 > unlockedLevelsMasPlusPrincipiante) {
+            unlockedLevelsMasPlusPrincipiante = level + 1
+            saveScoreMasPlusPrincipiante()
         }
     }
 
@@ -1494,7 +1629,15 @@ object ScoreManager {
         preferencesMasPlusPro.edit {
             putStringSet(
                 KEY_COMPLETED_LEVELS_MAS_PLUS_PRO,
-                completedLevelsMasPlusPro.map { it.toString() }.toSet())
+                completedLevelsMasPlusPro.map { it.toString() }.toSet()
+            )
+        }
+        if (hasCompletedLevelMasPlusPro(1) && hasCompletedLevelMasPlusPro(2) && unlockedLevelsMasPlusPro < 3) {
+            unlockedLevelsMasPlusPro = 3
+            saveScoreMasPlusPro()
+        } else if (level >= 3 && level + 1 > unlockedLevelsMasPlusPro) {
+            unlockedLevelsMasPlusPro = level + 1
+            saveScoreMasPlusPro()
         }
     }
 
@@ -1504,7 +1647,15 @@ object ScoreManager {
         preferencesGenioPlus.edit {
             putStringSet(
                 KEY_COMPLETED_LEVELS_GENIO_PLUS,
-                completedLevelsGenioPlus.map { it.toString() }.toSet())
+                completedLevelsGenioPlus.map { it.toString() }.toSet()
+            )
+        }
+        if (hasCompletedLevelGenioPlus(1) && hasCompletedLevelGenioPlus(2) && unlockedLevelsGenioPlus < 3) {
+            unlockedLevelsGenioPlus = 3
+            saveScoreGenioPlus()
+        } else if (level >= 3 && level + 1 > unlockedLevelsGenioPlus) {
+            unlockedLevelsGenioPlus = level + 1
+            saveScoreGenioPlus()
         }
     }
 
@@ -1514,7 +1665,15 @@ object ScoreManager {
         preferencesGenioPlusPrincipiante.edit {
             putStringSet(
                 KEY_COMPLETED_LEVELS_GENIO_PLUS_PRINCIPIANTE,
-                completedLevelsGenioPlusPrincipiante.map { it.toString() }.toSet())
+                completedLevelsGenioPlusPrincipiante.map { it.toString() }.toSet()
+            )
+        }
+        if (hasCompletedLevelGenioPlusPrincipiante(1) && hasCompletedLevelGenioPlusPrincipiante(2) && unlockedLevelsGenioPlusPrincipiante < 3) {
+            unlockedLevelsGenioPlusPrincipiante = 3
+            saveScoreGenioPlusPrincipiante()
+        } else if (level >= 3 && level + 1 > unlockedLevelsGenioPlusPrincipiante) {
+            unlockedLevelsGenioPlusPrincipiante = level + 1
+            saveScoreGenioPlusPrincipiante()
         }
     }
 
@@ -1524,7 +1683,15 @@ object ScoreManager {
         preferencesGenioPlusPro.edit {
             putStringSet(
                 KEY_COMPLETED_LEVELS_GENIO_PLUS_PRO,
-                completedLevelsGenioPlusPro.map { it.toString() }.toSet())
+                completedLevelsGenioPlusPro.map { it.toString() }.toSet()
+            )
+        }
+        if (hasCompletedLevelGenioPlusPro(1) && hasCompletedLevelGenioPlusPro(2) && unlockedLevelsGenioPlusPro < 3) {
+            unlockedLevelsGenioPlusPro = 3
+            saveScoreGenioPlusPro()
+        } else if (level >= 3 && level + 1 > unlockedLevelsGenioPlusPro) {
+            unlockedLevelsGenioPlusPro = level + 1
+            saveScoreGenioPlusPro()
         }
     }
 

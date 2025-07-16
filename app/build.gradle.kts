@@ -92,4 +92,8 @@ dependencies {
     implementation(libs.photoview)
     implementation(libs.gson)
 
+    // Añade estas dos líneas al final
+    testImplementation(project(":app"))
+    androidTestImplementation(project(":app"))
+
 }

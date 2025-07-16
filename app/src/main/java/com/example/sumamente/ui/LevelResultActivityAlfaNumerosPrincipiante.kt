@@ -146,9 +146,9 @@ class LevelResultActivityAlfaNumerosPrincipiante : BaseActivity()  {
         CondecoracionTracker.marcarNivelConTimestamp("AlfaNumeros", "Principiante", currentLevel)
         CondecoracionTracker.verificarYEntregarPines()
 
-        if (currentLevel >= ScoreManager.unlockedLevelsAlfaNumerosPrincipiante) {
-            ScoreManager.unlockedLevelsAlfaNumerosPrincipiante = currentLevel + 1
-        }
+        //if (currentLevel >= ScoreManager.unlockedLevelsAlfaNumerosPrincipiante) {
+         //   ScoreManager.unlockedLevelsAlfaNumerosPrincipiante = currentLevel + 1
+        //}
 
         ScoreManager.saveScoreAlfaNumerosPrincipiante()
 

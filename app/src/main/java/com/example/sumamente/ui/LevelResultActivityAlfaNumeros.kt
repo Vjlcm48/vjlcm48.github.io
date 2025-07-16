@@ -146,9 +146,9 @@ class LevelResultActivityAlfaNumeros : BaseActivity()  {
         CondecoracionTracker.marcarNivelConTimestamp("AlfaNumeros", "Avanzado", currentLevel)
         CondecoracionTracker.verificarYEntregarPines()
 
-        if (currentLevel >= ScoreManager.unlockedLevelsAlfaNumeros) {
-            ScoreManager.unlockedLevelsAlfaNumeros = currentLevel + 1
-        }
+        //if (currentLevel >= ScoreManager.unlockedLevelsAlfaNumeros) {
+        //    ScoreManager.unlockedLevelsAlfaNumeros = currentLevel + 1
+        //}
 
         ScoreManager.saveScoreAlfaNumeros()
 

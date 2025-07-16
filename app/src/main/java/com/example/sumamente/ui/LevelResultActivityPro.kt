@@ -152,9 +152,9 @@ class LevelResultActivityPro : BaseActivity()  {
         CondecoracionTracker.marcarNivelConTimestamp("NumerosPlus", "Pro", currentLevel)
         CondecoracionTracker.verificarYEntregarPines()
 
-        if (currentLevel >= ScoreManager.unlockedLevelsPro) {
-            ScoreManager.unlockedLevelsPro = currentLevel + 1
-        }
+        //if (currentLevel >= ScoreManager.unlockedLevelsPro) {
+         //   ScoreManager.unlockedLevelsPro = currentLevel + 1
+        //}
 
         ScoreManager.saveScorePro()
 

@@ -148,9 +148,9 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
         CondecoracionTracker.marcarNivelConTimestamp("DeciPlus", "Pro", currentLevel)
         CondecoracionTracker.verificarYEntregarPines()
 
-        if (currentLevel >= ScoreManager.unlockedLevelsDeciPlusPro) {
-            ScoreManager.unlockedLevelsDeciPlusPro = currentLevel + 1
-        }
+        //if (currentLevel >= ScoreManager.unlockedLevelsDeciPlusPro) {
+        //    ScoreManager.unlockedLevelsDeciPlusPro = currentLevel + 1
+       // }
 
         ScoreManager.saveScoreDeciPlusPro()
 

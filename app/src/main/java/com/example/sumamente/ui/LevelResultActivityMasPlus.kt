@@ -148,9 +148,9 @@ class LevelResultActivityMasPlus : BaseActivity()  {
         CondecoracionTracker.marcarNivelConTimestamp("MasPlus", "Avanzado", currentLevel)
         CondecoracionTracker.verificarYEntregarPines()
 
-        if (currentLevel >= ScoreManager.unlockedLevelsMasPlus) {
-            ScoreManager.unlockedLevelsMasPlus = currentLevel + 1
-        }
+        //if (currentLevel >= ScoreManager.unlockedLevelsMasPlus) {
+         //   ScoreManager.unlockedLevelsMasPlus = currentLevel + 1
+        //}
 
         ScoreManager.resetConsecutiveFailuresMasPlus(currentLevel)
 

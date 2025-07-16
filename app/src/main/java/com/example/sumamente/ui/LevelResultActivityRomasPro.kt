@@ -146,9 +146,9 @@ class LevelResultActivityRomasPro : BaseActivity()  {
         CondecoracionTracker.marcarNivelConTimestamp("Romas", "Pro", currentLevel)
         CondecoracionTracker.verificarYEntregarPines()
 
-        if (currentLevel >= ScoreManager.unlockedLevelsRomasPro) {
-            ScoreManager.unlockedLevelsRomasPro = currentLevel + 1
-        }
+       // if (currentLevel >= ScoreManager.unlockedLevelsRomasPro) {
+        //    ScoreManager.unlockedLevelsRomasPro = currentLevel + 1
+        //}
 
         ScoreManager.saveScoreRomasPro()
 

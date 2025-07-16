@@ -145,9 +145,9 @@ class LevelResultActivitySumaResta : BaseActivity()  {
         CondecoracionTracker.marcarNivelConTimestamp("SumaResta", "Pro", currentLevel)
         CondecoracionTracker.verificarYEntregarPines()
 
-        if (currentLevel >= ScoreManager.unlockedLevelsSumaResta) {
-            ScoreManager.unlockedLevelsSumaResta = currentLevel + 1
-        }
+        //if (currentLevel >= ScoreManager.unlockedLevelsSumaResta) {
+        //    ScoreManager.unlockedLevelsSumaResta = currentLevel + 1
+        //}
 
         ScoreManager.saveScoreSumaResta()
 
