@@ -116,21 +116,15 @@ class InstructionsActivityAlfaNumerosPrincipiante : BaseActivity()  {
 
         btnClose.setOnClickListener {
             btnClose.isEnabled = false
-            val prefs = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
-            val storedModeName = prefs.getString("selectedResponseModeAlfaNumerosPrincipiante", null)
-            if (storedModeName == null) {
-                val intent = Intent(this, ResponseModeDialogAlfaNumerosPrincipiante::class.java)
-                intent.putExtra("LEVEL", level)
-                startActivity(intent)
-                finish()
-            } else {
-                val intent = Intent(this, LevelsActivityAlfaNumerosPrincipiante::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-                finish()
-            }
+
+            val intent = Intent(this, LevelsActivityAlfaNumerosPrincipiante::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish()
+
             btnClose.isEnabled = true
         }
+
 
         val fadeInDuration = 500L
         val levelAnimation = ObjectAnimator.ofFloat(tvLevel, "alpha", 0f, 1f).setDuration(fadeInDuration)

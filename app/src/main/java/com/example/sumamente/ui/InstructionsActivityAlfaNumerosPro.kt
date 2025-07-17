@@ -118,22 +118,15 @@ class InstructionsActivityAlfaNumerosPro : BaseActivity()  {
 
         btnClose.setOnClickListener {
             btnClose.isEnabled = false
-            val prefs = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
-            val storedModeName = prefs.getString("selectedResponseModeAlfaNumerosPro", null)
 
-            val intent = if (storedModeName == null) {
-                Intent(this, ResponseModeDialogAlfaNumerosPro::class.java).apply {
-                    putExtra("LEVEL", level)
-                }
-            } else {
-                Intent(this, LevelsActivityAlfaNumerosPro::class.java).apply {
-                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-                }
-            }
+            val intent = Intent(this, LevelsActivityAlfaNumerosPro::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             finish()
+
             btnClose.isEnabled = true
         }
+
 
         val fadeIn = 500L
         val animatorSet = AnimatorSet().apply {

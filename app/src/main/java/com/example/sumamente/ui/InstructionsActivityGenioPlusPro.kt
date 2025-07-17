@@ -115,24 +115,15 @@ class InstructionsActivityGenioPlusPro : BaseActivity()  {
 
         btnClose.setOnClickListener {
             btnClose.isEnabled = false
-            val prefs = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
-            val storedModeName = prefs.getString("selectedResponseModeGenioPlusPro", null)
-            if (storedModeName == null) {
 
-                val intent = Intent(this, ResponseModeDialogGenioPlusPro::class.java)
-                intent.putExtra("LEVEL", level)
-                startActivity(intent)
-                finish()
+            val intent = Intent(this, LevelsActivityGenioPlusPro::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish()
 
-            } else {
-
-                val intent = Intent(this, LevelsActivityGenioPlusPro::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-                finish()
-            }
             btnClose.isEnabled = true
         }
+
 
         val fadeInDuration = 500L
         val levelAnimation = ObjectAnimator.ofFloat(tvLevel, "alpha", 0f, 1f).setDuration(fadeInDuration)

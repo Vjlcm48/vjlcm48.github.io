@@ -115,22 +115,12 @@ class InstructionsActivitySumaResta : BaseActivity()  {
 
         btnClose.setOnClickListener {
             btnClose.isEnabled = false
-            val prefs = getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
-            val storedModeName = prefs.getString("selectedResponseModeSumaResta", null)
-            if (storedModeName == null) {
 
-                val intent = Intent(this, ResponseModeDialogSumaResta::class.java)
-                intent.putExtra("LEVEL", level)
-                startActivity(intent)
-                finish()
+            val intent = Intent(this, LevelsActivitySumaResta::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish()
 
-            } else {
-
-                val intent = Intent(this, LevelsActivitySumaResta::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-                finish()
-            }
             btnClose.isEnabled = true
         }
 

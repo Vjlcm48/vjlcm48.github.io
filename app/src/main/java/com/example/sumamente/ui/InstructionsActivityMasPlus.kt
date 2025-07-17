@@ -98,24 +98,15 @@ class InstructionsActivityMasPlus : BaseActivity()  {
 
         btnClose.setOnClickListener {
             btnClose.isEnabled = false
-            val prefs = getSharedPreferences("MyPrefsMasPlus", MODE_PRIVATE)
-            val storedModeName = prefs.getString("selectedResponseModeMasPlus", null)
-            if (storedModeName == null) {
 
-               val intent = Intent(this, ResponseModeDialogMasPlus::class.java)
-                intent.putExtra("LEVEL", level)
-                startActivity(intent)
-                finish()
+            val intent = Intent(this, LevelsActivityMasPlus::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish()
 
-            } else {
-
-                val intent = Intent(this, LevelsActivityMasPlus::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-                finish()
-            }
             btnClose.isEnabled = true
         }
+
 
         val fadeInDuration = 500L
         val animationsList = mutableListOf<Animator>().apply {
