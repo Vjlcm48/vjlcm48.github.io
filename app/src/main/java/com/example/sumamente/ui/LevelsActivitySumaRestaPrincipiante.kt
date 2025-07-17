@@ -177,22 +177,21 @@ class LevelsActivitySumaRestaPrincipiante : BaseActivity()  {
                     }
                 } else {
                     setBackgroundResource(R.drawable.button_grey)
-                    isEnabled = false
                     setOnClickListener {
+                        if (i < ScoreManager.unlockedLevelsSumaRestaPrincipiante && ScoreManager.isLevelBlockedByFailuresSumaRestaPrincipiante(i + 1)) {
+                            Toast.makeText(
+                                this@LevelsActivitySumaRestaPrincipiante,
+                                R.string.level_locked_by_failures,
+                                Toast.LENGTH_LONG
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                this@LevelsActivitySumaRestaPrincipiante,
+                                R.string.level_locked_message,
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
                         applyBounceEffect(this) {
-                            if (i < ScoreManager.unlockedLevelsSumaRestaPrincipiante && ScoreManager.isLevelBlockedByFailuresSumaRestaPrincipiante(i + 1)) {
-                                Toast.makeText(
-                                    this@LevelsActivitySumaRestaPrincipiante,
-                                    R.string.level_locked_by_failures,
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            } else {
-                                Toast.makeText(
-                                    this@LevelsActivitySumaRestaPrincipiante,
-                                    R.string.level_locked_message,
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
                         }
                     }
                 }

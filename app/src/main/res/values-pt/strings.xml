@@ -1249,4 +1249,30 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
     <string name="language">Idioma</string>
     <string name="language_subtitle">Mudar o idioma do aplicativo</string>
     <string name="integral_score_label">%1$.2f pts</string>
+
+    <string name="my_progress">MEU PROGRESSO</string>
+    <string name="graph_icon">Ícone de gráfico</string>
+
+    <string name="levels_completed">NÍVEIS CONCLUÍDOS:</string>
+    <string name="progress">PROGRESSO:</string>
+    <string name="percentage_format">%1$s%%</string>
+    <string name="default_percentage">0,00%</string>
+
+    <string name="cd_my_progress">Ver progresso geral</string>
+    <string name="cd_numeros_plus">Jogar Números Plus</string>
+    <string name="cd_deci_plus">Jogar Deci Plus</string>
+    <string name="cd_romas">Jogar Romas</string>
+    <string name="cd_alfa_numeros">Jogar AlfaNumeros</string>
+    <string name="cd_sumaresta">Jogar SumaResta</string>
+    <string name="cd_mas_plus">Jogar Mas Plus</string>
+    <string name="cd_genio_plus">Jogar Génio Plus</string>
+
+    <string name="progress_placeholder_total_levels">0/210 – 0,00%</string>
+
+    <string name="progress_placeholder_difficulty">0/70 – 0,00%</string>
+
+    <string name="global_levels_format">NÍVEIS CONCLUÍDOS: %1$d/%2$d</string>
+    <string name="global_progress_format">PROGRESSO: %1$s%%</string>
+    <string name="game_progress_format">%1$d/%2$d - %3$s%%</string>
+
 </resources>

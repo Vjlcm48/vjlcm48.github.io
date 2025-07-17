@@ -172,22 +172,21 @@ class LevelsActivityMasPlusPro : BaseActivity()  {
                     }
                 } else {
                     setBackgroundResource(R.drawable.button_background_locked)
-                    isEnabled = false
                     setOnClickListener {
+                        if (i < ScoreManager.unlockedLevelsMasPlusPro && ScoreManager.isLevelBlockedByFailuresMasPlusPro(i + 1)) {
+                            Toast.makeText(
+                                this@LevelsActivityMasPlusPro,
+                                R.string.level_locked_by_failures,
+                                Toast.LENGTH_LONG
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                this@LevelsActivityMasPlusPro,
+                                R.string.level_locked_message,
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
                         applyBounceEffect(this) {
-                            if (i < ScoreManager.unlockedLevelsMasPlusPro && ScoreManager.isLevelBlockedByFailuresMasPlusPro(i + 1)) {
-                                Toast.makeText(
-                                    this@LevelsActivityMasPlusPro,
-                                    R.string.level_locked_by_failures,
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            } else {
-                                Toast.makeText(
-                                    this@LevelsActivityMasPlusPro,
-                                    R.string.level_locked_message,
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
                         }
                     }
                 }

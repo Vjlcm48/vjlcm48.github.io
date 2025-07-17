@@ -569,6 +569,10 @@
             android:theme="@style/Theme.SumaMente" />
 
         <activity
+            android:name=".ui.ProgressSummaryActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.DifficultySelectionActivity"
             android:exported="false" />
 

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".ui.ProgressSummaryActivity">
+
+    <RelativeLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/iv_back_arrow"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_arrowback"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/back" />
+
+        <TextView
+            android:id="@+id/tv_progress_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_progress"
+            android:textColor="@color/blue_primary_dark"
+            android:textSize="24sp"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_toEndOf="@id/iv_back_arrow"
+            android:layout_toStartOf="@id/iv_close_button"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="18dp"/>
+
+        <ImageView
+            android:id="@+id/iv_close_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_close"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/cerrar" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/global_summary_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header_layout"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:id="@+id/tv_global_levels_completed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/levels_completed"
+            android:textColor="@android:color/black"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="16sp"
+            android:layout_toStartOf="@id/tv_global_progress"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/tv_global_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/progress"
+            android:textColor="@android:color/black"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="16sp"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_progress_summary"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/global_summary_layout"
+        android:paddingStart="48dp"
+        android:paddingEnd="48dp"
+        android:paddingTop="8dp"
+        android:clipToPadding="false"
+        tools:listitem="@layout/item_game_progress" />
+
+</RelativeLayout>

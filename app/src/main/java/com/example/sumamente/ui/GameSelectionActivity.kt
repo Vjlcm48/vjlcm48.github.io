@@ -15,6 +15,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.example.sumamente.R
+import java.util.Locale
 
 class GameSelectionActivity : BaseActivity()  {
 
@@ -44,6 +45,7 @@ class GameSelectionActivity : BaseActivity()  {
 
         setContentView(R.layout.activity_game_selection)
 
+        val btnProgreso = findViewById<RelativeLayout>(R.id.btn_progreso)
         val btnNumerosPlus = findViewById<RelativeLayout>(R.id.btn_numeros_plus)
         val btnDeciPlus = findViewById<RelativeLayout>(R.id.btn_deci_plus)
         val btnRomas = findViewById<RelativeLayout>(R.id.btn_romas)
@@ -95,6 +97,13 @@ class GameSelectionActivity : BaseActivity()  {
         updateSumaRestaButton(btnSumaresta, puntosSumaResta, puntosSumaRestaPrincipiante, puntosSumaRestaPro)
         updateMasPlusButton(btnMasPlus, puntosMasPlus, puntosMasPlusPrincipiante, puntosMasPlusPro)
         updateGenioPlusButton(btnGenioPlus, puntosGenioPlus, puntosGenioPlusPrincipiante, puntosGenioPlusPro)
+
+        btnProgreso.setOnClickListener {
+            applyBounceEffect(it) {
+                val intent = Intent(this, ProgressSummaryActivity::class.java)
+                startActivity(intent)
+            }
+        }
 
         btnNumerosPlus.setOnClickListener {
             applyBounceEffect(it) {
@@ -381,6 +390,16 @@ class GameSelectionActivity : BaseActivity()  {
         updateSumaRestaButton(btnSumaresta, puntosSumaResta, puntosSumaRestaPrincipiante, puntosSumaRestaPro)
         updateMasPlusButton(btnMasPlus, puntosMasPlus, puntosMasPlusPrincipiante, puntosMasPlusPro)
         updateGenioPlusButton(btnGenioPlus, puntosGenioPlus, puntosGenioPlusPrincipiante, puntosGenioPlusPro)
+
+        val btnProgreso = findViewById<RelativeLayout>(R.id.btn_progreso)
+        val tvPercentageProgreso = btnProgreso.findViewById<TextView>(R.id.tv_percentage_progreso)
+        val totalCompleted = ScoreManager.getTotalUniqueLevelsCompletedAllGames()
+        val totalLevels = 1470.0
+        val percentage = (totalCompleted / totalLevels) * 100
+        val percentageString = String.format(Locale.getDefault(), "%.2f", percentage)
+
+        tvPercentageProgreso.text = getString(R.string.percentage_format, percentageString)
+
     }
 
     private fun updateNumerosPlusButton(button: RelativeLayout, score: Int, principianteScore: Int, proScore: Int) {
@@ -391,7 +410,7 @@ class GameSelectionActivity : BaseActivity()  {
 
         if (totalScore > 0) {
             gameNameTextView.text = getString(R.string.game_numeros_plus)
-            pointsTextView.text = getString(R.string.score_format, totalScore)
+            pointsTextView.text = totalScore.toString()
             pointsTextView.visibility = View.VISIBLE
             starIcon.visibility = View.VISIBLE
         } else {
@@ -409,7 +428,7 @@ class GameSelectionActivity : BaseActivity()  {
 
         if (totalScore > 0) {
             gameNameTextView.text = getString(R.string.game_deci_plus)
-            pointsTextView.text = getString(R.string.score_format, totalScore)
+            pointsTextView.text = totalScore.toString()
             pointsTextView.visibility = View.VISIBLE
             starIcon.visibility = View.VISIBLE
         } else {
@@ -427,7 +446,7 @@ class GameSelectionActivity : BaseActivity()  {
 
         if (totalScore > 0) {
             gameNameTextView.text = getString(R.string.game_romas)
-            pointsTextView.text = getString(R.string.score_format, totalScore)
+            pointsTextView.text = totalScore.toString()
             pointsTextView.visibility = View.VISIBLE
             starIcon.visibility = View.VISIBLE
         } else {
@@ -461,7 +480,7 @@ class GameSelectionActivity : BaseActivity()  {
         gameNameTextView.text = spannableAlfaNumeros
 
         if (totalScore > 0) {
-            pointsTextView.text = getString(R.string.score_format, totalScore)
+            pointsTextView.text = totalScore.toString()
             pointsTextView.visibility = View.VISIBLE
             starIcon.visibility = View.VISIBLE
         } else {
@@ -476,7 +495,7 @@ class GameSelectionActivity : BaseActivity()  {
         val totalScore = score + principianteScore + proScore
 
         if (totalScore > 0) {
-            pointsTextView.text = getString(R.string.score_format, totalScore)
+            pointsTextView.text = totalScore.toString()
             pointsTextView.visibility = View.VISIBLE
             starIcon.visibility = View.VISIBLE
         } else {
@@ -491,7 +510,7 @@ class GameSelectionActivity : BaseActivity()  {
         val totalScore = score + principianteScore + proScore
 
         if (totalScore > 0) {
-            pointsTextView.text = getString(R.string.score_format, totalScore)
+            pointsTextView.text = totalScore.toString()
             pointsTextView.visibility = View.VISIBLE
             starIcon.visibility = View.VISIBLE
         } else {
@@ -507,7 +526,7 @@ class GameSelectionActivity : BaseActivity()  {
         val totalScore = score + principianteScore + proScore
 
         if (totalScore > 0) {
-            pointsTextView.text = getString(R.string.score_format, totalScore)
+            pointsTextView.text = totalScore.toString()
             pointsTextView.visibility = View.VISIBLE
             starIcon.visibility = View.VISIBLE
         } else {

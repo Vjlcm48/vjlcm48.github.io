@@ -168,22 +168,21 @@ class LevelsActivityGenioPlusPrincipiante : BaseActivity()  {
                     }
                 } else {
                     setBackgroundResource(R.drawable.button_background_locked)
-                    isEnabled = false
                     setOnClickListener {
+                        if (i < ScoreManager.unlockedLevelsGenioPlusPrincipiante && ScoreManager.isLevelBlockedByFailuresGenioPlusPrincipiante(i + 1)) {
+                            Toast.makeText(
+                                this@LevelsActivityGenioPlusPrincipiante,
+                                R.string.level_locked_by_failures,
+                                Toast.LENGTH_LONG
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                this@LevelsActivityGenioPlusPrincipiante,
+                                R.string.level_locked_message,
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
                         applyBounceEffect(this) {
-                            if (i < ScoreManager.unlockedLevelsGenioPlusPrincipiante && ScoreManager.isLevelBlockedByFailuresGenioPlusPrincipiante(i + 1)) {
-                                Toast.makeText(
-                                    this@LevelsActivityGenioPlusPrincipiante,
-                                    R.string.level_locked_by_failures,
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            } else {
-                                Toast.makeText(
-                                    this@LevelsActivityGenioPlusPrincipiante,
-                                    R.string.level_locked_message,
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
                         }
                     }
                 }
