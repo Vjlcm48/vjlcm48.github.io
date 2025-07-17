@@ -211,9 +211,14 @@
     <string name="error_invalid_username_length">El nombre debe tener entre 4 y 12 caracteres.</string>
     <string name="error_username_taken">Ops¡ parece que alguien ya está usando \nese nombre, trata con otro.</string>
     <string name="game_alfa_numeros" translatable="false">ALFANÚMEROS</string>
-    <string name="repeated_numbers_message">Los números amarillos son repetidos. ¡Súmalos bien!</string>
-    <string name="repeated_numbers_message_more">Los números azules son repetidos. ¡Súmalos bien!</string>
-    <string name="negative_numbers_warning">Cuidado, algunos números pueden ser  %1$s. ¡Súmalos correctamente!</string>
+
+    <string name="repeated_numbers_yellow_formatted">"Los números %1$s son repetidos. ¡Súmalos bien!"</string>
+    <string name="repeated_numbers_blue_formatted">"Los números %1$s son repetidos. ¡Súmalos bien!"</string>
+    <string name="negative_numbers_warning_formatted">"Cuidado, algunos números pueden ser %1$s. ¡Súmalos correctamente!"</string>
+
+    <string name="highlight_word_yellow">"amarillos"</string>
+    <string name="highlight_word_blue">"azules"</string>
+    <string name="highlight_word_negative">"negativos"</string>
 
     <string name="country_ad">Andorra</string>
     <string name="country_ae">Emiratos Árabes Unidos</string>

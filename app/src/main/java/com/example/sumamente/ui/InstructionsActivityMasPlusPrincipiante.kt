@@ -84,11 +84,15 @@ class InstructionsActivityMasPlusPrincipiante : BaseActivity()  {
         }
         // Fin del cambio IA1 //
 
-        val repeatedNumbersMessage = getString(R.string.repeated_numbers_message_more)
+        val wordToHighlightBlue = getString(R.string.highlight_word_blue)
+        val repeatedNumbersTemplate = getString(R.string.repeated_numbers_blue_formatted)
+        val fullRepeatedNumbersMessage = String.format(repeatedNumbersTemplate, wordToHighlightBlue)
+
         tvRepeatedNumbersMessage.text = formatStyledText(
-            repeatedNumbersMessage,
-            R.color.blue_pressed,
-            R.color.blue_focused
+            fullText = fullRepeatedNumbersMessage,
+            wordToStyle = wordToHighlightBlue,
+            textColorResId = R.color.blue_pressed,
+            backgroundResId = R.color.blue_focused
         )
 
         btnClose.setOnClickListener {
@@ -281,14 +285,19 @@ class InstructionsActivityMasPlusPrincipiante : BaseActivity()  {
     }
 
     private fun formatStyledText(
-        text: String,
+        fullText: String,
+        wordToStyle: String,
         textColorResId: Int,
         backgroundResId: Int
     ): SpannableString {
-        val spannable = SpannableString(text)
+        val spannable = SpannableString(fullText)
+        val start = fullText.indexOf(wordToStyle)
 
-        val start = 12
-        val end = 18
+        if (start == -1) {
+            return spannable
+        }
+
+        val end = start + wordToStyle.length
 
         val textColor = ContextCompat.getColor(this, textColorResId)
         val backgroundColor = ContextCompat.getColor(this, backgroundResId)

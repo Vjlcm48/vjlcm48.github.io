@@ -103,28 +103,33 @@ class InstructionsActivity : BaseActivity()  {
         }
         // Fin del cambio IA1 //
 
+        // Cambio de las palabras resaltadas
+        val wordToHighlightYellow = getString(R.string.highlight_word_yellow)
+        val repeatedNumbersTemplate = getString(R.string.repeated_numbers_yellow_formatted)
+        val fullRepeatedNumbersMessage = String.format(repeatedNumbersTemplate, wordToHighlightYellow)
 
-        val repeatedNumbersMessage = getString(R.string.repeated_numbers_message)
         tvRepeatedNumbersMessage.text = formatStyledText(
-            repeatedNumbersMessage,
-            12,
-            21,
-            R.color.yellow,
-            R.color.blue_primary
+            fullText = fullRepeatedNumbersMessage,
+            wordToStyle = wordToHighlightYellow,
+            textColorResId = R.color.yellow,
+            backgroundResId = R.color.blue_primary
         )
 
         if (level in listOf(3, 7, 10, 16, 19, 22, 25, 29, 33) || level >= 36) {
-            val negativeNumberWarning = getString(R.string.negative_numbers_warning, "negativos")
+            val wordToHighlightNegative = getString(R.string.highlight_word_negative)
+            val negativeWarningTemplate = getString(R.string.negative_numbers_warning_formatted)
+            val fullNegativeWarningMessage = String.format(negativeWarningTemplate, wordToHighlightNegative)
+
             tvNegativeNumberWarning.text = formatStyledText(
-                negativeNumberWarning,
-                35,
-                46,
-                R.color.red,
-                R.color.blue_primary
+                fullText = fullNegativeWarningMessage,
+                wordToStyle = wordToHighlightNegative,
+                textColorResId = R.color.red,
+                backgroundResId = R.color.blue_primary
             )
         } else {
             tvNegativeNumberWarning.visibility = View.GONE
         }
+        // Fin del cambio de las palabras resaltadas
 
         btnClose.setOnClickListener {
             btnClose.isEnabled = false
@@ -348,17 +353,21 @@ class InstructionsActivity : BaseActivity()  {
     }
 
     private fun formatStyledText(
-        text: String,
-        start: Int,
-        end: Int,
+        fullText: String,
+        wordToStyle: String,
         textColorResId: Int,
         backgroundResId: Int
     ): SpannableString {
-        val spannable = SpannableString(text)
+        val spannable = SpannableString(fullText)
+        val start = fullText.indexOf(wordToStyle)
 
+        if (start == -1) {
+            return spannable
+        }
+
+        val end = start + wordToStyle.length
         val textColor = ContextCompat.getColor(this, textColorResId)
         val backgroundColor = ContextCompat.getColor(this, backgroundResId)
-
         val roundedBackground = RadiusBackgroundSpan(backgroundColor, textColor, 10)
         spannable.setSpan(roundedBackground, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
