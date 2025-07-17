@@ -139,7 +139,7 @@ class LanguageChangeActivity : BaseActivity() {
     private fun setAppLocale(languageCode: String) {
 
         val appDisplayLanguage = when (languageCode) {
-            "es", "en", "fr", "pt" -> languageCode
+            "es", "en", "fr", "pt", "de" -> languageCode
             else -> "en"
         }
 

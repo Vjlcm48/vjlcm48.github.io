@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">HEPTACREATION</string>
+    <string name="app_name" translatable="false">HEPTACREATION</string>
     <string name="loading_text">Cargando…</string>
     <string name="next_activity_text">Próxima Actividad</string>
     <string name="notification_app_name">SumaMente</string>
@@ -184,11 +184,11 @@
     <string name="select_game_to_reset">Selecciona el juego a reiniciar</string>
     <string name="check_blue_description">Check azul</string>
     <string name="check_description">Check verde indicando éxito</string>
-    <string name="game_numeros_plus">NÚMEROS⁺</string>
-    <string name="game_deci_plus">DECI⁺</string>
-    <string name="game_mas_plus">MÁS⁺</string>
-    <string name="game_genio_plus">GENIO⁺</string>
-    <string name="game_romas">ROMAS</string>
+    <string name="game_numeros_plus" translatable="false">NÚMEROS⁺</string>
+    <string name="game_deci_plus" translatable="false">DECI⁺</string>
+    <string name="game_mas_plus" translatable="false">MÁS⁺</string>
+    <string name="game_genio_plus" translatable="false">GENIO⁺</string>
+    <string name="game_romas" translatable="false">ROMAS</string>
     <string name="select_data_to_reset">Selecciona los datos que deseas reiniciar</string>
     <string name="reset_score">Reiniciar puntaje</string>
     <string name="reset_response_mode">Reiniciar modo de respuesta</string>
@@ -207,10 +207,10 @@
     <string name="reset_progress">Reiniciar progreso</string>
     <string name="reset_progress_subtitle">Restablecer el progreso del juego</string>
     <string name="repeated_numbers_message_dinamic">Los números %1$s son repetidos. ¡Súmalos bien!</string>
-    <string name="game_sumaresta">SUMARESTA</string>
+    <string name="game_sumaresta" translatable="false">SUMARESTA</string>
     <string name="error_invalid_username_length">El nombre debe tener entre 4 y 12 caracteres.</string>
     <string name="error_username_taken">Ops¡ parece que alguien ya está usando \nese nombre, trata con otro.</string>
-    <string name="game_alfa_numeros">ALFANÚMEROS</string>
+    <string name="game_alfa_numeros" translatable="false">ALFANÚMEROS</string>
     <string name="repeated_numbers_message">Los números amarillos son repetidos. ¡Súmalos bien!</string>
     <string name="repeated_numbers_message_more">Los números azules son repetidos. ¡Súmalos bien!</string>
     <string name="negative_numbers_warning">Cuidado, algunos números pueden ser  %1$s. ¡Súmalos correctamente!</string>
