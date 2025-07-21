@@ -1,8 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">HEPTACREATION</string>
+
     <string name="loading_text">Wird geladen…</string>
     <string name="next_activity_text">Nächste Aktivität</string>
-    <string name="notification_app_name">SumaMente</string>
+
+
     <string name="btn_allow">Erlauben</string>
     <string name="btn_deny">Nicht erlauben</string>
     <string name="notification_text">Möchtest du SumaMente erlauben, dir Benachrichtigungen zu senden?</string>
@@ -184,11 +185,9 @@
     <string name="select_game_to_reset">Wähle das Spiel zum Zurücksetzen aus</string>
     <string name="check_blue_description">Blaues Häkchen</string>
     <string name="check_description">Grünes Häkchen, das Erfolg anzeigt</string>
-    <string name="game_numeros_plus">NÚMEROS⁺</string>
-    <string name="game_deci_plus">DECI⁺</string>
-    <string name="game_mas_plus">MÁS⁺</string>
-    <string name="game_genio_plus">GENIO⁺</string>
-    <string name="game_romas">ROMAS</string>
+
+
+
     <string name="select_data_to_reset">Wähle die Daten aus, die du zurücksetzen möchtest</string>
     <string name="reset_score">Punktzahl zurücksetzen</string>
     <string name="reset_response_mode">Antwortmodus zurücksetzen</string>
@@ -206,11 +205,14 @@
     <string name="default_score">0</string>
     <string name="reset_progress">Fortschritt zurücksetzen</string>
     <string name="reset_progress_subtitle">Spielfortschritt zurücksetzen</string>
-    <string name="repeated_numbers_message_dinamic">Die Zahlen %1$s sind wiederholt. Addiere sie richtig!</string>
-    <string name="game_sumaresta">SUMARESTA</string>
+
+
+
+
     <string name="error_invalid_username_length">Der Name muss zwischen 4 und 12 Zeichen lang sein.</string>
     <string name="error_username_taken">Oops! Es scheint, als würde jemand diesen Namen bereits verwenden, versuche einen anderen.</string>
-    <string name="game_alfa_numeros">ALFANÚMEROS</string>
+
+
 
     <string name="repeated_numbers_yellow_formatted">"Die %1$s Zahlen werden wiederholt. Addiere sie richtig!"</string>
     <string name="repeated_numbers_blue_formatted">"Die %1$s Zahlen werden wiederholt. Addiere sie richtig!"</string>
@@ -484,10 +486,9 @@
     <string name="ads_disabled">Werbung deaktiviert</string>
     <string name="share_with_friends">Mit Freunden teilen ausgewählt</string>
     <string name="error_time_limit_not_found">Zeitlimit für Level %1$d nicht gefunden</string>
-    <string name="text_alfa">ALFA</string>
-    <string name="text_numeros">NÚMEROS</string>
-    <string name="text_suma">SUMA</string>
-    <string name="text_resta">RESTA</string>
+
+
+
     <string name="toast_select_option">Wähle mindestens eine Option</string>
     <string name="sum_and_subtract_instruction">Löse die Operationen unter Berücksichtigung von positiven und negativen Zahlen.</string>
     <string name="general_instructions">Addiere die ganzen Zahlen, Dezimalzahlen, römischen Zahlen und Buchstaben. Einige können negativ sein!</string>

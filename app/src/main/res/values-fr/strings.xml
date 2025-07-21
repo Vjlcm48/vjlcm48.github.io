@@ -1,8 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">HEPTACREATION</string>
+
     <string name="loading_text">Chargement…</string>
     <string name="next_activity_text">Activité suivante</string>
-    <string name="notification_app_name">SumaMente</string>
+
+
     <string name="btn_allow">Autoriser</string>
     <string name="btn_deny">Ne pas autoriser</string>
     <string name="notification_text">Voulez-vous permettre à SumaMente de vous envoyer des notifications ?</string>
@@ -185,12 +186,7 @@
     <string name="check_blue_description">Check bleu</string>
     <string name="check_description">Check vert indiquant le succès</string>
 
-    <!-- Nombres de juegos y marcas se mantienen igual -->
-    <string name="game_numeros_plus">NÚMEROS⁺</string>
-    <string name="game_deci_plus">DECI⁺</string>
-    <string name="game_mas_plus">MÁS⁺</string>
-    <string name="game_genio_plus">GENIO⁺</string>
-    <string name="game_romas">ROMAS</string>
+
 
     <string name="select_data_to_reset">Sélectionnez les données à réinitialiser</string>
     <string name="reset_score">Réinitialiser le score</string>
@@ -209,11 +205,11 @@
     <string name="default_score">0</string>
     <string name="reset_progress">Réinitialiser la progression</string>
     <string name="reset_progress_subtitle">Réinitialiser la progression du jeu</string>
-    <string name="repeated_numbers_message_dinamic">Les nombres %1$s sont répétés. Additionne-les correctement !</string>
-    <string name="game_sumaresta">SUMARESTA</string>
+
+
     <string name="error_invalid_username_length">Le nom doit comporter entre 4 et 12 caractères.</string>
     <string name="error_username_taken">Oups ! Ce nom est déjà utilisé.\nEssaie-en un autre.</string>
-    <string name="game_alfa_numeros">ALFANÚMEROS</string>
+
 
     <string name="repeated_numbers_yellow_formatted">"Les nombres %1$s sont répétés. Additionnez-les correctement !"</string>
     <string name="repeated_numbers_blue_formatted">"Les nombres %1$s sont répétés. Additionnez-les correctement !"</string>
@@ -488,10 +484,9 @@
     <string name="ads_disabled">Publicité désactivée</string>
     <string name="share_with_friends">Partager avec des amis sélectionné</string>
     <string name="error_time_limit_not_found">Limite de temps non trouvée pour le niveau %1$d</string>
-    <string name="text_alfa">ALFA</string>
-    <string name="text_numeros">NÚMEROS</string>
-    <string name="text_suma">SUMA</string>
-    <string name="text_resta">RESTA</string>
+
+
+
     <string name="toast_select_option">Sélectionnez au moins une option</string>
     <string name="sum_and_subtract_instruction">Résolvez les opérations en tenant compte des nombres positifs et négatifs.</string>
     <string name="general_instructions">Additionnez les nombres entiers, décimaux, romains et les lettres. Certains peuvent être négatifs !</string>

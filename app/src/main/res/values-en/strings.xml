@@ -1,8 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">HEPTACREATION</string>
+
     <string name="loading_text">Loading…</string>
     <string name="next_activity_text">Next Activity</string>
-    <string name="notification_app_name">SumaMente</string>
+
+
     <string name="btn_allow">Allow</string>
     <string name="btn_deny">Deny</string>
     <string name="notification_text">Do you want to allow SumaMente to send you notifications?</string>
@@ -184,11 +185,8 @@
     <string name="select_game_to_reset">Select the game to reset</string>
     <string name="check_blue_description">Blue check</string>
     <string name="check_description">Green check indicating success</string>
-    <string name="game_numeros_plus">NÚMEROS⁺</string>
-    <string name="game_deci_plus">DECI⁺</string>
-    <string name="game_mas_plus">MÁS⁺</string>
-    <string name="game_genio_plus">GENIO⁺</string>
-    <string name="game_romas">ROMAS</string>
+
+
     <string name="select_data_to_reset">Select the data you want to reset</string>
     <string name="reset_score">Reset score</string>
     <string name="reset_response_mode">Reset response mode</string>
@@ -206,11 +204,13 @@
     <string name="default_score">0</string>
     <string name="reset_progress">Reset progress</string>
     <string name="reset_progress_subtitle">Reset game progress</string>
-    <string name="repeated_numbers_message_dinamic">The numbers %1$s are repeated. Add them correctly!</string>
-    <string name="game_sumaresta">SUMARESTA</string>
+
+
+
     <string name="error_invalid_username_length">The name must be between 4 and 12 characters long.</string>
     <string name="error_username_taken">Oops! It seems someone is already using \nthat name, try another one.</string>
-    <string name="game_alfa_numeros">ALFANÚMEROS</string>
+
+
 
     <string name="repeated_numbers_yellow_formatted">"The %1$s numbers are repeated. Add them up correctly!"</string>
     <string name="repeated_numbers_blue_formatted">"The %1$s numbers are repeated. Add them up correctly!"</string>
@@ -484,10 +484,9 @@
     <string name="ads_disabled">Ads disabled</string>
     <string name="share_with_friends">Share with friends selected</string>
     <string name="error_time_limit_not_found">Time limit not found for level %1$d</string>
-    <string name="text_alfa">ALFA</string>
-    <string name="text_numeros">NÚMEROS</string>
-    <string name="text_suma">SUMA</string>
-    <string name="text_resta">RESTA</string>
+
+
+
     <string name="toast_select_option">Select at least one option</string>
     <string name="sum_and_subtract_instruction">Solve the operations considering positive and negative numbers.</string>
     <string name="general_instructions">Add the integers, decimals, Roman numerals, and letters. Some may be negative!</string>
