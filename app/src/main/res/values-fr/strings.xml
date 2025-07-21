@@ -691,7 +691,9 @@ et de t’amuser. 🚀
     <string name="next">Suivant</string>
 
     <string name="mis_condecoraciones">Mes décorations obtenues</string>
-    <string name="top_10">Top 10</string>
+
+    <string name="top_10">Le top 10 du classement mondial</string>
+
     <string name="condecoracion_image">Image de décoration</string>
     <string name="condecoracion_honorabilis">Dixième place. Digne de reconnaissance.</string>
     <string name="condecoracion_virtuosus">Neuvième place. Maîtrise avec discipline.</string>
@@ -1320,7 +1322,7 @@ et de t’amuser. 🚀
     <string name="significado_mentis_aurea_2">Esprit doré</string>
     <string name="significado_sapiens_supremus_1">Le plus sage</string>
 
-    <string name="los_7_mejores">Les 7 meilleurs</string>
+    <string name="los_7_mejores">Le top 7 du classement IQ⁺</string>
 
     <string name="condecoracion_sapiens_supremus">SAPIENS SUPREMUS</string>
     <string name="condecoracion_mentis_aurea">MENTIS AUREA</string>
@@ -1387,15 +1389,7 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
 
     <string name="top5_ranking_integral">Les 5 meilleurs du classement intégral</string>
 
-    <string name="language_spanish">Español</string>
-    <string name="language_english">English</string>
-    <string name="language_portuguese">Português</string>
-    <string name="language_hindi">हिन्दी (Hindi)</string>
-    <string name="language_french">Français</string>
-    <string name="language_german">Deutsch</string>
-    <string name="language_indonesian">Bahasa Indonesia</string>
-    <string name="language_japanese">日本語 (Nihongo)</string>
-    <string name="language_korean">한국어 (Hangugeo)</string>
+
 
     <string name="choose_language">Choisissez votre langue</string>
 

@@ -715,7 +715,7 @@
 
     <string name="mis_condecoraciones">Mis condecoraciones logradas</string>
 
-    <string name="top_10">Los 10 mejores</string>
+    <string name="top_10">Los 10 mejores del Ranking Global</string>
 
     <string name="condecoracion_image">Imagen de condecoración</string>
     <string name="condecoracion_honorabilis">Décimo lugar. Digno del reconocimiento.</string>
@@ -1323,7 +1323,7 @@
     <string name="significado_mentis_aurea_2">Mente dorada</string>
     <string name="significado_sapiens_supremus_1">El más sabio</string>
 
-    <string name="los_7_mejores">Los 7 mejores</string>
+    <string name="los_7_mejores">Los 7 mejores del Ranking IQ⁺</string>
 
     <string name="condecoracion_sapiens_supremus">SAPIENS SUPREMUS</string>
     <string name="condecoracion_mentis_aurea">MENTIS AUREA</string>
@@ -1391,15 +1391,19 @@
 
     <string name="top5_ranking_integral">Los 5 mejores del Ranking Integral</string>
 
-    <string name="language_spanish">Español</string>
-    <string name="language_english">English</string>
-    <string name="language_portuguese">Português</string>
-    <string name="language_hindi">हिन्दी (Hindi)</string>
-    <string name="language_french">Français</string>
-    <string name="language_german">Deutsch</string>
-    <string name="language_indonesian">Bahasa Indonesia</string>
-    <string name="language_japanese">日本語 (Nihongo)</string>
-    <string name="language_korean">한국어 (Hangugeo)</string>
+    <string name="language_spanish" translatable="false">Español</string>
+    <string name="language_english" translatable="false">English</string>
+    <string name="language_portuguese" translatable="false">Português</string>
+    <string name="language_hindi" translatable="false">हिन्दी</string>
+    <string name="language_french" translatable="false">Français</string>
+    <string name="language_german" translatable="false">Deutsch</string>
+    <string name="language_indonesian" translatable="false">Bahasa Indonesia</string>
+    <string name="language_japanese" translatable="false">日本語</string>
+    <string name="language_korean" translatable="false">한국어</string>
+
+    <string name="language_arabic" translatable="false">العربية</string>
+    <string name="language_bengali" translatable="false">বাংলা</string>
+    <string name="language_urdu" translatable="false">اردو</string>
 
     <string name="choose_language">Elige tu idioma</string>
 

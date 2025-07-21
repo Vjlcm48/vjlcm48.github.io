@@ -710,7 +710,7 @@
 
     <string name="mis_condecoraciones">My earned decorations</string>
 
-    <string name="top_10">Top 10</string>
+    <string name="top_10">Top 10 Global Ranking</string>
 
     <string name="condecoracion_image">Decoration image</string>
     <string name="condecoracion_honorabilis">Tenth place. Worthy of recognition.</string>
@@ -1318,7 +1318,7 @@
     <string name="significado_mentis_aurea_2">Golden mind</string>
     <string name="significado_sapiens_supremus_1">The wisest</string>
 
-    <string name="los_7_mejores">The Top 7</string>
+    <string name="los_7_mejores">Top 7 IQ⁺ Ranking</string>
 
     <string name="condecoracion_sapiens_supremus">SAPIENS SUPREMUS</string>
     <string name="condecoracion_mentis_aurea">MENTIS AUREA</string>
@@ -1386,15 +1386,7 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
 
     <string name="top5_ranking_integral">Top 5 of the Integral Ranking</string>
 
-    <string name="language_spanish">Español</string>
-    <string name="language_english">English</string>
-    <string name="language_portuguese">Português</string>
-    <string name="language_hindi">हिन्दी (Hindi)</string>
-    <string name="language_french">Français</string>
-    <string name="language_german">Deutsch</string>
-    <string name="language_indonesian">Bahasa Indonesia</string>
-    <string name="language_japanese">日本語 (Nihongo)</string>
-    <string name="language_korean">한국어 (Hangugeo)</string>
+
 
     <string name="choose_language">Choose your language</string>
 

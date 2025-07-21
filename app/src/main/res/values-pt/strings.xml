@@ -649,7 +649,9 @@
     <string name="previous">Anterior</string>
     <string name="next">Próximo</string>
     <string name="mis_condecoraciones">Minhas condecorações conquistadas</string>
-    <string name="top_10">Os 10 melhores</string>
+
+    <string name="top_10">Top 10 do Ranking Global</string>
+
     <string name="condecoracion_image">Imagem de condecoração</string>
     <string name="condecoracion_honorabilis">Décimo lugar. Digno de reconhecimento.</string>
     <string name="condecoracion_virtuosus">Nono lugar. Domínio com disciplina.</string>
@@ -1186,7 +1188,9 @@
     <string name="significado_luminis_rex_3">Rei da luz</string>
     <string name="significado_mentis_aurea_2">Mente dourada</string>
     <string name="significado_sapiens_supremus_1">O mais sábio</string>
-    <string name="los_7_mejores">Os 7 melhores</string>
+
+    <string name="los_7_mejores">Top 7 do Ranking IQ⁺</string>
+
     <string name="condecoracion_sapiens_supremus">SAPIENS SUPREMUS</string>
     <string name="condecoracion_mentis_aurea">MENTIS AUREA</string>
     <string name="condecoracion_luminis_rex">LUMINIS REX</string>
@@ -1236,15 +1240,11 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
     <string name="logro_gloria_integralis_1">Glória integral para você, %1$s! O máximo reconhecimento é seu.</string>
     <string name="logro_gloria_integralis_2">SumaMente te aplaude, %1$s: você alcançou GLORIA INTEGRALIS.</string>
     <string name="top5_ranking_integral">Os 5 melhores do Ranking Integral</string>
-    <string name="language_spanish">Español</string>
-    <string name="language_english">English</string>
-    <string name="language_portuguese">Português</string>
-    <string name="language_hindi">हिन्दी (Hindi)</string>
-    <string name="language_french">Français</string>
-    <string name="language_german">Deutsch</string>
-    <string name="language_indonesian">Bahasa Indonesia</string>
-    <string name="language_japanese">日本語 (Nihongo)</string>
-    <string name="language_korean">한국어 (Hangugeo)</string>
+
+
+
+
+
     <string name="choose_language">Escolha seu idioma</string>
     <string name="language_selection_required_message">Para continuar, por favor, selecione seu idioma preferido na lista.</string>
     <string name="confirm_change_language_message">Tem certeza de que quer mudar o idioma?</string>

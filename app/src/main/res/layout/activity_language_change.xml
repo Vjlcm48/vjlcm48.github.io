@@ -17,17 +17,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="70dp"
         android:layout_marginBottom="44dp"
-        android:background="@android:color/white"
         app:cardCornerRadius="11dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/app_logo">
+        app:layout_constraintTop_toBottomOf="@id/app_logo"
+        app:strokeColor="@color/blue_primary"
+        app:strokeWidth="2dp">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -94,6 +95,6 @@
 
             </LinearLayout>
         </ScrollView>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

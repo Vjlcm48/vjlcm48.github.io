@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/blue_primary">
 
-
     <ImageView
         android:id="@+id/btn_back"
         android:layout_width="48dp"
@@ -70,6 +69,43 @@
             android:orientation="vertical"
             android:gravity="center">
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp">
+
+                <LinearLayout
+                    android:id="@+id/btn_mis_condecoraciones"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_background_genio"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mis_condecoraciones"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/mis_condecoraciones_red_dot"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="55dp"
+                    android:background="@drawable/red_dot_big"
+                    android:visibility="gone" />
+
+            </FrameLayout>
+
             <LinearLayout
                 android:id="@+id/btn_pin"
                 android:layout_width="match_parent"
@@ -87,7 +123,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/pin_reconocimiento"
                     android:textColor="@android:color/black"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -108,7 +144,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/corona_laureles"
                     android:textColor="@android:color/black"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -129,7 +165,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/medalla"
                     android:textColor="@android:color/black"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -150,7 +186,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/trofeo"
                     android:textColor="@android:color/black"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -171,7 +207,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/top_10"
                     android:textColor="@android:color/black"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -192,11 +228,9 @@
                     android:layout_height="wrap_content"
                     android:text="@string/los_7_mejores"
                     android:textColor="@android:color/black"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
-
-            <!-- AGREGAR ESTE BOTÓN DESPUÉS DEL btnLos7Mejores y ANTES del FrameLayout de btnMisCondecoraciones -->
 
             <LinearLayout
                 android:id="@+id/btn_los_5_mejores"
@@ -215,48 +249,11 @@
                     android:layout_height="wrap_content"
                     android:text="@string/top5_ranking_integral"
                     android:textColor="@android:color/black"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
 
-            <!-- 5.1. Container para btn_mis_condecoraciones con punto rojo -->
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp">
-
-                <LinearLayout
-                    android:id="@+id/btn_mis_condecoraciones"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/premio_boton_background"
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:gravity="center"
-                    android:clickable="true"
-                    android:focusable="true">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/mis_condecoraciones"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/mis_condecoraciones_red_dot"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:layout_gravity="top|end"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="55dp"
-                    android:background="@drawable/red_dot_big"
-                    android:visibility="gone" />
-
-            </FrameLayout>
 
             <LinearLayout
                 android:id="@+id/btn_apex_supremus"

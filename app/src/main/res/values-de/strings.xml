@@ -696,7 +696,7 @@
 
     <string name="mis_condecoraciones">Meine errungenen Auszeichnungen</string>
 
-    <string name="top_10">Die 10 Besten</string>
+    <string name="top_10">Top 10 der Globalen Rangliste</string>
 
     <string name="condecoracion_image">Bild der Auszeichnung</string>
     <string name="condecoracion_honorabilis">Zehnter Platz. Der Anerkennung würdig.</string>
@@ -1259,7 +1259,7 @@
     <string name="significado_mentis_aurea_2">Goldener Geist</string>
     <string name="significado_sapiens_supremus_1">Der Weiseste</string>
 
-    <string name="los_7_mejores">Die 7 Besten</string>
+    <string name="los_7_mejores">Top 7 der IQ⁺-Rangliste</string>
 
     <string name="condecoracion_sapiens_supremus">SAPIENS SUPREMUS</string>
     <string name="condecoracion_mentis_aurea">MENTIS AUREA</string>
@@ -1326,15 +1326,7 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
 
     <string name="top5_ranking_integral">Die 5 Besten des Integralen Rankings</string>
 
-    <string name="language_spanish">Español (Spanisch)</string>
-    <string name="language_english">English (Englisch)</string>
-    <string name="language_portuguese">Português (Portugiesisch)</string>
-    <string name="language_hindi">हिन्दी (Hindi)</string>
-    <string name="language_french">Français (Französisch)</string>
-    <string name="language_german">Deutsch</string>
-    <string name="language_indonesian">Bahasa Indonesia (Indonesisch)</string>
-    <string name="language_japanese">日本語 (Japanisch)</string>
-    <string name="language_korean">한국어 (Koreanisch)</string>
+
 
     <string name="choose_language">Wähle deine Sprache</string>
 
