@@ -256,22 +256,22 @@ class GameActivityRomasPro : BaseActivity()  {
                 largeNumbers.addAll(generateRandomNumbers(7, 7..15))
             }
             in 29..35 -> {
-                smallNumbers.addAll(generateRandomNumbers(19, 1..15))
+                smallNumbers.addAll(generateRandomNumbers(19, 1..16))
             }
             in 36..42 -> {
-                smallNumbers.addAll(generateRandomNumbers(20, 1..15))
+                smallNumbers.addAll(generateRandomNumbers(20, 1..17))
             }
             in 43..49 -> {
-                smallNumbers.addAll(generateRandomNumbers(21, 1..17))
+                smallNumbers.addAll(generateRandomNumbers(21, 1..18))
             }
             in 50..56 -> {
-                smallNumbers.addAll(generateRandomNumbers(22, 1..18))
+                smallNumbers.addAll(generateRandomNumbers(22, 1..19))
             }
             in 57..63 -> {
-                smallNumbers.addAll(generateRandomNumbers(23, 1..19))
+                smallNumbers.addAll(generateRandomNumbers(23, 1..20))
             }
             in 64..70 -> {
-                smallNumbers.addAll(generateRandomNumbers(24, 1..20))
+                smallNumbers.addAll(generateRandomNumbers(24, 1..25))
             }
         }
 
@@ -366,7 +366,7 @@ class GameActivityRomasPro : BaseActivity()  {
     private fun calculateTimePerNumber() {
         timePerNumberList.clear()
         val level = currentLevel
-        var firstNumberTime = 1.80
+        var firstNumberTime = 2.0
 
         val blockNumber = (level - 1) / 5
         firstNumberTime -= blockNumber * 0.07

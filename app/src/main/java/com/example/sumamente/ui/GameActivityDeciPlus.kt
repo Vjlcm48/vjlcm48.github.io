@@ -236,13 +236,13 @@ class GameActivityDeciPlus : BaseActivity()  {
             numberList.clear()
 
             val decimalRange = when (currentLevel) {
-                in 1..7 -> 0.6
-                in 8..14 -> 0.7
-                in 15..21 -> 0.8
-                in 22..28 -> 0.9
-                in 29..35 -> 1.0
-                in 36..42 -> 1.2
-                else -> 1.3
+                in 1..7 -> 1.0
+                in 8..14 -> 1.1
+                in 15..21 -> 1.3
+                in 22..28 -> 1.5
+                in 29..35 -> 1.6
+                in 36..42 -> 1.8
+                else -> 2.0
             }
 
             val numbersToGenerate = when (currentLevel) {
@@ -312,7 +312,7 @@ class GameActivityDeciPlus : BaseActivity()  {
     private fun calculateTimePerNumber() {
         timePerNumberList.clear()
         val level = currentLevel
-        var firstNumberTime = 1.75
+        var firstNumberTime = 2.1
 
         val blockNumber = (level - 1) / 5
         firstNumberTime -= blockNumber * 0.07

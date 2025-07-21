@@ -236,26 +236,26 @@ class GameActivityDeciPlusPro : BaseActivity()  {
             numberList.clear()
 
             val decimalRange = when (currentLevel) {
-                in 1..7 -> 1.0
-                in 8..14 -> 1.1
-                in 15..21 -> 1.2
-                in 22..28 -> 1.3
-                in 29..35 -> 1.4
-                in 36..42 -> 1.6
-                else -> 1.7
+                in 1..7 -> 1.4
+                in 8..14 -> 1.6
+                in 15..21 -> 1.8
+                in 22..28 -> 1.9
+                in 29..35 -> 2.0
+                in 36..42 -> 2.2
+                else -> 2.5
             }
 
             val numbersToGenerate = when (currentLevel) {
-                in 1..7 -> 9
-                in 8..14 -> 11
-                in 15..21 -> 12
-                in 22..28 -> 13
-                in 29..35 -> 18
-                in 36..42 -> 19
-                in 43..49 -> 20
-                in 50..56 -> 21
-                in 57..63 -> 22
-                else -> 23
+                in 1..7 -> 6
+                in 8..14 -> 8
+                in 15..21 -> 9
+                in 22..28 -> 10
+                in 29..35 -> 15
+                in 36..42 -> 16
+                in 43..49 -> 17
+                in 50..56 -> 18
+                in 57..63 -> 19
+                else -> 20
             }
 
             numberList.addAll(generateRandomDecimals(numbersToGenerate, decimalRange))
@@ -312,7 +312,7 @@ class GameActivityDeciPlusPro : BaseActivity()  {
     private fun calculateTimePerNumber() {
         timePerNumberList.clear()
         val level = currentLevel
-        var firstNumberTime = 1.60
+        var firstNumberTime = 1.90
 
         val blockNumber = (level - 1) / 5
         firstNumberTime -= blockNumber * 0.07

@@ -454,7 +454,7 @@ class GameActivityMasPlusPrincipiante : BaseActivity()  {
         timePerElementList.clear()
         val level = currentLevel
 
-        var baseTime = 1.90
+        var baseTime = 2.40
 
         val blockNumber = (level - 1) / 5
         baseTime -= blockNumber * 0.05

@@ -252,7 +252,7 @@ class GameActivityMasPlusPro : BaseActivity()  {
         when (level) {
             in 1..7 -> {
                 totalElements = 8
-                intRange = 1..12
+                intRange = 1..14
                 romanCount = 1
                 letterCount = 0
                 decimalCount = 0
@@ -261,7 +261,7 @@ class GameActivityMasPlusPro : BaseActivity()  {
             }
             in 8..14 -> {
                 totalElements = 11
-                intRange = 1..14
+                intRange = 1..16
                 romanCount = 2
                 letterCount = 0
                 decimalCount = 0
@@ -270,7 +270,7 @@ class GameActivityMasPlusPro : BaseActivity()  {
             }
             in 15..21 -> {
                 totalElements = 13
-                intRange = 1..14
+                intRange = 1..18
                 romanCount = 2
                 letterCount = 2
                 letterPool = listOf('A', 'B', 'C')
@@ -280,7 +280,7 @@ class GameActivityMasPlusPro : BaseActivity()  {
             }
             in 22..28 -> {
                 totalElements = 15
-                intRange = 1..10
+                intRange = 1..20
                 romanCount = 2
                 letterCount = 2
                 letterPool = listOf('A', 'B', 'C', 'D')
@@ -293,7 +293,7 @@ class GameActivityMasPlusPro : BaseActivity()  {
             }
             in 29..35 -> {
                 totalElements = 16
-                intRange = 1..10
+                intRange = 1..22
                 romanCount = 2
                 letterCount = 2
                 letterPool = listOf('A', 'B', 'C', 'D')
@@ -306,7 +306,7 @@ class GameActivityMasPlusPro : BaseActivity()  {
             }
             in 36..42 -> {
                 totalElements = 17
-                intRange = 1..11
+                intRange = 1..24
                 romanCount = 2
                 letterCount = 2
                 letterPool = listOf('A', 'B', 'C', 'D', 'E')
@@ -318,7 +318,7 @@ class GameActivityMasPlusPro : BaseActivity()  {
             }
             in 43..49 -> {
                 totalElements = 18
-                intRange = 1..11
+                intRange = 1..24
                 romanCount = 2
                 letterCount = 3
                 letterPool = listOf('A', 'B', 'C', 'D', 'E')
@@ -330,7 +330,7 @@ class GameActivityMasPlusPro : BaseActivity()  {
             }
             in 50..56 -> {
                 totalElements = 19
-                intRange = 1..12
+                intRange = 1..24
                 romanCount = 2
                 letterCount = 2
                 letterPool = listOf('A', 'B', 'C', 'D', 'E', 'F')
@@ -342,7 +342,7 @@ class GameActivityMasPlusPro : BaseActivity()  {
             }
             in 57..63 -> {
                 totalElements = 20
-                intRange = 1..13
+                intRange = 1..26
                 romanCount = 2
                 letterCount = 3
                 letterPool = listOf('A', 'B', 'C', 'D', 'E', 'F')
@@ -354,7 +354,7 @@ class GameActivityMasPlusPro : BaseActivity()  {
             }
             else -> {
                 totalElements = 21
-                intRange = 1..14
+                intRange = 1..26
                 romanCount = 3
                 letterCount = 2
                 letterPool = listOf('A', 'B', 'C', 'D', 'E', 'F', 'G')
@@ -454,7 +454,7 @@ class GameActivityMasPlusPro : BaseActivity()  {
         timePerElementList.clear()
         val level = currentLevel
 
-        var baseTime = 1.70
+        var baseTime = 1.95
 
         val blockNumber = (level - 1) / 5
         baseTime -= blockNumber * 0.05

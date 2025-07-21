@@ -261,13 +261,13 @@ class GameActivityPrincipiante : BaseActivity()  {
                 smallNumbers.addAll(generateRandomNumbers(17, 1..12))
             }
             in 50..56 -> {
-                smallNumbers.addAll(generateRandomNumbers(18, 1..12))
+                smallNumbers.addAll(generateRandomNumbers(18, 1..13))
             }
             in 57..63 -> {
-                smallNumbers.addAll(generateRandomNumbers(19, 1..12))
+                smallNumbers.addAll(generateRandomNumbers(19, 1..14))
             }
             in 64..70 -> {
-                smallNumbers.addAll(generateRandomNumbers(20, 1..12))
+                smallNumbers.addAll(generateRandomNumbers(20, 1..15))
             }
         }
 
@@ -330,7 +330,7 @@ class GameActivityPrincipiante : BaseActivity()  {
         timePerNumberList.clear()
         val level = currentLevel
 
-        var firstNumberTime = 2.50
+        var firstNumberTime = 2.1
 
         val blockNumber = (level - 1) / 5
         firstNumberTime -= blockNumber * 0.07

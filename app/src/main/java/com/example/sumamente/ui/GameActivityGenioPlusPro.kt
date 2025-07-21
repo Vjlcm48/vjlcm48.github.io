@@ -322,10 +322,10 @@ class GameActivityGenioPlusPro : BaseActivity()  {
         }
 
         val intRange = when (level) {
-            in 1..7 -> 1..14
-            in 22..28 -> 1..15
-            in 64..70 -> 1..16
-            else -> 1..12
+            in 1..7 -> 1..16
+            in 22..28 -> 1..18
+            in 64..70 -> 1..20
+            else -> 1..22
         }
 
         val integers = generateRandomNumbers(integersCount, intRange)
@@ -614,7 +614,7 @@ class GameActivityGenioPlusPro : BaseActivity()  {
         timePerElementList.clear()
         val level = currentLevel
 
-        var firstNumberTime = 2.50
+        var firstNumberTime = 2.30
 
         val blockNumber = (level - 1) / 5
         firstNumberTime -= blockNumber * 0.07

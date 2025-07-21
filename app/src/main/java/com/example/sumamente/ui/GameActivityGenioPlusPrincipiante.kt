@@ -311,7 +311,7 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
             else -> 3
         }
 
-        val integers = generateRandomNumbers(integersCount, 1..12)
+        val integers = generateRandomNumbers(integersCount, 1..10)
         val fractions = selectRandomElements(fractionsCount, fraccionesPool)
         val roots = selectRandomElements(rootsCount, raicesPool)
         val combinations = generateCombinations(combinationsCount, fraccionesPool, raicesPool)
@@ -596,7 +596,7 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
         timePerElementList.clear()
         val level = currentLevel
 
-        var firstNumberTime = 3.0
+        var firstNumberTime = 2.80
 
         val blockNumber = (level - 1) / 5
         firstNumberTime -= blockNumber * 0.07

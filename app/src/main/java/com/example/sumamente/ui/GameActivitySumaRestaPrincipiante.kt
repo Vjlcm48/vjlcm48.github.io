@@ -339,7 +339,7 @@ class GameActivitySumaRestaPrincipiante : BaseActivity()  {
     private fun calculateTimePerNumber() {
         timePerNumberList.clear()
         val level = currentLevel
-        var firstNumberTime = 1.85 // Cambio de 1.65 a 1.85 segundos para principiante
+        var firstNumberTime = 2.20
 
         val blockNumber = (level - 1) / 5
         firstNumberTime -= blockNumber * 0.07

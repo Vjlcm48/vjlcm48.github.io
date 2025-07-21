@@ -236,64 +236,64 @@ class GameActivitySumaRestaPro : BaseActivity()  {
 
         when (level) {
             in 1..7 -> {
-                smallNumbers.addAll(generateRandomNumbers(3, 1..6))
-                largeNumbers.addAll(generateRandomNumbers(2, 7..12))
+                smallNumbers.addAll(generateRandomNumbers(3, 1..10))
+                largeNumbers.addAll(generateRandomNumbers(2, 11..16))
                 smallNegatives.addAll(generateRandomNumbers(2, -5..-1))
-                largeNegatives.addAll(generateRandomNumbers(1, -12..-6))
+                largeNegatives.addAll(generateRandomNumbers(1, -14..-6))
             }
             in 8..14 -> {
-                smallNumbers.addAll(generateRandomNumbers(4, 1..6))
-                largeNumbers.addAll(generateRandomNumbers(3, 7..12))
+                smallNumbers.addAll(generateRandomNumbers(4, 1..10))
+                largeNumbers.addAll(generateRandomNumbers(3, 11..16))
                 smallNegatives.addAll(generateRandomNumbers(2, -5..-1))
-                largeNegatives.addAll(generateRandomNumbers(2, -12..-6))
+                largeNegatives.addAll(generateRandomNumbers(2, -14..-6))
             }
             in 15..21 -> {
-                smallNumbers.addAll(generateRandomNumbers(5, 1..6))
-                largeNumbers.addAll(generateRandomNumbers(3, 7..12))
+                smallNumbers.addAll(generateRandomNumbers(5, 1..10))
+                largeNumbers.addAll(generateRandomNumbers(3, 11..16))
                 smallNegatives.addAll(generateRandomNumbers(3, -5..-1))
-                largeNegatives.addAll(generateRandomNumbers(2, -12..-6))
+                largeNegatives.addAll(generateRandomNumbers(2, -14..-6))
             }
             in 22..28 -> {
-                smallNumbers.addAll(generateRandomNumbers(5, 1..6))
-                largeNumbers.addAll(generateRandomNumbers(4, 7..12))
+                smallNumbers.addAll(generateRandomNumbers(5, 1..10))
+                largeNumbers.addAll(generateRandomNumbers(4, 11..16))
                 smallNegatives.addAll(generateRandomNumbers(3, -5..-1))
-                largeNegatives.addAll(generateRandomNumbers(3, -12..-6))
+                largeNegatives.addAll(generateRandomNumbers(3, -14..-6))
             }
             in 29..35 -> {
-                smallNumbers.addAll(generateRandomNumbers(4, 1..6))
-                largeNumbers.addAll(generateRandomNumbers(5, 7..12))
+                smallNumbers.addAll(generateRandomNumbers(4, 1..10))
+                largeNumbers.addAll(generateRandomNumbers(5, 11..16))
                 smallNegatives.addAll(generateRandomNumbers(4, -5..-1))
-                largeNegatives.addAll(generateRandomNumbers(3, -12..-6))
+                largeNegatives.addAll(generateRandomNumbers(3, -14..-6))
             }
             in 36..42 -> {
-                smallNumbers.addAll(generateRandomNumbers(8, 1..14))
-                largeNumbers.addAll(generateRandomNumbers(1, 7..12))
+                smallNumbers.addAll(generateRandomNumbers(8, 1..12))
+                largeNumbers.addAll(generateRandomNumbers(1, 13..20))
                 smallNegatives.addAll(generateRandomNumbers(4, -5..-1))
-                largeNegatives.addAll(generateRandomNumbers(4, -12..-6))
+                largeNegatives.addAll(generateRandomNumbers(4, -16..-6))
             }
             in 43..49 -> {
-                smallNumbers.addAll(generateRandomNumbers(8, 1..14))
-                largeNumbers.addAll(generateRandomNumbers(1, 7..12))
+                smallNumbers.addAll(generateRandomNumbers(8, 1..12))
+                largeNumbers.addAll(generateRandomNumbers(1, 13..20))
                 smallNegatives.addAll(generateRandomNumbers(5, -5..-1))
-                largeNegatives.addAll(generateRandomNumbers(4, -12..-6))
+                largeNegatives.addAll(generateRandomNumbers(4, -16..-6))
             }
             in 50..56 -> {
                 smallNumbers.addAll(generateRandomNumbers(8, 1..14))
-                largeNumbers.addAll(generateRandomNumbers(1, 7..12))
+                largeNumbers.addAll(generateRandomNumbers(1, 15..22))
                 smallNegatives.addAll(generateRandomNumbers(5, -5..-1))
-                largeNegatives.addAll(generateRandomNumbers(5, -12..-6))
+                largeNegatives.addAll(generateRandomNumbers(5, -16..-6))
             }
             in 57..63 -> {
                 smallNumbers.addAll(generateRandomNumbers(8, 1..14))
-                largeNumbers.addAll(generateRandomNumbers(1, 7..12))
+                largeNumbers.addAll(generateRandomNumbers(1, 15..22))
                 smallNegatives.addAll(generateRandomNumbers(6, -5..-1))
-                largeNegatives.addAll(generateRandomNumbers(5, -12..-6))
+                largeNegatives.addAll(generateRandomNumbers(5, -16..-6))
             }
             in 64..70 -> {
                 smallNumbers.addAll(generateRandomNumbers(8, 1..14))
-                largeNumbers.addAll(generateRandomNumbers(1, 7..12))
+                largeNumbers.addAll(generateRandomNumbers(1, 15..22))
                 smallNegatives.addAll(generateRandomNumbers(6, -5..-1))
-                largeNegatives.addAll(generateRandomNumbers(6, -12..-6))
+                largeNegatives.addAll(generateRandomNumbers(6, -16..-6))
             }
         }
 
@@ -345,7 +345,7 @@ class GameActivitySumaRestaPro : BaseActivity()  {
         timePerNumberList.clear()
         val level = currentLevel
 
-        var firstNumberTime = 1.55
+        var firstNumberTime = 1.80
 
         val blockNumber = (level - 1) / 5
         firstNumberTime -= blockNumber * 0.07

@@ -237,37 +237,37 @@ class GameActivity : BaseActivity()  {
         when (level) {
             in 1..7 -> {
                 smallNumbers.addAll(generateRandomNumbers(6, 1..6))
-                largeNumbers.addAll(generateRandomNumbers(1, 7..10))
+                largeNumbers.addAll(generateRandomNumbers(1, 7..13))
             }
             in 8..14 -> {
                 smallNumbers.addAll(generateRandomNumbers(8, 1..6))
-                largeNumbers.addAll(generateRandomNumbers(2, 7..10))
+                largeNumbers.addAll(generateRandomNumbers(2, 7..14))
             }
             in 15..21 -> {
                 smallNumbers.addAll(generateRandomNumbers(9, 1..6))
-                largeNumbers.addAll(generateRandomNumbers(3, 7..10))
+                largeNumbers.addAll(generateRandomNumbers(3, 7..15))
             }
             in 22..28 -> {
                 smallNumbers.addAll(generateRandomNumbers(10, 1..6))
-                largeNumbers.addAll(generateRandomNumbers(4, 7..10))
+                largeNumbers.addAll(generateRandomNumbers(4, 7..16))
             }
             in 29..35 -> {
-                smallNumbers.addAll(generateRandomNumbers(15, 1..10))
+                smallNumbers.addAll(generateRandomNumbers(15, 1..17))
             }
             in 36..42 -> {
-                smallNumbers.addAll(generateRandomNumbers(16, 1..11))
+                smallNumbers.addAll(generateRandomNumbers(16, 1..18))
             }
             in 43..49 -> {
-                smallNumbers.addAll(generateRandomNumbers(17, 1..12))
+                smallNumbers.addAll(generateRandomNumbers(17, 1..19))
             }
             in 50..56 -> {
-                smallNumbers.addAll(generateRandomNumbers(18, 1..12))
+                smallNumbers.addAll(generateRandomNumbers(18, 1..20))
             }
             in 57..63 -> {
-                smallNumbers.addAll(generateRandomNumbers(19, 1..12))
+                smallNumbers.addAll(generateRandomNumbers(19, 1..20))
             }
             in 64..70 -> {
-                smallNumbers.addAll(generateRandomNumbers(20, 1..12))
+                smallNumbers.addAll(generateRandomNumbers(20, 1..20))
             }
         }
 
@@ -329,7 +329,7 @@ class GameActivity : BaseActivity()  {
     private fun calculateTimePerNumber() {
         timePerNumberList.clear()
         val level = currentLevel
-        var firstNumberTime = 1.60
+        var firstNumberTime = 1.95
 
         val blockNumber = (level - 1) / 5
         firstNumberTime -= blockNumber * 0.07

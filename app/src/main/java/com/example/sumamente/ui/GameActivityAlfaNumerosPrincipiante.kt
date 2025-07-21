@@ -249,9 +249,9 @@ class GameActivityAlfaNumerosPrincipiante : BaseActivity()  {
 
         val numberRange = when (level) {
             in 1..7 -> 1..6
-            in 8..14 -> 1..6
-            in 15..21 -> 1..6
-            in 22..28 -> 1..6
+            in 8..14 -> 1..7
+            in 15..21 -> 1..8
+            in 22..28 -> 1..9
             in 29..35 -> 1..10
             in 36..42 -> 1..11
             else -> 1..12
@@ -259,9 +259,9 @@ class GameActivityAlfaNumerosPrincipiante : BaseActivity()  {
 
         val extraLargeNumberRange = when (level) {
             in 1..7 -> 7..10
-            in 8..14 -> 7..10
-            in 15..21 -> 7..10
-            in 22..28 -> 7..10
+            in 8..14 -> 7..11
+            in 15..21 -> 7..12
+            in 22..28 -> 7..13
             else -> null
         }
 
@@ -477,7 +477,7 @@ class GameActivityAlfaNumerosPrincipiante : BaseActivity()  {
         timePerElementList.clear()
         val level = currentLevel
 
-        var firstElementTime = 1.85
+        var firstElementTime = 2.3
 
         val blockNumber = (level - 1) / 5
         firstElementTime -= blockNumber * 0.07

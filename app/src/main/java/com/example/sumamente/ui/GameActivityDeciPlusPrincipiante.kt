@@ -312,8 +312,8 @@ class GameActivityDeciPlusPrincipiante : BaseActivity()  {
     private fun calculateTimePerNumber() {
         timePerNumberList.clear()
         val level = currentLevel
-        // Primer número con más tiempo: 2.5 segundos
-        var firstNumberTime = 2.50
+
+        var firstNumberTime = 2.30
 
         val blockNumber = (level - 1) / 5
         firstNumberTime -= blockNumber * 0.07
