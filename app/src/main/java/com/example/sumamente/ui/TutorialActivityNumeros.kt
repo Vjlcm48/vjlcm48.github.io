@@ -69,7 +69,7 @@ class TutorialActivityNumeros : BaseActivity()  {
     private lateinit var tvStepThreePartTwo: TextView
     private lateinit var tvResultMessage: TextView
     private lateinit var tvClosingMessage: TextView
-
+    private var isAlive = true
     private val handler = Handler(Looper.getMainLooper())
     private var backgroundMusicPlayer: MediaPlayer? = null
     private var soundEffectPlayer: MediaPlayer? = null
@@ -83,7 +83,7 @@ class TutorialActivityNumeros : BaseActivity()  {
         super.onCreate(savedInstanceState)
 
         val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
-        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+
         val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsNumeros", false)
         if (hasSeenInstructions) {
             startActivity(Intent(this, LevelsActivity::class.java))
@@ -707,11 +707,7 @@ class TutorialActivityNumeros : BaseActivity()  {
 
     private fun showTooltip(anchorView: View, titleResId: Int, messageResId: Int) {
 
-        if (isFinishing || isDestroyed ||
-            anchorView.windowToken == null || !anchorView.isAttachedToWindow) {
-            return
-        }
-
+        if (!isAlive || isFinishing || isDestroyed || anchorView.windowToken == null || !anchorView.isAttachedToWindow) return
 
         val inflater = LayoutInflater.from(this)
         val popupView = inflater.inflate(R.layout.dialog_tooltip, rootLayout, false)
@@ -781,10 +777,27 @@ class TutorialActivityNumeros : BaseActivity()  {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        if (backgroundMusicPlayer?.isPlaying == true) {
+            backgroundMusicPlayer?.pause()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
+            if (backgroundMusicPlayer?.isPlaying == false) {
+                backgroundMusicPlayer?.start()
+            }
+        }
+    }
+
     override fun onDestroy() {
-        super.onDestroy()
-        releaseAllMediaPlayers()
+        isAlive = false
         handler.removeCallbacksAndMessages(null)
+        releaseAllMediaPlayers()
+        super.onDestroy()
     }
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {

@@ -70,6 +70,7 @@ class HelpTutorialActivityAlfaNumeros : BaseActivity()  {
 
     private val fixedNumbers = listOf("B", "6", "A", "-D", "7", "7", "-E")
     private val handler = Handler(Looper.getMainLooper())
+    private var isAlive = true // <--- Añade esto
     private var backgroundMusicPlayer: MediaPlayer? = null
     private var soundEffectPlayer: MediaPlayer? = null
     private var currentNumberIndex = 0
@@ -787,6 +788,7 @@ class HelpTutorialActivityAlfaNumeros : BaseActivity()  {
     }
 
     private fun showTooltip(anchorView: View, titleResId: Int, messageResId: Int) {
+        if (!isAlive || isFinishing || isDestroyed) return
         val inflater = LayoutInflater.from(this)
         val popupView = inflater.inflate(R.layout.dialog_tooltip, rootLayout, false)
         val titleTextView = popupView.findViewById<TextView>(R.id.dialog_title)
@@ -903,6 +905,8 @@ class HelpTutorialActivityAlfaNumeros : BaseActivity()  {
     }
 
     override fun onDestroy() {
+        isAlive = false // <--- Y esto
+        handler.removeCallbacksAndMessages(null) // <--- Y esto
         super.onDestroy()
         releaseAllMediaPlayers()
     }

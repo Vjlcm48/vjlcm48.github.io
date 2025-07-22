@@ -73,6 +73,7 @@ class TutorialActivityDeciPlus : BaseActivity()  {
 
 
     private val fixedNumbers = listOf(0.7, 0.3, 0.5, -0.3, 0.4, 0.4, -1.1)
+    private var isAlive = true
     private val handler = Handler(Looper.getMainLooper())
     private var backgroundMusicPlayer: MediaPlayer? = null
     private var soundEffectPlayer: MediaPlayer? = null
@@ -737,11 +738,7 @@ class TutorialActivityDeciPlus : BaseActivity()  {
 
     private fun showTooltip(anchorView: View, titleResId: Int, messageResId: Int) {
 
-        if (isFinishing || isDestroyed ||
-            anchorView.windowToken == null || !anchorView.isAttachedToWindow) {
-            return
-        }
-
+        if (!isAlive || isFinishing || isDestroyed || anchorView.windowToken == null || !anchorView.isAttachedToWindow) return
 
         val inflater = LayoutInflater.from(this)
         val popupView = inflater.inflate(R.layout.dialog_tooltip, rootLayout, false)
@@ -842,10 +839,27 @@ class TutorialActivityDeciPlus : BaseActivity()  {
         backgroundMusicPlayer = null
     }
 
+    override fun onPause() {
+        super.onPause()
+        if (backgroundMusicPlayer?.isPlaying == true) {
+            backgroundMusicPlayer?.pause()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
+            if (backgroundMusicPlayer?.isPlaying == false) {
+                backgroundMusicPlayer?.start()
+            }
+        }
+    }
+
     override fun onDestroy() {
-        super.onDestroy()
-        releaseAllMediaPlayers()
+        isAlive = false
         handler.removeCallbacksAndMessages(null)
+        releaseAllMediaPlayers()
+        super.onDestroy()
     }
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {

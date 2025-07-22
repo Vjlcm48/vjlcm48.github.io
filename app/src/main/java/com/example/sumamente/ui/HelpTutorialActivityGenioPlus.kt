@@ -70,6 +70,7 @@ class HelpTutorialActivityGenioPlus : BaseActivity()   {
 
     private val fixedNumbers = listOf("12/6", "6", "√9", "-4/2", "3", "3", "-8")
     private val handler = Handler(Looper.getMainLooper())
+    private var isAlive = true // <--- Añade esto
     private var backgroundMusicPlayer: MediaPlayer? = null
     private var soundEffectPlayer: MediaPlayer? = null
     private var currentNumberIndex = 0
@@ -767,6 +768,7 @@ class HelpTutorialActivityGenioPlus : BaseActivity()   {
     }
 
     private fun showTooltip(anchorView: View, titleResId: Int, messageResId: Int) {
+        if (!isAlive || isFinishing || isDestroyed) return // <--- Y esto
         val inflater = LayoutInflater.from(this)
         val popupView = inflater.inflate(R.layout.dialog_tooltip, rootLayout, false)
         val titleTextView = popupView.findViewById<TextView>(R.id.dialog_title)
@@ -866,7 +868,25 @@ class HelpTutorialActivityGenioPlus : BaseActivity()   {
         backgroundMusicPlayer = null
     }
 
+    override fun onPause() {
+        super.onPause()
+        if (backgroundMusicPlayer?.isPlaying == true) {
+            backgroundMusicPlayer?.pause()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
+            if (backgroundMusicPlayer?.isPlaying == false) {
+                backgroundMusicPlayer?.start()
+            }
+        }
+    }
+
     override fun onDestroy() {
+        isAlive = false // <--- Y esto
+        handler.removeCallbacksAndMessages(null) // <--- Y esto
         super.onDestroy()
         releaseAllMediaPlayers()
     }

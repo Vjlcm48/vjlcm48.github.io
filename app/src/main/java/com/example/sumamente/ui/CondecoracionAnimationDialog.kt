@@ -337,45 +337,44 @@ class CondecoracionAnimationDialog(
             R.raw.trompeta2, R.raw.trompeta3, R.raw.trompeta4,
             R.raw.trompeta5, R.raw.trompeta6, R.raw.trompeta7, R.raw.trompeta8
         )
-
         val trompetaAleatoria = trompetas.random()
 
         try {
-            mediaPlayerTrompeta = MediaPlayer.create(context, trompetaAleatoria)
-            mediaPlayerTrompeta?.let { mp ->
-                mp.setOnCompletionListener { player ->
-                    try {
-                        player.release()
-                        if (mediaPlayerTrompeta == player) {
-                            mediaPlayerTrompeta = null
+            if (isSoundEnabled()) {
+                mediaPlayerTrompeta = MediaPlayer.create(context, trompetaAleatoria)
+                mediaPlayerTrompeta?.let { mp ->
+                    mp.setOnCompletionListener { player ->
+                        try {
+                            player.release()
+                            if (mediaPlayerTrompeta == player) {
+                                mediaPlayerTrompeta = null
+                            }
+                            reproducirVozAleatoria()
+                        } catch (e: Exception) {
+                            android.util.Log.e("MedallDialog", "Error al liberar trompeta", e)
                         }
-
-                        reproducirVozAleatoria()
-                    } catch (e: Exception) {
-                        android.util.Log.e("MedallDialog", "Error al liberar trompeta", e)
                     }
-                }
-
-                mp.setOnErrorListener { player, _, _ ->
-                    try {
-                        player.release()
-                        if (mediaPlayerTrompeta == player) {
-                            mediaPlayerTrompeta = null
+                    mp.setOnErrorListener { player, _, _ ->
+                        try {
+                            player.release()
+                            if (mediaPlayerTrompeta == player) {
+                                mediaPlayerTrompeta = null
+                            }
+                        } catch (e: Exception) {
+                            android.util.Log.e("MedallDialog", "Error en listener trompeta", e)
                         }
-                    } catch (e: Exception) {
-                        android.util.Log.e("MedallDialog", "Error en listener trompeta", e)
+                        true
                     }
-                    true
-                }
-
-                if (isSoundEnabled()) {
                     mp.start()
                 }
+            } else {
+
+                reproducirVozAleatoria()
             }
         } catch (e: Exception) {
             android.util.Log.e("MedallDialog", "Error reproduciendo trompeta", e)
 
-            handler.postDelayed({ reproducirVozAleatoria() }, 4000)
+            reproducirVozAleatoria()
         }
     }
 
@@ -384,38 +383,38 @@ class CondecoracionAnimationDialog(
         val vozAleatoria = voces.random()
 
         try {
-            mediaPlayerVoz = MediaPlayer.create(context, vozAleatoria)
-            mediaPlayerVoz?.let { mp ->
-                mp.setOnCompletionListener { player ->
-                    try {
-                        player.release()
-                        if (mediaPlayerVoz == player) {
-                            mediaPlayerVoz = null
+            if (isSoundEnabled()) {
+                mediaPlayerVoz = MediaPlayer.create(context, vozAleatoria)
+                mediaPlayerVoz?.let { mp ->
+                    mp.setOnCompletionListener { player ->
+                        try {
+                            player.release()
+                            if (mediaPlayerVoz == player) {
+                                mediaPlayerVoz = null
+                            }
+                            mostrarBotones()
+                        } catch (e: Exception) {
+                            android.util.Log.e("MedallDialog", "Error al liberar voz", e)
                         }
+                    }
 
+                    mp.setOnErrorListener { player, _, _ ->
+                        try {
+                            player.release()
+                            if (mediaPlayerVoz == player) {
+                                mediaPlayerVoz = null
+                            }
+                        } catch (e: Exception) {
+                            android.util.Log.e("MedallDialog", "Error en listener voz", e)
+                        }
                         mostrarBotones()
-                    } catch (e: Exception) {
-                        android.util.Log.e("MedallDialog", "Error al liberar voz", e)
+                        true
                     }
-                }
-
-                mp.setOnErrorListener { player, _, _ ->
-                    try {
-                        player.release()
-                        if (mediaPlayerVoz == player) {
-                            mediaPlayerVoz = null
-                        }
-                    } catch (e: Exception) {
-                        android.util.Log.e("MedallDialog", "Error en listener voz", e)
-                    }
-
-                    mostrarBotones()
-                    true
-                }
-
-                if (isSoundEnabled()) {
                     mp.start()
                 }
+            } else {
+
+                mostrarBotones()
             }
         } catch (e: Exception) {
             android.util.Log.e("MedallDialog", "Error reproduciendo voz", e)
