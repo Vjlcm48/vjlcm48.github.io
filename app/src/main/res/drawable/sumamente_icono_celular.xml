@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+
+
+    <group
+        android:scaleX="0.94"
+        android:scaleY="0.94"
+        android:translateX="-12"
+        android:translateY="1">
+
+        <!-- Sombra exterior de la estrella -->
+        <group
+            android:translateX="261"
+            android:translateY="261"
+            android:scaleX="13.87"
+            android:scaleY="13.87">
+            <path
+                android:pathData="M0,-20 L19.5,4.5 L-8.7,18 L-15.6,-12.5 L15.6,-12.5 L8.7,18 L-19.5,4.5 Z"
+                android:fillColor="#1A000000"
+                android:fillAlpha="0.25"/>
+        </group>
+
+        <!-- Estrella principal con gradiente -->
+        <group
+            android:translateX="285"
+            android:translateY="285"
+            android:scaleX="13.87"
+            android:scaleY="13.87">
+            <path
+                android:pathData="M0,-20 L19.5,4.5 L-8.7,18 L-15.6,-12.5 L15.6,-12.5 L8.7,18 L-19.5,4.5 Z">
+                <aapt:attr name="android:fillColor">
+                    <gradient
+                        android:type="linear"
+                        android:angle="135">
+                        <item android:offset="0.0" android:color="#FF2196F3" />
+                        <item android:offset="0.7" android:color="#FF1976D2" />
+                        <item android:offset="1.0" android:color="#FF0D47A1" />
+                    </gradient>
+                </aapt:attr>
+            </path>
+            <group android:scaleX="0.85" android:scaleY="0.85">
+                <path android:pathData="M0,-20 L19.5,4.5 L-8.7,18 L-15.6,-12.5 L15.6,-12.5 L8.7,18 L-19.5,4.5 Z"
+                    android:fillColor="#F5FBFF"
+                    android:fillAlpha="0.95"/>
+            </group>
+        </group>
+
+        <!-- Letra S (NO modificar ubicación) -->
+        <group
+            android:scaleX="14.30"
+            android:scaleY="14.30"
+            android:translateX="143.5"
+            android:translateY="147.5">
+            <path
+                android:fillColor="#0D47A1"
+                android:pathData="M10,18
+                      c-2.21,0 -4,-1.79 -4,-4h2
+                      c0,1.1 0.9,2 2,2
+                      s2,-0.9 2,-2
+                      s-0.9,-2 -2,-2
+                      c-2.21,0 -4,-1.79 -4,-4
+                      s1.79,-4 4,-4
+                      c2.21,0 4,1.79 4,4h-2
+                      c0,-1.1 -0.9,-2 -2,-2
+                      s-2,0.9 -2,2
+                      s0.9,2 2,2
+                      c2.21,0 4,1.79 4,4
+                      s-1.79,4 -4,4z"/>
+        </group>
+
+        <!-- Signo + (NO modificar ubicación) -->
+        <group
+            android:translateX="339"
+            android:translateY="181"
+            android:rotation="5.7">
+            <path android:pathData="M-26,0 L26,0 M0,-26 L0,26"
+                android:strokeColor="#4CAF50"
+                android:strokeWidth="23.4"
+                android:strokeLineCap="round"
+                android:strokeAlpha="0.3"/>
+
+            <path android:pathData="M-26,0 L26,0 M0,-26 L0,26"
+                android:strokeColor="#4CAF50"
+                android:strokeWidth="15.6"
+                android:strokeLineCap="round"/>
+        </group>
+    </group>
+</vector>
