@@ -83,6 +83,11 @@ class LevelsActivityAlfaNumeros : BaseActivity()  {
         setupInfoBar()
     }
 
+    private fun isSoundEnabled(): Boolean {
+        val globalPrefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        return globalPrefs.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+    }
+
     private fun setupInfoBar() {
 
         val alfaText = getString(R.string.text_alfa)
@@ -170,7 +175,10 @@ class LevelsActivityAlfaNumeros : BaseActivity()  {
 
                     setOnClickListener {
                         applyBounceEffect(this) {
-                            mediaPlayer.start()
+
+                            if (isSoundEnabled()) {
+                                mediaPlayer.start()
+                            }
                             val prefs = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
                             val storedModeName = prefs.getString("selectedResponseModeAlfaNumeros", null)
                             val storedMode = if (storedModeName != null) ResponseModeAlfaNumeros.valueOf(storedModeName) else null

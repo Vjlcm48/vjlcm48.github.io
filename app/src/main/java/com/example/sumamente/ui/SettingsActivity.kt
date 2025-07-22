@@ -56,11 +56,6 @@ class SettingsActivity : BaseActivity()  {
             sharedPreferences.edit { putBoolean(SOUND_ENABLED, isChecked) }
         }
 
-        switchSound.setOnClickListener { view ->
-            applyBounceEffect(view) {
-                switchSound.isChecked = !switchSound.isChecked
-            }
-        }
 
         switchNotifications.isChecked = sharedPreferences.getBoolean(NOTIFICATIONS_ENABLED, true)
         switchNotifications.setOnCheckedChangeListener { _, isChecked ->
@@ -68,11 +63,6 @@ class SettingsActivity : BaseActivity()  {
             sharedPreferences.edit { putBoolean(NOTIFICATIONS_ENABLED, isChecked) }
         }
 
-        switchNotifications.setOnClickListener { view ->
-            applyBounceEffect(view) {
-                switchNotifications.isChecked = !switchNotifications.isChecked
-            }
-        }
 
         switchAds.isChecked = sharedPreferences.getBoolean(ADS_ENABLED, true)
         switchAds.setOnCheckedChangeListener { _, isChecked ->
@@ -80,11 +70,7 @@ class SettingsActivity : BaseActivity()  {
             sharedPreferences.edit { putBoolean(ADS_ENABLED, isChecked) }
         }
 
-        switchAds.setOnClickListener { view ->
-            applyBounceEffect(view) {
-                switchAds.isChecked = !switchAds.isChecked
-            }
-        }
+
 
         val colorAnimator = ValueAnimator.ofArgb(
             getColor(R.color.blue_primary),

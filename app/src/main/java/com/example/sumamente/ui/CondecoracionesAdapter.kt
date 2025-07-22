@@ -122,6 +122,10 @@ class CondecoracionesAdapter(
                     val apex = CondecoracionTracker.getApexSupremus()
                     apex?.let { !it.vista } ?: false
                 }
+                TipoCondecoracion.INSIGNIA_RI_PLUS -> {
+                    val insignia = CondecoracionTracker.getInsigniaRIPlus()
+                    insignia?.let { !it.vista } ?: false
+                }
                 else -> false
             }
 
@@ -141,7 +145,7 @@ class CondecoracionesAdapter(
             }
 
             imgCondecoracion.setOnClickListener {
-                // Marcar como vista si tiene punto rojo
+
                 when (condecoracion.tipo) {
                     TipoCondecoracion.APEX -> {
                         val apex = CondecoracionTracker.getApexSupremus()

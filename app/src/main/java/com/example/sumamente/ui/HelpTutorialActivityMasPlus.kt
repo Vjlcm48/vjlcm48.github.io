@@ -7,6 +7,7 @@ import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
@@ -65,6 +66,7 @@ class HelpTutorialActivityMasPlus : BaseActivity()  {
     private lateinit var tvResultMessage: TextView
     private lateinit var tvClosingMessage: TextView
     private lateinit var etUserAnswer: EditText
+    private lateinit var sharedPreferences: SharedPreferences
 
     private val fixedNumbers = listOf("3.2", "C", "V", "-7", "0.4", "0.4", "-B")
     private val handler = Handler(Looper.getMainLooper())
@@ -75,6 +77,8 @@ class HelpTutorialActivityMasPlus : BaseActivity()  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_help_tutorial_mas_plus)
         initViews()
         startSequence()
@@ -814,22 +818,26 @@ class HelpTutorialActivityMasPlus : BaseActivity()  {
     }
 
     private fun playClickSound() {
-        soundEffectPlayer = MediaPlayer.create(this, R.raw.clicbotones)
-        soundEffectPlayer?.start()
-        soundEffectPlayer?.setOnCompletionListener {
-            it.release()
-            soundEffectPlayer = null
+        if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
+            soundEffectPlayer = MediaPlayer.create(this, R.raw.clicbotones)
+            soundEffectPlayer?.start()
+            soundEffectPlayer?.setOnCompletionListener {
+                it.release()
+                soundEffectPlayer = null
+            }
         }
     }
 
     private fun playCelebrationSound() {
-        soundEffectPlayer = MediaPlayer.create(this, R.raw.trompeta)
-        soundEffectPlayer?.apply {
-            setVolume(0.1f, 0.1f)
-            start()
-            setOnCompletionListener {
-                it.release()
-                soundEffectPlayer = null
+        if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
+            soundEffectPlayer = MediaPlayer.create(this, R.raw.trompeta)
+            soundEffectPlayer?.apply {
+                setVolume(0.1f, 0.1f)
+                start()
+                setOnCompletionListener {
+                    it.release()
+                    soundEffectPlayer = null
+                }
             }
         }
     }
@@ -844,10 +852,13 @@ class HelpTutorialActivityMasPlus : BaseActivity()  {
     }
 
     private fun startBackgroundMusic() {
-        backgroundMusicPlayer = MediaPlayer.create(this, R.raw.tutorial4)
+        backgroundMusicPlayer = MediaPlayer.create(this, R.raw.tutorial2)
         backgroundMusicPlayer?.setVolume(0.12f, 0.12f)
         backgroundMusicPlayer?.isLooping = true
-        backgroundMusicPlayer?.start()
+
+        if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
+            backgroundMusicPlayer?.start()
+        }
     }
 
     private fun stopBackgroundMusic() {

@@ -125,6 +125,11 @@ class LevelsActivitySumaResta : BaseActivity()  {
         }
     }
 
+    private fun isSoundEnabled(): Boolean {
+        val globalPrefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        return globalPrefs.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+    }
+
     private fun createLevelButtons() {
         levelContainer.removeAllViews()
         for (i in levelStrings.indices) {
@@ -164,7 +169,10 @@ class LevelsActivitySumaResta : BaseActivity()  {
 
                     setOnClickListener {
                         applyBounceEffect(this) {
-                            mediaPlayer.start()
+
+                            if (isSoundEnabled()) {
+                                mediaPlayer.start()
+                            }
 
                             val sharedPreferencesSumaResta = getSharedPreferences("MyPrefsSumaResta",
                                 MODE_PRIVATE

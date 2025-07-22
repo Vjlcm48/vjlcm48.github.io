@@ -115,6 +115,11 @@ class LevelsActivityGenioPlusPrincipiante : BaseActivity()  {
         }
     }
 
+    private fun isSoundEnabled(): Boolean {
+        val globalPrefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        return globalPrefs.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+    }
+
     private fun createLevelButtons() {
         levelContainer.removeAllViews()
         for (i in levelStrings.indices) {
@@ -153,7 +158,10 @@ class LevelsActivityGenioPlusPrincipiante : BaseActivity()  {
                     setBackgroundResource(R.drawable.button_background_genio)
                     setOnClickListener {
                         applyBounceEffect(this) {
-                            mediaPlayer.start()
+
+                            if (isSoundEnabled()) {
+                                mediaPlayer.start()
+                            }
 
                             val prefs = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
                             val storedModeName = prefs.getString("selectedResponseModeGenioPlusPrincipiante", null)

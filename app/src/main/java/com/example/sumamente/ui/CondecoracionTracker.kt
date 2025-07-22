@@ -34,6 +34,8 @@ object CondecoracionTracker {
     private const val KEY_MEDALLAS_OBTENIDAS = "medallas_obtenidas"
     private const val KEY_TROFEOS_OBTENIDOS = "trofeos_obtenidos"
     private const val KEY_APEX_SUPREMUS_OBTENIDA = "apex_supremus_obtenida"
+    private const val KEY_INSIGNIA_RI_PLUS = "insignia_ri_plus_obtenida"
+    private const val KEY_LAST_RI_PLUS_CHECK_DATE = "last_ri_plus_check_date"
 
     data class CompletedLevel(
         val game: String,
@@ -110,6 +112,11 @@ object CondecoracionTracker {
         var vista: Boolean = false
     )
 
+    data class InsigniaRIPlus(
+        val fechaObtencion: Long,
+        var vista: Boolean = false
+    )
+
     enum class MedallaType(val requiredLevels: Int, val nombreMedalla: String) {
         INITIUM(2, "INITIUM"),
         FIDELIS(6, "FIDELIS"),
@@ -145,6 +152,9 @@ object CondecoracionTracker {
     private var trofeosObtenidos: MutableList<TrofeoObtenido> = mutableListOf()
     private var apexSupremusObtenida: ApexSupremusObtenida? = null
 
+    private var insigniaRIPlus: InsigniaRIPlus? = null
+    private var lastRIPlusCheckDate: String = ""
+
     private var trophyRedDotVisible: Boolean = false
     private var misCondecoracionesRedDotVisible: Boolean = false
 
@@ -154,7 +164,7 @@ object CondecoracionTracker {
         loadPinesObtenidos()
         loadCarryOverLevels()
         lastPinCheckDate = preferences.getString(KEY_LAST_PIN_CHECK_DATE, "") ?: ""
-        // hasNewPinsIndicator = preferences.getBoolean(KEY_NEW_PINS_INDICATOR, false) 132 157 279
+
         trophyRedDotVisible = preferences.getBoolean(KEY_TROPHY_RED_DOT, false)
         misCondecoracionesRedDotVisible = preferences.getBoolean(KEY_MIS_CONDECORACIONES_RED_DOT, false)
 
@@ -173,6 +183,8 @@ object CondecoracionTracker {
         loadMedallas()
         loadTrofeos()
         loadApexSupremus()
+        loadInsigniaRIPlus()
+        lastRIPlusCheckDate = preferences.getString(KEY_LAST_RI_PLUS_CHECK_DATE, "") ?: ""
     }
 
     private fun loadCompletedLevelsUnified() {
@@ -276,7 +288,7 @@ object CondecoracionTracker {
                 saveCarryOverLevels()
             }
             if (pinesEntregados > 0) {
-                // hasNewPinsIndicator = true 132 157 279
+
                 updateRedDotsStatus()
                 preferences.edit {
                     putBoolean(KEY_NEW_PINS_INDICATOR, true)
@@ -556,6 +568,22 @@ object CondecoracionTracker {
         val jsonString = gson.toJson(apexSupremusObtenida)
         preferences.edit {
             putString(KEY_APEX_SUPREMUS_OBTENIDA, jsonString)
+        }
+    }
+
+    private fun loadInsigniaRIPlus() {
+        val jsonString = preferences.getString(KEY_INSIGNIA_RI_PLUS, null)
+        insigniaRIPlus = if (jsonString != null) {
+            gson.fromJson(jsonString, InsigniaRIPlus::class.java)
+        } else {
+            null
+        }
+    }
+
+    private fun saveInsigniaRIPlus() {
+        val jsonString = gson.toJson(insigniaRIPlus)
+        preferences.edit {
+            putString(KEY_INSIGNIA_RI_PLUS, jsonString)
         }
     }
 
@@ -1170,6 +1198,61 @@ object CondecoracionTracker {
         return condecoracionesTop5Integral.any { it.esNueva }
     }
 
+    private fun hasNewInsigniaRIPlus(): Boolean {
+        return insigniaRIPlus?.let { !it.vista } ?: false
+    }
+
+    fun verificarYActualizarInsigniaRIPlus(context: Context) {
+        val currentDate = getCurrentDateChicago()
+        if (lastRIPlusCheckDate != currentDate) {
+            procesarInsigniaRIPlusDelDia(context)
+            lastRIPlusCheckDate = currentDate
+            preferences.edit {
+                putString(KEY_LAST_RI_PLUS_CHECK_DATE, currentDate)
+            }
+        }
+    }
+
+    private fun procesarInsigniaRIPlusDelDia(context: Context) {
+        val posicionUsuario = consultarPosicionRankingIntegral(context)
+        actualizarInsigniaRIPlusDelUsuario(posicionUsuario)
+    }
+
+    private fun actualizarInsigniaRIPlusDelUsuario(posicion: Int) {
+        if (posicion == 1) {
+            val yaObtenida = insigniaRIPlus != null
+
+            if (!yaObtenida) {
+                val nuevaInsignia = InsigniaRIPlus(
+                    fechaObtencion = System.currentTimeMillis(),
+                    vista = false
+                )
+
+                insigniaRIPlus = nuevaInsignia
+                saveInsigniaRIPlus()
+                updateRedDotsStatus()
+            }
+        } else {
+            if (insigniaRIPlus != null) {
+                insigniaRIPlus = null
+                saveInsigniaRIPlus()
+                updateRedDotsStatus()
+            }
+        }
+    }
+
+    fun getInsigniaRIPlus(): InsigniaRIPlus? = insigniaRIPlus
+
+    fun marcarInsigniaRIPlusComoVista() {
+        insigniaRIPlus?.let { insignia ->
+            if (!insignia.vista) {
+                insigniaRIPlus = insignia.copy(vista = true)
+                saveInsigniaRIPlus()
+                updateRedDotsStatus()
+            }
+        }
+    }
+
     fun marcarCondecoracionesTop5IntegralComoVistas() {
         var cambiosRealizados = false
         condecoracionesTop5Integral.forEach { condecoracion ->
@@ -1404,13 +1487,14 @@ object CondecoracionTracker {
         val hasNewTrophies = hasNewTrophies()
         val hasNewIQ7 = hasNewIQ7()
         val hasNewTop5Integral = hasNewTop5Integral()
+        val hasNewInsigniaRIPlus = hasNewInsigniaRIPlus()
 
-        trophyRedDotVisible = hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals || hasNewTrophies || hasNewIQ7 || hasNewTop5Integral
-        misCondecoracionesRedDotVisible = hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals || hasNewTrophies || hasNewIQ7 || hasNewTop5Integral
+        trophyRedDotVisible = hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals || hasNewTrophies || hasNewIQ7 || hasNewTop5Integral || hasNewInsigniaRIPlus
+        misCondecoracionesRedDotVisible = hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals || hasNewTrophies || hasNewIQ7 || hasNewTop5Integral || hasNewInsigniaRIPlus
 
         preferences.edit {
-            putBoolean(KEY_TROPHY_RED_DOT, hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals || hasNewTrophies || hasNewIQ7 || hasNewTop5Integral)
-            putBoolean(KEY_MIS_CONDECORACIONES_RED_DOT, hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals || hasNewTrophies || hasNewIQ7 || hasNewTop5Integral)
+            putBoolean(KEY_TROPHY_RED_DOT, hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals || hasNewTrophies || hasNewIQ7 || hasNewTop5Integral || hasNewInsigniaRIPlus)
+            putBoolean(KEY_MIS_CONDECORACIONES_RED_DOT, hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals || hasNewTrophies || hasNewIQ7 || hasNewTop5Integral || hasNewInsigniaRIPlus)
         }
     }
 
@@ -1490,6 +1574,6 @@ object CondecoracionTracker {
         }
     }
 
-    fun shouldShowTrophyRedDot(): Boolean = trophyRedDotVisible || hasNewCrowns() || hasNewTop10() || hasNewMedals() || hasNewTrophies() || hasNewTop5Integral()
-    fun shouldShowMisCondecoracionesRedDot(): Boolean = misCondecoracionesRedDotVisible || hasNewCrowns() || hasNewTop10() || hasNewMedals() || hasNewTrophies() || hasNewTop5Integral()
+    fun shouldShowTrophyRedDot(): Boolean = trophyRedDotVisible || hasNewCrowns() || hasNewTop10() || hasNewMedals() || hasNewTrophies() || hasNewTop5Integral() || hasNewInsigniaRIPlus()
+    fun shouldShowMisCondecoracionesRedDot(): Boolean = misCondecoracionesRedDotVisible || hasNewCrowns() || hasNewTop10() || hasNewMedals() || hasNewTrophies() || hasNewTop5Integral() || hasNewInsigniaRIPlus()
 }

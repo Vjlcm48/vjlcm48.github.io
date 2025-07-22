@@ -622,10 +622,13 @@ class LevelResultActivityGenioPlusPrincipiante : BaseActivity()  {
             true
         }
     }
+    private fun isSoundEnabled(): Boolean {
+        val globalPrefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        return globalPrefs.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+    }
 
     private fun playSound(soundResourceId: Int) {
-        val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
-        if (!soundEnabled) return
+        if (!isSoundEnabled()) return
 
         try {
             // Liberar MediaPlayer anterior de forma segura

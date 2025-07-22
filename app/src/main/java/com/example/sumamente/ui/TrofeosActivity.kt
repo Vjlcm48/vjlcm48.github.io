@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
+import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
@@ -36,6 +37,8 @@ class TrofeosActivity : BaseActivity()  {
     private lateinit var btnClose: ImageView
     private lateinit var btnBack: ImageView
     private lateinit var mediaPlayer: MediaPlayer
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var preferenceChangeListener: SharedPreferences.OnSharedPreferenceChangeListener
 
     private lateinit var misCondecoracionesRedDot: View
 
@@ -47,6 +50,19 @@ class TrofeosActivity : BaseActivity()  {
         instanceRef = WeakReference(this)
 
         CondecoracionTracker.init(this)
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+
+        preferenceChangeListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            if (key == SettingsActivity.SOUND_ENABLED) {
+                val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+                if (soundEnabled) {
+                    if (!mediaPlayer.isPlaying) mediaPlayer.start()
+                } else {
+                    if (mediaPlayer.isPlaying) mediaPlayer.pause()
+                }
+            }
+        }
+        sharedPreferences.registerOnSharedPreferenceChangeListener(preferenceChangeListener)
 
         initViews()
         initMusic()
@@ -74,10 +90,12 @@ class TrofeosActivity : BaseActivity()  {
     }
 
     private fun initMusic() {
-
         mediaPlayer = MediaPlayer.create(this, R.raw.condecoraciones).apply {
             isLooping = true
-            start()
+
+            if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
+                start()
+            }
         }
     }
 
@@ -192,7 +210,7 @@ class TrofeosActivity : BaseActivity()  {
 
     override fun onPause() {
         super.onPause()
-        stopAndReleaseMusic()
+        /// stopAndReleaseMusic() //
     }
 
 
@@ -235,6 +253,8 @@ class TrofeosActivity : BaseActivity()  {
         super.onDestroy()
         instanceRef?.clear()
         instanceRef = null
+
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(preferenceChangeListener)
     }
 
 }

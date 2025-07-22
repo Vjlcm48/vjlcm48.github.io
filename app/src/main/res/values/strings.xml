@@ -1443,4 +1443,11 @@
 
     <string name="global_levels_label">NIVELES:</string>
 
+    <string name="insignia_supremus_integralis" translatable="false">SUPREMUS INTEGRALIS</string>
+
+    <string name="desc_insignia_supremus_integralis">¡Celebramos tu ingreso al Ranking Integral! Al aparecer
+        en los 9 rankings de SumaMente has demostrado tu dominio completo en todas las disciplinas matemáticas.
+        Esta insignia SUPREMUS INTEGRALIS marca tu entrada a la élite integral.</string>
+
+
 </resources>

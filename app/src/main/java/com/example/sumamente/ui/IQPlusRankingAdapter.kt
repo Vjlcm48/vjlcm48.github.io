@@ -38,6 +38,40 @@ class IQPlusRankingAdapter(
         holder.tvPos.text = item.position.toString()
         holder.tvPlayerName.text = item.username
 
+        // Verificar si el usuario tiene la insignia RI+
+        if (item.isCurrentUser) {
+            val tieneInsignia = CondecoracionTracker.getInsigniaRIPlus() != null
+            if (tieneInsignia) {
+                val usernameContainer = LinearLayout(context)
+                usernameContainer.orientation = LinearLayout.HORIZONTAL
+                usernameContainer.gravity = android.view.Gravity.CENTER_VERTICAL
+
+                val usernameView = TextView(context)
+                usernameView.text = item.username
+                usernameView.textSize = 16f
+                usernameView.setTextColor(ContextCompat.getColor(context, R.color.highlight_user_text))
+                usernameView.setTypeface(null, Typeface.BOLD)
+
+                val insigniaImageView = ImageView(context)
+                insigniaImageView.setImageResource(R.drawable.ic_insignia_ri_plus)
+                val layoutParams = LinearLayout.LayoutParams(24, 24)
+                layoutParams.setMargins(8, 0, 0, 0)
+                insigniaImageView.layoutParams = layoutParams
+
+                insigniaImageView.setOnClickListener {
+                    android.widget.Toast.makeText(context, "SUPREMUS INTEGRALIS", android.widget.Toast.LENGTH_SHORT).show()
+                }
+
+                usernameContainer.addView(usernameView)
+                usernameContainer.addView(insigniaImageView)
+
+                val parent = holder.tvPlayerName.parent as ViewGroup
+                val index = parent.indexOfChild(holder.tvPlayerName)
+                parent.removeView(holder.tvPlayerName)
+                parent.addView(usernameContainer, index)
+            }
+        }
+
         val countryCode = item.countryCode.lowercase(Locale.ROOT)
         val resId = countryFlagMap[countryCode]
 

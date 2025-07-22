@@ -83,7 +83,10 @@ class LevelsActivityAlfaNumerosPro : BaseActivity()  {
         setupInfoBar()
     }
 
-
+    private fun isSoundEnabled(): Boolean {
+        val globalPrefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        return globalPrefs.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+    }
 
     private fun setupInfoBar() {
 
@@ -154,7 +157,10 @@ class LevelsActivityAlfaNumerosPro : BaseActivity()  {
                     setBackgroundResource(R.drawable.button_background_alfa_numeros)
                     setOnClickListener {
                         applyBounceEffect(this) {
-                            mediaPlayer.start()
+
+                            if (isSoundEnabled()) {
+                                mediaPlayer.start()
+                            }
                             val prefs       = getSharedPreferences("MyPrefsAlfaNumeros",
                                 MODE_PRIVATE
                             )

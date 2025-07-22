@@ -1,6 +1,5 @@
 package com.example.sumamente.ui
 
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -30,7 +29,7 @@ class SpeedRankingActivity : BaseActivity()  {
     private lateinit var rootLayout: ConstraintLayout
     private lateinit var adapter: SpeedRankingAdapter
     private lateinit var rankingItems: MutableList<SpeedRankingItem>
-    private lateinit var mediaPlayer: MediaPlayer
+
 
     private lateinit var headerGameButton: ConstraintLayout
     private lateinit var tvHeaderGameName: TextView
@@ -53,7 +52,6 @@ class SpeedRankingActivity : BaseActivity()  {
 
         initViews()
         setupButtons()
-        setupMusic()
         setupGameSpecificUI()
 
         val gameType = intent.getStringExtra(EXTRA_GAME_TYPE)
@@ -117,15 +115,6 @@ class SpeedRankingActivity : BaseActivity()  {
         recyclerView.adapter = adapter
     }
 
-    private fun setupMusic() {
-        mediaPlayer = MediaPlayer.create(this, R.raw.clasificacion)
-        mediaPlayer.isLooping = true
-        mediaPlayer.setVolume(0.2f, 0.2f)
-
-        if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
-            mediaPlayer.start()
-        }
-    }
 
     private fun setupButtons() {
         btnBack.setOnClickListener {
@@ -472,28 +461,5 @@ class SpeedRankingActivity : BaseActivity()  {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
-        if (soundEnabled && !mediaPlayer.isPlaying) {
-            mediaPlayer.start()
-        }
-        if (::rankingItems.isInitialized && rankingItems.isNotEmpty()) {
-            loadSpeedRankingData()
-        }
-    }
 
-    override fun onPause() {
-        super.onPause()
-        if (mediaPlayer.isPlaying) {
-            mediaPlayer.pause()
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        if (this::mediaPlayer.isInitialized) {
-            mediaPlayer.release()
-        }
-    }
 }

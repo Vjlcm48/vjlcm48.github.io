@@ -43,6 +43,40 @@ class RankingAdapter(
         holder.positionTextView.text = item.position.toString()
         holder.usernameTextView.text = item.username
 
+        // Verificar si el usuario tiene la insignia RI+
+        if (item.isCurrentUser) {
+            val tieneInsignia = CondecoracionTracker.getInsigniaRIPlus() != null
+            if (tieneInsignia) {
+                val usernameContainer = LinearLayout(holder.itemView.context)
+                usernameContainer.orientation = LinearLayout.HORIZONTAL
+                usernameContainer.gravity = android.view.Gravity.CENTER_VERTICAL
+
+                val usernameView = TextView(holder.itemView.context)
+                usernameView.text = item.username
+                usernameView.textSize = 16f
+                usernameView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_text))
+                usernameView.setTypeface(null, android.graphics.Typeface.BOLD)
+
+                val insigniaImageView = ImageView(holder.itemView.context)
+                insigniaImageView.setImageResource(R.drawable.ic_insignia_ri_plus)
+                val layoutParams = LinearLayout.LayoutParams(24, 24)
+                layoutParams.setMargins(8, 0, 0, 0)
+                insigniaImageView.layoutParams = layoutParams
+
+                insigniaImageView.setOnClickListener {
+                    android.widget.Toast.makeText(it.context, "SUPREMUS INTEGRALIS", android.widget.Toast.LENGTH_SHORT).show()
+                }
+
+                usernameContainer.addView(usernameView)
+                usernameContainer.addView(insigniaImageView)
+
+                val parent = holder.usernameTextView.parent as ViewGroup
+                val index = parent.indexOfChild(holder.usernameTextView)
+                parent.removeView(holder.usernameTextView)
+                parent.addView(usernameContainer, index)
+            }
+        }
+
         val countryCode = item.countryCode.lowercase(Locale.ROOT)
         val resId = countryFlagMap[countryCode]
 

@@ -37,8 +37,7 @@ class ClassificationActivity : BaseActivity()  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_classification)
 
-        ScoreManager.ensurePreferencesInitialized(this)
-        sharedPreferences = ScoreManager.preferences
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
 
         initViews()
         setupButtons()
@@ -207,13 +206,6 @@ class ClassificationActivity : BaseActivity()  {
         val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
         if (soundEnabled && !mediaPlayer.isPlaying) {
             mediaPlayer.start()
-        }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        if (this::mediaPlayer.isInitialized) {
-            if (mediaPlayer.isPlaying) mediaPlayer.pause()
         }
     }
 

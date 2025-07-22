@@ -4,7 +4,6 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -18,7 +17,7 @@ import com.example.sumamente.R
 
 class SpeedClassificationActivity : BaseActivity()  {
 
-    private lateinit var mediaPlayer: MediaPlayer
+
     private lateinit var sharedPreferences: android.content.SharedPreferences
 
     private lateinit var closeButton: ImageView
@@ -48,7 +47,7 @@ class SpeedClassificationActivity : BaseActivity()  {
 
         initViews()
         setupButtons()
-        setupMusic()
+
         setupGameNameColors()
     }
 
@@ -63,15 +62,7 @@ class SpeedClassificationActivity : BaseActivity()  {
         btnGenioPlus = findViewById(R.id.btn_genio_plus)
     }
 
-    private fun setupMusic() {
-        mediaPlayer = MediaPlayer.create(this, R.raw.clasificacion)
-        mediaPlayer.isLooping = true
-        mediaPlayer.setVolume(0.2f, 0.2f)
 
-        if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
-            mediaPlayer.start()
-        }
-    }
 
     private fun setupButtons() {
         closeButton.setOnClickListener {
@@ -216,25 +207,5 @@ class SpeedClassificationActivity : BaseActivity()  {
         animatorSet.start()
     }
 
-    override fun onResume() {
-        super.onResume()
-        val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
-        if (soundEnabled && !mediaPlayer.isPlaying) {
-            mediaPlayer.start()
-        }
-    }
 
-    override fun onPause() {
-        super.onPause()
-        if (mediaPlayer.isPlaying) {
-            mediaPlayer.pause()
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        if (this::mediaPlayer.isInitialized) {
-            mediaPlayer.release()
-        }
-    }
 }

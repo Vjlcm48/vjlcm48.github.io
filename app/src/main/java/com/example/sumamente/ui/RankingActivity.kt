@@ -1,6 +1,5 @@
 package com.example.sumamente.ui
 
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -22,7 +21,7 @@ class RankingActivity : BaseActivity()  {
     private lateinit var btnBack: ImageView
     private lateinit var adapter: RankingAdapter
     private lateinit var rankingItems: MutableList<RankingItem>
-    private lateinit var mediaPlayer: MediaPlayer
+
     private lateinit var sharedPreferences: android.content.SharedPreferences
     private lateinit var tvMsgGlobalRanking: TextView
 
@@ -66,7 +65,7 @@ class RankingActivity : BaseActivity()  {
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         initViews()
         setupButtons()
-        setupMusic()
+
         loadRankingData()
     }
 
@@ -83,15 +82,6 @@ class RankingActivity : BaseActivity()  {
         recyclerView.adapter = adapter
     }
 
-    private fun setupMusic() {
-        mediaPlayer = MediaPlayer.create(this, R.raw.clasificacion)
-        mediaPlayer.isLooping = true
-        mediaPlayer.setVolume(0.2f, 0.2f)
-
-        if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
-            mediaPlayer.start()
-        }
-    }
 
     private fun setupButtons() {
         btnBack.setOnClickListener {
@@ -238,28 +228,6 @@ class RankingActivity : BaseActivity()  {
         }, 700)
     }
 
-    override fun onResume() {
-        super.onResume()
-        val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
-        if (soundEnabled && !mediaPlayer.isPlaying) {
-            mediaPlayer.start()
-        }
 
-        loadRankingData()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        if (mediaPlayer.isPlaying) {
-            mediaPlayer.pause()
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        if (this::mediaPlayer.isInitialized) {
-            mediaPlayer.release()
-        }
-    }
 }
 

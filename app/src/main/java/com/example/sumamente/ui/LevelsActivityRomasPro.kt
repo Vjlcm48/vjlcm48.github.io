@@ -123,6 +123,11 @@ class LevelsActivityRomasPro : BaseActivity()  {
         }
     }
 
+    private fun isSoundEnabled(): Boolean {
+        val globalPrefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        return globalPrefs.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+    }
+
     private fun createLevelButtons() {
         levelContainer.removeAllViews()
         for (i in levelStrings.indices) {
@@ -162,7 +167,10 @@ class LevelsActivityRomasPro : BaseActivity()  {
 
                     setOnClickListener {
                         applyBounceEffect(this) {
-                            mediaPlayer.start()
+
+                            if (isSoundEnabled()) {
+                                mediaPlayer.start()
+                            }
                             val prefs = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
                             val storedModeName = prefs.getString("selectedResponseModeRomasPro", null)
                             val storedMode = if (storedModeName != null) ResponseModeRomas.valueOf(storedModeName) else null

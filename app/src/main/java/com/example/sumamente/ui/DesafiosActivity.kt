@@ -6,6 +6,7 @@ import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.app.ActivityOptions
 import android.content.Intent
+import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
@@ -33,11 +34,14 @@ class DesafiosActivity : BaseActivity()   {
     private lateinit var btnClose: ImageView
     private lateinit var btnBack: ImageView
     private lateinit var mediaPlayer: MediaPlayer
+
+    private lateinit var sharedPreferences: SharedPreferences
     private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_desafios)
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
 
         initViews()
         startBackgroundMusic()
@@ -61,7 +65,10 @@ class DesafiosActivity : BaseActivity()   {
         mediaPlayer = MediaPlayer.create(this, R.raw.desafios)
         mediaPlayer.isLooping = true
         mediaPlayer.setVolume(0.2f, 0.2f)
-        mediaPlayer.start()
+
+        if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
+            mediaPlayer.start()
+        }
     }
 
     private fun animateAppName() {
@@ -260,7 +267,9 @@ class DesafiosActivity : BaseActivity()   {
 
     override fun onResume() {
         super.onResume()
-        if (::mediaPlayer.isInitialized && !mediaPlayer.isPlaying) {
+
+        val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+        if (::mediaPlayer.isInitialized && !mediaPlayer.isPlaying && soundEnabled) {
             mediaPlayer.start()
         }
     }

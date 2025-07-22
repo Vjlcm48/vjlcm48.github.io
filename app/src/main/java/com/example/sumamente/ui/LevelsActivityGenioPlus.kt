@@ -84,6 +84,11 @@ class LevelsActivityGenioPlus : BaseActivity()  {
         setupInfoBar()
     }
 
+    private fun isSoundEnabled(): Boolean {
+        val globalPrefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        return globalPrefs.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+    }
+
     private fun setupInfoBar() {
         tvGameName.text = getString(R.string.game_genio_plus)
         tvGameName.setTextColor(ContextCompat.getColor(this, R.color.blue_primary_darker))
@@ -153,7 +158,10 @@ class LevelsActivityGenioPlus : BaseActivity()  {
                     setBackgroundResource(R.drawable.button_background_genio)
                     setOnClickListener {
                         applyBounceEffect(this) {
-                            mediaPlayer.start()
+
+                            if (isSoundEnabled()) {
+                                mediaPlayer.start()
+                            }
 
                             val prefs = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
                             val storedModeName = prefs.getString("selectedResponseModeGenioPlus", null)

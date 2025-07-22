@@ -1,6 +1,5 @@
 package com.example.sumamente.ui
 
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -25,7 +24,7 @@ class IntegralRankingActivity : BaseActivity()  {
     private lateinit var rankingListContainer: LinearLayout
     private lateinit var adapter: IntegralRankingAdapter
     private lateinit var rankingItems: MutableList<IntegralRankingItem>
-    private lateinit var mediaPlayer: MediaPlayer
+
     private lateinit var sharedPreferences: android.content.SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +56,7 @@ class IntegralRankingActivity : BaseActivity()  {
 
         initViews()
         setupButtons()
-        setupMusic()
+
         loadIntegralRankingData()
     }
 
@@ -81,15 +80,7 @@ class IntegralRankingActivity : BaseActivity()  {
         }
     }
 
-    private fun setupMusic() {
-        mediaPlayer = MediaPlayer.create(this, R.raw.clasificacion)
-        mediaPlayer.isLooping = true
-        mediaPlayer.setVolume(0.2f, 0.2f)
 
-        if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
-            mediaPlayer.start()
-        }
-    }
 
     private fun loadIntegralRankingData() {
 
@@ -268,25 +259,5 @@ class IntegralRankingActivity : BaseActivity()  {
         recyclerView.visibility = View.VISIBLE
     }
 
-    override fun onResume() {
-        super.onResume()
-        val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
-        if (soundEnabled && !mediaPlayer.isPlaying) {
-            mediaPlayer.start()
-        }
-    }
 
-    override fun onPause() {
-        super.onPause()
-        if (mediaPlayer.isPlaying) {
-            mediaPlayer.pause()
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        if (this::mediaPlayer.isInitialized) {
-            mediaPlayer.release()
-        }
-    }
 }

@@ -105,6 +105,11 @@ class CondecoracionAnimationDialog(
         ivMedalla.scaleY = 0f
     }
 
+    private fun isSoundEnabled(): Boolean {
+        val globalPrefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        return globalPrefs.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+    }
+
     private fun configurarMedalla() {
         val recursos = obtenerRecursosMedalla(medallaTipo)
 
@@ -180,7 +185,9 @@ class CondecoracionAnimationDialog(
 
         mediaPlayerTrompeta?.release()
         mediaPlayerTrompeta = MediaPlayer.create(context, R.raw.trompeta5)
-        mediaPlayerTrompeta?.start()
+        if (isSoundEnabled()) {
+            mediaPlayerTrompeta?.start()
+        }
 
         tvTituloDoble.animate().alpha(1f).setDuration(350).start()
         handler.postDelayed({
@@ -218,7 +225,9 @@ class CondecoracionAnimationDialog(
 
         mediaPlayerTrompeta?.release()
         mediaPlayerTrompeta = MediaPlayer.create(context, R.raw.trompeta5)
-        mediaPlayerTrompeta?.start()
+        if (isSoundEnabled()) {
+            mediaPlayerTrompeta?.start()
+        }
 
 
         tvTituloDoble.animate().alpha(1f).setDuration(350).start()
@@ -359,7 +368,9 @@ class CondecoracionAnimationDialog(
                     true
                 }
 
-                mp.start()
+                if (isSoundEnabled()) {
+                    mp.start()
+                }
             }
         } catch (e: Exception) {
             android.util.Log.e("MedallDialog", "Error reproduciendo trompeta", e)
@@ -402,7 +413,9 @@ class CondecoracionAnimationDialog(
                     true
                 }
 
-                mp.start()
+                if (isSoundEnabled()) {
+                    mp.start()
+                }
             }
         } catch (e: Exception) {
             android.util.Log.e("MedallDialog", "Error reproduciendo voz", e)

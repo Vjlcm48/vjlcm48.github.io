@@ -4,7 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.media.MediaPlayer
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -16,14 +16,14 @@ class ApexSupremusActivity : BaseActivity()  {
     private lateinit var btnClose: ImageView
     private lateinit var btnBack: ImageView
     private lateinit var ivApexTrophy: ImageView
-    private lateinit var mediaPlayer: MediaPlayer
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_apex_supremus)
 
         initViews()
-        initMusic()
+
         setupButtons()
         animateTrophy()
     }
@@ -34,17 +34,18 @@ class ApexSupremusActivity : BaseActivity()  {
         ivApexTrophy = findViewById(R.id.iv_apex_trophy)
     }
 
-    private fun initMusic() {
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.condecoraciones).apply {
-            isLooping = true
-            start()
-        }
-    }
 
     private fun setupButtons() {
+
         btnClose.setOnClickListener {
             applyBounceEffect(it) {
+                TrofeosActivity.finishTrofeosActivity()
+
+                val intent = Intent(this, MainGameActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
+
                 finish()
             }
         }
@@ -103,15 +104,6 @@ class ApexSupremusActivity : BaseActivity()  {
         animatorSet.start()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        if (this::mediaPlayer.isInitialized) {
-            if (mediaPlayer.isPlaying) {
-                mediaPlayer.stop()
-            }
-            mediaPlayer.release()
-        }
 
-    }
 }
 

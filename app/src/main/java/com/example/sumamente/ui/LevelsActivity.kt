@@ -159,7 +159,10 @@ class LevelsActivity : BaseActivity()  {
 
                     setOnClickListener {
                         applyBounceEffect(this) {
-                            mediaPlayer.start()
+
+                            if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
+                                mediaPlayer.start()
+                            }
                             val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
                             val storedModeName = prefs.getString("selectedResponseMode", null)
                             val storedMode = if (storedModeName != null) ResponseMode.valueOf(storedModeName) else null

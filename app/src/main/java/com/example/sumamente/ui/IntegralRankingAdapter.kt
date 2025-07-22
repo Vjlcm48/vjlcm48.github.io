@@ -138,6 +138,6 @@ class IntegralRankingAdapter(
     override fun getItemCount() = items.size
 
     private fun showInsigniaTooltip(view: View) {
-        android.widget.Toast.makeText(view.context, "Usuario integral", android.widget.Toast.LENGTH_SHORT).show()
+        android.widget.Toast.makeText(view.context, "SUPREMUS INTEGRALIS", android.widget.Toast.LENGTH_SHORT).show()
     }
 }

@@ -35,6 +35,7 @@ class MisCondecoracionesActivity : BaseActivity()  {
         CondecoracionTracker.marcarCondecoracionesTop10ComoVistas()
         CondecoracionTracker.marcarCondecoracionesIQ7ComoVistas()
         CondecoracionTracker.marcarCondecoracionesTop5IntegralComoVistas()
+        CondecoracionTracker.marcarInsigniaRIPlusComoVista()
 
         initViews()
         setupButtons()
@@ -49,11 +50,18 @@ class MisCondecoracionesActivity : BaseActivity()  {
         btnClose = findViewById(R.id.btn_close)
     }
 
+
     private fun setupButtons() {
+
         btnClose.setOnClickListener {
             applyBounceEffect(it) {
+
+                TrofeosActivity.finishTrofeosActivity()
+
                 val intent = Intent(this, MainGameActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
                 startActivity(intent)
+
                 finish()
             }
         }
@@ -240,6 +248,20 @@ class MisCondecoracionesActivity : BaseActivity()  {
                     imagen = imagen,
                     esNuevo = condecoracionTop5.esNueva,
                     fechaObtencion = formatearFecha(condecoracionTop5.fechaAsignacion)
+                )
+            )
+        }
+
+        val insigniaRIPlus = CondecoracionTracker.getInsigniaRIPlus()
+        insigniaRIPlus?.let {
+            condecoraciones.add(
+                Condecoracion(
+                    tipo = TipoCondecoracion.INSIGNIA_RI_PLUS,
+                    nombre = getString(R.string.insignia_supremus_integralis),
+                    descripcion = getString(R.string.desc_insignia_supremus_integralis),
+                    imagen = R.drawable.ic_insignia_ri_plus,
+                    esNuevo = !it.vista,
+                    fechaObtencion = formatearFecha(it.fechaObtencion)
                 )
             )
         }
@@ -649,6 +671,21 @@ class MisCondecoracionesActivity : BaseActivity()  {
                 condecoraciones[position] =
                     condecoraciones[position].copy(esNuevo = false)
                 adapter.notifyItemChanged(position)
+            }
+        }
+
+        if (condecoracion.tipo == TipoCondecoracion.INSIGNIA_RI_PLUS && condecoracion.esNuevo) {
+            val insigniaRIPlus = CondecoracionTracker.getInsigniaRIPlus()
+            if (insigniaRIPlus != null && !insigniaRIPlus.vista) {
+                CondecoracionTracker.marcarInsigniaRIPlusComoVista()
+
+                val position = condecoraciones.indexOfFirst {
+                    it.tipo == TipoCondecoracion.INSIGNIA_RI_PLUS
+                }
+                if (position != -1) {
+                    condecoraciones[position] = condecoraciones[position].copy(esNuevo = false)
+                    adapter.notifyItemChanged(position)
+                }
             }
         }
 

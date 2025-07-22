@@ -118,6 +118,11 @@ class LevelsActivityMasPlusPro : BaseActivity()  {
         }
     }
 
+    private fun isSoundEnabled(): Boolean {
+        val globalPrefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        return globalPrefs.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+    }
+
     private fun createLevelButtons() {
         levelContainer.removeAllViews()
         for (i in levelStrings.indices) {
@@ -157,7 +162,10 @@ class LevelsActivityMasPlusPro : BaseActivity()  {
 
                     setOnClickListener {
                         applyBounceEffect(this) {
-                            mediaPlayer.start()
+
+                            if (isSoundEnabled()) {
+                                mediaPlayer.start()
+                            }
 
                             val prefs = getSharedPreferences("MyPrefsMasPlus", MODE_PRIVATE)
                             val storedModeName = prefs.getString("selectedResponseModeMasPlusPro", null)

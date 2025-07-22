@@ -7,6 +7,7 @@ import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
@@ -66,6 +67,7 @@ class TutorialActivityRomas : BaseActivity()  {
     private lateinit var tvResultMessage: TextView
     private lateinit var tvClosingMessage: TextView
     private lateinit var etUserAnswer: EditText
+    private lateinit var sharedPreferences: SharedPreferences
 
     private val fixedNumbers = listOf("VIII", "XI", "VII", "-V", "VI", "VI", "-XIV")
     private val handler = Handler(Looper.getMainLooper())
@@ -79,6 +81,7 @@ class TutorialActivityRomas : BaseActivity()  {
         super.onCreate(savedInstanceState)
 
         val prefs = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsRomas", false)
         if (hasSeenInstructions) {
             val intent = Intent(this, LevelsActivityRomas::class.java)
@@ -840,22 +843,26 @@ class TutorialActivityRomas : BaseActivity()  {
     }
 
     private fun playClickSound() {
-        soundEffectPlayer = MediaPlayer.create(this, R.raw.clicbotones)
-        soundEffectPlayer?.start()
-        soundEffectPlayer?.setOnCompletionListener {
-            it.release()
-            soundEffectPlayer = null
+        if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
+            soundEffectPlayer = MediaPlayer.create(this, R.raw.clicbotones)
+            soundEffectPlayer?.start()
+            soundEffectPlayer?.setOnCompletionListener {
+                it.release()
+                soundEffectPlayer = null
+            }
         }
     }
 
     private fun playCelebrationSound() {
-        soundEffectPlayer = MediaPlayer.create(this, R.raw.trompeta)
-        soundEffectPlayer?.apply {
-            setVolume(0.1f, 0.1f)
-            start()
-            setOnCompletionListener {
-                it.release()
-                soundEffectPlayer = null
+        if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
+            soundEffectPlayer = MediaPlayer.create(this, R.raw.trompeta)
+            soundEffectPlayer?.apply {
+                setVolume(0.1f, 0.1f)
+                start()
+                setOnCompletionListener {
+                    it.release()
+                    soundEffectPlayer = null
+                }
             }
         }
     }
@@ -870,10 +877,13 @@ class TutorialActivityRomas : BaseActivity()  {
     }
 
     private fun startBackgroundMusic() {
-        backgroundMusicPlayer = MediaPlayer.create(this, R.raw.tutorial7)
+        backgroundMusicPlayer = MediaPlayer.create(this, R.raw.tutorial2)
         backgroundMusicPlayer?.setVolume(0.12f, 0.12f)
         backgroundMusicPlayer?.isLooping = true
-        backgroundMusicPlayer?.start()
+
+        if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
+            backgroundMusicPlayer?.start()
+        }
     }
 
     private fun stopBackgroundMusic() {

@@ -1365,5 +1365,10 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
 
     <string name="global_levels_label">LEVELS:</string>
 
+    <string name="desc_insignia_supremus_integralis">Wir feiern deinen Eintritt in das Integral-Ranking!
+        Durch dein Erscheinen in allen 9 SumaMente-Rankings hast du deine vollständige
+        Beherrschung aller mathematischen Disziplinen bewiesen. Dieses SUPREMUS INTEGRALIS-Abzeichen
+        markiert deinen Eintritt in die integrale Elite.</string>
+
 
 </resources>
