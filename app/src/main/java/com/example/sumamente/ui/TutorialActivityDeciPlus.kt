@@ -81,9 +81,9 @@ class TutorialActivityDeciPlus : BaseActivity()  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val prefs = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        val prefs = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
+
         val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsDeciPlus", false)
         if (hasSeenInstructions) {
             val intent = Intent(this, LevelsActivityDeciPlus::class.java)

@@ -81,6 +81,8 @@ class TutorialActivityNumeros : BaseActivity()  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+
 
         val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
 
