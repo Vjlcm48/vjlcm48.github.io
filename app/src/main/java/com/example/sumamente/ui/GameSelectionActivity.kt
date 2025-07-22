@@ -10,6 +10,7 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -46,6 +47,9 @@ class GameSelectionActivity : BaseActivity()  {
         setContentView(R.layout.activity_game_selection)
 
         val btnProgreso = findViewById<RelativeLayout>(R.id.btn_progreso)
+        val pulseAnimation = AnimationUtils.loadAnimation(this, R.anim.pulse_progress_button)
+        btnProgreso.startAnimation(pulseAnimation)
+
         val btnNumerosPlus = findViewById<RelativeLayout>(R.id.btn_numeros_plus)
         val btnDeciPlus = findViewById<RelativeLayout>(R.id.btn_deci_plus)
         val btnRomas = findViewById<RelativeLayout>(R.id.btn_romas)

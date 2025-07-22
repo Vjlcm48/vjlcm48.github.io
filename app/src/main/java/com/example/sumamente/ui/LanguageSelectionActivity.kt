@@ -5,6 +5,9 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -14,91 +17,62 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.edit
 import com.example.sumamente.R
 import java.util.Locale
-import android.os.Handler
-import android.os.Looper
 
 class LanguageSelectionActivity : BaseActivity()  {
 
     private lateinit var sharedPreferences: SharedPreferences
-    private var selectedLanguageCode: String = "es"
+    private var selectedLanguageCode: String = "en"
     private val languageButtons = mutableListOf<LinearLayout>()
     private val checkMarks = mutableListOf<ImageView>()
 
-    private val supportedLanguages = listOf(
-        LanguageItem("es", R.string.language_spanish, R.drawable.es),
-        LanguageItem("en", R.string.language_english, R.drawable.us),
-        LanguageItem("pt", R.string.language_portuguese, R.drawable.br),
-        LanguageItem("hi", R.string.language_hindi, R.drawable.`in`),
-        LanguageItem("fr", R.string.language_french, R.drawable.fr),
-        LanguageItem("de", R.string.language_german, R.drawable.de),
-        LanguageItem("id", R.string.language_indonesian, R.drawable.id),
-        LanguageItem("ja", R.string.language_japanese, R.drawable.jp),
-        LanguageItem("ko", R.string.language_korean, R.drawable.kr)
-    )
+
+    private val supportedLanguages by lazy { LanguageManager.getOrderedLanguages(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         sharedPreferences = getSharedPreferences("MyPrefers", MODE_PRIVATE)
 
+
         detectAndSetInitialLanguage()
-
         setContentView(R.layout.activity_language_selection)
-
         setupLanguageButtons()
         highlightSelectedLanguage()
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 
     private fun detectAndSetInitialLanguage() {
+        val isFirstRun = sharedPreferences.getBoolean("is_first_run", true)
+        if (!isFirstRun) return
 
-        val deviceLocale =
-            resources.configuration.locales[0]
+        val deviceLanguageCode = resources.configuration.locales[0].language.lowercase()
+        val languageIsSupported = LanguageManager.defaultLanguages.any { it.code == deviceLanguageCode }
 
-        val deviceLanguageCode = deviceLocale.language.lowercase()
+        val languageToSet = if (languageIsSupported) {
 
-        val isSupported = supportedLanguages.any { it.code == deviceLanguageCode }
-
-        if (isSupported) {
-
-            selectedLanguageCode = deviceLanguageCode
-
-            if (deviceLanguageCode == "en" || deviceLanguageCode == "es" || deviceLanguageCode == "fr" || deviceLanguageCode == "pt" || deviceLanguageCode == "de") {
-                setAppLanguage(deviceLanguageCode)
-            } else {
-                setAppLanguage("en")
-            }
-
+            LanguageManager.saveNewLanguageOrder(this, deviceLanguageCode)
+            deviceLanguageCode
         } else {
-
-            selectedLanguageCode = "es"
-            setAppLanguage("es")
+            "en"
         }
+
+        selectedLanguageCode = languageToSet
+        setAppLanguage(languageToSet)
 
         sharedPreferences.edit {
             putString("selected_language", selectedLanguageCode)
-                .putBoolean("language_selected", false)
+            putString("app_display_language", languageToSet)
+            putBoolean("is_first_run", false)
         }
-    }
-
-    private fun setAppLanguage(languageCode: String) {
-        val locale = Locale.Builder().setLanguage(languageCode).build()
-        Locale.setDefault(locale)
-
-        val config = Configuration()
-        config.setLocale(locale)
-
-        createConfigurationContext(config)
-
-        @Suppress("DEPRECATION")
-        resources.updateConfiguration(config, resources.displayMetrics)
     }
 
     private fun setupLanguageButtons() {
         val container = findViewById<LinearLayout>(R.id.language_buttons_container)
+        container.removeAllViews()
+        languageButtons.clear()
+        checkMarks.clear()
 
         supportedLanguages.forEachIndexed { index, languageItem ->
-            val buttonLayout = layoutInflater.inflate(R.layout.item_language_button, container, false) as LinearLayout
+            val buttonLayout = LayoutInflater.from(this).inflate(R.layout.item_language_button, container, false) as LinearLayout
 
             val flagImageView = buttonLayout.findViewById<ImageView>(R.id.flag_image)
             flagImageView.setImageResource(languageItem.flagRes)
@@ -116,10 +90,8 @@ class LanguageSelectionActivity : BaseActivity()  {
                     selectLanguage(languageItem.code)
                 }
             }
-
             languageButtons.add(buttonLayout)
             checkMarks.add(checkMark)
-
             container.addView(buttonLayout)
 
             if (index < supportedLanguages.size - 1) {
@@ -131,24 +103,17 @@ class LanguageSelectionActivity : BaseActivity()  {
     }
 
     private fun selectLanguage(languageCode: String) {
-
         selectedLanguageCode = languageCode
-
         highlightSelectedLanguage()
-
-        val appDisplayLanguage = if (languageCode == "es" || languageCode == "en" || languageCode == "fr" || languageCode == "pt" || languageCode == "de") {
-            languageCode
-        } else {
-            "en"
-        }
+        setAppLanguage(languageCode)
 
 
-        setAppLanguage(appDisplayLanguage)
+        LanguageManager.saveNewLanguageOrder(this, languageCode)
 
         sharedPreferences.edit {
             putString("selected_language", languageCode)
-                .putString("app_display_language", appDisplayLanguage)
-                .putBoolean("language_selected", true)
+            putString("app_display_language", languageCode)
+            putBoolean("language_selected", true)
         }
 
         Handler(Looper.getMainLooper()).postDelayed({
@@ -157,14 +122,23 @@ class LanguageSelectionActivity : BaseActivity()  {
     }
 
     private fun highlightSelectedLanguage() {
-
         checkMarks.forEach { it.visibility = View.GONE }
-
         val selectedIndex = supportedLanguages.indexOfFirst { it.code == selectedLanguageCode }
         if (selectedIndex != -1) {
             checkMarks[selectedIndex].visibility = View.VISIBLE
         }
     }
+
+    private fun setAppLanguage(languageCode: String) {
+        val locale = Locale.Builder().setLanguage(languageCode).build()
+        Locale.setDefault(locale)
+        val config = Configuration(resources.configuration)
+        config.setLocale(locale)
+        createConfigurationContext(config)
+        @Suppress("DEPRECATION")
+        resources.updateConfiguration(config, resources.displayMetrics)
+    }
+
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
         val scaleDownX = android.animation.ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.9f).setDuration(50)

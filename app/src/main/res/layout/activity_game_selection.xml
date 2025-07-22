@@ -42,7 +42,8 @@
             android:layout_marginTop="24dp"
             android:background="@drawable/button_background_progreso"
             android:layout_marginBottom="16dp"
-            android:contentDescription="@string/cd_my_progress">
+            android:contentDescription="@string/cd_my_progress"
+            android:elevation="7dp">
 
             <TextView
                 android:id="@+id/tv_game_name_progreso"

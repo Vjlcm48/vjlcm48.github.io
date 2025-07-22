@@ -1421,8 +1421,10 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
 
     <string name="progress_placeholder_difficulty">0/70 – 0.00%</string>
 
-    <string name="global_levels_format">LEVELS COMPLETED: %1$d/%2$d</string>
     <string name="global_progress_format">PROGRESS: %1$s%%</string>
     <string name="game_progress_format">%1$d/%2$d - %3$s%%</string>
+
+    <string name="global_levels_label">LEVELS:</string>
+
 
 </resources>

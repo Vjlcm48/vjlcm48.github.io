@@ -56,7 +56,7 @@ class IntegralRankingAdapter(
             usernameView.setTypeface(null, android.graphics.Typeface.BOLD)
 
             val insigniaImageView = ImageView(holder.itemView.context)
-            insigniaImageView.setImageResource(R.drawable.ic_insignia_s_plus)
+            insigniaImageView.setImageResource(R.drawable.ic_insignia_ri_plus)
             val layoutParams = LinearLayout.LayoutParams(24, 24)
             layoutParams.setMargins(8, 0, 0, 0)
             insigniaImageView.layoutParams = layoutParams

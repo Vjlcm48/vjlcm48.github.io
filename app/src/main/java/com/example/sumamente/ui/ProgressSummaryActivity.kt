@@ -3,6 +3,7 @@ package com.example.sumamente.ui
 import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
+import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.widget.ImageView
 import android.widget.TextView
@@ -86,7 +87,24 @@ class ProgressSummaryActivity : BaseActivity() {
         val percentage = (totalCompleted / totalLevels) * 100
         val percentageString = String.format(Locale.getDefault(), "%.2f", percentage)
 
-        tvGlobalLevels.text = getString(R.string.global_levels_format, totalCompleted, totalLevels.toInt())
+        val builder = SpannableStringBuilder()
+        val label = getString(R.string.global_levels_label) + " "
+        builder.append(label)
+
+        val completedString = totalCompleted.toString()
+        val blueSpannable = SpannableString(completedString)
+        blueSpannable.setSpan(
+            ForegroundColorSpan(ContextCompat.getColor(this, R.color.progress_number_color)),
+            0,
+            completedString.length,
+            SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        builder.append(blueSpannable)
+
+        val totalString = "/${totalLevels.toInt()}"
+        builder.append(totalString)
+
+        tvGlobalLevels.text = builder
         tvGlobalProgress.text = getString(R.string.global_progress_format, percentageString)
     }
 

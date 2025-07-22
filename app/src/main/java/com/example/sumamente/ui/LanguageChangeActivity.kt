@@ -14,21 +14,10 @@ import com.example.sumamente.R
 class LanguageChangeActivity : BaseActivity() {
 
     private lateinit var languageButtonsContainer: LinearLayout
-
     private val languageButtons = mutableListOf<LinearLayout>()
     private val checkMarks = mutableListOf<ImageView>()
 
-    private val supportedLanguages = listOf(
-        LanguageItem("es", R.string.language_spanish, R.drawable.es),
-        LanguageItem("en", R.string.language_english, R.drawable.us),
-        LanguageItem("pt", R.string.language_portuguese, R.drawable.br),
-        LanguageItem("hi", R.string.language_hindi, R.drawable.`in`),
-        LanguageItem("fr", R.string.language_french, R.drawable.fr),
-        LanguageItem("de", R.string.language_german, R.drawable.de),
-        LanguageItem("id", R.string.language_indonesian, R.drawable.id),
-        LanguageItem("ja", R.string.language_japanese, R.drawable.jp),
-        LanguageItem("ko", R.string.language_korean, R.drawable.kr)
-    )
+    private val supportedLanguages by lazy { LanguageManager.getOrderedLanguages(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,23 +30,18 @@ class LanguageChangeActivity : BaseActivity() {
         btnClose.contentDescription = getString(R.string.close)
         btnBack.contentDescription = getString(R.string.back)
 
-        btnClose.setOnClickListener { view ->
-            applyBounceEffect(view) {
-                finish()
-            }
-        }
-
-        btnBack.setOnClickListener { view ->
-            applyBounceEffect(view) {
-                finish()
-            }
-        }
+        btnClose.setOnClickListener { view -> applyBounceEffect(view) { finish() } }
+        btnBack.setOnClickListener { view -> applyBounceEffect(view) { finish() } }
 
         setupLanguageButtons()
         highlightSelectedLanguage()
     }
 
     private fun setupLanguageButtons() {
+        languageButtonsContainer.removeAllViews()
+        languageButtons.clear()
+        checkMarks.clear()
+
         supportedLanguages.forEachIndexed { index, languageItem ->
             val languageButtonView = LayoutInflater.from(this)
                 .inflate(R.layout.item_language_button, languageButtonsContainer, false) as LinearLayout
@@ -67,8 +51,8 @@ class LanguageChangeActivity : BaseActivity() {
             val checkImageView = languageButtonView.findViewById<ImageView>(R.id.check_mark)
 
             flagImageView.setImageResource(languageItem.flagRes)
-            languageTextView.setText(languageItem.nameRes)
             flagImageView.contentDescription = getString(R.string.flag_image)
+            languageTextView.setText(languageItem.nameRes)
             checkImageView.visibility = View.GONE
 
             languageButtonView.setOnClickListener { view ->
@@ -79,8 +63,8 @@ class LanguageChangeActivity : BaseActivity() {
 
             languageButtons.add(languageButtonView)
             checkMarks.add(checkImageView)
-
             languageButtonsContainer.addView(languageButtonView)
+
 
             if (index < supportedLanguages.size - 1) {
                 val layoutParams = languageButtonView.layoutParams as LinearLayout.LayoutParams
@@ -92,15 +76,12 @@ class LanguageChangeActivity : BaseActivity() {
 
     private fun highlightSelectedLanguage() {
         checkMarks.forEach { it.visibility = View.GONE }
-
         val currentLocaleCode = resources.configuration.locales[0].language
         val selectedIndex = supportedLanguages.indexOfFirst { it.code == currentLocaleCode }
-
         if (selectedIndex != -1) {
             checkMarks[selectedIndex].visibility = View.VISIBLE
         }
     }
-
 
     private fun showLanguageChangeConfirmationDialog(languageCode: String) {
         AlertDialog.Builder(this)
@@ -117,6 +98,8 @@ class LanguageChangeActivity : BaseActivity() {
     }
 
     private fun setAppLocale(languageCode: String) {
+        LanguageManager.saveNewLanguageOrder(this, languageCode)
+
         val appDisplayLanguage = when (languageCode) {
             "es", "en", "fr", "pt", "de" -> languageCode
             else -> "en"
@@ -149,27 +132,17 @@ class LanguageChangeActivity : BaseActivity() {
         val scaleDown = android.animation.AnimatorSet().apply {
             playTogether(scaleDownX, scaleDownY)
         }
-
         val scaleUp = android.animation.AnimatorSet().apply {
             playTogether(scaleUpX, scaleUpY)
         }
 
         val animatorSet = android.animation.AnimatorSet()
         animatorSet.playSequentially(scaleDown, scaleUp)
-
         animatorSet.addListener(object : android.animation.AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: android.animation.Animator) {
                 onAnimationEnd()
             }
         })
-
         animatorSet.start()
     }
-
-    data class LanguageItem(
-        val code: String,
-        val nameRes: Int,
-        val flagRes: Int
-    )
-
 }

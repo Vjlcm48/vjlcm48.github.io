@@ -37,5 +37,6 @@
     <color name="highlight_user_text">#1565C0</color>
     <color name="ranking_item_even">#FFFFFF</color>
     <color name="ranking_item_odd">#F5F5F5</color>
+    <color name="progress_number_color">#0E35F4</color>
 
 </resources>
