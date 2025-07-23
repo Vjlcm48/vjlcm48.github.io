@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_primary">
+    android:background="@color/blue_light">
 
     <ImageView
         android:id="@+id/btn_back"
@@ -40,8 +40,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="6dp"
         android:fontFamily="@font/roboto_bold"
         android:text="@string/condecoracion_suprema"
         android:textAlignment="center"
@@ -56,9 +57,7 @@
         android:id="@+id/iv_apex_trophy"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="32dp"
         android:contentDescription="@string/condecoracion_suprema"
         android:scaleType="fitCenter"
@@ -66,11 +65,10 @@
         app:layout_constraintBottom_toTopOf="@id/tv_apex_description"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_titulo_apex"
-        app:layout_constraintVertical_bias="0.592"
-        app:layout_constraintWidth_percent="0.7" />
+        app:layout_constraintWidth_percent="0.50" />
+
 
     <TextView
         android:id="@+id/tv_apex_description"
