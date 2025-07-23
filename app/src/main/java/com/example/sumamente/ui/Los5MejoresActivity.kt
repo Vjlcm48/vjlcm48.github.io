@@ -7,12 +7,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sumamente.R
 import kotlin.math.abs
 
-class Los5MejoresActivity : AppCompatActivity()  {
+class Los5MejoresActivity : BaseActivity()  {
 
     private lateinit var viewPager: ViewPager2
     private lateinit var btnBack: ImageView

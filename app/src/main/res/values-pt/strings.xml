@@ -1045,7 +1045,7 @@
     <string name="doble_celebracion_apex_titulo">🏆✨ DUPLA CELEBRAÇÃO SUPREMA! ✨🏆</string>
     <string name="doble_celebracion_apex_mensaje">Você obteve o último troféu que faltava e a gloriosa condecoração APEX SUPREMUS. O TOPO te pertence! 👑</string>
     <string name="apex_titulo">🌟 APEX SUPREMUS CONSEGUIDO! 🌟</string>
-    <string name="apex_descripcion">1490 níveis completados, você é digno da APEX SUPREMUS! 🏆✨ Sua dedicação e maestria mental te levaram ao topo absoluto de SumaMente. 👑</string>
+    <string name="apex_descripcion">1470 níveis completados, você é digno da APEX SUPREMUS! 🏆✨ Sua dedicação e maestria mental te levaram ao topo absoluto de SumaMente. 👑</string>
     <string name="ranking_integral_s">Ranking Integral S⁺:</string>
 
     <plurals name="ranking_integral_progreso_1">
@@ -1224,6 +1224,7 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
     <string name="condecoracion_virtus_totalis">VIRTUS TOTALIS</string>
     <string name="condecoracion_excellentia_singulari">EXCELLENTIA SINGULARI</string>
     <string name="condecoracion_gloria_integralis">GLORIA INTEGRALIS</string>
+
     <string name="significado_imperium_supremus">PODER SUPREMO. Será capaz de conquistá-lo?</string>
     <string name="significado_magnus_honor">GRANDE HONRA. Demonstre que é digno, alcance-o!</string>
     <string name="significado_virtus_totalis">VIRTUDE TOTAL. Apenas para quem entrega tudo.</string>

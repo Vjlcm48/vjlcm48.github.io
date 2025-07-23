@@ -12,7 +12,7 @@
         android:translateX="-12"
         android:translateY="1">
 
-        <!-- Sombra exterior de la estrella (igual) -->
+
         <group
             android:translateX="261"
             android:translateY="261"
@@ -24,7 +24,7 @@
                 android:fillAlpha="0.25"/>
         </group>
 
-        <!-- Estrella principal con gradiente azul intermedio -->
+
         <group
             android:translateX="285"
             android:translateY="285"
@@ -36,9 +36,9 @@
                     <gradient
                         android:type="linear"
                         android:angle="135">
-                        <item android:offset="0.0" android:color="#FF2070E0" /> <!-- Un azul intermedio más brillante -->
-                        <item android:offset="0.7" android:color="#FF1741A6" /> <!-- Azul recomendado -->
-                        <item android:offset="1.0" android:color="#FF153189" /> <!-- Azul profundo intermedio -->
+                        <item android:offset="0.0" android:color="#FF2070E0" />
+                        <item android:offset="0.7" android:color="#FF1741A6" />
+                        <item android:offset="1.0" android:color="#FF153189" />
                     </gradient>
                 </aapt:attr>
             </path>
@@ -52,7 +52,7 @@
             </group>
         </group>
 
-        <!-- Letra S en azul intermedio -->
+
         <group
             android:scaleX="14.30"
             android:scaleY="14.30"
