@@ -62,11 +62,10 @@ class DesafiosActivity : BaseActivity()   {
     }
 
     private fun startBackgroundMusic() {
-        mediaPlayer = MediaPlayer.create(this, R.raw.desafios)
-        mediaPlayer.isLooping = true
-        mediaPlayer.setVolume(0.2f, 0.2f)
-
         if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
+            mediaPlayer = MediaPlayer.create(this, R.raw.desafios)
+            mediaPlayer.isLooping = true
+            mediaPlayer.setVolume(0.2f, 0.2f)
             mediaPlayer.start()
         }
     }

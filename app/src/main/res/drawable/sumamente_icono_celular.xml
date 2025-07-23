@@ -26,7 +26,7 @@
 
         <!-- Estrella principal con gradiente reforzado -->
         <group
-            android:translateX="295"
+            android:translateX="285"
             android:translateY="285"
             android:scaleX="13.87"
             android:scaleY="13.87">
@@ -43,8 +43,7 @@
                 </aapt:attr>
             </path>
             <!--
-                Cambio: Reducimos la escala interna del fondo claro
-                de 0.85 a 0.74 (~15% más grueso el borde azul hacia adentro)
+                Fondo claro interior, mantiene borde azul más grueso hacia adentro
             -->
             <group
                 android:scaleX="0.77"
@@ -60,13 +59,11 @@
         <group
             android:scaleX="14.30"
             android:scaleY="14.30"
-            android:translateX="143.5"
-            android:translateY="147.5">
-            <!--
-                Cambio: Aplicamos un grupo interno con escala 1.05
-                para engrosar la "S" un 5% más (sin moverla)
-            -->
-            <group android:scaleX="1.05" android:scaleY="1.05">
+            android:translateX="113"
+            android:translateY="100">
+            <group
+                android:scaleX="1.20"
+                android:scaleY="1.20">
                 <path
                     android:fillColor="#002060"
                     android:pathData="M10,18
@@ -85,25 +82,5 @@
             </group>
         </group>
 
-        <!-- Signo + más grueso (+5% strokeWidth) -->
-        <group
-            android:translateX="339"
-            android:translateY="181"
-            android:rotation="5.7">
-            <!--
-                Cambio: strokeWidth de 23.4 -> 24.6 (x1.05)
-                strokeWidth de 15.6 -> 16.4 (x1.05)
-            -->
-            <path android:pathData="M-26,0 L26,0 M0,-26 L0,26"
-                android:strokeColor="#006400"
-                android:strokeWidth="24.6"
-                android:strokeLineCap="round"
-                android:strokeAlpha="0.36"/>
-
-            <path android:pathData="M-26,0 L26,0 M0,-26 L0,26"
-                android:strokeColor="#009900"
-                android:strokeWidth="16.4"
-                android:strokeLineCap="round"/>
-        </group>
     </group>
 </vector>

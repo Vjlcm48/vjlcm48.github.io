@@ -873,11 +873,11 @@ class HelpTutorialActivityAlfaNumeros : BaseActivity()  {
     }
 
     private fun startBackgroundMusic() {
-        backgroundMusicPlayer = MediaPlayer.create(this, R.raw.tutorial2)
-        backgroundMusicPlayer?.setVolume(0.12f, 0.12f)
-        backgroundMusicPlayer?.isLooping = true
 
         if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
+            backgroundMusicPlayer = MediaPlayer.create(this, R.raw.tutorial6)
+            backgroundMusicPlayer?.setVolume(0.12f, 0.12f)
+            backgroundMusicPlayer?.isLooping = true
             backgroundMusicPlayer?.start()
         }
     }

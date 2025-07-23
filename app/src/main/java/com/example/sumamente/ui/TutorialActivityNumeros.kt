@@ -770,11 +770,10 @@ class TutorialActivityNumeros : BaseActivity()  {
 
     private fun startBackgroundMusic() {
 
-        backgroundMusicPlayer = MediaPlayer.create(this, R.raw.tutorial1)
-        backgroundMusicPlayer?.setVolume(0.12f, 0.12f)
-        backgroundMusicPlayer?.isLooping = true
-
         if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
+            backgroundMusicPlayer = MediaPlayer.create(this, R.raw.tutorial1)
+            backgroundMusicPlayer?.setVolume(0.12f, 0.12f)
+            backgroundMusicPlayer?.isLooping = true
             backgroundMusicPlayer?.start()
         }
     }
