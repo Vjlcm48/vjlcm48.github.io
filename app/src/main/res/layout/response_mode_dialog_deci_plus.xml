@@ -36,7 +36,7 @@
             android:padding='16dp'
             android:text='@string/seleccion_simple'
             android:textColor='@color/black'
-            android:textSize='16sp'
+            android:textSize='13sp'
             android:background='@drawable/button_background_deci'
             android:gravity='center' />
 
@@ -86,7 +86,7 @@
             android:padding='16dp'
             android:text='@string/escribe_tu_respuesta'
             android:textColor='@color/black'
-            android:textSize='16sp'
+            android:textSize='13sp'
             android:background='@drawable/button_background_deci'
             android:gravity='center' />
 

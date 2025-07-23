@@ -69,7 +69,6 @@
         app:layout_constraintTop_toBottomOf="@id/tv_titulo_apex"
         app:layout_constraintWidth_percent="0.50" />
 
-
     <TextView
         android:id="@+id/tv_apex_description"
         android:layout_width="0dp"

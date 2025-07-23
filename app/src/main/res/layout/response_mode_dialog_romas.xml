@@ -33,7 +33,7 @@
             android:padding='16dp'
             android:text='@string/seleccion_simple'
             android:textColor='@color/white'
-            android:textSize='16sp'
+            android:textSize='13sp'
             android:textStyle='bold'
             android:background='@drawable/button_background_romas'
             android:gravity='center' />
@@ -83,7 +83,7 @@
             android:padding='16dp'
             android:text='@string/escribe_tu_respuesta'
             android:textColor='@color/white'
-            android:textSize='16sp'
+            android:textSize='13sp'
             android:textStyle='bold'
             android:background='@drawable/button_background_romas'
             android:gravity='center' />

@@ -188,7 +188,7 @@ class MainGameActivity : BaseActivity() {
         releaseMediaPlayer()
 
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.fondomusicals1).apply {
+        mediaPlayer = MediaPlayer.create(this, R.raw.principal).apply {
             isLooping = true
             setVolume(0.2f, 0.2f)
         }

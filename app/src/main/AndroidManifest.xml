@@ -334,7 +334,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.SplashScreenActivity"
             android:exported="true"
             android:theme="@style/Theme.SumaMente.Launcher">
             <intent-filter>

@@ -42,7 +42,7 @@
             android:background="@drawable/button_background"
             android:text="@string/edit_username"
             android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:fontFamily="@font/roboto_bold"
             android:layout_marginBottom="16dp"
             android:contentDescription="@string/edit_username_desc" />
@@ -56,7 +56,7 @@
             android:background="@drawable/button_background"
             android:text="@string/edit_flag"
             android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:fontFamily="@font/roboto_bold"
             android:layout_marginBottom="16dp"
             android:contentDescription="@string/edit_flag_desc" />

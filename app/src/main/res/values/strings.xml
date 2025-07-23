@@ -1,10 +1,18 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name" translatable="false">HEPTACREATION</string>
+
+    <string name="company_name" translatable="false">HEPTACREATION</string>
 
     <string name="loading_text">Cargando…</string>
+
     <string name="next_activity_text">Próxima Actividad</string>
 
+    <string name="app_name" translatable="false">SumaMente</string>
+
     <string name="notification_app_name" translatable="false">SumaMente</string>
+
+    <string name="by_attribution" translatable="false">by</string>
+
+    <string name="tech_tagline" translatable="false">IA • VibeCoding</string>
 
     <string name="btn_allow">Permitir</string>
     <string name="btn_deny">No permitir</string>
