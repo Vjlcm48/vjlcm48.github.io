@@ -12,7 +12,7 @@
         android:translateX="-12"
         android:translateY="1">
 
-        <!-- Sombra exterior de la estrella -->
+        <!-- Sombra exterior de la estrella (igual) -->
         <group
             android:translateX="261"
             android:translateY="261"
@@ -24,7 +24,7 @@
                 android:fillAlpha="0.25"/>
         </group>
 
-        <!-- Estrella principal con gradiente reforzado -->
+        <!-- Estrella principal con gradiente azul intermedio -->
         <group
             android:translateX="285"
             android:translateY="285"
@@ -36,15 +36,12 @@
                     <gradient
                         android:type="linear"
                         android:angle="135">
-                        <item android:offset="0.0" android:color="#FF0A1C4E" />
-                        <item android:offset="0.7" android:color="#FF053FA6" />
-                        <item android:offset="1.0" android:color="#FF002060" />
+                        <item android:offset="0.0" android:color="#FF2070E0" /> <!-- Un azul intermedio más brillante -->
+                        <item android:offset="0.7" android:color="#FF1741A6" /> <!-- Azul recomendado -->
+                        <item android:offset="1.0" android:color="#FF153189" /> <!-- Azul profundo intermedio -->
                     </gradient>
                 </aapt:attr>
             </path>
-            <!--
-                Fondo claro interior, mantiene borde azul más grueso hacia adentro
-            -->
             <group
                 android:scaleX="0.77"
                 android:scaleY="0.77">
@@ -55,7 +52,7 @@
             </group>
         </group>
 
-        <!-- Letra S más gruesa (+5%) -->
+        <!-- Letra S en azul intermedio -->
         <group
             android:scaleX="14.30"
             android:scaleY="14.30"
@@ -65,7 +62,7 @@
                 android:scaleX="1.20"
                 android:scaleY="1.20">
                 <path
-                    android:fillColor="#002060"
+                    android:fillColor="#1741A6"
                     android:pathData="M10,18
                           c-2.21,0 -4,-1.79 -4,-4h2
                           c0,1.1 0.9,2 2,2
