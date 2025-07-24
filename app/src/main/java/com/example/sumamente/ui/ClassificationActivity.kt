@@ -1,26 +1,26 @@
 package com.example.sumamente.ui
 
+import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.app.Dialog
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Color
-import android.media.MediaPlayer
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.View
-import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
-import androidx.core.graphics.drawable.toDrawable
 import com.example.sumamente.R
+import com.example.sumamente.ui.utils.MusicManager
+import java.lang.ref.WeakReference
 
-class ClassificationActivity : BaseActivity()  {
+class ClassificationActivity : BaseActivity() {
 
+    companion object {
+        var instanceRef: WeakReference<ClassificationActivity>? = null
+        private var internalNavigation = false
+    }
 
     private lateinit var btnComoFunciona: LinearLayout
     private lateinit var btnVerClasificacion: LinearLayout
@@ -29,7 +29,6 @@ class ClassificationActivity : BaseActivity()  {
     private lateinit var btnClasificacionIntegral: LinearLayout
     private lateinit var btnClose: ImageView
     private lateinit var btnBack: ImageView
-    private lateinit var mediaPlayer: MediaPlayer
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var preferenceChangeListener: SharedPreferences.OnSharedPreferenceChangeListener
 
@@ -37,15 +36,31 @@ class ClassificationActivity : BaseActivity()  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_classification)
 
+        instanceRef = WeakReference(this)
+
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+
+        preferenceChangeListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            if (key == SettingsActivity.SOUND_ENABLED) {
+                val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+                if (soundEnabled) {
+                    MusicManager.resume()
+                } else {
+                    MusicManager.pause()
+                }
+            }
+        }
+        sharedPreferences.registerOnSharedPreferenceChangeListener(preferenceChangeListener)
 
         initViews()
         setupButtons()
-        setupMusic()
+
+        if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
+            MusicManager.play(this, R.raw.clasificacion, looping = true, volume = 0.2f)
+        }
     }
 
     private fun initViews() {
-
         btnComoFunciona = findViewById(R.id.btn_como_funciona)
         btnVerClasificacion = findViewById(R.id.btn_ver_clasificacion)
         btnClasificacionVelocidad = findViewById(R.id.btn_clasificacion_velocidad)
@@ -55,32 +70,10 @@ class ClassificationActivity : BaseActivity()  {
         btnBack = findViewById(R.id.btn_back)
     }
 
-    private fun setupMusic() {
-        mediaPlayer = MediaPlayer.create(this, R.raw.clasificacion)
-        mediaPlayer.isLooping = true
-        mediaPlayer.setVolume(0.2f, 0.2f)
-
-        if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
-            mediaPlayer.start()
-        }
-
-        preferenceChangeListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
-            if (key == SettingsActivity.SOUND_ENABLED) {
-                val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
-                if (soundEnabled) {
-                    mediaPlayer.start()
-                } else {
-                    mediaPlayer.pause()
-                }
-            }
-        }
-        sharedPreferences.registerOnSharedPreferenceChangeListener(preferenceChangeListener)
-    }
-
     private fun setupButtons() {
         btnClose.setOnClickListener {
             applyBounceEffect(it) {
-                mediaPlayer.fadeOut()
+                MusicManager.stop()
                 val intent = Intent(this, MainGameActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -89,7 +82,7 @@ class ClassificationActivity : BaseActivity()  {
 
         btnBack.setOnClickListener {
             applyBounceEffect(it) {
-                mediaPlayer.fadeOut()
+                MusicManager.stop()
                 val intent = Intent(this, MainGameActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -103,6 +96,7 @@ class ClassificationActivity : BaseActivity()  {
         }
 
         btnVerClasificacion.setOnClickListener {
+            internalNavigation = true
             applyBounceEffect(it) {
                 val intent = Intent(this, RankingActivity::class.java)
                 startActivity(intent)
@@ -110,6 +104,7 @@ class ClassificationActivity : BaseActivity()  {
         }
 
         btnClasificacionVelocidad.setOnClickListener {
+            internalNavigation = true
             applyBounceEffect(it) {
                 val intent = Intent(this, SpeedClassificationActivity::class.java)
                 startActivity(intent)
@@ -117,6 +112,7 @@ class ClassificationActivity : BaseActivity()  {
         }
 
         btnClasificacionIQPlus.setOnClickListener {
+            internalNavigation = true
             applyBounceEffect(it) {
                 val intent = Intent(this, IQPlusRankingActivity::class.java)
                 startActivity(intent)
@@ -124,20 +120,36 @@ class ClassificationActivity : BaseActivity()  {
         }
 
         btnClasificacionIntegral.setOnClickListener {
+            internalNavigation = true
             applyBounceEffect(it) {
                 val intent = Intent(this, IntegralRankingActivity::class.java)
                 startActivity(intent)
             }
         }
+    }
 
+    override fun onStart() {
+        super.onStart()
+        val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+        if (soundEnabled) {
+            MusicManager.resume()
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (!internalNavigation) {
+            MusicManager.pause()
+        }
+        internalNavigation = false
     }
 
     private fun showHowItWorksDialog() {
-        val dialog = Dialog(this)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        val dialog = android.app.Dialog(this)
+        dialog.requestWindowFeature(android.view.Window.FEATURE_NO_TITLE)
         dialog.setCancelable(true)
         dialog.setContentView(R.layout.dialog_classification_rules)
-        dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         val btnEntendido = dialog.findViewById<Button>(R.id.btn_entendido)
         btnEntendido.setOnClickListener {
@@ -167,7 +179,7 @@ class ClassificationActivity : BaseActivity()  {
         animatorSet.playSequentially(scaleDown, scaleUp)
 
         animatorSet.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: android.animation.Animator) {
+            override fun onAnimationEnd(animation: Animator) {
                 onAnimationEnd()
             }
         })
@@ -175,45 +187,10 @@ class ClassificationActivity : BaseActivity()  {
         animatorSet.start()
     }
 
-    private fun MediaPlayer.fadeOut() {
-        val fadeOutDuration = 2000L
-        val fadeStep = 0.05f
-        val fadeHandler = Handler(Looper.getMainLooper())
-        var currentVolume = 0.2f
-
-        val fadeRunnable = object : Runnable {
-            override fun run() {
-                if (isPlaying) {
-                    currentVolume -= fadeStep
-                    if (currentVolume > 0) {
-                        setVolume(currentVolume, currentVolume)
-                        fadeHandler.postDelayed(
-                            this,
-                            (fadeOutDuration / (1 / fadeStep)).toLong()
-                        )
-                    } else {
-                        pause()
-                        setVolume(0f, 0f)
-                    }
-                }
-            }
-        }
-        fadeHandler.post(fadeRunnable)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
-        if (soundEnabled && !mediaPlayer.isPlaying) {
-            mediaPlayer.start()
-        }
-    }
-
     override fun onDestroy() {
         super.onDestroy()
-        if (this::mediaPlayer.isInitialized) {
-            mediaPlayer.release()
-        }
+        instanceRef?.clear()
+        instanceRef = null
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(preferenceChangeListener)
     }
 }

@@ -14,9 +14,9 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.example.sumamente.R
+import com.example.sumamente.ui.utils.MusicManager
 
 class SpeedClassificationActivity : BaseActivity()  {
-
 
     private lateinit var sharedPreferences: android.content.SharedPreferences
 
@@ -28,6 +28,7 @@ class SpeedClassificationActivity : BaseActivity()  {
     private lateinit var btnSumaresta: ConstraintLayout
     private lateinit var btnMasPlus: ConstraintLayout
     private lateinit var btnGenioPlus: ConstraintLayout
+    private var isFinishingByBack = false
 
     companion object {
         const val GAME_NUMEROS_PLUS = "NumerosPlus"
@@ -37,6 +38,7 @@ class SpeedClassificationActivity : BaseActivity()  {
         const val GAME_SUMA_RESTA = "SumaResta"
         const val GAME_MAS_PLUS = "MasPlus"
         const val GAME_GENIO_PLUS = "GenioPlus"
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +46,7 @@ class SpeedClassificationActivity : BaseActivity()  {
         setContentView(R.layout.activity_speed_classification)
 
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+
 
         initViews()
         setupButtons()
@@ -62,53 +65,59 @@ class SpeedClassificationActivity : BaseActivity()  {
         btnGenioPlus = findViewById(R.id.btn_genio_plus)
     }
 
-
-
     private fun setupButtons() {
         closeButton.setOnClickListener {
             applyBounceEffect(it) {
+                isFinishingByBack = true
                 finish()
             }
         }
 
         btnNumerosPlus.setOnClickListener {
             applyBounceEffect(it) {
+                isFinishingByBack = true
                 openSpeedRanking(GAME_NUMEROS_PLUS, R.color.blue_primary)
             }
         }
 
         btnDeciPlus.setOnClickListener {
             applyBounceEffect(it) {
+                isFinishingByBack = true
                 openSpeedRanking(GAME_DECI_PLUS, R.color.orange_dark)
             }
         }
 
         btnRomas.setOnClickListener {
             applyBounceEffect(it) {
+                isFinishingByBack = true
                 openSpeedRanking(GAME_ROMAS, R.color.green_dark)
             }
         }
 
         btnAlfaNumeros.setOnClickListener {
             applyBounceEffect(it) {
+                isFinishingByBack = true
                 openSpeedRanking(GAME_ALFA_NUMEROS, R.color.red_primary)
             }
         }
 
         btnSumaresta.setOnClickListener {
             applyBounceEffect(it) {
+                isFinishingByBack = true
                 openSpeedRanking(GAME_SUMA_RESTA, R.color.blue_pressed)
             }
         }
 
         btnMasPlus.setOnClickListener {
             applyBounceEffect(it) {
+                isFinishingByBack = true
                 openSpeedRanking(GAME_MAS_PLUS, R.color.grey_light)
             }
         }
 
         btnGenioPlus.setOnClickListener {
             applyBounceEffect(it) {
+                isFinishingByBack = true
                 openSpeedRanking(GAME_GENIO_PLUS, R.color.blue_pressed)
             }
         }
@@ -206,6 +215,30 @@ class SpeedClassificationActivity : BaseActivity()  {
 
         animatorSet.start()
     }
+
+    override fun onStart() {
+        super.onStart()
+        val clasificacionSigueViva = ClassificationActivity.instanceRef?.get() != null
+        val context = ClassificationActivity.instanceRef?.get()
+        val sonidoActivo = context?.let {
+            val prefs = it.getSharedPreferences("MyPrefs", MODE_PRIVATE)
+            prefs.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+        } ?: true
+
+        if (clasificacionSigueViva && sonidoActivo) {
+            MusicManager.resume()
+        }
+    }
+
+
+    override fun onStop() {
+        super.onStop()
+        if (!isFinishingByBack) {
+            MusicManager.pause()
+        }
+        isFinishingByBack = false
+    }
+
 
 
 }

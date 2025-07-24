@@ -1,5 +1,9 @@
 package com.example.sumamente.ui
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -13,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sumamente.R
 import kotlin.random.Random
+import com.example.sumamente.ui.utils.MusicManager
 
 class IntegralRankingActivity : BaseActivity()  {
 
@@ -26,6 +31,7 @@ class IntegralRankingActivity : BaseActivity()  {
     private lateinit var rankingItems: MutableList<IntegralRankingItem>
 
     private lateinit var sharedPreferences: android.content.SharedPreferences
+    private var isFinishingByBack = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,7 +82,10 @@ class IntegralRankingActivity : BaseActivity()  {
 
     private fun setupButtons() {
         btnBack.setOnClickListener {
-            finish()
+            applyBounceEffect(it) {
+                isFinishingByBack = true
+                finish()
+            }
         }
     }
 
@@ -259,5 +268,55 @@ class IntegralRankingActivity : BaseActivity()  {
         recyclerView.visibility = View.VISIBLE
     }
 
+    private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
+        val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.9f).setDuration(50)
+        val scaleDownY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 0.9f).setDuration(50)
+        val scaleUpX = ObjectAnimator.ofFloat(view, "scaleX", 0.9f, 1f).setDuration(50)
+        val scaleUpY = ObjectAnimator.ofFloat(view, "scaleY", 0.9f, 1f).setDuration(50)
 
+        val scaleDown = AnimatorSet().apply {
+            playTogether(scaleDownX, scaleDownY)
+        }
+
+        val scaleUp = AnimatorSet().apply {
+            playTogether(scaleUpX, scaleUpY)
+        }
+
+        val animatorSet = AnimatorSet()
+        animatorSet.playSequentially(scaleDown, scaleUp)
+
+        animatorSet.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator) {
+                onAnimationEnd()
+            }
+        })
+
+        animatorSet.start()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val clasificacionSigueViva = ClassificationActivity.instanceRef?.get() != null
+        val context = ClassificationActivity.instanceRef?.get()
+        val sonidoActivo = context?.let {
+            val prefs = it.getSharedPreferences("MyPrefs", MODE_PRIVATE)
+            prefs.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+        } ?: true
+
+        if (clasificacionSigueViva && sonidoActivo) {
+            MusicManager.resume()
+        }
+    }
+
+
+    override fun onStop() {
+        super.onStop()
+        if (!isFinishingByBack) {
+            MusicManager.pause()
+        }
+        isFinishingByBack = false
+    }
 }
+
+
+

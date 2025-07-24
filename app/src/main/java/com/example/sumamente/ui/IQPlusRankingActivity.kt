@@ -1,5 +1,9 @@
 package com.example.sumamente.ui
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
@@ -22,6 +26,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.Locale
 import kotlin.random.Random
 
+import com.example.sumamente.ui.utils.MusicManager
+
 
 class IQPlusRankingActivity : BaseActivity()  {
 
@@ -39,6 +45,8 @@ class IQPlusRankingActivity : BaseActivity()  {
     private val handlerFlash = Handler(Looper.getMainLooper())
 
     private lateinit var sharedPreferences: android.content.SharedPreferences
+    private var isFinishingByBack = false
+
 
     companion object {
         const val TOTAL_COMBOS_REQUIRED = 21
@@ -103,7 +111,12 @@ class IQPlusRankingActivity : BaseActivity()  {
     }
 
     private fun setupBackButton() {
-        btnBack.setOnClickListener { finish() }
+        btnBack.setOnClickListener {
+            applyBounceEffect(it) {
+                isFinishingByBack = true
+                finish()
+            }
+        }
     }
 
     private fun loadIQPlusRankingData() {
@@ -344,6 +357,55 @@ class IQPlusRankingActivity : BaseActivity()  {
         }
         startActivity(android.content.Intent.createChooser(intent, getString(R.string.share)))
     }
+
+    private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
+        val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.9f).setDuration(50)
+        val scaleDownY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 0.9f).setDuration(50)
+        val scaleUpX = ObjectAnimator.ofFloat(view, "scaleX", 0.9f, 1f).setDuration(50)
+        val scaleUpY = ObjectAnimator.ofFloat(view, "scaleY", 0.9f, 1f).setDuration(50)
+
+        val scaleDown = AnimatorSet().apply {
+            playTogether(scaleDownX, scaleDownY)
+        }
+
+        val scaleUp = AnimatorSet().apply {
+            playTogether(scaleUpX, scaleUpY)
+        }
+
+        val animatorSet = AnimatorSet()
+        animatorSet.playSequentially(scaleDown, scaleUp)
+
+        animatorSet.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator) {
+                onAnimationEnd()
+            }
+        })
+
+        animatorSet.start()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val clasificacionSigueViva = ClassificationActivity.instanceRef?.get() != null
+        val context = ClassificationActivity.instanceRef?.get()
+        val sonidoActivo = context?.let {
+            val prefs = it.getSharedPreferences("MyPrefs", MODE_PRIVATE)
+            prefs.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+        } ?: true
+
+        if (clasificacionSigueViva && sonidoActivo) {
+            MusicManager.resume()
+        }
+    }
+
+
+    override fun onStop() {
+        super.onStop()
+        if (!isFinishingByBack) {
+            MusicManager.pause()
+        }
+        isFinishingByBack = false
+    }
 }
 
 object IQPlusCombos {
@@ -378,6 +440,5 @@ object IQPlusCombos {
         Combo("GenioPlus", "Pro", 18.0)
     )
     data class Combo(val juego: String, val grado: String, val peso: Double)
+
 }
-
-

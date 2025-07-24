@@ -1,5 +1,9 @@
 package com.example.sumamente.ui
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -12,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sumamente.R
 import kotlin.random.Random
+import com.example.sumamente.ui.utils.MusicManager
 
 class RankingActivity : BaseActivity()  {
 
@@ -24,6 +29,8 @@ class RankingActivity : BaseActivity()  {
 
     private lateinit var sharedPreferences: android.content.SharedPreferences
     private lateinit var tvMsgGlobalRanking: TextView
+
+    private var isFinishingByBack = false
 
     companion object {
         const val MIN_LEVELS_REQUIRED = 36
@@ -82,10 +89,12 @@ class RankingActivity : BaseActivity()  {
         recyclerView.adapter = adapter
     }
 
-
     private fun setupButtons() {
         btnBack.setOnClickListener {
-            finish()
+            applyBounceEffect(it) {
+                isFinishingByBack = true
+                finish()
+            }
         }
     }
 
@@ -226,6 +235,55 @@ class RankingActivity : BaseActivity()  {
             emptyView.visibility = View.GONE
             loadingIndicator.visibility = View.GONE
         }, 700)
+    }
+
+    private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
+        val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.9f).setDuration(50)
+        val scaleDownY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 0.9f).setDuration(50)
+        val scaleUpX = ObjectAnimator.ofFloat(view, "scaleX", 0.9f, 1f).setDuration(50)
+        val scaleUpY = ObjectAnimator.ofFloat(view, "scaleY", 0.9f, 1f).setDuration(50)
+
+        val scaleDown = AnimatorSet().apply {
+            playTogether(scaleDownX, scaleDownY)
+        }
+
+        val scaleUp = AnimatorSet().apply {
+            playTogether(scaleUpX, scaleUpY)
+        }
+
+        val animatorSet = AnimatorSet()
+        animatorSet.playSequentially(scaleDown, scaleUp)
+
+        animatorSet.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator) {
+                onAnimationEnd()
+            }
+        })
+
+        animatorSet.start()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val clasificacionSigueViva = ClassificationActivity.instanceRef?.get() != null
+        val context = ClassificationActivity.instanceRef?.get()
+        val sonidoActivo = context?.let {
+            val prefs = it.getSharedPreferences("MyPrefs", MODE_PRIVATE)
+            prefs.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+        } ?: true
+
+        if (clasificacionSigueViva && sonidoActivo) {
+            MusicManager.resume()
+        }
+    }
+
+
+    override fun onStop() {
+        super.onStop()
+        if (!isFinishingByBack) {
+            MusicManager.pause()
+        }
+        isFinishingByBack = false
     }
 
 
