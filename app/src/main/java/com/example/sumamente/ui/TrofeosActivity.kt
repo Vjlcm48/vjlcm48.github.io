@@ -156,8 +156,7 @@ class TrofeosActivity : BaseActivity() {
         btnMisCondecoraciones.setOnClickListener {
             internalNavigation = true
             applyBounceEffect(it) {
-                CondecoracionTracker.clearMisCondecoracionesRedDot()
-                updateMisCondecoracionesRedDot()
+
                 val intent = Intent(this, MisCondecoracionesActivity::class.java)
                 startActivity(intent)
             }
@@ -186,6 +185,12 @@ class TrofeosActivity : BaseActivity() {
         if (soundEnabled) {
             MusicManager.resume()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        updateMisCondecoracionesRedDot()
     }
 
     override fun onStop() {

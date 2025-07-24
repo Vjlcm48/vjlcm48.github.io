@@ -172,9 +172,6 @@ class MainGameActivity : BaseActivity() {
 
         trophyContainer.setOnClickListener {
             applyBounceEffect(it) {
-                CondecoracionTracker.clearTrophyRedDot()
-                CondecoracionTracker.clearMisCondecoracionesRedDot()
-                updateTrophyRedDot()
 
                 fadeOutAndStop()
                 val intent = Intent(this, TrofeosActivity::class.java)

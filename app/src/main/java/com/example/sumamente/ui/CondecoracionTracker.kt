@@ -187,6 +187,15 @@ object CondecoracionTracker {
         lastRIPlusCheckDate = preferences.getString(KEY_LAST_RI_PLUS_CHECK_DATE, "") ?: ""
     }
 
+    fun clearGlobalRedDotFlags() {
+        trophyRedDotVisible = false
+        misCondecoracionesRedDotVisible = false
+        preferences.edit {
+            putBoolean(KEY_TROPHY_RED_DOT, false)
+            putBoolean(KEY_MIS_CONDECORACIONES_RED_DOT, false)
+        }
+    }
+
     private fun loadCompletedLevelsUnified() {
         val jsonString = preferences.getString(KEY_COMPLETED_LEVELS_JSON, null)
         completedLevelsUnified = if (jsonString != null) {
@@ -363,33 +372,7 @@ object CondecoracionTracker {
         saveCarryOverLevels()
     }
 
-    fun clearTrophyRedDot() {
-        trophyRedDotVisible = false
-        preferences.edit {
-            putBoolean(KEY_TROPHY_RED_DOT, false)
-        }
-    }
 
-    fun clearMisCondecoracionesRedDot() {
-        misCondecoracionesRedDotVisible = false
-        preferences.edit {
-            putBoolean(KEY_MIS_CONDECORACIONES_RED_DOT, false)
-        }
-    }
-
-    fun marcarPinesComoVistos() {
-        var cambiosRealizados = false
-        pinesObtenidos.forEach { pin ->
-            if (!pin.visto) {
-                pin.visto = true
-                cambiosRealizados = true
-            }
-        }
-        if (cambiosRealizados) {
-            savePinesObtenidos()
-            updateRedDotsStatus()
-        }
-    }
 
     fun marcarPinIndividualComoVisto(pinTipo: String, fechaObtencion: Long) {
         var cambiosRealizados = false
@@ -1037,22 +1020,7 @@ object CondecoracionTracker {
 
     fun getCondecoracionesIQ7(): List<CondecoracionIQ7> = condecoracionesIQ7.toList()
 
-    fun marcarCondecoracionesIQ7ComoVistas() {
-        var cambiosRealizados = false
-        condecoracionesIQ7.forEach { condecoracion ->
-            if (condecoracion.esNueva) {
-                val index = condecoracionesIQ7.indexOf(condecoracion)
-                if (index != -1) {
-                    condecoracionesIQ7[index] = condecoracion.copy(esNueva = false)
-                    cambiosRealizados = true
-                }
-            }
-        }
-        if (cambiosRealizados) {
-            saveCondecoracionesIQ7()
-            updateRedDotsStatus()
-        }
-    }
+
 
     fun marcarCondecoracionIQ7IndividualComoVista(posicion: Int, tipoCondecoracion: String, fechaAsignacion: Long) {
         var cambiosRealizados = false
@@ -1247,22 +1215,7 @@ object CondecoracionTracker {
         }
     }
 
-    fun marcarCondecoracionesTop5IntegralComoVistas() {
-        var cambiosRealizados = false
-        condecoracionesTop5Integral.forEach { condecoracion ->
-            if (condecoracion.esNueva) {
-                val index = condecoracionesTop5Integral.indexOf(condecoracion)
-                if (index != -1) {
-                    condecoracionesTop5Integral[index] = condecoracion.copy(esNueva = false)
-                    cambiosRealizados = true
-                }
-            }
-        }
-        if (cambiosRealizados) {
-            saveCondecoracionesTop5Integral()
-            updateRedDotsStatus()
-        }
-    }
+
 
     fun marcarCondecoracionTop5IntegralIndividualComoVista(posicion: Int, tipoCondecoracion: String, fechaAsignacion: Long) {
         var cambiosRealizados = false
@@ -1492,22 +1445,6 @@ object CondecoracionTracker {
         }
     }
 
-    fun marcarCoronasComoVistas() {
-        var cambiosRealizados = false
-        coronasActivas.forEach { corona ->
-            if (corona.esNueva) {
-                val index = coronasActivas.indexOf(corona)
-                if (index != -1) {
-                    coronasActivas[index] = corona.copy(esNueva = false)
-                    cambiosRealizados = true
-                }
-            }
-        }
-        if (cambiosRealizados) {
-            saveCoronasActivas()
-            updateRedDotsStatus()
-        }
-    }
 
     fun marcarCoronaIndividualComoVista(juego: String, tipoCorona: String, fechaAsignacion: Long) {
         var cambiosRealizados = false
@@ -1530,22 +1467,7 @@ object CondecoracionTracker {
         }
     }
 
-    fun marcarCondecoracionesTop10ComoVistas() {
-        var cambiosRealizados = false
-        condecoracionesTop10.forEach { condecoracion ->
-            if (condecoracion.esNueva) {
-                val index = condecoracionesTop10.indexOf(condecoracion)
-                if (index != -1) {
-                    condecoracionesTop10[index] = condecoracion.copy(esNueva = false)
-                    cambiosRealizados = true
-                }
-            }
-        }
-        if (cambiosRealizados) {
-            saveCondecoracionesTop10()
-            updateRedDotsStatus()
-        }
-    }
+
 
     fun marcarCondecoracionTop10IndividualComoVista(posicion: Int, tipoCondecoracion: String, fechaAsignacion: Long) {
         var cambiosRealizados = false
@@ -1568,6 +1490,10 @@ object CondecoracionTracker {
         }
     }
 
-    fun shouldShowTrophyRedDot(): Boolean = trophyRedDotVisible || hasNewCrowns() || hasNewTop10() || hasNewMedals() || hasNewTrophies() || hasNewTop5Integral() || hasNewInsigniaRIPlus()
-    fun shouldShowMisCondecoracionesRedDot(): Boolean = misCondecoracionesRedDotVisible || hasNewCrowns() || hasNewTop10() || hasNewMedals() || hasNewTrophies() || hasNewTop5Integral() || hasNewInsigniaRIPlus()
+    fun shouldShowTrophyRedDot(): Boolean = trophyRedDotVisible
+    fun shouldShowMisCondecoracionesRedDot(): Boolean = misCondecoracionesRedDotVisible
+
 }
+
+
+

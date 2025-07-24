@@ -32,12 +32,7 @@ class MisCondecoracionesActivity : BaseActivity()  {
 
         CondecoracionTracker.init(this)
 
-        CondecoracionTracker.marcarPinesComoVistos()
-        CondecoracionTracker.marcarCoronasComoVistas()
-        CondecoracionTracker.marcarCondecoracionesTop10ComoVistas()
-        CondecoracionTracker.marcarCondecoracionesIQ7ComoVistas()
-        CondecoracionTracker.marcarCondecoracionesTop5IntegralComoVistas()
-        CondecoracionTracker.marcarInsigniaRIPlusComoVista()
+        CondecoracionTracker.clearGlobalRedDotFlags()
 
         initViews()
         setupButtons()
