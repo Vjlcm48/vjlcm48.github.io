@@ -16,7 +16,8 @@ data class RankingItem(
     val username: String,
     val countryCode: String,
     val score: Int,
-    val isCurrentUser: Boolean = false
+    val isCurrentUser: Boolean = false,
+    val hasInsigniaRIPlus: Boolean = false
 )
 
 class RankingAdapter(
@@ -37,44 +38,52 @@ class RankingAdapter(
         return ViewHolder(view)
     }
 
+    // En RankingAdapter.kt
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
 
         holder.positionTextView.text = item.position.toString()
-        holder.usernameTextView.text = item.username
 
-        // Verificar si el usuario tiene la insignia RI+
-        if (item.isCurrentUser) {
-            val tieneInsignia = CondecoracionTracker.getInsigniaRIPlus() != null
-            if (tieneInsignia) {
-                val usernameContainer = LinearLayout(holder.itemView.context)
-                usernameContainer.orientation = LinearLayout.HORIZONTAL
-                usernameContainer.gravity = android.view.Gravity.CENTER_VERTICAL
 
-                val usernameView = TextView(holder.itemView.context)
-                usernameView.text = item.username
-                usernameView.textSize = 16f
-                usernameView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_text))
-                usernameView.setTypeface(null, android.graphics.Typeface.BOLD)
+        if (item.hasInsigniaRIPlus) {
 
-                val insigniaImageView = ImageView(holder.itemView.context)
-                insigniaImageView.setImageResource(R.drawable.ic_insignia_ri_plus)
-                val layoutParams = LinearLayout.LayoutParams(24, 24)
-                layoutParams.setMargins(8, 0, 0, 0)
-                insigniaImageView.layoutParams = layoutParams
+            val usernameContainer = LinearLayout(holder.itemView.context)
+            usernameContainer.orientation = LinearLayout.HORIZONTAL
+            usernameContainer.gravity = android.view.Gravity.CENTER_VERTICAL
 
-                insigniaImageView.setOnClickListener {
+            (holder.usernameTextView.parent as ViewGroup).apply {
+                val index = indexOfChild(holder.usernameTextView)
+                removeView(holder.usernameTextView)
+                addView(usernameContainer, index, holder.usernameTextView.layoutParams)
+            }
+
+            val usernameView = TextView(holder.itemView.context).apply {
+                text = item.username
+                textSize = 16f
+                val textColor = if (item.isCurrentUser) R.color.highlight_user_text else android.R.color.black
+                setTextColor(ContextCompat.getColor(context, textColor))
+                setTypeface(null, android.graphics.Typeface.BOLD)
+            }
+            usernameContainer.addView(usernameView)
+
+            val insigniaImageView = ImageView(holder.itemView.context).apply {
+                setImageResource(R.drawable.ic_insignia_ri_plus)
+                val layoutParams = LinearLayout.LayoutParams(36, 36)
+                layoutParams.marginStart = 8
+                this.layoutParams = layoutParams
+                setOnClickListener {
                     android.widget.Toast.makeText(it.context, "SUPREMUS INTEGRALIS", android.widget.Toast.LENGTH_SHORT).show()
                 }
-
-                usernameContainer.addView(usernameView)
-                usernameContainer.addView(insigniaImageView)
-
-                val parent = holder.usernameTextView.parent as ViewGroup
-                val index = parent.indexOfChild(holder.usernameTextView)
-                parent.removeView(holder.usernameTextView)
-                parent.addView(usernameContainer, index)
             }
+            usernameContainer.addView(insigniaImageView)
+
+        } else {
+
+            holder.usernameTextView.text = item.username
+
+            val textColor = if (item.isCurrentUser) R.color.highlight_user_text else android.R.color.black
+            holder.usernameTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, textColor))
         }
 
         val countryCode = item.countryCode.lowercase(Locale.ROOT)
@@ -83,21 +92,17 @@ class RankingAdapter(
         if (resId != null) {
             holder.countryFlagImageView.setImageResource(resId)
         } else {
-
             holder.countryFlagImageView.setImageResource(R.drawable.ve)
         }
 
         holder.scoreTextView.text = item.score.toString()
 
+
         if (item.isCurrentUser) {
             holder.container.setBackgroundColor(
                 ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_background)
             )
-
             holder.positionTextView.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_text)
-            )
-            holder.usernameTextView.setTextColor(
                 ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_text)
             )
             holder.scoreTextView.setTextColor(
@@ -112,11 +117,7 @@ class RankingAdapter(
             holder.container.setBackgroundColor(
                 ContextCompat.getColor(holder.itemView.context, backgroundColor)
             )
-
             holder.positionTextView.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, android.R.color.black)
-            )
-            holder.usernameTextView.setTextColor(
                 ContextCompat.getColor(holder.itemView.context, android.R.color.black)
             )
             holder.scoreTextView.setTextColor(

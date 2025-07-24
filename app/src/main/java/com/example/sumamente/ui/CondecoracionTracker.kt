@@ -1219,9 +1219,9 @@ object CondecoracionTracker {
     }
 
     private fun actualizarInsigniaRIPlusDelUsuario(posicion: Int) {
+
         if (posicion == 1) {
             val yaObtenida = insigniaRIPlus != null
-
             if (!yaObtenida) {
                 val nuevaInsignia = InsigniaRIPlus(
                     fechaObtencion = System.currentTimeMillis(),
@@ -1229,12 +1229,6 @@ object CondecoracionTracker {
                 )
 
                 insigniaRIPlus = nuevaInsignia
-                saveInsigniaRIPlus()
-                updateRedDotsStatus()
-            }
-        } else {
-            if (insigniaRIPlus != null) {
-                insigniaRIPlus = null
                 saveInsigniaRIPlus()
                 updateRedDotsStatus()
             }

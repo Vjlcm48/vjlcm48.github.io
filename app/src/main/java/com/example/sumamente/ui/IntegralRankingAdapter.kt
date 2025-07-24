@@ -16,7 +16,8 @@ data class IntegralRankingItem(
     val username: String,
     val countryCode: String,
     val integralScore: Double,
-    val isCurrentUser: Boolean = false
+    val isCurrentUser: Boolean = false,
+    val hasInsigniaRIPlus: Boolean = false
 )
 
 class IntegralRankingAdapter(
@@ -37,42 +38,53 @@ class IntegralRankingAdapter(
         return ViewHolder(view)
     }
 
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
 
         holder.positionTextView.text = item.position.toString()
-        holder.usernameTextView.text = item.username
 
-        if (item.isCurrentUser) {
+
+        if (item.hasInsigniaRIPlus) {
 
             val usernameContainer = LinearLayout(holder.itemView.context)
             usernameContainer.orientation = LinearLayout.HORIZONTAL
             usernameContainer.gravity = android.view.Gravity.CENTER_VERTICAL
 
-            val usernameView = TextView(holder.itemView.context)
-            usernameView.text = item.username
-            usernameView.textSize = 16f
-            usernameView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_text))
-            usernameView.setTypeface(null, android.graphics.Typeface.BOLD)
 
-            val insigniaImageView = ImageView(holder.itemView.context)
-            insigniaImageView.setImageResource(R.drawable.ic_insignia_ri_plus)
-            val layoutParams = LinearLayout.LayoutParams(24, 24)
-            layoutParams.setMargins(8, 0, 0, 0)
-            insigniaImageView.layoutParams = layoutParams
-
-            insigniaImageView.setOnClickListener {
-                showInsigniaTooltip(it)
+            (holder.usernameTextView.parent as ViewGroup).apply {
+                val index = indexOfChild(holder.usernameTextView)
+                removeView(holder.usernameTextView)
+                addView(usernameContainer, index, holder.usernameTextView.layoutParams)
             }
 
+
+            val usernameView = TextView(holder.itemView.context).apply {
+                text = item.username
+                textSize = 16f
+                val textColor = if (item.isCurrentUser) R.color.highlight_user_text else android.R.color.black
+                setTextColor(ContextCompat.getColor(holder.itemView.context, textColor))
+                setTypeface(null, android.graphics.Typeface.BOLD)
+            }
             usernameContainer.addView(usernameView)
+
+
+            val insigniaImageView = ImageView(holder.itemView.context).apply {
+                setImageResource(R.drawable.ic_insignia_ri_plus)
+                val layoutParams = LinearLayout.LayoutParams(36, 36)
+                layoutParams.marginStart = 8
+                this.layoutParams = layoutParams
+                setOnClickListener { showInsigniaTooltip(it) }
+            }
             usernameContainer.addView(insigniaImageView)
 
-            val parent = holder.usernameTextView.parent as ViewGroup
-            val index = parent.indexOfChild(holder.usernameTextView)
-            parent.removeView(holder.usernameTextView)
-            parent.addView(usernameContainer, index)
+        } else {
+
+            holder.usernameTextView.text = item.username
+            val textColor = if (item.isCurrentUser) R.color.highlight_user_text else android.R.color.black
+            holder.usernameTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, textColor))
         }
+
 
         val countryCode = item.countryCode.lowercase(Locale.ROOT)
         val resId = countryFlagMap[countryCode]
@@ -94,7 +106,6 @@ class IntegralRankingAdapter(
             holder.container.setBackgroundColor(
                 ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_background)
             )
-
             holder.positionTextView.setTextColor(
                 ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_text)
             )
@@ -110,11 +121,7 @@ class IntegralRankingAdapter(
             holder.container.setBackgroundColor(
                 ContextCompat.getColor(holder.itemView.context, backgroundColor)
             )
-
             holder.positionTextView.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, android.R.color.black)
-            )
-            holder.usernameTextView.setTextColor(
                 ContextCompat.getColor(holder.itemView.context, android.R.color.black)
             )
             holder.integralScoreTextView.setTextColor(

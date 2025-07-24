@@ -17,7 +17,8 @@ data class IQPlusRankingItem(
     val username: String,
     val countryCode: String,
     val iqPlus: Double,
-    val isCurrentUser: Boolean = false
+    val isCurrentUser: Boolean = false,
+    val hasInsigniaRIPlus: Boolean = false
 )
 
 class IQPlusRankingAdapter(
@@ -31,46 +32,58 @@ class IQPlusRankingAdapter(
         return RankingViewHolder(view)
     }
 
+
     override fun onBindViewHolder(holder: RankingViewHolder, position: Int) {
         val item = rankingList[position]
         val context = holder.itemView.context
 
         holder.tvPos.text = item.position.toString()
-        holder.tvPlayerName.text = item.username
 
-        // Verificar si el usuario tiene la insignia RI+
-        if (item.isCurrentUser) {
-            val tieneInsignia = CondecoracionTracker.getInsigniaRIPlus() != null
-            if (tieneInsignia) {
-                val usernameContainer = LinearLayout(context)
-                usernameContainer.orientation = LinearLayout.HORIZONTAL
-                usernameContainer.gravity = android.view.Gravity.CENTER_VERTICAL
 
-                val usernameView = TextView(context)
-                usernameView.text = item.username
-                usernameView.textSize = 16f
-                usernameView.setTextColor(ContextCompat.getColor(context, R.color.highlight_user_text))
-                usernameView.setTypeface(null, Typeface.BOLD)
+        if (item.hasInsigniaRIPlus) {
 
-                val insigniaImageView = ImageView(context)
-                insigniaImageView.setImageResource(R.drawable.ic_insignia_ri_plus)
-                val layoutParams = LinearLayout.LayoutParams(24, 24)
-                layoutParams.setMargins(8, 0, 0, 0)
-                insigniaImageView.layoutParams = layoutParams
+            val usernameContainer = LinearLayout(context)
+            usernameContainer.orientation = LinearLayout.HORIZONTAL
+            usernameContainer.gravity = android.view.Gravity.CENTER_VERTICAL
 
-                insigniaImageView.setOnClickListener {
+
+            (holder.tvPlayerName.parent as ViewGroup).apply {
+                val index = indexOfChild(holder.tvPlayerName)
+                removeView(holder.tvPlayerName)
+                addView(usernameContainer, index, holder.tvPlayerName.layoutParams)
+            }
+
+
+            val usernameView = TextView(context).apply {
+                text = item.username
+                textSize = 16f
+                val textColor = if (item.isCurrentUser) R.color.highlight_user_text else android.R.color.black
+                setTextColor(ContextCompat.getColor(context, textColor))
+                setTypeface(null, Typeface.BOLD)
+            }
+            usernameContainer.addView(usernameView)
+
+
+            val insigniaImageView = ImageView(context).apply {
+                setImageResource(R.drawable.ic_insignia_ri_plus)
+                val layoutParams = LinearLayout.LayoutParams(36, 36)
+                layoutParams.marginStart = 8
+                this.layoutParams = layoutParams
+                setOnClickListener {
                     android.widget.Toast.makeText(context, "SUPREMUS INTEGRALIS", android.widget.Toast.LENGTH_SHORT).show()
                 }
-
-                usernameContainer.addView(usernameView)
-                usernameContainer.addView(insigniaImageView)
-
-                val parent = holder.tvPlayerName.parent as ViewGroup
-                val index = parent.indexOfChild(holder.tvPlayerName)
-                parent.removeView(holder.tvPlayerName)
-                parent.addView(usernameContainer, index)
             }
+            usernameContainer.addView(insigniaImageView)
+
+        } else {
+
+            holder.tvPlayerName.text = item.username
+            val textColor = if (item.isCurrentUser) R.color.highlight_user_text else android.R.color.black
+            holder.tvPlayerName.setTextColor(ContextCompat.getColor(context, textColor))
+
+            holder.tvPlayerName.setTypeface(null, if (item.isCurrentUser) Typeface.BOLD else Typeface.NORMAL)
         }
+
 
         val countryCode = item.countryCode.lowercase(Locale.ROOT)
         val resId = countryFlagMap[countryCode]
@@ -81,7 +94,7 @@ class IQPlusRankingAdapter(
             holder.ivFlag.setImageResource(R.drawable.ve)
         }
 
-        val iqPlusWithLabel = holder.itemView.context.getString(
+        val iqPlusWithLabel = context.getString(
             R.string.integral_score_label,
             item.iqPlus
         )
@@ -89,33 +102,16 @@ class IQPlusRankingAdapter(
 
 
         if (item.isCurrentUser) {
-
-            holder.tvPlayerName.setTypeface(null, Typeface.BOLD)
-            holder.tvPlayerName.setTextColor(ContextCompat.getColor(context, R.color.blue_primary))
-            holder.tvIQPlus.setTextColor(ContextCompat.getColor(context, R.color.yellow_dark))
-
-
             holder.container.setBackgroundColor(
                 ContextCompat.getColor(context, R.color.highlight_user_background)
             )
-
-
             holder.tvPos.setTextColor(
-                ContextCompat.getColor(context, R.color.highlight_user_text)
-            )
-            holder.tvPlayerName.setTextColor(
                 ContextCompat.getColor(context, R.color.highlight_user_text)
             )
             holder.tvIQPlus.setTextColor(
                 ContextCompat.getColor(context, R.color.highlight_user_text)
             )
         } else {
-
-            holder.tvPlayerName.setTypeface(null, Typeface.NORMAL)
-            holder.tvPlayerName.setTextColor(ContextCompat.getColor(context, android.R.color.black))
-            holder.tvIQPlus.setTextColor(ContextCompat.getColor(context, R.color.blue_primary_dark))
-
-
             val backgroundColor = if (position % 2 == 0)
                 R.color.ranking_item_even
             else
@@ -124,13 +120,9 @@ class IQPlusRankingAdapter(
             holder.container.setBackgroundColor(
                 ContextCompat.getColor(context, backgroundColor)
             )
-
-
             holder.tvPos.setTextColor(ContextCompat.getColor(context, android.R.color.black))
-            holder.tvPlayerName.setTextColor(ContextCompat.getColor(context, android.R.color.black))
             holder.tvIQPlus.setTextColor(ContextCompat.getColor(context, android.R.color.black))
         }
-
 
         when (item.position) {
             1 -> {
@@ -149,7 +141,6 @@ class IQPlusRankingAdapter(
 
         holder.tvIQPlus.setOnClickListener {
             if (item.isCurrentUser && onIQPlusClick != null) {
-
                 holder.tvIQPlus.animate()
                     .scaleX(1.1f)
                     .scaleY(1.1f)
@@ -160,16 +151,13 @@ class IQPlusRankingAdapter(
                             .scaleY(1f)
                             .setDuration(100)
                             .withEndAction {
-
                                 onIQPlusClick.invoke()
                             }
                             .start()
                     }
                     .start()
-
             }
         }
-
     }
 
     override fun getItemCount() = rankingList.size

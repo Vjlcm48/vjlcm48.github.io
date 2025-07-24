@@ -385,9 +385,10 @@ class MainGameActivity : BaseActivity() {
         CondecoracionTracker.verificarYEntregarPines()
         CondecoracionTracker.verificarYActualizarCoronasDeVelocidad(this)
         CondecoracionTracker.verificarYActualizarCondecoracionesTop10(this)
+        CondecoracionTracker.verificarYActualizarCondecoracionesIQ7(this)
+        CondecoracionTracker.verificarYActualizarCondecoracionesTop5Integral(this)
         CondecoracionTracker.verificarYActualizarInsigniaRIPlus(this)
         updateTrophyRedDot()
-
 
         val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
         if (soundEnabled) {
