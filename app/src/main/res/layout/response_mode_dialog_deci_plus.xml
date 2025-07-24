@@ -28,7 +28,7 @@
         android:orientation='horizontal'
         android:gravity='center_vertical'>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id='@+id/btn_seleccion_simple'
             android:layout_width='0dp'
             android:layout_height='wrap_content'
@@ -78,7 +78,7 @@
         android:orientation='horizontal'
         android:gravity='center_vertical'>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id='@+id/btn_escribe_respuesta'
             android:layout_width='0dp'
             android:layout_height='wrap_content'

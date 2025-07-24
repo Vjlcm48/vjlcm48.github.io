@@ -37,7 +37,7 @@
             android:fontFamily="@font/roboto_bold"
             android:layout_marginBottom="16dp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_numeros_plus"
             android:layout_width="271dp"
             android:layout_height="59dp"
@@ -48,7 +48,7 @@
             android:fontFamily="@font/roboto_bold"
             android:layout_marginBottom="16dp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_deci_plus"
             android:layout_width="271dp"
             android:layout_height="59dp"
@@ -59,7 +59,7 @@
             android:fontFamily="@font/roboto_bold"
             android:layout_marginBottom="16dp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_romas"
             android:layout_width="271dp"
             android:layout_height="59dp"
@@ -70,7 +70,7 @@
             android:fontFamily="@font/roboto_bold"
             android:layout_marginBottom="16dp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_alfa_numeros"
             android:layout_width="271dp"
             android:layout_height="59dp"
@@ -81,7 +81,7 @@
             android:fontFamily="@font/roboto_bold"
             android:layout_marginBottom="16dp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_sumaresta"
             android:layout_width="271dp"
             android:layout_height="59dp"
@@ -92,7 +92,7 @@
             android:fontFamily="@font/roboto_bold"
             android:layout_marginBottom="16dp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_mas_plus"
             android:layout_width="271dp"
             android:layout_height="59dp"
@@ -103,7 +103,7 @@
             android:fontFamily="@font/roboto_bold"
             android:layout_marginBottom="16dp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_genio_plus"
             android:layout_width="271dp"
             android:layout_height="59dp"

@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import com.example.sumamente.R
+import com.example.sumamente.ui.utils.MusicManager
 
 class ApexSupremusActivity : BaseActivity()  {
 
@@ -16,6 +17,7 @@ class ApexSupremusActivity : BaseActivity()  {
     private lateinit var btnClose: ImageView
     private lateinit var btnBack: ImageView
     private lateinit var ivApexTrophy: ImageView
+    private var isFinishingByBack = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +54,7 @@ class ApexSupremusActivity : BaseActivity()  {
 
         btnBack.setOnClickListener {
             applyBounceEffect(it) {
+                isFinishingByBack = true
                 finish()
             }
         }
@@ -102,6 +105,28 @@ class ApexSupremusActivity : BaseActivity()  {
         })
 
         animatorSet.start()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val trofeosSigueViva = TrofeosActivity.instanceRef?.get() != null
+        val context = TrofeosActivity.instanceRef?.get()
+        val sonidoActivo = context?.let {
+            val prefs = it.getSharedPreferences("MyPrefs", MODE_PRIVATE)
+            prefs.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+        } ?: true
+
+        if (trofeosSigueViva && sonidoActivo) {
+            MusicManager.resume()
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (!isFinishingByBack) {
+            MusicManager.pause()
+        }
+        isFinishingByBack = false
     }
 
 

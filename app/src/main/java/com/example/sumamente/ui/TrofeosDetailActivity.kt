@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sumamente.R
 import kotlin.math.abs
+import com.example.sumamente.ui.utils.MusicManager
 
 class TrofeosDetailActivity : BaseActivity()  {
 
@@ -22,6 +23,7 @@ class TrofeosDetailActivity : BaseActivity()  {
     private lateinit var btnNext: ImageView
 
     private val pageTransitionDuration = 800L
+    private var isFinishingByBack = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -111,6 +113,7 @@ class TrofeosDetailActivity : BaseActivity()  {
     private fun setupNavigation() {
         btnBack.setOnClickListener {
             applyBounceEffect(it) {
+                isFinishingByBack = true
                 finish()
             }
         }
@@ -217,5 +220,27 @@ class TrofeosDetailActivity : BaseActivity()  {
         })
 
         animatorSet.start()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val trofeosSigueViva = TrofeosActivity.instanceRef?.get() != null
+        val context = TrofeosActivity.instanceRef?.get()
+        val sonidoActivo = context?.let {
+            val prefs = it.getSharedPreferences("MyPrefs", MODE_PRIVATE)
+            prefs.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+        } ?: true
+
+        if (trofeosSigueViva && sonidoActivo) {
+            MusicManager.resume()
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (!isFinishingByBack) {
+            MusicManager.pause()
+        }
+        isFinishingByBack = false
     }
 }

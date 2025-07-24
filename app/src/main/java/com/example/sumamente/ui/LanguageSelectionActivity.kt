@@ -24,46 +24,51 @@ class LanguageSelectionActivity : BaseActivity()  {
     private var selectedLanguageCode: String = "en"
     private val languageButtons = mutableListOf<LinearLayout>()
     private val checkMarks = mutableListOf<ImageView>()
-
-
     private val supportedLanguages by lazy { LanguageManager.getOrderedLanguages(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefers", MODE_PRIVATE)
 
+        loadAndSetInitialLanguageState()
 
-        detectAndSetInitialLanguage()
         setContentView(R.layout.activity_language_selection)
         setupLanguageButtons()
         highlightSelectedLanguage()
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 
-    private fun detectAndSetInitialLanguage() {
+    private fun loadAndSetInitialLanguageState() {
         val isFirstRun = sharedPreferences.getBoolean("is_first_run", true)
-        if (!isFirstRun) return
+        if (isFirstRun) {
 
-        val deviceLanguageCode = resources.configuration.locales[0].language.lowercase()
-        val languageIsSupported = LanguageManager.defaultLanguages.any { it.code == deviceLanguageCode }
+            val deviceLanguageCode = resources.configuration.locales[0].language.lowercase()
+            val languageIsSupported = LanguageManager.defaultLanguages.any { it.code == deviceLanguageCode }
 
-        val languageToSet = if (languageIsSupported) {
+            val languageToSet = if (languageIsSupported) {
+                LanguageManager.saveNewLanguageOrder(this, deviceLanguageCode)
+                deviceLanguageCode
+            } else {
+                "en"
+            }
 
-            LanguageManager.saveNewLanguageOrder(this, deviceLanguageCode)
-            deviceLanguageCode
+            selectedLanguageCode = languageToSet
+            setAppLanguage(languageToSet)
+
+            sharedPreferences.edit {
+                putString("selected_language", selectedLanguageCode)
+                putString("app_display_language", languageToSet)
+                putBoolean("is_first_run", false)
+            }
+
         } else {
-            "en"
-        }
 
-        selectedLanguageCode = languageToSet
-        setAppLanguage(languageToSet)
+            selectedLanguageCode = sharedPreferences.getString("selected_language", "en") ?: "en"
 
-        sharedPreferences.edit {
-            putString("selected_language", selectedLanguageCode)
-            putString("app_display_language", languageToSet)
-            putBoolean("is_first_run", false)
+            setAppLanguage(selectedLanguageCode)
         }
     }
+
 
     private fun setupLanguageButtons() {
         val container = findViewById<LinearLayout>(R.id.language_buttons_container)

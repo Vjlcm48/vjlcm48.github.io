@@ -10,6 +10,7 @@ import android.widget.ImageView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sumamente.R
 import kotlin.math.abs
+import com.example.sumamente.ui.utils.MusicManager
 
 class Los5MejoresActivity : BaseActivity()  {
 
@@ -18,6 +19,7 @@ class Los5MejoresActivity : BaseActivity()  {
     private lateinit var btnClose: ImageView
     private lateinit var btnPrevious: ImageView
     private lateinit var btnNext: ImageView
+    private var isFinishingByBack = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,6 +88,7 @@ class Los5MejoresActivity : BaseActivity()  {
     private fun setupNavigation() {
         btnBack.setOnClickListener {
             applyBounceEffect(it) {
+                isFinishingByBack = true
                 finish()
             }
         }
@@ -172,5 +175,27 @@ class Los5MejoresActivity : BaseActivity()  {
         })
 
         animatorSet.start()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val trofeosSigueViva = TrofeosActivity.instanceRef?.get() != null
+        val context = TrofeosActivity.instanceRef?.get()
+        val sonidoActivo = context?.let {
+            val prefs = it.getSharedPreferences("MyPrefs", MODE_PRIVATE)
+            prefs.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+        } ?: true
+
+        if (trofeosSigueViva && sonidoActivo) {
+            MusicManager.resume()
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (!isFinishingByBack) {
+            MusicManager.pause()
+        }
+        isFinishingByBack = false
     }
 }

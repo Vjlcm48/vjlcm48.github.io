@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sumamente.R
 import java.util.Calendar
 import java.util.Locale
+import com.example.sumamente.ui.utils.MusicManager
 
 class MisCondecoracionesActivity : BaseActivity()  {
 
@@ -23,6 +24,7 @@ class MisCondecoracionesActivity : BaseActivity()  {
     private lateinit var btnClose: ImageView
     private lateinit var adapter: CondecoracionesAdapter
     private val condecoraciones = mutableListOf<Condecoracion>()
+    private var isFinishingByBack = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +70,7 @@ class MisCondecoracionesActivity : BaseActivity()  {
 
         btnBack.setOnClickListener {
             applyBounceEffect(it) {
+                isFinishingByBack = true
                 finish()
             }
         }
@@ -772,6 +775,28 @@ class MisCondecoracionesActivity : BaseActivity()  {
         })
 
         animatorSet.start()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val trofeosSigueViva = TrofeosActivity.instanceRef?.get() != null
+        val context = TrofeosActivity.instanceRef?.get()
+        val sonidoActivo = context?.let {
+            val prefs = it.getSharedPreferences("MyPrefs", MODE_PRIVATE)
+            prefs.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+        } ?: true
+
+        if (trofeosSigueViva && sonidoActivo) {
+            MusicManager.resume()
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (!isFinishingByBack) {
+            MusicManager.pause()
+        }
+        isFinishingByBack = false
     }
 
 }
