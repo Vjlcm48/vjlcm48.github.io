@@ -174,7 +174,7 @@ class LevelsActivitySumaRestaPrincipiante : BaseActivity()  {
                                 MODE_PRIVATE
                             )
                             val storedModeName = sharedPreferencesSumaResta.getString("selectedResponseModeSumaRestaPrincipiante", null)
-                            val storedMode = if (storedModeName != null) ResponseModeSumaResta.valueOf(storedModeName) else null
+                            val storedMode = if (storedModeName != null) ResponseModeSumaRestaPrincipiante.valueOf(storedModeName) else null
 
                             if (storedMode == null) {
                                 showResponseModeDialog(i + 1)
@@ -228,19 +228,17 @@ class LevelsActivitySumaRestaPrincipiante : BaseActivity()  {
         createLevelButtons()
     }
 
-    private fun showInstructions(level: Int, mode: ResponseModeSumaResta? = null) {
+    private fun showInstructions(level: Int, mode: ResponseModeSumaRestaPrincipiante ) {
         val intent = Intent(this, InstructionsActivitySumaRestaPrincipiante::class.java)
         intent.putExtra("LEVEL", level)
-        if (mode != null) {
-            intent.putExtra("RESPONSE_MODE", mode.name)
-        }
+        intent.putExtra("RESPONSE_MODE", mode.name)
         startActivity(intent)
     }
 
     private fun showResponseModeDialog(level: Int) {
         val dialog = ResponseModeDialogSumaRestaPrincipiante(this)
         dialog.setOnResponseModeSelectedListener(object : ResponseModeDialogSumaRestaPrincipiante.OnResponseModeSelectedListenerSumaRestaPrincipiante {
-            override fun onResponseModeSelected(mode: ResponseModeSumaResta) {
+            override fun onResponseModeSelected(mode: ResponseModeSumaRestaPrincipiante) {
                 showInstructions(level, mode)
             }
         })

@@ -173,7 +173,7 @@ class LevelsActivityRomasPrincipiante : BaseActivity()  {
                             }
                             val prefs = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
                             val storedModeName = prefs.getString("selectedResponseModeRomasPrincipiante", null)
-                            val storedMode = if (storedModeName != null) ResponseModeRomas.valueOf(storedModeName) else null
+                            val storedMode = if (storedModeName != null) ResponseModeRomasPrincipiante.valueOf(storedModeName) else null
 
                             if (storedMode == null) {
                                 showResponseModeDialog(i + 1)
@@ -228,19 +228,17 @@ class LevelsActivityRomasPrincipiante : BaseActivity()  {
         createLevelButtons()
     }
 
-    private fun showInstructions(level: Int, mode: ResponseModeRomas? = null) {
+    private fun showInstructions(level: Int, mode: ResponseModeRomasPrincipiante?) {
         val intent = Intent(this, InstructionsActivityRomasPrincipiante::class.java)
         intent.putExtra("LEVEL", level)
-        if (mode != null) {
-            intent.putExtra("RESPONSE_MODE_ROMAS", mode.name)
-        }
+        intent.putExtra("RESPONSE_MODE_ROMAS", mode?.name)
         startActivity(intent)
     }
 
     private fun showResponseModeDialog(level: Int) {
         val dialog = ResponseModeDialogRomasPrincipiante(this)
-        dialog.setOnResponseModeSelectedListener(object : ResponseModeDialogRomasPrincipiante.OnResponseModeSelectedListenerRomas {
-            override fun onResponseModeSelected(mode: ResponseModeRomas) {
+        dialog.setOnResponseModeSelectedListener(object : ResponseModeDialogRomasPrincipiante.OnResponseModeSelectedListenerRomasPrincipiante {
+            override fun onResponseModeSelected(mode: ResponseModeRomasPrincipiante) {
                 showInstructions(level, mode)
             }
         })

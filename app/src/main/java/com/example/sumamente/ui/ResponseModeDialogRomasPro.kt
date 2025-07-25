@@ -22,24 +22,49 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 import com.example.sumamente.R
 
+enum class ResponseModeRomasPro {
+    SIMPLE_SELECTION_ROMAS,
+    TYPE_ANSWER_ROMAS
+}
+
 class ResponseModeDialogRomasPro(context: Context) : AppCompatDialog(context) {
 
-    private var listener: OnResponseModeSelectedListenerRomas? = null
+    private var listener: OnResponseModeSelectedListenerRomasPro? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.response_mode_dialog_romas)
 
         window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
+        setupWindowDimensions()
+        adjustElements()
+        setupButtons()
+    }
 
+    private fun setupWindowDimensions() {
+        val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val displayMetrics = context.resources.displayMetrics
+
+        val screenWidth = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            windowManager.currentWindowMetrics.bounds.width()
+        } else {
+            @Suppress("DEPRECATION")
+            displayMetrics.widthPixels
+        }
+
+        val minWidthDp = 350
+        val minWidthPx = (minWidthDp * displayMetrics.density).toInt()
+        val desiredWidth = maxOf(minWidthPx, (screenWidth * 0.75).toInt())
+        val finalWidth = minOf(desiredWidth, (screenWidth * 0.9).toInt())
         val layoutParams = WindowManager.LayoutParams()
         layoutParams.copyFrom(window?.attributes)
-        layoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT
+        layoutParams.width = finalWidth
         layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
+        layoutParams.gravity = android.view.Gravity.CENTER
         window?.attributes = layoutParams
+    }
 
-        adjustElements()
-
+    private fun setupButtons() {
         val btnSeleccionSimple = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_seleccion_simple_romas)
         val btnEscribeRespuesta = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_escribe_respuesta_romas)
         val checkSeleccionSimple = findViewById<ImageView>(R.id.check_seleccion_simple_romas)
@@ -53,20 +78,18 @@ class ResponseModeDialogRomasPro(context: Context) : AppCompatDialog(context) {
             setStroke(2, Color.BLACK)
         }
 
-        btnSeleccionSimple?.background = buttonBackground
-        btnEscribeRespuesta?.background = buttonBackground
-
-        btnSeleccionSimple?.elevation = 8f
-        btnEscribeRespuesta?.elevation = 8f
-
-        btnSeleccionSimple?.setPadding(50, 20, 50, 20)
-        btnEscribeRespuesta?.setPadding(50, 20, 50, 20)
+        listOf(btnSeleccionSimple, btnEscribeRespuesta).forEach { button ->
+            button?.apply {
+                background = buttonBackground
+                elevation = 8f
+            }
+        }
 
         btnSeleccionSimple?.setOnClickListener {
             animateCheck(checkSeleccionSimple!!)
             checkEscribeRespuesta?.alpha = 0f
             Handler(Looper.getMainLooper()).postDelayed({
-                sendResponseModeToCaller(ResponseModeRomas.SIMPLE_SELECTION_ROMAS)
+                sendResponseModeToCaller(ResponseModeRomasPro.SIMPLE_SELECTION_ROMAS)
             }, 1000)
         }
 
@@ -74,14 +97,13 @@ class ResponseModeDialogRomasPro(context: Context) : AppCompatDialog(context) {
             animateCheck(checkEscribeRespuesta!!)
             checkSeleccionSimple?.alpha = 0f
             Handler(Looper.getMainLooper()).postDelayed({
-                sendResponseModeToCaller(ResponseModeRomas.TYPE_ANSWER_ROMAS)
+                sendResponseModeToCaller(ResponseModeRomasPro.TYPE_ANSWER_ROMAS)
             }, 1000)
         }
 
         infoSeleccionSimple?.setOnClickListener {
             showTooltip(it, R.string.selection_simple_title, R.string.selection_simple_message)
         }
-
         infoEscribeRespuesta?.setOnClickListener {
             showTooltip(it, R.string.write_answer_title, R.string.write_answer_message)
         }
@@ -97,24 +119,21 @@ class ResponseModeDialogRomasPro(context: Context) : AppCompatDialog(context) {
             duration = 600
             interpolator = AccelerateDecelerateInterpolator()
         }
-
         val animatorY = ObjectAnimator.ofFloat(view, "scaleY", 1f).apply {
             duration = 600
             interpolator = AccelerateDecelerateInterpolator()
         }
-
         val animatorAlpha = ObjectAnimator.ofFloat(view, "alpha", 1f).apply {
             duration = 600
             interpolator = AccelerateDecelerateInterpolator()
         }
-
         AnimatorSet().apply {
             playTogether(animatorX, animatorY, animatorAlpha)
             start()
         }
     }
 
-    private fun sendResponseModeToCaller(mode: ResponseModeRomas) {
+    private fun sendResponseModeToCaller(mode: ResponseModeRomasPro) {
         listener?.onResponseModeSelected(mode)
         dismiss()
     }
@@ -122,31 +141,28 @@ class ResponseModeDialogRomasPro(context: Context) : AppCompatDialog(context) {
     private fun showTooltip(anchorView: View, titleResId: Int, messageResId: Int) {
         val inflater = LayoutInflater.from(context)
         val popupView = inflater.inflate(R.layout.dialog_tooltip, anchorView.parent as ViewGroup, false)
-
         val titleTextView = popupView.findViewById<TextView>(R.id.dialog_title)
         val messageTextView = popupView.findViewById<TextView>(R.id.dialog_message)
         titleTextView.text = context.getString(titleResId)
         messageTextView.text = context.getString(messageResId)
-
         val popupWindow = PopupWindow(popupView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT, true)
-
         val closeButton = popupView.findViewById<ImageView>(R.id.close_button)
         closeButton.setOnClickListener { popupWindow.dismiss() }
-
         popupWindow.showAsDropDown(anchorView, 0, -anchorView.height)
     }
 
     private fun adjustElements() {
-        val dialogTitle = findViewById<TextView>(R.id.dialog_title)
-        dialogTitle?.textSize = 20f
-        dialogTitle?.setTextColor(ContextCompat.getColor(context, R.color.black))
+        findViewById<TextView>(R.id.dialog_title)?.apply {
+            textSize = 20f
+            setTextColor(ContextCompat.getColor(context, R.color.black))
+        }
     }
 
-    fun setOnResponseModeSelectedListener(listener: OnResponseModeSelectedListenerRomas?) {
+    fun setOnResponseModeSelectedListener(listener: OnResponseModeSelectedListenerRomasPro?) {
         this.listener = listener
     }
 
-    interface OnResponseModeSelectedListenerRomas {
-        fun onResponseModeSelected(mode: ResponseModeRomas)
+    interface OnResponseModeSelectedListenerRomasPro {
+        fun onResponseModeSelected(mode: ResponseModeRomasPro)
     }
 }

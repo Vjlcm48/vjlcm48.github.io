@@ -22,9 +22,12 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 import com.example.sumamente.R
 
+
+
 class ResponseModeDialogPrincipiante(context: Context) : AppCompatDialog(context) {
 
     private var listener: OnResponseModeSelectedListener? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,14 +35,36 @@ class ResponseModeDialogPrincipiante(context: Context) : AppCompatDialog(context
 
         window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
 
-        val layoutParams = WindowManager.LayoutParams()
-        layoutParams.copyFrom(window?.attributes)
-        layoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT
-        layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
-        window?.attributes = layoutParams
-
+        setupWindowDimensions()
         adjustElements()
+        setupButtons()
+    }
 
+    private fun setupWindowDimensions() {
+        val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val displayMetrics = context.resources.displayMetrics
+
+        val screenWidth = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            windowManager.currentWindowMetrics.bounds.width()
+        } else {
+            @Suppress("DEPRECATION")
+            displayMetrics.widthPixels
+        }
+
+        val minWidthDp = 350
+        val minWidthPx = (minWidthDp * displayMetrics.density).toInt()
+        val desiredWidth = maxOf(minWidthPx, (screenWidth * 0.75).toInt())
+        val finalWidth = minOf(desiredWidth, (screenWidth * 0.9).toInt())
+        val layoutParams = WindowManager.LayoutParams()
+
+        layoutParams.copyFrom(window?.attributes)
+        layoutParams.width = finalWidth
+        layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
+        layoutParams.gravity = android.view.Gravity.CENTER
+        window?.attributes = layoutParams
+    }
+
+    private fun setupButtons() {
         val btnSeleccionSimple = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_seleccion_simple)
         val btnEscribeRespuesta = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_escribe_respuesta)
         val checkSeleccionSimple = findViewById<ImageView>(R.id.check_seleccion_simple)
@@ -53,14 +78,12 @@ class ResponseModeDialogPrincipiante(context: Context) : AppCompatDialog(context
             setStroke(2, Color.BLACK)
         }
 
-        btnSeleccionSimple?.background = buttonBackground
-        btnEscribeRespuesta?.background = buttonBackground
-
-        btnSeleccionSimple?.elevation = 8f
-        btnEscribeRespuesta?.elevation = 8f
-
-        btnSeleccionSimple?.setPadding(50, 20, 50, 20)
-        btnEscribeRespuesta?.setPadding(50, 20, 50, 20)
+        listOf(btnSeleccionSimple, btnEscribeRespuesta).forEach { button ->
+            button?.apply {
+                background = buttonBackground
+                elevation = 8f
+            }
+        }
 
         btnSeleccionSimple?.setOnClickListener {
             animateCheck(checkSeleccionSimple!!)
@@ -86,6 +109,7 @@ class ResponseModeDialogPrincipiante(context: Context) : AppCompatDialog(context
             showTooltip(it, R.string.write_answer_title, R.string.write_answer_message)
         }
     }
+
 
     private fun animateCheck(view: ImageView) {
         view.scaleX = 0f

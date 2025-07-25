@@ -22,46 +22,63 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 import com.example.sumamente.R
 
-
 class ResponseModeDialogAlfaNumerosPro(context: Context) : AppCompatDialog(context) {
 
     private var listener: OnResponseModeSelectedListenerAlfaNumerosPro? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.response_mode_dialog_alfanumeros)
 
-
         window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
-        window?.attributes = WindowManager.LayoutParams().apply {
-            copyFrom(window?.attributes)
-            width = WindowManager.LayoutParams.WRAP_CONTENT
-            height = WindowManager.LayoutParams.WRAP_CONTENT
+        setupWindowDimensions()
+        adjustElements()
+        setupButtons()
+    }
+
+    private fun setupWindowDimensions() {
+        val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val displayMetrics = context.resources.displayMetrics
+
+        val screenWidth = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            windowManager.currentWindowMetrics.bounds.width()
+        } else {
+            @Suppress("DEPRECATION")
+            displayMetrics.widthPixels
         }
 
-        adjustElements()
+        val minWidthDp = 350
+        val minWidthPx = (minWidthDp * displayMetrics.density).toInt()
+        val desiredWidth = maxOf(minWidthPx, (screenWidth * 0.75).toInt())
+        val finalWidth = minOf(desiredWidth, (screenWidth * 0.9).toInt())
+        val layoutParams = WindowManager.LayoutParams()
+        layoutParams.copyFrom(window?.attributes)
+        layoutParams.width = finalWidth
+        layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
+        layoutParams.gravity = android.view.Gravity.CENTER
+        window?.attributes = layoutParams
+    }
 
-        val btnSeleccionSimple      = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_seleccion_simple)
-        val btnEscribeRespuesta     = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_escribe_respuesta)
-        val checkSeleccionSimple    = findViewById<ImageView>(R.id.check_seleccion_simple)
-        val checkEscribeRespuesta   = findViewById<ImageView>(R.id.check_escribe_respuesta)
-        val infoSeleccionSimple     = findViewById<ImageButton>(R.id.info_seleccion_simple)
-        val infoEscribeRespuesta    = findViewById<ImageButton>(R.id.info_escribe_respuesta)
-
+    private fun setupButtons() {
+        val btnSeleccionSimple = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_seleccion_simple)
+        val btnEscribeRespuesta = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_escribe_respuesta)
+        val checkSeleccionSimple = findViewById<ImageView>(R.id.check_seleccion_simple)
+        val checkEscribeRespuesta = findViewById<ImageView>(R.id.check_escribe_respuesta)
+        val infoSeleccionSimple = findViewById<ImageButton>(R.id.info_seleccion_simple)
+        val infoEscribeRespuesta = findViewById<ImageButton>(R.id.info_escribe_respuesta)
 
         val buttonBackground = GradientDrawable().apply {
             setColor(ContextCompat.getColor(context, R.color.blue_light))
             cornerRadius = 30f
             setStroke(2, Color.BLACK)
         }
-        btnSeleccionSimple?.background  = buttonBackground
-        btnEscribeRespuesta?.background = buttonBackground
-        btnSeleccionSimple?.elevation   = 8f
-        btnEscribeRespuesta?.elevation  = 8f
-        btnSeleccionSimple?.setPadding(50, 20, 50, 20)
-        btnEscribeRespuesta?.setPadding(50, 20, 50, 20)
 
+        listOf(btnSeleccionSimple, btnEscribeRespuesta).forEach { button ->
+            button?.apply {
+                background = buttonBackground
+                elevation = 8f
+            }
+        }
 
         btnSeleccionSimple?.setOnClickListener {
             animateCheck(checkSeleccionSimple!!)
@@ -71,7 +88,6 @@ class ResponseModeDialogAlfaNumerosPro(context: Context) : AppCompatDialog(conte
             }, 1000)
         }
 
-
         btnEscribeRespuesta?.setOnClickListener {
             animateCheck(checkEscribeRespuesta!!)
             checkSeleccionSimple?.alpha = 0f
@@ -79,7 +95,6 @@ class ResponseModeDialogAlfaNumerosPro(context: Context) : AppCompatDialog(conte
                 sendResponseModeToCaller(ResponseModeAlfaNumeros.TYPE_ANSWER)
             }, 1000)
         }
-
 
         infoSeleccionSimple?.setOnClickListener {
             showTooltip(it, R.string.selection_simple_title, R.string.selection_simple_message)
@@ -89,46 +104,47 @@ class ResponseModeDialogAlfaNumerosPro(context: Context) : AppCompatDialog(conte
         }
     }
 
-
     private fun animateCheck(view: ImageView) {
-        view.apply {
-            scaleX = 0f
-            scaleY = 0f
-            alpha  = 0f
-            visibility = View.VISIBLE
-        }
-        val animatorX   = ObjectAnimator.ofFloat(view, "scaleX", 1f).setDuration(600)
-        val animatorY   = ObjectAnimator.ofFloat(view, "scaleY", 1f).setDuration(600)
-        val animatorA   = ObjectAnimator.ofFloat(view, "alpha" , 1f).setDuration(600)
-        listOf(animatorX, animatorY, animatorA).forEach {
-            it.interpolator = AccelerateDecelerateInterpolator()
-        }
-        AnimatorSet().apply { playTogether(animatorX, animatorY, animatorA); start() }
-    }
+        view.scaleX = 0f
+        view.scaleY = 0f
+        view.alpha = 0f
+        view.visibility = View.VISIBLE
 
+        val animatorX = ObjectAnimator.ofFloat(view, "scaleX", 1f).apply {
+            duration = 600
+            interpolator = AccelerateDecelerateInterpolator()
+        }
+        val animatorY = ObjectAnimator.ofFloat(view, "scaleY", 1f).apply {
+            duration = 600
+            interpolator = AccelerateDecelerateInterpolator()
+        }
+        val animatorAlpha = ObjectAnimator.ofFloat(view, "alpha", 1f).apply {
+            duration = 600
+            interpolator = AccelerateDecelerateInterpolator()
+        }
+        AnimatorSet().apply {
+            playTogether(animatorX, animatorY, animatorAlpha)
+            start()
+        }
+    }
 
     private fun sendResponseModeToCaller(mode: ResponseModeAlfaNumeros) {
         listener?.onResponseModeSelected(mode)
         dismiss()
     }
 
-
-    private fun showTooltip(anchor: View, titleRes: Int, messageRes: Int) {
-        val popupView = LayoutInflater.from(context)
-            .inflate(R.layout.dialog_tooltip, anchor.parent as ViewGroup, false)
-        popupView.findViewById<TextView>(R.id.dialog_title ).text = context.getString(titleRes)
-        popupView.findViewById<TextView>(R.id.dialog_message).text = context.getString(messageRes)
-
-        val pop = PopupWindow(
-            popupView,
-            WindowManager.LayoutParams.WRAP_CONTENT,
-            WindowManager.LayoutParams.WRAP_CONTENT,
-            true
-        )
-        popupView.findViewById<ImageView>(R.id.close_button).setOnClickListener { pop.dismiss() }
-        pop.showAsDropDown(anchor, 0, -anchor.height)
+    private fun showTooltip(anchorView: View, titleResId: Int, messageResId: Int) {
+        val inflater = LayoutInflater.from(context)
+        val popupView = inflater.inflate(R.layout.dialog_tooltip, anchorView.parent as ViewGroup, false)
+        val titleTextView = popupView.findViewById<TextView>(R.id.dialog_title)
+        val messageTextView = popupView.findViewById<TextView>(R.id.dialog_message)
+        titleTextView.text = context.getString(titleResId)
+        messageTextView.text = context.getString(messageResId)
+        val popupWindow = PopupWindow(popupView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT, true)
+        val closeButton = popupView.findViewById<ImageView>(R.id.close_button)
+        closeButton.setOnClickListener { popupWindow.dismiss() }
+        popupWindow.showAsDropDown(anchorView, 0, -anchorView.height)
     }
-
 
     private fun adjustElements() {
         findViewById<TextView>(R.id.dialog_title)?.apply {
