@@ -12,7 +12,6 @@ import android.os.Looper
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -33,7 +32,7 @@ class UsernameSelectionActivity : BaseActivity()  {
         findViewById<ImageView>(R.id.icon)
         val appName = findViewById<TextView>(R.id.app_name)
         val usernameInput = findViewById<EditText>(R.id.username_input)
-        val btnAccept = findViewById<Button>(R.id.btn_accept)
+        val btnAccept = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_accept)
         val checkIcon = findViewById<ImageView>(R.id.check_icon)
         val errorMessage = findViewById<TextView>(R.id.error_message)
         val mediaPlayer = MediaPlayer.create(this, R.raw.clicbotones)

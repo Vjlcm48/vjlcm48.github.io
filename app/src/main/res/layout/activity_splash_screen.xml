@@ -8,7 +8,7 @@
     tools:context=".ui.SplashScreenActivity">
 
     <TextView
-        android:id="@+id/company_name_initial"
+        android:id="@+id/companyNameInitial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/company_name"
@@ -22,18 +22,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/logo_sumamente"
+        android:id="@+id/logoSumamente"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:src="@drawable/sumamentelt"
         android:alpha="0"
-        app:layout_constraintBottom_toTopOf="@+id/text_sumamente"
+        app:layout_constraintBottom_toTopOf="@+id/textSumamente"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:contentDescription="@string/app_name" />
 
     <TextView
-        android:id="@+id/text_sumamente"
+        android:id="@+id/textSumamente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_bold"
@@ -48,13 +48,14 @@
         app:layout_constraintVertical_bias="0.45" />
 
     <LinearLayout
-        android:id="@+id/attribution_layout"
+        android:id="@+id/attributionLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:alpha="0"
-        app:layout_constraintTop_toBottomOf="@+id/text_sumamente"
-        app:layout_constraintEnd_toEndOf="@+id/text_sumamente">
+        app:layout_constraintTop_toBottomOf="@+id/textSumamente"
+        app:layout_constraintEnd_toEndOf="@+id/textSumamente"
+        app:layout_constraintStart_toStartOf="@+id/textSumamente">
 
         <TextView
             android:layout_width="wrap_content"
@@ -75,7 +76,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tech_tagline"
+        android:id="@+id/techTagline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"

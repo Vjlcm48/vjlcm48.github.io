@@ -210,7 +210,7 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_entendido"
         android:layout_width="271dp"
         android:layout_height="59dp"

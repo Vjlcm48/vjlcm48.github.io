@@ -8,7 +8,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import com.example.sumamente.R
@@ -151,7 +150,7 @@ class ClassificationActivity : BaseActivity() {
         dialog.setContentView(R.layout.dialog_classification_rules)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        val btnEntendido = dialog.findViewById<Button>(R.id.btn_entendido)
+        val btnEntendido = dialog.findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_entendido)
         btnEntendido.setOnClickListener {
             applyBounceEffect(it) {
                 dialog.dismiss()

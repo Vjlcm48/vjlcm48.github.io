@@ -1,19 +1,28 @@
 package com.example.sumamente.ui
 
+import android.content.Context
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sumamente.R
-
+import java.io.File
+import java.io.FileOutputStream
+import java.util.Locale
 
 class CondecoracionesAdapter(
     private val condecoraciones: List<Condecoracion>,
     private val onImageClick: (Condecoracion) -> Unit,
-
-    ) : RecyclerView.Adapter<CondecoracionesAdapter.CondecoracionViewHolder>() {
+) : RecyclerView.Adapter<CondecoracionesAdapter.CondecoracionViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CondecoracionViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -35,6 +44,7 @@ class CondecoracionesAdapter(
         private val redDotSmall: View = itemView.findViewById(R.id.red_dot_small)
         private val tvFecha: TextView = itemView.findViewById(R.id.tv_condecoracion_fecha)
         private val redDotTitulo: View = itemView.findViewById(R.id.red_dot_titulo)
+        private val btnShare: ImageView = itemView.findViewById(R.id.btn_share_condecoracion)
 
         fun bind(condecoracion: Condecoracion) {
             imgCondecoracion.setImageResource(condecoracion.imagen)
@@ -145,7 +155,6 @@ class CondecoracionesAdapter(
             }
 
             imgCondecoracion.setOnClickListener {
-
                 when (condecoracion.tipo) {
                     TipoCondecoracion.APEX -> {
                         val apex = CondecoracionTracker.getApexSupremus()
@@ -155,11 +164,76 @@ class CondecoracionesAdapter(
                             if (pos != RecyclerView.NO_POSITION) notifyItemChanged(pos)
                         }
                     }
-
                     else -> {}
                 }
                 onImageClick(condecoracion)
             }
+
+            btnShare.setOnClickListener {
+                val context = itemView.context
+
+                val fileName = "shared_image_${condecoracion.nombre.lowercase(Locale.getDefault())}.png"
+                val imageUri = getDrawableImageUri(context, condecoracion.imagen, fileName)
+
+                if (imageUri == null) {
+                    Toast.makeText(context, context.getString(R.string.error_share_image), Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
+                val appPackageName = context.packageName
+                val playStoreLink = "https://play.google.com/store/apps/details?id=$appPackageName"
+                val shareMessage = "${getRandomShareMessage(context)}\n\n$playStoreLink"
+                val subject = context.getString(R.string.app_name)
+
+                val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                    type = "image/png"
+                    putExtra(Intent.EXTRA_STREAM, imageUri)
+                    putExtra(Intent.EXTRA_TEXT, shareMessage)
+                    putExtra(Intent.EXTRA_SUBJECT, subject)
+                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                }
+                context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.share)))
+            }
         }
+    }
+
+    private fun getDrawableImageUri(context: Context, drawableId: Int, fileName: String): Uri? {
+        return try {
+            val drawable = AppCompatResources.getDrawable(context, drawableId)
+
+            if (drawable is BitmapDrawable) {
+                val bitmap = drawable.bitmap
+
+                val cachePath = File(context.cacheDir, "images/")
+                cachePath.mkdirs()
+                val file = File(cachePath, fileName)
+                val fileOutputStream = FileOutputStream(file)
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream)
+                fileOutputStream.close()
+
+                FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", file)
+            } else {
+                null
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+    private val shareMessages: List<Int> by lazy {
+        listOf(
+            R.string.share_dare_1,
+            R.string.share_challenge_2,
+            R.string.share_question_3,
+            R.string.share_community_4,
+            R.string.share_intensity_5,
+            R.string.share_progress_6,
+            R.string.share_emotion_7
+        )
+    }
+
+    private fun getRandomShareMessage(context: Context): String {
+        return context.getString(shareMessages.random())
     }
 }

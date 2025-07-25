@@ -46,7 +46,6 @@
             android:elevation="7dp">
 
             <TextView
-                android:id="@+id/tv_game_name_progreso"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"

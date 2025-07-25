@@ -7,7 +7,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -46,7 +45,7 @@ class InstructionsActivityMasPlusPro : BaseActivity()  {
         setContentView(R.layout.activity_instructions_mas_plus)
 
         val btnClose = findViewById<ImageView>(R.id.btn_close)
-        val btnStart = findViewById<Button>(R.id.btn_start)
+        val btnStart = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_start)
         val tvInstructions = findViewById<TextView>(R.id.tv_instructions)
         val tvLevel = findViewById<TextView>(R.id.tv_level)
         val tvTimeLimit = findViewById<TextView>(R.id.tv_time_limit)

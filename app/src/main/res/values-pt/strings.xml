@@ -479,9 +479,9 @@
     <string name="notifications_disabled">Notificações desativadas</string>
     <string name="ads_enabled">Publicidade ativada</string>
     <string name="ads_disabled">Publicidade desativada</string>
-    <string name="share_with_friends">Compartilhar com amigos selecionado</string>
-    <string name="error_time_limit_not_found">Limite de tempo para o nível %1$d não encontrado</string>
 
+
+    <string name="error_time_limit_not_found">Limite de tempo para o nível %1$d não encontrado</string>
 
 
     <string name="toast_select_option">Selecione pelo menos uma opção</string>
@@ -1283,5 +1283,17 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
         Ao aparecer nos 9 rankings do SumaMente você demonstrou seu domínio completo de todas as disciplinas matemáticas.
         Esta insignia SUPREMUS INTEGRALIS marca sua entrada na elite integral.</string>
 
+    <string name="share_message">Olá! Recomendo este aplicativo incrível para treinar sua mente: SumaMente.\n\nBaixe aqui:\n</string>
+    <string name="share_chooser_title">Compartilhar SumaMente via…</string>
+
+    <string name="share_dare_1">Esta conquista no SumaMente foi difícil, mas a recompensa vale a pena. Eu te desafio a tentar me igualar! 😉</string>
+    <string name="share_challenge_2">Desafio concluído no SumaMente! 🏆 Você acha que sua mente está à altura do desafio? Vá em frente e prove!</string>
+    <string name="share_question_3">Existe sensação melhor que a de uma conquista? Isto é o SumaMente. Experimente e me diga como se saiu!</string>
+    <string name="share_community_4">Novo nível de concentração desbloqueado! 😎 Quem topa o próximo desafio no SumaMente?</string>
+    <string name="share_intensity_5">Meu cérebro está pegando fogo! 🔥 Esta conquista é a prova. Que ótimo exercício mental é o SumaMente!</string>
+    <string name="share_progress_6">É assim que o progresso se parece. 💪 Se você gosta de desafios que te fazem pensar, tem que experimentar o SumaMente.</string>
+    <string name="share_emotion_7">Consegui! 🚀 Desbloquear isto no SumaMente é uma sensação incrível. Totalmente recomendado se você gosta de desafios!</string>
+
+    <string name="error_share_image">Erro ao compartilhar a condecoração</string>
 
 </resources>

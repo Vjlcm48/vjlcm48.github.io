@@ -482,7 +482,8 @@
     <string name="notifications_disabled">Notifications disabled</string>
     <string name="ads_enabled">Ads enabled</string>
     <string name="ads_disabled">Ads disabled</string>
-    <string name="share_with_friends">Share with friends selected</string>
+
+
     <string name="error_time_limit_not_found">Time limit not found for level %1$d</string>
 
 
@@ -1430,5 +1431,17 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
         By appearing in all 9 SumaMente rankings you have demonstrated complete mastery of all mathematical disciplines.
         This SUPREMUS INTEGRALIS badge marks your entry into the integral elite.</string>
 
+    <string name="share_message">Hello! I recommend this incredible app to train your mind: SumaMente.\n\nDownload it here:\n</string>
+    <string name="share_chooser_title">Share SumaMente via…</string>
+
+    <string name="share_dare_1">This achievement in SumaMente was tough, but the reward is worth it. I dare you to try and match it! 😉</string>
+    <string name="share_challenge_2">Challenge complete in SumaMente! 🏆 Think your mind is up to the task? Go on and prove it!</string>
+    <string name="share_question_3">Is there a better feeling than achievement? This is SumaMente. Give it a try and let me know how you do!</string>
+    <string name="share_community_4">New level of focus unlocked! 😎 Who\'s up for the next challenge in SumaMente?</string>
+    <string name="share_intensity_5">My brain is on fire! 🔥 This achievement is proof. What a great mental workout SumaMente is!</string>
+    <string name="share_progress_6">This is what progress looks like. 💪 If you like challenges that make you think, you have to try SumaMente.</string>
+    <string name="share_emotion_7">I did it! 🚀 Unlocking this in SumaMente feels incredible. Totally recommended if you like a good challenge!</string>
+
+    <string name="error_share_image">Error sharing the achievement</string>
 
 </resources>

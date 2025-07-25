@@ -484,9 +484,9 @@
     <string name="notifications_disabled">Benachrichtigungen deaktiviert</string>
     <string name="ads_enabled">Werbung aktiviert</string>
     <string name="ads_disabled">Werbung deaktiviert</string>
-    <string name="share_with_friends">Mit Freunden teilen ausgewählt</string>
-    <string name="error_time_limit_not_found">Zeitlimit für Level %1$d nicht gefunden</string>
 
+
+    <string name="error_time_limit_not_found">Zeitlimit für Level %1$d nicht gefunden</string>
 
 
     <string name="toast_select_option">Wähle mindestens eine Option</string>
@@ -1370,5 +1370,17 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
         Beherrschung aller mathematischen Disziplinen bewiesen. Dieses SUPREMUS INTEGRALIS-Abzeichen
         markiert deinen Eintritt in die integrale Elite.</string>
 
+    <string name="share_message">Hallo! Ich empfehle dir diese unglaubliche App, um deinen Geist zu trainieren: SumaMente.\n\nLade sie hier herunter:\n</string>
+    <string name="share_chooser_title">SumaMente teilen über…</string>
+
+    <string name="share_dare_1">Diese Errungenschaft in SumaMente war hart, aber die Belohnung ist es wert. Ich fordere dich heraus, es mir gleichzutun! 😉</string>
+    <string name="share_challenge_2">Herausforderung in SumaMente gemeistert! 🏆 Glaubst du, dein Verstand ist der Aufgabe gewachsen? Beweise es!</string>
+    <string name="share_question_3">Gibt es ein besseres Gefühl als Erfolg? Das ist SumaMente. Probier es aus und sag mir, wie es läuft!</string>
+    <string name="share_community_4">Neues Konzentrationslevel freigeschaltet! 😎 Wer ist bei der nächsten Herausforderung in SumaMente dabei?</string>
+    <string name="share_intensity_5">Mein Gehirn brennt! 🔥 Diese Leistung ist der Beweis. Was für ein großartiges mentales Training SumaMente ist!</string>
+    <string name="share_progress_6">So sieht Fortschritt aus. 💪 Wenn du Herausforderungen magst, die dich zum Nachdenken anregen, musst du SumaMente ausprobieren.</string>
+    <string name="share_emotion_7">Ich hab\'s geschafft! 🚀 Das in SumaMente freizuschalten, fühlt sich unglaublich an. Absolut empfehlenswert, wenn du Herausforderungen magst!</string>
+
+    <string name="error_share_image">Fehler beim Teilen der Auszeichnung</string>
 
 </resources>

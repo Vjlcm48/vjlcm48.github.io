@@ -18,7 +18,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
@@ -103,7 +102,7 @@ class MainGameActivity : BaseActivity() {
         locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
         profileText = findViewById(R.id.profile_text)
 
-        val newGameButton = findViewById<Button>(R.id.new_game_button)
+        val newGameButton = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.new_game_button)
         val homeIcon = findViewById<ImageView>(R.id.home_icon)
         val statisticsIcon = findViewById<ImageView>(R.id.statistics_icon)
         val settingsIcon = findViewById<ImageView>(R.id.settings_icon)

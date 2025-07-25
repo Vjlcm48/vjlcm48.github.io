@@ -1,7 +1,7 @@
 [versions]
 agp = "8.11.1"
 constraintlayoutVersion = "2.2.0"
-firebaseBom = "33.16.0"
+firebaseBom = "34.0.0"
 gson = "2.13.1"
 kotlin = "2.2.0"
 coreKtx = "1.16.0"

@@ -13,7 +13,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.view.animation.AccelerateDecelerateInterpolator
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.PopupWindow
@@ -46,8 +45,8 @@ class ResponseModeDialogSumaResta(context: Context) : AppCompatDialog(context) {
 
         adjustElements()
 
-        val btnSeleccionSimple = findViewById<Button>(R.id.btn_seleccion_simple)
-        val btnEscribeRespuesta = findViewById<Button>(R.id.btn_escribe_respuesta)
+        val btnSeleccionSimple = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_seleccion_simple)
+        val btnEscribeRespuesta = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_escribe_respuesta)
         val checkSeleccionSimple = findViewById<ImageView>(R.id.check_seleccion_simple)
         val checkEscribeRespuesta = findViewById<ImageView>(R.id.check_escribe_respuesta)
         val infoSeleccionSimple = findViewById<ImageButton>(R.id.info_seleccion_simple)

@@ -33,7 +33,7 @@
             android:fontFamily="@font/roboto_bold"
             android:layout_marginBottom="24dp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_edit_username"
             android:layout_width="match_parent"
             android:layout_height="59dp"
@@ -47,7 +47,7 @@
             android:layout_marginBottom="16dp"
             android:contentDescription="@string/edit_username_desc" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_edit_flag"
             android:layout_width="match_parent"
             android:layout_height="59dp"

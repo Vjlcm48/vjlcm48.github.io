@@ -23,8 +23,8 @@ class NotificationsActivity : BaseActivity()  {
 
         findViewById<ImageView>(R.id.icon)
         val appName = findViewById<TextView>(R.id.app_name)
-        val btnAllow = findViewById<Button>(R.id.btn_allow)
-        val btnDeny = findViewById<Button>(R.id.btn_deny)
+        val btnAllow = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_allow)
+        val btnDeny = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_deny)
         val mediaPlayer = MediaPlayer.create(this, R.raw.clicbotones)
 
         val colorAnimator = ValueAnimator.ofArgb(

@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:minWidth="300dp"
         android:minHeight="300dp"
         android:layout_gravity="center"
@@ -21,8 +21,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
 
             <TextView
                 android:id="@+id/tv_titulo_imagen"
@@ -40,14 +41,15 @@
             <com.github.chrisbanes.photoview.PhotoView
                 android:id="@+id/img_ampliada"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:layout_gravity="center"
                 android:contentDescription="@string/condecoracion_image"
                 android:scaleType="fitCenter"
                 tools:visibility="visible" />
 
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_cerrar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

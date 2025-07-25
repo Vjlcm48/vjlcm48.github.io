@@ -193,7 +193,7 @@
                 android:drawablePadding="8dp"
                  />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_entendido"
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"

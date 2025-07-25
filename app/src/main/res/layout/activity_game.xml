@@ -166,7 +166,7 @@
             android:layout_marginEnd="4dp"
             android:importantForAutofill="no"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_submit_answer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -189,7 +189,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:rowCount="2">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_answer_1"
             android:layout_width="140dp"
             android:layout_height="100dp"
@@ -203,7 +203,7 @@
             android:text="@string/respuesta_1"
             android:visibility="gone" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_answer_2"
             android:layout_width="140dp"
             android:layout_height="100dp"
@@ -217,7 +217,7 @@
             android:text="@string/respuesta_2"
             android:visibility="gone" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_answer_3"
             android:layout_width="140dp"
             android:layout_height="100dp"
@@ -231,7 +231,7 @@
             android:text="@string/respuesta_3"
             android:visibility="gone" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_answer_4"
             android:layout_width="140dp"
             android:layout_height="100dp"

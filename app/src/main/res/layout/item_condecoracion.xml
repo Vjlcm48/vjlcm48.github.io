@@ -101,6 +101,20 @@
                 android:textSize="14sp"
                 tools:text="@string/logro_pin_invictus" />
 
+            <ImageView
+                android:id="@+id/btn_share_condecoracion"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="4dp"
+                android:contentDescription="@string/share"
+                android:src="@drawable/ic_share"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                app:tint="@color/blue_primary_dark"/>
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

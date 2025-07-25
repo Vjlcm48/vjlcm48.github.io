@@ -15,7 +15,6 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.RelativeLayout
@@ -59,13 +58,13 @@ class ResetProgressActivity : BaseActivity()  {
 
         setContentView(R.layout.activity_reset_progress)
 
-        val btnNumerosPlus = findViewById<Button>(R.id.btn_numeros_plus)
-        val btnDeciPlus = findViewById<Button>(R.id.btn_deci_plus)
-        val btnRomas = findViewById<Button>(R.id.btn_romas)
-        val btnAlfaNumeros = findViewById<Button>(R.id.btn_alfa_numeros)
-        val btnSumaresta = findViewById<Button>(R.id.btn_sumaresta)
-        val btnMasPlus = findViewById<Button>(R.id.btn_mas_plus)
-        val btnGenioPlus = findViewById<Button>(R.id.btn_genio_plus)
+        val btnNumerosPlus = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_numeros_plus)
+        val btnDeciPlus = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_deci_plus)
+        val btnRomas = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_romas)
+        val btnAlfaNumeros = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_alfa_numeros)
+        val btnSumaresta = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_sumaresta)
+        val btnMasPlus = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_mas_plus)
+        val btnGenioPlus = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_genio_plus)
         val closeButton = findViewById<ImageView>(R.id.closeButton)
 
         val alfaText = getString(R.string.text_alfa)
@@ -301,7 +300,7 @@ class ResetProgressActivity : BaseActivity()  {
         val dialogView = layoutInflater.inflate(R.layout.dialog_reset_options, null)
         val checkboxResetScore = dialogView.findViewById<CheckBox>(R.id.checkbox_reset_score)
         val checkboxResetResponseMode = dialogView.findViewById<CheckBox>(R.id.checkbox_reset_response_mode)
-        val buttonAccept = dialogView.findViewById<Button>(R.id.button_accept)
+        val buttonAccept = dialogView.findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.button_accept)
         val closeButtonDialog = dialogView.findViewById<ImageView>(R.id.closeButtonDialog)
 
         val alertDialog = AlertDialog.Builder(this)

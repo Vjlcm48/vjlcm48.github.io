@@ -244,7 +244,7 @@ class HelpTutorialActivityDeciPlus : BaseActivity()  {
     private fun simulateHandInfoIcons() {
         val infoSimple = findViewById<ImageButton>(R.id.info_seleccion_simple)
         val infoType = findViewById<ImageButton>(R.id.info_escribe_respuesta)
-        val btnSeleccionSimple = findViewById<Button>(R.id.btn_seleccion_simple)
+        val btnSeleccionSimple = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_seleccion_simple)
 
         infoSimple.visibility = View.VISIBLE
         infoType.visibility = View.VISIBLE

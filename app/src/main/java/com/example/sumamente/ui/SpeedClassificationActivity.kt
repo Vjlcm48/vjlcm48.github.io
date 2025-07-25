@@ -47,7 +47,6 @@ class SpeedClassificationActivity : BaseActivity()  {
 
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
 
-
         initViews()
         setupButtons()
 

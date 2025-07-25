@@ -13,7 +13,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.view.animation.AccelerateDecelerateInterpolator
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.PopupWindow
@@ -41,8 +40,8 @@ class ResponseModeDialogRomasPrincipiante(context: Context) : AppCompatDialog(co
 
         adjustElements()
 
-        val btnSeleccionSimple = findViewById<Button>(R.id.btn_seleccion_simple_romas)
-        val btnEscribeRespuesta = findViewById<Button>(R.id.btn_escribe_respuesta_romas)
+        val btnSeleccionSimple = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_seleccion_simple_romas)
+        val btnEscribeRespuesta = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_escribe_respuesta_romas)
         val checkSeleccionSimple = findViewById<ImageView>(R.id.check_seleccion_simple_romas)
         val checkEscribeRespuesta = findViewById<ImageView>(R.id.check_escribe_respuesta_romas)
         val infoSeleccionSimple = findViewById<ImageButton>(R.id.info_seleccion_simple_romas)

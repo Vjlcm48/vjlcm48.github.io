@@ -26,11 +26,9 @@ object MusicManager {
         mediaPlayer?.takeIf { it.isPlaying }?.pause()
     }
 
-
     fun resume() {
         mediaPlayer?.takeIf { !it.isPlaying }?.start()
     }
-
 
     fun stop() {
         try { mediaPlayer?.stop() } catch (_: Exception) {}
@@ -41,6 +39,4 @@ object MusicManager {
 
     fun isPlaying(): Boolean = mediaPlayer?.isPlaying == true
 
-
-    fun isInitialized(): Boolean = mediaPlayer != null
 }

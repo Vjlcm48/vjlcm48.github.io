@@ -235,7 +235,7 @@
             android:autofillHints="textNumber"
             />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_send_answer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -334,7 +334,7 @@
         app:layout_constraintTop_toTopOf="@id/tv_final_points"
         app:layout_constraintStart_toEndOf="@id/tv_final_points"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_understood"
         android:layout_width="200dp"
         android:layout_height="70dp"
@@ -348,7 +348,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_repeat"
         android:layout_width="200dp"
         android:layout_height="70dp"

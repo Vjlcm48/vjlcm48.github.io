@@ -87,7 +87,7 @@
             app:layout_constraintTop_toBottomOf="@id/bell_icon"
             tools:ignore="AccessibilityIssue" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_allow"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/notification_text" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_deny"
             android:layout_width="250dp"
             android:layout_height="wrap_content"

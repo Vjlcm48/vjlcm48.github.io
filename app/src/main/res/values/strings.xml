@@ -497,7 +497,9 @@
     <string name="notifications_disabled">Notificaciones desactivadas</string>
     <string name="ads_enabled">Publicidad activada</string>
     <string name="ads_disabled">Publicidad desactivada</string>
-    <string name="share_with_friends">Compartir con amigos seleccionado</string>
+
+
+
     <string name="error_time_limit_not_found">No se encontró el límite de tiempo para el nivel %1$d</string>
 
     <string name="text_alfa" translatable="false">ALFA</string>
@@ -1457,5 +1459,17 @@
         en los 9 rankings de SumaMente has demostrado tu dominio completo en todas las disciplinas matemáticas.
         Esta insignia SUPREMUS INTEGRALIS marca tu entrada a la élite integral.</string>
 
+    <string name="share_message">¡Hola! Te recomiendo esta increíble app para entrenar tu mente: SumaMente.\n\nDescárgala aquí:\n</string>
+    <string name="share_chooser_title">Compartir SumaMente vía…</string>
 
-</resources>
+    <string name="share_dare_1">Este logro en SumaMente fue difícil, pero la recompensa lo vale. ¡Te reto a que intentes igualarlo! 😉</string>
+    <string name="share_challenge_2">¡Reto superado en SumaMente! 🏆 ¿Crees que tu mente está a la altura? ¡Anímate a demostrarlo!</string>
+    <string name="share_question_3">¿Hay algo mejor que la sensación de un logro? Esto es SumaMente. ¡Anímate a probarlo y me cuentas!</string>
+    <string name="share_community_4">¡Nuevo nivel de concentración desbloqueado! 😎 ¿Quién se apunta al siguiente reto en SumaMente?</string>
+    <string name="share_intensity_5">¡Mi cerebro está que arde! 🔥 Este logro es la prueba. ¡Qué gran ejercicio mental es SumaMente!</string>
+    <string name="share_progress_6">Así se ve el progreso. 💪 Si te gustan los retos que te hacen pensar, tienes que probar SumaMente.</string>
+    <string name="share_emotion_7">¡Lo conseguí! 🚀 Desbloquear esto en SumaMente se siente increíble. ¡Totalmente recomendado si te gustan los desafíos!</string>
+
+    <string name="error_share_image">Error al compartir la condecoración</string>
+
+    </resources>

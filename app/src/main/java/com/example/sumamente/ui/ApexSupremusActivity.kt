@@ -62,23 +62,39 @@ class ApexSupremusActivity : BaseActivity()  {
 
     private fun animateTrophy() {
 
-        val rotateAnimation = ObjectAnimator.ofFloat(ivApexTrophy, "rotationY", 0f, 360f).apply {
-            duration = 3000
-            repeatCount = 0
-        }
-
-        val scaleXAnimation = ObjectAnimator.ofFloat(ivApexTrophy, "scaleX", 0.8f, 1.1f, 1.0f).apply {
+        val fadeIn = ObjectAnimator.ofFloat(ivApexTrophy, "alpha", 0f, 1f).apply {
             duration = 1500
         }
 
-        val scaleYAnimation = ObjectAnimator.ofFloat(ivApexTrophy, "scaleY", 0.8f, 1.1f, 1.0f).apply {
+        val scaleUpX = ObjectAnimator.ofFloat(ivApexTrophy, "scaleX", 0.5f, 1.0f).apply {
             duration = 1500
         }
 
-        AnimatorSet().apply {
-            playTogether(rotateAnimation, scaleXAnimation, scaleYAnimation)
-            start()
+        val scaleUpY = ObjectAnimator.ofFloat(ivApexTrophy, "scaleY", 0.5f, 1.0f).apply {
+            duration = 1500
         }
+
+        val appearanceAnimatorSet = AnimatorSet().apply {
+            playTogether(fadeIn, scaleUpX, scaleUpY)
+        }
+
+        val pulseX = ObjectAnimator.ofFloat(ivApexTrophy, "scaleX", 1.0f, 1.03f, 1.0f).apply {
+            duration = 4000
+            repeatCount = ObjectAnimator.INFINITE
+        }
+
+        val pulseY = ObjectAnimator.ofFloat(ivApexTrophy, "scaleY", 1.0f, 1.03f, 1.0f).apply {
+            duration = 4000
+            repeatCount = ObjectAnimator.INFINITE
+        }
+
+        val pulseAnimatorSet = AnimatorSet().apply {
+            playTogether(pulseX, pulseY)
+        }
+
+        val finalAnimatorSet = AnimatorSet()
+        finalAnimatorSet.play(appearanceAnimatorSet).before(pulseAnimatorSet)
+        finalAnimatorSet.start()
     }
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {

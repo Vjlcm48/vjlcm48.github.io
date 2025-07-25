@@ -59,7 +59,6 @@
             </ScrollView>
 
             <LinearLayout
-                android:id="@+id/btn_continue"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginTop="24dp"

@@ -94,7 +94,21 @@ class SettingsActivity : BaseActivity()  {
 
         linearShare.setOnClickListener { view ->
             applyBounceEffect(view) {
-                Toast.makeText(this, getString(R.string.share_with_friends), Toast.LENGTH_SHORT).show()
+
+                val messageTemplate = getString(R.string.share_message)
+                val chooserTitle = getString(R.string.share_chooser_title)
+                val appPackageName = packageName
+                val playStoreLink = "https://play.google.com/store/apps/details?id=$appPackageName"
+                val shareMessage = "$messageTemplate$playStoreLink"
+
+                val sendIntent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, shareMessage)
+                    type = "text/plain"
+                }
+
+                val shareIntent = Intent.createChooser(sendIntent, chooserTitle)
+                startActivity(shareIntent)
             }
         }
 

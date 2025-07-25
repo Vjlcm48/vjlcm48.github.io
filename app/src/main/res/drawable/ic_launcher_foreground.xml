@@ -4,7 +4,16 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M48 12h12v24h24v12h-24v24h-12v-24h-24v-12h24z"/>
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:scaleX="0.9"
+        android:scaleY="0.9">
+        <group android:name="root_group">
+            <path
+                android:name="robot_head"
+                android:fillColor="#FFFFFF"
+                android:pathData="M60.7,42.5 L60.7,30.2 C60.7,28.8 59.6,27.7 58.2,27.7 L49.8,27.7 C48.4,27.7 47.3,28.8 47.3,30.2 L47.3,42.5 C44.6,43.6 42.5,46.2 42.5,49.3 L75.5,49.3 C75.5,46.2 73.4,43.6 70.7,42.5 M51.2,35.4 L51.2,32.6 C51.2,32.1 51.6,31.7 52.1,31.7 L55.9,31.7 C56.4,31.7 56.8,32.1 56.8,32.6 L56.8,35.4 M79.5,60.5 L79.5,52.2 L38.5,52.2 L38.5,60.5 L34.5,60.5 L34.5,79.5 C34.5,80.9 35.6,82 37,82 L47.8,82 L47.8,87.5 C47.8,88.9 48.9,90 50.3,90 L67.7,90 C69.1,90 70.2,88.9 70.2,87.5 L70.2,82 L81,82 C82.4,82 83.5,80.9 83.5,79.5 L83.5,60.5 L79.5,60.5 Z" />
+        </group>
+    </group>
 </vector>

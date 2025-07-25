@@ -258,7 +258,7 @@ class HelpTutorialActivityRomas : BaseActivity()  {
     private fun simulateHandInfoIcons() {
         val infoSimple = findViewById<ImageButton>(R.id.info_seleccion_simple_romas)
         val infoType = findViewById<ImageButton>(R.id.info_escribe_respuesta_romas)
-        val btnEscribeRespuesta = findViewById<Button>(R.id.btn_escribe_respuesta_romas)
+        val btnEscribeRespuesta = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_escribe_respuesta_romas)
 
         infoSimple.visibility = View.VISIBLE
         infoType.visibility = View.VISIBLE
@@ -480,7 +480,7 @@ class HelpTutorialActivityRomas : BaseActivity()  {
 
         val answerInputLayout = findViewById<LinearLayout>(R.id.answer_input_layout)
         val etUserAnswer = findViewById<EditText>(R.id.et_user_answer)
-        val btnSendAnswer = findViewById<Button>(R.id.btn_send_answer)
+        val btnSendAnswer = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_send_answer)
 
         answerInputLayout.visibility = View.VISIBLE
         etUserAnswer.visibility = View.VISIBLE

@@ -34,7 +34,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/row_principiante"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -42,7 +41,6 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/tv_name_principiante"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -63,7 +61,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/row_avanzado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -71,7 +68,6 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/tv_name_avanzado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -92,7 +88,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/row_pro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -100,7 +95,6 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/tv_name_pro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"

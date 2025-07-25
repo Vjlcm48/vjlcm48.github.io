@@ -6,7 +6,7 @@
     android:viewportWidth="512"
     android:viewportHeight="512">
 
-    <!-- Sombra exterior de la estrella -->
+
     <group
         android:translateX="261"
         android:translateY="261"
