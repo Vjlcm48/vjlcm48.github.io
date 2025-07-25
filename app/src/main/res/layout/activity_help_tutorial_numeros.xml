@@ -275,15 +275,6 @@
             android:visibility="gone" />
     </GridLayout>
 
-    <ImageView
-        android:id="@+id/check_seleccion_simple_hn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/ic_check_green"
-        android:contentDescription="@string/content_description_check_icon"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="@id/layout_answer_buttons"
-        app:layout_constraintEnd_toEndOf="@id/layout_answer_buttons"/>
 
     <TextView
         android:id="@+id/tv_step_two"

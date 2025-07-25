@@ -124,7 +124,7 @@ class TutorialActivityNumeros : BaseActivity()  {
         starImageView = findViewById(R.id.iv_star)
         btnUnderstood = findViewById(R.id.btn_understood)
         btnClose = findViewById(R.id.btn_close_instructions)
-        checkSeleccionSimple = findViewById(R.id.check_seleccion_simple_tn)
+        checkSeleccionSimple = findViewById(R.id.check_seleccion_simple)
         progressRing = findViewById(R.id.progress_ring)
         tvNumber = findViewById(R.id.tv_number)
         tvStepIntroPartA = findViewById(R.id.tv_step_intro_part_a)
@@ -244,6 +244,7 @@ class TutorialActivityNumeros : BaseActivity()  {
             override fun onAnimationRepeat(animation: Animation?) {}
         })
     }
+
 
     private fun simulateHandInfoIcons() {
         val infoSimple = findViewById<ImageButton>(R.id.info_seleccion_simple)
