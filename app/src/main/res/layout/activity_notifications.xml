@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:padding="24dp">
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="188dp"
-        android:layout_height="139dp"
-        android:layout_marginTop="40dp"
-        android:adjustViewBounds="true"
-        android:background="@android:color/white"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="60dp"
+        android:alpha="0"
         android:contentDescription="@string/content_description_icon"
-        android:scaleType="fitCenter"
         android:src="@drawable/sumamentelt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,17 +20,11 @@
 
     <TextView
         android:id="@+id/app_name"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="16dp"
+        android:alpha="0"
         android:fontFamily="@font/roboto_bold"
-        android:importantForAccessibility="yes"
-        android:focusable="true"
-        android:shadowColor="@android:color/white"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="1.5"
         android:text="@string/notification_app_name"
         android:textAlignment="center"
         android:textColor="@android:color/black"
@@ -41,83 +33,64 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/icon" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/notification_background"
-        android:padding="16dp"
+    <ImageView
+        android:id="@+id/bell_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="48dp"
+        android:alpha="0"
+        android:contentDescription="@string/content_description_bell_icon"
+        android:src="@drawable/ic_bell"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/app_name">
+        app:layout_constraintTop_toBottomOf="@id/app_name"
+        app:tint="@color/blue_primary" />
 
-        <ImageView
-            android:id="@+id/bell_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            android:background="@android:color/white"
-            android:contentDescription="@string/content_description_bell_icon"
-            android:src="@drawable/ic_bell"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/blue_primary" />
+    <TextView
+        android:id="@+id/notification_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:alpha="0"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/notification_text"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bell_icon"
+        app:layout_constraintWidth_max="360dp" />
 
-        <TextView
-            android:id="@+id/notification_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:contentDescription="@string/content_description_notification_text"
-            android:focusable="true"
-            android:fontFamily="@font/roboto_bold"
-            android:importantForAccessibility="yes"
-            android:maxLines="3"
-            android:ellipsize="end"
-            android:text="@string/notification_text"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bell_icon"
-            tools:ignore="AccessibilityIssue" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_allow"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="32dp"
+        android:alpha="0"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/btn_allow"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/notification_text"
+        app:layout_constraintWidth_max="320dp" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_allow"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button_background"
-            android:contentDescription="@string/content_description_btn_allow"
-            android:fontFamily="@font/roboto_bold"
-            android:minHeight="48dp"
-            android:padding="16dp"
-            android:text="@string/btn_allow"
-            android:textColor="@android:color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/notification_text" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_deny"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button_background"
-            android:contentDescription="@string/content_description_btn_deny"
-            android:fontFamily="@font/roboto_bold"
-            android:minHeight="48dp"
-            android:padding="16dp"
-            android:text="@string/btn_deny"
-            android:textColor="@android:color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_allow" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_deny"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="16dp"
+        android:alpha="0"
+        android:background="@drawable/button_background_avanzado"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/btn_deny"
+        android:textColor="@color/blue_primary"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@id/btn_allow"
+        app:layout_constraintStart_toStartOf="@id/btn_allow"
+        app:layout_constraintTop_toBottomOf="@id/btn_allow" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

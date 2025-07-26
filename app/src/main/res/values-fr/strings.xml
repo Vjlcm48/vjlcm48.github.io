@@ -1446,4 +1446,24 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
 
     <string name="error_share_image">Erreur lors du partage de la récompense</string>
 
+    <string name="protect_account_title">Protégez votre progression !</string>
+    <string name="protect_account_message">Connectez votre compte Google pour sauvegarder vos réussites et participer aux classements. Ainsi, vous ne perdrez jamais vos progrès, même si vous changez de téléphone.</string>
+    <string name="protect_account_button">Protéger avec Google</string>
+    <string name="protect_account_later">Pas maintenant</string>
+    <string name="account_linked_success">Compte lié avec succès ! Vos progrès sont maintenant en sécurité.</string>
+    <string name="account_linked_error">Impossible de lier le compte. Veuillez réessayer.</string>
+    <string name="profile_subtitle_linked">Connecté. Gérez votre compte.</string>
+    <string name="profile_subtitle_unlinked">Sauvegardez vos progrès dans le cloud</string>
+
+    <string name="delete_account">Supprimer le compte</string>
+    <string name="delete_account_subtitle">Supprimez définitivement vos données</string>
+    <string name="delete_account_confirm_title">Êtes-vous sûr ?</string>
+    <string name="delete_account_confirm_message">Cette action supprimera définitivement votre compte et tous vos progrès (points, niveaux, médailles). Ils ne pourront pas être récupérés.</string>
+    <string name="delete_button">Supprimer</string>
+    <string name="cancel_button">Annuler</string>
+    <string name="account_deleted_success">Votre compte a été supprimé.</string>
+
+    <string name="protect_your_progress_button">Protégez vos progrès !</string>
+
+
 </resources>

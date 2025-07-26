@@ -1383,4 +1383,24 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
 
     <string name="error_share_image">Fehler beim Teilen der Auszeichnung</string>
 
+    <string name="protect_account_title">Schütze deinen Fortschritt!</string>
+    <string name="protect_account_message">Verbinde dein Google-Konto, um deine Erfolge zu speichern und an den Ranglisten teilzunehmen. So verlierst du deinen Fortschritt nie, selbst wenn du dein Handy wechselst.</string>
+    <string name="protect_account_button">Mit Google schützen</string>
+    <string name="protect_account_later">Jetzt nicht</string>
+    <string name="account_linked_success">Konto erfolgreich verknüpft! Dein Fortschritt ist jetzt sicher.</string>
+    <string name="account_linked_error">Konto konnte nicht verknüpft werden. Bitte versuche es erneut.</string>
+    <string name="profile_subtitle_linked">Verbunden. Verwalte dein Konto.</string>
+    <string name="profile_subtitle_unlinked">Speichere deinen Fortschritt in der Cloud</string>
+
+    <string name="delete_account">Konto löschen</string>
+    <string name="delete_account_subtitle">Lösche deine Daten dauerhaft</string>
+    <string name="delete_account_confirm_title">Bist du sicher?</string>
+    <string name="delete_account_confirm_message">Diese Aktion löscht dein Konto und deinen gesamten Fortschritt (Punkte, Levels, Auszeichnungen) dauerhaft. Du kannst sie nicht wiederherstellen.</string>
+    <string name="delete_button">Löschen</string>
+    <string name="cancel_button">Abbrechen</string>
+    <string name="account_deleted_success">Dein Konto wurde gelöscht.</string>
+
+    <string name="protect_your_progress_button">Schütze deinen Fortschritt!</string>
+
+
 </resources>

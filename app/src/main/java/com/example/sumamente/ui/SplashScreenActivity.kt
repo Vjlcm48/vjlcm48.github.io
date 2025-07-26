@@ -110,14 +110,51 @@ class SplashScreenActivity : AppCompatActivity() {
         if (hasNavigated) return
 
         cancelAllSplashRunnables()
-        mediaPlayer?.stop()
+
+        mediaPlayer?.let { player ->
+            if (player.isPlaying) {
+                val handler = Handler(Looper.getMainLooper())
+                val fadeOutDuration = 1000
+                val steps = 20
+                val stepDuration = fadeOutDuration / steps
+                val volumeStep = 1.0f / steps
+
+                var currentStep = 0
+                val fadeOutRunnable = object : Runnable {
+                    override fun run() {
+                        if (currentStep < steps && player.isPlaying) {
+                            val newVolume = 1.0f - (volumeStep * currentStep)
+                            player.setVolume(newVolume, newVolume)
+                            currentStep++
+                            handler.postDelayed(this, stepDuration.toLong())
+                        } else {
+                            player.stop()
+                        }
+                    }
+                }
+                fadeOutRunnable.run()
+            }
+        }
 
         binding.root.animate().alpha(0f).setDuration(1000)
             .setListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
                     if (hasNavigated) return
                     hasNavigated = true
-                    val intent = Intent(this@SplashScreenActivity, LanguageSelectionActivity::class.java)
+
+                    val username = sharedPreferences.getString("savedUserName", null)
+                    val intent: Intent
+
+                    if (username == null) {
+
+                        intent = Intent(this@SplashScreenActivity, LanguageSelectionActivity::class.java)
+                    } else {
+
+                        intent = Intent(this@SplashScreenActivity, TransitionActivity::class.java)
+
+                        intent.putExtra("IS_EXISTING_USER", true)
+                    }
+
                     val options = ActivityOptions.makeCustomAnimation(
                         this@SplashScreenActivity,
                         android.R.anim.fade_in,

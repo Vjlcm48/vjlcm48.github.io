@@ -8,32 +8,33 @@ import android.os.Looper
 import androidx.core.content.edit
 import com.example.sumamente.R
 
-class TransitionActivity : BaseActivity()  {
+class TransitionActivity : BaseActivity() {
+
+    private var isExistingUser = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_transition)
+
+        isExistingUser = intent.getBooleanExtra("IS_EXISTING_USER", false)
 
         clearAppDataOnLaunch()
 
         val handler = Handler(Looper.getMainLooper())
-        val startTime = System.currentTimeMillis()
-
         handler.postDelayed({
-            val elapsedTime = System.currentTimeMillis() - startTime
-            if (elapsedTime < 5000) {
-                handler.postDelayed({
-                    transicionPantalla()
-                }, 5000 - elapsedTime)
-            } else {
-                transicionPantalla()
-            }
-        }, 0)
+            transicionPantalla()
+        }, 5000)
     }
 
     private fun transicionPantalla() {
-        val intent = Intent(this, NotificationsActivity::class.java)
+
+        val targetActivity = if (isExistingUser) {
+            MainGameActivity::class.java
+        } else {
+            NotificationsActivity::class.java
+        }
+
+        val intent = Intent(this, targetActivity)
         val options = ActivityOptions.makeCustomAnimation(this, android.R.anim.fade_in, android.R.anim.fade_out)
         startActivity(intent, options.toBundle())
         finish()
@@ -125,7 +126,5 @@ class TransitionActivity : BaseActivity()  {
         scorePrefsGenioPlusPro.edit { clear() }
 
         ScoreManager.resetStatsAndTimes()
-
     }
-
 }

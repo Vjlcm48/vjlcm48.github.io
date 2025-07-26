@@ -2935,6 +2935,48 @@ object ScoreManager {
         lastIqComponentByGame["${juego}_${grado}"] = valor
     }
 
+    fun resetAllProgress(context: Context) {
+
+        reset()
+        resetPrincipiante()
+        resetPro()
+        resetDeciPlus()
+        resetDeciPlusPrincipiante()
+        resetDeciPlusPro()
+        resetRomas()
+        resetRomasPrincipiante()
+        resetRomasPro()
+        resetAlfaNumeros()
+        resetAlfaNumerosPrincipiante()
+        resetAlfaNumerosPro()
+        resetSumaResta()
+        resetSumaRestaPrincipiante()
+        resetSumaRestaPro()
+        resetMasPlus()
+        resetMasPlusPrincipiante()
+        resetMasPlusPro()
+        resetGenioPlus()
+        resetGenioPlusPrincipiante()
+        resetGenioPlusPro()
+
+        resetStatsAndTimes()
+
+        val prefsToClear = listOf(
+            PREFS_NAME, PREFS_NAME_PRINCIPIANTE, PREFS_NAME_PRO,
+            PREFS_NAME_DECI_PLUS, PREFS_NAME_DECI_PLUS_PRINCIPIANTE, PREFS_NAME_DECI_PLUS_PRO,
+            PREFS_NAME_ROMAS, PREFS_NAME_ROMAS_PRINCIPIANTE, PREFS_NAME_ROMAS_PRO,
+            PREFS_NAME_ALFANUMEROS, PREFS_NAME_ALFANUMEROS_PRINCIPIANTE, PREFS_NAME_ALFANUMEROS_PRO,
+            PREFS_NAME_SUMARESTA, PREFS_NAME_SUMARESTA_PRINCIPIANTE, PREFS_NAME_SUMARESTA_PRO,
+            PREFS_NAME_MAS_PLUS, PREFS_NAME_MAS_PLUS_PRINCIPIANTE, PREFS_NAME_MAS_PLUS_PRO,
+            PREFS_NAME_GENIO_PLUS, PREFS_NAME_GENIO_PLUS_PRINCIPIANTE, PREFS_NAME_GENIO_PLUS_PRO
+        )
+
+        for (prefName in prefsToClear) {
+            context.getSharedPreferences(prefName, Context.MODE_PRIVATE).edit { clear() }
+        }
+
+    }
+
 }
 
 

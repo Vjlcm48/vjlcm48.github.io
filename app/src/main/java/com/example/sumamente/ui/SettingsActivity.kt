@@ -20,6 +20,8 @@ import com.example.sumamente.R
 class SettingsActivity : BaseActivity()  {
 
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var profileSubtitleText: TextView
+    private lateinit var linearDeleteAccount: LinearLayout
 
     companion object {
         const val SOUND_ENABLED = "sound_enabled"
@@ -37,6 +39,9 @@ class SettingsActivity : BaseActivity()  {
         val switchNotifications = findViewById<SwitchCompat>(R.id.switch_notifications)
         val switchAds = findViewById<SwitchCompat>(R.id.switch_ads)
         val adsText = findViewById<TextView>(R.id.ads_text)
+
+        profileSubtitleText = findViewById(R.id.profile_subtitle_text)
+        linearDeleteAccount = findViewById(R.id.linear_delete_account)
 
         val linearProfile = findViewById<LinearLayout>(R.id.linear_profile)
         val linearShare = findViewById<LinearLayout>(R.id.linear_share)
@@ -56,20 +61,17 @@ class SettingsActivity : BaseActivity()  {
             sharedPreferences.edit { putBoolean(SOUND_ENABLED, isChecked) }
         }
 
-
-        switchNotifications.isChecked = sharedPreferences.getBoolean(NOTIFICATIONS_ENABLED, true)
+        switchNotifications.isChecked = sharedPreferences.getBoolean(NOTIFICATIONS_ENABLED, false)
         switchNotifications.setOnCheckedChangeListener { _, isChecked ->
             Toast.makeText(this, getString(if (isChecked) R.string.notifications_enabled else R.string.notifications_disabled), Toast.LENGTH_SHORT).show()
             sharedPreferences.edit { putBoolean(NOTIFICATIONS_ENABLED, isChecked) }
         }
-
 
         switchAds.isChecked = sharedPreferences.getBoolean(ADS_ENABLED, true)
         switchAds.setOnCheckedChangeListener { _, isChecked ->
             Toast.makeText(this, getString(if (isChecked) R.string.ads_enabled else R.string.ads_disabled), Toast.LENGTH_SHORT).show()
             sharedPreferences.edit { putBoolean(ADS_ENABLED, isChecked) }
         }
-
 
 
         val colorAnimator = ValueAnimator.ofArgb(
@@ -85,12 +87,6 @@ class SettingsActivity : BaseActivity()  {
         }
         colorAnimator.start()
 
-        linearProfile.setOnClickListener { view ->
-            applyBounceEffect(view) {
-                val dialog = ProfileEditDialog(this)
-                dialog.show()
-            }
-        }
 
         linearShare.setOnClickListener { view ->
             applyBounceEffect(view) {
@@ -131,26 +127,94 @@ class SettingsActivity : BaseActivity()  {
                 startActivity(intent)
             }
         }
+
+        updateProfileOption()
+
+        linearProfile.setOnClickListener { view ->
+            applyBounceEffect(view) {
+                handleProfileClick()
+            }
+        }
+
+        linearDeleteAccount.setOnClickListener { view ->
+            applyBounceEffect(view) {
+                showConfirmDeleteDialog()
+            }
+        }
+
+    }
+
+    private fun updateProfileOption() {
+        val isLinked = sharedPreferences.getBoolean("isAccountLinked", false)
+        if (isLinked) {
+            profileSubtitleText.text = getString(R.string.profile_subtitle_linked)
+        } else {
+            profileSubtitleText.text = getString(R.string.profile_subtitle_unlinked)
+        }
+    }
+
+    private fun handleProfileClick() {
+        val isLinked = sharedPreferences.getBoolean("isAccountLinked", false)
+        if (isLinked) {
+
+            val dialog = ProfileEditDialog(this)
+            dialog.show()
+        } else {
+
+            showLinkAccountDialog()
+        }
+    }
+
+    private fun showLinkAccountDialog() {
+
+        sharedPreferences.edit { putBoolean("isAccountLinked", true) }
+        Toast.makeText(this, getString(R.string.account_linked_success), Toast.LENGTH_LONG).show()
+        updateProfileOption()
+    }
+
+    private fun showConfirmDeleteDialog() {
+
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle(getString(R.string.delete_account_confirm_title))
+            .setMessage(getString(R.string.delete_account_confirm_message))
+            .setPositiveButton(getString(R.string.delete_button)) { _, _ ->
+
+                ScoreManager.resetAllProgress(this)
+                sharedPreferences.edit { clear() }
+
+                Toast.makeText(this, getString(R.string.account_deleted_success), Toast.LENGTH_LONG).show()
+
+                val intent = Intent(this, GatewayActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
+                finish()
+
+            }
+            .setNegativeButton(getString(R.string.cancel_button), null)
+            .show()
     }
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
         val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.9f).setDuration(50)
-
         val scaleDownY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 0.9f).setDuration(50)
         val scaleUpX = ObjectAnimator.ofFloat(view, "scaleX", 0.9f, 1f).setDuration(50)
         val scaleUpY = ObjectAnimator.ofFloat(view, "scaleY", 0.9f, 1f).setDuration(50)
 
-        val animatorSet = AnimatorSet()
-        animatorSet.playTogether(scaleDownX, scaleDownY)
-        animatorSet.playTogether(scaleUpX, scaleUpY)
-        animatorSet.playSequentially(scaleDownX, scaleUpX)
+        val scaleDown = AnimatorSet().apply {
+            playTogether(scaleDownX, scaleDownY)
+        }
+        val scaleUp = AnimatorSet().apply {
+            playTogether(scaleUpX, scaleUpY)
+        }
 
-        animatorSet.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator) {
-                onAnimationEnd()
-            }
-        })
-
+        val animatorSet = AnimatorSet().apply {
+            playSequentially(scaleDown, scaleUp)
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    onAnimationEnd()
+                }
+            })
+        }
         animatorSet.start()
     }
 }

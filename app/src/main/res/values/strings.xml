@@ -1472,4 +1472,23 @@
 
     <string name="error_share_image">Error al compartir la condecoración</string>
 
+    <string name="protect_account_title">¡Protege tu Progreso!</string>
+    <string name="protect_account_message">Conecta tu cuenta de Google para guardar tus logros y competir en los rankings. Así, nunca perderás tu avance, incluso si cambias de teléfono.</string>
+    <string name="protect_account_button">Proteger con Google</string>
+    <string name="protect_account_later">Ahora no</string>
+    <string name="account_linked_success">¡Cuenta vinculada con éxito! Tu progreso está ahora a salvo.</string>
+    <string name="account_linked_error">No se pudo vincular la cuenta. Inténtalo de nuevo.</string>
+    <string name="profile_subtitle_linked">Conectado. Gestiona tu cuenta.</string>
+    <string name="profile_subtitle_unlinked">Guarda tu progreso en la nube</string>
+
+    <string name="delete_account">Eliminar Cuenta</string>
+    <string name="delete_account_subtitle">Borra permanentemente tus datos</string>
+    <string name="delete_account_confirm_title">¿Estás seguro?</string>
+    <string name="delete_account_confirm_message">Esta acción eliminará tu cuenta y todo tu progreso (puntos, niveles, medallas) de forma **permanente**. No podrás recuperarlos.</string>
+    <string name="delete_button">Eliminar</string>
+    <string name="cancel_button">Cancelar</string>
+    <string name="account_deleted_success">Tu cuenta ha sido eliminada.</string>
+
+    <string name="protect_your_progress_button">¡Protege tu avance!</string>
+
     </resources>

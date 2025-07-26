@@ -1296,4 +1296,24 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
 
     <string name="error_share_image">Erro ao compartilhar a condecoração</string>
 
+    <string name="protect_account_title">Proteja seu Progresso!</string>
+    <string name="protect_account_message">Conecte sua conta Google para salvar suas conquistas e competir nos rankings. Assim, você nunca perderá seu progresso, mesmo se trocar de celular.</string>
+    <string name="protect_account_button">Proteger com Google</string>
+    <string name="protect_account_later">Agora não</string>
+    <string name="account_linked_success">Conta vinculada com sucesso! Seu progresso está seguro agora.</string>
+    <string name="account_linked_error">Não foi possível vincular a conta. Tente novamente.</string>
+    <string name="profile_subtitle_linked">Conectado. Gerencie sua conta.</string>
+    <string name="profile_subtitle_unlinked">Salve seu progresso na nuvem</string>
+
+    <string name="delete_account">Excluir Conta</string>
+    <string name="delete_account_subtitle">Exclua permanentemente seus dados</string>
+    <string name="delete_account_confirm_title">Tem certeza?</string>
+    <string name="delete_account_confirm_message">Esta ação excluirá sua conta e todo seu progresso (pontos, níveis, medalhas) de forma **permanente**. Não será possível recuperá-los.</string>
+    <string name="delete_button">Excluir</string>
+    <string name="cancel_button">Cancelar</string>
+    <string name="account_deleted_success">Sua conta foi excluída.</string>
+
+    <string name="protect_your_progress_button">Proteja seu progresso!</string>
+
+
 </resources>
