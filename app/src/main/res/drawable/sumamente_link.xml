@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+
+    <!-- Sombra del hexágono -->
+    <group
+        android:translateX="261"
+        android:translateY="261"
+        android:scaleX="10.67"
+        android:scaleY="10.67">
+        <path
+            android:pathData="M0,-20 L19.5,4.5 L-8.7,18 L-15.6,-12.5 L15.6,-12.5 L8.7,18 L-19.5,4.5 Z"
+            android:fillColor="#1A000000"
+            android:fillAlpha="0.25"/>
+    </group>
+
+    <!-- Hexágono principal con degradado -->
+    <group
+        android:translateX="256"
+        android:translateY="256"
+        android:scaleX="10.67"
+        android:scaleY="10.67">
+        <path
+            android:pathData="M0,-20 L19.5,4.5 L-8.7,18 L-15.6,-12.5 L15.6,-12.5 L8.7,18 L-19.5,4.5 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient
+                    android:type="linear"
+                    android:angle="135">
+                    <item android:offset="0.0" android:color="#FF1E88E5" />
+                    <item android:offset="0.7" android:color="#FF1565C0" />
+                    <item android:offset="1.0" android:color="#FF0A3F8A" />
+                </gradient>
+            </aapt:attr>
+        </path>
+
+        <!-- Capa interna más clara -->
+        <group android:scaleX="0.85" android:scaleY="0.85">
+            <path android:pathData="M0,-20 L19.5,4.5 L-8.7,18 L-15.6,-12.5 L15.6,-12.5 L8.7,18 L-19.5,4.5 Z"
+                android:fillColor="#F5FBFF"
+                android:fillAlpha="0.95"/>
+        </group>
+    </group>
+
+
+</vector>
+

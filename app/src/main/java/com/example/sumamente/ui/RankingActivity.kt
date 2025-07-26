@@ -8,17 +8,20 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.Gravity
+import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.edit
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sumamente.R
-import kotlin.random.Random
 import com.example.sumamente.ui.utils.MusicManager
+import kotlin.random.Random
 
-class RankingActivity : BaseActivity()  {
+class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDialogListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var loadingIndicator: ProgressBar
@@ -31,6 +34,8 @@ class RankingActivity : BaseActivity()  {
     private lateinit var tvMsgGlobalRanking: TextView
 
     private var isFinishingByBack = false
+    private lateinit var floatingLinkButton: View
+    private var isDialogFromFloatingButton = false
 
     companion object {
         const val MIN_LEVELS_REQUIRED = 36
@@ -87,6 +92,11 @@ class RankingActivity : BaseActivity()  {
         rankingItems = mutableListOf()
         adapter = RankingAdapter(rankingItems)
         recyclerView.adapter = adapter
+
+        tvMsgGlobalRanking = findViewById(R.id.tvMsgGlobalRanking)
+        floatingLinkButton = findViewById(R.id.floating_link_button)
+
+        setupFloatingButtonInteractions()
     }
 
     private fun setupButtons() {
@@ -103,13 +113,14 @@ class RankingActivity : BaseActivity()  {
     }
 
     private fun loadRankingData() {
+
         loadingIndicator.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
         emptyView.visibility = View.GONE
         tvMsgGlobalRanking.visibility = View.GONE
+        floatingLinkButton.visibility = View.GONE
 
         Handler(Looper.getMainLooper()).postDelayed({
-
             val totalLevels = getTotalLevelsPlayed()
             val username = sharedPreferences.getString("savedUserName", getString(R.string.default_username)) ?: getString(R.string.default_username)
             val countryCode = sharedPreferences.getString("savedCountryCode", "us") ?: "us"
@@ -122,119 +133,168 @@ class RankingActivity : BaseActivity()  {
                     ScoreManager.currentScoreGenioPlus + ScoreManager.currentScoreGenioPlusPrincipiante + ScoreManager.currentScoreGenioPlusPro
 
             if (totalLevels == 0) {
-
                 val noGamesMsgs = arrayOf(
-                    getString(R.string.msg_need_more_games_global_1, username),
-                    getString(R.string.msg_need_more_games_global_2, username),
-                    getString(R.string.msg_need_more_games_global_3, username),
-                    getString(R.string.msg_need_more_games_global_4, username),
-                    getString(R.string.msg_need_more_games_global_5, username),
-                    getString(R.string.msg_need_more_games_global_6, username)
+                    getString(R.string.msg_need_more_games_global_1, username), getString(R.string.msg_need_more_games_global_2, username),
+                    getString(R.string.msg_need_more_games_global_3, username), getString(R.string.msg_need_more_games_global_4, username),
+                    getString(R.string.msg_need_more_games_global_5, username), getString(R.string.msg_need_more_games_global_6, username)
                 )
-                val msg = noGamesMsgs[Random.nextInt(noGamesMsgs.size)]
-                tvMsgGlobalRanking.apply {
-                    visibility = View.VISIBLE
-                    text = msg
-                }
-                recyclerView.visibility = View.GONE
-                emptyView.visibility = View.GONE
+                tvMsgGlobalRanking.text = noGamesMsgs.random()
+                tvMsgGlobalRanking.visibility = View.VISIBLE
                 loadingIndicator.visibility = View.GONE
                 return@postDelayed
             }
 
-            if (totalLevels in 1 until MIN_LEVELS_REQUIRED) {
+            val promptWasShown = handleLinkAccountInvitation()
 
-                val levelsRemaining = MIN_LEVELS_REQUIRED - totalLevels
+            if (!promptWasShown) {
+                if (totalLevels >= MIN_LEVELS_REQUIRED) {
+                    rankingItems.clear()
+                    rankingItems.add(
+                        RankingItem(
+                            position = 1, username = username, countryCode = countryCode,
+                            score = score, isCurrentUser = true
+                        )
+                    )
 
-                val infoPluralsWithName = arrayOf(
-                    R.plurals.msg_info_global_levels_1,
-                    R.plurals.msg_info_global_levels_2,
-                    R.plurals.msg_info_global_levels_3,
-                    R.plurals.msg_info_global_levels_4,
-                    R.plurals.msg_info_global_levels_5,
-                    R.plurals.msg_info_global_levels_6
-                )
-                val infoPluralsWithoutName = arrayOf(
-                    R.plurals.msg_info_global_levels_7,
-                    R.plurals.msg_info_global_levels_8,
-                    R.plurals.msg_info_global_levels_9,
-                    R.plurals.msg_info_global_levels_10,
-                    R.plurals.msg_info_global_levels_11,
-                    R.plurals.msg_info_global_levels_12
-                )
+                    adapter.notifyItemInserted(0)
+                    recyclerView.visibility = View.VISIBLE
 
-                val infoMsgsWithName = infoPluralsWithName.map {
-                    resources.getQuantityString(it, totalLevels, username, totalLevels, levelsRemaining)
-                }.toTypedArray()
-                val infoMsgsWithoutName = infoPluralsWithoutName.map {
-                    resources.getQuantityString(it, totalLevels, totalLevels, levelsRemaining)
-                }.toTypedArray()
+                } else {
+                    val levelsRemaining = MIN_LEVELS_REQUIRED - totalLevels
+                    val infoPluralsWithName = arrayOf(
+                        R.plurals.msg_info_global_levels_1, R.plurals.msg_info_global_levels_2, R.plurals.msg_info_global_levels_3,
+                        R.plurals.msg_info_global_levels_4, R.plurals.msg_info_global_levels_5, R.plurals.msg_info_global_levels_6
+                    )
+                    val infoPluralsWithoutName = arrayOf(
+                        R.plurals.msg_info_global_levels_7, R.plurals.msg_info_global_levels_8, R.plurals.msg_info_global_levels_9,
+                        R.plurals.msg_info_global_levels_10, R.plurals.msg_info_global_levels_11, R.plurals.msg_info_global_levels_12
+                    )
+                    val infoMsgsWithName = infoPluralsWithName.map {
+                        resources.getQuantityString(it, totalLevels, username, totalLevels, levelsRemaining)
+                    }.toTypedArray()
+                    val infoMsgsWithoutName = infoPluralsWithoutName.map {
+                        resources.getQuantityString(it, totalLevels, totalLevels, levelsRemaining)
+                    }.toTypedArray()
+                    val motivMsgsWithName = arrayOf(
+                        getString(R.string.msg_motiv_global_levels_1, username), getString(R.string.msg_motiv_global_levels_2, username),
+                        getString(R.string.msg_motiv_global_levels_3, username), getString(R.string.msg_motiv_global_levels_4, username),
+                        getString(R.string.msg_motiv_global_levels_5, username), getString(R.string.msg_motiv_global_levels_6, username)
+                    )
+                    val motivMsgsWithoutName = arrayOf(
+                        getString(R.string.msg_motiv_global_levels_7), getString(R.string.msg_motiv_global_levels_8),
+                        getString(R.string.msg_motiv_global_levels_9), getString(R.string.msg_motiv_global_levels_10),
+                        getString(R.string.msg_motiv_global_levels_11), getString(R.string.msg_motiv_global_levels_12)
+                    )
+                    val infoWithName = Random.nextBoolean()
+                    val infoMsg = if (infoWithName) infoMsgsWithName.random() else infoMsgsWithoutName.random()
+                    val motivMsg = if (infoWithName) motivMsgsWithoutName.random() else motivMsgsWithName.random()
+                    val combinedMsg = "$infoMsg\n\n$motivMsg"
 
-
-                val motivMsgsWithName = arrayOf(
-                    getString(R.string.msg_motiv_global_levels_1, username),
-                    getString(R.string.msg_motiv_global_levels_2, username),
-                    getString(R.string.msg_motiv_global_levels_3, username),
-                    getString(R.string.msg_motiv_global_levels_4, username),
-                    getString(R.string.msg_motiv_global_levels_5, username),
-                    getString(R.string.msg_motiv_global_levels_6, username)
-                )
-                val motivMsgsWithoutName = arrayOf(
-                    getString(R.string.msg_motiv_global_levels_7),
-                    getString(R.string.msg_motiv_global_levels_8),
-                    getString(R.string.msg_motiv_global_levels_9),
-                    getString(R.string.msg_motiv_global_levels_10),
-                    getString(R.string.msg_motiv_global_levels_11),
-                    getString(R.string.msg_motiv_global_levels_12)
-                )
-
-                val infoWithName = Random.nextBoolean()
-                val infoMsg = if (infoWithName)
-                    infoMsgsWithName[Random.nextInt(infoMsgsWithName.size)]
-                else
-                    infoMsgsWithoutName[Random.nextInt(infoMsgsWithoutName.size)]
-
-                val motivMsg = if (infoWithName)
-                    motivMsgsWithoutName[Random.nextInt(motivMsgsWithoutName.size)]
-                else
-                    motivMsgsWithName[Random.nextInt(motivMsgsWithName.size)]
-
-                val combinedMsg = "$infoMsg\n\n$motivMsg"
-
-                tvMsgGlobalRanking.apply {
-                    visibility = View.VISIBLE
-                    text = combinedMsg
-                    textSize = 24f
-                    gravity = Gravity.CENTER
+                    tvMsgGlobalRanking.apply {
+                        visibility = View.VISIBLE
+                        text = combinedMsg
+                        textSize = 24f
+                        gravity = Gravity.CENTER
+                    }
                 }
-                recyclerView.visibility = View.GONE
-                emptyView.visibility = View.GONE
-                loadingIndicator.visibility = View.GONE
-                return@postDelayed
             }
-
-            tvMsgGlobalRanking.visibility = View.GONE
-
-            val oldSize = rankingItems.size
-            rankingItems.clear()
-            if (oldSize > 0) {
-                adapter.notifyItemRangeRemoved(0, oldSize)
-            }
-            rankingItems.add(
-                RankingItem(
-                    position = 1,
-                    username = username,
-                    countryCode = countryCode,
-                    score = score,
-                    isCurrentUser = true
-                )
-            )
-            adapter.notifyItemInserted(0)
-
-            recyclerView.visibility = View.VISIBLE
-            emptyView.visibility = View.GONE
             loadingIndicator.visibility = View.GONE
         }, 700)
+    }
+
+    private fun handleLinkAccountInvitation(): Boolean {
+
+        val isLinked = sharedPreferences.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)
+
+        if (isLinked || !ScoreManager.hasCompleted12LevelsInAnyGame()) {
+            return false
+        }
+
+        val lastDismissal = sharedPreferences.getLong(SettingsActivity.LAST_PROMPT_DISMISSAL_TIMESTAMP, 0L)
+
+        if (System.currentTimeMillis() < lastDismissal) {
+            return false
+        }
+
+        val promptInteracted = sharedPreferences.getBoolean(SettingsActivity.LINK_PROMPT_INTERACTED, false)
+        val isRanked = ScoreManager.isRankedInAtLeastOneGame()
+
+        if (promptInteracted || isRanked) {
+            floatingLinkButton.visibility = View.VISIBLE
+            return true
+        }
+
+        else {
+            val dialog = LinkAccountDialogFragment.newInstance()
+            dialog.show(supportFragmentManager, "LinkAccountDialog")
+            return true
+        }
+    }
+
+    private fun setupFloatingButtonInteractions() {
+
+        floatingLinkButton.setOnClickListener {
+            isDialogFromFloatingButton = true
+            val dialog = LinkAccountDialogFragment.newInstance()
+            dialog.show(supportFragmentManager, "LinkAccountDialog_FromFloat")
+        }
+
+        floatingLinkButton.setOnTouchListener(object : View.OnTouchListener {
+            private var initialX = 0f
+            private var initialY = 0f
+            private var dX = 0f
+            private var dY = 0f
+
+            override fun onTouch(view: View, event: MotionEvent): Boolean {
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+
+                        initialX = view.x
+                        initialY = view.y
+                        dX = view.x - event.rawX
+                        dY = view.y - event.rawY
+                        return true
+                    }
+                    MotionEvent.ACTION_MOVE -> {
+
+                        view.animate()
+                            .x(event.rawX + dX)
+                            .y(event.rawY + dY)
+                            .setDuration(0)
+                            .start()
+                        return true
+                    }
+                    MotionEvent.ACTION_UP -> {
+
+                        val screenHeight = resources.displayMetrics.heightPixels
+
+                        if (view.y > screenHeight * 0.8) {
+
+                            view.visibility = View.GONE
+                            Toast.makeText(this@RankingActivity, getString(R.string.toast_button_dismissed), Toast.LENGTH_SHORT).show()
+
+                            val cooldown = SettingsActivity.COOLDOWN_FLOAT_DISMISS
+                            sharedPreferences.edit {
+                                putLong(SettingsActivity.LAST_PROMPT_DISMISSAL_TIMESTAMP, System.currentTimeMillis() + cooldown)
+                            }
+                        } else {
+
+                            view.animate()
+                                .x(initialX)
+                                .y(initialY)
+                                .setDuration(300)
+                                .start()
+                        }
+
+                        if (kotlin.math.abs(view.x - initialX) < 10 && kotlin.math.abs(view.y - initialY) < 10) {
+                            view.performClick()
+                        }
+                        return true
+                    }
+                }
+                return false
+            }
+        })
     }
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
@@ -277,13 +337,56 @@ class RankingActivity : BaseActivity()  {
         }
     }
 
-
     override fun onStop() {
         super.onStop()
         if (!isFinishingByBack) {
             MusicManager.pause()
         }
         isFinishingByBack = false
+    }
+
+    override fun onAcceptLink() {
+
+        sharedPreferences.edit {
+            putBoolean(SettingsActivity.ACCOUNT_LINKED, true)
+        }
+        Toast.makeText(this, getString(R.string.account_linked_success), Toast.LENGTH_LONG).show()
+
+        loadRankingData()
+    }
+
+    override fun onNotNow() {
+        val cooldown = if (isDialogFromFloatingButton) {
+            SettingsActivity.COOLDOWN_FLOAT_DIALOG_DISMISS
+        } else {
+            SettingsActivity.COOLDOWN_NOT_NOW
+        }
+
+        sharedPreferences.edit {
+            putBoolean(SettingsActivity.LINK_PROMPT_INTERACTED, true)
+            putLong(SettingsActivity.LAST_PROMPT_DISMISSAL_TIMESTAMP, System.currentTimeMillis() + cooldown)
+        }
+        Toast.makeText(this, getString(R.string.toast_cooldown_long), Toast.LENGTH_SHORT).show()
+        isDialogFromFloatingButton = false
+
+        loadRankingData()
+    }
+
+    override fun onRemindMeLater() {
+        val cooldown = if (isDialogFromFloatingButton) {
+            SettingsActivity.COOLDOWN_FLOAT_DIALOG_DISMISS
+        } else {
+            SettingsActivity.COOLDOWN_REMIND_LATER
+        }
+
+        sharedPreferences.edit {
+            putBoolean(SettingsActivity.LINK_PROMPT_INTERACTED, true)
+            putLong(SettingsActivity.LAST_PROMPT_DISMISSAL_TIMESTAMP, System.currentTimeMillis() + cooldown)
+        }
+        Toast.makeText(this, getString(R.string.toast_cooldown_short), Toast.LENGTH_SHORT).show()
+        isDialogFromFloatingButton = false
+
+        loadRankingData()
     }
 
 

@@ -27,6 +27,21 @@ class SettingsActivity : BaseActivity()  {
         const val SOUND_ENABLED = "sound_enabled"
         const val NOTIFICATIONS_ENABLED = "notifications_enabled"
         const val ADS_ENABLED = "ads_enabled"
+
+        const val ACCOUNT_LINKED = "isAccountLinked"
+        const val LAST_PROMPT_DISMISSAL_TIMESTAMP = "lastPromptDismissalTimestamp"
+        const val LINK_PROMPT_INTERACTED = "linkPromptInteracted"
+
+
+        // const val COOLDOWN_REMIND_LATER = 7L * 24 * 60 * 60 * 1000 // 7 días
+        // const val COOLDOWN_NOT_NOW = 14L * 24 * 60 * 60 * 1000 // 14 días
+        // const val COOLDOWN_FLOAT_DISMISS = 4L * 24 * 60 * 60 * 1000 // 4 días
+        // const val COOLDOWN_FLOAT_DIALOG_DISMISS = 8L * 24 * 60 * 60 * 1000 // 8 días
+
+        const val COOLDOWN_REMIND_LATER = 60 * 1000L
+        const val COOLDOWN_NOT_NOW = 120 * 1000L
+        const val COOLDOWN_FLOAT_DISMISS = 30 * 1000L
+        const val COOLDOWN_FLOAT_DIALOG_DISMISS = 90 * 1000L
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,7 +102,6 @@ class SettingsActivity : BaseActivity()  {
         }
         colorAnimator.start()
 
-
         linearShare.setOnClickListener { view ->
             applyBounceEffect(view) {
 
@@ -145,7 +159,8 @@ class SettingsActivity : BaseActivity()  {
     }
 
     private fun updateProfileOption() {
-        val isLinked = sharedPreferences.getBoolean("isAccountLinked", false)
+
+        val isLinked = sharedPreferences.getBoolean(ACCOUNT_LINKED, false)
         if (isLinked) {
             profileSubtitleText.text = getString(R.string.profile_subtitle_linked)
         } else {
@@ -154,20 +169,19 @@ class SettingsActivity : BaseActivity()  {
     }
 
     private fun handleProfileClick() {
-        val isLinked = sharedPreferences.getBoolean("isAccountLinked", false)
-        if (isLinked) {
 
+        val isLinked = sharedPreferences.getBoolean(ACCOUNT_LINKED, false)
+        if (isLinked) {
             val dialog = ProfileEditDialog(this)
             dialog.show()
         } else {
-
             showLinkAccountDialog()
         }
     }
 
     private fun showLinkAccountDialog() {
 
-        sharedPreferences.edit { putBoolean("isAccountLinked", true) }
+        sharedPreferences.edit { putBoolean(ACCOUNT_LINKED, true) }
         Toast.makeText(this, getString(R.string.account_linked_success), Toast.LENGTH_LONG).show()
         updateProfileOption()
     }

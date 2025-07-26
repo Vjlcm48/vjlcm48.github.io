@@ -1463,5 +1463,26 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
 
     <string name="protect_your_progress_button">Protect your progress!</string>
 
+    <string name="link_prompt_title_tranquility">Play without worries.</string>
+    <string name="link_prompt_body_tranquility">Connect your Google account in seconds and we\'ll make sure your progress is always safe.</string>
+    <string name="link_prompt_title_positive">Your progress is worth gold!</string>
+    <string name="link_prompt_body_positive">You\'ve come a long way. Secure all your progress by linking your account so no one can take your place.</string>
+    <string name="link_prompt_title_minimalist">Save your progress forever.</string>
+    <string name="link_prompt_body_minimalist">Link your Google account with a single tap and keep your data secure.</string>
+    <string name="link_prompt_title_concise">Secure your account in one tap.</string>
+    <string name="link_prompt_body_concise">Link your progress to Google and play with confidence knowing your data is protected.</string>
+
+    <string name="vincular_cuenta">Icon to link account</string>
+
+    <string name="link_account_prompt_popup">Protect your progress! Tap here to link your account.</string>
+
+    <string name="dialog_link_title">Your progress is worth gold!</string>
+    <string name="dialog_link_accept">Link Account</string>
+    <string name="dialog_link_not_now">Not now</string>
+    <string name="dialog_link_remind_later">Remind me later</string>
+
+    <string name="toast_button_dismissed">Button temporarily hidden.</string>
+    <string name="toast_cooldown_long">Got it, we won\'t bother you for a while.</string>
+    <string name="toast_cooldown_short">We\'ll remind you later.</string>
 
 </resources>

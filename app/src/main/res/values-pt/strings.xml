@@ -1315,5 +1315,26 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
 
     <string name="protect_your_progress_button">Proteja seu progresso!</string>
 
+    <string name="link_prompt_title_tranquility">Jogue sem preocupações.</string>
+    <string name="link_prompt_body_tranquility">Conecte sua conta do Google em segundos e nós garantimos que seu progresso esteja sempre seguro.</string>
+    <string name="link_prompt_title_positive">Seu progresso vale ouro!</string>
+    <string name="link_prompt_body_positive">Você avançou muito. Proteja todo seu progresso vinculando sua conta para que ninguém tire seu lugar.</string>
+    <string name="link_prompt_title_minimalist">Guarde seu progresso para sempre.</string>
+    <string name="link_prompt_body_minimalist">Vincule sua conta do Google com um toque e mantenha seus dados seguros.</string>
+    <string name="link_prompt_title_concise">Proteja sua conta em um toque.</string>
+    <string name="link_prompt_body_concise">Vincule seu progresso ao Google e jogue com a confiança de que seus dados estão protegidos.</string>
+
+    <string name="vincular_cuenta">Ícone para vincular conta</string>
+
+    <string name="link_account_prompt_popup">Proteja seu progresso! Toque aqui para vincular sua conta.</string>
+
+    <string name="dialog_link_title">Seu progresso vale ouro!</string>
+    <string name="dialog_link_accept">Vincular Conta</string>
+    <string name="dialog_link_not_now">Agora não</string>
+    <string name="dialog_link_remind_later">Lembrar mais tarde</string>
+
+    <string name="toast_button_dismissed">Botão oculto temporariamente.</string>
+    <string name="toast_cooldown_long">Entendido, não incomodaremos por um tempo.</string>
+    <string name="toast_cooldown_short">Lembraremos você mais tarde.</string>
 
 </resources>

@@ -2977,6 +2977,19 @@ object ScoreManager {
 
     }
 
+    fun hasCompleted12LevelsInAnyGame(): Boolean {
+        return getTotalUniqueLevelsCompletedAllGames() >= 3
+    }
+
+    fun isRankedInAtLeastOneGame(): Boolean {
+        val rankingNames = listOf(
+            "GLOBAL", "VEL_NUMEROS", "VEL_DECI", "VEL_ALFANUM", "VEL_ROMAS",
+            "VEL_SUMARESTA", "VEL_MAS", "VEL_GENIOS", "IQ_PLUS"
+        )
+        return rankingNames.any { isUserInRanking(it) }
+    }
+
+
 }
 
 

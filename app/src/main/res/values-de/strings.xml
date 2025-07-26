@@ -1402,5 +1402,26 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
 
     <string name="protect_your_progress_button">Schütze deinen Fortschritt!</string>
 
+    <string name="link_prompt_title_tranquility">Spiele ohne Sorgen.</string>
+    <string name="link_prompt_body_tranquility">Verbinde dein Google-Konto in Sekunden und wir sorgen dafür, dass deine Fortschritte immer sicher sind.</string>
+    <string name="link_prompt_title_positive">Deine Fortschritte sind wertvoll!</string>
+    <string name="link_prompt_body_positive">Du hast viel erreicht. Sichere alle deine Fortschritte, indem du dein Konto verknüpfst, damit niemand dir deinen Platz wegnehmen kann.</string>
+    <string name="link_prompt_title_minimalist">Speichere deine Fortschritte für immer.</string>
+    <string name="link_prompt_body_minimalist">Verknüpfe dein Google-Konto mit einem Tipp und halte deine Daten sicher.</string>
+    <string name="link_prompt_title_concise">Sichere dein Konto mit einem Tipp.</string>
+    <string name="link_prompt_body_concise">Verknüpfe deine Fortschritte mit Google und spiele mit der Gewissheit, dass deine Daten geschützt sind.</string>
+
+    <string name="vincular_cuenta">Symbol zum Verknüpfen des Kontos</string>
+
+    <string name="link_account_prompt_popup">Schütze deine Fortschritte! Tippe hier, um dein Konto zu verknüpfen.</string>
+
+    <string name="dialog_link_title">Deine Fortschritte sind wertvoll!</string>
+    <string name="dialog_link_accept">Konto verknüpfen</string>
+    <string name="dialog_link_not_now">Jetzt nicht</string>
+    <string name="dialog_link_remind_later">Später erinnern</string>
+
+    <string name="toast_button_dismissed">Schaltfläche vorübergehend ausgeblendet.</string>
+    <string name="toast_cooldown_long">Verstanden, wir werden eine Weile nicht stören.</string>
+    <string name="toast_cooldown_short">Wir erinnern dich später daran.</string>
 
 </resources>
