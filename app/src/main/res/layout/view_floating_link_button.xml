@@ -16,6 +16,7 @@
         android:contentDescription="@string/vincular_cuenta" />
 
     <ImageView
+        android:id="@+id/ic_link"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_gravity="center"
