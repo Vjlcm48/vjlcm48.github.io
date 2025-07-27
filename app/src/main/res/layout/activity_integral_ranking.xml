@@ -133,7 +133,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintBottom_toTopOf="@id/floating_link_button"
         android:contentDescription="@string/integral_ranking_scroll_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -161,5 +162,15 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <include
+        android:id="@+id/floating_link_button"
+        layout="@layout/view_floating_link_button"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="80dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
