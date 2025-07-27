@@ -355,6 +355,7 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
 
                             val cooldown = SettingsActivity.COOLDOWN_FLOAT_DISMISS
                             sharedPreferences.edit {
+                                putBoolean(SettingsActivity.LINK_PROMPT_INTERACTED, true)
                                 putLong(SettingsActivity.LAST_PROMPT_DISMISSAL_TIMESTAMP, System.currentTimeMillis() + cooldown)
                             }
                         } else if (!isDragging) {

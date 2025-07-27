@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
@@ -13,12 +14,16 @@ import android.text.Spanned
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import android.view.Gravity
+import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sumamente.R
@@ -28,8 +33,7 @@ import kotlin.random.Random
 
 import com.example.sumamente.ui.utils.MusicManager
 
-
-class IQPlusRankingActivity : BaseActivity()  {
+class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDialogListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: IQPlusRankingAdapter
@@ -47,6 +51,10 @@ class IQPlusRankingActivity : BaseActivity()  {
     private lateinit var sharedPreferences: android.content.SharedPreferences
     private var isFinishingByBack = false
 
+    private lateinit var floatingLinkButton: View
+    private var isDialogFromFloatingButton = false
+    private var pulseAnimator: ValueAnimator? = null
+    private var colorAnimator: ValueAnimator? = null
 
     companion object {
         const val TOTAL_COMBOS_REQUIRED = 21
@@ -54,6 +62,9 @@ class IQPlusRankingActivity : BaseActivity()  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ScoreManager.ensurePreferencesInitialized(this)
+        setContentView(R.layout.activity_iqplus_ranking)
+
         ScoreManager.init(this)
         ScoreManager.initPrincipiante(this)
         ScoreManager.initPro(this)
@@ -76,13 +87,12 @@ class IQPlusRankingActivity : BaseActivity()  {
         ScoreManager.initGenioPlusPrincipiante(this)
         ScoreManager.initGenioPlusPro(this)
 
-        setContentView(R.layout.activity_iqplus_ranking)
-
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         initViews()
         setupRecyclerView()
         setupShareButton()
         setupBackButton()
+        setupFloatingButtonInteractions()
 
         spinnerFiltro.visibility = View.GONE
         loadIQPlusRankingData()
@@ -95,6 +105,7 @@ class IQPlusRankingActivity : BaseActivity()  {
         spinnerFiltro = findViewById(R.id.spinnerFiltro)
         btnBack = findViewById(R.id.btnBack)
         loadingIndicator = findViewById(R.id.loadingIndicator)
+        floatingLinkButton = findViewById(R.id.floating_link_button)
     }
 
     private fun setupRecyclerView() {
@@ -124,6 +135,7 @@ class IQPlusRankingActivity : BaseActivity()  {
         recyclerView.visibility = View.GONE
         tvMsgIQPlus.visibility = View.GONE
         btnShareRanking.visibility = View.GONE
+        floatingLinkButton.visibility = View.GONE
 
         Handler(Looper.getMainLooper()).postDelayed({
             rankingIQPlus.clear()
@@ -143,6 +155,8 @@ class IQPlusRankingActivity : BaseActivity()  {
                 btnShareRanking.visibility = View.GONE
                 return@postDelayed
             }
+
+            handleLinkAccountInvitation()
 
             if (!haCompletado) {
                 mostrarMensajesMotivacionales(nombre, iqPlus, combosCompletados)
@@ -167,6 +181,173 @@ class IQPlusRankingActivity : BaseActivity()  {
             recyclerView.visibility = View.VISIBLE
             btnShareRanking.visibility = View.VISIBLE
         }, 800)
+    }
+
+    private fun handleLinkAccountInvitation() {
+        val isLinked = sharedPreferences.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)
+
+        if (isLinked || !ScoreManager.hasCompleted12LevelsInAnyGame()) {
+            return
+        }
+
+        val lastDismissal = sharedPreferences.getLong(SettingsActivity.LAST_PROMPT_DISMISSAL_TIMESTAMP, 0L)
+
+        if (System.currentTimeMillis() < lastDismissal) {
+            return
+        }
+
+        val promptInteracted = sharedPreferences.getBoolean(SettingsActivity.LINK_PROMPT_INTERACTED, false)
+        val isRanked = ScoreManager.isRankedInAtLeastOneGame()
+
+        if (promptInteracted || isRanked) {
+
+            floatingLinkButton.visibility = View.VISIBLE
+            centerFloatingButton()
+            startFloatingButtonAnimations()
+        } else {
+            val dialog = LinkAccountDialogFragment.newInstance()
+            dialog.show(supportFragmentManager, "LinkAccountDialog")
+        }
+    }
+
+    private fun startFloatingButtonAnimations() {
+
+        pulseAnimator = ValueAnimator.ofFloat(1.0f, 1.2f).apply {
+            duration = 1500L
+            repeatMode = ValueAnimator.REVERSE
+            repeatCount = ValueAnimator.INFINITE
+            addUpdateListener { animator ->
+                val scale = animator.animatedValue as Float
+                floatingLinkButton.scaleX = scale
+                floatingLinkButton.scaleY = scale
+            }
+        }
+
+
+        colorAnimator = ValueAnimator.ofArgb(
+            getColor(R.color.blue_primary),
+            getColor(R.color.green_accent),
+            getColor(R.color.orange),
+            getColor(R.color.cyan),
+            getColor(R.color.blue_primary)
+        ).apply {
+            duration = 4000L
+            repeatCount = ValueAnimator.INFINITE
+            addUpdateListener { animator ->
+
+                val iconView = floatingLinkButton.findViewById<ImageView>(R.id.ic_link)
+                iconView?.setColorFilter(animator.animatedValue as Int)
+            }
+        }
+
+        pulseAnimator?.start()
+        colorAnimator?.start()
+    }
+
+    private fun stopFloatingButtonAnimations() {
+        pulseAnimator?.cancel()
+        colorAnimator?.cancel()
+        pulseAnimator = null
+        colorAnimator = null
+
+        floatingLinkButton.scaleX = 1.0f
+        floatingLinkButton.scaleY = 1.0f
+        val iconView = floatingLinkButton.findViewById<ImageView>(R.id.ic_link)
+        iconView?.clearColorFilter()
+    }
+
+    private fun centerFloatingButton() {
+        floatingLinkButton.post {
+            val screenWidth = resources.displayMetrics.widthPixels
+            val buttonWidth = floatingLinkButton.width
+            val centerX = (screenWidth - buttonWidth) / 2f
+
+            floatingLinkButton.x = centerX
+
+        }
+    }
+
+    private fun setupFloatingButtonInteractions() {
+        floatingLinkButton.setOnClickListener {
+
+            stopFloatingButtonAnimations()
+
+            isDialogFromFloatingButton = true
+            val dialog = LinkAccountDialogFragment.newInstance()
+            dialog.show(supportFragmentManager, "LinkAccountDialog_FromFloat")
+        }
+
+        floatingLinkButton.setOnTouchListener(object : View.OnTouchListener {
+            private var initialX = 0f
+            private var initialY = 0f
+            private var dX = 0f
+            private var dY = 0f
+            private var isDragging = false
+
+            override fun onTouch(view: View, event: MotionEvent): Boolean {
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+
+                        stopFloatingButtonAnimations()
+
+                        initialX = view.x
+                        initialY = view.y
+                        dX = view.x - event.rawX
+                        dY = view.y - event.rawY
+                        isDragging = false
+                        return true
+                    }
+                    MotionEvent.ACTION_MOVE -> {
+                        val newX = event.rawX + dX
+                        val newY = event.rawY + dY
+
+                        if (kotlin.math.abs(newX - initialX) > 10 || kotlin.math.abs(newY - initialY) > 10) {
+                            isDragging = true
+                        }
+
+                        val screenWidth = resources.displayMetrics.widthPixels
+                        val screenHeight = resources.displayMetrics.heightPixels
+                        val buttonWidth = view.width
+                        val buttonHeight = view.height
+
+                        val constrainedX = newX.coerceIn(0f, (screenWidth - buttonWidth).toFloat())
+                        val constrainedY = newY.coerceIn(0f, (screenHeight - buttonHeight).toFloat())
+
+                        view.animate()
+                            .x(constrainedX)
+                            .y(constrainedY)
+                            .setDuration(0)
+                            .start()
+                        return true
+                    }
+                    MotionEvent.ACTION_UP -> {
+                        val screenHeight = resources.displayMetrics.heightPixels
+
+                        if (view.y > screenHeight * 0.8) {
+
+                            view.visibility = View.GONE
+                            Toast.makeText(this@IQPlusRankingActivity, getString(R.string.toast_button_dismissed), Toast.LENGTH_SHORT).show()
+
+                            val cooldown = SettingsActivity.COOLDOWN_FLOAT_DISMISS
+                            sharedPreferences.edit {
+                                putBoolean(SettingsActivity.LINK_PROMPT_INTERACTED, true)
+                                putLong(SettingsActivity.LAST_PROMPT_DISMISSAL_TIMESTAMP, System.currentTimeMillis() + cooldown)
+                            }
+                        } else if (!isDragging) {
+
+                            view.performClick()
+                        } else {
+
+                            startFloatingButtonAnimations()
+                        }
+
+                        isDragging = false
+                        return true
+                    }
+                }
+                return false
+            }
+        })
     }
 
     private fun mostrarMensajeInicial(nombre: String) {
@@ -225,7 +406,6 @@ class IQPlusRankingActivity : BaseActivity()  {
             nombre, combosCompletados, combosFaltantes
         )
 
-
         val motivMsgIndex = Random.nextInt(6)
         var motivMsg = getString(
             when(motivMsgIndex) {
@@ -255,12 +435,12 @@ class IQPlusRankingActivity : BaseActivity()  {
         tvMsgIQPlus.apply {
             visibility = View.VISIBLE
             text = spannableText
-            textSize = 24f
+            textSize = 22f
             setTextColor(ContextCompat.getColor(this@IQPlusRankingActivity, android.R.color.black))
             movementMethod = LinkMovementMethod.getInstance()
+            gravity = Gravity.CENTER
         }
         tvMsgIQPlus.highlightColor = Color.TRANSPARENT
-
     }
 
     private fun hacerIQPlusInteractivo(texto: String, iqPlus: Double): SpannableString {
@@ -319,7 +499,6 @@ class IQPlusRankingActivity : BaseActivity()  {
         return combosCompletados
     }
 
-
     private fun getUsuarioActualNombre(): String =
         sharedPreferences.getString("savedUserName", getString(R.string.default_username)) ?: getString(R.string.default_username)
 
@@ -329,13 +508,11 @@ class IQPlusRankingActivity : BaseActivity()  {
     private fun calcularIQPlus(): Double =
         ScoreManager.lastIqComponentByGame.values.sum()
 
-
     private fun haJugadoTodosLosCombos(): Boolean {
         return ScoreManager.haJugadoAlMenosUnNivelEnCadaJuegoYGrado()
     }
 
     private fun mostrarDialogoEstadisticas() {
-
         val precision = ScoreManager.getPrecisionGlobal()
         val tiempoPromedio = ScoreManager.getTiempoPromedioGlobal()
         val dialog = IQPlusStatsDialogFragment.newInstance(
@@ -346,7 +523,6 @@ class IQPlusRankingActivity : BaseActivity()  {
     }
 
     private fun compartirRanking() {
-
         val posicion = 1
         val iqPlus = rankingIQPlusFiltrado.firstOrNull { it.username == getUsuarioActualNombre() }?.iqPlus ?: 0.0
         val mensaje = getString(R.string.share_iqplus_ranking_message, posicion, iqPlus)
@@ -398,13 +574,58 @@ class IQPlusRankingActivity : BaseActivity()  {
         }
     }
 
-
     override fun onStop() {
         super.onStop()
+
+        stopFloatingButtonAnimations()
+
         if (!isFinishingByBack) {
             MusicManager.pause()
         }
         isFinishingByBack = false
+    }
+
+    override fun onAcceptLink() {
+        sharedPreferences.edit {
+            putBoolean(SettingsActivity.ACCOUNT_LINKED, true)
+        }
+        Toast.makeText(this, getString(R.string.account_linked_success), Toast.LENGTH_LONG).show()
+
+        loadIQPlusRankingData()
+    }
+
+    override fun onNotNow() {
+        val cooldown = if (isDialogFromFloatingButton) {
+            SettingsActivity.COOLDOWN_FLOAT_DIALOG_DISMISS
+        } else {
+            SettingsActivity.COOLDOWN_NOT_NOW
+        }
+
+        sharedPreferences.edit {
+            putBoolean(SettingsActivity.LINK_PROMPT_INTERACTED, true)
+            putLong(SettingsActivity.LAST_PROMPT_DISMISSAL_TIMESTAMP, System.currentTimeMillis() + cooldown)
+        }
+        Toast.makeText(this, getString(R.string.toast_cooldown_long), Toast.LENGTH_SHORT).show()
+        isDialogFromFloatingButton = false
+
+        loadIQPlusRankingData()
+    }
+
+    override fun onRemindMeLater() {
+        val cooldown = if (isDialogFromFloatingButton) {
+            SettingsActivity.COOLDOWN_FLOAT_DIALOG_DISMISS
+        } else {
+            SettingsActivity.COOLDOWN_REMIND_LATER
+        }
+
+        sharedPreferences.edit {
+            putBoolean(SettingsActivity.LINK_PROMPT_INTERACTED, true)
+            putLong(SettingsActivity.LAST_PROMPT_DISMISSAL_TIMESTAMP, System.currentTimeMillis() + cooldown)
+        }
+        Toast.makeText(this, getString(R.string.toast_cooldown_short), Toast.LENGTH_SHORT).show()
+        isDialogFromFloatingButton = false
+
+        loadIQPlusRankingData()
     }
 }
 
@@ -440,5 +661,4 @@ object IQPlusCombos {
         Combo("GenioPlus", "Pro", 18.0)
     )
     data class Combo(val juego: String, val grado: String, val peso: Double)
-
 }
