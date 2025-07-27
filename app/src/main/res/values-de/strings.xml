@@ -633,7 +633,9 @@
     <string name="clasificaciones_puntos_velocidad_3">• Wenn du schneller bist, gewinnst du mehr Punkte!</string>
     <string name="clasificaciones_puntos_velocidad_4">• Wenn du länger brauchst, erhältst du weniger Punkte</string>
     <string name="clasificaciones_juegos_niveles">Spiele und Level</string>
-    <string name="clasificaciones_juegos_niveles_1">• Es gibt 7 verschiedene Spiele: ZAHLEN⁺, DEZI⁺, RÖMER, PLUSMINUS, ALPHANUMERISCH, MEHR⁺ und GENIE⁺</string>
+
+    <string name="clasificaciones_juegos_niveles_1">• Es gibt 7 verschiedene Spiele: NÚMEROS⁺, DECI⁺, ROMAS, SUMARESTA, ALFANUMEROS, MÁS⁺ und GENIOS⁺</string>
+
     <string name="clasificaciones_juegos_niveles_2">• Jedes Spiel hat 3 Level: Anfänger, Fortgeschritten und Profi</string>
     <string name="clasificaciones_juegos_niveles_3">• Schwierigere Spiele und höhere Level geben dir mehr Punkte</string>
     <string name="clasificaciones_practica">Übe und verbessere dich!</string>
@@ -662,33 +664,34 @@
     <string name="corona_celeris_6">Für denjenigen, der den zweiten Platz in der Geschwindigkeit erobert. Die Celeris-Krone belohnt deine Schnelligkeit und Beständigkeit.</string>
     <string name="corona_velocitas_10">Auch der dritte Platz in der Geschwindigkeit ist ehrenwert. Diese Krone erkennt deine geistige Agilität an.</string>
 
-    <string name="trofeo_initia_numeros_principiante">Beginne deine Reise. Meistere ZAHLEN⁺ Anfänger und diese Trophäe wird dein Ausgangspunkt sein.</string>
-    <string name="trofeo_constantia_numeros_avanzado">Mache weiter, ohne aufzugeben. Bewältige jede Herausforderung in ZAHLEN⁺ Fortgeschritten.</string>
-    <string name="trofeo_confectus_numeros_pro">Lass nichts unvollendet. Erreiche das Ende von ZAHLEN⁺ Profi und erhalte CONFECTUS.</string>
+    <string name="trofeo_initia_numeros_principiante">Beginne deine Reise. Meistere NÚMEROS⁺ Principiante und dieser Trofeo INITIA wird dein Ausgangspunkt sein.</string>
+    <string name="trofeo_constantia_numeros_avanzado">Mache weiter, ohne aufzugeben. Recorre jede Herausforderung in NÚMEROS⁺ Avanzado und verdiene CONSTANTIA.</string>
+    <string name="trofeo_confectus_numeros_pro">Lass nichts unvollendet. Erreiche das Ende von NÚMEROS⁺ Pro und erhalte CONFECTUS.</string>
 
-    <string name="trofeo_via_deci_principiante">Bahne dir deinen Weg durch die Dezimalzahlen. Beende DEZI⁺ Anfänger und beginne, herauszustechen.</string>
-    <string name="trofeo_altus_deci_avanzado">Ziele hoch. Beende DEZI⁺ Fortgeschritten und ALTUS wird dein sein.</string>
-    <string name="trofeo_perseverantia_deci_pro">Gib nicht auf. Erobere jedes Spiel von DEZI⁺ Profi mit unerschütterlicher Disziplin.</string>
+    <string name="trofeo_via_deci_principiante">Bahne dir deinen Weg durch die Dezimalzahlen. Beende DECI⁺ Principiante und beginne, dich zu profilieren. Trofeo VIA wartet auf dich.</string>
+    <string name="trofeo_altus_deci_avanzado">Ziele hoch. Beende DECI⁺ Avanzado und ALTUS wird dein Trofeo sein.</string>
+    <string name="trofeo_perseverantia_deci_pro">Gib nicht auf. Erobere jedes Spiel von DECI⁺ Pro mit unerschütterlicher Disziplin und gewinne PERSEVERANTIA.</string>
 
-    <string name="trofeo_gradus_romas_principiante">Gehe Schritt für Schritt voran. Meistere RÖMER Anfänger und hinterlasse deine kaiserliche Spur.</string>
-    <string name="trofeo_fortitudo_romas_avanzado">Zeige deine Stärke. Stelle dich den Herausforderungen von RÖMER Fortgeschritten bis zum Ende.</string>
-    <string name="trofeo_metam_romas_pro">Erreiche das römische Ziel. Besiege jedes Level von RÖMER Profi und erobere dieses Emblem.</string>
+    <string name="trofeo_gradus_romas_principiante">Gehe Schritt für Schritt voran. Überwinde ROMAS Principiante und hinterlasse deine imperiale Spur mit dem Trofeo GRADUS.</string>
+    <string name="trofeo_fortitudo_romas_avanzado">Zeige deine Stärke. Stelle dich den Herausforderungen von ROMAS Avanzado bis zum Ende und gewinne FORTITUDO.</string>
+    <string name="trofeo_metam_romas_pro">Erreiche das römische Ziel. Besiege jedes Level von ROMAS Pro und erobere das Trofeo METAM.</string>
 
-    <string name="trofeo_fundamentum_alfanumeros_principiante">Baue das Fundament deiner Meisterschaft. Schließe ALPHANUMERISCH Anfänger ab, ohne Lücken zu lassen.</string>
-    <string name="trofeo_praemium_alfanumeros_avanzado">Verdiene dir diesen Preis Buchstabe für Buchstabe. Arbeite dich durch ganz ALPHANUMERISCH Fortgeschritten.</string>
-    <string name="trofeo_glorificus_alfanumeros_pro">Greife nach dem Ruhm. Meistere ALPHANUMERISCH Profi und lass deinen Geist erstrahlen.</string>
+    <string name="trofeo_fundamentum_alfanumeros_principiante">Baue das Fundament deiner Meisterschaft. Schließe ALFANUMEROS Principiante ab, ohne Lücken zu lassen, und verdiene FUNDAMENTUM.</string>
+    <string name="trofeo_praemium_alfanumeros_avanzado">Verdiene dir diesen Preis Buchstabe für Buchstabe. Arbeite dich durch ganz ALFANUMEROS Avanzado und erreiche PRAEMIUM.</string>
+    <string name="trofeo_glorificus_alfanumeros_pro">Greife nach dem Ruhm. Meistere ALFANUMEROS Pro und lass deinen Geist mit GLORIFICUS erstrahlen.</string>
 
-    <string name="trofeo_scala_sumaresta_principiante">Steige entschlossen auf. Erklimme Stufe um Stufe, bis du PLUSMINUS Anfänger eroberst.</string>
-    <string name="trofeo_tenacitas_sumaresta_avanzado">Nur die Hartnäckigen kommen weit. Stelle dich und beende PLUSMINUS Fortgeschritten.</string>
-    <string name="trofeo_perfectus_sumaresta_pro">Suche die Perfektion in jedem Spielzug. Schließe PLUSMINUS Profi ab, ohne aufzugeben.</string>
+    <string name="trofeo_scala_sumaresta_principiante">Steige entschlossen auf. Erklimme Stufe um Stufe, bis du SUMARESTA Principiante eroberst und SCALA gewinnst.</string>
+    <string name="trofeo_tenacitas_sumaresta_avanzado">Nur die Hartnäckigen kommen weit. Stelle dich und beende SUMARESTA Avanzado, um TENACITAS zu verdienen.</string>
+    <string name="trofeo_perfectus_sumaresta_pro">Suche die Perfektion in jedem Spielzug. Schließe SUMARESTA Pro ab, ohne aufzugeben, und gewinne PERFECTUS.</string>
 
-    <string name="trofeo_origo_mas_principiante">Alles beginnt hier. Meistere MEHR⁺ Anfänger und schalte deinen Ursprung frei.</string>
-    <string name="trofeo_proficium_mas_avanzado">Mache den Fortschritt zu deiner Flagge. Arbeite dich durch jede Herausforderung von MEHR⁺ Fortgeschritten.</string>
-    <string name="trofeo_exemplaritas_mas_pro">Werde zum Vorbild. Beende MEHR⁺ Profi und ehre dein Beispiel.</string>
+    <string name="trofeo_origo_mas_principiante">Alles beginnt hier. Überwinde MÁS⁺ Principiante und schalte mit ORIGO deinen Ursprung frei.</string>
+    <string name="trofeo_proficium_mas_avanzado">Mache den Fortschritt zu deiner Flagge. Arbeite dich durch jede Herausforderung von MÁS⁺ Avanzado und erhalte PROFICIUM.</string>
+    <string name="trofeo_exemplaritas_mas_pro">Werde zum Vorbild. Beende MÁS⁺ Pro und ehre dein Beispiel mit EXEMPLARITAS.</string>
 
-    <string name="trofeo_ascensus_genio_principiante">Beginne den Aufstieg zu deiner Genialität. Schließe Genie⁺ Anfänger ab.</string>
-    <string name="trofeo_magnificus_genio_avanzado">Lass deinen Intellekt erstrahlen. Durchquere jedes Level von Genie⁺ Fortgeschritten.</string>
-    <string name="trofeo_potens_genio_pro">Entfessle dein maximales Potenzial. Erobere Genie⁺ Profi, ohne zurückzublicken.</string>
+    <string name="trofeo_ascensus_genio_principiante">Beginne den Aufstieg zu deiner Genialität. Schließe GENIOS⁺ Principiante ab und erhalte ASCENSUS.</string>
+    <string name="trofeo_magnificus_genio_avanzado">Lass deinen Intellekt erstrahlen. Durchquere jedes Level von GENIOS⁺ Avanzado und gewinne MAGNIFICUS.</string>
+    <string name="trofeo_potens_genio_pro">Entfessle dein maximales Potenzial. Erobere GENIOS⁺ Pro ohne zurückzublicken und erreiche POTENS.</string>
+
 
     <string name="previous">Zurück</string>
     <string name="next">Weiter</string>
@@ -736,33 +739,33 @@
 
     <string name="logro_medalla_initium">Du hast 100 einzigartige Spiele abgeschlossen! Deine Hingabe hat dir die INITIUM-Medaille eingebracht, der Anfang deiner Sammlung.</string>
 
-    <string name="logro_trofeo_initia">Du hast die Zahlen gemeistert! Du hast die 70 Level von ZAHLEN⁺ Anfänger abgeschlossen und die INITIA-Trophäe erhalten.</string>
-    <string name="logro_trofeo_constantia">Fortgeschrittene numerische Meisterschaft! Du hast die 70 Level von ZAHLEN⁺ Fortgeschritten gemeistert und die CONSTANTIA-Trophäe erobert.</string>
-    <string name="logro_trofeo_confectus">Höchster Zahlenexperte! Die 70 Level von ZAHLEN⁺ Profi sind vor dir gefallen und haben dir die CONFECTUS-Trophäe verliehen.</string>
+    <string name="logro_trofeo_initia">Du hast die Zahlen gemeistert! Du hast die 70 Level von NÚMEROS⁺ Principiante abgeschlossen und die INITIA-Trophäe erhalten.</string>
+    <string name="logro_trofeo_constantia">Fortgeschrittene numerische Meisterschaft! Du hast die 70 Level von NÚMEROS⁺ Avanzado gemeistert und die CONSTANTIA-Trophäe erobert.</string>
+    <string name="logro_trofeo_confectus">Höchster Zahlenexperte! Die 70 Level von NÚMEROS⁺ Pro sind vor dir gefallen und haben dir die CONFECTUS-Trophäe verliehen.</string>
 
-    <string name="logro_trofeo_via">Brillanter Start mit Dezimalzahlen! Du hast alle Level von DEZI⁺ Anfänger abgeschlossen und die VIA-Trophäe gewonnen.</string>
-    <string name="logro_trofeo_altus">Bewiesene Dezimalpräzision! Die 70 Level von DECI⁺ Fortgeschritten gehören dir und du verdienst die prestigeträchtige ALTUS-Trophäe.</string>
-    <string name="logro_trofeo_perseverantia">Absolute Dezimalmeisterschaft! Du hast alle Level von DECI⁺ Profi erobert und die PERSEVERANTIA-Trophäe erhalten.</string>
+    <string name="logro_trofeo_via">Brillanter Start mit Dezimalzahlen! Du hast alle Level von DECI⁺ Principiante abgeschlossen und die VIA-Trophäe gewonnen.</string>
+    <string name="logro_trofeo_altus">Bewiesene Dezimalpräzision! Die 70 Level von DECI⁺ Avanzado gehören dir und du verdienst die prestigeträchtige ALTUS-Trophäe.</string>
+    <string name="logro_trofeo_perseverantia">Absolute Dezimalmeisterschaft! Du hast alle Level von DECI⁺ Pro erobert und die PERSEVERANTIA-Trophäe erhalten.</string>
 
-    <string name="logro_trofeo_gradus">Wie ein alter Römer! Du hast die 70 Level von RÖMER Anfänger gemeistert und die wertvolle GRADUS-Trophäe erhalten.</string>
-    <string name="logro_trofeo_fortitudo">Kaiserliche Macht in römischen Zahlen! Du hast RÖMER Fortgeschritten vollständig gemeistert und die FORTITUDO-Trophäe gewonnen.</string>
-    <string name="logro_trofeo_metam">Totale römische Herrschaft! Die 70 Herausforderungen von RÖMER Profi wurden erobert, was dich mit der glorreichen METAM-Trophäe belohnt.</string>
+    <string name="logro_trofeo_gradus">Wie ein alter Römer! Du hast die 70 Level von ROMAS Principiante gemeistert und die wertvolle GRADUS-Trophäe erhalten.</string>
+    <string name="logro_trofeo_fortitudo">Kaiserliche Macht in römischen Zahlen! Du hast ROMAS Avanzado vollständig gemeistert und die FORTITUDO-Trophäe gewonnen.</string>
+    <string name="logro_trofeo_metam">Totale römische Herrschaft! Die 70 Herausforderungen von ROMAS Pro wurden erobert, was dich mit der glorreichen METAM-Trophäe belohnt.</string>
 
-    <string name="logro_trofeo_fundamentum">Alphanumerische Grundlagen gemeistert! Du hast ALPHANUMERISCH Anfänger abgeschlossen und die FUNDAMENTUM-Trophäe erhalten.</string>
-    <string name="logro_trofeo_praemium">Alphanumerisches Genie bestätigt! Die 70 Level von ALPHANUMERISCH Fortgeschritten sind Geschichte und belohnen dich mit der PRAEMIUM-Trophäe.</string>
-    <string name="logro_trofeo_glorificus">Höchste alphanumerische Meisterschaft! Du hast alle Herausforderungen von ALPHANUMERISCH Profi besiegt und die prächtige GLORIFICUS-Trophäe erreicht.</string>
+    <string name="logro_trofeo_fundamentum">Alphanumerische Grundlagen gemeistert! Du hast ALFANUMEROS Principiante abgeschlossen und die FUNDAMENTUM-Trophäe erhalten.</string>
+    <string name="logro_trofeo_praemium">Alphanumerisches Genie bestätigt! Die 70 Level von ALFANUMEROS Avanzado sind Geschichte und belohnen dich mit der PRAEMIUM-Trophäe.</string>
+    <string name="logro_trofeo_glorificus">Höchste alphanumerische Meisterschaft! Du hast alle Herausforderungen von ALFANUMEROS Pro besiegt und die prächtige GLORIFICUS-Trophäe erreicht.</string>
 
-    <string name="logro_trofeo_scala">Mentale Berechnung im Aufstieg! Du hast die 70 Level von PLUSMINUS Anfänger gemeistert und die SCALA-Trophäe erhalten.</string>
-    <string name="logro_trofeo_tenacitas">Addition und Subtraktion mit Meisterschaft! Alle Level von PLUSMINUS Fortgeschritten abgeschlossen, was dich mit der TENACITAS-Trophäe belohnt.</string>
-    <string name="logro_trofeo_perfectus">Perfektion in der Berechnung! Du hast die 70 Herausforderungen von PLUSMINUS Profi gemeistert und die begehrte PERFECTUS-Trophäe erreicht.</string>
+    <string name="logro_trofeo_scala">Mentale Berechnung im Aufstieg! Du hast die 70 Level von SUMARESTA Principiante gemeistert und die SCALA-Trophäe erhalten.</string>
+    <string name="logro_trofeo_tenacitas">Addition und Subtraktion mit Meisterschaft! Alle Level von SUMARESTA Avanzado abgeschlossen, was dich mit der TENACITAS-Trophäe belohnt.</string>
+    <string name="logro_trofeo_perfectus">Perfektion in der Berechnung! Du hast die 70 Herausforderungen von SUMARESTA Pro gemeistert und die begehrte PERFECTUS-Trophäe erreicht.</string>
 
-    <string name="logro_trofeo_origo">Ursprung deiner mathematischen Herrschaft! Du hast MEHR⁺ Anfänger abgeschlossen und die wichtige ORIGO-Trophäe gewonnen.</string>
-    <string name="logro_trofeo_proficium">Exemplarischer mathematischer Fortschritt! Die 70 Level von MEHR⁺ Fortgeschritten sind gefallen und haben dir die prestigeträchtige PROFICIUM-Trophäe verliehen.</string>
-    <string name="logro_trofeo_exemplaritas">Beispiel für mathematische Exzellenz! Du hast alle Herausforderungen von MEHR⁺ Profi gemeistert und die außergewöhnliche EXEMPLARITAS-Trophäe erhalten.</string>
+    <string name="logro_trofeo_origo">Ursprung deiner mathematischen Herrschaft! Du hast MÁS⁺ Principiante abgeschlossen und die wichtige ORIGO-Trophäe gewonnen.</string>
+    <string name="logro_trofeo_proficium">Exemplarischer mathematischer Fortschritt! Die 70 Level von MÁS⁺ Avanzado sind gefallen und haben dir die prestigeträchtige PROFICIUM-Trophäe verliehen.</string>
+    <string name="logro_trofeo_exemplaritas">Beispiel für mathematische Exzellenz! Du hast alle Herausforderungen von MÁS⁺ Pro gemeistert und die außergewöhnliche EXEMPLARITAS-Trophäe erhalten.</string>
 
-    <string name="logro_trofeo_ascensus">Aufstieg zur Genialität! Du hast die 70 Level von GENIE⁺ Anfänger abgeschlossen und die begehrte ASCENSUS-Trophäe erhalten.</string>
-    <string name="logro_trofeo_magnificus">Großartige geistige Fähigkeit! Du hast GENIE⁺ Fortgeschritten vollständig gemeistert und die beeindruckende MAGNIFICUS-Trophäe gewonnen.</string>
-    <string name="logro_trofeo_potens">Grenzenlose geistige Kraft! Die 70 Herausforderungen von GENIE⁺ Profi wurden erobert und krönen dich mit der legendären POTENS-Trophäe.</string>
+    <string name="logro_trofeo_ascensus">Aufstieg zur Genialität! Du hast die 70 Level von GENIOS⁺ Principiante abgeschlossen und die begehrte ASCENSUS-Trophäe erhalten.</string>
+    <string name="logro_trofeo_magnificus">Großartige geistige Fähigkeit! Du hast GENIOS⁺ Avanzado vollständig gemeistert und die beeindruckende MAGNIFICUS-Trophäe gewonnen.</string>
+    <string name="logro_trofeo_potens">Grenzenlose geistige Kraft! Die 70 Herausforderungen von GENIOS⁺ Pro wurden erobert und krönen dich mit der legendären POTENS-Trophäe.</string>
 
     <string name="no_condecoraciones">Du hast noch keine Auszeichnungen erhalten. Spiele weiter, um sie zu bekommen!</string>
 
@@ -1188,14 +1191,15 @@
     <string name="ranking_estado_no_aparece_5">Nicht registriert</string>
 
     <string name="ranking_global_name">1.- Globales Ranking:</string>
-    <string name="ranking_vel_numeros">2.- Geschw.-Ranking ZAHLEN⁺:</string>
-    <string name="ranking_vel_deci">3.- Geschw.-Ranking DEZI⁺:</string>
-    <string name="ranking_vel_alfanumeros">4.- Geschw.-Ranking ALPHANUMERISCH⁺:</string>
-    <string name="ranking_vel_romas">5.- Geschw.-Ranking RÖMER⁺:</string>
-    <string name="ranking_vel_sumaresta">6.- Geschw.-Ranking PLUSMINUS⁺:</string>
-    <string name="ranking_vel_mas">7.- Geschw.-Ranking MEHR⁺:</string>
-    <string name="ranking_vel_genios">8.- Geschw.-Ranking Genie⁺:</string>
+    <string name="ranking_vel_numeros">2.- Geschw.-Ranking NÚMEROS⁺:</string>
+    <string name="ranking_vel_deci">3.- Geschw.-Ranking DECI⁺:</string>
+    <string name="ranking_vel_alfanumeros">4.- Geschw.-Ranking ALFANUMEROS⁺:</string>
+    <string name="ranking_vel_romas">5.- Geschw.-Ranking ROMAS⁺:</string>
+    <string name="ranking_vel_sumaresta">6.- Geschw.-Ranking SUMARESTA⁺:</string>
+    <string name="ranking_vel_mas">7.- Geschw.-Ranking MÁS⁺:</string>
+    <string name="ranking_vel_genios">8.- Geschw.-Ranking GENIOS⁺:</string>
     <string name="ranking_iq">9.- Ranking des IQ⁺ Index:</string>
+
 
     <string name="clasificacion_integral_s">Integrale Klassifizierung S⁺</string>
 

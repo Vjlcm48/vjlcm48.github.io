@@ -1,0 +1,1539 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="loading_text">جارٍ التحميل…</string>
+
+    <string name="next_activity_text">النشاط التالي</string>
+
+    <string name="btn_allow">سماح</string>
+    <string name="btn_deny">عدم السماح</string>
+    <string name="notification_text">هل تريد السماح لـ SumaMente بإرسال إشعارات إليك؟</string>
+    <string name="content_description_bell_icon">أيقونة الجرس</string>
+    <string name="content_description_icon">أيقونة SumaMente الرسمية</string>
+
+
+    <string name="instruction_text">اكتب اسم المستخدم الخاص بك.\nاستخدم بين 4 و 12 حرفًا</string>
+    <string name="btn_accept">موافق</string>
+    <string name="content_description_check_icon">أيقونة التحقق</string>
+    <string name="hint_username_input">اسم المستخدم</string>
+    <string name="app_logo">شعار التطبيق</string>
+    <string name="trophy">كأس</string>
+    <string name="settings">الإعدادات</string>
+    <string name="home">الرئيسية</string>
+    <string name="statistics">الإحصائيات</string>
+    <string name="statistics_text">التصنيف</string>
+    <string name="username">اسم المستخدم</string>
+    <string name="calendar">التقويم</string>
+    <string name="calendar_text">التحديات</string>
+    <string name="close">إغلاق</string>
+    <string name="level_locked_message">أكمل المستويات السابقة لفتح هذا المستوى.</string>
+    <string name="level_1">المستوى 1</string>
+    <string name="level_2">المستوى 2</string>
+    <string name="level_3">المستوى 3</string>
+    <string name="level_4">المستوى 4</string>
+    <string name="level_5">المستوى 5</string>
+    <string name="level_6">المستوى 6</string>
+    <string name="level_7">المستوى 7</string>
+    <string name="level_8">المستوى 8</string>
+    <string name="level_9">المستوى 9</string>
+    <string name="level_10">المستوى 10</string>
+    <string name="level_11">المستوى 11</string>
+    <string name="level_12">المستوى 12</string>
+    <string name="level_13">المستوى 13</string>
+    <string name="level_14">المستوى 14</string>
+    <string name="level_15">المستوى 15</string>
+    <string name="level_16">المستوى 16</string>
+    <string name="level_17">المستوى 17</string>
+    <string name="level_18">المستوى 18</string>
+    <string name="level_19">المستوى 19</string>
+    <string name="level_20">المستوى 20</string>
+    <string name="level_21">المستوى 21</string>
+    <string name="level_22">المستوى 22</string>
+    <string name="level_23">المستوى 23</string>
+    <string name="level_24">المستوى 24</string>
+    <string name="level_25">المستوى 25</string>
+    <string name="level_26">المستوى 26</string>
+    <string name="level_27">المستوى 27</string>
+    <string name="level_28">المستوى 28</string>
+    <string name="level_29">المستوى 29</string>
+    <string name="level_30">المستوى 30</string>
+    <string name="level_31">المستوى 31</string>
+    <string name="level_32">المستوى 32</string>
+    <string name="level_33">المستوى 33</string>
+    <string name="level_34">المستوى 34</string>
+    <string name="level_35">المستوى 35</string>
+    <string name="level_36">المستوى 36</string>
+    <string name="level_37">المستوى 37</string>
+    <string name="level_38">المستوى 38</string>
+    <string name="level_39">المستوى 39</string>
+    <string name="level_40">المستوى 40</string>
+    <string name="level_41">المستوى 41</string>
+    <string name="level_42">المستوى 42</string>
+    <string name="level_43">المستوى 43</string>
+    <string name="level_44">المستوى 44</string>
+    <string name="level_45">المستوى 45</string>
+    <string name="level_46">المستوى 46</string>
+    <string name="level_47">المستوى 47</string>
+    <string name="level_48">المستوى 48</string>
+    <string name="level_49">المستوى 49</string>
+    <string name="level_50">المستوى 50</string>
+    <string name="level_51">المستوى 51</string>
+    <string name="level_52">المستوى 52</string>
+    <string name="level_53">المستوى 53</string>
+    <string name="level_54">المستوى 54</string>
+    <string name="level_55">المستوى 55</string>
+    <string name="level_56">المستوى 56</string>
+    <string name="level_57">المستوى 57</string>
+    <string name="level_58">المستوى 58</string>
+    <string name="level_59">المستوى 59</string>
+    <string name="level_60">المستوى 60</string>
+    <string name="level_61">المستوى 61</string>
+    <string name="level_62">المستوى 62</string>
+    <string name="level_63">المستوى 63</string>
+    <string name="level_64">المستوى 64</string>
+    <string name="level_65">المستوى 65</string>
+    <string name="level_66">المستوى 66</string>
+    <string name="level_67">المستوى 67</string>
+    <string name="level_68">المستوى 68</string>
+    <string name="level_69">المستوى 69</string>
+    <string name="level_70">المستوى 70</string>
+    <string name="scroll_view_description">حاوية المستويات القابلة للتمرير</string>
+    <string name="sound">الصوت</string>
+    <string name="notifications">الإشعارات</string>
+    <string name="share">مشاركة</string>
+    <string name="switch_sound_desc">تفعيل أو تعطيل الصوت</string>
+    <string name="switch_notifications_desc">تفعيل أو تعطيل الإشعارات</string>
+    <string name="volume_vibration">تفعيل أو تعطيل الأصوات</string>
+    <string name="notifications_history">تفعيل أو تعطيل الإشعارات</string>
+    <string name="profile">الملف الشخصي</string>
+    <string name="profile_subtitle">اسم المستخدم، علمك</string>
+    <string name="share_subtitle">مشاركة التطبيق مع الأصدقاء</string>
+    <string name="help">مساعدة</string>
+    <string name="help_subtitle">كيفية اللعب</string>
+    <string name="home_text">الرئيسية</string>
+    <string name="ads">الإعلانات</string>
+    <string name="ads_subtitle">إزالة الإعلانات</string>
+    <string name="switch_ads_desc">يسمح بتفعيل/تعطيل الإعلانات</string>
+    <string name="level_title">المستوى %1$d/70</string>
+    <string name="time_limit_text">أقصى وقت للحل: %.2f ثانية</string>
+    <string name="start_button_text">ابدأ</string>
+    <string name="close_button_description">إغلاق نافذة التعليمات</string>
+    <string name="btn_yes">نعم</string>
+    <string name="btn_no">لا</string>
+    <string name="back">رجوع</string>
+    <string name="exit_confirmation">هل ترغب في مغادرة اللعبة؟</string>
+    <string name="progress_ring_description">حلقة التقدم تظهر الوقت المتبقي</string>
+    <string name="prompt_choose_correct_answer">اختر الإجابة\nالصحيحة</string>
+    <string name="respuesta_1">الإجابة 1</string>
+    <string name="respuesta_2">الإجابة 2</string>
+    <string name="respuesta_3">الإجابة 3</string>
+    <string name="respuesta_4">الإجابة 4</string>
+    <string name="score_label">النتيجة: %1$d</string>
+    <string name="new_game">لعبة جديدة</string>
+    <string name="dialog_title">وضع الإجابة</string>
+    <string name="seleccion_simple">اختيار بسيط</string>
+    <string name="escribe_tu_respuesta">اكتب إجابتك</string>
+    <string name="info_seleccion_simple">معلومات حول الاختيار البسيط</string>
+    <string name="info_escribe_respuesta">معلومات حول كتابة إجابتك</string>
+    <string name="check_seleccion_simple">تأكيد الاختيار البسيط</string>
+    <string name="check_escribe_respuesta">تأكيد كتابة إجابتك</string>
+    <string name="title_dialog">عنوان</string>
+    <string name="dialog_message">رسالة</string>
+    <string name="close_button_desc">إغلاق</string>
+    <string name="selection_simple_title">الاختيار البسيط</string>
+    <string name="selection_simple_message">اختر الإجابة الصحيحة من بين عدة خيارات.</string>
+    <string name="write_answer_title">اكتب إجابتك</string>
+    <string name="write_answer_message">اكتب الإجابة الصحيحة يدويًا.</string>
+    <string name="enter_answer_hint">اكتب إجابتك</string>
+    <string name="submit">إرسال</string>
+    <string name="vamos_text">هيا</string>
+    <string name="genial">رائع!</string>
+    <string name="buen_trabajo">عمل جيد</string>
+    <string name="puntos_obtenidos">النقاط المحصلة: %1$d</string>
+    <string name="clasificacion_cambiada">تصنيف جديد. عرض</string>
+    <string name="repetir_nivel">إعادة المستوى</string>
+    <string name="cerrar">إغلاق</string>
+    <string name="perfecto">ممتاز!</string>
+    <string name="increible">لا يصدق!</string>
+    <string name="asombroso">مدهش!</string>
+    <string name="excelente">رائع!</string>
+    <string name="fantastico">خيالي!</string>
+    <string name="imparable">لا يمكن إيقافه!</string>
+    <string name="brillante">متألق!</string>
+    <string name="magistral">متقن!</string>
+    <string name="soberbio">عظيم!</string>
+    <string name="fenomenal">هائل!</string>
+    <string name="esplendido">رائع!</string>
+    <string name="jugar_un_nuevo_nivel">لعب مستوى جديد</string>
+    <string name="bien_hecho">أحسنت!</string>
+    <string name="vamos_bien">نحن بخير!</string>
+    <string name="gran_esfuerzo">جهد كبير!</string>
+    <string name="lo_lograste">لقد فعلتها!</string>
+    <string name="buen_avance">تقدم جيد!</string>
+    <string name="sigue_asi">استمر هكذا!</string>
+    <string name="asi_es">هذا صحيح!</string>
+    <string name="muy_bien">جيد جدًا!</string>
+    <string name="casi_perfecto">شبه مثالي!</string>
+    <string name="mejorando">في تحسن!</string>
+    <string name="persistencia">مثابرة!</string>
+    <string name="buen_intento">محاولة جيدة!</string>
+    <string name="vas_bien">أنت تبلي حسنًا!</string>
+    <string name="has_agotado_tus_intentos">لقد استنفدت محاولاتك!</string>
+    <string name="se_agoto_el_tiempo">عفوًا! لقد نفد الوقت</string>
+    <string name="tiempo_empleado">الوقت: %1$s ثانية</string>
+    <string name="select_game_to_reset">اختر اللعبة لإعادة التعيين</string>
+    <string name="check_blue_description">علامة اختيار زرقاء</string>
+    <string name="check_description">علامة اختيار خضراء تشير إلى النجاح</string>
+
+    <string name="select_data_to_reset">اختر البيانات التي ترغب في إعادة تعيينها</string>
+    <string name="reset_score">إعادة تعيين النتيجة</string>
+    <string name="reset_response_mode">إعادة تعيين وضع الإجابة</string>
+    <string name="accept">موافق</string>
+    <string name="puntaje_actual">النتيجة الحالية: %1$d</string>
+    <string name="confirmation_message">هل أنت متأكد من أنك تريد إعادة تعيين البيانات المحددة؟</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="edit_username_desc">تعديل اسم المستخدم</string>
+    <string name="edit_flag_desc">تعديل العلم</string>
+    <string name="title_profile_edit">ما هي البيانات التي ترغب في تعديلها؟</string>
+    <string name="edit_username">اسم المستخدم</string>
+    <string name="edit_flag">العلم</string>
+    <string name="star_icon">أيقونة النجمة</string>
+    <string name="default_score">0</string>
+    <string name="reset_progress">إعادة تعيين التقدم</string>
+    <string name="reset_progress_subtitle">إعادة ضبط تقدم اللعبة</string>
+
+    <string name="error_invalid_username_length">يجب أن يتكون الاسم من 4 إلى 12 حرفًا.</string>
+    <string name="error_username_taken">عفوًا! يبدو أن شخصًا آخر يستخدم \nهذا الاسم، جرب اسمًا آخر.</string>
+
+    <string name="repeated_numbers_yellow_formatted">"الأرقام %1$s مكررة. اجمعها جيدًا!"</string>
+    <string name="repeated_numbers_blue_formatted">"الأرقام %1$s مكررة. اجمعها جيدًا!"</string>
+    <string name="negative_numbers_warning_formatted">"احذر، قد تكون بعض الأرقام %1$s. اجمعها بشكل صحيح!"</string>
+
+    <string name="highlight_word_yellow">"صفراء"</string>
+    <string name="highlight_word_blue">"زرقاء"</string>
+    <string name="highlight_word_negative">"سالبة"</string>
+
+    <string name="country_ad">أندورا</string>
+    <string name="country_ae">الإمارات العربية المتحدة</string>
+    <string name="country_af">أفغانستان</string>
+    <string name="country_ag">أنتيغوا وبربودا</string>
+    <string name="country_ai">أنغويلا</string>
+    <string name="country_al">ألبانيا</string>
+    <string name="country_am">أرمينيا</string>
+    <string name="country_ao">أنغولا</string>
+    <string name="country_aq">أنتاركتيكا</string>
+    <string name="country_ar">الأرجنتين</string>
+    <string name="country_at">النمسا</string>
+    <string name="country_au">أستراليا</string>
+    <string name="country_aw">أروبا</string>
+    <string name="country_ax">جزر أولاند</string>
+    <string name="country_az">أذربيجان</string>
+    <string name="country_ba">البوسنة والهرسك</string>
+    <string name="country_bb">باربادوس</string>
+    <string name="country_bd">بنغلاديش</string>
+    <string name="country_be">بلجيكا</string>
+    <string name="country_bf">بوركينا فاسو</string>
+    <string name="country_bg">بلغاريا</string>
+    <string name="country_bh">البحرين</string>
+    <string name="country_bi">بوروندي</string>
+    <string name="country_bj">بنين</string>
+    <string name="country_bl">سان بارتيليمي</string>
+    <string name="country_bm">برمودا</string>
+    <string name="country_bn">بروناي</string>
+    <string name="country_bo">بوليفيا</string>
+    <string name="country_bq">الجزر الكاريبية الهولندية</string>
+    <string name="country_br">البرازيل</string>
+    <string name="country_bs">جزر البهاما</string>
+    <string name="country_bt">بوتان</string>
+    <string name="country_bv">جزيرة بوفيه</string>
+    <string name="country_bw">بوتسوانا</string>
+    <string name="country_by">بيلاروسيا</string>
+    <string name="country_bz">بليز</string>
+    <string name="country_ca">كندا</string>
+    <string name="country_cc">جزر كوكوس</string>
+    <string name="country_cd">جمهورية الكونغو الديمقراطية</string>
+    <string name="country_cf">جمهورية أفريقيا الوسطى</string>
+    <string name="country_cg">الكونغو</string>
+    <string name="country_ch">سويسرا</string>
+    <string name="country_ci">ساحل العاج</string>
+    <string name="country_ck">جزر كوك</string>
+    <string name="country_cl">تشيلي</string>
+    <string name="country_cm">الكاميرون</string>
+    <string name="country_cn">الصين</string>
+    <string name="country_co">كولومبيا</string>
+    <string name="country_cr">كوستاريكا</string>
+    <string name="country_cu">كوبا</string>
+    <string name="country_cv">الرأس الأخضر</string>
+    <string name="country_cw">كوراساو</string>
+    <string name="country_cx">جزيرة كريسماس</string>
+    <string name="country_cy">قبرص</string>
+    <string name="country_cz">التشيك</string>
+    <string name="country_de">ألمانيا</string>
+    <string name="country_dj">جيبوتي</string>
+    <string name="country_dk">الدنمارك</string>
+    <string name="country_dm">دومينيكا</string>
+    <string name="country_dominican_republic">جمهورية الدومينيكان</string>
+    <string name="country_dz">الجزائر</string>
+    <string name="country_ec">الإكوادور</string>
+    <string name="country_ee">إستونيا</string>
+    <string name="country_eg">مصر</string>
+    <string name="country_eh">الصحراء الغربية</string>
+    <string name="country_er">إريتريا</string>
+    <string name="country_es">إسبانيا</string>
+    <string name="country_et">إثيوبيا</string>
+    <string name="country_fi">فنلندا</string>
+    <string name="country_fj">فيجي</string>
+    <string name="country_fk">جزر فوكلاند</string>
+    <string name="country_fm">ميكرونيزيا</string>
+    <string name="country_fo">جزر فارو</string>
+    <string name="country_fr">فرنسا</string>
+    <string name="country_ga">الغابون</string>
+    <string name="country_gb">المملكة المتحدة</string>
+    <string name="country_gd">غرينادا</string>
+    <string name="country_ge">جورجيا</string>
+    <string name="country_gf">غويانا الفرنسية</string>
+    <string name="country_gg">غيرنسي</string>
+    <string name="country_gh">غانا</string>
+    <string name="country_gi">جبل طارق</string>
+    <string name="country_gl">جرينلاند</string>
+    <string name="country_gm">غامبيا</string>
+    <string name="country_gn">غينيا</string>
+    <string name="country_gp">غوادلوب</string>
+    <string name="country_gq">غينيا الاستوائية</string>
+    <string name="country_gr">اليونان</string>
+    <string name="country_gs">جورجيا الجنوبية وجزر ساندويتش الجنوبية</string>
+    <string name="country_gt">غواتيمالا</string>
+    <string name="country_gu">غوام</string>
+    <string name="country_gw">غينيا بيساو</string>
+    <string name="country_gy">غيانا</string>
+    <string name="country_hk">هونغ كونغ</string>
+    <string name="country_hm">جزيرة هيرد وجزر ماكدونالد</string>
+    <string name="country_hn">هندوراس</string>
+    <string name="country_hr">كرواتيا</string>
+    <string name="country_ht">هايتي</string>
+    <string name="country_hu">المجر</string>
+    <string name="country_id">إندونيسيا</string>
+    <string name="country_ie">أيرلندا</string>
+    <string name="country_il">إسرائيل</string>
+    <string name="country_im">جزيرة مان</string>
+    <string name="country_in">الهند</string>
+    <string name="country_io">إقليم المحيط الهندي البريطاني</string>
+    <string name="country_iq">العراق</string>
+    <string name="country_ir">إيران</string>
+    <string name="country_is">آيسلندا</string>
+    <string name="country_it">إيطاليا</string>
+    <string name="country_je">جيرزي</string>
+    <string name="country_jm">جامايكا</string>
+    <string name="country_jo">الأردن</string>
+    <string name="country_jp">اليابان</string>
+    <string name="country_ke">كينيا</string>
+    <string name="country_kg">قيرغيزستان</string>
+    <string name="country_kh">كمبوديا</string>
+    <string name="country_ki">كيريباتي</string>
+    <string name="country_km">جزر القمر</string>
+    <string name="country_kn">سانت كيتس ونيفيس</string>
+    <string name="country_kp">كوريا الشمالية</string>
+    <string name="country_kr">كوريا الجنوبية</string>
+    <string name="country_kw">الكويت</string>
+    <string name="country_ky">جزر كايمان</string>
+    <string name="country_kz">كازاخستان</string>
+    <string name="country_la">لاوس</string>
+    <string name="country_lb">لبنان</string>
+    <string name="country_lc">سانت لوسيا</string>
+    <string name="country_li">ليختنشتاين</string>
+    <string name="country_lk">سريلانكا</string>
+    <string name="country_lr">ليبيريا</string>
+    <string name="country_ls">ليسوتو</string>
+    <string name="country_lt">ليتوانيا</string>
+    <string name="country_lu">لوكسمبورغ</string>
+    <string name="country_lv">لاتفيا</string>
+    <string name="country_ly">ليبيا</string>
+    <string name="country_ma">المغرب</string>
+    <string name="country_mc">موناكو</string>
+    <string name="country_md">مولدوفا</string>
+    <string name="country_me">الجبل الأسود</string>
+    <string name="country_mf">سان مارتن</string>
+    <string name="country_mg">مدغشقر</string>
+    <string name="country_mh">جزر مارشال</string>
+    <string name="country_mk">مقدونيا الشمالية</string>
+    <string name="country_ml">مالي</string>
+    <string name="country_mm">ميانمار</string>
+    <string name="country_mn">منغوليا</string>
+    <string name="country_mo">ماكاو</string>
+    <string name="country_mp">جزر ماريانا الشمالية</string>
+    <string name="country_mq">مارتينيك</string>
+    <string name="country_mr">موريتانيا</string>
+    <string name="country_ms">مونتسرات</string>
+    <string name="country_mt">مالطا</string>
+    <string name="country_mu">موريشيوس</string>
+    <string name="country_mv">جزر المالديف</string>
+    <string name="country_mw">مالاوي</string>
+    <string name="country_mx">المكسيك</string>
+    <string name="country_my">ماليزيا</string>
+    <string name="country_mz">موزمبيق</string>
+    <string name="country_na">ناميبيا</string>
+    <string name="country_nc">كاليدونيا الجديدة</string>
+    <string name="country_ne">النيجر</string>
+    <string name="country_nf">جزيرة نورفولك</string>
+    <string name="country_ng">نيجيريا</string>
+    <string name="country_ni">نيكاراغوا</string>
+    <string name="country_nl">هولندا</string>
+    <string name="country_no">النرويج</string>
+    <string name="country_np">نيبال</string>
+    <string name="country_nr">ناورو</string>
+    <string name="country_nu">نييوي</string>
+    <string name="country_nz">نيوزيلندا</string>
+    <string name="country_om">عمان</string>
+    <string name="country_pa">بنما</string>
+    <string name="country_pe">بيرو</string>
+    <string name="country_pf">بولينيزيا الفرنسية</string>
+    <string name="country_pg">بابوا غينيا الجديدة</string>
+    <string name="country_ph">الفلبين</string>
+    <string name="country_pk">باكستان</string>
+    <string name="country_pl">بولندا</string>
+    <string name="country_pt">البرتغال</string>
+    <string name="country_py">باراغواي</string>
+    <string name="country_qa">قطر</string>
+    <string name="country_re">ريونيون</string>
+    <string name="country_ro">رومانيا</string>
+    <string name="country_rs">صربيا</string>
+    <string name="country_ru">روسيا</string>
+    <string name="country_rw">رواندا</string>
+    <string name="country_sa">المملكة العربية السعودية</string>
+    <string name="country_sb">جزر سليمان</string>
+    <string name="country_sc">سيشيل</string>
+    <string name="country_sd">السودان</string>
+    <string name="country_se">السويد</string>
+    <string name="country_sg">سنغافورة</string>
+    <string name="country_si">سلوفينيا</string>
+    <string name="country_sk">سلوفاكيا</string>
+    <string name="country_sl">سيراليون</string>
+    <string name="country_sm">سان مارينو</string>
+    <string name="country_sn">السنغال</string>
+    <string name="country_so">الصومال</string>
+    <string name="country_sr">سورينام</string>
+    <string name="country_st">ساو تومي وبرينسيب</string>
+    <string name="country_sv">السلفادور</string>
+    <string name="country_sy">سوريا</string>
+    <string name="country_sz">إسواتيني</string>
+    <string name="country_td">تشاد</string>
+    <string name="country_tg">توغو</string>
+    <string name="country_th">تايلاند</string>
+    <string name="country_tj">طاجيكستان</string>
+    <string name="country_tl">تيمور الشرقية</string>
+    <string name="country_tm">تركمانستان</string>
+    <string name="country_tn">تونس</string>
+    <string name="country_tr">تركيا</string>
+    <string name="country_tt">ترينيداد وتوباغو</string>
+    <string name="country_tw">تايوان</string>
+    <string name="country_tz">تنزانيا</string>
+    <string name="country_ua">أوكرانيا</string>
+    <string name="country_ug">أوغندا</string>
+    <string name="country_us">الولايات المتحدة</string>
+    <string name="country_uy">أوروغواي</string>
+    <string name="country_uz">أوزبكستان</string>
+    <string name="country_va">الفاتيكان</string>
+    <string name="country_ve">فنزويلا</string>
+    <string name="country_vn">فيتنام</string>
+    <string name="country_ye">اليمن</string>
+    <string name="country_za">جنوب أفريقيا</string>
+    <string name="country_zm">زامبيا</string>
+    <string name="country_zw">زيمبابوي</string>
+    <string name="title_select_flag">اختر العلم</string>
+    <string name="hint_search_country">اكتب اسم البلد</string>
+    <string name="close_button">إغلاق</string>
+    <string name="search_icon">بحث</string>
+    <string name="flag_image">صورة علم البلد</string>
+    <string name="current_flag">العلم الحالي</string>
+    <string name="current_flag_image">صورة العلم الحالي</string>
+    <string name="confirmation">تأكيد</string>
+    <string name="confirm_change_flag">هل أنت متأكد من أنك تريد تغيير العلم؟</string>
+    <string name="instructions_level_1_10">اجمع كل الأرقام</string>
+    <string name="instructions_level_11_20">اجمع كل الأرقام</string>
+    <string name="instructions_level_31_35">اجمع كل الأرقام</string>
+    <string name="instructions_level_36_40">اجمع كل الأرقام</string>
+    <string name="instructions_level_51_60">اجمع كل الأرقام</string>
+    <string name="exception_first">اجمع كل الأرقام ما عدا الأول</string>
+    <string name="exception_second">اجمع كل الأرقام ما عدا الثاني</string>
+    <string name="exception_third">اجمع كل الأرقام ما عدا الثالث</string>
+    <string name="exception_last">اجمع كل الأرقام ما عدا الأخير</string>
+    <string name="default_instructions">اجمع كل الأرقام</string>
+    <string name="instructions_romans_1_10">اجمع كل الأرقام الرومانية</string>
+    <string name="instructions_romans_11_20">اجمع كل الأرقام الرومانية</string>
+    <string name="instructions_romans_31_35">اجمع كل الأرقام الرومانية</string>
+    <string name="instructions_romans_36_40">اجمع كل الأرقام الرومانية</string>
+    <string name="instructions_romans_51_60">اجمع كل الأرقام الرومانية</string>
+    <string name="instructions_romans_default">اجمع كل الأرقام الرومانية</string>
+    <string name="exception_romans_first">اجمع كل الأرقام الرومانية ما عدا الأول</string>
+    <string name="exception_romans_second">اجمع كل الأرقام الرومانية ما عدا الثاني</string>
+    <string name="exception_romans_third">اجمع كل الأرقام الرومانية ما عدا الثالث</string>
+    <string name="exception_romans_last">اجمع كل الأرقام الرومانية ما عدا الأخير</string>
+    <string name="invalid_manual_answer">الرجاء إدخال رقم صالح</string>
+    <string name="sound_enabled">تم تفعيل الصوت</string>
+    <string name="sound_disabled">تم تعطيل الصوت</string>
+    <string name="notifications_enabled">تم تفعيل الإشعارات</string>
+    <string name="notifications_disabled">تم تعطيل الإشعارات</string>
+    <string name="ads_enabled">تم تفعيل الإعلانات</string>
+    <string name="ads_disabled">تم تعطيل الإعلانات</string>
+
+
+
+    <string name="error_time_limit_not_found">لم يتم العثور على الحد الزمني للمستوى %1$d</string>
+
+    <string name="toast_select_option">اختر خيارًا واحدًا على الأقل</string>
+    <string name="sum_and_subtract_instruction">حل العمليات مع مراعاة الأرقام الموجبة والسالبة.</string>
+    <string name="general_instructions">اجمع الأعداد الصحيحة، العشرية، الرومانية والحروف. بعضها قد يكون سالبًا!</string>
+
+    <string name="escoge_tu_modo_de_respuesta">اختر وضع\nالإجابة الذي\nتفضله</string>
+    <string name="instructions_numeros_intro">
+    مرحبًا بك في\nالبرنامج التعليمي لـ:
+</string>
+
+    <string name="entendido">مفهوم</string>
+    <string name="default_chronometer">00.00</string>
+
+    <string name="answer_option_1">8</string>
+    <string name="answer_option_2">9</string>
+    <string name="answer_option_3">10</string>
+    <string name="answer_option_4">11</string>
+
+    <string name="answer_deci_option_1">0.8</string>
+    <string name="answer_deci_option_2">0.9</string>
+    <string name="answer_deci_option_3">0.7</string>
+    <string name="answer_deci_option_4">1.2</string>
+
+    <string name="answer_sumaresta_option_1">13</string>
+    <string name="answer_sumaresta_option_2">14</string>
+    <string name="answer_sumaresta_option_3">11</string>
+    <string name="answer_sumaresta_option_4">12</string>
+
+    <string name="formatted_time">الوقت المستخدم: %s ثانية</string>
+    <string name="formatted_points">النقاط المحصلة: %d</string>
+    <string name="chronometer_value">%s</string>
+
+    <string name="tutorial_step_intro_part_a"><![CDATA[
+    سنوضح لك في 3
+    خطوات بسيطة
+    كيفية اللعب…
+]]></string>
+    <string name="tutorial_step_intro_part_b">لنبدأ.</string>
+    <string name="tutorial_step_one">الخطوة الأولى: قرر كيف تريد أن تلعب، التحكم بيدك!</string>
+    <string name="tutorial_step_two">الخطوة الثانية: ستظهر أرقام. اجمع الأرقام\nالموجبة، واطرح\nالسالبة.\nركز واستعد!\nلنرى مثالاً:</string>
+    <string name="tutorial_deci_step_two">الخطوة الثانية: ستظهر أرقام عشرية. اجمع الأرقام\nالموجبة، واطرح\nالسالبة.\nكن منتبهاً!\nلنرى مثالاً:</string>
+
+    <string name="tutorial_romas_step_two">الخطوة الثانية:\nستظهر أرقام\nرومانية.\nاجمع الموجبة،\nواطرح السالبة.\nكن منتبهاً!\nلنرى مثالاً:</string>
+
+    <string name="tutorial_alfa_numeros_step_two">الخطوة الثانية:\nستظهر حروف\nوأرقام.\nA=1, B=2 إلخ، إلخ\nاجمع الموجبة،\nواطرح السالبة.\nكن منتبهاً!\nلنرى مثالاً:</string>
+
+    <string name="tutorial_mas_step_two">الخطوة الثانية:\nستظهر حروف،\nأرقام، أرقام رومانية\nوعشرية.\nاجمع الموجبة،\nواطرح السالبة.\nكن منتبهاً!\nلنرى مثالاً:</string>
+
+    <string name="tutorial_genio_step_two">الخطوة الثانية:\nستظهر حروف،\nأرقام، كسور\nوجذور تربيعية.\nاجمع الموجبة،\nواطرح السالبة.\nكن منتبهاً!\nلنرى مثالاً:</string>
+
+    <string name="tutorial_step_three_part_one"><![CDATA[
+    الخطوة الثالثة: احسب
+    نتيجة الأرقام
+    التي رأيتها.
+]]></string>
+    <string name="tutorial_step_three_part_two"><![CDATA[
+    اكتب أو اختر الإجابة
+    الصحيحة قبل
+    نفاد الوقت!
+]]></string>
+    <string name="tutorial_result_message"><![CDATA[
+    رائع! الآن سنرى
+    كم من الوقت استغرقت
+    وكم عدد النقاط
+    التي فزت بها. 😊
+]]></string>
+    <string name="tutorial_closing_message"><![CDATA[
+    أنت جاهز الآن!
+    حان وقت اللعب
+    والاستمتاع. 🚀
+]]></string>
+
+    <string name="score_format">النقاط: %d</string>
+
+    <string name="descubre_como_jugar">اكتشف كيفية اللعب</string>
+    <string name="jugar">العب</string>
+    <string name="repetir">إعادة</string>
+
+    <string name="difficulty_selection_title">اختر الصعوبة</string>
+
+    <string name="difficulty_principiante">مبتدئ</string>
+    <string name="difficulty_subtitle_principiante">أساسي، قطعة من الكعكة… 🍰</string>
+
+    <string name="difficulty_avanzado">متقدم</string>
+    <string name="difficulty_subtitle_avanzado">مثير للاهتمام، لنحرك تلك الخلايا العصبية… 🧠</string>
+
+    <string name="difficulty_pro">محترف</string>
+    <string name="difficulty_subtitle_pro">فقط للمختارين… 👑</string>
+
+    <string name="difficulty_exit_dialog_title">تأكيد</string>
+    <string name="difficulty_exit_dialog_message">هل أنت متأكد من رغبتك في الخروج دون اختيار مستوى صعوبة؟ سيتعين عليك الاختيار في المرة القادمة التي تدخل فيها.</string>
+    <string name="difficulty_exit_dialog_positive">خروج</string>
+    <string name="difficulty_exit_dialog_negative">إلغاء</string>
+
+    <string name="difficulty_one_star">★</string>
+    <string name="difficulty_two_stars">★★</string>
+    <string name="difficulty_three_stars">★★★</string>
+
+    <string name="change_difficulty">تغيير الصعوبة</string>
+
+    <string name="review_exercise">مراجعة إجابتي</string>
+    <string name="exercise_title">التمرين كان:</string>
+    <string name="correct_answer_format">الإجابة الصحيحة هي: %d</string>
+    <string name="user_responses_format">إجاباتك كانت: %d %d</string>
+    <string name="level_locked_by_failures">يجب عليك إكمال المستوى السابق لفتح هذا المستوى مرة أخرى</string>
+
+    <string name="desafios_mensaje">تحديات SumaMente! تنافس واربح جوائز مع لاعبين من جميع أنحاء العالم. سنخطرك بموعد الحدث التالي. استعد للتألق!</string>
+
+    <string name="monday_short">إث</string>
+    <string name="tuesday_short">ثل</string>
+    <string name="wednesday_short">أر</string>
+    <string name="thursday_short">خم</string>
+    <string name="friday_short">جم</string>
+    <string name="saturday_short">سب</string>
+    <string name="sunday_short">أح</string>
+
+    <string name="correct_answer_format_deci">الإجابة الصحيحة: %s</string>
+    <string name="user_responses_format_deci">إجاباتك: %s</string>
+
+    <string name="skip_tutorial">تخطي البرنامج التعليمي</string>
+
+    <string name="premio_titulo">جهدك، جوائزك…</string>
+    <string name="pin_reconocimiento">إنجازات خاصة</string>
+    <string name="corona_laureles">سرعة فائقة</string>
+    <string name="medalla">مثابرة مستمرة</string>
+    <string name="trofeo">إتقان كامل</string>
+
+    <string name="correct_answer_format_romas">الإجابة الصحيحة: %s</string>
+    <string name="user_responses_format_romas">إجاباتك: %s</string>
+
+    <string name="clasificaciones_titulo">التصنيفات</string>
+    <string name="clasificaciones_como_funciona">كيف يعمل نظام التصنيف؟</string>
+    <string name="clasificaciones_ver_mi">التصنيف العالمي</string>
+    <string name="clasificaciones_por_velocidad">التصنيف حسب السرعة</string>
+
+    <string name="clasificaciones_titulo_dialog">كيف يعمل نظام التصنيف؟</string>
+    <string name="clasificaciones_puntos_correctas">نقاط للإجابات الصحيحة</string>
+    <string name="clasificaciones_puntos_correctas_1">• كل لعبة تمنحك نقاطًا عندما تجيب بشكل صحيح</string>
+    <string name="clasificaciones_puntos_correctas_2">• إذا أجبت على جميع أسئلتك بشكل صحيح، فستحصل على جميع نقاطك</string>
+    <string name="clasificaciones_puntos_correctas_3">• إذا أخطأت في بعضها، فستحصل على نقاط أقل</string>
+    <string name="clasificaciones_puntos_velocidad">نقاط للسرعة</string>
+    <string name="clasificaciones_puntos_velocidad_1">• كونك سريعًا يمنحك المزيد من النقاط!</string>
+    <string name="clasificaciones_puntos_velocidad_2">• إذا أجبت في ثانية واحدة، فستحصل على النقاط العادية</string>
+    <string name="clasificaciones_puntos_velocidad_3">• إذا كنت أسرع، فستربح المزيد من النقاط!</string>
+    <string name="clasificaciones_puntos_velocidad_4">• إذا استغرقت وقتًا أطول، فستحصل على نقاط أقل</string>
+    <string name="clasificaciones_juegos_niveles">الألعاب والمستويات</string>
+    <string name="clasificaciones_juegos_niveles_1">• هناك 7 ألعاب مختلفة: NÚMEROS⁺، DECI⁺، ROMAS، SUMARESTA، ALFANÚMEROS، MÁS⁺ و GENIO⁺</string>
+    <string name="clasificaciones_juegos_niveles_2">• كل لعبة لها 3 مستويات: مبتدئ، متقدم، ومحترف</string>
+    <string name="clasificaciones_juegos_niveles_3">• الألعاب الأصعب والمستويات الأعلى تمنحك المزيد من النقاط</string>
+    <string name="clasificaciones_practica">تدرب وتحسن!</string>
+    <string name="clasificaciones_practica_1">• يمكنك إعادة أي لعبة وقتما تشاء</string>
+    <string name="clasificaciones_practica_2">• العب قدر ما تشاء لتحسين متوسط وقتك</string>
+    <string name="clasificaciones_practica_3">• تدرب كل يوم لزيادة سرعتك ودقتك!</string>
+
+    <string name="pin_victoris">30 مستوى. لا أخطاء. 24 ساعة. VICTORIS… فقط المنتصرون سيفهمون.</string>
+    <string name="pin_optimum">40 مستوى. لا خطأ. يوم واحد. OPTIMUM… فقط الأفضل يصمدون.</string>
+    <string name="pin_invictus">50 مستوى. لا يقهر. 24 ساعة. INVICTUS… فقط الذين لا يقهرون يحققونه.</string>
+
+    <string name="medalla_initium_100">الرحلة بدأت للتو. أكمل 100 لعبة وستحصل على INITIUM.</string>
+    <string name="medalla_fidelis_200">سيتم تقدير ثباتك. أكمل 200 لعبة وستكون هذه الميدالية لك.</string>
+    <string name="medalla_virtus_300">تدرب كل يوم. عند إكمال 300 لعبة، ستظهر فضيلة الانضباط.</string>
+    <string name="medalla_audax_400">فقط الشجعان يستمرون. اهزم 400 لعبة دون تردد.</string>
+    <string name="medalla_fortis_500">عقلك ثابت. أكمل 500 لعبة وعزز أسطورتك.</string>
+    <string name="medalla_tenax_600">لا تتوقف. عند إكمال 600 لعبة، ستتألق عزيمتك.</string>
+    <string name="medalla_intrepidus_700">واجه كل تحدٍ بلا خوف. هذه الميدالية لك عند إكمال 700 لعبة.</string>
+    <string name="medalla_sapiens_800">الحكمة تُكتسب بالخبرة. 800 لعبة مكتملة ستثبت ذلك.</string>
+    <string name="medalla_exemplar_900">كن قدوة. عند وصولك إلى 900 لعبة، سيعرف الجميع أنك لم تستسلم أبدًا.</string>
+    <string name="medalla_gloriam_1000">تجرأ على الوصول إلى القمة. 1000 لعبة ستقودك إلى المجد.</string>
+    <string name="medalla_magnus_1100">العظمة تُبنى بالجهد. أكمل 1100 لعبة وستحصل على MAGNUS.</string>
+    <string name="medalla_immortalis_1200">إرثك سيستمر. عند إكمال 1200 لعبة، هذه الميدالية تخلدك.</string>
+
+    <string name="corona_volucer_1">لأسرع عقل. فقط من يحتل المركز الأول يستحق هذا التاج الأسطوري.</string>
+    <string name="corona_celeris_6">لمن يحتل المركز الثاني في السرعة. تاج Celeris يكافئ سرعتك وثباتك.</string>
+    <string name="corona_velocitas_10">المركز الثالث في السرعة يستحق التكريم أيضًا. هذا التاج يعترف بخفة حركتك العقلية.</string>
+
+    <string name="trofeo_initia_numeros_principiante">ابدأ رحلتك. أتقن NÚMEROS⁺ للمبتدئين وسيكون هذا الكأس نقطة انطلاقك.</string>
+    <string name="trofeo_constantia_numeros_avanzado">استمر في التقدم دون استسلام. تجاوز كل تحدٍ في NÚMEROS⁺ المتقدم.</string>
+    <string name="trofeo_confectus_numeros_pro">لا تترك شيئًا غير مكتمل. صل إلى نهاية NÚMEROS⁺ للمحترفين واحصل على CONFECTUS.</string>
+
+    <string name="trofeo_via_deci_principiante">ارسم طريقك بين الأعداد العشرية. أنهِ DECI⁺ للمبتدئين وابدأ في التميز.</string>
+    <string name="trofeo_altus_deci_avanzado">استهدف الأعلى. أنهِ DECI⁺ المتقدم وسيكون ALTUS لك.</string>
+    <string name="trofeo_perseverantia_deci_pro">لا تتوقف. اهزم كل لعبة في DECI⁺ للمحترفين بانضباط لا يتزعزع.</string>
+
+    <string name="trofeo_gradus_romas_principiante">تقدم خطوة بخطوة. تغلب على ROMAS للمبتدئين واترك بصمتك الإمبراطورية.</string>
+    <string name="trofeo_fortitudo_romas_avanzado">أظهر قوتك. واجه تحديات ROMAS المتقدم حتى النهاية.</string>
+    <string name="trofeo_metam_romas_pro">الوصول إلى الهدف الروماني. اهزم كل مستوى في ROMAS للمحترفين واكسب هذا الشعار.</string>
+
+    <string name="trofeo_fundamentum_alfanumeros_principiante">ابنِ أساس إتقانك. أكمل ALFANUMEROS للمبتدئين دون ترك أي فراغات.</string>
+    <string name="trofeo_praemium_alfanumeros_avanzado">اكسب هذه الجائزة حرفًا بحرف. تقدم في كل ALFANUMEROS المتقدم.</string>
+    <string name="trofeo_glorificus_alfanumeros_pro">اذهب للمجد. أتقن ALFANUMEROS للمحترفين واجعل عقلك يتألق.</string>
+
+    <string name="trofeo_scala_sumaresta_principiante">تسلق بثبات. اصعد درجة بدرجة حتى تهزم SUMARESTA للمبتدئين.</string>
+    <string name="trofeo_tenacitas_sumaresta_avanzado">فقط المثابرون يذهبون بعيدًا. واجه وأنهِ SUMARESTA المتقدم.</string>
+    <string name="trofeo_perfectus_sumaresta_pro">ابحث عن الكمال في كل خطوة. أنهِ SUMARESTA للمحترفين دون استسلام.</string>
+
+    <string name="trofeo_origo_mas_principiante">كل شيء يبدأ هنا. تغلب على MÁS⁺ للمبتدئين وافتح أصلك.</string>
+    <string name="trofeo_proficium_mas_avanzado">اجعل التقدم رايتك. تقدم في كل تحدٍ في MÁS⁺ المتقدم.</string>
+    <string name="trofeo_exemplaritas_mas_pro">كن قدوة. أنهِ MÁS⁺ للمحترفين وكرم مثالك.</string>
+
+    <string name="trofeo_ascensus_genio_principiante">ابدأ صعودك إلى العبقرية. أكمل Genio⁺ للمبتدئين.</string>
+    <string name="trofeo_magnificus_genio_avanzado">دع عقلك يتألق. تجاوز كل مستوى في Genio⁺ المتقدم.</string>
+    <string name="trofeo_potens_genio_pro">أطلق العنان لإمكانياتك القصوى. اهزم Genio⁺ للمحترفين دون النظر إلى الوراء.</string>
+
+    <string name="previous">السابق</string>
+    <string name="next">التالي</string>
+
+    <string name="mis_condecoraciones">أوسمتي المحققة</string>
+
+    <string name="top_10">أفضل 10 في التصنيف العالمي</string>
+
+    <string name="condecoracion_image">صورة الوسام</string>
+    <string name="condecoracion_honorabilis">المركز العاشر. جدير بالتقدير.</string>
+    <string name="condecoracion_virtuosus">المركز التاسع. إتقان مع انضباط.</string>
+    <string name="condecoracion_insignis">المركز الثامن. اترك بصمتك في التصنيف.</string>
+    <string name="condecoracion_praestans">المركز السابع. يتفوق في كل تحدٍ.</string>
+    <string name="condecoracion_illustris">المركز السادس. نوره لا يمر مرور الكرام.</string>
+    <string name="condecoracion_gloriosus">المركز الخامس. ينتصر بشرف.</string>
+    <string name="condecoracion_venerabilis">المركز الرابع. يُحترم لثباته.</string>
+    <string name="condecoracion_magnanimous">المركز الثالث. عظيم في النقاط والروح.</string>
+    <string name="condecoracion_summum">المركز الثاني. فقط واحد يرتفع أعلى.</string>
+    <string name="condecoracion_excelsitur">القمة المطلقة. يحتل المركز الأول في التصنيف العالمي.</string>
+
+    <string name="position_1">رقم 1</string>
+    <string name="position_2">رقم 2</string>
+    <string name="position_3">رقم 3</string>
+    <string name="position_4">رقم 4</string>
+    <string name="position_5">رقم 5</string>
+    <string name="position_6">رقم 6</string>
+    <string name="position_7">رقم 7</string>
+    <string name="position_8">رقم 8</string>
+    <string name="position_9">رقم 9</string>
+    <string name="position_10">رقم 10</string>
+
+    <string name="user_response_single_format">إجابتك: %d</string>
+
+    <string name="condecoracion_suprema">الوسام الأعلى</string>
+    <string name="apex_supremus_descripcion">فقط المنتصرون الأسمى يمكنهم الحصول عليه…</string>
+    <string name="apex_supremus_info">يُمنح هذا الوسام المتميز فقط لأولئك الذين يكملون جميع تحديات SumaMente.</string>
+
+    <string name="ranking_global">التصنيف العالمي</string>
+    <string name="pais">البلد</string>
+    <string name="puntaje">النقاط</string>
+    <string name="ranking_sin_datos">لا توجد بيانات تصنيف متاحة</string>
+    <string name="bandera_pais">علم البلد</string>
+
+    <string name="logro_pin_invictus">التميز يميزك، 50 تحديًا في يوم واحد، لتحصل على INVICTUS.</string>
+
+    <string name="logro_medalla_initium">لقد أكملت 100 لعبة فريدة! لقد منحك تفانيك ميدالية INITIUM، بداية مجموعتك.</string>
+
+    <string name="logro_trofeo_initia">لقد أتقنت الأرقام! لقد أكملت 70 مستوى من NÚMEROS⁺ للمبتدئين، وحصلت على كأس INITIA.</string>
+    <string name="logro_trofeo_constantia">إتقان عددي متقدم! لقد تجاوزت 70 مستوى من NÚMEROS⁺ المتقدم، وفزت بكأس CONSTANTIA.</string>
+    <string name="logro_trofeo_confectus">خبير أرقام أسمى! لقد سقطت أمامك 70 مستوى من NÚMEROS⁺ للمحترفين، مما يمنحك كأس CONFECTUS.</string>
+
+    <string name="logro_trofeo_via">بداية رائعة مع الكسور العشرية! لقد أكملت جميع مستويات DECI⁺ للمبتدئين، وفزت بكأس VIA.</string>
+    <string name="logro_trofeo_altus">دقة عشرية مثبتة! 70 مستوى من DECI⁺ المتقدم هي ملكك، وتستحق كأس ALTUS المرموق.</string>
+    <string name="logro_trofeo_perseverantia">إتقان عشري مطلق! لقد غزوت جميع مستويات DECI⁺ للمحترفين، وحصلت على كأس PERSEVERANTIA.</string>
+
+    <string name="logro_trofeo_gradus">مثل روماني قديم! لقد أتقنت 70 مستوى من ROMAS للمبتدئين، وحصلت على كأس GRADUS الثمين.</string>
+    <string name="logro_trofeo_fortitudo">قوة إمبراطورية بالأرقام الرومانية! لقد تغلبت على ROMAS المتقدم بالكامل، وفزت بكأس FORTITUDO.</string>
+    <string name="logro_trofeo_metam">هيمنة رومانية كاملة! تم التغلب على 70 تحديًا من ROMAS للمحترفين، ومكافأتك بكأس METAM المجيد.</string>
+
+    <string name="logro_trofeo_fundamentum">أساسيات أبجدية رقمية متقنة! لقد أكملت ALFANÚMEROS للمبتدئين، وحصلت على كأس FUNDAMENTUM.</string>
+    <string name="logro_trofeo_praemium">عبقري أبجدي رقمي مؤكد! 70 مستوى من ALFANÚMEROS المتقدم أصبحت من الماضي، ومكافأتك بكأس PRAEMIUM.</string>
+    <string name="logro_trofeo_glorificus">إتقان أبجدي رقمي أسمى! لقد تغلبت على جميع تحديات ALFANÚMEROS للمحترفين، وحصلت على كأس GLORIFICUS الرائع.</string>
+
+    <string name="logro_trofeo_scala">حساب ذهني في صعود! لقد تجاوزت 70 مستوى من SUMARESTA للمبتدئين، وحصلت على كأس SCALA.</string>
+    <string name="logro_trofeo_tenacitas">اجمع واطرح بإتقان! اكتملت جميع مستويات SUMARESTA المتقدم، ومكافأتك بكأس TENACITAS.</string>
+    <string name="logro_trofeo_perfectus">الكمال في الحساب! لقد أتقنت 70 تحديًا من SUMARESTA للمحترفين، وحصلت على كأس PERFECTUS المرغوب.</string>
+
+    <string name="logro_trofeo_origo">أصل هيمنتك الرياضية! لقد أكملت MÁS⁺ للمبتدئين، وفزت بكأس ORIGO المهم.</string>
+    <string name="logro_trofeo_proficium">تقدم رياضي مثالي! لقد سقطت 70 مستوى من MÁS⁺ المتقدم، مما يمنحك كأس PROFICIUM المرموق.</string>
+    <string name="logro_trofeo_exemplaritas">مثال على التميز الرياضي! لقد تغلبت على جميع تحديات MÁS⁺ للمحترفين، وحصلت على كأس EXEMPLARITAS الاستثنائي.</string>
+
+    <string name="logro_trofeo_ascensus">صعود نحو العبقرية! لقد أكملت 70 مستوى من GENIO⁺ للمبتدئين، وحصلت على كأس ASCENSUS المرغوب.</string>
+    <string name="logro_trofeo_magnificus">قدرة عقلية رائعة! لقد أتقنت GENIO⁺ المتقدم بالكامل، وفزت بكأس MAGNIFICUS المثير للإعجاب.</string>
+    <string name="logro_trofeo_potens">قوة عقلية لا حدود لها! تم التغلب على 70 تحديًا من GENIO⁺ للمحترفين، وتتويجك بكأس POTENS الأسطوري.</string>
+
+    <string name="no_condecoraciones">لم تحصل على أي أوسمة بعد. استمر في اللعب للحصول عليها!</string>
+
+    <string name="speed_classification_title">التصنيف حسب السرعة</string>
+    <string name="speed_ranking_title">تصنيف السرعة</string>
+    <string name="select_game_speed">اختر لعبة لرؤية تصنيف سرعتها</string>
+
+    <string name="time_format_seconds">%s ثانية</string>
+
+    <string name="ranking_position_header">المركز</string>
+    <string name="ranking_player_header">اللاعب</string>
+    <string name="ranking_time_header">الوقت</string>
+
+    <string name="empty_speed_ranking">لا توجد بيانات سرعة متاحة</string>
+
+    <string name="msg_need_more_games_speed">العب 36 مستوى على الأقل من %1$s، 12 في كل درجة صعوبة لترى تصنيف سرعتك.</string>
+
+    <string name="speed_avg_1">متوسط سرعة استجابتك هو: &lt;b&gt;%s ثانية&lt;/b&gt;.</string>
+    <string name="speed_avg_2">حتى الآن، متوسط وقتك هو &lt;b&gt;%s ثانية&lt;/b&gt; لكل استجابة.</string>
+    <string name="speed_avg_3">متوسط الاستجابة الحالي: &lt;b&gt;%s ثانية&lt;/b&gt;.</string>
+    <string name="speed_avg_4">أنت تسجل متوسط وقت قدره &lt;b&gt;%s ثانية&lt;/b&gt;.</string>
+    <string name="speed_avg_5">حاليًا، أنت تستجيب في متوسط &lt;b&gt;%s ثانية&lt;/b&gt;.</string>
+    <string name="speed_avg_6">متوسط وقت الاستجابة: &lt;b&gt;%s ثانية&lt;/b&gt;.</string>
+    <string name="speed_avg_7">في الوقت الحالي، أفضل متوسط سرعة لك هو &lt;b&gt;%s ثانية&lt;/b&gt;.</string>
+    <string name="speed_avg_8">سريع! متوسطك حتى هذه النقطة هو &lt;b&gt;%s ثانية&lt;/b&gt;.</string>
+    <string name="speed_avg_9">في المتوسط، أنت تستجيب كل &lt;b&gt;%s ثانية&lt;/b&gt;.</string>
+    <string name="speed_avg_10">متوسط السرعة المسجل: &lt;b&gt;%s ثانية&lt;/b&gt;.</string>
+    <string name="speed_avg_11">وتيرة جيدة! متوسط استجابتك هو &lt;b&gt;%s ثانية&lt;/b&gt;.</string>
+    <string name="speed_avg_12">هكذا أنت: متوسط سرعة &lt;b&gt;%s ثانية&lt;/b&gt; لكل استجابة.</string>
+
+    <string name="speed_info_1">لتظهر في هذا التصنيف، ما عليك سوى لعب &lt;b&gt;%1$s&lt;/b&gt; مباريات: &lt;b&gt;%2$s&lt;/b&gt; مبتدئ، &lt;b&gt;%3$s&lt;/b&gt; متقدم، و &lt;b&gt;%4$s&lt;/b&gt; محترف.</string>
+    <string name="speed_info_2">استمر في إضافة المباريات لترى تصنيفك: تبقى &lt;b&gt;%1$s&lt;/b&gt; مباريات (&lt;b&gt;%2$s&lt;/b&gt; مبتدئ، &lt;b&gt;%3$s&lt;/b&gt; متقدم، &lt;b&gt;%4$s&lt;/b&gt; محترف).</string>
+    <string name="speed_info_3">لا يزال أمامك طريق طويل، العب &lt;b&gt;%1$s&lt;/b&gt; مباريات أخرى: &lt;b&gt;%2$s&lt;/b&gt; مبتدئ، &lt;b&gt;%3$s&lt;/b&gt; متقدم، و &lt;b&gt;%4$s&lt;/b&gt; محترف لفتح التصنيف.</string>
+    <string name="speed_info_4">%5$s، ما عليك سوى إكمال &lt;b&gt;%1$s&lt;/b&gt; مباريات: &lt;b&gt;%2$s&lt;/b&gt; مبتدئ، &lt;b&gt;%3$s&lt;/b&gt; متقدم، و &lt;b&gt;%4$s&lt;/b&gt; محترف.</string>
+    <string name="speed_info_5">ينقصك القليل، %5$s: &lt;b&gt;%1$s&lt;/b&gt; مباريات (&lt;b&gt;%2$s&lt;/b&gt; مبتدئ، &lt;b&gt;%3$s&lt;/b&gt; متقدم، &lt;b&gt;%4$s&lt;/b&gt; محترف) وستتمكن من رؤية مركزك في هذا التصنيف.</string>
+    <string name="speed_info_6">تشجع، %5$s! أضف &lt;b&gt;%1$s&lt;/b&gt; مباريات (&lt;b&gt;%2$s&lt;/b&gt; مبتدئ، &lt;b&gt;%3$s&lt;/b&gt; متقدم، &lt;b&gt;%4$s&lt;/b&gt; محترف) وستدخل التصنيف.</string>
+    <string name="speed_info_7">لقد تقدمت كثيرًا! ينقصك فقط &lt;b&gt;%1$s&lt;/b&gt; مباريات: &lt;b&gt;%2$s&lt;/b&gt; مبتدئ، &lt;b&gt;%3$s&lt;/b&gt; متقدم، و &lt;b&gt;%4$s&lt;/b&gt; محترف لتظهر في التصنيف.</string>
+    <string name="speed_info_8">أنت تقترب أكثر فأكثر من رؤية مركزك. تبقى &lt;b&gt;%1$s&lt;/b&gt; مباريات (&lt;b&gt;%2$s&lt;/b&gt; مبتدئ، &lt;b&gt;%3$s&lt;/b&gt; متقدم، &lt;b&gt;%4$s&lt;/b&gt; محترف) لتلبية المتطلبات.</string>
+    <string name="speed_info_9">التصنيف في انتظارك، فقط &lt;b&gt;%1$s&lt;/b&gt; مباريات أخرى: &lt;b&gt;%2$s&lt;/b&gt; مبتدئ، &lt;b&gt;%3$s&lt;/b&gt; متقدم، و &lt;b&gt;%4$s&lt;/b&gt; محترف.</string>
+    <string name="speed_info_10">%5$s، جهدك واضح. ينقصك فقط &lt;b&gt;%1$s&lt;/b&gt; مباريات: &lt;b&gt;%2$s&lt;/b&gt; مبتدئ، &lt;b&gt;%3$s&lt;/b&gt; متقدم، و &lt;b&gt;%4$s&lt;/b&gt; محترف.</string>
+    <string name="speed_info_11">تقدم جيد جدًا، %5$s! العب &lt;b&gt;%1$s&lt;/b&gt; مباريات (&lt;b&gt;%2$s&lt;/b&gt; مبتدئ، &lt;b&gt;%3$s&lt;/b&gt; متقدم، &lt;b&gt;%4$s&lt;/b&gt; محترف) وستفتح تصنيفك.</string>
+    <string name="speed_info_12">استمر على هذا النحو، %5$s. فقط &lt;b&gt;%1$s&lt;/b&gt; مباريات أخرى (&lt;b&gt;%2$s&lt;/b&gt; مبتدئ، &lt;b&gt;%3$s&lt;/b&gt; متقدم، &lt;b&gt;%4$s&lt;/b&gt; محترف) وستكون جزءًا من تصنيف السرعة.</string>
+    <string name="speed_info_13">لقد أوشكت على تحقيق ذلك! ينقصك فقط &lt;b&gt;%1$s&lt;/b&gt; مباريات: &lt;b&gt;%2$s&lt;/b&gt; مبتدئ، &lt;b&gt;%3$s&lt;/b&gt; متقدم، و &lt;b&gt;%4$s&lt;/b&gt; محترف لتظهر في التصنيف.</string>
+    <string name="speed_info_14">دفعة أخيرة: &lt;b&gt;%1$s&lt;/b&gt; مباريات (&lt;b&gt;%2$s&lt;/b&gt; مبتدئ، &lt;b&gt;%3$s&lt;/b&gt; متقدم، &lt;b&gt;%4$s&lt;/b&gt; محترف) وستظهر في التصنيف.</string>
+    <string name="speed_info_15">الهدف قريب جدًا، تبقى فقط &lt;b&gt;%1$s&lt;/b&gt; مباريات (&lt;b&gt;%2$s&lt;/b&gt; مبتدئ، &lt;b&gt;%3$s&lt;/b&gt; متقدم، &lt;b&gt;%4$s&lt;/b&gt; محترف).</string>
+    <string name="speed_info_16">%5$s، أنت على وشك تحقيق ذلك: &lt;b&gt;%1$s&lt;/b&gt; مباريات أخرى (&lt;b&gt;%2$s&lt;/b&gt; مبتدئ، &lt;b&gt;%3$s&lt;/b&gt; متقدم، &lt;b&gt;%4$s&lt;/b&gt; محترف) وسيظهر اسمك في التصنيف.</string>
+    <string name="speed_info_17">تقدم مذهل، %5$s! فقط &lt;b&gt;%1$s&lt;/b&gt; مباريات (&lt;b&gt;%2$s&lt;/b&gt; مبتدئ، &lt;b&gt;%3$s&lt;/b&gt; متقدم، &lt;b&gt;%4$s&lt;/b&gt; محترف) وستكون في التصنيف.</string>
+    <string name="speed_info_18">لم يتبق شيء، %5$s. أكمل &lt;b&gt;%1$s&lt;/b&gt; مباريات (&lt;b&gt;%2$s&lt;/b&gt; مبتدئ، &lt;b&gt;%3$s&lt;/b&gt; متقدم، &lt;b&gt;%4$s&lt;/b&gt; محترف) وانضم إلى الأسرع.</string>
+
+    <string name="speed_motiv_1">يمكنك تحقيق ذلك!</string>
+    <string name="speed_motiv_2">كل مباراة تهم، استمر في التقدم.</string>
+    <string name="speed_motiv_3">السرعة حليفك، لا تتوقف!</string>
+    <string name="speed_motiv_4">أنت تبلي بلاءً حسنًا، %1$s! هذه مجرد البداية.</string>
+    <string name="speed_motiv_5">خطوة بخطوة، %1$s، أنت تقترب من هدفك.</string>
+    <string name="speed_motiv_6">أنت تظهر إمكانياتك، %1$s!</string>
+    <string name="speed_motiv_7">لقد دخلت في الإيقاع، استمر على هذا النحو!</string>
+    <string name="speed_motiv_8">جهدك يؤتي ثماره.</string>
+    <string name="speed_motiv_9">المثابرة هي المفتاح، لا تستسلم!</string>
+    <string name="speed_motiv_10">لا يمكن إيقافك، %1$s! تقترب أكثر في كل مرة.</string>
+    <string name="speed_motiv_11">يمكنك أن تشعر بالتقدم بالفعل، %1$s، لا تتوقف!</string>
+    <string name="speed_motiv_12">عمل جيد، %1$s! هكذا تصل بعيدًا.</string>
+    <string name="speed_motiv_13">الخطوات الأخيرة، الهدف قريب!</string>
+    <string name="speed_motiv_14">هذا ما يفعله الأبطال، وأنت واحد منهم!</string>
+    <string name="speed_motiv_15">لا تتوقف الآن، أنت على بعد خطوة واحدة من التصنيف!</string>
+    <string name="speed_motiv_16">ملهم، %1$s! التصنيف أصبح لك تقريبًا.</string>
+    <string name="speed_motiv_17">رائع، %1$s! قليلون من يصلون إلى هذا الحد، استمر بقوة.</string>
+    <string name="speed_motiv_18">أنت تسير بقوة، %1$s! أظهر ما يمكنك تحقيقه.</string>
+
+    <string name="msg_need_more_games_global_1">مرحبًا، %1$s! العب 36 مستوى لرؤية تصنيفك العالمي.</string>
+    <string name="msg_need_more_games_global_2">%1$s، تحتاج إلى لعب 36 مستوى لفتح مركزك في التصنيف العالمي.</string>
+    <string name="msg_need_more_games_global_3">أنت لست في التصنيف بعد، %1$s. العب 36 مستوى وسيظهر تصنيفك العالمي هنا.</string>
+    <string name="msg_need_more_games_global_4">هيا، %1$s! عندما تكمل 36 مستوى، ستتمكن من رؤية مركزك في التصنيف العالمي.</string>
+    <string name="msg_need_more_games_global_5">%1$s، سيظهر تصنيفك العالمي تلقائيًا عند لعب 36 مستوى.</string>
+    <string name="msg_need_more_games_global_6">هل أنت مستعد للتحدي، %1$s؟ العب 36 مستوى وادخل التصنيف العالمي.</string>
+
+    <plurals name="msg_info_global_levels_1">
+        <item quantity="one">%1$s، لقد لعبت مستوى واحد (%2$d). ينقصك %3$d للدخول في التصنيف العالمي.</item>
+        <item quantity="two">%1$s، لقد لعبت مستويين (%2$d). ينقصك %3$d للدخول في التصنيف العالمي.</item>
+        <item quantity="few">%1$s، لقد لعبت %2$d مستويات. ينقصك %3$d للدخول في التصنيف العالمي.</item>
+        <item quantity="many">%1$s، لقد لعبت %2$d مستوى. ينقصك %3$d للدخول في التصنيف العالمي.</item>
+        <item quantity="zero">%1$s، لقد لعبت %2$d مستوى. ينقصك %3$d للدخول في التصنيف العالمي.</item>
+        <item quantity="other">%1$s، لقد لعبت %2$d مستوى. ينقصك %3$d للدخول في التصنيف العالمي.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_2">
+        <item quantity="one">تقدم جيد، %1$s! لقد لعبت مستوى واحد (%2$d) وينقصك فقط %3$d لرؤية تصنيفك.</item>
+        <item quantity="two">تقدم جيد، %1$s! لقد لعبت مستويين (%2$d) وينقصك فقط %3$d لرؤية تصنيفك.</item>
+        <item quantity="few">تقدم جيد، %1$s! لقد لعبت %2$d مستويات وينقصك فقط %3$d لرؤية تصنيفك.</item>
+        <item quantity="many">تقدم جيد، %1$s! لقد لعبت %2$d مستوى وينقصك فقط %3$d لرؤية تصنيفك.</item>
+        <item quantity="zero">تقدم جيد، %1$s! لقد لعبت %2$d مستوى وينقصك فقط %3$d لرؤية تصنيفك.</item>
+        <item quantity="other">تقدم جيد، %1$s! لقد لعبت %2$d مستوى وينقصك فقط %3$d لرؤية تصنيفك.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_3">
+        <item quantity="one">حسابك، %1$s، لديه مستوى واحد (%2$d) تم لعبه. ينقصك %3$d لفتح التصنيف العالمي.</item>
+        <item quantity="two">حسابك، %1$s، لديه مستويين (%2$d) تم لعبهما. ينقصك %3$d لفتح التصنيف العالمي.</item>
+        <item quantity="few">حسابك، %1$s، لديه %2$d مستويات تم لعبها. ينقصك %3$d لفتح التصنيف العالمي.</item>
+        <item quantity="many">حسابك، %1$s، لديه %2$d مستوى تم لعبه. ينقصك %3$d لفتح التصنيف العالمي.</item>
+        <item quantity="zero">حسابك، %1$s، لديه %2$d مستوى تم لعبه. ينقصك %3$d لفتح التصنيف العالمي.</item>
+        <item quantity="other">حسابك، %1$s، لديه %2$d مستوى تم لعبه. ينقصك %3$d لفتح التصنيف العالمي.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_4">
+        <item quantity="one">%1$s، لقد لعبت %2$d من 36 مستوى. ينقصك فقط %3$d للدخول في التصنيف.</item>
+        <item quantity="two">%1$s، لقد لعبت %2$d من 36 مستوى. ينقصك فقط %3$d للدخول في التصنيف.</item>
+        <item quantity="few">%1$s، لقد لعبت %2$d من 36 مستوى. ينقصك فقط %3$d للدخول في التصنيف.</item>
+        <item quantity="many">%1$s، لقد لعبت %2$d من 36 مستوى. ينقصك فقط %3$d للدخول في التصنيف.</item>
+        <item quantity="zero">%1$s، لقد لعبت %2$d من 36 مستوى. ينقصك فقط %3$d للدخول في التصنيف.</item>
+        <item quantity="other">%1$s، لقد لعبت %2$d من 36 مستوى. ينقصك فقط %3$d للدخول في التصنيف.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_5">
+        <item quantity="one">%1$s، لقد أكملت بالفعل مستوى واحد (%2$d). العب %3$d آخر لتظهر في التصنيف العالمي.</item>
+        <item quantity="two">%1$s، لقد أكملت بالفعل مستويين (%2$d). العب %3$d آخر لتظهر في التصنيف العالمي.</item>
+        <item quantity="few">%1$s، لقد أكملت بالفعل %2$d مستويات. العب %3$d أخرى لتظهر في التصنيف العالمي.</item>
+        <item quantity="many">%1$s، لقد أكملت بالفعل %2$d مستوى. العب %3$d آخر لتظهر في التصنيف العالمي.</item>
+        <item quantity="zero">%1$s، لقد أكملت بالفعل %2$d مستوى. العب %3$d آخر لتظهر في التصنيف العالمي.</item>
+        <item quantity="other">%1$s، لقد أكملت بالفعل %2$d مستوى. العب %3$d آخر لتظهر في التصنيف العالمي.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_6">
+        <item quantity="one">%1$s، أنت على بعد %3$d مستوى من الـ 36 المطلوبة. لقد لعبت بالفعل مستوى واحد (%2$d)!</item>
+        <item quantity="two">%1$s، أنت على بعد %3$d مستوى من الـ 36 المطلوبة. لقد لعبت بالفعل مستويين (%2$d)!</item>
+        <item quantity="few">%1$s، أنت على بعد %3$d مستويات من الـ 36 المطلوبة. لقد لعبت بالفعل %2$d مستويات!</item>
+        <item quantity="many">%1$s، أنت على بعد %3$d مستوى من الـ 36 المطلوبة. لقد لعبت بالفعل %2$d مستوى!</item>
+        <item quantity="zero">%1$s، أنت على بعد %3$d مستوى من الـ 36 المطلوبة. لقد لعبت بالفعل %2$d مستوى!</item>
+        <item quantity="other">%1$s، أنت على بعد %3$d مستوى من الـ 36 المطلوبة. لقد لعبت بالفعل %2$d مستوى!</item>
+    </plurals>
+
+    <plurals name="msg_info_global_levels_7">
+        <item quantity="one">لقد لعبت مستوى واحد (%1$d). ينقصك %2$d لتظهر في التصنيف العالمي.</item>
+        <item quantity="two">لقد لعبت مستويين (%1$d). ينقصك %2$d لتظهر في التصنيف العالمي.</item>
+        <item quantity="few">لقد لعبت %1$d مستويات. ينقصك %2$d لتظهر في التصنيف العالمي.</item>
+        <item quantity="many">لقد لعبت %1$d مستوى. ينقصك %2$d لتظهر في التصنيف العالمي.</item>
+        <item quantity="zero">لقد لعبت %1$d مستوى. ينقصك %2$d لتظهر في التصنيف العالمي.</item>
+        <item quantity="other">لقد لعبت %1$d مستوى. ينقصك %2$d لتظهر في التصنيف العالمي.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_8">
+        <item quantity="one">أنت على الطريق الصحيح! مستوى واحد (%1$d) تم لعبه، %2$d آخر وستكون في التصنيف.</item>
+        <item quantity="two">أنت على الطريق الصحيح! مستويان (%1$d) تم لعبهما، %2$d آخر وستكون في التصنيف.</item>
+        <item quantity="few">أنت على الطريق الصحيح! %1$d مستويات تم لعبها، %2$d أخرى وستكون في التصنيف.</item>
+        <item quantity="many">أنت على الطريق الصحيح! %1$d مستوى تم لعبه، %2$d آخر وستكون في التصنيف.</item>
+        <item quantity="zero">أنت على الطريق الصحيح! %1$d مستوى تم لعبه، %2$d آخر وستكون في التصنيف.</item>
+        <item quantity="other">أنت على الطريق الصحيح! %1$d مستوى تم لعبه، %2$d آخر وستكون في التصنيف.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_9">
+        <item quantity="one">لقد لعبت مستوى واحد (%1$d). ينقصك فقط %2$d لفتح تصنيفك العالمي.</item>
+        <item quantity="two">لقد لعبت مستويين (%1$d). ينقصك فقط %2$d لفتح تصنيفك العالمي.</item>
+        <item quantity="few">لقد لعبت %1$d مستويات. ينقصك فقط %2$d لفتح تصنيفك العالمي.</item>
+        <item quantity="many">لقد لعبت %1$d مستوى. ينقصك فقط %2$d لفتح تصنيفك العالمي.</item>
+        <item quantity="zero">لقد لعبت %1$d مستوى. ينقصك فقط %2$d لفتح تصنيفك العالمي.</item>
+        <item quantity="other">لقد لعبت %1$d مستوى. ينقصك فقط %2$d لفتح تصنيفك العالمي.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_10">
+        <item quantity="one">تقدم! مستوى واحد (%1$d) من 36 تم لعبه. تبقى %2$d للتصنيف العالمي.</item>
+        <item quantity="two">تقدم! مستويان (%1$d) من 36 تم لعبهما. تبقى %2$d للتصنيف العالمي.</item>
+        <item quantity="few">تقدم! %1$d مستويات من 36 تم لعبها. تبقى %2$d للتصنيف العالمي.</item>
+        <item quantity="many">تقدم! %1$d مستوى من 36 تم لعبه. تبقى %2$d للتصنيف العالمي.</item>
+        <item quantity="zero">تقدم! %1$d مستوى من 36 تم لعبه. تبقى %2$d للتصنيف العالمي.</item>
+        <item quantity="other">تقدم! %1$d مستوى من 36 تم لعبه. تبقى %2$d للتصنيف العالمي.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_11">
+        <item quantity="one">لقد أكملت بالفعل مستوى واحد (%1$d). ينقصك فقط %2$d لرؤية مركزك في التصنيف.</item>
+        <item quantity="two">لقد أكملت بالفعل مستويين (%1$d). ينقصك فقط %2$d لرؤية مركزك في التصنيف.</item>
+        <item quantity="few">لقد أكملت بالفعل %1$d مستويات. ينقصك فقط %2$d لرؤية مركزك في التصنيف.</item>
+        <item quantity="many">لقد أكملت بالفعل %1$d مستوى. ينقصك فقط %2$d لرؤية مركزك في التصنيف.</item>
+        <item quantity="zero">لقد أكملت بالفعل %1$d مستوى. ينقصك فقط %2$d لرؤية مركزك في التصنيف.</item>
+        <item quantity="other">لقد أكملت بالفعل %1$d مستوى. ينقصك فقط %2$d لرؤية مركزك في التصنيف.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_12">
+        <item quantity="one">أنت على بعد %2$d مستوى من التصنيف العالمي. لقد لعبت بالفعل مستوى واحد (%1$d).</item>
+        <item quantity="two">أنت على بعد %2$d مستوى من التصنيف العالمي. لقد لعبت بالفعل مستويين (%1$d).</item>
+        <item quantity="few">أنت على بعد %2$d مستويات من التصنيف العالمي. لقد لعبت بالفعل %1$d مستويات.</item>
+        <item quantity="many">أنت على بعد %2$d مستوى من التصنيف العالمي. لقد لعبت بالفعل %1$d مستوى.</item>
+        <item quantity="zero">أنت على بعد %2$d مستوى من التصنيف العالمي. لقد لعبت بالفعل %1$d مستوى.</item>
+        <item quantity="other">أنت على بعد %2$d مستوى من التصنيف العالمي. لقد لعبت بالفعل %1$d مستوى.</item>
+    </plurals>
+
+    <string name="msg_motiv_global_levels_1">يمكنك تحقيق ذلك، %1$s! كل مستوى يقربك من التصنيف العالمي.</string>
+    <string name="msg_motiv_global_levels_2">%1$s، استمر على هذا النحو. التصنيف العالمي يقترب أكثر فأكثر!</string>
+    <string name="msg_motiv_global_levels_3">لا تتوقف، %1$s. سيُكافأ جهدك قريبًا!</string>
+    <string name="msg_motiv_global_levels_4">استمر في اللعب، %1$s! التصنيف العالمي في انتظارك.</string>
+    <string name="msg_motiv_global_levels_5">%1$s، كل مباراة تهم. أنت على وشك الوصول إلى التصنيف العالمي!</string>
+    <string name="msg_motiv_global_levels_6">تشجع، %1$s! قريبًا جدًا سترى اسمك بين الأفضل.</string>
+
+    <string name="msg_motiv_global_levels_7">لا تستسلم! كل مستوى يقربك من التصنيف العالمي.</string>
+    <string name="msg_motiv_global_levels_8">أنت قريب جدًا! فقط القليل لتحقيق ذلك.</string>
+    <string name="msg_motiv_global_levels_9">استمر في التقدم! التصنيف العالمي في متناول يدك.</string>
+    <string name="msg_motiv_global_levels_10">عمل ممتاز! استمر وقريبًا جدًا ستظهر في التصنيف.</string>
+    <string name="msg_motiv_global_levels_11">دعنا نلعب المزيد من المستويات! التصنيف العالمي في انتظارك.</string>
+    <string name="msg_motiv_global_levels_12">الهدف قريب! استمر في اللعب للوصول إلى التصنيف العالمي.</string>
+
+    <string name="msg_iqplus_start_1">%1$s، العب 21 مباراة، على الأقل واحدة لكل لعبة وكل درجة صعوبة… وستظهر في تصنيف IQ+.</string>
+    <string name="msg_iqplus_start_2">مرحبًا، %1$s! ابدأ رحلتك في SumaMente بلعب مستوى واحد على الأقل في كل لعبة ودرجة صعوبة للتنافس في تصنيف IQ+.</string>
+    <string name="msg_iqplus_start_3">%1$s، لم تبدأ طريقك بعد في تصنيف IQ+. العب مستوى واحد في جميع الألعاب والدرجات لترى مركزك وتبني مؤشرك.</string>
+    <string name="msg_iqplus_start_4">هيا، %1$s! عندما تكمل مستوى واحد في كل لعبة وصعوبة، ستتمكن من رؤية IQ+ الخاص بك ومقارنة نفسك باللاعبين الآخرين.</string>
+    <string name="msg_iqplus_start_5">%1$s، الخطوة الأولى للتميز في تصنيف IQ+ هي لعب 21 مستوى؛ على الأقل واحد، في جميع الألعاب والدرجات. تشجع وابدأ اليوم!</string>
+    <string name="msg_iqplus_start_6">هل أنت مستعد للتحدي، %1$s؟ شارك في 21 لعبة مختلفة على الأقل، واحدة لكل درجة، وافتح مكانك في تصنيف IQ+.</string>
+
+    <string name="msg_iqplus_info_1">مؤشر IQ+ الحالي الخاص بك هو: %1$.2f.</string>
+    <string name="msg_iqplus_info_2">في الوقت الحالي، IQ+ الخاص بك هو %1$.2f نقطة. استمر في اللعب لتحسينه!</string>
+    <string name="msg_iqplus_info_3">مؤشر IQ+ المؤقت: %1$.2f. العب في جميع الألعاب والدرجات للتنافس في التصنيف.</string>
+    <string name="msg_iqplus_info_4">أنت تطور IQ+ الخاص بك في SumaMente: %1$.2f.</string>
+    <string name="msg_iqplus_info_5">IQ+ المحسوب حتى الآن: %1$.2f. كل مستوى جديد يهم.</string>
+    <string name="msg_iqplus_info_6">هكذا يسير IQ+ الخاص بك: %1$.2f. أكمل جميع الألعاب والدرجات لفتح التصنيف!</string>
+
+    <plurals name="msg_iqplus_levels_info_1">
+        <item quantity="one">%1$s، لقد لعبت في لعبة ودرجة مختلفة واحدة (%2$d). ينقصك %3$d لتظهر في تصنيف IQ+.</item>
+        <item quantity="two">%1$s، لقد لعبت في لعبتين ودرجتين مختلفتين (%2$d). ينقصك %3$d لتظهر في تصنيف IQ+.</item>
+        <item quantity="few">%1$s، لقد لعبت في %2$d ألعاب ودرجات مختلفة. ينقصك %3$d لتظهر في تصنيف IQ+.</item>
+        <item quantity="many">%1$s، لقد لعبت في %2$d لعبة ودرجة مختلفة. ينقصك %3$d لتظهر في تصنيف IQ+.</item>
+        <item quantity="zero">%1$s، لقد لعبت في %2$d لعبة ودرجة مختلفة. ينقصك %3$d لتظهر في تصنيف IQ+.</item>
+        <item quantity="other">%1$s، لقد لعبت في %2$d لعبة ودرجة مختلفة. ينقصك %3$d لتظهر في تصنيف IQ+.</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_2">
+        <item quantity="one">حسابك، %1$s، لديه مباراة واحدة (%2$d) في ألعاب ودرجات مختلفة. ينقصك فقط %3$d لفتح تصنيف IQ+ الخاص بك.</item>
+        <item quantity="two">حسابك، %1$s، لديه مباراتان (%2$d) في ألعاب ودرجات مختلفة. ينقصك فقط %3$d لفتح تصنيف IQ+ الخاص بك.</item>
+        <item quantity="few">حسابك، %1$s، لديه %2$d مباريات في ألعاب ودرجات مختلفة. ينقصك فقط %3$d لفتح تصنيف IQ+ الخاص بك.</item>
+        <item quantity="many">حسابك، %1$s، لديه %2$d مباراة في ألعاب ودرجات مختلفة. ينقصك فقط %3$d لفتح تصنيف IQ+ الخاص بك.</item>
+        <item quantity="zero">حسابك، %1$s، لديه %2$d مباراة في ألعاب ودرجات مختلفة. ينقصك فقط %3$d لفتح تصنيف IQ+ الخاص بك.</item>
+        <item quantity="other">حسابك، %1$s، لديه %2$d مباراة في ألعاب ودرجات مختلفة. ينقصك فقط %3$d لفتح تصنيف IQ+ الخاص بك.</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_3">
+        <item quantity="one">%1$s، أنت تتقدم: %2$d تم لعبها، %3$d للعب. استمر على هذا النحو للوصول إلى تصنيف IQ+!</item>
+        <item quantity="two">%1$s، أنت تتقدم: %2$d تم لعبها، %3$d للعب. استمر على هذا النحو للوصول إلى تصنيف IQ+!</item>
+        <item quantity="few">%1$s، أنت تتقدم: %2$d تم لعبها، %3$d للعب. استمر على هذا النحو للوصول إلى تصنيف IQ+!</item>
+        <item quantity="many">%1$s، أنت تتقدم: %2$d تم لعبها، %3$d للعب. استمر على هذا النحو للوصول إلى تصنيف IQ+!</item>
+        <item quantity="zero">%1$s، أنت تتقدم: %2$d تم لعبها، %3$d للعب. استمر على هذا النحو للوصول إلى تصنيف IQ+!</item>
+        <item quantity="other">%1$s، أنت تتقدم: %2$d تم لعبها، %3$d للعب. استمر على هذا النحو للوصول إلى تصنيف IQ+!</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_4" tools:ignore="StringFormatCount">
+        <item quantity="one">لقد لعبت في لعبة ودرجة مختلفة واحدة (%2$d). ينقصك %3$d لفتح تصنيف IQ+.</item>
+        <item quantity="two">لقد لعبت في لعبتين ودرجتين مختلفتين (%2$d). ينقصك %3$d لفتح تصنيف IQ+.</item>
+        <item quantity="few">لقد لعبت في %2$d ألعاب ودرجات مختلفة. ينقصك %3$d لفتح تصنيف IQ+.</item>
+        <item quantity="many">لقد لعبت في %2$d لعبة ودرجة مختلفة. ينقصك %3$d لفتح تصنيف IQ+.</item>
+        <item quantity="zero">لقد لعبت في %2$d لعبة ودرجة مختلفة. ينقصك %3$d لفتح تصنيف IQ+.</item>
+        <item quantity="other">لقد لعبت في %2$d لعبة ودرجة مختلفة. ينقصك %3$d لفتح تصنيف IQ+.</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_5" tools:ignore="StringFormatCount">
+        <item quantity="one">تقدمك: %2$d تم لعبها، %3$d للعب. أنت على وشك أن ترى مركزك في تصنيف IQ+!</item>
+        <item quantity="two">تقدمك: %2$d تم لعبها، %3$d للعب. أنت على وشك أن ترى مركزك في تصنيف IQ+!</item>
+        <item quantity="few">تقدمك: %2$d تم لعبها، %3$d للعب. أنت على وشك أن ترى مركزك في تصنيف IQ+!</item>
+        <item quantity="many">تقدمك: %2$d تم لعبها، %3$d للعب. أنت على وشك أن ترى مركزك في تصنيف IQ+!</item>
+        <item quantity="zero">تقدمك: %2$d تم لعبها، %3$d للعب. أنت على وشك أن ترى مركزك في تصنيف IQ+!</item>
+        <item quantity="other">تقدمك: %2$d تم لعبها، %3$d للعب. أنت على وشك أن ترى مركزك في تصنيف IQ+!</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_6" tools:ignore="StringFormatCount">
+        <item quantity="one">لديك مباراة واحدة (%2$d) مختلفة؛ عندما تكمل %3$d أخرى، ستظهر في تصنيف IQ+.</item>
+        <item quantity="two">لديك مباراتان (%2$d) مختلفتان؛ عندما تكمل %3$d أخرى، ستظهر في تصنيف IQ+.</item>
+        <item quantity="few">لديك %2$d مباريات مختلفة؛ عندما تكمل %3$d أخرى، ستظهر في تصنيف IQ+.</item>
+        <item quantity="many">لديك %2$d مباراة مختلفة؛ عندما تكمل %3$d أخرى، ستظهر في تصنيف IQ+.</item>
+        <item quantity="zero">لديك %2$d مباراة مختلفة؛ عندما تكمل %3$d أخرى، ستظهر في تصنيف IQ+.</item>
+        <item quantity="other">لديك %2$d مباراة مختلفة؛ عندما تكمل %3$d أخرى، ستظهر في تصنيف IQ+.</item>
+    </plurals>
+
+    <string name="msg_iqplus_motiv_1">استمر على هذا النحو! كل لعبة جديدة تقربك من مكانك في تصنيف IQ+.</string>
+    <string name="msg_iqplus_motiv_2">استمر في التقدم، قريبًا ستتمكن من رؤية تصنيفك ومعرفة مركزك.</string>
+    <string name="msg_iqplus_motiv_3">أنت على وشك أن تكون جزءًا من الأفضل في SumaMente. لا تتوقف!</string>
+    <string name="msg_iqplus_motiv_4">تقدم ممتاز، %1$s! قليلًا آخر وستكون تتنافس مع الأفضل في تصنيف IQ+.</string>
+    <string name="msg_iqplus_motiv_5">جيد جدًا، %1$s. كل مستوى يقربك من هدف أن تكون من بين الأفضل.</string>
+    <string name="msg_iqplus_motiv_6">%1$s، لا تتوقف الآن. لقد أوشكت على الوصول إلى تصنيف IQ+!</string>
+
+    <string name="clasificaciones_por_iqplus">التصنيف حسب مؤشر IQ⁺</string>
+
+    <string name="indice_iqplus">مؤشر IQ⁺</string>
+
+    <string name="iqplus_ranking_title">تصنيف مؤشر IQ⁺</string>
+
+    <string name="share_iqplus_ranking_message">لقد حصلت على المركز %1$d في تصنيف IQ⁺ في SumaMente بمؤشر IQ⁺ %2$.3f! هل تجرؤ على التغلب علي؟</string>
+
+    <string name="precision_global_title">الدقة العالمية</string>
+    <string name="velocidad_promedio_title">متوسط السرعة العالمي</string>
+    <string name="precision_global_explanation">تقيس الدقة العالمية نسبة الإجابات الصحيحة في جميع ألعابك. يتم حسابها على النحو التالي:\n\n(الإجابات الصحيحة ÷ إجمالي الألعاب) × 100%</string>
+    <string name="velocidad_promedio_explanation">متوسط السرعة العالمي هو متوسط الوقت الذي تستغرقه للإجابة. يتم حسابه على النحو التالي:\n\nإجمالي الوقت ÷ عدد الألعاب المكتملة</string>
+    <string name="info_precision">معلومات حول الدقة</string>
+    <string name="info_velocidad">معلومات حول السرعة</string>
+
+    <string name="default_username">أنت</string>
+
+    <string name="date_obtained">تم الحصول عليه: %s</string>
+
+    <string name="corona_volucer">VOLUCER</string>
+    <string name="corona_celeris">CELERIS</string>
+    <string name="corona_velocitas">VELOCITAS</string>
+
+    <string name="corona_velocitas_msg_1">سرعة ممتازة، &lt;b&gt;%1$s&lt;/b&gt;! لقد حصلت على المركز الثالث في &lt;b&gt;%2$s&lt;/b&gt;. تاج VELOCITAS لك.</string>
+    <string name="corona_velocitas_msg_2">سرعة مذهلة في &lt;b&gt;%2$s&lt;/b&gt;، &lt;b&gt;%1$s&lt;/b&gt;! لقد فزت بتاج VELOCITAS لمركزك الثالث.</string>
+    <string name="corona_velocitas_msg_3">&lt;b&gt;%1$s&lt;/b&gt;، سرعتك في &lt;b&gt;%2$s&lt;/b&gt; أوصلتك إلى منصة التتويج. تم فتح تاج VELOCITAS!</string>
+    <string name="corona_velocitas_msg_4">برونزية في السرعة لـ &lt;b&gt;%1$s&lt;/b&gt;! المركز الثالث في &lt;b&gt;%2$s&lt;/b&gt; يمنحك تاج VELOCITAS.</string>
+
+    <string name="corona_celeris_msg_1">سرعة استثنائية، &lt;b&gt;%1$s&lt;/b&gt;! المركز الثاني في &lt;b&gt;%2$s&lt;/b&gt; يتوجك بـ CELERIS.</string>
+    <string name="corona_celeris_msg_2">&lt;b&gt;%1$s&lt;/b&gt;، سرعتك في &lt;b&gt;%2$s&lt;/b&gt; جديرة بالإعجاب. تاج CELERIS لك عن جدارة!</string>
+    <string name="corona_celeris_msg_3">فضية في السرعة! &lt;b&gt;%1$s&lt;/b&gt; فاز بالمركز الثاني في &lt;b&gt;%2$s&lt;/b&gt;، وفاز بتاج CELERIS.</string>
+    <string name="corona_celeris_msg_4">وقت مذهل في &lt;b&gt;%2$s&lt;/b&gt;، &lt;b&gt;%1$s&lt;/b&gt;! مركزك الثاني يجعلك تستحق تاج CELERIS.</string>
+
+    <string name="corona_volucer_msg_1">بطل السرعة! &lt;b&gt;%1$s&lt;/b&gt; يسيطر على &lt;b&gt;%2$s&lt;/b&gt; بالمركز الأول. تم الفوز بتاج VOLUCER!</string>
+    <string name="corona_volucer_msg_2">&lt;b&gt;%1$s&lt;/b&gt;، أنت سرعة خالصة في &lt;b&gt;%2$s&lt;/b&gt;. المركز الأول يمنحك تاج VOLUCER المرموق.</string>
+    <string name="corona_volucer_msg_3">ذهبية في السرعة لـ &lt;b&gt;%1$s&lt;/b&gt;! السيطرة المطلقة في &lt;b&gt;%2$s&lt;/b&gt; تتوجك بـ VOLUCER.</string>
+    <string name="corona_volucer_msg_4">أسطورة السرعة! &lt;b&gt;%1$s&lt;/b&gt; يفوز بالمركز الأول في &lt;b&gt;%2$s&lt;/b&gt; ويرتفع بتاج VOLUCER.</string>
+
+    <string name="msg_top10_excelsitur_1">%1$s، أنت بطلنا الذهني. وسام &lt;b&gt;%2$s&lt;/b&gt; لك بعد فوزك بـ &lt;b&gt;المركز الأول&lt;/b&gt;. إنجاز مذهل!</string>
+    <string name="msg_top10_excelsitur_2">برافو، %1$s! &lt;b&gt;المركز الأول&lt;/b&gt; يتوجك بوسام &lt;b&gt;%2$s&lt;/b&gt;. ذكاؤك لا حدود له!</string>
+    <string name="msg_top10_excelsitur_3">تهانينا، %1$s! لقد وصلت إلى &lt;b&gt;المركز الأول&lt;/b&gt; ومعه، &lt;b&gt;%2$s&lt;/b&gt; المرغوب. استمر في السيطرة!</string>
+
+    <string name="msg_top10_summum_1">%1$s، كنت على بعد خطوة من القمة. &lt;b&gt;المركز الثاني&lt;/b&gt; يميزك بوسام &lt;b&gt;%2$s&lt;/b&gt;. لا تتوقف!</string>
+    <string name="msg_top10_summum_2">ممتاز، %1$s! &lt;b&gt;المركز الثاني&lt;/b&gt; عالميًا لك، مع وسام &lt;b&gt;%2$s&lt;/b&gt;. استمر في التفوق!</string>
+    <string name="msg_top10_summum_3">فخر كبير، %1$s: لقد حصلت على وسام &lt;b&gt;%2$s&lt;/b&gt; لمركزك &lt;b&gt;الثاني&lt;/b&gt;. إنجاز عظيم!</string>
+
+    <string name="msg_top10_magnanimous_1">%1$s، عبقريتك أوصلتك إلى &lt;b&gt;المركز الثالث&lt;/b&gt; عالميًا. وسام &lt;b&gt;%2$s&lt;/b&gt; دليل على براعتك.</string>
+    <string name="msg_top10_magnanimous_2">هائل، %1$s! &lt;b&gt;%2$s&lt;/b&gt; يضيء لك بفضل مركزك &lt;b&gt;الثالث&lt;/b&gt;. أنت مثال للجميع!</string>
+    <string name="msg_top10_magnanimous_3">%1$s، موهبتك لا تمر مرور الكرام: &lt;b&gt;المركز الثالث&lt;/b&gt; ووسام &lt;b&gt;%2$s&lt;/b&gt; لك الآن.</string>
+
+    <string name="msg_top10_venerabilis_1">%1$s، وسام &lt;b&gt;%2$s&lt;/b&gt; الرائع يعترف بوصولك إلى &lt;b&gt;المركز الرابع&lt;/b&gt; عالميًا. استمر في الإلهام!</string>
+    <string name="msg_top10_venerabilis_2">قوة وثبات، %1$s! &lt;b&gt;المركز الرابع&lt;/b&gt; لك وترافقه بوسام &lt;b&gt;%2$s&lt;/b&gt;.</string>
+    <string name="msg_top10_venerabilis_3">%1$s، الوصول إلى &lt;b&gt;المركز الرابع&lt;/b&gt; والحصول على وسام &lt;b&gt;%2$s&lt;/b&gt; هو دليل على قدرتك العظيمة.</string>
+
+    <string name="msg_top10_gloriosus_1">احتفال، %1$s! لقد فزت بوسام &lt;b&gt;%2$s&lt;/b&gt; لمركزك &lt;b&gt;الخامس&lt;/b&gt; في التصنيف العالمي.</string>
+    <string name="msg_top10_gloriosus_2">%1$s، جهدك يضعك في &lt;b&gt;المركز الخامس&lt;/b&gt; ويمنحك وسام &lt;b&gt;%2$s&lt;/b&gt;. استمر في التألق!</string>
+    <string name="msg_top10_gloriosus_3">%1$s، &lt;b&gt;المركز الخامس&lt;/b&gt; لك ووسام &lt;b&gt;%2$s&lt;/b&gt; يعترف بتفانيك والتزامك.</string>
+
+    <string name="msg_top10_illustris_1">%1$s، وسام &lt;b&gt;%2$s&lt;/b&gt; الرائع لك بعد وصولك إلى &lt;b&gt;المركز السادس&lt;/b&gt;. يا لها من موهبة!</string>
+    <string name="msg_top10_illustris_2">لا يصدق، %1$s! لقد وصلت إلى &lt;b&gt;المركز السادس&lt;/b&gt; وحصلت على وسام &lt;b&gt;%2$s&lt;/b&gt; اللامع. إلى المزيد!</string>
+    <string name="msg_top10_illustris_3">%1$s، اسمك يضيء في &lt;b&gt;المركز السادس&lt;/b&gt; ووسام &lt;b&gt;%2$s&lt;/b&gt; يؤكد ذلك.</string>
+
+    <string name="msg_top10_praestans_1">%1$s، هيبتك تنمو: &lt;b&gt;المركز السابع&lt;/b&gt; ووسام &lt;b&gt;%2$s&lt;/b&gt; أصبحا جزءًا من تاريخك الآن.</string>
+    <string name="msg_top10_praestans_2">عمل رائع، %1$s! &lt;b&gt;%2$s&lt;/b&gt; هو مكافأتك للوصول إلى &lt;b&gt;المركز السابع&lt;/b&gt; عالميًا.</string>
+    <string name="msg_top10_praestans_3">%1$s، أنت تبرز بين الآلاف: &lt;b&gt;المركز السابع&lt;/b&gt; يمنحك وسام &lt;b&gt;%2$s&lt;/b&gt;.</string>
+
+    <string name="msg_top10_insignis_1">%1$s، اسمك يبرز في &lt;b&gt;المركز الثامن&lt;/b&gt; عالميًا. لقد فزت بوسام &lt;b&gt;%2$s&lt;/b&gt; المتميز.</string>
+    <string name="msg_top10_insignis_2">يا له من فخر، %1$s! &lt;b&gt;المركز الثامن&lt;/b&gt; لك ومعه وسام &lt;b&gt;%2$s&lt;/b&gt;. استمر في النمو!</string>
+    <string name="msg_top10_insignis_3">%1$s، مهارتك تضعك في &lt;b&gt;المركز الثامن&lt;/b&gt;، لتحصل على وسام &lt;b&gt;%2$s&lt;/b&gt;.</string>
+
+    <string name="msg_top10_virtuosus_1">%1$s، يتم مكافأة جهدك: وسام &lt;b&gt;%2$s&lt;/b&gt; لك بعد وصولك إلى &lt;b&gt;المركز التاسع&lt;/b&gt;.</string>
+    <string name="msg_top10_virtuosus_2">استمر على هذا النحو، %1$s! &lt;b&gt;%2$s&lt;/b&gt; يأتي إليك بفضل مركزك &lt;b&gt;التاسع&lt;/b&gt; الرائع.</string>
+    <string name="msg_top10_virtuosus_3">%1$s، الوصول إلى &lt;b&gt;المركز التاسع&lt;/b&gt; عالميًا يجعلك &lt;b&gt;%2$s&lt;/b&gt; حقيقيًا.</string>
+
+    <string name="msg_top10_honorabilis_1">%1$s، لقد فعلتها! &lt;b&gt;المركز العاشر&lt;/b&gt; عالميًا يمنحك وسام &lt;b&gt;%2$s&lt;/b&gt;. استمتع بهذا الشرف!</string>
+    <string name="msg_top10_honorabilis_2">%1$s، اسمك يظهر بين العظماء: &lt;b&gt;%2$s&lt;/b&gt; و &lt;b&gt;المركز العاشر&lt;/b&gt; لك الآن.</string>
+    <string name="msg_top10_honorabilis_3">أنت تلهم الجميع، %1$s! وسام &lt;b&gt;%2$s&lt;/b&gt; يعترف بمركزك &lt;b&gt;العاشر&lt;/b&gt; في التصنيف.</string>
+
+    <string name="medalla_titulo_initium">🏅 ميدالية INITIUM تم الفوز بها! 🏅</string>
+    <string name="medalla_titulo_fidelis">🎖️ إنجاز FIDELIS تم فتحه! 🎖️</string>
+    <string name="medalla_titulo_virtus">⭐ شرف VIRTUS تم تحقيقه! ⭐</string>
+    <string name="medalla_titulo_audax">🔥 تمييز AUDAX تم الفوز به! 🔥</string>
+    <string name="medalla_titulo_fortis">💪 ميدالية FORTIS تم الحصول عليها! 💪</string>
+    <string name="medalla_titulo_tenax">🎯 تقدير TENAX لك! 🎯</string>
+    <string name="medalla_titulo_intrepidus">⚡ مجد INTREPIDUS تم تحقيقه! ⚡</string>
+    <string name="medalla_titulo_sapiens">🧠 حكمة SAPIENS تم إتقانها! 🧠</string>
+    <string name="medalla_titulo_exemplar">👑 لقب EXEMPLAR تم تتويجه! 👑</string>
+    <string name="medalla_titulo_gloriam">🌟 مجد GLORIAM الأعلى تم تحقيقه! 🌟</string>
+    <string name="medalla_titulo_magnus">🏆 عظمة MAGNUS تم الفوز بها! 🏆</string>
+    <string name="medalla_titulo_immortalis">✨ أسطورة IMMORTALIS تم تشكيلها! ✨</string>
+
+    <string name="medalla_desc_initium">لقد أكملت 100 لعبة فريدة! لقد منحك تفانيك ميدالية INITIUM، بداية مجموعتك.</string>
+    <string name="medalla_desc_fidelis">200 لعبة مكتملة! مثابرتك جديرة بالإعجاب، وبذلك تحصل على ميدالية FIDELIS.</string>
+    <string name="medalla_desc_virtus">ميدالية VIRTUS لك لتجاوز 300 تحدٍ مختلف. شجاعتك العقلية تظهر مع كل لعبة!</string>
+    <string name="medalla_desc_audax">400 لعبة متقنة! جرأتك قادتك للفوز بميدالية AUDAX المرموقة.</string>
+    <string name="medalla_desc_fortis">لقد أظهرت قوة عقلية في 500 لعبة مختلفة، وتستحق ميدالية FORTIS الاستثنائية.</string>
+    <string name="medalla_desc_tenax">المثابرة لها مكافأة! 600 لعبة مكتملة تتوجك بميدالية TENAX.</string>
+    <string name="medalla_desc_intrepidus">روحك الجريئة تغلبت على 700 تحدٍ، مما يمنحك ميدالية INTREPIDUS المحترمة.</string>
+    <string name="medalla_desc_sapiens">الحكمة تكتسب بالممارسة: 800 لعبة مكتملة تجعلك تستحق ميدالية SAPIENS.</string>
+    <string name="medalla_desc_exemplar">أنت مثال للعزيمة! 900 لعبة متجاوزة منحتك ميدالية EXEMPLAR المثالية.</string>
+    <string name="medalla_desc_gloriam">المجد لمثابرتك! لقد غزوت 1000 تحدٍ، وحصلت على ميدالية GLORIAM المجيدة.</string>
+    <string name="medalla_desc_magnus">إنجاز رائع! بإكمال 1100 لعبة مختلفة، حصلت على ميدالية MAGNUS العظيمة.</string>
+    <string name="medalla_desc_immortalis">إنجاز خالد! لقد أكملت 1200 تحدٍ فريد، وكرست نفسك بميدالية IMMORTALIS الأسطورية.</string>
+
+    <string name="medalla_motiv_initium">⭐ الهدف التالي: FIDELIS - أكمل 100 مستوى جديد وستكون هذه الميدالية لك</string>
+    <string name="medalla_motiv_fidelis">🎯 التحدي التالي: VIRTUS - أضف 100 لعبة أخرى وستفتح إنجازك التالي</string>
+    <string name="medalla_motiv_virtus">🚀 غزوتك التالية: AUDAX - 100 مستوى إضافي في انتظارك</string>
+    <string name="medalla_motiv_audax">💫 نحو العظمة: FORTIS - استمر مع 100 لعبة جديدة</string>
+    <string name="medalla_motiv_fortis">⚡ تقدم نحو: TENAX - 100 تحدٍ آخر وسيكون المجد لك</string>
+    <string name="medalla_motiv_tenax">🔥 في الأفق: INTREPIDUS - استمر في 100 لعبة أخرى للوصول إليها</string>
+    <string name="medalla_motiv_intrepidus">🧠 طريق الحكمة: SAPIENS - 100 مستوى جديد يقربك إليها</string>
+    <string name="medalla_motiv_sapiens">👑 مصيرك: EXEMPLAR - أكمل 100 لعبة إضافية وكن مثالاً</string>
+    <string name="medalla_motiv_exemplar">🌟 المجد في انتظارك: GLORIAM - فقط 100 مستوى آخر نحو القمة</string>
+    <string name="medalla_motiv_gloriam">🏆 العظمة القادمة: MAGNUS - 100 تحدٍ آخر للعظمة</string>
+    <string name="medalla_motiv_magnus">✨ نحو الخلود: IMMORTALIS - 100 لعبة نهائية للأسطورة</string>
+    <string name="medalla_motiv_immortalis">🏆 مجموعة الميداليات كاملة! أنت أسطورة SumaMente!</string>
+
+    <plurals name="medalla_contador_progreso">
+        <item quantity="one">📈 لديك ميدالية واحدة (%1$d)، ينقصك %2$d</item>
+        <item quantity="two">📈 لديك ميداليتان (%1$d)، ينقصك %2$d</item>
+        <item quantity="few">📈 لديك %1$d ميداليات، ينقصك %2$d</item>
+        <item quantity="many">📈 لديك %1$d ميدالية، ينقصك %2$d</item>
+        <item quantity="zero">📈 لديك %1$d ميدالية، ينقصك %2$d</item>
+        <item quantity="other">📈 لديك %1$d ميدالية، ينقصك %2$d</item>
+    </plurals>
+
+    <string name="medal_circle_background">دائرة خلفية للميدالية</string>
+    <string name="medal_image">صورة الميدالية التي تم الحصول عليها</string>
+
+
+    <string name="trofeo_titulo_initia">🏆 تم الفوز بكأس INITIA! 🏆</string>
+    <string name="trofeo_titulo_constantia">🏆 تم الحصول على كأس CONSTANTIA! 🏆</string>
+    <string name="trofeo_titulo_confectus">🏆 تم الفوز بكأس CONFECTUS! 🏆</string>
+    <string name="trofeo_titulo_via">🏆 تم فتح كأس VIA! 🏆</string>
+    <string name="trofeo_titulo_altus">🏆 تم الوصول إلى كأس ALTUS! 🏆</string>
+    <string name="trofeo_titulo_perseverantia">🏆 تم تحقيق كأس PERSEVERANTIA! 🏆</string>
+    <string name="trofeo_titulo_gradus">🏆 تم الفوز بكأس GRADUS! 🏆</string>
+    <string name="trofeo_titulo_fortitudo">🏆 تم إتقان كأس FORTITUDO! 🏆</string>
+    <string name="trofeo_titulo_metam">🏆 تم تتويج كأس METAM! 🏆</string>
+    <string name="trofeo_titulo_fundamentum">🏆 تم تأسيس كأس FUNDAMENTUM! 🏆</string>
+    <string name="trofeo_titulo_praemium">🏆 تم منح كأس PRAEMIUM! 🏆</string>
+    <string name="trofeo_titulo_glorificus">🏆 تم تمجيد كأس GLORIFICUS! 🏆</string>
+    <string name="trofeo_titulo_scala">🏆 تم تسلق كأس SCALA! 🏆</string>
+    <string name="trofeo_titulo_tenacitas">🏆 تم صقل كأس TENACITAS! 🏆</string>
+    <string name="trofeo_titulo_perfectus">🏆 تم إتقان كأس PERFECTUS! 🏆</string>
+    <string name="trofeo_titulo_origo">🏆 تم إنشاء كأس ORIGO! 🏆</string>
+    <string name="trofeo_titulo_proficium">🏆 تم تطوير كأس PROFICIUM! 🏆</string>
+    <string name="trofeo_titulo_exemplaritas">🏆 تم جعل كأس EXEMPLARITAS مثالياً! 🏆</string>
+    <string name="trofeo_titulo_ascensus">🏆 تم رفع كأس ASCENSUS! 🏆</string>
+    <string name="trofeo_titulo_magnificus">🏆 تم تمجيد كأس MAGNIFICUS! 🏆</string>
+    <string name="trofeo_titulo_potens">🏆 تم تقوية كأس POTENS! 🏆</string>
+
+    <plurals name="trofeo_contador_progreso">
+        <item quantity="one">🏆 لديك كأس واحد (%1$d)، ينقصك %2$d</item>
+        <item quantity="two">🏆 لديك كأسان (%1$d)، ينقصك %2$d</item>
+        <item quantity="few">🏆 لديك %1$d كؤوس، ينقصك %2$d</item>
+        <item quantity="many">🏆 لديك %1$d كأس، ينقصك %2$d</item>
+        <item quantity="zero">🏆 لديك %1$d كأس، ينقصك %2$d</item>
+        <item quantity="other">🏆 لديك %1$d كأس، ينقصك %2$d</item>
+    </plurals>
+
+    <string name="trofeo_motiv_1">🏆 هذا هو كأسك الأول! لديك 20 آخرين لتفوز بهم</string>
+    <string name="trofeo_motiv_21">🏆 مجموعة الكؤوس كاملة! أنت سيد SumaMente!</string>
+
+    <string name="doble_celebracion_titulo">🎊 احتفال مزدوج! 🎊</string>
+    <string name="doble_celebracion_mensaje">لقد حصلت على ميدالية جديدة وكأس جديد! نحتفل بمزاياك الاستثنائية</string>
+
+    <string name="doble_celebracion_apex_titulo">🏆✨ احتفال مزدوج أسمى! ✨🏆</string>
+    <string name="doble_celebracion_apex_mensaje">لقد حصلت على الكأس الأخير الذي كنت بحاجة إليه ووسام APEX SUPREMUS المجيد. القمة لك! 👑</string>
+
+    <string name="apex_titulo">🌟 تم تحقيق APEX SUPREMUS! 🌟</string>
+    <string name="apex_descripcion">1470 مستوى مكتمل، أنت تستحق APEX SUPREMUS! 🏆✨ تفانيك وإتقانك العقلي أوصلك إلى القمة المطلقة في SumaMente. 👑</string>
+
+    <string name="ranking_integral_s">التصنيف المتكامل S⁺:</string>
+
+    <plurals name="ranking_integral_progreso_1">
+        <item quantity="one">أنت على الطريق الصحيح، %1$s! أنت موجود بالفعل في تصنيف واحد (%2$d) من SumaMente. ينقصك فقط %3$d للوصول إلى التصنيف المتكامل الحصري.</item>
+        <item quantity="two">أنت على الطريق الصحيح، %1$s! أنت موجود بالفعل في تصنيفين (%2$d) من SumaMente. ينقصك فقط %3$d للوصول إلى التصنيف المتكامل الحصري.</item>
+        <item quantity="few">أنت على الطريق الصحيح، %1$s! أنت موجود بالفعل في %2$d تصنيفات من SumaMente. ينقصك فقط %3$d للوصول إلى التصنيف المتكامل الحصري.</item>
+        <item quantity="many">أنت على الطريق الصحيح، %1$s! أنت موجود بالفعل في %2$d تصنيفًا من SumaMente. ينقصك فقط %3$d للوصول إلى التصنيف المتكامل الحصري.</item>
+        <item quantity="zero">أنت على الطريق الصحيح، %1$s! أنت موجود بالفعل في %2$d تصنيف من SumaMente. ينقصك فقط %3$d للوصول إلى التصنيف المتكامل الحصري.</item>
+        <item quantity="other">أنت على الطريق الصحيح، %1$s! أنت موجود بالفعل في %2$d تصنيف من SumaMente. ينقصك فقط %3$d للوصول إلى التصنيف المتكامل الحصري.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_2">
+        <item quantity="one">%1$s، تقدمك ملحوظ: أنت موجود في تصنيف واحد (%2$d). اهزم الـ %3$d المتبقي لتكون جزءًا من النخبة!</item>
+        <item quantity="two">%1$s، تقدمك ملحوظ: أنت موجود في تصنيفين (%2$d). اهزم الـ %3$d المتبقي لتكون جزءًا من النخبة!</item>
+        <item quantity="few">%1$s، تقدمك ملحوظ: أنت موجود في %2$d تصنيفات. اهزم الـ %3$d المتبقية لتكون جزءًا من النخبة!</item>
+        <item quantity="many">%1$s، تقدمك ملحوظ: أنت موجود في %2$d تصنيفًا. اهزم الـ %3$d المتبقي لتكون جزءًا من النخبة!</item>
+        <item quantity="zero">%1$s، تقدمك ملحوظ: أنت موجود في %2$d تصنيف. اهزم الـ %3$d المتبقي لتكون جزءًا من النخبة!</item>
+        <item quantity="other">%1$s، تقدمك ملحوظ: أنت موجود في %2$d تصنيف. اهزم الـ %3$d المتبقي لتكون جزءًا من النخبة!</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_3">
+        <item quantity="one">تهانينا %1$s! لقد تمكنت من الدخول في تصنيف واحد (%2$d). ينقصك %3$d للوصول إلى التحدي المتكامل.</item>
+        <item quantity="two">تهانينا %1$s! لقد تمكنت من الدخول في تصنيفين (%2$d). ينقصك %3$d للوصول إلى التحدي المتكامل.</item>
+        <item quantity="few">تهانينا %1$s! لقد تمكنت من الدخول في %2$d تصنيفات. ينقصك %3$d للوصول إلى التحدي المتكامل.</item>
+        <item quantity="many">تهانينا %1$s! لقد تمكنت من الدخول في %2$d تصنيفًا. ينقصك %3$d للوصول إلى التحدي المتكامل.</item>
+        <item quantity="zero">تهانينا %1$s! لقد تمكنت من الدخول في %2$d تصنيف. ينقصك %3$d للوصول إلى التحدي المتكامل.</item>
+        <item quantity="other">تهانينا %1$s! لقد تمكنت من الدخول في %2$d تصنيف. ينقصك %3$d للوصول إلى التحدي المتكامل.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_4">
+        <item quantity="one">%1$s، اسمك يظهر بالفعل في تصنيف واحد (%2$d). فقط %3$d آخر وستفتح التصنيف المتكامل.</item>
+        <item quantity="two">%1$s، اسمك يظهر بالفعل في تصنيفين (%2$d). فقط %3$d آخر وستفتح التصنيف المتكامل.</item>
+        <item quantity="few">%1$s، اسمك يظهر بالفعل في %2$d تصنيفات. فقط %3$d أخرى وستفتح التصنيف المتكامل.</item>
+        <item quantity="many">%1$s، اسمك يظهر بالفعل في %2$d تصنيفًا. فقط %3$d آخر وستفتح التصنيف المتكامل.</item>
+        <item quantity="zero">%1$s، اسمك يظهر بالفعل في %2$d تصنيف. فقط %3$d آخر وستفتح التصنيف المتكامل.</item>
+        <item quantity="other">%1$s، اسمك يظهر بالفعل في %2$d تصنيف. فقط %3$d آخر وستفتح التصنيف المتكامل.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_5">
+        <item quantity="one">استمر على هذا النحو، %1$s! أنت في %2$d من 9 تصنيفات. تقدم قليلاً آخر وينقصك فقط %3$d.</item>
+        <item quantity="two">استمر على هذا النحو، %1$s! أنت في %2$d من 9 تصنيفات. تقدم قليلاً آخر وينقصك فقط %3$d.</item>
+        <item quantity="few">استمر على هذا النحو، %1$s! أنت في %2$d من 9 تصنيفات. تقدم قليلاً آخر وينقصك فقط %3$d.</item>
+        <item quantity="many">استمر على هذا النحو، %1$s! أنت في %2$d من 9 تصنيفات. تقدم قليلاً آخر وينقصك فقط %3$d.</item>
+        <item quantity="zero">استمر على هذا النحو، %1$s! أنت في %2$d من 9 تصنيفات. تقدم قليلاً آخر وينقصك فقط %3$d.</item>
+        <item quantity="other">استمر على هذا النحو، %1$s! أنت في %2$d من 9 تصنيفات. تقدم قليلاً آخر وينقصك فقط %3$d.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_6">
+        <item quantity="one">%1$s، كل تصنيف مضاف يقربك من الهدف. أنت الآن في تصنيف واحد (%2$d) وينقصك %3$d. لا تتوقف!</item>
+        <item quantity="two">%1$s، كل تصنيف مضاف يقربك من الهدف. أنت الآن في تصنيفين (%2$d) وينقصك %3$d. لا تتوقف!</item>
+        <item quantity="few">%1$s، كل تصنيف مضاف يقربك من الهدف. أنت الآن في %2$d تصنيفات وينقصك %3$d. لا تتوقف!</item>
+        <item quantity="many">%1$s، كل تصنيف مضاف يقربك من الهدف. أنت الآن في %2$d تصنيفًا وينقصك %3$d. لا تتوقف!</item>
+        <item quantity="zero">%1$s، كل تصنيف مضاف يقربك من الهدف. أنت الآن في %2$d تصنيف وينقصك %3$d. لا تتوقف!</item>
+        <item quantity="other">%1$s، كل تصنيف مضاف يقربك من الهدف. أنت الآن في %2$d تصنيف وينقصك %3$d. لا تتوقف!</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_7">
+        <item quantity="one">هيا %1$s! تقدمك حقيقي: أنت بالفعل في تصنيف واحد (%2$d) ويتبقى لك %3$d لتفوز به.</item>
+        <item quantity="two">هيا %1$s! تقدمك حقيقي: أنت بالفعل في تصنيفين (%2$d) ويتبقى لك %3$d لتفوز بهما.</item>
+        <item quantity="few">هيا %1$s! تقدمك حقيقي: أنت بالفعل في %2$d تصنيفات ويتبقى لك %3$d لتفوز بها.</item>
+        <item quantity="many">هيا %1$s! تقدمك حقيقي: أنت بالفعل في %2$d تصنيفًا ويتبقى لك %3$d لتفوز به.</item>
+        <item quantity="zero">هيا %1$s! تقدمك حقيقي: أنت بالفعل في %2$d تصنيف ويتبقى لك %3$d لتفوز به.</item>
+        <item quantity="other">هيا %1$s! تقدمك حقيقي: أنت بالفعل في %2$d تصنيف ويتبقى لك %3$d لتفوز به.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_8">
+        <item quantity="one">%1$s، أن تكون جزءًا من التصنيف المتكامل قريب: تم تحقيق %2$d، ويتبقى %3$d لتحقيقه.</item>
+        <item quantity="two">%1$s، أن تكون جزءًا من التصنيف المتكامل قريب: تم تحقيق %2$d، ويتبقى %3$d لتحقيقه.</item>
+        <item quantity="few">%1$s، أن تكون جزءًا من التصنيف المتكامل قريب: تم تحقيق %2$d، ويتبقى %3$d لتحقيقه.</item>
+        <item quantity="many">%1$s، أن تكون جزءًا من التصنيف المتكامل قريب: تم تحقيق %2$d، ويتبقى %3$d لتحقيقه.</item>
+        <item quantity="zero">%1$s، أن تكون جزءًا من التصنيف المتكامل قريب: تم تحقيق %2$d، ويتبقى %3$d لتحقيقه.</item>
+        <item quantity="other">%1$s، أن تكون جزءًا من التصنيف المتكامل قريب: تم تحقيق %2$d، ويتبقى %3$d لتحقيقه.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_9">
+        <item quantity="one">اسمك يبرز في تصنيف واحد (%2$d)، %1$s. فقط %3$d آخر وستكون جزءًا من الأفضل.</item>
+        <item quantity="two">اسمك يبرز في تصنيفين (%2$d)، %1$s. فقط %3$d آخر وستكون جزءًا من الأفضل.</item>
+        <item quantity="few">اسمك يبرز في %2$d تصنيفات، %1$s. فقط %3$d أخرى وستكون جزءًا من الأفضل.</item>
+        <item quantity="many">اسمك يبرز في %2$d تصنيفًا، %1$s. فقط %3$d آخر وستكون جزءًا من الأفضل.</item>
+        <item quantity="zero">اسمك يبرز في %2$d تصنيف، %1$s. فقط %3$d آخر وستكون جزءًا من الأفضل.</item>
+        <item quantity="other">اسمك يبرز في %2$d تصنيف، %1$s. فقط %3$d آخر وستكون جزءًا من الأفضل.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_10">
+        <item quantity="one">%1$s، أضف إنجازًا آخر! أنت بالفعل في تصنيف واحد (%2$d). يتبقى %3$d للوصول إلى الهدف المتكامل.</item>
+        <item quantity="two">%1$s، أضف إنجازًا آخر! أنت بالفعل في تصنيفين (%2$d). يتبقى %3$d للوصول إلى الهدف المتكامل.</item>
+        <item quantity="few">%1$s، أضف إنجازًا آخر! أنت بالفعل في %2$d تصنيفات. يتبقى %3$d للوصول إلى الهدف المتكامل.</item>
+        <item quantity="many">%1$s، أضف إنجازًا آخر! أنت بالفعل في %2$d تصنيفًا. يتبقى %3$d للوصول إلى الهدف المتكامل.</item>
+        <item quantity="zero">%1$s، أضف إنجازًا آخر! أنت بالفعل في %2$d تصنيف. يتبقى %3$d للوصول إلى الهدف المتكامل.</item>
+        <item quantity="other">%1$s، أضف إنجازًا آخر! أنت بالفعل في %2$d تصنيف. يتبقى %3$d للوصول إلى الهدف المتكامل.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_11">
+        <item quantity="one">%1$s، أنت تتغلب على التحديات: تصنيف واحد (%2$d) يحمل اسمك بالفعل. اذهب للـ %3$d الذي ينقصك!</item>
+        <item quantity="two">%1$s، أنت تتغلب على التحديات: تصنيفان (%2$d) يحملان اسمك بالفعل. اذهب للـ %3$d الذي ينقصك!</item>
+        <item quantity="few">%1$s، أنت تتغلب على التحديات: %2$d تصنيفات تحمل اسمك بالفعل. اذهب للـ %3$d التي تنقصك!</item>
+        <item quantity="many">%1$s، أنت تتغلب على التحديات: %2$d تصنيفًا يحمل اسمك بالفعل. اذهب للـ %3$d الذي ينقصك!</item>
+        <item quantity="zero">%1$s، أنت تتغلب على التحديات: %2$d تصنيف يحمل اسمك بالفعل. اذهب للـ %3$d الذي ينقصك!</item>
+        <item quantity="other">%1$s، أنت تتغلب على التحديات: %2$d تصنيف يحمل اسمك بالفعل. اذهب للـ %3$d الذي ينقصك!</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_12">
+        <item quantity="one">تقدم مذهل، %1$s! أنت تظهر في تصنيف واحد (%2$d) ويتبقى فقط %3$d للهدف الكبير.</item>
+        <item quantity="two">تقدم مذهل، %1$s! أنت تظهر في تصنيفين (%2$d) ويتبقى فقط %3$d للهدف الكبير.</item>
+        <item quantity="few">تقدم مذهل، %1$s! أنت تظهر في %2$d تصنيفات ويتبقى فقط %3$d للهدف الكبير.</item>
+        <item quantity="many">تقدم مذهل، %1$s! أنت تظهر في %2$d تصنيفًا ويتبقى فقط %3$d للهدف الكبير.</item>
+        <item quantity="zero">تقدم مذهل، %1$s! أنت تظهر في %2$d تصنيف ويتبقى فقط %3$d للهدف الكبير.</item>
+        <item quantity="other">تقدم مذهل، %1$s! أنت تظهر في %2$d تصنيف ويتبقى فقط %3$d للهدف الكبير.</item>
+    </plurals>
+
+    <string name="ranking_estado_aparece_1">تظهر بالفعل</string>
+    <string name="ranking_estado_aparece_2">تم الفوز!</string>
+    <string name="ranking_estado_aparece_3">موجود!</string>
+    <string name="ranking_estado_aparece_4">تم الوصول</string>
+    <string name="ranking_estado_aparece_5">تم تحقيقه!</string>
+
+    <string name="ranking_estado_no_aparece_1">لا تظهر بعد</string>
+    <string name="ranking_estado_no_aparece_2">قيد الانتظار</string>
+    <string name="ranking_estado_no_aparece_3">للوصول</string>
+    <string name="ranking_estado_no_aparece_4">ليس بعد</string>
+    <string name="ranking_estado_no_aparece_5">غير مسجل</string>
+
+    <string name="ranking_global_name">1.- التصنيف العالمي:</string>
+    <string name="ranking_vel_numeros">2.- تصنيف السرعة NUMEROS⁺:</string>
+    <string name="ranking_vel_deci">3.- تصنيف السرعة DECI⁺:</string>
+    <string name="ranking_vel_alfanumeros">4.- تصنيف السرعة ALFANÚMEROS⁺:</string>
+    <string name="ranking_vel_romas">5.- تصنيف السرعة ROMAS⁺:</string>
+    <string name="ranking_vel_sumaresta">6.- تصنيف السرعة SUMARESTA⁺:</string>
+    <string name="ranking_vel_mas">7.- تصنيف السرعة MÁS⁺:</string>
+    <string name="ranking_vel_genios">8.- تصنيف السرعة Genio⁺:</string>
+    <string name="ranking_iq">9.- تصنيف مؤشر IQ⁺:</string>
+
+    <string name="clasificacion_integral_s">التصنيف المتكامل S⁺</string>
+
+    <string name="ranking_integral_combined_message">%1$s\n\n%2$s</string>
+
+    <string name="ranking_progress_indicator">%1$d/9 تصنيفات</string>
+
+    <string-array name="ranking_integral_info_messages">
+        <item>مرحبًا، %1$s! لتظهر في التصنيف المتكامل S⁺، يجب أن تكون موجودًا في 9 تصنيفات من SumaMente.</item>
+        <item>%1$s، التصنيف المتكامل S⁺ حصري لأولئك الذين يظهرون في جميع تصنيفات التطبيق.</item>
+        <item>%1$s، ما زلت لا تفي بمتطلبات التصنيف المتكامل. يجب أن تظهر في 9 تصنيفات.</item>
+        <item>هيا، %1$s! التصنيف المتكامل S⁺ في انتظارك عندما تكون في جميع التصنيفات.</item>
+        <item>%1$s، سيظهر تصنيفك المتكامل عندما تشارك في 9 تصنيفات من SumaMente.</item>
+        <item>هل أنت مستعد للتحدي، %1$s؟ قم بالوصول إلى جميع التصنيفات وافتح التصنيف المتكامل S⁺.</item>
+    </string-array>
+
+    <string-array name="ranking_integral_motiv_messages">
+        <item>يمكنك تحقيق ذلك! كل تصنيف مفتوح يقربك من النخبة.</item>
+        <item>الحصرية لها ثمنها. أثبت أنك تستحق أن تكون من بين الأفضل!</item>
+        <item>لا تتوقف! التصنيف المتكامل S⁺ مخصص للأكثر تفانيًا.</item>
+        <item>كل مباراة تهم. استمر في التقدم نحو القمة المطلقة!</item>
+        <item>الهدف واضح! سيطر على جميع التصنيفات وانضم إلى نخبة SumaMente.</item>
+        <item>المثابرة هي المفتاح! كل تصنيف جديد يقربك من المجد المتكامل.</item>
+    </string-array>
+
+
+    <string-array name="ranking_estado_aparece_messages">
+        <item>@string/ranking_estado_aparece_1</item>
+        <item>@string/ranking_estado_aparece_2</item>
+        <item>@string/ranking_estado_aparece_3</item>
+        <item>@string/ranking_estado_aparece_4</item>
+        <item>@string/ranking_estado_aparece_5</item>
+    </string-array>
+
+
+    <string-array name="ranking_estado_no_aparece_messages">
+        <item>@string/ranking_estado_no_aparece_1</item>
+        <item>@string/ranking_estado_no_aparece_2</item>
+        <item>@string/ranking_estado_no_aparece_3</item>
+        <item>@string/ranking_estado_no_aparece_4</item>
+        <item>@string/ranking_estado_no_aparece_5</item>
+    </string-array>
+
+    <string name="integral_ranking_scroll_description">محتوى التصنيف المتكامل القابل للتمرير</string>
+
+    <string name="condecoracion_discipulus_optimus_7">DISCIPULUS OPTIMUS</string>
+    <string name="condecoracion_intellectus_primus_6">INTELLECTUS PRIMUS</string>
+    <string name="condecoracion_consilium_magnus_5">CONSILIUM MAGNUS</string>
+    <string name="condecoracion_doctrinae_princeps_4">DOCTRINAE PRINCEPS</string>
+    <string name="condecoracion_luminis_rex_3">LUMINIS REX</string>
+    <string name="condecoracion_mentis_aurea_2">MENTIS AUREA</string>
+    <string name="condecoracion_sapiens_supremus_1">SAPIENS SUPREMUS</string>
+
+
+    <string name="significado_discipulus_optimus_7">أفضل طالب</string>
+    <string name="significado_intellectus_primus_6">الأول في الذكاء</string>
+    <string name="significado_consilium_magnus_5">حكمة عظيمة</string>
+    <string name="significado_doctrinae_princeps_4">أمير المعرفة</string>
+    <string name="significado_luminis_rex_3">ملك النور</string>
+    <string name="significado_mentis_aurea_2">العقل الذهبي</string>
+    <string name="significado_sapiens_supremus_1">الأكثر حكمة</string>
+
+    <string name="los_7_mejores">أفضل 7 في تصنيف IQ⁺</string>
+
+    <string name="condecoracion_sapiens_supremus">SAPIENS SUPREMUS</string>
+    <string name="condecoracion_mentis_aurea">MENTIS AUREA</string>
+    <string name="condecoracion_luminis_rex">LUMINIS REX</string>
+    <string name="condecoracion_doctrinae_princeps">DOCTRINAE PRINCEPS</string>
+    <string name="condecoracion_consilium_magnus">CONSILIUM MAGNUS</string>
+    <string name="condecoracion_intellectus_primus">INTELLECTUS PRIMUS</string>
+    <string name="condecoracion_discipulus_optimus">DISCIPULUS OPTIMUS</string>
+
+    <string name="logro_iq7_sapiens_supremus">
+لقد وصلت إلى قمة الفكر! المركز الأول في تصنيف IQ⁺ والآن حامل الوسام الأعلى SAPIENS SUPREMUS.
+</string>
+
+    <string name="logro_iq7_mentis_aurea">
+العقل الذهبي! لقد أوصلتك حدة ذهنك إلى المركز الثاني في تصنيف IQ⁺، وفزت بوسام MENTIS AUREA.
+</string>
+
+    <string name="logro_iq7_luminis_rex">
+ملك النور الأكاديمي! المركز الثالث في تصنيف IQ⁺ لك، متألقًا بوسام LUMINIS REX.
+</string>
+
+    <string name="logro_iq7_doctrinae_princeps">
+أمير المعرفة! لقد وصلت إلى المركز الرابع في تصنيف IQ⁺ ووسام DOCTRINAE PRINCEPS لك.
+</string>
+
+    <string name="logro_iq7_consilium_magnus">
+مستشار عظيم! حكمتك تضعك في المركز الخامس في تصنيف IQ⁺ وتمنحك وسام CONSILIUM MAGNUS.
+</string>
+
+    <string name="logro_iq7_intellectus_primus">
+الفكر الأول! السادس في تصنيف IQ⁺، تبرز بوسام INTELLECTUS PRIMUS.
+</string>
+
+    <string name="logro_iq7_discipulus_optimus">
+التلميذ الأمثل! جهدك ومثابرتك أوصلتك إلى المركز السابع في تصنيف IQ⁺، وحصلت على وسام DISCIPULUS OPTIMUS.
+</string>
+
+    <string name="condecoracion_imperium_supremus">IMPERIUM SUPREMUS</string>
+    <string name="condecoracion_magnus_honor">MAGNUS HONOR</string>
+    <string name="condecoracion_virtus_totalis">VIRTUS TOTALIS</string>
+    <string name="condecoracion_excellentia_singulari">EXCELLENTIA SINGULARI</string>
+    <string name="condecoracion_gloria_integralis">GLORIA INTEGRALIS</string>
+
+    <string name="significado_imperium_supremus">القوة العليا. هل ستتمكن من الفوز بها؟</string>
+    <string name="significado_magnus_honor">شرف عظيم. أثبت أنك تستحق، حققه!</string>
+    <string name="significado_virtus_totalis">الفضيلة الكاملة. فقط لأولئك الذين يقدمون كل شيء.</string>
+    <string name="significado_excellentia_singulari">التميز الفريد. اسعَ إلى الأعلى، اجتهد.</string>
+    <string name="significado_gloria_integralis">المجد المتكامل. اسمك يستحق أن يلمع هنا.</string>
+
+    <string name="logro_imperium_supremus_1">%1$s، تفوقك العقلي مطلق! لقد حصلت على IMPERIUM SUPREMUS.</string>
+    <string name="logro_imperium_supremus_2">لا أحد يقارن بك، %1$s. السيطرة الكاملة لك مع IMPERIUM SUPREMUS.</string>
+
+    <string name="logro_magnus_honor_1">تم تحقيق أقصى درجات الشرف، %1$s! MAGNUS HONOR يعترف بعظمتك.</string>
+    <string name="logro_magnus_honor_2">أعلى درجات التقدير لك، %1$s. MAGNUS HONOR يتوج جهدك.</string>
+
+    <string name="logro_virtus_totalis_1">تم تحقيق الفضيلة الكاملة، %1$s! VIRTUS TOTALIS يحتفل بتميزك العقلي.</string>
+    <string name="logro_virtus_totalis_2">%1$s، انضباطك وعقلك اللامع منحاك VIRTUS TOTALIS.</string>
+
+    <string name="logro_excellentia_singulari_1">تميز فريد، %1$s! فقط الأفضل يحصلون على EXCELLENTIA SINGULARI.</string>
+    <string name="logro_excellentia_singulari_2">%1$s، تميزك فريد. لقد فزت بـ EXCELLENTIA SINGULARI.</string>
+
+    <string name="logro_gloria_integralis_1">المجد المتكامل لك، %1$s! أقصى درجات التقدير لك.</string>
+    <string name="logro_gloria_integralis_2">SumaMente يصفق لك، %1$s: لقد حققت GLORIA INTEGRALIS.</string>
+
+    <string name="top5_ranking_integral">أفضل 5 في التصنيف المتكامل</string>
+
+    <string name="choose_language">اختر لغتك</string>
+
+    <string name="language_selection_required_message">للمتابعة، يرجى تحديد لغتك المفضلة من القائمة.</string>
+
+    <string name="confirm_change_language_message">هل أنت متأكد من أنك تريد تغيير اللغة؟</string>
+
+    <string name="language">اللغة</string>
+    <string name="language_subtitle">تغيير لغة التطبيق</string>
+
+    <string name="integral_score_label">%1$.2f نقطة</string>
+
+    <string name="my_progress">تقدمي</string>
+    <string name="graph_icon">أيقونة الرسم البياني</string>
+
+    <string name="levels_completed">المستويات المكتملة:</string>
+    <string name="progress">التقدم:</string>
+    <string name="percentage_format">%%1$s</string>
+    <string name="default_percentage">0.00%</string>
+
+    <string name="cd_my_progress">عرض التقدم العام</string>
+    <string name="cd_numeros_plus">لعب Números Plus</string>
+    <string name="cd_deci_plus">لعب Deci Plus</string>
+    <string name="cd_romas">لعب Romas</string>
+    <string name="cd_alfa_numeros">لعب AlfaNumeros</string>
+    <string name="cd_sumaresta">لعب SumaResta</string>
+    <string name="cd_mas_plus">لعب Mas Plus</string>
+    <string name="cd_genio_plus">لعب Genio Plus</string>
+
+    <string name="progress_placeholder_total_levels">0/210 – 0.00%</string>
+
+    <string name="progress_placeholder_difficulty">0/70 – 0.00%</string>
+
+
+    <string name="global_progress_format">التقدم: %%1$s</string>
+    <string name="game_progress_format">%1$d/%2$d - %%3$s</string>
+
+    <string name="global_levels_label">المستويات:</string>
+
+    <string name="desc_insignia_supremus_integralis">نحتفل بدخولك إلى التصنيف المتكامل! من خلال الظهور في 9 تصنيفات من SumaMente، لقد أظهرت إتقانك الكامل في جميع التخصصات الرياضية. هذه الشارة SUPREMUS INTEGRALIS تشير إلى دخولك إلى النخبة المتكاملة.</string>
+
+    <string name="share_message">مرحبًا! أوصي بهذا التطبيق المذهل لتدريب عقلك: SumaMente.\n\nقم بتنزيله هنا:\n</string>
+    <string name="share_chooser_title">مشاركة SumaMente عبر…</string>
+
+    <string name="share_dare_1">كان هذا الإنجاز في SumaMente صعبًا، لكن المكافأة تستحق العناء. أتحداك أن تحاول معادلته! 😉</string>
+    <string name="share_challenge_2">تم تجاوز التحدي في SumaMente! 🏆 هل تعتقد أن عقلك على مستوى المهمة؟ تجرأ على إثبات ذلك!</string>
+    <string name="share_question_3">هل هناك شيء أفضل من شعور الإنجاز؟ هذا هو SumaMente. تجرأ على تجربته وأخبرني!</string>
+    <string name="share_community_4">تم فتح مستوى جديد من التركيز! 😎 من ينضم إلى التحدي التالي في SumaMente؟</string>
+    <string name="share_intensity_5">عقلي مشتعل! 🔥 هذا الإنجاز هو الدليل. يا له من تمرين عقلي رائع هو SumaMente!</string>
+    <string name="share_progress_6">هكذا يبدو التقدم. 💪 إذا كنت تحب التحديات التي تجعلك تفكر، فعليك تجربة SumaMente.</string>
+    <string name="share_emotion_7">لقد فعلتها! 🚀 فتح هذا في SumaMente شعور لا يصدق. موصى به تمامًا إذا كنت تحب التحديات!</string>
+
+    <string name="error_share_image">خطأ أثناء مشاركة الوسام</string>
+
+    <string name="account_linked_success">تم ربط الحساب بنجاح! تقدمك الآن آمن.</string>
+
+    <string name="profile_subtitle_linked">متصل. قم بإدارة حسابك.</string>
+    <string name="profile_subtitle_unlinked">احفظ تقدمك في السحابة</string>
+
+    <string name="delete_account">حذف الحساب</string>
+    <string name="delete_account_subtitle">احذف بياناتك بشكل دائم</string>
+    <string name="delete_account_confirm_title">هل أنت متأكد؟</string>
+    <string name="delete_account_confirm_message">سيؤدي هذا الإجراء إلى حذف حسابك وجميع تقدمك (النقاط، المستويات، الميداليات) بشكل **دائم**. لن تتمكن من استعادتها.</string>
+    <string name="delete_button">حذف</string>
+    <string name="cancel_button">إلغاء</string>
+    <string name="account_deleted_success">تم حذف حسابك.</string>
+
+    <string name="link_prompt_title_tranquility">العب دون قلق.</string>
+    <string name="link_prompt_body_tranquility">اربط حساب Google الخاص بك في ثوانٍ ونحن نضمن أن جهدك آمن دائمًا.</string>
+    <string name="link_prompt_title_positive">جهدك يستحق الذهب!</string>
+    <string name="link_prompt_body_positive">لقد تقدمت كثيرًا. أمّن كل تقدمك عن طريق ربط حسابك حتى لا يأخذ أحد مكانك.</string>
+    <string name="link_prompt_title_minimalist">احفظ تقدمك إلى الأبد.</string>
+    <string name="link_prompt_body_minimalist">اربط حساب Google الخاص بك بنقرة واحدة وحافظ على أمان بياناتك.</string>
+    <string name="link_prompt_title_concise">أمّن حسابك بنقرة واحدة.</string>
+    <string name="link_prompt_body_concise">اربط تقدمك بـ Google والعب بثقة أن بياناتك محمية.</string>
+
+    <string name="vincular_cuenta">أيقونة لربط الحساب</string>
+
+    <string name="link_account_prompt_popup">احمِ تقدمك! انقر هنا لربط حسابك.</string>
+
+    <string name="dialog_link_title">جهدك يستحق الذهب!</string>
+    <string name="dialog_link_accept">ربط الحساب</string>
+    <string name="dialog_link_not_now">ليس الآن</string>
+    <string name="dialog_link_remind_later">ذكرني لاحقًا</string>
+
+    <string name="toast_button_dismissed">تم إخفاء الزر مؤقتًا.</string>
+    <string name="toast_cooldown_long">مفهوم، لن نزعجك لبعض الوقت.</string>
+    <string name="toast_cooldown_short">سنذكرك لاحقًا.</string>
+
+
+
+
+</resources>

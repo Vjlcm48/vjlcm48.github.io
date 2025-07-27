@@ -1,0 +1,1409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+
+    <string name="loading_text">Memuat…</string>
+
+    <string name="next_activity_text">Aktivitas Berikutnya</string>
+
+
+
+    <string name="btn_allow">Izinkan</string>
+    <string name="btn_deny">Tolak</string>
+    <string name="notification_text">Apakah Anda ingin mengizinkan SumaMente mengirimi Anda notifikasi?</string>
+    <string name="content_description_bell_icon">Ikon lonceng</string>
+    <string name="content_description_icon">Ikon resmi SumaMente</string>
+
+
+    <string name="instruction_text">Tulis nama pengguna Anda.\nGunakan antara 4 dan 12 karakter</string>
+    <string name="btn_accept">Terima</string>
+    <string name="content_description_check_icon">Ikon centang</string>
+    <string name="hint_username_input">Nama pengguna</string>
+    <string name="app_logo">Logo aplikasi</string>
+    <string name="trophy">Trofi</string>
+    <string name="settings">Pengaturan</string>
+    <string name="home">Beranda</string>
+    <string name="statistics">Statistik</string>
+    <string name="statistics_text">Peringkat</string>
+    <string name="username">Nama pengguna</string>
+    <string name="calendar">Kalender</string>
+    <string name="calendar_text">Tantangan</string>
+    <string name="close">Tutup</string>
+    <string name="level_locked_message">Selesaikan level sebelumnya untuk membuka level ini.</string>
+    <string name="level_1">Level 1</string>
+    <string name="level_2">Level 2</string>
+    <string name="level_3">Level 3</string>
+    <string name="level_4">Level 4</string>
+    <string name="level_5">Level 5</string>
+    <string name="level_6">Level 6</string>
+    <string name="level_7">Level 7</string>
+    <string name="level_8">Level 8</string>
+    <string name="level_9">Level 9</string>
+    <string name="level_10">Level 10</string>
+    <string name="level_11">Level 11</string>
+    <string name="level_12">Level 12</string>
+    <string name="level_13">Level 13</string>
+    <string name="level_14">Level 14</string>
+    <string name="level_15">Level 15</string>
+    <string name="level_16">Level 16</string>
+    <string name="level_17">Level 17</string>
+    <string name="level_18">Level 18</string>
+    <string name="level_19">Level 19</string>
+    <string name="level_20">Level 20</string>
+    <string name="level_21">Level 21</string>
+    <string name="level_22">Level 22</string>
+    <string name="level_23">Level 23</string>
+    <string name="level_24">Level 24</string>
+    <string name="level_25">Level 25</string>
+    <string name="level_26">Level 26</string>
+    <string name="level_27">Level 27</string>
+    <string name="level_28">Level 28</string>
+    <string name="level_29">Level 29</string>
+    <string name="level_30">Level 30</string>
+    <string name="level_31">Level 31</string>
+    <string name="level_32">Level 32</string>
+    <string name="level_33">Level 33</string>
+    <string name="level_34">Level 34</string>
+    <string name="level_35">Level 35</string>
+    <string name="level_36">Level 36</string>
+    <string name="level_37">Level 37</string>
+    <string name="level_38">Level 38</string>
+    <string name="level_39">Level 39</string>
+    <string name="level_40">Level 40</string>
+    <string name="level_41">Level 41</string>
+    <string name="level_42">Level 42</string>
+    <string name="level_43">Level 43</string>
+    <string name="level_44">Level 44</string>
+    <string name="level_45">Level 45</string>
+    <string name="level_46">Level 46</string>
+    <string name="level_47">Level 47</string>
+    <string name="level_48">Level 48</string>
+    <string name="level_49">Level 49</string>
+    <string name="level_50">Level 50</string>
+    <string name="level_51">Level 51</string>
+    <string name="level_52">Level 52</string>
+    <string name="level_53">Level 53</string>
+    <string name="level_54">Level 54</string>
+    <string name="level_55">Level 55</string>
+    <string name="level_56">Level 56</string>
+    <string name="level_57">Level 57</string>
+    <string name="level_58">Level 58</string>
+    <string name="level_59">Level 59</string>
+    <string name="level_60">Level 60</string>
+    <string name="level_61">Level 61</string>
+    <string name="level_62">Level 62</string>
+    <string name="level_63">Level 63</string>
+    <string name="level_64">Level 64</string>
+    <string name="level_65">Level 65</string>
+    <string name="level_66">Level 66</string>
+    <string name="level_67">Level 67</string>
+    <string name="level_68">Level 68</string>
+    <string name="level_69">Level 69</string>
+    <string name="level_70">Level 70</string>
+    <string name="scroll_view_description">Wadah level yang dapat digulir</string>
+    <string name="sound">Suara</string>
+    <string name="notifications">Notifikasi</string>
+    <string name="share">Bagikan</string>
+    <string name="switch_sound_desc">Aktifkan atau nonaktifkan suara</string>
+    <string name="switch_notifications_desc">Aktifkan atau nonaktifkan notifikasi</string>
+    <string name="volume_vibration">Aktifkan atau nonaktifkan suara</string>
+    <string name="notifications_history">Aktifkan atau nonaktifkan notifikasi</string>
+    <string name="profile">Profil</string>
+    <string name="profile_subtitle">Nama pengguna, bendera Anda</string>
+    <string name="share_subtitle">Bagikan aplikasi dengan teman</string>
+    <string name="help">Bantuan</string>
+    <string name="help_subtitle">Cara bermain</string>
+    <string name="home_text">Beranda</string>
+    <string name="ads">Iklan</string>
+    <string name="ads_subtitle">Hapus iklan</string>
+    <string name="switch_ads_desc">Memungkinkan untuk mengaktifkan/menonaktifkan iklan</string>
+    <string name="level_title">LEVEL %1$d/70</string>
+    <string name="time_limit_text">Waktu penyelesaian maks: %.2f detik</string>
+    <string name="start_button_text">MULAI</string>
+    <string name="close_button_description">Tutup jendela instruksi</string>
+    <string name="btn_yes">YA</string>
+    <string name="btn_no">TIDAK</string>
+    <string name="back">Kembali</string>
+    <string name="exit_confirmation">Apakah Anda ingin keluar dari permainan?</string>
+    <string name="progress_ring_description">Cincin kemajuan yang menunjukkan sisa waktu</string>
+    <string name="prompt_choose_correct_answer">PILIH JAWABAN\nYANG BENAR</string>
+    <string name="respuesta_1">Jawaban 1</string>
+    <string name="respuesta_2">Jawaban 2</string>
+    <string name="respuesta_3">Jawaban 3</string>
+    <string name="respuesta_4">Jawaban 4</string>
+    <string name="score_label">SKOR: %1$d</string>
+    <string name="new_game">PERMAINAN BARU</string>
+    <string name="dialog_title">Mode Respons</string>
+    <string name="seleccion_simple">Pilihan sederhana</string>
+    <string name="escribe_tu_respuesta">Tulis jawabanmu</string>
+    <string name="info_seleccion_simple">Informasi tentang Pilihan sederhana</string>
+    <string name="info_escribe_respuesta">Informasi tentang Tulis jawabanmu</string>
+    <string name="check_seleccion_simple">Centang pilihan sederhana</string>
+    <string name="check_escribe_respuesta">Centang tulis jawabanmu</string>
+    <string name="title_dialog">Judul</string>
+    <string name="dialog_message">Pesan</string>
+    <string name="close_button_desc">Tutup</string>
+    <string name="selection_simple_title">Pilihan Sederhana</string>
+    <string name="selection_simple_message">Pilih jawaban yang benar dari beberapa pilihan.</string>
+    <string name="write_answer_title">Tulis Jawaban Anda</string>
+    <string name="write_answer_message">Tulis jawaban yang benar secara manual.</string>
+    <string name="enter_answer_hint">Masukkan jawaban Anda</string>
+    <string name="submit">Kirim</string>
+    <string name="vamos_text">Ayo</string>
+    <string name="genial">Hebat!</string>
+    <string name="buen_trabajo">Kerja bagus</string>
+    <string name="puntos_obtenidos">Poin yang didapat: %1$d</string>
+    <string name="clasificacion_cambiada">Peringkat baru. Lihat</string>
+    <string name="repetir_nivel">Ulangi level</string>
+    <string name="cerrar">Tutup</string>
+    <string name="perfecto">Sempurna!</string>
+    <string name="increible">Luar biasa!</string>
+    <string name="asombroso">Menakjubkan!</string>
+    <string name="excelente">Sangat baik!</string>
+    <string name="fantastico">Fantastis!</string>
+    <string name="imparable">Tak terhentikan!</string>
+    <string name="brillante">Cemerlang!</string>
+    <string name="magistral">Ahli!</string>
+    <string name="soberbio">Luar biasa!</string>
+    <string name="fenomenal">Fenomenal!</string>
+    <string name="esplendido">Hebat!</string>
+    <string name="jugar_un_nuevo_nivel">Mainkan level baru</string>
+    <string name="bien_hecho">Bagus sekali!</string>
+    <string name="vamos_bien">Kita baik-baik saja!</string>
+    <string name="gran_esfuerzo">Usaha yang hebat!</string>
+    <string name="lo_lograste">Anda berhasil!</string>
+    <string name="buen_avance">Kemajuan yang baik!</string>
+    <string name="sigue_asi">Teruskan!</string>
+    <string name="asi_es">Benar!</string>
+    <string name="muy_bien">Sangat baik!</string>
+    <string name="casi_perfecto">Hampir sempurna!</string>
+    <string name="mejorando">Semakin baik!</string>
+    <string name="persistencia">Kegigihan!</string>
+    <string name="buen_intento">Percobaan yang bagus!</string>
+    <string name="vas_bien">Kamu melakukannya dengan baik!</string>
+    <string name="has_agotado_tus_intentos">Anda telah kehabisan percobaan!</string>
+    <string name="se_agoto_el_tiempo">Ups! Waktu habis</string>
+    <string name="tiempo_empleado">Waktu: %1$s dtk</string>
+    <string name="select_game_to_reset">Pilih game untuk diatur ulang</string>
+    <string name="check_blue_description">Centang biru</string>
+    <string name="check_description">Centang hijau yang menunjukkan keberhasilan</string>
+
+
+
+    <string name="select_data_to_reset">Pilih data yang ingin Anda atur ulang</string>
+    <string name="reset_score">Atur ulang skor</string>
+    <string name="reset_response_mode">Atur ulang mode respons</string>
+    <string name="accept">Terima</string>
+    <string name="puntaje_actual">Skor saat ini: %1$d</string>
+    <string name="confirmation_message">Apakah Anda yakin ingin mengatur ulang data yang dipilih?</string>
+    <string name="yes">YA</string>
+    <string name="no">TIDAK</string>
+    <string name="edit_username_desc">Ubah nama pengguna</string>
+    <string name="edit_flag_desc">Ubah bendera</string>
+    <string name="title_profile_edit">Data apa yang ingin Anda ubah?</string>
+    <string name="edit_username">Nama pengguna</string>
+    <string name="edit_flag">Bendera</string>
+    <string name="star_icon">Ikon bintang</string>
+    <string name="default_score">0</string>
+    <string name="reset_progress">Atur ulang kemajuan</string>
+    <string name="reset_progress_subtitle">Atur ulang kemajuan permainan</string>
+
+
+
+    <string name="error_invalid_username_length">Nama harus antara 4 dan 12 karakter.</string>
+    <string name="error_username_taken">Ups! sepertinya seseorang sudah menggunakan \nnama itu, coba yang lain.</string>
+
+
+
+    <string name="repeated_numbers_yellow_formatted">"Angka %1$s diulang. Jumlahkan dengan benar!"</string>
+    <string name="repeated_numbers_blue_formatted">"Angka %1$s diulang. Jumlahkan dengan benar!"</string>
+    <string name="negative_numbers_warning_formatted">"Hati-hati, beberapa angka mungkin %1$s. Jumlahkan dengan benar!"</string>
+
+    <string name="highlight_word_yellow">"kuning"</string>
+    <string name="highlight_word_blue">"biru"</string>
+    <string name="highlight_word_negative">"negatif"</string>
+
+    <string name="country_ad">Andorra</string>
+    <string name="country_ae">Uni Emirat Arab</string>
+    <string name="country_af">Afganistan</string>
+    <string name="country_ag">Antigua dan Barbuda</string>
+    <string name="country_ai">Anguilla</string>
+    <string name="country_al">Albania</string>
+    <string name="country_am">Armenia</string>
+    <string name="country_ao">Angola</string>
+    <string name="country_aq">Antartika</string>
+    <string name="country_ar">Argentina</string>
+    <string name="country_at">Austria</string>
+    <string name="country_au">Australia</string>
+    <string name="country_aw">Aruba</string>
+    <string name="country_ax">Kepulauan Åland</string>
+    <string name="country_az">Azerbaijan</string>
+    <string name="country_ba">Bosnia dan Herzegovina</string>
+    <string name="country_bb">Barbados</string>
+    <string name="country_bd">Bangladesh</string>
+    <string name="country_be">Belgia</string>
+    <string name="country_bf">Burkina Faso</string>
+    <string name="country_bg">Bulgaria</string>
+    <string name="country_bh">Bahrain</string>
+    <string name="country_bi">Burundi</string>
+    <string name="country_bj">Benin</string>
+    <string name="country_bl">Saint Barthélemy</string>
+    <string name="country_bm">Bermuda</string>
+    <string name="country_bn">Brunei</string>
+    <string name="country_bo">Bolivia</string>
+    <string name="country_bq">Karibia Belanda</string>
+    <string name="country_br">Brasil</string>
+    <string name="country_bs">Bahama</string>
+    <string name="country_bt">Bhutan</string>
+    <string name="country_bv">Pulau Bouvet</string>
+    <string name="country_bw">Botswana</string>
+    <string name="country_by">Belarus</string>
+    <string name="country_bz">Belize</string>
+    <string name="country_ca">Kanada</string>
+    <string name="country_cc">Kepulauan Cocos (Keeling)</string>
+    <string name="country_cd">Republik Demokratik Kongo</string>
+    <string name="country_cf">Republik Afrika Tengah</string>
+    <string name="country_cg">Kongo</string>
+    <string name="country_ch">Swiss</string>
+    <string name="country_ci">Pantai Gading</string>
+    <string name="country_ck">Kepulauan Cook</string>
+    <string name="country_cl">Chili</string>
+    <string name="country_cm">Kamerun</string>
+    <string name="country_cn">Tiongkok</string>
+    <string name="country_co">Kolombia</string>
+    <string name="country_cr">Kosta Rika</string>
+    <string name="country_cu">Kuba</string>
+    <string name="country_cv">Tanjung Verde</string>
+    <string name="country_cw">Curaçao</string>
+    <string name="country_cx">Pulau Natal</string>
+    <string name="country_cy">Siprus</string>
+    <string name="country_cz">Ceko</string>
+    <string name="country_de">Jerman</string>
+    <string name="country_dj">Jibuti</string>
+    <string name="country_dk">Denmark</string>
+    <string name="country_dm">Dominika</string>
+    <string name="country_dominican_republic">Republik Dominika</string>
+    <string name="country_dz">Aljazair</string>
+    <string name="country_ec">Ekuador</string>
+    <string name="country_ee">Estonia</string>
+    <string name="country_eg">Mesir</string>
+    <string name="country_eh">Sahara Barat</string>
+    <string name="country_er">Eritrea</string>
+    <string name="country_es">Spanyol</string>
+    <string name="country_et">Etiopia</string>
+    <string name="country_fi">Finlandia</string>
+    <string name="country_fj">Fiji</string>
+    <string name="country_fk">Kepulauan Falkland</string>
+    <string name="country_fm">Mikronesia</string>
+    <string name="country_fo">Kepulauan Faroe</string>
+    <string name="country_fr">Prancis</string>
+    <string name="country_ga">Gabon</string>
+    <string name="country_gb">Britania Raya</string>
+    <string name="country_gd">Grenada</string>
+    <string name="country_ge">Georgia</string>
+    <string name="country_gf">Guyana Prancis</string>
+    <string name="country_gg">Guernsey</string>
+    <string name="country_gh">Ghana</string>
+    <string name="country_gi">Gibraltar</string>
+    <string name="country_gl">Greenland</string>
+    <string name="country_gm">Gambia</string>
+    <string name="country_gn">Guinea</string>
+    <string name="country_gp">Guadeloupe</string>
+    <string name="country_gq">Guinea Khatulistiwa</string>
+    <string name="country_gr">Yunani</string>
+    <string name="country_gs">Georgia Selatan &amp; Kep. Sandwich Selatan</string>
+    <string name="country_gt">Guatemala</string>
+    <string name="country_gu">Guam</string>
+    <string name="country_gw">Guinea-Bissau</string>
+    <string name="country_gy">Guyana</string>
+    <string name="country_hk">Hong Kong</string>
+    <string name="country_hm">Pulau Heard dan Kepulauan McDonald</string>
+    <string name="country_hn">Honduras</string>
+    <string name="country_hr">Kroasia</string>
+    <string name="country_ht">Haiti</string>
+    <string name="country_hu">Hungaria</string>
+    <string name="country_id">Indonesia</string>
+    <string name="country_ie">Irlandia</string>
+    <string name="country_il">Israel</string>
+    <string name="country_im">Pulau Man</string>
+    <string name="country_in">India</string>
+    <string name="country_io">Wilayah Samudra Hindia Britania</string>
+    <string name="country_iq">Irak</string>
+    <string name="country_ir">Iran</string>
+    <string name="country_is">Islandia</string>
+    <string name="country_it">Italia</string>
+    <string name="country_je">Jersey</string>
+    <string name="country_jm">Jamaika</string>
+    <string name="country_jo">Yordania</string>
+    <string name="country_jp">Jepang</string>
+    <string name="country_ke">Kenya</string>
+    <string name="country_kg">Kirgistan</string>
+    <string name="country_kh">Kamboja</string>
+    <string name="country_ki">Kiribati</string>
+    <string name="country_km">Komoro</string>
+    <string name="country_kn">Saint Kitts dan Nevis</string>
+    <string name="country_kp">Korea Utara</string>
+    <string name="country_kr">Korea Selatan</string>
+    <string name="country_kw">Kuwait</string>
+    <string name="country_ky">Kepulauan Cayman</string>
+    <string name="country_kz">Kazakstan</string>
+    <string name="country_la">Laos</string>
+    <string name="country_lb">Lebanon</string>
+    <string name="country_lc">Saint Lucia</string>
+    <string name="country_li">Liechtenstein</string>
+    <string name="country_lk">Sri Lanka</string>
+    <string name="country_lr">Liberia</string>
+    <string name="country_ls">Lesotho</string>
+    <string name="country_lt">Lituania</string>
+    <string name="country_lu">Luksemburg</string>
+    <string name="country_lv">Latvia</string>
+    <string name="country_ly">Libya</string>
+    <string name="country_ma">Maroko</string>
+    <string name="country_mc">Monako</string>
+    <string name="country_md">Moldova</string>
+    <string name="country_me">Montenegro</string>
+    <string name="country_mf">Saint Martin</string>
+    <string name="country_mg">Madagaskar</string>
+    <string name="country_mh">Kepulauan Marshall</string>
+    <string name="country_mk">Makedonia Utara</string>
+    <string name="country_ml">Mali</string>
+    <string name="country_mm">Myanmar</string>
+    <string name="country_mn">Mongolia</string>
+    <string name="country_mo">Makau</string>
+    <string name="country_mp">Kepulauan Mariana Utara</string>
+    <string name="country_mq">Martinik</string>
+    <string name="country_mr">Mauritania</string>
+    <string name="country_ms">Montserrat</string>
+    <string name="country_mt">Malta</string>
+    <string name="country_mu">Mauritius</string>
+    <string name="country_mv">Maladewa</string>
+    <string name="country_mw">Malawi</string>
+    <string name="country_mx">Meksiko</string>
+    <string name="country_my">Malaysia</string>
+    <string name="country_mz">Mozambik</string>
+    <string name="country_na">Namibia</string>
+    <string name="country_nc">Kaledonia Baru</string>
+    <string name="country_ne">Niger</string>
+    <string name="country_nf">Pulau Norfolk</string>
+    <string name="country_ng">Nigeria</string>
+    <string name="country_ni">Nikaragua</string>
+    <string name="country_nl">Belanda</string>
+    <string name="country_no">Norwegia</string>
+    <string name="country_np">Nepal</string>
+    <string name="country_nr">Nauru</string>
+    <string name="country_nu">Niue</string>
+    <string name="country_nz">Selandia Baru</string>
+    <string name="country_om">Oman</string>
+    <string name="country_pa">Panama</string>
+    <string name="country_pe">Peru</string>
+    <string name="country_pf">Polinesia Prancis</string>
+    <string name="country_pg">Papua Nugini</string>
+    <string name="country_ph">Filipina</string>
+    <string name="country_pk">Pakistan</string>
+    <string name="country_pl">Polandia</string>
+    <string name="country_pt">Portugal</string>
+    <string name="country_py">Paraguay</string>
+    <string name="country_qa">Qatar</string>
+    <string name="country_re">Réunion</string>
+    <string name="country_ro">Rumania</string>
+    <string name="country_rs">Serbia</string>
+    <string name="country_ru">Rusia</string>
+    <string name="country_rw">Rwanda</string>
+    <string name="country_sa">Arab Saudi</string>
+    <string name="country_sb">Kepulauan Solomon</string>
+    <string name="country_sc">Seychelles</string>
+    <string name="country_sd">Sudan</string>
+    <string name="country_se">Swedia</string>
+    <string name="country_sg">Singapura</string>
+    <string name="country_si">Slovenia</string>
+    <string name="country_sk">Slowakia</string>
+    <string name="country_sl">Sierra Leone</string>
+    <string name="country_sm">San Marino</string>
+    <string name="country_sn">Senegal</string>
+    <string name="country_so">Somalia</string>
+    <string name="country_sr">Suriname</string>
+    <string name="country_st">Sao Tome dan Principe</string>
+    <string name="country_sv">El Salvador</string>
+    <string name="country_sy">Suriah</string>
+    <string name="country_sz">eSwatini</string>
+    <string name="country_td">Chad</string>
+    <string name="country_tg">Togo</string>
+    <string name="country_th">Thailand</string>
+    <string name="country_tj">Tajikistan</string>
+    <string name="country_tl">Timor-Leste</string>
+    <string name="country_tm">Turkmenistan</string>
+    <string name="country_tn">Tunisia</string>
+    <string name="country_tr">Turki</string>
+    <string name="country_tt">Trinidad dan Tobago</string>
+    <string name="country_tw">Taiwan</string>
+    <string name="country_tz">Tanzania</string>
+    <string name="country_ua">Ukraina</string>
+    <string name="country_ug">Uganda</string>
+    <string name="country_us">Amerika Serikat</string>
+    <string name="country_uy">Uruguay</string>
+    <string name="country_uz">Uzbekistan</string>
+    <string name="country_va">Kota Vatikan</string>
+    <string name="country_ve">Venezuela</string>
+    <string name="country_vn">Vietnam</string>
+    <string name="country_ye">Yaman</string>
+    <string name="country_za">Afrika Selatan</string>
+    <string name="country_zm">Zambia</string>
+    <string name="country_zw">Zimbabwe</string>
+    <string name="title_select_flag">Pilih Bendera</string>
+    <string name="hint_search_country">Tulis nama negara</string>
+    <string name="close_button">Tutup</string>
+    <string name="search_icon">Cari</string>
+    <string name="flag_image">Gambar bendera negara</string>
+    <string name="current_flag">Bendera saat ini</string>
+    <string name="current_flag_image">Gambar bendera saat ini</string>
+    <string name="confirmation">Konfirmasi</string>
+    <string name="confirm_change_flag">Apakah Anda yakin ingin mengubah bendera?</string>
+    <string name="instructions_level_1_10">Jumlahkan semua angka</string>
+    <string name="instructions_level_11_20">Jumlahkan semua angka</string>
+    <string name="instructions_level_31_35">Jumlahkan semua angka</string>
+    <string name="instructions_level_36_40">Jumlahkan semua angka</string>
+    <string name="instructions_level_51_60">Jumlahkan semua angka</string>
+    <string name="exception_first">Jumlahkan semua angka kecuali yang pertama</string>
+    <string name="exception_second">Jumlahkan semua angka kecuali yang kedua</string>
+    <string name="exception_third">Jumlahkan semua angka kecuali yang ketiga</string>
+    <string name="exception_last">Jumlahkan semua angka kecuali yang terakhir</string>
+    <string name="default_instructions">Jumlahkan semua angka</string>
+    <string name="instructions_romans_1_10">Jumlahkan semua angka ROMAWI</string>
+    <string name="instructions_romans_11_20">Jumlahkan semua angka ROMAWI</string>
+    <string name="instructions_romans_31_35">Jumlahkan semua angka ROMAWI</string>
+    <string name="instructions_romans_36_40">Jumlahkan semua angka ROMAWI</string>
+    <string name="instructions_romans_51_60">Jumlahkan semua angka ROMAWI</string>
+    <string name="instructions_romans_default">Jumlahkan semua angka ROMAWI</string>
+    <string name="exception_romans_first">Jumlahkan semua angka ROMAWI kecuali yang pertama</string>
+    <string name="exception_romans_second">Jumlahkan semua angka ROMAWI kecuali yang kedua</string>
+    <string name="exception_romans_third">Jumlahkan semua angka ROMAWI kecuali yang ketiga</string>
+    <string name="exception_romans_last">Jumlahkan semua angka ROMAWI kecuali yang terakhir</string>
+    <string name="invalid_manual_answer">Silakan masukkan angka yang valid</string>
+    <string name="sound_enabled">Suara diaktifkan</string>
+    <string name="sound_disabled">Suara dinonaktifkan</string>
+    <string name="notifications_enabled">Notifikasi diaktifkan</string>
+    <string name="notifications_disabled">Notifikasi dinonaktifkan</string>
+    <string name="ads_enabled">Iklan diaktifkan</string>
+    <string name="ads_disabled">Iklan dinonaktifkan</string>
+
+
+    <string name="error_time_limit_not_found">Batas waktu untuk level %1$d tidak ditemukan</string>
+
+
+    <string name="toast_select_option">Pilih setidaknya satu opsi</string>
+    <string name="sum_and_subtract_instruction">Selesaikan operasi dengan mempertimbangkan angka positif dan negatif.</string>
+    <string name="general_instructions">Jumlahkan bilangan bulat, desimal, angka romawi, dan huruf. Beberapa bisa negatif!</string>
+
+    <string name="escoge_tu_modo_de_respuesta">Pilih mode\nrespons yang\npaling Anda sukai</string>
+    <string name="instructions_numeros_intro">
+    Selamat datang di\ntutorial:
+</string>
+
+    <string name="entendido">Mengerti</string>
+    <string name="default_chronometer">00.00</string>
+
+    <string name="answer_option_1">8</string>
+    <string name="answer_option_2">9</string>
+    <string name="answer_option_3">10</string>
+    <string name="answer_option_4">11</string>
+
+    <string name="answer_deci_option_1">0.8</string>
+    <string name="answer_deci_option_2">0.9</string>
+    <string name="answer_deci_option_3">0.7</string>
+    <string name="answer_deci_option_4">1.2</string>
+
+    <string name="answer_sumaresta_option_1">13</string>
+    <string name="answer_sumaresta_option_2">14</string>
+    <string name="answer_sumaresta_option_3">11</string>
+    <string name="answer_sumaresta_option_4">12</string>
+
+    <string name="formatted_time">Waktu yang digunakan: %s detik</string>
+    <string name="formatted_points">Poin yang diperoleh: %d</string>
+    <string name="chronometer_value">%s</string>
+
+    <string name="tutorial_step_intro_part_a"><![CDATA[
+    Kami akan menunjukkan
+    kepada Anda dalam 3
+    langkah mudah
+    cara bermain…
+]]></string>
+    <string name="tutorial_step_intro_part_b">mari kita mulai.</string>
+    <string name="tutorial_step_one">Langkah pertama: Tentukan cara Anda ingin bermain, Anda yang mengontrol!</string>
+    <string name="tutorial_step_two">Langkah kedua: Angka akan muncul. Jumlahkan yang\npositif, kurangi yang\nnegatif.\nKonsentrasi dan bersiaplah!\nMari kita lihat contoh:</string>
+    <string name="tutorial_deci_step_two">Langkah kedua: Angka desimal akan muncul. Jumlahkan yang\npositif, kurangi yang\nnegatif.\nPerhatikan!\nMari kita lihat contoh:</string>
+
+    <string name="tutorial_romas_step_two">Langkah kedua:\nAngka ROMAWI\nakan muncul.\nJumlahkan yang positif,\nkurangi yang negatif.\nPerhatikan!\nMari kita lihat contoh:</string>
+
+    <string name="tutorial_alfa_numeros_step_two">Langkah kedua:\nHuruf dan\nangka akan muncul.\nA=1, B=2 dst,dst\nJumlahkan yang positif,\nkurangi yang negatif.\nPerhatikan!\nMari kita lihat contoh:</string>
+
+    <string name="tutorial_mas_step_two">Langkah kedua:\nHuruf, angka, angka ROMAWI\nDAN DESIMAL akan muncul.\nJumlahkan yang positif,\nkurangi yang negatif.\nPerhatikan!\nMari kita lihat contoh:</string>
+
+    <string name="tutorial_genio_step_two">Langkah kedua:\nHuruf, angka, pecahan\nDAN AKAR KUADRAT akan muncul.\nJumlahkan yang positif,\nkurangi yang negatif.\nPerhatikan!\nMari kita lihat contoh:</string>
+
+    <string name="tutorial_step_three_part_one"><![CDATA[
+    Langkah ketiga: Hitung
+    hasil dari angka
+    yang Anda lihat.
+]]></string>
+    <string name="tutorial_step_three_part_two"><![CDATA[
+    Tulis atau pilih
+    jawaban yang benar
+    sebelum waktu
+    habis!
+]]></string>
+    <string name="tutorial_result_message"><![CDATA[
+    Hebat! Sekarang kita akan
+    melihat berapa banyak
+    waktu yang Anda gunakan
+    dan berapa banyak poin
+    yang Anda menangkan. 😊
+]]></string>
+    <string name="tutorial_closing_message"><![CDATA[
+    Anda siap!
+    Saatnya bermain
+    dan bersenang-senang. 🚀
+]]></string>
+
+    <string name="score_format">Poin: %d</string>
+
+    <string name="descubre_como_jugar">Temukan cara bermain</string>
+    <string name="jugar">MAIN</string>
+    <string name="repetir">ULANGI</string>
+
+    <string name="difficulty_selection_title">Pilih tingkat kesulitan</string>
+
+    <string name="difficulty_principiante">Pemula</string>
+    <string name="difficulty_subtitle_principiante">Dasar, sangat mudah… 🍰</string>
+
+    <string name="difficulty_avanzado">Lanjutan</string>
+    <string name="difficulty_subtitle_avanzado">Menarik, ayo kita goyangkan neuron-neuron itu… 🧠</string>
+
+    <string name="difficulty_pro">Pro</string>
+    <string name="difficulty_subtitle_pro">Hanya untuk yang terpilih… 👑</string>
+
+    <string name="difficulty_exit_dialog_title">Konfirmasi</string>
+    <string name="difficulty_exit_dialog_message">Apakah Anda yakin ingin keluar tanpa memilih tingkat kesulitan? Anda harus memilih saat masuk berikutnya.</string>
+    <string name="difficulty_exit_dialog_positive">Keluar</string>
+    <string name="difficulty_exit_dialog_negative">Batal</string>
+
+    <string name="difficulty_one_star">★</string>
+    <string name="difficulty_two_stars">★★</string>
+    <string name="difficulty_three_stars">★★★</string>
+
+    <string name="change_difficulty">Ubah kesulitan</string>
+
+    <string name="review_exercise">Tinjau jawaban saya</string>
+    <string name="exercise_title">Latihannya adalah:</string>
+    <string name="correct_answer_format">Jawaban yang benar adalah: %d</string>
+    <string name="user_responses_format">Jawaban Anda adalah: %d %d</string>
+    <string name="level_locked_by_failures">Anda harus menyelesaikan level sebelumnya untuk membuka level ini lagi</string>
+
+    <string name="desafios_mensaje">Tantangan SumaMente! Bersaing dan menangkan hadiah dengan pemain dari seluruh dunia. Kami akan memberi tahu Anda kapan acara berikutnya. Bersiaplah untuk bersinar!</string>
+
+    <string name="monday_short">Sen</string>
+    <string name="tuesday_short">Sel</string>
+    <string name="wednesday_short">Rab</string>
+    <string name="thursday_short">Kam</string>
+    <string name="friday_short">Jum</string>
+    <string name="saturday_short">Sab</string>
+    <string name="sunday_short">Min</string>
+
+    <string name="correct_answer_format_deci">Jawaban yang benar: %s</string>
+    <string name="user_responses_format_deci">Jawaban Anda: %s</string>
+
+    <string name="skip_tutorial">Lewati tutorial</string>
+
+    <string name="premio_titulo">Usaha Anda, hadiah Anda…</string>
+    <string name="pin_reconocimiento">Prestasi khusus</string>
+    <string name="corona_laureles">Kecepatan superior</string>
+    <string name="medalla">Kegigihan konstan</string>
+    <string name="trofeo">Penguasaan penuh</string>
+
+    <string name="correct_answer_format_romas">Jawaban yang benar: %s</string>
+    <string name="user_responses_format_romas">Jawaban Anda: %s</string>
+
+    <string name="clasificaciones_titulo">PERINGKAT</string>
+    <string name="clasificaciones_como_funciona">Bagaimana cara kerja sistem peringkat?</string>
+    <string name="clasificaciones_ver_mi">Peringkat global</string>
+    <string name="clasificaciones_por_velocidad">Peringkat berdasarkan kecepatan</string>
+
+    <string name="clasificaciones_titulo_dialog">BAGAIMANA CARA KERJA SISTEM PERINGKAT?</string>
+    <string name="clasificaciones_puntos_correctas">Poin untuk jawaban yang benar</string>
+    <string name="clasificaciones_puntos_correctas_1">• Setiap permainan memberi Anda poin saat Anda menjawab dengan benar</string>
+    <string name="clasificaciones_puntos_correctas_2">• Jika Anda menjawab semua pertanyaan dengan benar, Anda akan menerima semua poin Anda</string>
+    <string name="clasificaciones_puntos_correctas_3">• Jika Anda membuat beberapa kesalahan, Anda akan menerima lebih sedikit poin</string>
+    <string name="clasificaciones_puntos_velocidad">Poin untuk kecepatan</string>
+    <string name="clasificaciones_puntos_velocidad_1">• Menjadi cepat memberi Anda lebih banyak poin!</string>
+    <string name="clasificaciones_puntos_velocidad_2">• Jika Anda menjawab dalam 1 detik, Anda akan menerima poin normal</string>
+    <string name="clasificaciones_puntos_velocidad_3">• Jika Anda lebih cepat, Anda akan memenangkan lebih banyak poin!</string>
+    <string name="clasificaciones_puntos_velocidad_4">• Jika Anda membutuhkan waktu lebih lama, Anda akan menerima lebih sedikit poin</string>
+    <string name="clasificaciones_juegos_niveles">Permainan dan level</string>
+    <string name="clasificaciones_juegos_niveles_1">• Ada 7 permainan yang berbeda: NÚMEROS⁺, DECI⁺, ROMAS, SUMARESTA, ALFANÚMEROS, MÁS⁺ dan GENIO⁺</string>
+    <string name="clasificaciones_juegos_niveles_2">• Setiap permainan memiliki 3 level: Pemula, Lanjutan, dan Pro</string>
+    <string name="clasificaciones_juegos_niveles_3">• Permainan yang lebih sulit dan level yang lebih tinggi memberi Anda lebih banyak poin</string>
+    <string name="clasificaciones_practica">Berlatih dan tingkatkan!</string>
+    <string name="clasificaciones_practica_1">• Anda dapat mengulangi permainan apa pun kapan pun Anda mau</string>
+    <string name="clasificaciones_practica_2">• Mainkan sebanyak yang Anda mau untuk meningkatkan waktu rata-rata Anda</string>
+    <string name="clasificaciones_practica_3">• Berlatihlah setiap hari untuk meningkatkan kecepatan dan akurasi Anda!</string>
+
+    <string name="pin_victoris">30 level. Tanpa kesalahan. 24 jam. VICTORIS… Hanya para pemenang yang akan mengerti.</string>
+    <string name="pin_optimum">40 level. Tanpa kesalahan. Satu hari. OPTIMUM… Hanya yang terbaik yang bertahan.</string>
+    <string name="pin_invictus">50 level. Tak terkalahkan. 24 jam. INVICTUS… Hanya yang gigih yang berhasil.</string>
+
+    <string name="medalla_initium_100">Perjalanan baru saja dimulai. Capai 100 permainan yang diselesaikan dan Anda akan mendapatkan INITIUM.</string>
+    <string name="medalla_fidelis_200">Ketekunan Anda akan diakui. Capai 200 permainan dan medali ini akan menjadi milik Anda.</string>
+    <string name="medalla_virtus_300">Berlatihlah setiap hari. Dengan menyelesaikan 300 permainan, Anda akan menunjukkan kebajikan disiplin.</string>
+    <string name="medalla_audax_400">Hanya yang berani yang terus maju. Taklukkan 400 permainan tanpa ragu.</string>
+    <string name="medalla_fortis_500">Pikiran Anda teguh. Capai 500 permainan dan perkuat legenda Anda.</string>
+    <string name="medalla_tenax_600">Jangan berhenti. Setelah menyelesaikan 600 permainan, keuletan Anda akan bersinar.</string>
+    <string name="medalla_intrepidus_700">Hadapi setiap tantangan tanpa rasa takut. Medali ini milik Anda setelah mencapai 700 permainan.</string>
+    <string name="medalla_sapiens_800">Kebijaksanaan diperoleh dengan pengalaman. 800 permainan yang diselesaikan akan membuktikannya.</string>
+    <string name="medalla_exemplar_900">Jadilah teladan. Saat Anda mencapai 900 permainan, semua orang akan tahu bahwa Anda tidak pernah menyerah.</string>
+    <string name="medalla_gloriam_1000">Berani mencapai puncak. 1000 permainan akan membawa Anda menuju kemuliaan.</string>
+    <string name="medalla_magnus_1100">Kehebatan dibangun dengan usaha. Capai 1100 permainan dan Anda akan menerima MAGNUS.</string>
+    <string name="medalla_immortalis_1200">Warisan Anda akan melampaui. Setelah menyelesaikan 1200 permainan, medali ini mengabadikan Anda.</string>
+
+    <string name="corona_volucer_1">Untuk pikiran tercepat. Hanya yang menempati posisi pertama yang pantas mendapatkan mahkota legendaris ini.</string>
+    <string name="corona_celeris_6">Bagi yang menaklukkan posisi kedua dalam kecepatan. Mahkota Celeris menghargai kecepatan dan ketekunan Anda.</string>
+    <string name="corona_velocitas_10">Posisi ketiga dalam kecepatan juga layak dihormati. Mahkota ini mengakui kelincahan mental Anda.</string>
+
+    <string name="trofeo_initia_numeros_principiante">Mulai perjalanan Anda. Kuasai NÚMEROS⁺ Pemula dan trofi ini akan menjadi titik awal Anda.</string>
+    <string name="trofeo_constantia_numeros_avanzado">Teruslah maju tanpa menyerah. Lewati setiap tantangan di NÚMEROS⁺ Lanjutan.</string>
+    <string name="trofeo_confectus_numeros_pro">Jangan tinggalkan apa pun yang belum selesai. Capai akhir NÚMEROS⁺ Pro dan dapatkan CONFECTUS.</string>
+
+    <string name="trofeo_via_deci_principiante">Lacak jalan Anda melalui desimal. Selesaikan DECI⁺ Pemula dan mulailah menonjol.</string>
+    <string name="trofeo_altus_deci_avanzado">Bidik tinggi. Selesaikan DECI⁺ Lanjutan dan ALTUS akan menjadi milik Anda.</string>
+    <string name="trofeo_perseverantia_deci_pro">Jangan berhenti. Taklukkan setiap permainan DECI⁺ Pro dengan disiplin yang tak tergoyahkan.</string>
+
+    <string name="trofeo_gradus_romas_principiante">Maju selangkah demi selangkah. Atasi ROMAS Pemula dan tinggalkan jejak kekaisaran Anda.</string>
+    <string name="trofeo_fortitudo_romas_avanzado">Tunjukkan kekuatan Anda. Hadapi tantangan ROMAS Lanjutan sampai akhir.</string>
+    <string name="trofeo_metam_romas_pro">Capai tujuan Romawi. Kalahkan setiap level ROMAS Pro dan taklukkan lambang ini.</string>
+
+    <string name="trofeo_fundamentum_alfanumeros_principiante">Bangun fondasi penguasaan Anda. Selesaikan ALFANUMEROS Pemula tanpa meninggalkan celah.</string>
+    <string name="trofeo_praemium_alfanumeros_avanzado">Dapatkan hadiah ini huruf demi huruf. Maju melalui semua ALFANUMEROS Lanjutan.</string>
+    <string name="trofeo_glorificus_alfanumeros_pro">Pergi untuk kemuliaan. Kuasai ALFANUMEROS Pro dan buat pikiran Anda bersinar.</string>
+
+    <string name="trofeo_scala_sumaresta_principiante">Naik dengan kuat. Naiki anak tangga demi anak tangga hingga Anda menaklukkan SUMARESTA Pemula.</string>
+    <string name="trofeo_tenacitas_sumaresta_avanzado">Hanya yang ulet yang melangkah jauh. Hadapi dan selesaikan SUMARESTA Lanjutan.</string>
+    <string name="trofeo_perfectus_sumaresta_pro">Carilah kesempurnaan dalam setiap permainan. Selesaikan SUMARESTA Pro tanpa menyerah.</string>
+
+    <string name="trofeo_origo_mas_principiante">Semuanya dimulai di sini. Atasi MÁS⁺ Pemula dan buka asal Anda.</string>
+    <string name="trofeo_proficium_mas_avanzado">Jadikan kemajuan sebagai panji Anda. Maju melalui setiap tantangan MÁS⁺ Lanjutan.</string>
+    <string name="trofeo_exemplaritas_mas_pro">Menjadi panutan. Selesaikan MÁS⁺ Pro dan hormati teladan Anda.</string>
+
+    <string name="trofeo_ascensus_genio_principiante">Mulailah pendakian menuju kejeniusan Anda. Selesaikan Genio⁺ Pemula.</string>
+    <string name="trofeo_magnificus_genio_avanzado">Biarkan kecerdasan Anda bersinar. Lewati setiap level Genio⁺ Lanjutan.</string>
+    <string name="trofeo_potens_genio_pro">Keluarkan potensi maksimal Anda. Taklukkan Genio⁺ Pro tanpa melihat ke belakang.</string>
+
+    <string name="previous">Sebelumnya</string>
+    <string name="next">Berikutnya</string>
+
+    <string name="mis_condecoraciones">Penghargaan yang saya capai</string>
+
+    <string name="top_10">10 besar Peringkat Global</string>
+
+    <string name="condecoracion_image">Gambar penghargaan</string>
+    <string name="condecoracion_honorabilis">Posisi kesepuluh. Layak diakui.</string>
+    <string name="condecoracion_virtuosus">Posisi kesembilan. Penguasaan dengan disiplin.</string>
+    <string name="condecoracion_insignis">Posisi kedelapan. Tinggalkan jejak di peringkat.</string>
+    <string name="condecoracion_praestans">Posisi ketujuh. Unggul dalam setiap tantangan.</string>
+    <string name="condecoracion_illustris">Posisi keenam. Cahayanya tidak luput dari perhatian.</string>
+    <string name="condecoracion_gloriosus">Posisi kelima. Kemenangan dengan kehormatan.</string>
+    <string name="condecoracion_venerabilis">Posisi keempat. Dikagumi karena ketekunannya.</string>
+    <string name="condecoracion_magnanimous">Posisi ketiga. Hebat dalam poin dan semangat.</string>
+    <string name="condecoracion_summum">Posisi kedua. Hanya satu yang naik lebih tinggi.</string>
+    <string name="condecoracion_excelsitur">Puncak mutlak. Menempati posisi pertama di peringkat global.</string>
+
+    <string name="position_1">No.1</string>
+    <string name="position_2">No.2</string>
+    <string name="position_3">No.3</string>
+    <string name="position_4">No.4</string>
+    <string name="position_5">No.5</string>
+    <string name="position_6">No.6</string>
+    <string name="position_7">No.7</string>
+    <string name="position_8">No.8</string>
+    <string name="position_9">No.9</string>
+    <string name="position_10">No.10</string>
+
+    <string name="user_response_single_format">Jawaban Anda: %d</string>
+
+    <string name="condecoracion_suprema">Penghargaan Tertinggi</string>
+    <string name="apex_supremus_descripcion">Hanya para pemenang tertinggi…</string>
+    <string name="apex_supremus_info">Penghargaan terhormat ini hanya diberikan kepada mereka yang menyelesaikan semua tantangan SumaMente.</string>
+
+    <string name="ranking_global">Peringkat Global</string>
+    <string name="pais">Negara</string>
+    <string name="puntaje">Skor</string>
+    <string name="ranking_sin_datos">Tidak ada data peringkat yang tersedia</string>
+    <string name="bandera_pais">Bendera negara</string>
+
+    <string name="logro_pin_invictus">Keunggulan membedakan Anda, 50 tantangan dalam satu hari, mendapatkan INVICTUS.</string>
+
+    <string name="logro_medalla_initium">Anda telah menyelesaikan 100 permainan unik! Dedikasi Anda telah memberi Anda medali INITIUM, awal dari koleksi Anda.</string>
+
+    <string name="logro_trofeo_initia">Anda menguasai angka! Anda telah menyelesaikan 70 level NÚMEROS⁺ Pemula, mendapatkan trofi INITIA.</string>
+    <string name="logro_trofeo_constantia">Keahlian numerik tingkat lanjut! Anda telah melampaui 70 level NÚMEROS⁺ Lanjutan, menaklukkan trofi CONSTANTIA.</string>
+    <string name="logro_trofeo_confectus">Pakar angka tertinggi! 70 level NÚMEROS⁺ Pro telah jatuh di hadapan Anda, memberi Anda trofi CONFECTUS.</string>
+
+    <string name="logro_trofeo_via">Awal yang cemerlang dengan desimal! Anda menyelesaikan semua level DECI⁺ Pemula, memenangkan trofi VIA.</string>
+    <string name="logro_trofeo_altus">Presisi desimal terbukti! 70 level DECI⁺ Lanjutan adalah milik Anda, pantas mendapatkan trofi ALTUS yang bergengsi.</string>
+    <string name="logro_trofeo_perseverantia">Penguasaan desimal mutlak! Anda telah menaklukkan semua level DECI⁺ Pro, mengangkat diri Anda dengan trofi PERSEVERANTIA.</string>
+
+    <string name="logro_trofeo_gradus">Seperti orang Romawi kuno! Anda menguasai 70 level ROMAS Pemula, mendapatkan trofi GRADUS yang berharga.</string>
+    <string name="logro_trofeo_fortitudo">Kekuatan kekaisaran dalam angka Romawi! Anda telah sepenuhnya melampaui ROMAS Lanjutan, memenangkan trofi FORTITUDO.</string>
+    <string name="logro_trofeo_metam">Dominasi Romawi total! 70 tantangan ROMAS Pro telah ditaklukkan, memberi Anda trofi METAM yang mulia.</string>
+
+    <string name="logro_trofeo_fundamentum">Dasar-dasar alfanumerik dikuasai! Anda menyelesaikan ALFANÚMEROS Pemula, mendapatkan trofi FUNDAMENTUM.</string>
+    <string name="logro_trofeo_praemium">Jenius alfanumerik dikonfirmasi! 70 level ALFANÚMEROS Lanjutan adalah sejarah, memberi Anda trofi PRAEMIUM.</string>
+    <string name="logro_trofeo_glorificus">Penguasaan alfanumerik tertinggi! Anda telah mengalahkan semua tantangan ALFANÚMEROS Pro, mencapai trofi GLORIFICUS yang luar biasa.</string>
+
+    <string name="logro_trofeo_scala">Perhitungan mental meningkat! Anda melampaui 70 level SUMARESTA Pemula, mendapatkan trofi SCALA.</string>
+    <string name="logro_trofeo_tenacitas">Tambah dan kurangi dengan keahlian! Semua level SUMARESTA Lanjutan selesai, memberi Anda trofi TENACITAS.</string>
+    <string name="logro_trofeo_perfectus">Kesempurnaan dalam perhitungan! Anda telah menguasai 70 tantangan SUMARESTA Pro, mencapai trofi PERFECTUS yang didambakan.</string>
+
+    <string name="logro_trofeo_origo">Asal usul dominasi matematika Anda! Anda menyelesaikan MÁS⁺ Pemula, memenangkan trofi ORIGO yang penting.</string>
+    <string name="logro_trofeo_proficium">Kemajuan matematika teladan! 70 level MÁS⁺ Lanjutan telah jatuh, memberi Anda trofi PROFICIUM yang bergengsi.</string>
+    <string name="logro_trofeo_exemplaritas">Contoh keunggulan matematika! Anda telah melampaui semua tantangan MÁS⁺ Pro, mendapatkan trofi EXEMPLARITAS yang luar biasa.</string>
+
+    <string name="logro_trofeo_ascensus">Menaiki kejeniusan! Anda menyelesaikan 70 level GENIO⁺ Pemula, mendapatkan trofi ASCENSUS yang didambakan.</string>
+    <string name="logro_trofeo_magnificus">Kapasitas mental yang luar biasa! Anda telah sepenuhnya menguasai GENIO⁺ Lanjutan, memenangkan trofi MAGNIFICUS yang mengesankan.</string>
+    <string name="logro_trofeo_potens">Kekuatan mental tanpa batas! 70 tantangan GENIO⁺ Pro telah ditaklukkan, menobatkan Anda dengan trofi POTENS yang legendaris.</string>
+
+    <string name="no_condecoraciones">Anda belum mendapatkan penghargaan apa pun. Teruslah bermain untuk mendapatkannya!</string>
+
+    <string name="speed_classification_title">Klasifikasi berdasarkan Kecepatan</string>
+    <string name="speed_ranking_title">Peringkat Kecepatan</string>
+    <string name="select_game_speed">Pilih game untuk melihat peringkat kecepatannya</string>
+
+    <string name="time_format_seconds">%s dtk</string>
+
+    <string name="ranking_position_header">Pos.</string>
+    <string name="ranking_player_header">Pemain</string>
+    <string name="ranking_time_header">Waktu</string>
+
+    <string name="empty_speed_ranking">Tidak ada data kecepatan yang tersedia</string>
+
+    <string name="msg_need_more_games_speed">Mainkan setidaknya 36 level %1$s, 12 di setiap tingkat kesulitan untuk melihat peringkat kecepatan Anda.</string>
+
+    <string name="speed_avg_1">Rata-rata kecepatan respons Anda adalah: &lt;b&gt;%s dtk&lt;/b&gt;.</string>
+    <string name="speed_avg_2">Sejauh ini, waktu rata-rata Anda adalah &lt;b&gt;%s dtk&lt;/b&gt; per respons.</string>
+    <string name="speed_avg_3">Rata-rata respons saat ini: &lt;b&gt;%s dtk&lt;/b&gt;.</string>
+    <string name="speed_avg_4">Anda mencatat waktu rata-rata &lt;b&gt;%s dtk&lt;/b&gt;.</string>
+    <string name="speed_avg_5">Saat ini, Anda merespons dalam rata-rata &lt;b&gt;%s dtk&lt;/b&gt;.</string>
+    <string name="speed_avg_6">Waktu respons rata-rata: &lt;b&gt;%s dtk&lt;/b&gt;.</string>
+    <string name="speed_avg_7">Untuk saat ini, rata-rata kecepatan terbaik Anda adalah &lt;b&gt;%s dtk&lt;/b&gt;.</string>
+    <string name="speed_avg_8">Cepat! Rata-rata Anda hingga saat ini adalah &lt;b&gt;%s dtk&lt;/b&gt;.</string>
+    <string name="speed_avg_9">Rata-rata, Anda merespons setiap &lt;b&gt;%s dtk&lt;/b&gt;.</string>
+    <string name="speed_avg_10">Rata-rata kecepatan tercatat: &lt;b&gt;%s dtk&lt;/b&gt;.</string>
+    <string name="speed_avg_11">Irama yang bagus! Rata-rata respons Anda adalah &lt;b&gt;%s dtk&lt;/b&gt;.</string>
+    <string name="speed_avg_12">Begini progres Anda: rata-rata kecepatan &lt;b&gt;%s dtk&lt;/b&gt; per respons.</string>
+
+    <string name="speed_info_1">Untuk muncul di peringkat ini, Anda hanya perlu memainkan &lt;b&gt;%1$s&lt;/b&gt; game lagi: &lt;b&gt;%2$s&lt;/b&gt; pemula, &lt;b&gt;%3$s&lt;/b&gt; lanjutan, dan &lt;b&gt;%4$s&lt;/b&gt; pro.</string>
+    <string name="speed_info_2">Terus tambahkan game untuk melihat klasifikasi Anda: &lt;b&gt;%1$s&lt;/b&gt; game tersisa (&lt;b&gt;%2$s&lt;/b&gt; pemula, &lt;b&gt;%3$s&lt;/b&gt; lanj., &lt;b&gt;%4$s&lt;/b&gt; pro).</string>
+    <string name="speed_info_3">Anda masih punya jalan panjang, mainkan &lt;b&gt;%1$s&lt;/b&gt; game lagi: &lt;b&gt;%2$s&lt;/b&gt; pemula, &lt;b&gt;%3$s&lt;/b&gt; lanjutan, dan &lt;b&gt;%4$s&lt;/b&gt; pro untuk membuka peringkat.</string>
+    <string name="speed_info_4">%5$s, Anda hanya perlu menyelesaikan &lt;b&gt;%1$s&lt;/b&gt; game: &lt;b&gt;%2$s&lt;/b&gt; pemula, &lt;b&gt;%3$s&lt;/b&gt; lanjutan, dan &lt;b&gt;%4$s&lt;/b&gt; pro.</string>
+    <string name="speed_info_5">Anda butuh sedikit lagi, %5$s: &lt;b&gt;%1$s&lt;/b&gt; game (&lt;b&gt;%2$s&lt;/b&gt; pemula, &lt;b&gt;%3$s&lt;/b&gt; lanj., &lt;b&gt;%4$s&lt;/b&gt; pro) dan Anda akan bisa melihat posisi Anda di peringkat ini.</string>
+    <string name="speed_info_6">Semangat, %5$s! Tambahkan &lt;b&gt;%1$s&lt;/b&gt; game (&lt;b&gt;%2$s&lt;/b&gt; pemula, &lt;b&gt;%3$s&lt;/b&gt; lanj., &lt;b&gt;%4$s&lt;/b&gt; pro) dan Anda akan masuk klasifikasi.</string>
+    <string name="speed_info_7">Anda telah membuat banyak kemajuan! Anda hanya butuh &lt;b&gt;%1$s&lt;/b&gt; game lagi: &lt;b&gt;%2$s&lt;/b&gt; pemula, &lt;b&gt;%3$s&lt;/b&gt; lanjutan, dan &lt;b&gt;%4$s&lt;/b&gt; pro untuk muncul di peringkat.</string>
+    <string name="speed_info_8">Anda semakin dekat untuk melihat posisi Anda. &lt;b&gt;%1$s&lt;/b&gt; game tersisa (&lt;b&gt;%2$s&lt;/b&gt; pemula, &lt;b&gt;%3$s&lt;/b&gt; lanj., &lt;b&gt;%4$s&lt;/b&gt; pro) untuk memenuhi persyaratan.</string>
+    <string name="speed_info_9">Peringkat menanti Anda, hanya &lt;b&gt;%1$s&lt;/b&gt; game lagi: &lt;b&gt;%2$s&lt;/b&gt; pemula, &lt;b&gt;%3$s&lt;/b&gt; lanjutan, dan &lt;b&gt;%4$s&lt;/b&gt; pro.</string>
+    <string name="speed_info_10">%5$s, usaha Anda terlihat. Anda hanya butuh &lt;b&gt;%1$s&lt;/b&gt; game lagi: &lt;b&gt;%2$s&lt;/b&gt; pemula, &lt;b&gt;%3$s&lt;/b&gt; lanjutan, dan &lt;b&gt;%4$s&lt;/b&gt; pro.</string>
+    <string name="speed_info_11">Kemajuan yang sangat baik, %5$s! Mainkan &lt;b&gt;%1$s&lt;/b&gt; game (&lt;b&gt;%2$s&lt;/b&gt; pemula, &lt;b&gt;%3$s&lt;/b&gt; lanj., &lt;b&gt;%4$s&lt;/b&gt; pro) dan Anda akan membuka klasifikasi Anda.</string>
+    <string name="speed_info_12">Teruslah begitu, %5$s. Hanya &lt;b&gt;%1$s&lt;/b&gt; game lagi (&lt;b&gt;%2$s&lt;/b&gt; pemula, &lt;b&gt;%3$s&lt;/b&gt; lanj., &lt;b&gt;%4$s&lt;/b&gt; pro) dan Anda akan menjadi bagian dari peringkat kecepatan.</string>
+    <string name="speed_info_13">Anda hampir berhasil! Anda hanya butuh &lt;b&gt;%1$s&lt;/b&gt; game lagi: &lt;b&gt;%2$s&lt;/b&gt; pemula, &lt;b&gt;%3$s&lt;/b&gt; lanjutan, dan &lt;b&gt;%4$s&lt;/b&gt; pro untuk muncul di peringkat.</string>
+    <string name="speed_info_14">Dorongan terakhir: &lt;b&gt;%1$s&lt;/b&gt; game (&lt;b&gt;%2$s&lt;/b&gt; pemula, &lt;b&gt;%3$s&lt;/b&gt; lanj., &lt;b&gt;%4$s&lt;/b&gt; pro) dan Anda akan muncul di klasifikasi.</string>
+    <string name="speed_info_15">Tujuan sudah sangat dekat, hanya &lt;b&gt;%1$s&lt;/b&gt; game tersisa (&lt;b&gt;%2$s&lt;/b&gt; pemula, &lt;b&gt;%3$s&lt;/b&gt; lanj., &lt;b&gt;%4$s&lt;/b&gt; pro).</string>
+    <string name="speed_info_16">%5$s, Anda hampir berhasil: &lt;b&gt;%1$s&lt;/b&gt; game lagi (&lt;b&gt;%2$s&lt;/b&gt; pemula, &lt;b&gt;%3$s&lt;/b&gt; lanj., &lt;b&gt;%4$s&lt;/b&gt; pro) dan nama Anda akan muncul di peringkat.</string>
+    <string name="speed_info_17">Kemajuan yang mengesankan, %5$s! Hanya &lt;b&gt;%1$s&lt;/b&gt; game (&lt;b&gt;%2$s&lt;/b&gt; pemula, &lt;b&gt;%3$s&lt;/b&gt; lanj., &lt;b&gt;%4$s&lt;/b&gt; pro) dan Anda akan diperingkatkan.</string>
+    <string name="speed_info_18">Hampir selesai, %5$s. Selesaikan &lt;b&gt;%1$s&lt;/b&gt; game (&lt;b&gt;%2$s&lt;/b&gt; pemula, &lt;b&gt;%3$s&lt;/b&gt; lanj., &lt;b&gt;%4$s&lt;/b&gt; pro) dan bergabunglah dengan yang tercepat.</string>
+
+    <string name="speed_motiv_1">Anda pasti bisa!</string>
+    <string name="speed_motiv_2">Setiap permainan berarti, teruskan.</string>
+    <string name="speed_motiv_3">Kecepatan adalah sekutu Anda, jangan berhenti!</string>
+    <string name="speed_motiv_4">Anda hebat, %1$s! Ini baru permulaan.</string>
+    <string name="speed_motiv_5">Langkah demi langkah, %1$s, Anda semakin dekat dengan tujuan Anda.</string>
+    <string name="speed_motiv_6">Anda menunjukkan potensi Anda, %1$s!</string>
+    <string name="speed_motiv_7">Anda sudah dalam ritme, teruskan!</string>
+    <string name="speed_motiv_8">Usaha Anda membuahkan hasil.</string>
+    <string name="speed_motiv_9">Konsistensi adalah kunci, jangan menyerah!</string>
+    <string name="speed_motiv_10">Tak terhentikan, %1$s! Semakin dekat setiap saat.</string>
+    <string name="speed_motiv_11">Kemajuan sudah terasa, %1$s, jangan berhenti!</string>
+    <string name="speed_motiv_12">Kerja bagus, %1$s! Begitulah cara untuk melangkah jauh.</string>
+    <string name="speed_motiv_13">Langkah terakhir, tujuan sudah dekat!</string>
+    <string name="speed_motiv_14">Inilah yang dilakukan para juara, Anda salah satunya!</string>
+    <string name="speed_motiv_15">Jangan berhenti sekarang, Anda selangkah lagi dari peringkat!</string>
+    <string name="speed_motiv_16">Menginspirasi, %1$s! Peringkat hampir menjadi milik Anda.</string>
+    <string name="speed_motiv_17">Wow, %1$s! Sedikit yang berhasil sejauh ini, tetap kuat.</string>
+    <string name="speed_motiv_18">Anda melakukannya dengan hebat, %1$s! Tunjukkan apa yang bisa Anda capai.</string>
+
+    <string name="msg_need_more_games_global_1">Halo, %1$s! Mainkan 36 level untuk melihat peringkat global Anda.</string>
+    <string name="msg_need_more_games_global_2">%1$s, Anda perlu memainkan 36 level untuk membuka posisi Anda di peringkat global.</string>
+    <string name="msg_need_more_games_global_3">Anda belum ada di peringkat, %1$s. Mainkan 36 level dan klasifikasi global Anda akan ditampilkan di sini.</string>
+    <string name="msg_need_more_games_global_4">Ayo, %1$s! Ketika Anda menyelesaikan 36 level, Anda akan dapat melihat posisi Anda di peringkat global.</string>
+    <string name="msg_need_more_games_global_5">%1$s, klasifikasi global Anda akan muncul secara otomatis saat Anda memainkan 36 level.</string>
+    <string name="msg_need_more_games_global_6">Siap untuk tantangan, %1$s? Mainkan 36 level dan masuk ke peringkat global.</string>
+
+    <plurals name="msg_info_global_levels_1">
+        <item quantity="other">%1$s, Anda telah memainkan %2$d level. Anda membutuhkan %3$d lagi untuk masuk peringkat global.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_2">
+        <item quantity="other">Kemajuan yang bagus, %1$s! Anda telah memainkan %2$d level dan hanya butuh %3$d lagi untuk melihat klasifikasi Anda.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_3">
+        <item quantity="other">Akun Anda, %1$s, memiliki %2$d level yang dimainkan. Anda butuh %3$d lagi untuk membuka peringkat global.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_4">
+        <item quantity="other">%1$s, Anda telah memainkan %2$d dari 36 level. Hanya %3$d lagi untuk masuk peringkat.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_5">
+        <item quantity="other">%1$s, Anda sudah menyelesaikan %2$d level. Mainkan %3$d lagi untuk muncul di peringkat global.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_6">
+        <item quantity="other">%1$s, Anda %3$d level lagi dari 36 yang dibutuhkan. Anda sudah memainkan %2$d!</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_7">
+        <item quantity="other">Anda telah memainkan %1$d level. Anda membutuhkan %2$d lagi untuk muncul di peringkat global.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_8">
+        <item quantity="other">Anda di jalur yang benar! %1$d level dimainkan, %2$d lagi dan Anda akan ada di peringkat.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_9">
+        <item quantity="other">Anda telah memainkan %1$d level. Anda hanya butuh %2$d lagi untuk membuka klasifikasi global Anda.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_10">
+        <item quantity="other">Kemajuan! %1$d dari 36 level dimainkan. %2$d tersisa untuk peringkat global.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_11">
+        <item quantity="other">Anda sudah menyelesaikan %1$d level. Anda hanya butuh %2$d lagi untuk melihat posisi Anda di peringkat.</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_12">
+        <item quantity="other">Anda %2$d level lagi dari peringkat global. Anda sudah memainkan %1$d.</item>
+    </plurals>
+
+
+    <string name="msg_motiv_global_levels_1">Anda bisa, %1$s! Setiap level membawa Anda lebih dekat ke peringkat global.</string>
+    <string name="msg_motiv_global_levels_2">%1$s, teruskan. Peringkat global semakin dekat!</string>
+    <string name="msg_motiv_global_levels_3">Jangan berhenti, %1$s. Usaha Anda akan segera terbayar!</string>
+    <string name="msg_motiv_global_levels_4">Teruslah bermain, %1$s! Peringkat global menanti Anda.</string>
+    <string name="msg_motiv_global_levels_5">%1$s, setiap permainan berarti. Anda hampir mencapai peringkat global!</string>
+    <string name="msg_motiv_global_levels_6">Semangat, %1$s! Sebentar lagi Anda akan melihat nama Anda di antara yang terbaik.</string>
+
+    <string name="msg_motiv_global_levels_7">Jangan menyerah! Setiap level membawa Anda lebih dekat ke peringkat global.</string>
+    <string name="msg_motiv_global_levels_8">Anda sangat dekat! Sedikit lagi untuk mencapainya.</string>
+    <string name="msg_motiv_global_levels_9">Teruslah maju! Peringkat global dalam jangkauan Anda.</string>
+    <string name="msg_motiv_global_levels_10">Kerja bagus! Teruslah dan sebentar lagi Anda akan muncul di peringkat.</string>
+    <string name="msg_motiv_global_levels_11">Ayo main lebih banyak level! Peringkat global menanti Anda.</string>
+    <string name="msg_motiv_global_levels_12">Tujuan sudah dekat! Teruslah bermain untuk mencapai peringkat global.</string>
+
+    <string name="msg_iqplus_start_1">%1$s, mainkan 21 game, setidaknya satu untuk setiap game dan setiap tingkat kesulitan… dan Anda akan muncul di Peringkat IQ+.</string>
+    <string name="msg_iqplus_start_2">Halo, %1$s! Mulailah perjalanan Anda di SumaMente dengan memainkan setidaknya satu level di setiap game dan tingkat kesulitan untuk bersaing di Peringkat IQ+.</string>
+    <string name="msg_iqplus_start_3">%1$s, Anda belum memulai jalan Anda di Peringkat IQ+. Mainkan satu level di semua game dan tingkat untuk melihat posisi Anda dan membangun indeks Anda.</string>
+    <string name="msg_iqplus_start_4">Ayo, %1$s! Ketika Anda menyelesaikan satu level di setiap game dan kesulitan, Anda akan dapat melihat IQ+ Anda dan membandingkan diri Anda dengan pemain lain.</string>
+    <string name="msg_iqplus_start_5">%1$s, langkah pertama untuk menonjol di Peringkat IQ+ adalah memainkan 21 level; setidaknya satu, di semua game dan tingkat. Semangat dan mulailah hari ini!</string>
+    <string name="msg_iqplus_start_6">Siap untuk tantangan, %1$s? Berpartisipasi dalam setidaknya 21 game yang berbeda, satu untuk setiap tingkat, dan buka tempat Anda di Peringkat IQ+.</string>
+
+    <string name="msg_iqplus_info_1">Indeks IQ+ Anda saat ini adalah: %1$.2f.</string>
+    <string name="msg_iqplus_info_2">Untuk saat ini, IQ+ Anda adalah %1$.2f poin. Teruslah bermain untuk meningkatkannya!</string>
+    <string name="msg_iqplus_info_3">Indeks IQ+ sementara: %1$.2f. Mainkan di semua game dan tingkat untuk bersaing di peringkat.</string>
+    <string name="msg_iqplus_info_4">Anda sedang mengembangkan IQ+ Anda di SumaMente: %1$.2f.</string>
+    <string name="msg_iqplus_info_5">IQ+ dihitung sejauh ini: %1$.2f. Setiap level baru berarti.</string>
+    <string name="msg_iqplus_info_6">Begini progres IQ+ Anda: %1$.2f. Selesaikan semua game dan tingkat untuk membuka peringkat!</string>
+
+    <plurals name="msg_iqplus_levels_info_1">
+
+        <item quantity="other">%1$s, Anda telah bermain di %2$d game dan tingkat yang berbeda. Anda butuh %3$d lagi untuk muncul di Peringkat IQ+.</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_2">
+
+        <item quantity="other">Akun Anda, %1$s, memiliki %2$d game di game dan tingkat yang berbeda. Anda hanya butuh %3$d lagi untuk membuka peringkat IQ+ Anda.</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_3">
+
+        <item quantity="other">%1$s, Anda membuat kemajuan: %2$d dimainkan, %3$d untuk dimainkan. Teruskan untuk mencapai peringkat IQ+!</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_4" tools:ignore="StringFormatCount">
+
+        <item quantity="other">Anda telah bermain di %2$d game dan tingkat yang berbeda. %3$d lagi untuk membuka peringkat IQ+.</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_5" tools:ignore="StringFormatCount">
+
+        <item quantity="other">Kemajuan Anda: %2$d dimainkan, %3$d untuk dimainkan. Anda hampir bisa melihat posisi Anda di peringkat IQ+!</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_6" tools:ignore="StringFormatCount">
+
+        <item quantity="other">Anda memiliki %2$d game yang berbeda; ketika Anda menyelesaikan %3$d lagi, Anda akan muncul di Peringkat IQ+.</item>
+    </plurals>
+
+    <string name="msg_iqplus_motiv_1">Teruskan! Setiap game baru membawa Anda lebih dekat ke tempat Anda di Peringkat IQ+.</string>
+    <string name="msg_iqplus_motiv_2">Teruslah maju, sebentar lagi Anda akan melihat diri Anda diperingkatkan dan mengetahui posisi Anda.</string>
+    <string name="msg_iqplus_motiv_3">Anda akan menjadi bagian dari yang terbaik di SumaMente. Jangan berhenti!</string>
+    <string name="msg_iqplus_motiv_4">Kemajuan yang luar biasa, %1$s! Sedikit lagi dan Anda akan bersaing dengan yang terbaik di Peringkat IQ+.</string>
+    <string name="msg_iqplus_motiv_5">Baiklah, %1$s. Setiap level membawa Anda lebih dekat ke tujuan menjadi salah satu yang terbaik.</string>
+    <string name="msg_iqplus_motiv_6">%1$s, jangan berhenti sekarang. Anda hampir mencapai Peringkat IQ+!</string>
+
+    <string name="clasificaciones_por_iqplus">Klasifikasi berdasarkan indeks IQ⁺</string>
+
+    <string name="indice_iqplus">Indeks IQ⁺</string>
+
+    <string name="iqplus_ranking_title">Peringkat indeks IQ⁺</string>
+
+    <string name="share_iqplus_ranking_message">Saya mencapai posisi ke-%1$d di Peringkat IQ⁺ SumaMente dengan IQ⁺ %2$.3f! Berani mengalahkan saya?</string>
+
+    <string name="precision_global_title">Presisi Global</string>
+    <string name="velocidad_promedio_title">Kecepatan Rata-Rata Global</string>
+    <string name="precision_global_explanation">Presisi global mengukur persentase jawaban benar di semua permainan Anda. Dihitung sebagai:\n\n(Jawaban benar ÷ Total permainan) × 100%</string>
+    <string name="velocidad_promedio_explanation">Kecepatan rata-rata global adalah waktu rata-rata yang Anda butuhkan untuk merespons. Dihitung sebagai:\n\nWaktu total ÷ Jumlah permainan yang diselesaikan</string>
+    <string name="info_precision">Informasi tentang presisi</string>
+    <string name="info_velocidad">Informasi tentang kecepatan</string>
+
+    <string name="default_username">Anda</string>
+
+    <string name="date_obtained">Diperoleh: %s</string>
+
+    <string name="corona_volucer">VOLUCER</string>
+    <string name="corona_celeris">CELERIS</string>
+    <string name="corona_velocitas">VELOCITAS</string>
+
+    <string name="corona_velocitas_msg_1">Kecepatan luar biasa, &lt;b&gt;%1$s&lt;/b&gt;! Anda telah mencapai posisi ke-3 di &lt;b&gt;%2$s&lt;/b&gt;. Mahkota VELOCITAS adalah milik Anda.</string>
+    <string name="corona_velocitas_msg_2">Kecepatan mengesankan di &lt;b&gt;%2$s&lt;/b&gt;, &lt;b&gt;%1$s&lt;/b&gt;! Anda telah mendapatkan mahkota VELOCITAS untuk posisi ke-3 Anda.</string>
+    <string name="corona_velocitas_msg_3">&lt;b&gt;%1$s&lt;/b&gt;, kecepatan Anda di &lt;b&gt;%2$s&lt;/b&gt; telah membawa Anda ke podium. Mahkota VELOCITAS terbuka!</string>
+    <string name="corona_velocitas_msg_4">Perunggu dalam kecepatan untuk &lt;b&gt;%1$s&lt;/b&gt;! Posisi ke-3 di &lt;b&gt;%2$s&lt;/b&gt; memberi Anda mahkota VELOCITAS.</string>
+
+    <string name="corona_celeris_msg_1">Kecepatan luar biasa, &lt;b&gt;%1$s&lt;/b&gt;! Posisi ke-2 di &lt;b&gt;%2$s&lt;/b&gt; menobatkan Anda dengan CELERIS.</string>
+    <string name="corona_celeris_msg_2">&lt;b&gt;%1$s&lt;/b&gt;, kecepatan Anda di &lt;b&gt;%2$s&lt;/b&gt; sangat mengagumkan. Mahkota CELERIS adalah milik Anda berdasarkan prestasi!</string>
+    <string name="corona_celeris_msg_3">Perak dalam kecepatan! &lt;b&gt;%1$s&lt;/b&gt; telah menaklukkan posisi ke-2 di &lt;b&gt;%2$s&lt;/b&gt;, memenangkan mahkota CELERIS.</string>
+    <string name="corona_celeris_msg_4">Waktu yang luar biasa di &lt;b&gt;%2$s&lt;/b&gt;, &lt;b&gt;%1$s&lt;/b&gt;! Posisi ke-2 Anda membuat Anda pantas mendapatkan mahkota CELERIS.</string>
+
+    <string name="corona_volucer_msg_1">JUARA KECEPATAN! &lt;b&gt;%1$s&lt;/b&gt; mendominasi &lt;b&gt;%2$s&lt;/b&gt; dengan posisi pertama. Mahkota VOLUCER ditaklukkan!</string>
+    <string name="corona_volucer_msg_2">&lt;b&gt;%1$s&lt;/b&gt;, Anda adalah kecepatan murni di &lt;b&gt;%2$s&lt;/b&gt;. Posisi pertama memberi Anda mahkota VOLUCER yang bergengsi.</string>
+    <string name="corona_volucer_msg_3">EMAS dalam kecepatan untuk &lt;b&gt;%1$s&lt;/b&gt;! Dominasi mutlak di &lt;b&gt;%2$s&lt;/b&gt; menobatkan Anda dengan VOLUCER.</string>
+    <string name="corona_volucer_msg_4">Legenda kecepatan! &lt;b&gt;%1$s&lt;/b&gt; menaklukkan posisi pertama di &lt;b&gt;%2$s&lt;/b&gt; dan bangkit dengan mahkota VOLUCER.</string>
+
+    <string name="msg_top10_excelsitur_1">%1$s, Anda adalah juara mental kami. Penghargaan &lt;b&gt;%2$s&lt;/b&gt; adalah milik Anda setelah menaklukkan &lt;b&gt;posisi pertama&lt;/b&gt;. Prestasi yang mengesankan!</string>
+    <string name="msg_top10_excelsitur_2">Bravo, %1$s! &lt;b&gt;Posisi pertama&lt;/b&gt; menobatkan Anda dengan penghargaan &lt;b&gt;%2$s&lt;/b&gt;. Kecerdasan Anda tidak ada batasnya!</string>
+    <string name="msg_top10_excelsitur_3">Selamat, %1$s! Anda telah mencapai &lt;b&gt;posisi pertama&lt;/b&gt; dan, dengan itu, &lt;b&gt;%2$s&lt;/b&gt; yang didambakan. Teruslah berkuasa!</string>
+
+    <string name="msg_top10_summum_1">%1$s, Anda selangkah lagi dari puncak. &lt;b&gt;Posisi ke-2&lt;/b&gt; membedakan Anda dengan penghargaan &lt;b&gt;%2$s&lt;/b&gt;. Jangan berhenti!</string>
+    <string name="msg_top10_summum_2">Luar biasa, %1$s! &lt;b&gt;Posisi ke-2&lt;/b&gt; dunia adalah milik Anda, bersama dengan penghargaan &lt;b&gt;%2$s&lt;/b&gt;. Teruslah melampaui diri sendiri!</string>
+    <string name="msg_top10_summum_3">Kebanggaan total, %1$s: Anda telah mendapatkan penghargaan &lt;b&gt;%2$s&lt;/b&gt; untuk &lt;b&gt;posisi ke-2&lt;/b&gt; Anda. Prestasi yang luar biasa!</string>
+
+    <string name="msg_top10_magnanimous_1">%1$s, kejeniusan Anda telah membawa Anda ke &lt;b&gt;posisi ke-3&lt;/b&gt; global. Penghargaan &lt;b&gt;%2$s&lt;/b&gt; adalah bukti kehebatan Anda.</string>
+    <string name="msg_top10_magnanimous_2">Hebat, %1$s! &lt;b&gt;%2$s&lt;/b&gt; bersinar untuk Anda berkat &lt;b&gt;posisi ke-3&lt;/b&gt; Anda. Anda adalah contoh bagi semua!</string>
+    <string name="msg_top10_magnanimous_3">%1$s, bakat Anda tidak luput dari perhatian: &lt;b&gt;posisi ke-3&lt;/b&gt; dan penghargaan &lt;b&gt;%2$s&lt;/b&gt; sudah menjadi milik Anda.</string>
+
+    <string name="msg_top10_venerabilis_1">%1$s, &lt;b&gt;%2$s&lt;/b&gt; yang mengagumkan mengakui kedatangan Anda di &lt;b&gt;posisi ke-4&lt;/b&gt; global. Teruslah menginspirasi!</string>
+    <string name="msg_top10_venerabilis_2">Kekuatan dan ketekunan, %1$s! &lt;b&gt;Posisi ke-4&lt;/b&gt; adalah milik Anda dan Anda melengkapinya dengan penghargaan &lt;b&gt;%2$s&lt;/b&gt;.</string>
+    <string name="msg_top10_venerabilis_3">%1$s, mencapai &lt;b&gt;posisi ke-4&lt;/b&gt; dan menerima penghargaan &lt;b&gt;%2$s&lt;/b&gt; adalah bukti kemampuan hebat Anda.</string>
+
+    <string name="msg_top10_gloriosus_1">Perayaan, %1$s! Anda telah memenangkan penghargaan &lt;b&gt;%2$s&lt;/b&gt; untuk &lt;b&gt;posisi ke-5&lt;/b&gt; Anda di peringkat global.</string>
+    <string name="msg_top10_gloriosus_2">%1$s, usaha Anda menempatkan Anda di &lt;b&gt;posisi ke-5&lt;/b&gt; dan memberi Anda penghargaan &lt;b&gt;%2$s&lt;/b&gt;. Teruslah bersinar!</string>
+    <string name="msg_top10_gloriosus_3">%1$s, &lt;b&gt;posisi ke-5&lt;/b&gt; adalah milik Anda dan penghargaan &lt;b&gt;%2$s&lt;/b&gt; mengakui dedikasi dan komitmen Anda.</string>
+
+    <string name="msg_top10_illustris_1">%1$s, penghargaan cemerlang &lt;b&gt;%2$s&lt;/b&gt; adalah milik Anda setelah mencapai &lt;b&gt;posisi ke-6&lt;/b&gt;. Bakat yang luar biasa!</string>
+    <string name="msg_top10_illustris_2">Luar biasa, %1$s! Anda telah mencapai &lt;b&gt;posisi ke-6&lt;/b&gt; dan menerima &lt;b&gt;%2$s&lt;/b&gt; yang termasyhur. Ayo raih lebih banyak lagi!</string>
+    <string name="msg_top10_illustris_3">%1$s, nama Anda bersinar di &lt;b&gt;posisi ke-6&lt;/b&gt; dan penghargaan &lt;b&gt;%2$s&lt;/b&gt; mengonfirmasikannya.</string>
+
+    <string name="msg_top10_praestans_1">%1$s, prestise Anda tumbuh: &lt;b&gt;posisi ke-7&lt;/b&gt; dan penghargaan &lt;b&gt;%2$s&lt;/b&gt; sudah menjadi bagian dari sejarah Anda.</string>
+    <string name="msg_top10_praestans_2">Kerja bagus, %1$s! &lt;b&gt;%2$s&lt;/b&gt; adalah hadiah Anda karena mencapai &lt;b&gt;posisi ke-7&lt;/b&gt; global.</string>
+    <string name="msg_top10_praestans_3">%1$s, Anda menonjol di antara ribuan: &lt;b&gt;posisi ke-7&lt;/b&gt; memberi Anda penghargaan &lt;b&gt;%2$s&lt;/b&gt;.</string>
+
+    <string name="msg_top10_insignis_1">%1$s, nama Anda menonjol di &lt;b&gt;posisi ke-8&lt;/b&gt; global. Anda telah memenangkan &lt;b&gt;%2$s&lt;/b&gt; yang terhormat.</string>
+    <string name="msg_top10_insignis_2">Betapa bangganya, %1$s! &lt;b&gt;Posisi ke-8&lt;/b&gt; adalah milik Anda dan dengan itu penghargaan &lt;b&gt;%2$s&lt;/b&gt;. Teruslah tumbuh!</string>
+    <string name="msg_top10_insignis_3">%1$s, kemampuan Anda menempatkan Anda di &lt;b&gt;posisi ke-8&lt;/b&gt;, mendapatkan penghargaan &lt;b&gt;%2$s&lt;/b&gt;.</string>
+
+    <string name="msg_top10_virtuosus_1">%1$s, usaha Anda dihargai: penghargaan &lt;b&gt;%2$s&lt;/b&gt; adalah milik Anda setelah mencapai &lt;b&gt;posisi ke-9&lt;/b&gt;.</string>
+    <string name="msg_top10_virtuosus_2">Teruskan, %1$s! &lt;b&gt;%2$s&lt;/b&gt; datang kepada Anda berkat &lt;b&gt;posisi ke-9&lt;/b&gt; Anda yang hebat.</string>
+    <string name="msg_top10_virtuosus_3">%1$s, mencapai &lt;b&gt;posisi ke-9&lt;/b&gt; global menjadikan Anda &lt;b&gt;%2$s&lt;/b&gt; sejati.</string>
+
+    <string name="msg_top10_honorabilis_1">%1$s, Anda berhasil! &lt;b&gt;Posisi ke-10&lt;/b&gt; global memberi Anda penghargaan &lt;b&gt;%2$s&lt;/b&gt;. Nikmati kehormatan ini!</string>
+    <string name="msg_top10_honorabilis_2">%1$s, nama Anda muncul di antara yang hebat: &lt;b&gt;%2$s&lt;/b&gt; dan &lt;b&gt;posisi ke-10&lt;/b&gt; sekarang menjadi milik Anda.</string>
+    <string name="msg_top10_honorabilis_3">Anda menginspirasi semua orang, %1$s! Penghargaan &lt;b&gt;%2$s&lt;/b&gt; mengakui &lt;b&gt;posisi ke-10&lt;/b&gt; Anda di peringkat.</string>
+
+    <string name="medalla_titulo_initium">🏅 MEDALI INITIUM DITAKLUKKAN! 🏅</string>
+    <string name="medalla_titulo_fidelis">🎖️ PENCAPAIAN FIDELIS TERBUKA! 🎖️</string>
+    <string name="medalla_titulo_virtus">⭐ KEHORMATAN VIRTUS TERCAPAI! ⭐</string>
+    <string name="medalla_titulo_audax">🔥 PENGHARGAAN AUDAX DIMENANGKAN! 🔥</string>
+    <string name="medalla_titulo_fortis">💪 MEDALI FORTIS DIPEROLEH! 💪</string>
+    <string name="medalla_titulo_tenax">🎯 PENGAKUAN TENAX MILIK ANDA! 🎯</string>
+    <string name="medalla_titulo_intrepidus">⚡ KEMULIAAN INTREPIDUS TERCAPAI! ⚡</string>
+    <string name="medalla_titulo_sapiens">🧠 KEBIJAKSANAAN SAPIENS DIKUASAI! 🧠</string>
+    <string name="medalla_titulo_exemplar">👑 GELAR EXEMPLAR DIMAHKOTAI! 👑</string>
+    <string name="medalla_titulo_gloriam">🌟 KEMULIAAN GLORIAM TERTINGGI TERCAPAI! 🌟</string>
+    <string name="medalla_titulo_magnus">🏆 KEHEBATAN MAGNUS DITAKLUKKAN! 🏆</string>
+    <string name="medalla_titulo_immortalis">✨ LEGENDA IMMORTALIS DITEMPA! ✨</string>
+
+    <string name="medalla_desc_initium">Anda telah menyelesaikan 100 permainan unik! Dedikasi Anda telah memberi Anda medali INITIUM, awal dari koleksi Anda.</string>
+    <string name="medalla_desc_fidelis">200 permainan selesai! Ketekunan Anda sangat mengagumkan, sehingga Anda mendapatkan medali FIDELIS.</string>
+    <string name="medalla_desc_virtus">Medali VIRTUS adalah milik Anda karena telah mengatasi 300 tantangan yang berbeda. Keberanian mental Anda ditunjukkan dengan setiap permainan!</string>
+    <string name="medalla_desc_audax">400 permainan dikuasai! Keberanian Anda telah membawa Anda untuk menaklukkan medali AUDAX yang bergengsi.</string>
+    <string name="medalla_desc_fortis">Anda telah menunjukkan kekuatan mental dalam 500 permainan yang berbeda, pantas mendapatkan medali FORTIS yang luar biasa.</string>
+    <string name="medalla_desc_tenax">Kegigihan ada imbalannya! 600 permainan yang diselesaikan menobatkan Anda dengan medali TENAX.</string>
+    <string name="medalla_desc_intrepidus">Semangat tak kenal takut Anda telah mengatasi 700 tantangan, memberi Anda medali INTREPIDUS yang dihormati.</string>
+    <string name="medalla_desc_sapiens">Kebijaksanaan diperoleh dengan latihan: 800 permainan yang diselesaikan membuat Anda pantas mendapatkan medali SAPIENS.</string>
+    <string name="medalla_desc_exemplar">Anda adalah contoh tekad! 900 permainan yang diselesaikan telah memberi Anda medali EXEMPLAR yang teladan.</string>
+    <string name="medalla_desc_gloriam">Kemuliaan bagi kegigihan Anda! Anda telah menaklukkan 1000 tantangan, mencapai medali GLORIAM yang mulia.</string>
+    <string name="medalla_desc_magnus">Pencapaian luar biasa! Dengan menyelesaikan 1100 permainan yang berbeda, Anda telah mendapatkan medali MAGNUS yang agung.</string>
+    <string name="medalla_desc_immortalis">Prestasi abadi! Anda telah menyelesaikan 1200 tantangan unik, menguduskan diri Anda dengan medali IMMORTALIS yang legendaris.</string>
+
+    <string name="medalla_motiv_initium">⭐ Tujuan berikutnya: FIDELIS - selesaikan 100 level baru dan medali ini akan menjadi milik Anda</string>
+    <string name="medalla_motiv_fidelis">🎯 Tantangan berikutnya: VIRTUS - tambahkan 100 game lagi dan Anda akan membuka pencapaian berikutnya</string>
+    <string name="medalla_motiv_virtus">🚀 Penaklukan berikutnya: AUDAX - 100 level tambahan menanti Anda</string>
+    <string name="medalla_motiv_audax">💫 Menuju kehebatan: FORTIS - lanjutkan dengan 100 game baru</string>
+    <string name="medalla_motiv_fortis">⚡ Maju menuju: TENAX - 100 tantangan lagi dan kemuliaan akan menjadi milik Anda</string>
+    <string name="medalla_motiv_tenax">🔥 Di cakrawala: INTREPIDUS - bertahan 100 game lagi untuk mencapainya</string>
+    <string name="medalla_motiv_intrepidus">🧠 Jalan menuju kebijaksanaan: SAPIENS - 100 level baru membawa Anda lebih dekat</string>
+    <string name="medalla_motiv_sapiens">👑 Takdir Anda: EXEMPLAR - selesaikan 100 game tambahan dan jadilah teladan</string>
+    <string name="medalla_motiv_exemplar">🌟 Kemuliaan menanti: GLORIAM - hanya 100 level lagi menuju puncak</string>
+    <string name="medalla_motiv_gloriam">🏆 Kehebatan berikutnya: MAGNUS - 100 tantangan lagi untuk kemegahan</string>
+    <string name="medalla_motiv_magnus">✨ Menuju keabadian: IMMORTALIS - 100 game terakhir untuk legenda</string>
+    <string name="medalla_motiv_immortalis">🏆 Koleksi medali SELESAI! Anda adalah legenda SumaMente!</string>
+
+    <plurals name="medalla_contador_progreso">
+        <item quantity="other">📈 Anda memiliki %1$d medali, %2$d tersisa</item>
+    </plurals>
+
+
+    <string name="medal_circle_background">Lingkaran latar belakang untuk medali</string>
+    <string name="medal_image">Gambar medali yang diperoleh</string>
+
+
+    <string name="trofeo_titulo_initia">🏆 TROFI INITIA DITAKLUKKAN! 🏆</string>
+    <string name="trofeo_titulo_constantia">🏆 TROFI CONSTANTIA DIPEROLEH! 🏆</string>
+    <string name="trofeo_titulo_confectus">🏆 TROFI CONFECTUS DIMENANGKAN! 🏆</string>
+    <string name="trofeo_titulo_via">🏆 TROFI VIA TERBUKA! 🏆</string>
+    <string name="trofeo_titulo_altus">🏆 TROFI ALTUS TERCAPAI! 🏆</string>
+    <string name="trofeo_titulo_perseverantia">🏆 TROFI PERSEVERANTIA TERCAPAI! 🏆</string>
+    <string name="trofeo_titulo_gradus">🏆 TROFI GRADUS DITAKLUKKAN! 🏆</string>
+    <string name="trofeo_titulo_fortitudo">🏆 TROFI FORTITUDO DIKUASAI! 🏆</string>
+    <string name="trofeo_titulo_metam">🏆 TROFI METAM DIMAHKOTAI! 🏆</string>
+    <string name="trofeo_titulo_fundamentum">🏆 TROFI FUNDAMENTUM DIDIRIKAN! 🏆</string>
+    <string name="trofeo_titulo_praemium">🏆 TROFI PRAEMIUM DIHARGAI! 🏆</string>
+    <string name="trofeo_titulo_glorificus">🏆 TROFI GLORIFICUS DIMULIAKAN! 🏆</string>
+    <string name="trofeo_titulo_scala">🏆 TROFI SCALA DIDAKI! 🏆</string>
+    <string name="trofeo_titulo_tenacitas">🏆 TROFI TENACITAS DITEMPA! 🏆</string>
+    <string name="trofeo_titulo_perfectus">🏆 TROFI PERFECTUS DISEMPURNAKAN! 🏆</string>
+    <string name="trofeo_titulo_origo">🏆 TROFI ORIGO BERASAL! 🏆</string>
+    <string name="trofeo_titulo_proficium">🏆 TROFI PROFICIUM BERKEMBANG! 🏆</string>
+    <string name="trofeo_titulo_exemplaritas">🏆 TROFI EXEMPLARITAS DITELADANI! 🏆</string>
+    <string name="trofeo_titulo_ascensus">🏆 TROFI ASCENSUS DINAIKKAN! 🏆</string>
+    <string name="trofeo_titulo_magnificus">🏆 TROFI MAGNIFICUS DIMENANGKAN! 🏆</string>
+    <string name="trofeo_titulo_potens">🏆 TROFI POTENS DIPERKASA! 🏆</string>
+
+    <plurals name="trofeo_contador_progreso">
+        <item quantity="other">🏆 Anda memiliki %1$d trofi, %2$d tersisa</item>
+    </plurals>
+
+
+    <string name="trofeo_motiv_1">🏆 Ini adalah trofi pertama Anda! Anda memiliki 20 lagi untuk ditaklukkan</string>
+    <string name="trofeo_motiv_21">🏆 KOLEKSI TROFI SELESAI! Anda adalah master SumaMente!</string>
+
+    <string name="doble_celebracion_titulo">🎊 PERAYAAN GANDA! 🎊</string>
+    <string name="doble_celebracion_mensaje">Anda telah mendapatkan medali baru dan trofi baru! Kami merayakan prestasi luar biasa Anda</string>
+
+    <string name="doble_celebracion_apex_titulo">🏆✨ PERAYAAN GANDA TERTINGGI! ✨🏆</string>
+    <string name="doble_celebracion_apex_mensaje">Anda telah mendapatkan trofi terakhir yang Anda butuhkan dan penghargaan APEX SUPREMUS yang mulia. Puncak adalah milik Anda! 👑</string>
+
+    <string name="apex_titulo">🌟 APEX SUPREMUS TERCAPAI! 🌟</string>
+    <string name="apex_descripcion">1470 level selesai, Anda layak mendapatkan APEX SUPREMUS! 🏆✨ Dedikasi dan keahlian mental Anda telah membawa Anda ke puncak mutlak SumaMente. 👑</string>
+
+    <string name="ranking_integral_s">Peringkat Integral S⁺:</string>
+
+    <plurals name="ranking_integral_progreso_1">
+        <item quantity="other">Anda di jalur yang benar, %1$s! Anda sudah ada di %2$d peringkat SumaMente. Anda hanya butuh %3$d lagi untuk mengakses Peringkat Integral eksklusif.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_2">
+        <item quantity="other">%1$s, kemajuan Anda luar biasa: Anda ada di %2$d peringkat. Taklukkan %3$d sisanya untuk menjadi bagian dari elit!</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_3">
+        <item quantity="other">Selamat, %1$s! Anda berhasil masuk %2$d peringkat. Anda butuh %3$d lagi untuk mencapai tantangan integral.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_4">
+        <item quantity="other">%1$s, nama Anda sudah muncul di %2$d peringkat. Hanya %3$d lagi dan Anda akan membuka Peringkat Integral.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_5">
+        <item quantity="other">Teruskan, %1$s! Anda ada di %2$d dari 9 peringkat. Maju sedikit lagi dan Anda hanya punya %3$d tersisa.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_6">
+        <item quantity="other">%1$s, setiap peringkat yang ditambahkan membawa Anda lebih dekat ke tujuan. Anda sekarang ada di %2$d peringkat dan Anda punya %3$d tersisa. Jangan berhenti!</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_7">
+        <item quantity="other">Ayo, %1$s! Kemajuan Anda nyata: Anda sudah ada di %2$d peringkat dan Anda punya %3$d tersisa untuk ditaklukkan.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_8">
+        <item quantity="other">%1$s, menjadi bagian dari Peringkat Integral sudah dekat: %2$d tercapai, %3$d untuk dicapai.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_9">
+        <item quantity="other">Nama Anda menonjol di %2$d peringkat, %1$s. Hanya %3$d lagi dan Anda akan menjadi bagian dari yang terbaik.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_10">
+        <item quantity="other">%1$s, tambahkan prestasi lain! Anda sudah ada di %2$d peringkat. %3$d tersisa untuk mencapai tujuan integral.</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_11">
+        <item quantity="other">%1$s, Anda mengatasi tantangan: %2$d peringkat sudah memiliki nama Anda. Kejar %3$d yang Anda lewatkan!</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_12">
+        <item quantity="other">Kemajuan luar biasa, %1$s! Anda muncul di %2$d peringkat dan hanya %3$d tersisa untuk tujuan besar.</item>
+    </plurals>
+
+
+    <string name="ranking_estado_aparece_1">Anda sudah muncul</string>
+    <string name="ranking_estado_aparece_2">Ditaklukkan!</string>
+    <string name="ranking_estado_aparece_3">Hadir!</string>
+    <string name="ranking_estado_aparece_4">Tercapai</string>
+    <string name="ranking_estado_aparece_5">Berhasil!</string>
+
+    <string name="ranking_estado_no_aparece_1">Anda belum muncul</string>
+    <string name="ranking_estado_no_aparece_2">Tertunda</string>
+    <string name="ranking_estado_no_aparece_3">Untuk dicapai</string>
+    <string name="ranking_estado_no_aparece_4">Belum</string>
+    <string name="ranking_estado_no_aparece_5">Tidak terdaftar</string>
+
+    <string name="ranking_global_name">1.- Peringkat Global:</string>
+    <string name="ranking_vel_numeros">2.- Peringkat Kecepatan NUMEROS⁺:</string>
+    <string name="ranking_vel_deci">3.- Peringkat Kecepatan DECI⁺:</string>
+    <string name="ranking_vel_alfanumeros">4.- Peringkat Kecepatan ALFANÚMEROS⁺:</string>
+    <string name="ranking_vel_romas">5.- Peringkat Kecepatan ROMAS⁺:</string>
+    <string name="ranking_vel_sumaresta">6.- Peringkat Kecepatan SUMARESTA⁺:</string>
+    <string name="ranking_vel_mas">7.- Peringkat Kecepatan MÁS⁺:</string>
+    <string name="ranking_vel_genios">8.- Peringkat Kecepatan Genio⁺:</string>
+    <string name="ranking_iq">9.- Peringkat indeks IQ⁺:</string>
+
+    <string name="clasificacion_integral_s">Klasifikasi Integral S⁺</string>
+
+    <string name="ranking_integral_combined_message">%1$s\n\n%2$s</string>
+
+    <string name="ranking_progress_indicator">%1$d/9 peringkat</string>
+
+    <string-array name="ranking_integral_info_messages">
+        <item>Halo, %1$s! Untuk muncul di Peringkat Integral S⁺, Anda harus ada di 9 peringkat SumaMente.</item>
+        <item>%1$s, Peringkat Integral S⁺ eksklusif untuk mereka yang muncul di semua peringkat aplikasi.</item>
+        <item>%1$s, Anda masih belum memenuhi persyaratan untuk Peringkat Integral. Anda harus muncul di 9 peringkat.</item>
+        <item>Ayo, %1$s! Peringkat Integral S⁺ menanti Anda saat Anda berada di semua peringkat.</item>
+        <item>%1$s, klasifikasi integral Anda akan muncul saat Anda berpartisipasi dalam 9 peringkat SumaMente.</item>
+        <item>Siap untuk tantangan, %1$s? Akses semua peringkat dan buka Peringkat Integral S⁺.</item>
+    </string-array>
+
+    <string-array name="ranking_integral_motiv_messages">
+        <item>Anda pasti bisa! Setiap peringkat yang dibuka membawa Anda lebih dekat ke elit.</item>
+        <item>Eksklusivitas ada harganya. Buktikan bahwa Anda pantas berada di antara yang terbaik!</item>
+        <item>Jangan berhenti! Peringkat Integral S⁺ diperuntukkan bagi yang paling berdedikasi.</item>
+        <item>Setiap permainan berarti. Teruslah maju menuju puncak mutlak!</item>
+        <item>Tujuannya jelas! Kuasai semua peringkat dan bergabunglah dengan elit SumaMente.</item>
+        <item>Kegigihan adalah kunci! Setiap peringkat baru membawa Anda lebih dekat ke kemuliaan integral.</item>
+    </string-array>
+
+
+    <string-array name="ranking_estado_aparece_messages">
+        <item>@string/ranking_estado_aparece_1</item>
+        <item>@string/ranking_estado_aparece_2</item>
+        <item>@string/ranking_estado_aparece_3</item>
+        <item>@string/ranking_estado_aparece_4</item>
+        <item>@string/ranking_estado_aparece_5</item>
+    </string-array>
+
+
+    <string-array name="ranking_estado_no_aparece_messages">
+        <item>@string/ranking_estado_no_aparece_1</item>
+        <item>@string/ranking_estado_no_aparece_2</item>
+        <item>@string/ranking_estado_no_aparece_3</item>
+        <item>@string/ranking_estado_no_aparece_4</item>
+        <item>@string/ranking_estado_no_aparece_5</item>
+    </string-array>
+
+    <string name="integral_ranking_scroll_description">Konten Peringkat Integral yang dapat digulir</string>
+
+    <string name="condecoracion_discipulus_optimus_7">DISCIPULUS OPTIMUS</string>
+    <string name="condecoracion_intellectus_primus_6">INTELLECTUS PRIMUS</string>
+    <string name="condecoracion_consilium_magnus_5">CONSILIUM MAGNUS</string>
+    <string name="condecoracion_doctrinae_princeps_4">DOCTRINAE PRINCEPS</string>
+    <string name="condecoracion_luminis_rex_3">LUMINIS REX</string>
+    <string name="condecoracion_mentis_aurea_2">MENTIS AUREA</string>
+    <string name="condecoracion_sapiens_supremus_1">SAPIENS SUPREMUS</string>
+
+
+    <string name="significado_discipulus_optimus_7">Siswa terbaik</string>
+    <string name="significado_intellectus_primus_6">Pertama dalam kecerdasan</string>
+    <string name="significado_consilium_magnus_5">Kebijaksanaan besar</string>
+    <string name="significado_doctrinae_princeps_4">Pangeran pengetahuan</string>
+    <string name="significado_luminis_rex_3">Raja cahaya</string>
+    <string name="significado_mentis_aurea_2">Pikiran emas</string>
+    <string name="significado_sapiens_supremus_1">Yang paling bijaksana</string>
+
+    <string name="los_7_mejores">7 besar Peringkat IQ⁺</string>
+
+    <string name="condecoracion_sapiens_supremus">SAPIENS SUPREMUS</string>
+    <string name="condecoracion_mentis_aurea">MENTIS AUREA</string>
+    <string name="condecoracion_luminis_rex">LUMINIS REX</string>
+    <string name="condecoracion_doctrinae_princeps">DOCTRINAE PRINCEPS</string>
+    <string name="condecoracion_consilium_magnus">CONSILIUM MAGNUS</string>
+    <string name="condecoracion_intellectus_primus">INTELLECTUS PRIMUS</string>
+    <string name="condecoracion_discipulus_optimus">DISCIPULUS OPTIMUS</string>
+
+    <string name="logro_iq7_sapiens_supremus">
+Anda telah mencapai puncak kecerdasan! Posisi pertama di peringkat IQ⁺ dan sekarang menjadi pemilik penghargaan tertinggi SAPIENS SUPREMUS.
+</string>
+
+    <string name="logro_iq7_mentis_aurea">
+Pikiran emas! Ketajaman Anda telah membawa Anda ke posisi kedua di peringkat IQ⁺, menaklukkan penghargaan MENTIS AUREA.
+</string>
+
+    <string name="logro_iq7_luminis_rex">
+Raja cahaya akademik! Posisi ketiga di peringkat IQ⁺ adalah milik Anda, bersinar dengan penghargaan LUMINIS REX.
+</string>
+
+    <string name="logro_iq7_doctrinae_princeps">
+Pangeran pengetahuan! Anda telah mencapai posisi keempat di peringkat IQ⁺ dan penghargaan DOCTRINAE PRINCEPS adalah milik Anda.
+</string>
+
+    <string name="logro_iq7_consilium_magnus">
+Penasihat hebat! Kebijaksanaan Anda menempatkan Anda di posisi kelima di peringkat IQ⁺ dan memberi Anda penghargaan CONSILIUM MAGNUS.
+</string>
+
+    <string name="logro_iq7_intellectus_primus">
+Kecerdasan pertama! Keenam di peringkat IQ⁺, Anda menonjol dengan penghargaan INTELLECTUS PRIMUS.
+</string>
+
+    <string name="logro_iq7_discipulus_optimus">
+Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di peringkat IQ⁺, mencapai penghargaan DISCIPULUS OPTIMUS.
+</string>
+
+    <string name="condecoracion_imperium_supremus">IMPERIUM SUPREMUS</string>
+    <string name="condecoracion_magnus_honor">MAGNUS HONOR</string>
+    <string name="condecoracion_virtus_totalis">VIRTUS TOTALIS</string>
+    <string name="condecoracion_excellentia_singulari">EXCELLENTIA SINGULARI</string>
+    <string name="condecoracion_gloria_integralis">GLORIA INTEGRALIS</string>
+
+    <string name="significado_imperium_supremus">KEKUATAN TERTINGGI. Bisakah Anda menaklukkannya?</string>
+    <string name="significado_magnus_honor">KEHORMATAN BESAR. Buktikan bahwa Anda layak, raihlah!</string>
+    <string name="significado_virtus_totalis">KEBAJIKAN TOTAL. Hanya untuk mereka yang memberikan segalanya.</string>
+    <string name="significado_excellentia_singulari">KEUNGGULAN UNIK. Beraspirasilah untuk yang tertinggi, berusahalah.</string>
+    <string name="significado_gloria_integralis">KEMULIAAN INTEGRAL. Nama Anda pantas bersinar di sini.</string>
+
+    <string name="logro_imperium_supremus_1">%1$s, supremasi mental Anda mutlak! Anda telah mendapatkan IMPERIUM SUPREMUS.</string>
+    <string name="logro_imperium_supremus_2">Tidak ada yang bisa menandingi Anda, %1$s. Dominasi total adalah milik Anda dengan IMPERIUM SUPREMUS.</string>
+
+    <string name="logro_magnus_honor_1">Kehormatan maksimal tercapai, %1$s! MAGNUS HONOR mengakui kehebatan Anda.</string>
+    <string name="logro_magnus_honor_2">Pengakuan tertinggi adalah milik Anda, %1$s. MAGNUS HONOR menobatkan usaha Anda.</string>
+
+    <string name="logro_virtus_totalis_1">Kebajikan total tercapai, %1$s! VIRTUS TOTALIS merayakan keunggulan mental Anda.</string>
+    <string name="logro_virtus_totalis_2">%1$s, disiplin dan pikiran cemerlang Anda telah memberi Anda VIRTUS TOTALIS.</string>
+
+    <string name="logro_excellentia_singulari_1">Keunggulan tunggal, %1$s! Hanya yang terbaik yang menerima EXCELLENTIA SINGULARI.</string>
+    <string name="logro_excellentia_singulari_2">%1$s, keunggulan Anda unik. Anda telah memenangkan EXCELLENTIA SINGULARI.</string>
+
+    <string name="logro_gloria_integralis_1">Kemuliaan integral untuk Anda, %1$s! Pengakuan maksimal adalah milik Anda.</string>
+    <string name="logro_gloria_integralis_2">SumaMente memuji Anda, %1$s: Anda telah mencapai GLORIA INTEGRALIS.</string>
+
+    <string name="top5_ranking_integral">5 besar Peringkat Integral</string>
+
+
+
+    <string name="choose_language">Pilih bahasamu</string>
+
+    <string name="language_selection_required_message">Untuk melanjutkan, silakan pilih bahasa pilihan Anda dari daftar.</string>
+
+    <string name="confirm_change_language_message">Apakah Anda yakin ingin mengganti bahasa?</string>
+
+    <string name="language">Bahasa</string>
+    <string name="language_subtitle">Ubah bahasa aplikasi</string>
+
+    <string name="integral_score_label">%1$.2f poin</string>
+
+    <string name="my_progress">KEMAJUAN SAYA</string>
+    <string name="graph_icon">Ikon grafik</string>
+
+    <string name="levels_completed">LEVEL SELESAI:</string>
+    <string name="progress">KEMAJUAN:</string>
+    <string name="percentage_format">%1$s%%</string>
+    <string name="default_percentage">0,00%</string>
+
+    <string name="cd_my_progress">Lihat kemajuan keseluruhan</string>
+    <string name="cd_numeros_plus">Mainkan Números Plus</string>
+    <string name="cd_deci_plus">Mainkan Deci Plus</string>
+    <string name="cd_romas">Mainkan Romas</string>
+    <string name="cd_alfa_numeros">Mainkan AlfaNumeros</string>
+    <string name="cd_sumaresta">Mainkan SumaResta</string>
+    <string name="cd_mas_plus">Mainkan Mas Plus</string>
+    <string name="cd_genio_plus">Mainkan Genio Plus</string>
+
+    <string name="progress_placeholder_total_levels">0/210 – 0,00%</string>
+
+    <string name="progress_placeholder_difficulty">0/70 – 0,00%</string>
+
+
+    <string name="global_progress_format">KEMAJUAN: %1$s%%</string>
+    <string name="game_progress_format">%1$d/%2$d - %3$s%%</string>
+
+    <string name="global_levels_label">LEVEL:</string>
+
+    <string name="insignia_supremus_integralis" translatable="false">SUPREMUS INTEGRALIS</string>
+
+    <string name="desc_insignia_supremus_integralis">Kami merayakan masuknya Anda ke Peringkat Integral! Dengan muncul di 9 peringkat SumaMente, Anda telah menunjukkan penguasaan penuh Anda dalam semua disiplin matematika. Lencana SUPREMUS INTEGRALIS ini menandai masuknya Anda ke elit integral.</string>
+
+    <string name="share_message">Halo! Saya merekomendasikan aplikasi luar biasa ini untuk melatih pikiran Anda: SumaMente.\n\nUnduh di sini:\n</string>
+    <string name="share_chooser_title">Bagikan SumaMente melalui…</string>
+
+    <string name="share_dare_1">Pencapaian di SumaMente ini sulit, tetapi imbalannya sepadan. Saya menantang Anda untuk mencoba menyamainya! 😉</string>
+    <string name="share_challenge_2">Tantangan terlampaui di SumaMente! 🏆 Apakah Anda pikir pikiran Anda mampu? Beranikan diri untuk membuktikannya!</string>
+    <string name="share_question_3">Adakah yang lebih baik dari perasaan pencapaian? Inilah SumaMente. Beranikan diri untuk mencobanya dan beri tahu saya!</string>
+    <string name="share_community_4">Tingkat konsentrasi baru terbuka! 😎 Siapa yang ikut tantangan berikutnya di SumaMente?</string>
+    <string name="share_intensity_5">Otak saya terbakar! 🔥 Pencapaian ini adalah buktinya. Sungguh latihan mental yang hebat SumaMente!</string>
+    <string name="share_progress_6">Beginilah rupa kemajuan. 💪 Jika Anda suka tantangan yang membuat Anda berpikir, Anda harus mencoba SumaMente.</string>
+    <string name="share_emotion_7">Saya berhasil! 🚀 Membuka ini di SumaMente terasa luar biasa. Sangat direkomendasikan jika Anda suka tantangan!</string>
+
+    <string name="error_share_image">Kesalahan saat berbagi penghargaan</string>
+
+
+
+    <string name="account_linked_success">Akun berhasil ditautkan! Kemajuan Anda sekarang aman.</string>
+
+
+
+    <string name="profile_subtitle_linked">Terhubung. Kelola akun Anda.</string>
+    <string name="profile_subtitle_unlinked">Simpan kemajuan Anda di cloud</string>
+
+    <string name="delete_account">Hapus Akun</string>
+    <string name="delete_account_subtitle">Hapus data Anda secara permanen</string>
+    <string name="delete_account_confirm_title">Apakah Anda yakin?</string>
+    <string name="delete_account_confirm_message">Tindakan ini akan menghapus akun Anda dan semua kemajuan Anda (poin, level, medali) secara **permanen**. Anda tidak akan bisa memulihkannya.</string>
+    <string name="delete_button">Hapus</string>
+    <string name="cancel_button">Batal</string>
+    <string name="account_deleted_success">Akun Anda telah dihapus.</string>
+
+
+
+    <string name="link_prompt_title_tranquility">Mainkan tanpa khawatir.</string>
+    <string name="link_prompt_body_tranquility">Hubungkan akun Google Anda dalam hitungan detik dan kami memastikan usaha Anda selalu aman.</string>
+    <string name="link_prompt_title_positive">Usaha Anda sangat berharga!</string>
+    <string name="link_prompt_body_positive">Anda telah membuat banyak kemajuan. Amankan semua kemajuan Anda dengan menautkan akun Anda agar tidak ada yang mengambil tempat Anda.</string>
+    <string name="link_prompt_title_minimalist">Simpan kemajuan Anda selamanya.</string>
+    <string name="link_prompt_body_minimalist">Tautkan akun Google Anda dengan satu ketukan dan jaga data Anda tetap aman.</string>
+    <string name="link_prompt_title_concise">Amankan akun Anda dalam satu ketukan.</string>
+    <string name="link_prompt_body_concise">Tautkan kemajuan Anda ke Google dan mainkan dengan keyakinan bahwa data Anda dilindungi.</string>
+
+    <string name="vincular_cuenta">Ikon untuk menautkan akun</string>
+
+    <string name="link_account_prompt_popup">Lindungi kemajuan Anda! Ketuk di sini untuk menautkan akun Anda.</string>
+
+    <string name="dialog_link_title">Usaha Anda sangat berharga!</string>
+    <string name="dialog_link_accept">Tautkan Akun</string>
+    <string name="dialog_link_not_now">Nanti saja</string>
+    <string name="dialog_link_remind_later">Ingatkan saya nanti</string>
+
+    <string name="toast_button_dismissed">Tombol disembunyikan sementara.</string>
+    <string name="toast_cooldown_long">Mengerti, kami tidak akan mengganggu untuk sementara waktu.</string>
+    <string name="toast_cooldown_short">Kami akan mengingatkan Anda nanti.</string>
+
+
+</resources>

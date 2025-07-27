@@ -100,14 +100,12 @@ class LanguageChangeActivity : BaseActivity() {
     private fun setAppLocale(languageCode: String) {
         LanguageManager.saveNewLanguageOrder(this, languageCode)
 
-        val appDisplayLanguage = when (languageCode) {
-            "es", "en", "fr", "pt", "de" -> languageCode
-            else -> "en"
-        }
+        val appDisplayLanguage = languageCode
 
         val preferences = getSharedPreferences("MyPrefers", MODE_PRIVATE)
         preferences.edit {
             putString("selected_language", languageCode)
+
             putString("app_display_language", appDisplayLanguage)
             apply()
         }

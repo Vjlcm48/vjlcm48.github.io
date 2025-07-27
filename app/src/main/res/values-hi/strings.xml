@@ -1,0 +1,1429 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+
+
+    <string name="loading_text">लोड हो रहा है…</string>
+
+    <string name="next_activity_text">अगली गतिविधि</string>
+
+
+
+    <string name="btn_allow">अनुमति दें</string>
+    <string name="btn_deny">अनुमति न दें</string>
+    <string name="notification_text">क्या आप SumaMente को सूचनाएं भेजने की अनुमति देना चाहते हैं?</string>
+    <string name="content_description_bell_icon">घंटी का आइकन</string>
+    <string name="content_description_icon">SumaMente का आधिकारिक आइकन</string>
+
+
+    <string name="instruction_text">अपना उपयोगकर्ता नाम लिखें।\n4 से 12 अक्षरों का उपयोग करें</string>
+    <string name="btn_accept">स्वीकार करें</string>
+    <string name="content_description_check_icon">सत्यापन का आइकन</string>
+    <string name="hint_username_input">उपयोगकर्ता नाम</string>
+    <string name="app_logo">एप्लिकेशन का लोगो</string>
+    <string name="trophy">ट्रॉफी</string>
+    <string name="settings">सेटिंग्स</string>
+    <string name="home">होम</string>
+    <string name="statistics">आंकड़े</string>
+    <string name="statistics_text">रैंकिंग</string>
+    <string name="username">उपयोगकर्ता नाम</string>
+    <string name="calendar">कैलेंडर</string>
+    <string name="calendar_text">चुनौतियां</string>
+    <string name="close">बंद करें</string>
+    <string name="level_locked_message">इस स्तर को अनलॉक کرنے के लिए पिछले स्तरों को पूरा करें।</string>
+    <string name="level_1">स्तर 1</string>
+    <string name="level_2">स्तर 2</string>
+    <string name="level_3">स्तर 3</string>
+    <string name="level_4">स्तर 4</string>
+    <string name="level_5">स्तर 5</string>
+    <string name="level_6">स्तर 6</string>
+    <string name="level_7">स्तर 7</string>
+    <string name="level_8">स्तर 8</string>
+    <string name="level_9">स्तर 9</string>
+    <string name="level_10">स्तर 10</string>
+    <string name="level_11">स्तर 11</string>
+    <string name="level_12">स्तर 12</string>
+    <string name="level_13">स्तर 13</string>
+    <string name="level_14">स्तर 14</string>
+    <string name="level_15">स्तर 15</string>
+    <string name="level_16">स्तर 16</string>
+    <string name="level_17">स्तर 17</string>
+    <string name="level_18">स्तर 18</string>
+    <string name="level_19">स्तर 19</string>
+    <string name="level_20">स्तर 20</string>
+    <string name="level_21">स्तर 21</string>
+    <string name="level_22">स्तर 22</string>
+    <string name="level_23">स्तर 23</string>
+    <string name="level_24">स्तर 24</string>
+    <string name="level_25">स्तर 25</string>
+    <string name="level_26">स्तर 26</string>
+    <string name="level_27">स्तर 27</string>
+    <string name="level_28">स्तर 28</string>
+    <string name="level_29">स्तर 29</string>
+    <string name="level_30">स्तर 30</string>
+    <string name="level_31">स्तर 31</string>
+    <string name="level_32">स्तर 32</string>
+    <string name="level_33">स्तर 33</string>
+    <string name="level_34">स्तर 34</string>
+    <string name="level_35">स्तर 35</string>
+    <string name="level_36">स्तर 36</string>
+    <string name="level_37">स्तर 37</string>
+    <string name="level_38">स्तर 38</string>
+    <string name="level_39">स्तर 39</string>
+    <string name="level_40">स्तर 40</string>
+    <string name="level_41">स्तर 41</string>
+    <string name="level_42">स्तर 42</string>
+    <string name="level_43">स्तर 43</string>
+    <string name="level_44">स्तर 44</string>
+    <string name="level_45">स्तर 45</string>
+    <string name="level_46">स्तर 46</string>
+    <string name="level_47">स्तर 47</string>
+    <string name="level_48">स्तर 48</string>
+    <string name="level_49">स्तर 49</string>
+    <string name="level_50">स्तर 50</string>
+    <string name="level_51">स्तर 51</string>
+    <string name="level_52">स्तर 52</string>
+    <string name="level_53">स्तर 53</string>
+    <string name="level_54">स्तर 54</string>
+    <string name="level_55">स्तर 55</string>
+    <string name="level_56">स्तर 56</string>
+    <string name="level_57">स्तर 57</string>
+    <string name="level_58">स्तर 58</string>
+    <string name="level_59">स्तर 59</string>
+    <string name="level_60">स्तर 60</string>
+    <string name="level_61">स्तर 61</string>
+    <string name="level_62">स्तर 62</string>
+    <string name="level_63">स्तर 63</string>
+    <string name="level_64">स्तर 64</string>
+    <string name="level_65">स्तर 65</string>
+    <string name="level_66">स्तर 66</string>
+    <string name="level_67">स्तर 67</string>
+    <string name="level_68">स्तर 68</string>
+    <string name="level_69">स्तर 69</string>
+    <string name="level_70">स्तर 70</string>
+    <string name="scroll_view_description">स्तरों का स्क्रॉल करने योग्य कंटेनर</string>
+    <string name="sound">ध्वनि</string>
+    <string name="notifications">सूचनाएं</string>
+    <string name="share">साझा करें</string>
+    <string name="switch_sound_desc">ध्वनि चालू या बंद करें</string>
+    <string name="switch_notifications_desc">सूचनाएं चालू या बंद करें</string>
+    <string name="volume_vibration">ध्वनि चालू या बंद करें</string>
+    <string name="notifications_history">सूचनाएं चालू या बंद करें</string>
+    <string name="profile">प्रोफ़ाइल</string>
+    <string name="profile_subtitle">उपयोगकर्ता नाम, आपका ध्वज</string>
+    <string name="share_subtitle">दोस्तों के साथ ऐप साझा करें</string>
+    <string name="help">सहायता</string>
+    <string name="help_subtitle">कैसे खेलें</string>
+    <string name="home_text">होम</string>
+    <string name="ads">विज्ञापन</string>
+    <string name="ads_subtitle">विज्ञापन हटाएं</string>
+    <string name="switch_ads_desc">विज्ञापन चालू/बंद करने की अनुमति देता है</string>
+    <string name="level_title">स्तर %1$d/70</string>
+    <string name="time_limit_text">हल करने का अधिकतम समय: %.2f सेकंड</string>
+    <string name="start_button_text">शुरू करें</string>
+    <string name="close_button_description">निर्देश विंडो बंद करें</string>
+    <string name="btn_yes">हाँ</string>
+    <string name="btn_no">नहीं</string>
+    <string name="back">वापस</string>
+    <string name="exit_confirmation">क्या आप खेल छोड़ना चाहते हैं?</string>
+    <string name="progress_ring_description">शेष समय दिखाने वाला प्रगति चक्र</string>
+    <string name="prompt_choose_correct_answer">सही उत्तर\nचुनें</string>
+    <string name="respuesta_1">उत्तर 1</string>
+    <string name="respuesta_2">उत्तर 2</string>
+    <string name="respuesta_3">उत्तर 3</string>
+    <string name="respuesta_4">उत्तर 4</string>
+    <string name="score_label">स्कोर: %1$d</string>
+    <string name="new_game">नया खेल</string>
+    <string name="dialog_title">उत्तर मोड</string>
+    <string name="seleccion_simple">सरल चयन</string>
+    <string name="escribe_tu_respuesta">अपना उत्तर लिखें</string>
+    <string name="info_seleccion_simple">सरल चयन के बारे में जानकारी</string>
+    <string name="info_escribe_respuesta">अपना उत्तर लिखें के बारे में जानकारी</string>
+    <string name="check_seleccion_simple">सरल चयन का चेक</string>
+    <string name="check_escribe_respuesta">अपना उत्तर लिखें का चेक</string>
+    <string name="title_dialog">शीर्षक</string>
+    <string name="dialog_message">संदेश</string>
+    <string name="close_button_desc">बंद करें</string>
+    <string name="selection_simple_title">सरल चयन</string>
+    <string name="selection_simple_message">कई विकल्पों में से सही उत्तर चुनें।</string>
+    <string name="write_answer_title">अपना उत्तर लिखें</string>
+    <string name="write_answer_message">सही उत्तर मैन्युअल रूप से लिखें।</string>
+    <string name="enter_answer_hint">अपना उत्तर दर्ज करें</string>
+    <string name="submit">भेजें</string>
+    <string name="vamos_text">चलो</string>
+    <string name="genial">बहुत बढ़िया!</string>
+    <string name="buen_trabajo">अच्छा काम</string>
+    <string name="puntos_obtenidos">प्राप्त अंक: %1$d</string>
+    <string name="clasificacion_cambiada">नई रैंकिंग। देखें</string>
+    <string name="repetir_nivel">स्तर दोहराएं</string>
+    <string name="cerrar">बंद करें</string>
+    <string name="perfecto">उत्तम!</string>
+    <string name="increible">अविश्वसनीय!</string>
+    <string name="asombroso">आश्चर्यजनक!</string>
+    <string name="excelente">बहुत बढ़िया!</string>
+    <string name="fantastico">शानदार!</string>
+    <string name="imparable">अजेय!</string>
+    <string name="brillante">प्रतिभाशाली!</string>
+    <string name="magistral">शानदार!</string>
+    <string name="soberbio">अद्भुत!</string>
+    <string name="fenomenal">असाधारण!</string>
+    <string name="esplendido">शानदार!</string>
+    <string name="jugar_un_nuevo_nivel">नया स्तर खेलें</string>
+    <string name="bien_hecho">बहुत अच्छा!</string>
+    <string name="vamos_bien">हम अच्छा कर रहे हैं!</string>
+    <string name="gran_esfuerzo">बड़ी कोशिश!</string>
+    <string name="lo_lograste">आपने कर दिखाया!</string>
+    <string name="buen_avance">अच्छी प्रगति!</string>
+    <string name="sigue_asi">लगे रहो!</string>
+    <string name="asi_es">यह सही है!</string>
+    <string name="muy_bien">बहुत अच्छा!</string>
+    <string name="casi_perfecto">लगभग उत्तम!</string>
+    <string name="mejorando">सुधार हो रहा है!</string>
+    <string name="persistencia">दृढ़ता!</string>
+    <string name="buen_intento">अच्छा प्रयास!</string>
+    <string name="vas_bien">आप अच्छा कर रहे हैं!</string>
+    <string name="has_agotado_tus_intentos">आपके प्रयास समाप्त हो गए हैं!</string>
+    <string name="se_agoto_el_tiempo">ओह! समय समाप्त हो गया</string>
+    <string name="tiempo_empleado">समय: %1$s सेकंड</string>
+    <string name="select_game_to_reset">रीसेट करने के लिए गेम चुनें</string>
+    <string name="check_blue_description">नीला चेक</string>
+    <string name="check_description">सफलता का संकेत देने वाला हरा चेक</string>
+
+
+
+    <string name="select_data_to_reset">वह डेटा चुनें जिसे आप रीसेट کرنا चाहते हैं</string>
+    <string name="reset_score">स्कोर रीसेट करें</string>
+    <string name="reset_response_mode">उत्तर मोड रीसेट करें</string>
+    <string name="accept">स्वीकार करें</string>
+    <string name="puntaje_actual">वर्तमान स्कोर: %1$d</string>
+    <string name="confirmation_message">क्या आप वाकई चयनित डेटा रीसेट کرنا चाहते हैं?</string>
+    <string name="yes">हाँ</string>
+    <string name="no">नहीं</string>
+    <string name="edit_username_desc">उपयोगकर्ता नाम संशोधित करें</string>
+    <string name="edit_flag_desc">ध्वज संशोधित करें</string>
+    <string name="title_profile_edit">आप कौन सा डेटा संशोधित करना चाहते हैं?</string>
+    <string name="edit_username">उपयोगकर्ता नाम</string>
+    <string name="edit_flag">ध्वज</string>
+    <string name="star_icon">तारे का आइकन</string>
+    <string name="default_score">0</string>
+    <string name="reset_progress">प्रगति रीसेट करें</string>
+    <string name="reset_progress_subtitle">गेम की प्रगति रीसेट करें</string>
+
+
+    <string name="error_invalid_username_length">नाम 4 से 12 अक्षरों के बीच होना चाहिए।</string>
+    <string name="error_username_taken">ओह! लगता है कि कोई पहले से ही इस नाम का उपयोग कर रहा है, दूसरा प्रयास करें।</string>
+
+
+    <string name="repeated_numbers_yellow_formatted">"%1$s संख्याएँ दोहराई गई हैं। उन्हें ठीक से जोड़ें!"</string>
+    <string name="repeated_numbers_blue_formatted">"%1$s संख्याएँ दोहराई गई हैं। उन्हें ठीक से जोड़ें!"</string>
+    <string name="negative_numbers_warning_formatted">"सावधान रहें, कुछ संख्याएँ %1$s हो सकती हैं। उन्हें सही ढंग से जोड़ें!"</string>
+
+    <string name="highlight_word_yellow">पीली</string>
+    <string name="highlight_word_blue">नीली</string>
+    <string name="highlight_word_negative">नकारात्मक</string>
+
+    <string name="country_ad">अंडोरा</string>
+    <string name="country_ae">संयुक्त अरब अमीरात</string>
+    <string name="country_af">अफगानिस्तान</string>
+    <string name="country_ag">एंटीगुआ और बारबुडा</string>
+    <string name="country_ai">एंगुइला</string>
+    <string name="country_al">अल्बानिया</string>
+    <string name="country_am">आर्मेनिया</string>
+    <string name="country_ao">अंगोला</string>
+    <string name="country_aq">अंटार्कटिका</string>
+    <string name="country_ar">अर्जेंटीना</string>
+    <string name="country_at">ऑस्ट्रिया</string>
+    <string name="country_au">ऑस्ट्रेलिया</string>
+    <string name="country_aw">अरूबा</string>
+    <string name="country_ax">ऑलैंड द्वीप</string>
+    <string name="country_az">अज़रबैजान</string>
+    <string name="country_ba">बोस्निया और हर्जेगोविना</string>
+    <string name="country_bb">बारबाडोस</string>
+    <string name="country_bd">बांग्लादेश</string>
+    <string name="country_be">बेल्जियम</string>
+    <string name="country_bf">बुर्किना फासो</string>
+    <string name="country_bg">बुल्गारिया</string>
+    <string name="country_bh">बहरीन</string>
+    <string name="country_bi">बुरुंडी</string>
+    <string name="country_bj">बेनिन</string>
+    <string name="country_bl">सेंट बार्थेलेमी</string>
+    <string name="country_bm">बरमूडा</string>
+    <string name="country_bn">ब्रुनेई</string>
+    <string name="country_bo">बोलीविया</string>
+    <string name="country_bq">कैरिबियाई नीदरलैंड</string>
+    <string name="country_br">ब्राजील</string>
+    <string name="country_bs">बहामास</string>
+    <string name="country_bt">भूटान</string>
+    <string name="country_bv">बोवेट द्वीप</string>
+    <string name="country_bw">बोत्सवाना</string>
+    <string name="country_by">बेलारूस</string>
+    <string name="country_bz">बेलीज</string>
+    <string name="country_ca">कनाडा</string>
+    <string name="country_cc">कोकोस द्वीप</string>
+    <string name="country_cd">कांगो लोकतांत्रिक गणराज्य</string>
+    <string name="country_cf">मध्य अफ्रीकी गणराज्य</string>
+    <string name="country_cg">कांगो</string>
+    <string name="country_ch">स्विट्जरलैंड</string>
+    <string name="country_ci">आइवरी कोस्ट</string>
+    <string name="country_ck">कुक द्वीप</string>
+    <string name="country_cl">चिली</string>
+    <string name="country_cm">कैमरून</string>
+    <string name="country_cn">चीन</string>
+    <string name="country_co">कोलंबिया</string>
+    <string name="country_cr">कोस्टा रिका</string>
+    <string name="country_cu">क्यूबा</string>
+    <string name="country_cv">केप वर्डे</string>
+    <string name="country_cw">कुराकाओ</string>
+    <string name="country_cx">क्रिसमस द्वीप</string>
+    <string name="country_cy">साइप्रस</string>
+    <string name="country_cz">चेकिया</string>
+    <string name="country_de">जर्मनी</string>
+    <string name="country_dj">जिबूती</string>
+    <string name="country_dk">डेनमार्क</string>
+    <string name="country_dm">डोमिनिका</string>
+    <string name="country_dominican_republic">डोमिनिकन गणराज्य</string>
+    <string name="country_dz">अल्जीरिया</string>
+    <string name="country_ec">इक्वाडोर</string>
+    <string name="country_ee">एस्टोनिया</string>
+    <string name="country_eg">मिस्र</string>
+    <string name="country_eh">पश्चिमी सहारा</string>
+    <string name="country_er">इरिट्रिया</string>
+    <string name="country_es">स्पेन</string>
+    <string name="country_et">इथियोपिया</string>
+    <string name="country_fi">फिनलैंड</string>
+    <string name="country_fj">फिजी</string>
+    <string name="country_fk">फ़ॉकलैंड द्वीप</string>
+    <string name="country_fm">माइक्रोनेशिया</string>
+    <string name="country_fo">फ़ैरो द्वीप</string>
+    <string name="country_fr">फ्रांस</string>
+    <string name="country_ga">गैबॉन</string>
+    <string name="country_gb">यूनाइटेड किंगडम</string>
+    <string name="country_gd">ग्रेनाडा</string>
+    <string name="country_ge">जॉर्जिया</string>
+    <string name="country_gf">फ्रेंच गयाना</string>
+    <string name="country_gg">ग्वेर्नसे</string>
+    <string name="country_gh">घाना</string>
+    <string name="country_gi">जिब्राल्टर</string>
+    <string name="country_gl">ग्रीनलैंड</string>
+    <string name="country_gm">गाम्बिया</string>
+    <string name="country_gn">गिनी</string>
+    <string name="country_gp">ग्वाडेलोप</string>
+    <string name="country_gq">इक्वेटोरियल गिनी</string>
+    <string name="country_gr">ग्रीस</string>
+    <string name="country_gs">दक्षिण जॉर्जिया और दक्षिण सैंडविच द्वीप</string>
+    <string name="country_gt">ग्वाटेमाला</string>
+    <string name="country_gu">गुआम</string>
+    <string name="country_gw">गिनी-बिसाऊ</string>
+    <string name="country_gy">गुयाना</string>
+    <string name="country_hk">हांगकांग</string>
+    <string name="country_hm">हर्ड द्वीप और मैकडॉनल्ड द्वीप</string>
+    <string name="country_hn">होंडुरास</string>
+    <string name="country_hr">क्रोएशिया</string>
+    <string name="country_ht">हैती</string>
+    <string name="country_hu">हंगरी</string>
+    <string name="country_id">इंडोनेशिया</string>
+    <string name="country_ie">आयरलैंड</string>
+    <string name="country_il">इज़राइल</string>
+    <string name="country_im">आइल ऑफ मैन</string>
+    <string name="country_in">भारत</string>
+    <string name="country_io">ब्रिटिश हिंद महासागरीय क्षेत्र</string>
+    <string name="country_iq">इराक</string>
+    <string name="country_ir">ईरान</string>
+    <string name="country_is">आइसलैंड</string>
+    <string name="country_it">इटली</string>
+    <string name="country_je">जर्सी</string>
+    <string name="country_jm">जमैका</string>
+    <string name="country_jo">जॉर्डन</string>
+    <string name="country_jp">जापान</string>
+    <string name="country_ke">केन्या</string>
+    <string name="country_kg">किर्गिस्तान</string>
+    <string name="country_kh">कंबोडिया</string>
+    <string name="country_ki">किरिबाती</string>
+    <string name="country_km">कोमोरोस</string>
+    <string name="country_kn">सेंट किट्स और नेविस</string>
+    <string name="country_kp">उत्तर कोरिया</string>
+    <string name="country_kr">दक्षिण कोरिया</string>
+    <string name="country_kw">कुवैत</string>
+    <string name="country_ky">केमैन द्वीप</string>
+    <string name="country_kz">कजाकिस्तान</string>
+    <string name="country_la">लाओस</string>
+    <string name="country_lb">लेबनान</string>
+    <string name="country_lc">सेंट लूसिया</string>
+    <string name="country_li">लिकटेंस्टीन</string>
+    <string name="country_lk">श्रीलंका</string>
+    <string name="country_lr">लाइबेरिया</string>
+    <string name="country_ls">लेसोथो</string>
+    <string name="country_lt">लिथुआनिया</string>
+    <string name="country_lu">लक्ज़मबर्ग</string>
+    <string name="country_lv">लातविया</string>
+    <string name="country_ly">लीबिया</string>
+    <string name="country_ma">मोरक्को</string>
+    <string name="country_mc">मोनाको</string>
+    <string name="country_md">मोल्दोवा</string>
+    <string name="country_me">मोंटेनेग्रो</string>
+    <string name="country_mf">सेंट मार्टिन</string>
+    <string name="country_mg">मेडागास्कर</string>
+    <string name="country_mh">मार्शल द्वीप</string>
+    <string name="country_mk">उत्तरी मैसेडोनिया</string>
+    <string name="country_ml">माली</string>
+    <string name="country_mm">म्यांमार</string>
+    <string name="country_mn">मंगोलिया</string>
+    <string name="country_mo">मकाऊ</string>
+    <string name="country_mp">उत्तरी मारियाना द्वीप</string>
+    <string name="country_mq">मार्टीनिक</string>
+    <string name="country_mr">मॉरिटानिया</string>
+    <string name="country_ms">मोंटसेराट</string>
+    <string name="country_mt">माल्टा</string>
+    <string name="country_mu">मॉरीशस</string>
+    <string name="country_mv">मालदीव</string>
+    <string name="country_mw">मलावी</string>
+    <string name="country_mx">मेक्सिको</string>
+    <string name="country_my">मलेशिया</string>
+    <string name="country_mz">मोजाम्बिक</string>
+    <string name="country_na">नामीबिया</string>
+    <string name="country_nc">न्यू कैलेडोनिया</string>
+    <string name="country_ne">नाइजर</string>
+    <string name="country_nf">नॉरफ़ॉक द्वीप</string>
+    <string name="country_ng">नाइजीरिया</string>
+    <string name="country_ni">निकारागुआ</string>
+    <string name="country_nl">नीदरलैंड</string>
+    <string name="country_no">नॉर्वे</string>
+    <string name="country_np">नेपाल</string>
+    <string name="country_nr">नाउरु</string>
+    <string name="country_nu">नियू</string>
+    <string name="country_nz">न्यूजीलैंड</string>
+    <string name="country_om">ओमान</string>
+    <string name="country_pa">पनामा</string>
+    <string name="country_pe">पेरू</string>
+    <string name="country_pf">फ्रेंच पोलिनेशिया</string>
+    <string name="country_pg">पापुआ न्यू गिनी</string>
+    <string name="country_ph">फिलीपींस</string>
+    <string name="country_pk">पाकिस्तान</string>
+    <string name="country_pl">पोलैंड</string>
+    <string name="country_pt">पुर्तगाल</string>
+    <string name="country_py">पैराग्वे</string>
+    <string name="country_qa">कतर</string>
+    <string name="country_re">रीयूनियन</string>
+    <string name="country_ro">रोमानिया</string>
+    <string name="country_rs">सर्बिया</string>
+    <string name="country_ru">रूस</string>
+    <string name="country_rw">रवांडा</string>
+    <string name="country_sa">सऊदी अरब</string>
+    <string name="country_sb">सोलोमन द्वीप</string>
+    <string name="country_sc">सेशेल्स</string>
+    <string name="country_sd">सूडान</string>
+    <string name="country_se">स्वीडन</string>
+    <string name="country_sg">सिंगापुर</string>
+    <string name="country_si">स्लोवेनिया</string>
+    <string name="country_sk">स्लोवाकिया</string>
+    <string name="country_sl">सिएरा लियोन</string>
+    <string name="country_sm">सैन मैरिनो</string>
+    <string name="country_sn">सेनेगल</string>
+    <string name="country_so">सोमालिया</string>
+    <string name="country_sr">सूरीनाम</string>
+    <string name="country_st">साओ टोमे और प्रिंसिपे</string>
+    <string name="country_sv">अल सल्वाडोर</string>
+    <string name="country_sy">सीरिया</string>
+    <string name="country_sz">एस्वातीनी</string>
+    <string name="country_td">चाड</string>
+    <string name="country_tg">टोगो</string>
+    <string name="country_th">थाईलैंड</string>
+    <string name="country_tj">ताजिकिस्तान</string>
+    <string name="country_tl">पूर्वी तिमोर</string>
+    <string name="country_tm">तुर्कमेनिस्तान</string>
+    <string name="country_tn">ट्यूनीशिया</string>
+    <string name="country_tr">तुर्की</string>
+    <string name="country_tt">त्रिनिदाद और टोबैगो</string>
+    <string name="country_tw">ताइवान</string>
+    <string name="country_tz">तंजानिया</string>
+    <string name="country_ua">यूक्रेन</string>
+    <string name="country_ug">युगांडा</string>
+    <string name="country_us">संयुक्त राज्य अमेरिका</string>
+    <string name="country_uy">उरुग्वे</string>
+    <string name="country_uz">उज़्बेकिस्तान</string>
+    <string name="country_va">वेटिकन सिटी</string>
+    <string name="country_ve">वेनेजुएला</string>
+    <string name="country_vn">वियतनाम</string>
+    <string name="country_ye">यमन</string>
+    <string name="country_za">दक्षिण अफ्रीका</string>
+    <string name="country_zm">जाम्बिया</string>
+    <string name="country_zw">जिम्बाब्वे</string>
+    <string name="title_select_flag">ध्वज चुनें</string>
+    <string name="hint_search_country">देश का नाम लिखें</string>
+    <string name="close_button">बंद करें</string>
+    <string name="search_icon">खोजें</string>
+    <string name="flag_image">देश के ध्वज की छवि</string>
+    <string name="current_flag">वर्तमान ध्वज</string>
+    <string name="current_flag_image">वर्तमान ध्वज की छवि</string>
+    <string name="confirmation">पुष्टि</string>
+    <string name="confirm_change_flag">क्या आप वाकई ध्वज बदलना चाहते हैं?</string>
+    <string name="instructions_level_1_10">सभी संख्याएँ जोड़ें</string>
+    <string name="instructions_level_11_20">सभी संख्याएँ जोड़ें</string>
+    <string name="instructions_level_31_35">सभी संख्याएँ जोड़ें</string>
+    <string name="instructions_level_36_40">सभी संख्याएँ जोड़ें</string>
+    <string name="instructions_level_51_60">सभी संख्याएँ जोड़ें</string>
+    <string name="exception_first">पहली संख्या को छोड़कर सभी संख्याएँ जोड़ें</string>
+    <string name="exception_second">दूसरी संख्या को छोड़कर सभी संख्याएँ जोड़ें</string>
+    <string name="exception_third">तीसरी संख्या को छोड़कर सभी संख्याएँ जोड़ें</string>
+    <string name="exception_last">अंतिम संख्या को छोड़कर सभी संख्याएँ जोड़ें</string>
+    <string name="default_instructions">सभी संख्याएँ जोड़ें</string>
+    <string name="instructions_romans_1_10">सभी रोमन संख्याएँ जोड़ें</string>
+    <string name="instructions_romans_11_20">सभी रोमन संख्याएँ जोड़ें</string>
+    <string name="instructions_romans_31_35">सभी रोमन संख्याएँ जोड़ें</string>
+    <string name="instructions_romans_36_40">सभी रोमन संख्याएँ जोड़ें</string>
+    <string name="instructions_romans_51_60">सभी रोमन संख्याएँ जोड़ें</string>
+    <string name="instructions_romans_default">सभी रोमन संख्याएँ जोड़ें</string>
+    <string name="exception_romans_first">पहली रोमन संख्या को छोड़कर सभी रोमन संख्याएँ जोड़ें</string>
+    <string name="exception_romans_second">दूसरी रोमन संख्या को छोड़कर सभी रोमन संख्याएँ जोड़ें</string>
+    <string name="exception_romans_third">तीसरी रोमन संख्या को छोड़कर सभी रोमन संख्याएँ जोड़ें</string>
+    <string name="exception_romans_last">अंतिम रोमन संख्या को छोड़कर सभी रोमन संख्याएँ जोड़ें</string>
+    <string name="invalid_manual_answer">कृपया एक मान्य संख्या दर्ज करें</string>
+    <string name="sound_enabled">ध्वनि चालू</string>
+    <string name="sound_disabled">ध्वनि बंद</string>
+    <string name="notifications_enabled">सूचनाएं चालू</string>
+    <string name="notifications_disabled">सूचनाएं बंद</string>
+    <string name="ads_enabled">विज्ञापन चालू</string>
+    <string name="ads_disabled">विज्ञापन बंद</string>
+
+
+
+    <string name="error_time_limit_not_found">स्तर %1$d के लिए समय सीमा नहीं मिली</string>
+
+
+
+    <string name="toast_select_option">कम से कम एक विकल्प चुनें</string>
+    <string name="sum_and_subtract_instruction">सकारात्मक और नकारात्मक संख्याओं को ध्यान में रखते हुए संचालन हल करें।</string>
+    <string name="general_instructions">पूर्णांक, दशमलव, रोमन अंक और अक्षरों को जोड़ें। कुछ नकारात्मक हो सकते हैं!</string>
+
+    <string name="escoge_tu_modo_de_respuesta">उत्तर का तरीका \nचुनें जो आपको \nसबसे ज्यादा पसंद हो</string>
+    <string name="instructions_numeros_intro">
+    इसके ट्यूटोरियल में \nआपका स्वागत है:
+</string>
+
+    <string name="entendido">समझ गया</string>
+    <string name="default_chronometer">00.00</string>
+
+    <string name="answer_option_1">8</string>
+    <string name="answer_option_2">9</string>
+    <string name="answer_option_3">10</string>
+    <string name="answer_option_4">11</string>
+
+    <string name="answer_deci_option_1">0.8</string>
+    <string name="answer_deci_option_2">0.9</string>
+    <string name="answer_deci_option_3">0.7</string>
+    <string name="answer_deci_option_4">1.2</string>
+
+    <string name="answer_sumaresta_option_1">13</string>
+    <string name="answer_sumaresta_option_2">14</string>
+    <string name="answer_sumaresta_option_3">11</string>
+    <string name="answer_sumaresta_option_4">12</string>
+
+    <string name="formatted_time">लगाया गया समय: %s सेकंड</string>
+    <string name="formatted_points">प्राप्त अंक: %d</string>
+    <string name="chronometer_value">%s</string>
+
+    <string name="tutorial_step_intro_part_a"><![CDATA[
+    हम आपको 3
+    सरल चरणों में
+    दिखाएंगे कि
+    कैसे खेलना है…
+]]></string>
+    <string name="tutorial_step_intro_part_b">चलिए शुरू करते हैं।</string>
+    <string name="tutorial_step_one">पहला कदम: तय करें कि आप कैसे खेलना चाहते हैं, नियंत्रण आपके हाथ में है!</string>
+    <string name="tutorial_step_two">दूसरा कदम: संख्याएँ दिखाई देंगी। सकारात्मक \nको जोड़ें, नकारात्मक \nको घटाएं। \nध्यान केंद्रित करें और तैयार हो जाएं! \nआइए एक उदाहरण देखें:</string>
+    <string name="tutorial_deci_step_two">दूसरा कदम: दशमलव संख्याएँ दिखाई देंगी। सकारात्मक \nको जोड़ें, नकारात्मक \nको घटाएं। \nसतर्क रहें! \nआइए एक उदाहरण देखें:</string>
+
+    <string name="tutorial_romas_step_two">दूसरा कदम: \nरोमन संख्याएँ \nदिखाई देंगी। \nसकारात्मक को जोड़ें, \nनकारात्मक को घटाएं। \nसतर्क रहें! \nआइए एक उदाहरण देखें:</string>
+
+    <string name="tutorial_alfa_numeros_step_two">दूसरा कदम: \nअक्षर और संख्याएँ \nदिखाई देंगी। \nA=1, B=2 आदि, आदि \nसकारात्मक को जोड़ें, \nनकारात्मक को घटाएं। \nसतर्क रहें! \nआइए एक उदाहरण देखें:</string>
+
+    <string name="tutorial_mas_step_two">दूसरा कदम: \nअक्षर, संख्याएँ, रोमन संख्याएँ \nऔर दशमलव दिखाई देंगे। \nसकारात्मक को जोड़ें, \nनकारात्मक को घटाएं। \nसतर्क रहें! \nआइए एक उदाहरण देखें:</string>
+
+    <string name="tutorial_genio_step_two">दूसरा कदम: \nअक्षर, संख्याएँ, भिन्न \nऔर वर्गमूल दिखाई देंगे। \nसकारात्मक को जोड़ें, \nनकारात्मक को घटाएं। \nसतर्क रहें! \nआइए एक उदाहरण देखें:</string>
+
+    <string name="tutorial_step_three_part_one"><![CDATA[
+    तीसरा कदम: आपने जो
+    संख्याएँ देखीं, उनके
+    परिणाम की गणना करें।
+]]></string>
+    <string name="tutorial_step_three_part_two"><![CDATA[
+    समय समाप्त होने
+    से पहले सही उत्तर
+    लिखें या चुनें!
+]]></string>
+    <string name="tutorial_result_message"><![CDATA[
+    बहुत बढ़िया! अब हम
+    देखेंगे कि आपने कितना
+    समय लिया और कितने
+    अंक जीते। 😊
+]]></string>
+    <string name="tutorial_closing_message"><![CDATA[
+    अब आप तैयार हैं!
+    यह खेलने और
+    मस्ती करने का
+    समय है। 🚀
+]]></string>
+
+    <string name="score_format">अंक: %d</string>
+
+    <string name="descubre_como_jugar">जानें कैसे खेलें</string>
+    <string name="jugar">खेलें</string>
+    <string name="repetir">दोहराएं</string>
+
+    <string name="difficulty_selection_title">कठिनाई चुनें</string>
+
+    <string name="difficulty_principiante">शुरुआती</string>
+    <string name="difficulty_subtitle_principiante">बुनियादी, बहुत आसान… 🍰</string>
+
+    <string name="difficulty_avanzado">उन्नत</string>
+    <string name="difficulty_subtitle_avanzado">दिलचस्प, चलो उन न्यूरॉन्स को हिलाएं… 🧠</string>
+
+    <string name="difficulty_pro">प्रो</string>
+    <string name="difficulty_subtitle_pro">केवल चुने हुए लोगों के लिए… 👑</string>
+
+    <string name="difficulty_exit_dialog_title">पुष्टि</string>
+    <string name="difficulty_exit_dialog_message">क्या आप वाकई कठिनाई स्तर चुने बिना छोड़ना चाहते हैं? अगली बार प्रवेश करने पर आपको चुनना होगा।</string>
+    <string name="difficulty_exit_dialog_positive">बाहर निकलें</string>
+    <string name="difficulty_exit_dialog_negative">रद्द करें</string>
+
+    <string name="difficulty_one_star">★</string>
+    <string name="difficulty_two_stars">★★</string>
+    <string name="difficulty_three_stars">★★★</string>
+
+    <string name="change_difficulty">कठिनाई बदलें</string>
+
+    <string name="review_exercise">मेरे उत्तर की समीक्षा करें</string>
+    <string name="exercise_title">अभ्यास था:</string>
+    <string name="correct_answer_format">सही उत्तर है: %d</string>
+    <string name="user_responses_format">आपके उत्तर थे: %d %d</string>
+    <string name="level_locked_by_failures">इस स्तर को फिर से अनलॉक करने के लिए आपको पिछला स्तर पूरा करना होगा</string>
+
+    <string name="desafios_mensaje">SumaMente चुनौतियां! दुनिया भर के खिलाड़ियों के साथ प्रतिस्पर्धा करें और पुरस्कार जीतें। अगला कार्यक्रम कब होगा, हम आपको सूचित करेंगे। चमकने के लिए तैयार हो जाइए!</string>
+
+    <string name="monday_short">सोम</string>
+    <string name="tuesday_short">मंग</string>
+    <string name="wednesday_short">बुध</string>
+    <string name="thursday_short">गुरु</string>
+    <string name="friday_short">शुक्र</string>
+    <string name="saturday_short">शनि</string>
+    <string name="sunday_short">रवि</string>
+
+    <string name="correct_answer_format_deci">सही उत्तर: %s</string>
+    <string name="user_responses_format_deci">आपके उत्तर: %s</string>
+
+    <string name="skip_tutorial">ट्यूटोरियल छोड़ें</string>
+
+    <string name="premio_titulo">आपकी मेहनत, आपके पुरस्कार…</string>
+    <string name="pin_reconocimiento">विशेष उपलब्धियां</string>
+    <string name="corona_laureles">श्रेष्ठ गति</string>
+    <string name="medalla">लगातार दृढ़ता</string>
+    <string name="trofeo">पूर्ण निपुणता</string>
+
+    <string name="correct_answer_format_romas">सही उत्तर: %s</string>
+    <string name="user_responses_format_romas">आपके उत्तर: %s</string>
+
+    <string name="clasificaciones_titulo">रैंकिंग</string>
+    <string name="clasificaciones_como_funciona">रैंकिंग प्रणाली कैसे काम करती है?</string>
+    <string name="clasificaciones_ver_mi">वैश्विक रैंकिंग</string>
+    <string name="clasificaciones_por_velocidad">गति के अनुसार रैंकिंग</string>
+
+    <string name="clasificaciones_titulo_dialog">रैंकिंग प्रणाली कैसे काम करती है?</string>
+    <string name="clasificaciones_puntos_correctas">सही उत्तरों के लिए अंक</string>
+    <string name="clasificaciones_puntos_correctas_1">• हर गेम आपको सही जवाब देने पर अंक देता है</string>
+    <string name="clasificaciones_puntos_correctas_2">• यदि आप सभी उत्तर सही देते हैं, तो आपको पूरे अंक मिलते हैं</string>
+    <string name="clasificaciones_puntos_correctas_3">• यदि आप कुछ में गलती करते हैं, तो आपको कम अंक मिलते हैं</string>
+    <string name="clasificaciones_puntos_velocidad">गति के लिए अंक</string>
+    <string name="clasificaciones_puntos_velocidad_1">• तेज होने से आपको अधिक अंक मिलते हैं!</string>
+    <string name="clasificaciones_puntos_velocidad_2">• यदि आप 1 सेकंड में जवाब देते हैं, तो आपको सामान्य अंक मिलते हैं</string>
+    <string name="clasificaciones_puntos_velocidad_3">• यदि आप तेज हैं, तो आप अधिक अंक जीतते हैं!</string>
+    <string name="clasificaciones_puntos_velocidad_4">• यदि आप अधिक समय लेते हैं, तो आपको कम अंक मिलते हैं</string>
+    <string name="clasificaciones_juegos_niveles">खेल और स्तर</string>
+    <string name="clasificaciones_juegos_niveles_1">• 7 अलग-अलग गेम हैं: NÚMEROS⁺, DECI⁺, ROMAS, SUMARESTA, ALFANÚMEROS, MÁS⁺ और GENIO⁺</string>
+    <string name="clasificaciones_juegos_niveles_2">• हर गेम में 3 स्तर होते हैं: शुरुआती, उन्नत और प्रो</string>
+    <string name="clasificaciones_juegos_niveles_3">• अधिक कठिन गेम और उच्च स्तर आपको अधिक अंक देते हैं</string>
+    <string name="clasificaciones_practica">अभ्यास करें और सुधार करें!</string>
+    <string name="clasificaciones_practica_1">• आप जब चाहें कोई भी गेम दोहरा सकते हैं</string>
+    <string name="clasificaciones_practica_2">• अपने औसत समय में सुधार करने के लिए जितनी बार चाहें खेलें</string>
+    <string name="clasificaciones_practica_3">• अपनी गति और सटीकता बढ़ाने के लिए हर दिन अभ्यास करें!</string>
+
+    <string name="pin_victoris">30 स्तर। कोई त्रुटि नहीं। 24 घंटे। VICTORIS… केवल विजेता ही समझेंगे।</string>
+    <string name="pin_optimum">40 स्तर। कोई गलती नहीं। एक ही दिन। OPTIMUM… केवल सर्वोत्तम ही टिकते हैं।</string>
+    <string name="pin_invictus">50 स्तर। अपराजेय। 24 घंटे। INVICTUS… केवल अदम्य ही इसे प्राप्त करते हैं।</string>
+
+    <string name="medalla_initium_100">यात्रा अभी शुरू हुई है। 100 पूर्ण किए गए गेम तक पहुंचें और आपको INITIUM मिलेगा।</string>
+    <string name="medalla_fidelis_200">आपकी निरंतरता को पहचाना जाएगा। 200 गेम तक पहुंचें और यह पदक आपका होगा।</string>
+    <string name="medalla_virtus_300">हर दिन प्रशिक्षण लें। 300 गेम जोड़कर आप अनुशासन का गुण प्रदर्शित करेंगे।</string>
+    <string name="medalla_audax_400">केवल बहादुर ही आगे बढ़ते रहते हैं। बिना किसी हिचकिचाहट के 400 गेम जीतें।</string>
+    <string name="medalla_fortis_500">आपका मन दृढ़ है। 500 गेम तक पहुंचें और अपनी किंवदंती को मजबूत करें।</string>
+    <string name="medalla_tenax_600">रुको मत। 600 गेम पूरा करने पर, आपकी दृढ़ता चमकेगी।</string>
+    <string name="medalla_intrepidus_700">हर चुनौती का बिना डरे सामना करें। 700 गेम तक पहुंचने पर यह पदक आपका है।</string>
+    <string name="medalla_sapiens_800">ज्ञान अनुभव से प्राप्त होता है। 800 पूर्ण किए गए गेम इसे साबित करेंगे।</string>
+    <string name="medalla_exemplar_900">एक उदाहरण बनें। 900 गेम तक पहुंचने पर, सभी को पता चल जाएगा कि आपने कभी हार नहीं मानी।</string>
+    <string name="medalla_gloriam_1000">शिखर तक पहुंचने का साहस करें। 1000 गेम आपको गौरव तक ले जाएंगे।</string>
+    <string name="medalla_magnus_1100">महानता प्रयास से बनती है। 1100 गेम तक पहुंचें और आपको MAGNUS मिलेगा।</string>
+    <string name="medalla_immortalis_1200">आपकी विरासत आगे बढ़ेगी। 1200 गेम पूरा करने पर, यह पदक आपको अमर बना देता है।</string>
+
+    <string name="corona_volucer_1">सबसे तेज दिमाग के लिए। केवल जो पहले स्थान पर है, वही इस महान ताज का हकदार है।</string>
+    <string name="corona_celeris_6">जो गति में दूसरे स्थान पर विजय प्राप्त करता है। Celeris ताज आपकी गति और दृढ़ता को पुरस्कृत करता है।</string>
+    <string name="corona_velocitas_10">गति में तीसरा स्थान भी सम्मान के योग्य है। यह ताज आपकी मानसिक चपलता को पहचानता है।</string>
+
+    <string name="trofeo_initia_numeros_principiante">अपनी यात्रा शुरू करें। NÚMEROS⁺ शुरुआती में महारत हासिल करें और यह ट्रॉफी आपका शुरुआती बिंदु होगी।</string>
+    <string name="trofeo_constantia_numeros_avanzado">बिना हार माने आगे बढ़ते रहें। NÚMEROS⁺ उन्नत में हर चुनौती को पार करें।</string>
+    <string name="trofeo_confectus_numeros_pro">कुछ भी अधूरा न छोड़ें। NÚMEROS⁺ प्रो के अंत तक पहुंचें और CONFECTUS प्राप्त करें।</string>
+
+    <string name="trofeo_via_deci_principiante">दशमलव के बीच अपना रास्ता बनाएं। DECI⁺ शुरुआती खत्म करें और अलग दिखना शुरू करें।</string>
+    <string name="trofeo_altus_deci_avanzado">ऊँचा लक्ष्य रखें। DECI⁺ उन्नत पूरा करें और ALTUS आपका होगा।</string>
+    <string name="trofeo_perseverantia_deci_pro">रुको मत। अटूट अनुशासन के साथ DECI⁺ प्रो के हर गेम को जीतें।</string>
+
+    <string name="trofeo_gradus_romas_principiante">कदम-दर-कदम आगे बढ़ें। ROMAS शुरुआती को पार करें और अपनी शाही छाप छोड़ें।</string>
+    <string name="trofeo_fortitudo_romas_avanzado">अपनी ताकत दिखाएं। अंत तक ROMAS उन्नत की चुनौतियों का सामना करें।</string>
+    <string name="trofeo_metam_romas_pro">रोमन लक्ष्य तक पहुंचें। ROMAS प्रो के हर स्तर को हराएं और इस प्रतीक को जीतें।</string>
+
+    <string name="trofeo_fundamentum_alfanumeros_principiante">अपनी निपुणता की नींव बनाएं। ALFANUMEROS शुरुआती को बिना कोई खाली जगह छोड़े पूरा करें।</string>
+    <string name="trofeo_praemium_alfanumeros_avanzado">यह पुरस्कार अक्षर-दर-अक्षर कमाएं। ALFANUMEROS उन्नत के माध्यम से आगे बढ़ें।</string>
+    <string name="trofeo_glorificus_alfanumeros_pro">गौरव के लिए जाओ। ALFANUMEROS प्रो में महारत हासिल करें और अपने दिमाग को चमकाएं।</string>
+
+    <string name="trofeo_scala_sumaresta_principiante">दृढ़ता से चढ़ो। SUMARESTA शुरुआती को जीतने तक सीढ़ी-दर-सीढ़ी चढ़ो।</string>
+    <string name="trofeo_tenacitas_sumaresta_avanzado">केवल दृढ़ निश्चयी ही दूर तक जाते हैं। SUMARESTA उन्नत का सामना करें और उसे खत्म करें।</string>
+    <string name="trofeo_perfectus_sumaresta_pro">हर चाल में पूर्णता की तलाश करें। बिना हार माने SUMARESTA प्रो को समाप्त करें।</string>
+
+    <string name="trofeo_origo_mas_principiante">सब कुछ यहाँ से शुरू होता है। MÁS⁺ शुरुआती को पार करें और अपनी उत्पत्ति को अनलॉक करें।</string>
+    <string name="trofeo_proficium_mas_avanzado">प्रगति को अपना झंडा बनाएं। MÁS⁺ उन्नत की हर चुनौती के माध्यम से आगे बढ़ें।</string>
+    <string name="trofeo_exemplaritas_mas_pro">एक संदर्भ बनें। MÁS⁺ प्रो खत्म करें और अपने उदाहरण का सम्मान करें।</string>
+
+    <string name="trofeo_ascensus_genio_principiante">अपनी प्रतिभा की चढ़ाई शुरू करें। Genio⁺ शुरुआती को पूरा करें।</string>
+    <string name="trofeo_magnificus_genio_avanzado">अपनी बुद्धि को चमकने दें। Genio⁺ उन्नत के हर स्तर को पार करें।</string>
+    <string name="trofeo_potens_genio_pro">अपनी अधिकतम क्षमता को उजागर करें। बिना पीछे देखे Genio⁺ प्रो को जीतें।</string>
+
+    <string name="previous">पिछला</string>
+    <string name="next">अगला</string>
+
+    <string name="mis_condecoraciones">मेरी प्राप्त की गई सजावटें</string>
+
+    <string name="top_10">वैश्विक रैंकिंग के शीर्ष 10</string>
+
+    <string name="condecoracion_image">सजावट की छवि</string>
+    <string name="condecoracion_honorabilis">दसवां स्थान। मान्यता के योग्य।</string>
+    <string name="condecoracion_virtuosus">नौवां स्थान। अनुशासन के साथ प्रभुत्व।</string>
+    <string name="condecoracion_insignis">आठवां स्थान। रैंकिंग में अपनी छाप छोड़ें।</string>
+    <string name="condecoracion_praestans">सातवां स्थान। हर चुनौती में उत्कृष्टता प्राप्त करें।</string>
+    <string name="condecoracion_illustris">छठा स्थान। उसकी रोशनी किसी का ध्यान नहीं खींचती।</string>
+    <string name="condecoracion_gloriosus">पांचवां स्थान। सम्मान के साथ विजय प्राप्त करें।</string>
+    <string name="condecoracion_venerabilis">चौथा स्थान। अपनी निरंतरता के लिए प्रशंसित।</string>
+    <string name="condecoracion_magnanimous">तीसरा स्थान। अंकों और आत्मा में महान।</string>
+    <string name="condecoracion_summum">दूसरा स्थान। केवल एक ही ऊपर उठता है।</string>
+    <string name="condecoracion_excelsitur">पूर्ण शिखर। वैश्विक रैंकिंग में पहले स्थान पर काबिज।</string>
+
+    <string name="position_1">नं.1</string>
+    <string name="position_2">नं.2</string>
+    <string name="position_3">नं.3</string>
+    <string name="position_4">नं.4</string>
+    <string name="position_5">नं.5</string>
+    <string name="position_6">नं.6</string>
+    <string name="position_7">नं.7</string>
+    <string name="position_8">नं.8</string>
+    <string name="position_9">नं.9</string>
+    <string name="position_10">नं.10</string>
+
+    <string name="user_response_single_format">आपका उत्तर: %d</string>
+
+    <string name="condecoracion_suprema">सर्वोच्च अलंकरण</string>
+    <string name="apex_supremus_descripcion">केवल सर्वोच्च विजेता ही इसे प्राप्त कर सकते हैं…</string>
+    <string name="apex_supremus_info">यह प्रतिष्ठित अलंकरण केवल उन्हीं को दिया जाता है जो SumaMente की सभी चुनौतियों को पूरा करते हैं।</string>
+
+    <string name="ranking_global">वैश्विक रैंकिंग</string>
+    <string name="pais">देश</string>
+    <string name="puntaje">स्कोर</string>
+    <string name="ranking_sin_datos">कोई रैंकिंग डेटा उपलब्ध नहीं है</string>
+    <string name="bandera_pais">देश का झंडा</string>
+
+    <string name="logro_pin_invictus">उत्कृष्टता आपको अलग करती है, एक दिन में 50 चुनौतियां, INVICTUS प्राप्त करना।</string>
+
+    <string name="logro_medalla_initium">आपने 100 अनोखे गेम पूरे कर लिए हैं! आपके समर्पण ने आपको INITIUM पदक दिलाया है, जो आपके संग्रह की शुरुआत है।</string>
+
+    <string name="logro_trofeo_initia">आपने संख्याओं पर महारत हासिल कर ली! आपने NÚMEROS⁺ शुरुआती के 70 स्तर पूरे कर लिए हैं, जिससे आपको INITIA ट्रॉफी मिली है।</string>
+    <string name="logro_trofeo_constantia">उन्नत संख्यात्मक महारत! आपने NÚMEROS⁺ उन्नत के 70 स्तरों को पार कर लिया है, CONSTANTIA ट्रॉफी पर विजय प्राप्त की है।</string>
+    <string name="logro_trofeo_confectus">संख्याओं में सर्वोच्च विशेषज्ञ! NÚMEROS⁺ प्रो के 70 स्तर आपके सामने गिर गए हैं, जिससे आपको CONFECTUS ट्रॉफी मिली है।</string>
+
+    <string name="logro_trofeo_via">दशमलव के साथ शानदार शुरुआत! आपने DECI⁺ शुरुआती के सभी स्तरों को पूरा किया, VIA ट्रॉफी जीती।</string>
+    <string name="logro_trofeo_altus">सिद्ध दशमलव परिशुद्धता! DECI⁺ उन्नत के 70 स्तर आपके हैं, जो प्रतिष्ठित ALTUS ट्रॉफी के लायक हैं।</string>
+    <string name="logro_trofeo_perseverantia">पूर्ण दशमलव महारत! आपने DECI⁺ प्रो के सभी स्तरों पर विजय प्राप्त की है, PERSEVERANTIA ट्रॉफी के साथ उठ खड़े हुए हैं।</string>
+
+    <string name="logro_trofeo_gradus">एक प्राचीन रोमन की तरह! आपने ROMAS शुरुआती के 70 स्तरों पर महारत हासिल की, मूल्यवान GRADUS ट्रॉफी प्राप्त की।</string>
+    <string name="logro_trofeo_fortitudo">रोमन अंकों में शाही शक्ति! आपने ROMAS उन्नत को पूरी तरह से पार कर लिया है, FORTITUDO ट्रॉफी जीती है।</string>
+    <string name="logro_trofeo_metam">कुल रोमन प्रभुत्व! ROMAS प्रो की 70 चुनौतियों पर विजय प्राप्त की गई है, जो आपको शानदार METAM ट्रॉफी से पुरस्कृत करती है।</string>
+
+    <string name="logro_trofeo_fundamentum">अल्फान्यूमेरिक मूल बातें महारत हासिल! आपने ALFANÚMEROS शुरुआती को पूरा किया, FUNDAMENTUM ट्रॉफी प्राप्त की।</string>
+    <string name="logro_trofeo_praemium">पुष्टि की गई अल्फान्यूमेरिक प्रतिभा! ALFANÚMEROS उन्नत के 70 स्तर इतिहास हैं, जो आपको PRAEMIUM ट्रॉफी से पुरस्कृत करते हैं।</string>
+    <string name="logro_trofeo_glorificus">सर्वोच्च अल्फान्यूमेरिक महारत! आपने ALFANÚMEROS प्रो की सभी चुनौतियों को हराया है, शानदार GLORIFICUS ट्रॉफी तक पहुंचे हैं।</string>
+
+    <string name="logro_trofeo_scala">मानसिक गणना में वृद्धि! आपने SUMARESTA शुरुआती के 70 स्तरों को पार किया, SCALA ट्रॉफी प्राप्त की।</string>
+    <string name="logro_trofeo_tenacitas">महारत के साथ जोड़ें और घटाएं! SUMARESTA उन्नत के सभी स्तर पूरे हुए, जो आपको TENACITAS ट्रॉफी से पुरस्कृत करते हैं।</string>
+    <string name="logro_trofeo_perfectus">गणना में पूर्णता! आपने SUMARESTA प्रो की 70 चुनौतियों पर महारत हासिल की है, प्रतिष्ठित PERFECTUS ट्रॉफी तक पहुंचे हैं।</string>
+
+    <string name="logro_trofeo_origo">आपके गणितीय प्रभुत्व की उत्पत्ति! आपने MÁS⁺ शुरुआती को पूरा किया, महत्वपूर्ण ORIGO ट्रॉफी जीती।</string>
+    <string name="logro_trofeo_proficium">अनुकरणीय गणितीय प्रगति! MÁS⁺ उन्नत के 70 स्तर गिर गए हैं, जो आपको प्रतिष्ठित PROFICIUM ट्रॉफी प्रदान करते हैं।</string>
+    <string name="logro_trofeo_exemplaritas">गणितीय उत्कृष्टता का उदाहरण! आपने MÁS⁺ प्रो की सभी चुनौतियों को पार कर लिया है, असाधारण EXEMPLARITAS ट्रॉफी प्राप्त की है।</string>
+
+    <string name="logro_trofeo_ascensus">प्रतिभा की ओर चढ़ाई! आपने GENIO⁺ शुरुआती के 70 स्तर पूरे कर लिए हैं, प्रतिष्ठित ASCENSUS ट्रॉफी प्राप्त की है।</string>
+    <string name="logro_trofeo_magnificus">शानदार मानसिक क्षमता! आपने GENIO⁺ उन्नत पर पूरी तरह से महारत हासिल कर ली है, प्रभावशाली MAGNIFICUS ट्रॉफी जीती है।</string>
+    <string name="logro_trofeo_potens">असीम मानसिक शक्ति! GENIO⁺ प्रो की 70 चुनौतियों पर विजय प्राप्त की गई है, जो आपको महान POTENS ट्रॉफी से सम्मानित करती है।</string>
+
+    <string name="no_condecoraciones">आपने अभी तक कोई अलंकरण प्राप्त नहीं किया है। उन्हें पाने के लिए खेलते रहें!</string>
+
+    <string name="speed_classification_title">गति के अनुसार वर्गीकरण</string>
+    <string name="speed_ranking_title">गति रैंकिंग</string>
+    <string name="select_game_speed">उसकी गति रैंकिंग देखने के लिए एक गेम चुनें</string>
+
+    <string name="time_format_seconds">%s सेकंड</string>
+
+    <string name="ranking_position_header">पद।</string>
+    <string name="ranking_player_header">खिलाड़ी</string>
+    <string name="ranking_time_header">समय</string>
+
+    <string name="empty_speed_ranking">कोई गति डेटा उपलब्ध नहीं है</string>
+
+    <string name="msg_need_more_games_speed">%1$s के कम से कम 36 स्तर खेलें, अपनी गति रैंकिंग देखने के लिए प्रत्येक कठिनाई स्तर में 12।</string>
+
+    <string name="speed_avg_1">आपकी प्रतिक्रिया की औसत गति है: &lt;b&gt;%s सेकंड&lt;/b&gt;।</string>
+    <string name="speed_avg_2">अब तक, आपका औसत समय प्रति प्रतिक्रिया &lt;b&gt;%s सेकंड&lt;/b&gt; है।</string>
+    <string name="speed_avg_3">वर्तमान प्रतिक्रिया औसत: &lt;b&gt;%s सेकंड&lt;/b&gt;।</string>
+    <string name="speed_avg_4">आप &lt;b&gt;%s सेकंड&lt;/b&gt; का औसत समय बना रहे हैं।</string>
+    <string name="speed_avg_5">वर्तमान में, आप औसतन &lt;b&gt;%s सेकंड&lt;/b&gt; में प्रतिक्रिया देते हैं।</string>
+    <string name="speed_avg_6">औसत प्रतिक्रिया समय: &lt;b&gt;%s सेकंड&lt;/b&gt;।</string>
+    <string name="speed_avg_7">अभी के लिए, आपकी सबसे अच्छी औसत गति &lt;b&gt;%s सेकंड&lt;/b&gt; है।</string>
+    <string name="speed_avg_8">तेज! इस बिंदु तक आपका औसत &lt;b&gt;%s सेकंड&lt;/b&gt; है।</string>
+    <string name="speed_avg_9">औसतन, आप हर &lt;b&gt;%s सेकंड&lt;/b&gt; में प्रतिक्रिया देते हैं।</string>
+    <string name="speed_avg_10">दर्ज की गई औसत गति: &lt;b&gt;%s सेकंड&lt;/b&gt;।</string>
+    <string name="speed_avg_11">अच्छी गति! आपकी प्रतिक्रिया का औसत &lt;b&gt;%s सेकंड&lt;/b&gt; है।</string>
+    <string name="speed_avg_12">आप ऐसे जा रहे हैं: प्रति प्रतिक्रिया औसत गति &lt;b&gt;%s सेकंड&lt;/b&gt;।</string>
+
+    <string name="speed_info_1">इस रैंकिंग में प्रदर्शित होने के लिए, आपको केवल &lt;b&gt;%1$s&lt;/b&gt; गेम खेलने की आवश्यकता है: &lt;b&gt;%2$s&lt;/b&gt; शुरुआती, &lt;b&gt;%3$s&lt;/b&gt; उन्नत और &lt;b&gt;%4$s&lt;/b&gt; प्रो।</string>
+    <string name="speed_info_2">अपना वर्गीकरण देखने के लिए गेम जोड़ते रहें: &lt;b&gt;%1$s&lt;/b&gt; गेम शेष हैं (&lt;b&gt;%2$s&lt;/b&gt; शुरू., &lt;b&gt;%3$s&lt;/b&gt; उन्न., &lt;b&gt;%4$s&lt;/b&gt; प्रो)।</string>
+    <string name="speed_info_3">आपको अभी भी एक लंबा रास्ता तय करना है, &lt;b&gt;%1$s&lt;/b&gt; और गेम खेलें: &lt;b&gt;%2$s&lt;/b&gt; शुरुआती, &lt;b&gt;%3$s&lt;/b&gt; उन्नत और &lt;b&gt;%4$s&lt;/b&gt; प्रो रैंकिंग अनलॉक करने के लिए।</string>
+    <string name="speed_info_4">%5$s, आपको केवल &lt;b&gt;%1$s&lt;/b&gt; गेम पूरे करने होंगे: &lt;b&gt;%2$s&lt;/b&gt; शुरुआती, &lt;b&gt;%3$s&lt;/b&gt; उन्नत और &lt;b&gt;%4$s&lt;/b&gt; प्रो।</string>
+    <string name="speed_info_5">आपको बस थोड़ा और चाहिए, %5$s: &lt;b&gt;%1$s&lt;/b&gt; गेम (&lt;b&gt;%2$s&lt;/b&gt; शुरू., &lt;b&gt;%3$s&lt;/b&gt; उन्न., &lt;b&gt;%4$s&lt;/b&gt; प्रो) और आप इस रैंकिंग में अपनी स्थिति देख पाएंगे।</string>
+    <string name="speed_info_6">खुश हो जाओ, %5$s! &lt;b&gt;%1$s&lt;/b&gt; गेम (&lt;b&gt;%2$s&lt;/b&gt; शुरू., &lt;b&gt;%3$s&lt;/b&gt; उन्न., &lt;b&gt;%4$s&lt;/b&gt; प्रो) जोड़ें और आप वर्गीकरण में प्रवेश करेंगे।</string>
+    <string name="speed_info_7">आप पहले ही बहुत आगे बढ़ चुके हैं! आपको केवल &lt;b&gt;%1$s&lt;/b&gt; गेम शेष हैं: &lt;b&gt;%2$s&lt;/b&gt; शुरुआती, &lt;b&gt;%3$s&lt;/b&gt; उन्नत और &lt;b&gt;%4$s&lt;/b&gt; प्रो रैंकिंग में प्रदर्शित होने के लिए।</string>
+    <string name="speed_info_8">आप अपनी स्थिति देखने के करीब और करीब आ रहे हैं। आवश्यकता को पूरा करने के लिए &lt;b&gt;%1$s&lt;/b&gt; गेम (&lt;b&gt;%2$s&lt;/b&gt; शुरू., &lt;b&gt;%3$s&lt;/b&gt; उन्न., &lt;b&gt;%4$s&lt;/b&gt; प्रो) शेष हैं।</string>
+    <string name="speed_info_9">रैंकिंग आपका इंतजार कर रही है, बस &lt;b&gt;%1$s&lt;/b&gt; और गेम: &lt;b&gt;%2$s&lt;/b&gt; शुरुआती, &lt;b&gt;%3$s&lt;/b&gt; उन्नत और &lt;b&gt;%4$s&lt;/b&gt; प्रो।</string>
+    <string name="speed_info_10">%5$s, आपका प्रयास दिखाई दे रहा है। आपके पास केवल &lt;b&gt;%1$s&lt;/b&gt; गेम शेष हैं: &lt;b&gt;%2$s&lt;/b&gt; शुरुआती, &lt;b&gt;%3$s&lt;/b&gt; उन्नत और &lt;b&gt;%4$s&lt;/b&gt; प्रो।</string>
+    <string name="speed_info_11">बहुत अच्छी प्रगति, %5$s! &lt;b&gt;%1$s&lt;/b&gt; गेम (&lt;b&gt;%2$s&lt;/b&gt; शुरू., &lt;b&gt;%3$s&lt;/b&gt; उन्न., &lt;b&gt;%4$s&lt;/b&gt; प्रो) खेलें और आप अपना वर्गीकरण अनलॉक कर देंगे।</string>
+    <string name="speed_info_12">इसे बनाए रखें, %5$s। बस &lt;b&gt;%1$s&lt;/b&gt; और गेम (&lt;b&gt;%2$s&lt;/b&gt; शुरू., &lt;b&gt;%3$s&lt;/b&gt; उन्न., &lt;b&gt;%4$s&lt;/b&gt; प्रो) और आप गति रैंकिंग का हिस्सा होंगे।</string>
+    <string name="speed_info_13">आप लगभग वहां हैं! आपको केवल &lt;b&gt;%1$s&lt;/b&gt; गेम शेष हैं: &lt;b&gt;%2$s&lt;/b&gt; शुरुआती, &lt;b&gt;%3$s&lt;/b&gt; उन्नत और &lt;b&gt;%4$s&lt;/b&gt; प्रो रैंकिंग में प्रदर्शित होने के लिए।</string>
+    <string name="speed_info_14">अंतिम धक्का: &lt;b&gt;%1$s&lt;/b&gt; गेम (&lt;b&gt;%2$s&lt;/b&gt; शुरू., &lt;b&gt;%3$s&lt;/b&gt; उन्न., &lt;b&gt;%4$s&lt;/b&gt; प्रो) और आप वर्गीकरण में दिखाई देंगे।</string>
+    <string name="speed_info_15">लक्ष्य बहुत करीब है, केवल &lt;b&gt;%1$s&lt;/b&gt; गेम शेष हैं (&lt;b&gt;%2$s&lt;/b&gt; शुरुआती, &lt;b&gt;%3$s&lt;/b&gt; उन्नत और &lt;b&gt;%4$s&lt;/b&gt; प्रो)।</string>
+    <string name="speed_info_16">%5$s, आप इसे बनाने वाले हैं: &lt;b&gt;%1$s&lt;/b&gt; और गेम (&lt;b&gt;%2$s&lt;/b&gt; शुरू., &lt;b&gt;%3$s&lt;/b&gt; उन्न., &lt;b&gt;%4$s&lt;/b&gt; प्रो) और आपका नाम रैंकिंग में दिखाई देगा।</string>
+    <string name="speed_info_17">प्रभावशाली प्रगति, %5$s! केवल &lt;b&gt;%1$s&lt;/b&gt; गेम (&lt;b&gt;%2$s&lt;/b&gt; शुरू., &lt;b&gt;%3$s&lt;/b&gt; उन्न., &lt;b&gt;%4$s&lt;/b&gt; प्रो) और आप रैंक किए जाएंगे।</string>
+    <string name="speed_info_18">अब कुछ भी नहीं बचा है, %5$s। &lt;b&gt;%1$s&lt;/b&gt; गेम (&lt;b&gt;%2$s&lt;/b&gt; शुरू., &lt;b&gt;%3$s&lt;/b&gt; उन्न., &lt;b&gt;%4$s&lt;/b&gt; प्रो) पूरे करें और सबसे तेज में शामिल हों।</string>
+
+    <string name="speed_motiv_1">आप यह कर सकते हैं!</string>
+    <string name="speed_motiv_2">हर गेम मायने रखता है, आगे बढ़ते रहें।</string>
+    <string name="speed_motiv_3">गति आपकी सहयोगी है, रुकें नहीं!</string>
+    <string name="speed_motiv_4">आप बहुत अच्छा कर रहे हैं, %1$s! यह तो बस शुरुआत है।</string>
+    <string name="speed_motiv_5">कदम-दर-कदम, %1$s, आप अपने लक्ष्य के करीब आ रहे हैं।</string>
+    <string name="speed_motiv_6">आप अपनी क्षमता का प्रदर्शन कर रहे हैं, %1$s!</string>
+    <string name="speed_motiv_7">आप पहले से ही लय में हैं, इसे बनाए रखें!</string>
+    <string name="speed_motiv_8">आपका प्रयास रंग ला रहा है।</string>
+    <string name="speed_motiv_9">निरंतरता महत्वपूर्ण है, हार मत मानो!</string>
+    <string name="speed_motiv_10">अजेय, %1$s! हर बार करीब आ रहा है।</string>
+    <string name="speed_motiv_11">आप पहले से ही प्रगति महसूस कर सकते हैं, %1$s, रुकें नहीं!</string>
+    <string name="speed_motiv_12">अच्छा काम, %1$s! इस तरह आप दूर तक जाते हैं।</string>
+    <string name="speed_motiv_13">अंतिम कदम, लक्ष्य करीब है!</string>
+    <string name="speed_motiv_14">चैंपियन यही करते हैं, आप उनमें से एक हैं!</string>
+    <string name="speed_motiv_15">अब मत रुको, तुम रैंकिंग से एक कदम दूर हो!</string>
+    <string name="speed_motiv_16">प्रेरणादायक, %1$s! रैंकिंग लगभग आपकी है।</string>
+    <string name="speed_motiv_17">वाह, %1$s! कुछ ही लोग इतनी दूर तक पहुंचते हैं, मजबूत बने रहें।</string>
+    <string name="speed_motiv_18">आप बड़े हो रहे हैं, %1$s! दिखाओ कि तुम क्या हासिल कर सकते हो।</string>
+
+    <string name="msg_need_more_games_global_1">नमस्ते, %1$s! अपनी वैश्विक रैंकिंग देखने के लिए 36 स्तर खेलें।</string>
+    <string name="msg_need_more_games_global_2">%1$s, आपको वैश्विक रैंकिंग में अपनी स्थिति अनलॉक करने के लिए 36 स्तर खेलने होंगे।</string>
+    <string name="msg_need_more_games_global_3">आप अभी तक रैंकिंग में नहीं हैं, %1$s। 36 स्तर खेलें और आपकी वैश्विक रैंकिंग यहां दिखाई देगी।</string>
+    <string name="msg_need_more_games_global_4">चलो, %1$s! जब आप 36 स्तर पूरे कर लेंगे, तो आप वैश्विक रैंकिंग में अपनी स्थिति देख पाएंगे।</string>
+    <string name="msg_need_more_games_global_5">%1$s, 36 स्तर खेलने पर आपकी वैश्विक रैंकिंग स्वचालित रूप से दिखाई देगी।</string>
+    <string name="msg_need_more_games_global_6">चुनौती के लिए तैयार हैं, %1$s? 36 स्तर खेलें और वैश्विक रैंकिंग में प्रवेश करें।</string>
+
+    <plurals name="msg_info_global_levels_1">
+        <item quantity="one">%1$s, आपने %2$d स्तर खेला है। वैश्विक रैंकिंग में प्रवेश करने के लिए आपको %3$d और चाहिए।</item>
+        <item quantity="other">%1$s, आपने %2$d स्तर खेले हैं। वैश्विक रैंकिंग में प्रवेश करने के लिए आपको %3$d और चाहिए।</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_2">
+        <item quantity="one">अच्छी प्रगति, %1$s! आपने %2$d स्तर खेला है और अपनी रैंकिंग देखने के लिए आपको केवल %3$d और चाहिए।</item>
+        <item quantity="other">अच्छी प्रगति, %1$s! आपने %2$d स्तर खेले हैं और अपनी रैंकिंग देखने के लिए आपको केवल %3$d और चाहिए।</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_3">
+        <item quantity="one">%1$s, आपके खाते में %2$d स्तर खेला गया है। वैश्विक रैंकिंग को अनलॉक करने के लिए आपको %3$d और चाहिए।</item>
+        <item quantity="other">%1$s, आपके खाते में %2$d स्तर खेले गए हैं। वैश्विक रैंकिंग को अनलॉक करने के लिए आपको %3$d और चाहिए।</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_4">
+        <item quantity="one">%1$s, आपने 36 में से %2$d स्तर खेला है। रैंकिंग में प्रवेश करने के लिए केवल %3$d और चाहिए।</item>
+        <item quantity="other">%1$s, आपने 36 में से %2$d स्तर खेले हैं। रैंकिंग में प्रवेश करने के लिए केवल %3$d और चाहिए।</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_5">
+        <item quantity="one">%1$s, आपने पहले ही %2$d स्तर पूरा कर लिया है। वैश्विक रैंकिंग में प्रदर्शित होने के लिए %3$d और खेलें।</item>
+        <item quantity="other">%1$s, आपने पहले ही %2$d स्तर पूरे कर लिए हैं। वैश्विक रैंकिंग में प्रदर्शित होने के लिए %3$d और खेलें।</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_6">
+        <item quantity="one">%1$s, आप आवश्यक 36 से %3$d स्तर दूर हैं। आपने पहले ही %2$d खेला है!</item>
+        <item quantity="other">%1$s, आप आवश्यक 36 से %3$d स्तर दूर हैं। आपने पहले ही %2$d खेले हैं!</item>
+    </plurals>
+
+    <plurals name="msg_info_global_levels_7">
+        <item quantity="one">आपने %1$d स्तर खेला है। वैश्विक रैंकिंग में प्रदर्शित होने के लिए आपको %2$d और चाहिए।</item>
+        <item quantity="other">आपने %1$d स्तर खेले हैं। वैश्विक रैंकिंग में प्रदर्शित होने के लिए आपको %2$d और चाहिए।</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_8">
+        <item quantity="one">आप सही रास्ते पर हैं! %1$d स्तर खेला गया, %2$d और और आप रैंकिंग में होंगे।</item>
+        <item quantity="other">आप सही रास्ते पर हैं! %1$d स्तर खेले गए, %2$d और और आप रैंकिंग में होंगे।</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_9">
+        <item quantity="one">आपने %1$d स्तर खेला है। अपनी वैश्विक रैंकिंग अनलॉक करने के लिए आपको केवल %2$d और चाहिए।</item>
+        <item quantity="other">आपने %1$d स्तर खेले हैं। अपनी वैश्विक रैंकिंग अनलॉक करने के लिए आपको केवल %2$d और चाहिए।</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_10">
+        <item quantity="one">प्रगति! 36 में سے %1$d स्तर खेला गया। वैश्विक रैंकिंग के लिए %2$d शेष हैं।</item>
+        <item quantity="other">प्रगति! 36 में से %1$d स्तर खेले गए। वैश्विक रैंकिंग के लिए %2$d शेष हैं।</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_11">
+        <item quantity="one">आपने पहले ही %1$d स्तर पूरा कर लिया है। रैंकिंग में अपनी स्थिति देखने के लिए आपको केवल %2$d और चाहिए।</item>
+        <item quantity="other">आपने पहले ही %1$d स्तर पूरे कर लिए हैं। रैंकिंग में अपनी स्थिति देखने के लिए आपको केवल %2$d और चाहिए।</item>
+    </plurals>
+    <plurals name="msg_info_global_levels_12">
+        <item quantity="one">आप वैश्विक रैंकिंग से %2$d स्तर दूर हैं। आपने पहले ही %1$d खेला है।</item>
+        <item quantity="other">आप वैश्विक रैंकिंग से %2$d स्तर दूर हैं। आपने पहले ही %1$d खेले हैं।</item>
+    </plurals>
+
+    <string name="msg_motiv_global_levels_1">आप कर सकते हैं, %1$s! हर स्तर आपको वैश्विक रैंकिंग के करीब लाता है।</string>
+    <string name="msg_motiv_global_levels_2">%1$s, इसे बनाए रखें। वैश्विक रैंकिंग करीब और करीब आ रही है!</string>
+    <string name="msg_motiv_global_levels_3">रुको मत, %1$s। आपका प्रयास जल्द ही पुरस्कृत होगा!</string>
+    <string name="msg_motiv_global_levels_4">खेलते रहो, %1$s! वैश्विक रैंकिंग आपका इंतजार कर रही है।</string>
+    <string name="msg_motiv_global_levels_5">%1$s, हर गेम मायने रखता है। आप लगभग वैश्विक रैंकिंग में हैं!</string>
+    <string name="msg_motiv_global_levels_6">खुश हो जाओ, %1$s! बहुत जल्द आप अपना नाम सर्वश्रेष्ठ में से देखेंगे।</string>
+
+    <string name="msg_motiv_global_levels_7">हार मत मानो! हर स्तर आपको वैश्विक रैंकिंग के करीब लाता है।</string>
+    <string name="msg_motiv_global_levels_8">आप बहुत करीब हैं! इसे हासिल करने के लिए बस थोड़ा और।</string>
+    <string name="msg_motiv_global_levels_9">आगे बढ़ते रहो! वैश्विक रैंकिंग आपकी पहुंच में है।</string>
+    <string name="msg_motiv_global_levels_10">बहुत बढ़िया काम! जारी रखें और बहुत जल्द आप रैंकिंग में दिखाई देंगे।</string>
+    <string name="msg_motiv_global_levels_11">चलो और स्तरों के लिए चलते हैं! वैश्विक रैंकिंग आपका इंतजार कर रही है।</string>
+    <string name="msg_motiv_global_levels_12">लक्ष्य करीब है! वैश्विक रैंकिंग तक पहुंचने के लिए खेलते रहें।</string>
+
+    <string name="msg_iqplus_start_1">%1$s, 21 गेम खेलें, प्रत्येक गेम और प्रत्येक कठिनाई स्तर के लिए कम से कम एक… और आप IQ+ रैंकिंग में दिखाई देंगे।</string>
+    <string name="msg_iqplus_start_2">नमस्ते, %1$s! IQ+ रैंकिंग में प्रतिस्पर्धा करने के लिए प्रत्येक गेम और कठिनाई स्तर में कम से कम एक स्तर खेलकर SumaMente में अपनी यात्रा शुरू करें।</string>
+    <string name="msg_iqplus_start_3">%1$s, आपने अभी तक IQ+ रैंकिंग में अपना रास्ता शुरू नहीं किया है। अपनी स्थिति देखने और अपना सूचकांक बनाने के लिए सभी गेम और ग्रेड में एक स्तर खेलें।</string>
+    <string name="msg_iqplus_start_4">चलो, %1$s! जब आप प्रत्येक गेम और कठिनाई में एक स्तर पूरा कर लेंगे, तो आप अपना IQ+ देख पाएंगे और अन्य खिलाड़ियों के साथ अपनी तुलना कर पाएंगे।</string>
+    <string name="msg_iqplus_start_5">%1$s, IQ+ रैंकिंग में उत्कृष्टता प्राप्त करने का पहला कदम 21 स्तर खेलना है; सभी खेलों और ग्रेड में कम से कम एक। आगे बढ़ो और आज ही शुरू करो!</string>
+    <string name="msg_iqplus_start_6">एक चुनौती के लिए तैयार हैं, %1$s? कम से कम 21 अलग-अलग खेलों में भाग लें, प्रत्येक ग्रेड के लिए एक, और IQ+ रैंकिंग में अपना स्थान अनलॉक करें।</string>
+
+    <string name="msg_iqplus_info_1">आपका वर्तमान IQ+ सूचकांक है: %1$.2f।</string>
+    <string name="msg_iqplus_info_2">अभी के लिए, आपका IQ+ %1$.2f अंक है। इसे सुधारने के लिए खेलते रहें!</string>
+    <string name="msg_iqplus_info_3">अनंतिम IQ+ सूचकांक: %1$.2f। रैंकिंग में प्रतिस्पर्धा करने के लिए सभी खेलों और ग्रेड में खेलें।</string>
+    <string name="msg_iqplus_info_4">आप SumaMente में अपना IQ+ विकसित कर रहे हैं: %1$.2f।</string>
+    <string name="msg_iqplus_info_5">अब तक गणना किया गया IQ+: %1$.2f। हर नया स्तर मायने रखता है।</string>
+    <string name="msg_iqplus_info_6">आपका IQ+ कैसा चल रहा है: %1$.2f। रैंकिंग अनलॉक करने के लिए सभी गेम और ग्रेड पूरे करें!</string>
+
+    <plurals name="msg_iqplus_levels_info_1">
+        <item quantity="one">%1$s, आपने %2$d विभिन्न गेम और ग्रेड में खेला है। IQ+ रैंकिंग में प्रदर्शित होने के लिए आपको %3$d और चाहिए।</item>
+        <item quantity="other">%1$s, आपने %2$d विभिन्न गेम और ग्रेड में खेला है। IQ+ रैंकिंग में प्रदर्शित होने के लिए आपको %3$d और चाहिए।</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_2">
+        <item quantity="one">%1$s, आपके खाते में विभिन्न खेलों और ग्रेड में %2$d गेम हैं। अपनी IQ+ रैंकिंग अनलॉक करने के लिए आपको केवल %3$d और चाहिए।</item>
+        <item quantity="other">%1$s, आपके खाते में विभिन्न खेलों और ग्रेड में %2$d गेम हैं। अपनी IQ+ रैंकिंग अनलॉक करने के लिए आपको केवल %3$d और चाहिए।</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_3">
+        <item quantity="one">%1$s, आप प्रगति कर रहे हैं: %2$d खेला, %3$d खेलने के लिए। IQ+ रैंकिंग तक पहुंचने के लिए इसे बनाए रखें!</item>
+        <item quantity="other">%1$s, आप प्रगति कर रहे हैं: %2$d खेले, %3$d खेलने के लिए। IQ+ रैंकिंग तक पहुंचने के लिए इसे बनाए रखें!</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_4" tools:ignore="StringFormatCount">
+        <item quantity="one">आपने %2$d विभिन्न गेम और ग्रेड में खेला है। IQ+ रैंकिंग अनलॉक करने के लिए %3$d और चाहिए।</item>
+        <item quantity="other">आपने %2$d विभिन्न गेम और ग्रेड में खेला है। IQ+ रैंकिंग अनलॉक करने के लिए %3$d और चाहिए।</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_5" tools:ignore="StringFormatCount">
+        <item quantity="one">आपकी प्रगति: %2$d खेला, %3$d खेलने के लिए। आप लगभग IQ+ रैंकिंग में अपनी स्थिति देख सकते हैं!</item>
+        <item quantity="other">आपकी प्रगति: %2$d खेले, %3$d खेलने के लिए। आप लगभग IQ+ रैंकिंग में अपनी स्थिति देख सकते हैं!</item>
+    </plurals>
+    <plurals name="msg_iqplus_levels_info_6" tools:ignore="StringFormatCount">
+        <item quantity="one">आपके पास %2$d अलग-अलग गेम हैं; जब आप %3$d और पूरे कर लेंगे, तो आप IQ+ रैंकिंग में दिखाई देंगे।</item>
+        <item quantity="other">आपके पास %2$d अलग-अलग गेम हैं; जब आप %3$d और पूरे कर लेंगे, तो आप IQ+ रैंकिंग में दिखाई देंगे।</item>
+    </plurals>
+
+    <string name="msg_iqplus_motiv_1">इसे बनाए रखें! हर नया गेम आपको IQ+ रैंकिंग में आपके स्थान के करीब लाता है।</string>
+    <string name="msg_iqplus_motiv_2">आगे बढ़ते रहें, जल्द ही आप खुद को रैंक करते हुए और अपनी स्थिति जानते हुए देख पाएंगे।</string>
+    <string name="msg_iqplus_motiv_3">आप SumaMente में सर्वश्रेष्ठ का हिस्सा बनने वाले हैं। रुकें नहीं!</string>
+    <string name="msg_iqplus_motiv_4">उत्कृष्ट प्रगति, %1$s! थोड़ा और और आप IQ+ रैंकिंग में सर्वश्रेष्ठ के साथ प्रतिस्पर्धा कर रहे होंगे।</string>
+    <string name="msg_iqplus_motiv_5">बहुत अच्छा, %1$s। हर स्तर आपको सर्वश्रेष्ठ में से एक होने के लक्ष्य के करीब लाता है।</string>
+    <string name="msg_iqplus_motiv_6">%1$s, अब मत रुको। आप लगभग IQ+ रैंकिंग तक पहुंच चुके हैं!</string>
+
+    <string name="clasificaciones_por_iqplus">IQ⁺ सूचकांक द्वारा वर्गीकरण</string>
+
+    <string name="indice_iqplus">IQ⁺ सूचकांक</string>
+
+    <string name="iqplus_ranking_title">IQ⁺ सूचकांक रैंकिंग</string>
+
+    <string name="share_iqplus_ranking_message">मैंने SumaMente की IQ⁺ रैंकिंग में %2$.3f के IQ⁺ के साथ %1$d वां स्थान हासिल किया! क्या आप मुझे हराने की हिम्मत करते हैं?</string>
+
+    <string name="precision_global_title">वैश्विक परिशुद्धता</string>
+    <string name="velocidad_promedio_title">वैश्विक औसत गति</string>
+    <string name="precision_global_explanation">वैश्विक सटीकता आपके सभी खेलों में सही हिट के प्रतिशत को मापती है। इसकी गणना इस प्रकार की जाती है:\n\n(सही उत्तर ÷ कुल खेल) × 100%</string>
+    <string name="velocidad_promedio_explanation">वैश्विक औसत गति आपके द्वारा प्रतिक्रिया देने में लगने वाला औसत समय है। इसकी गणना इस प्रकार की जाती है:\n\nकुल समय ÷ पूरे किए गए खेलों की संख्या</string>
+    <string name="info_precision">परिशुद्धता के बारे में जानकारी</string>
+    <string name="info_velocidad">गति के बारे में जानकारी</string>
+
+    <string name="default_username">आप</string>
+
+    <string name="date_obtained">प्राप्त: %s</string>
+
+    <string name="corona_volucer">VOLUCER</string>
+    <string name="corona_celeris">CELERIS</string>
+    <string name="corona_velocitas">VELOCITAS</string>
+
+    <string name="corona_velocitas_msg_1">उत्कृष्ट गति, &lt;b&gt;%1$s&lt;/b&gt;! आपने &lt;b&gt;%2$s&lt;/b&gt; में तीसरा स्थान हासिल किया है। VELOCITAS ताज आपका है।</string>
+    <string name="corona_velocitas_msg_2">&lt;b&gt;%2$s&lt;/b&gt; में प्रभावशाली गति, &lt;b&gt;%1$s&lt;/b&gt;! आपने अपने तीसरे स्थान के लिए VELOCITAS ताज अर्जित किया है।</string>
+    <string name="corona_velocitas_msg_3">&lt;b&gt;%1$s&lt;/b&gt;, &lt;b&gt;%2$s&lt;/b&gt; में आपकी गति आपको पोडियम पर ले गई है। VELOCITAS ताज अनलॉक हो गया!</string>
+    <string name="corona_velocitas_msg_4">&lt;b&gt;%1$s&lt;/b&gt; के लिए गति में कांस्य! &lt;b&gt;%2$s&lt;/b&gt; में तीसरा स्थान आपको VELOCITAS ताज प्रदान करता है।</string>
+
+    <string name="corona_celeris_msg_1">असाधारण गति, &lt;b&gt;%1$s&lt;/b&gt;! &lt;b&gt;%2$s&lt;/b&gt; में दूसरा स्थान आपको CELERIS से सम्मानित करता है।</string>
+    <string name="corona_celeris_msg_2">&lt;b&gt;%1$s&lt;/b&gt;, &lt;b&gt;%2$s&lt;/b&gt; में आपकी गति सराहनीय है। CELERIS ताज आपके अपने गुणों से आपका है!</string>
+    <string name="corona_celeris_msg_3">गति में रजत! &lt;b&gt;%1$s&lt;/b&gt; ने &lt;b&gt;%2$s&lt;/b&gt; में दूसरा स्थान हासिल किया है, CELERIS ताज जीता है।</string>
+    <string name="corona_celeris_msg_4">&lt;b&gt;%2$s&lt;/b&gt; में अविश्वसनीय समय, &lt;b&gt;%1$s&lt;/b&gt;! आपका दूसरा स्थान आपको CELERIS ताज का हकदार बनाता है।</string>
+
+    <string name="corona_volucer_msg_1">गति का चैंपियन! &lt;b&gt;%1$s&lt;/b&gt; &lt;b&gt;%2$s&lt;/b&gt; पर पहले स्थान के साथ हावी है। VOLUCER ताज पर विजय प्राप्त!</string>
+    <string name="corona_volucer_msg_2">&lt;b&gt;%1$s&lt;/b&gt;, आप &lt;b&gt;%2$s&lt;/b&gt; में शुद्ध गति हैं। पहला स्थान आपको प्रतिष्ठित VOLUCER ताज प्रदान करता है।</string>
+    <string name="corona_volucer_msg_3">&lt;b&gt;%1$s&lt;/b&gt; के लिए गति में स्वर्ण! &lt;b&gt;%2$s&lt;/b&gt; में पूर्ण प्रभुत्व आपको VOLUCER से सम्मानित करता है।</string>
+    <string name="corona_volucer_msg_4">गति की किंवदंती! &lt;b&gt;%1$s&lt;/b&gt; &lt;b&gt;%2$s&lt;/b&gt; में पहले स्थान पर विजय प्राप्त करता है और VOLUCER ताज के साथ उठता है।</string>
+
+    <string name="msg_top10_excelsitur_1">%1$s, आप हमारे मानसिक चैंपियन हैं। अलंकरण &lt;b&gt;%2$s&lt;/b&gt; &lt;b&gt;1ला स्थान&lt;/b&gt; जीतने पर आपका है। प्रभावशाली उपलब्धि!</string>
+    <string name="msg_top10_excelsitur_2">वाहवाही, %1$s! &lt;b&gt;1ला स्थान&lt;/b&gt; आपको अलंकरण &lt;b&gt;%2$s&lt;/b&gt; से सम्मानित करता है। आपकी बुद्धिमत्ता की कोई सीमा नहीं है!</string>
+    <string name="msg_top10_excelsitur_3">बधाई हो, %1$s! आपने &lt;b&gt;1ला स्थान&lt;/b&gt; और उसके साथ, प्रतिष्ठित &lt;b&gt;%2$s&lt;/b&gt; हासिल किया है। शासन करते रहो!</string>
+
+    <string name="msg_top10_summum_1">%1$s, आप शिखर से एक कदम दूर थे। &lt;b&gt;दूसरा स्थान&lt;/b&gt; आपको अलंकरण &lt;b&gt;%2$s&lt;/b&gt; से अलग करता है। रुको मत!</string>
+    <string name="msg_top10_summum_2">उत्कृष्ट, %1$s! विश्व में &lt;b&gt;दूसरा स्थान&lt;/b&gt; आपका है, साथ में अलंकरण &lt;b&gt;%2$s&lt;/b&gt; भी है। खुद को बेहतर बनाते रहो!</string>
+    <string name="msg_top10_summum_3">कुल गर्व, %1$s: आपने अपने &lt;b&gt;दूसरे स्थान&lt;/b&gt; के लिए अलंकरण &lt;b&gt;%2$s&lt;/b&gt; प्राप्त किया है। एक शानदार उपलब्धि!</string>
+
+    <string name="msg_top10_magnanimous_1">%1$s, आपकी प्रतिभा आपको वैश्विक &lt;b&gt;तीसरे स्थान&lt;/b&gt; पर ले गई है। अलंकरण &lt;b&gt;%2$s&lt;/b&gt; आपकी निपुणता का प्रमाण है।</string>
+    <string name="msg_top10_magnanimous_2">विशाल, %1$s! &lt;b&gt;%2$s&lt;/b&gt; आपके &lt;b&gt;तीसरे स्थान&lt;/b&gt; के कारण आपके लिए चमकता है। आप सभी के लिए एक उदाहरण हैं!</string>
+    <string name="msg_top10_magnanimous_3">%1$s, आपकी प्रतिभा किसी का ध्यान नहीं खींचती: &lt;b&gt;तीसरा स्थान&lt;/b&gt; और अलंकरण &lt;b&gt;%2$s&lt;/b&gt; अब आपके हैं।</string>
+
+    <string name="msg_top10_venerabilis_1">%1$s, सराहनीय &lt;b&gt;%2$s&lt;/b&gt; वैश्विक &lt;b&gt;चौथे स्थान&lt;/b&gt; पर आपके आगमन को स्वीकार करता है। प्रेरित करते रहो!</string>
+    <string name="msg_top10_venerabilis_2">शक्ति और दृढ़ता, %1$s! &lt;b&gt;चौथा स्थान&lt;/b&gt; आपका है और आप इसे अलंकरण &lt;b&gt;%2$s&lt;/b&gt; के साथ पूरा करते हैं।</string>
+    <string name="msg_top10_venerabilis_3">%1$s, &lt;b&gt;चौथे स्थान&lt;/b&gt; पर पहुंचना और अलंकरण &lt;b&gt;%2$s&lt;/b&gt; प्राप्त करना आपकी महान क्षमता का प्रमाण है।</string>
+
+    <string name="msg_top10_gloriosus_1">उत्सव, %1$s! आपने वैश्विक रैंकिंग में अपने &lt;b&gt;5वें स्थान&lt;/b&gt; के लिए अलंकरण &lt;b&gt;%2$s&lt;/b&gt; जीता है।</string>
+    <string name="msg_top10_gloriosus_2">%1$s, आपका प्रयास आपको &lt;b&gt;5वें स्थान&lt;/b&gt; पर रखता है और आपको अलंकरण &lt;b&gt;%2$s&lt;/b&gt; प्रदान करता है। चमकते रहो!</string>
+    <string name="msg_top10_gloriosus_3">%1$s, &lt;b&gt;5वां स्थान&lt;/b&gt; आपका है और अलंकरण &lt;b&gt;%2$s&lt;/b&gt; आपके समर्पण और प्रतिबद्धता को पहचानता है।</string>
+
+    <string name="msg_top10_illustris_1">%1$s, शानदार अलंकरण &lt;b&gt;%2$s&lt;/b&gt; &lt;b&gt;6वें स्थान&lt;/b&gt; पर पहुंचने के बाद आपका है। क्या प्रतिभा है!</string>
+    <string name="msg_top10_illustris_2">अविश्वसनीय, %1$s! आपने &lt;b&gt;6वां स्थान&lt;/b&gt; हासिल किया है और शानदार &lt;b&gt;%2$s&lt;/b&gt; प्राप्त किया है। और के लिए जाओ!</string>
+    <string name="msg_top10_illustris_3">%1$s, आपका नाम &lt;b&gt;6वें स्थान&lt;/b&gt; पर चमकता है और अलंकरण &lt;b&gt;%2$s&lt;/b&gt; इसकी पुष्टि करता है।</string>
+
+    <string name="msg_top10_praestans_1">%1$s, आपकी प्रतिष्ठा बढ़ती है: &lt;b&gt;7वां स्थान&lt;/b&gt; और अलंकरण &lt;b&gt;%2$s&lt;/b&gt; अब आपके इतिहास का हिस्सा हैं।</string>
+    <string name="msg_top10_praestans_2">बहुत बढ़िया काम, %1$s! &lt;b&gt;%2$s&lt;/b&gt; वैश्विक &lt;b&gt;7वें स्थान&lt;/b&gt; पर पहुंचने के लिए आपका इनाम है।</string>
+    <string name="msg_top10_praestans_3">%1$s, आप हजारों में से एक हैं: &lt;b&gt;7वां स्थान&lt;/b&gt; आपको अलंकरण &lt;b&gt;%2$s&lt;/b&gt; प्रदान करता है।</string>
+
+    <string name="msg_top10_insignis_1">%1$s, आपका नाम वैश्विक &lt;b&gt;8वें स्थान&lt;/b&gt; पर है। आपने प्रतिष्ठित &lt;b&gt;%2$s&lt;/b&gt; जीता है।</string>
+    <string name="msg_top10_insignis_2">कितना गर्व है, %1$s! &lt;b&gt;8वां स्थान&lt;/b&gt; आपका है और इसके साथ अलंकरण &lt;b&gt;%2$s&lt;/b&gt; भी है। बढ़ते रहो!</string>
+    <string name="msg_top10_insignis_3">%1$s, आपकी क्षमता आपको &lt;b&gt;8वें स्थान&lt;/b&gt; पर रखती है, अलंकरण &lt;b&gt;%2$s&lt;/b&gt; प्राप्त करती है।</string>
+
+    <string name="msg_top10_virtuosus_1">%1$s, आपके प्रयास को पुरस्कृत किया गया है: &lt;b&gt;9वें स्थान&lt;/b&gt; पर पहुंचने के बाद अलंकरण &lt;b&gt;%2$s&lt;/b&gt; आपका है।</string>
+    <string name="msg_top10_virtuosus_2">इसे बनाए रखें, %1$s! &lt;b&gt;%2$s&lt;/b&gt; आपके महान &lt;b&gt;9वें स्थान&lt;/b&gt; के कारण आपके पास आता है।</string>
+    <string name="msg_top10_virtuosus_3">%1$s, वैश्विक &lt;b&gt;9वें स्थान&lt;/b&gt; पर पहुंचना आपको एक सच्चा &lt;b&gt;%2$s&lt;/b&gt; बनाता है।</string>
+
+    <string name="msg_top10_honorabilis_1">%1$s, आपने कर दिखाया! वैश्विक &lt;b&gt;10वां स्थान&lt;/b&gt; आपको अलंकरण &lt;b&gt;%2$s&lt;/b&gt; प्रदान करता है। इस सम्मान का आनंद लें!</string>
+    <string name="msg_top10_honorabilis_2">%1$s, आपका नाम महान लोगों में दिखाई देता है: &lt;b&gt;%2$s&lt;/b&gt; और &lt;b&gt;10वां स्थान&lt;/b&gt; अब आपका है।</string>
+    <string name="msg_top10_honorabilis_3">आप सभी को प्रेरित करते हैं, %1$s! अलंकरण &lt;b&gt;%2$s&lt;/b&gt; आपके &lt;b&gt;10वें स्थान&lt;/b&gt; को रैंकिंग में पहचानता है।</string>
+
+    <string name="medalla_titulo_initium">🏅 INITIUM पदक जीता! 🏅</string>
+    <string name="medalla_titulo_fidelis">🎖️ FIDELIS उपलब्धि अनलॉक! 🎖️</string>
+    <string name="medalla_titulo_virtus">⭐ VIRTUS सम्मान प्राप्त! ⭐</string>
+    <string name="medalla_titulo_audax">🔥 AUDAX भेद जीता! 🔥</string>
+    <string name="medalla_titulo_fortis">💪 FORTIS पदक प्राप्त! 💪</string>
+    <string name="medalla_titulo_tenax">🎯 TENAX मान्यता आपकी! 🎯</string>
+    <string name="medalla_titulo_intrepidus">⚡ INTREPIDUS महिमा प्राप्त! ⚡</string>
+    <string name="medalla_titulo_sapiens">🧠 SAPIENS ज्ञान महारत हासिल! 🧠</string>
+    <string name="medalla_titulo_exemplar">👑 EXEMPLAR शीर्षक ताज पहनाया! 👑</string>
+    <string name="medalla_titulo_gloriam">🌟 GLORIAM सर्वोच्च प्राप्त! 🌟</string>
+    <string name="medalla_titulo_magnus">🏆 MAGNUS महानता जीती! 🏆</string>
+    <string name="medalla_titulo_immortalis">✨ IMMORTALIS किंवदंती गढ़ी! ✨</string>
+
+    <string name="medalla_desc_initium">आपने 100 अनोखे गेम पूरे कर लिए हैं! आपके समर्पण ने आपको INITIUM पदक दिलाया है, जो आपके संग्रह की शुरुआत है।</string>
+    <string name="medalla_desc_fidelis">200 गेम पूरे हुए! आपकी निरंतरता सराहनीय है, इस प्रकार FIDELIS पदक प्राप्त करना।</string>
+    <string name="medalla_desc_virtus">VIRTUS पदक 300 विभिन्न चुनौतियों को पार करने के लिए आपका है। आपकी मानसिक बहादुरी हर खेल के साथ प्रदर्शित होती है!</string>
+    <string name="medalla_desc_audax">400 गेम महारत हासिल! आपके दुस्साहस ने आपको प्रतिष्ठित AUDAX पदक जीतने के लिए प्रेरित किया है।</string>
+    <string name="medalla_desc_fortis">आपने 500 विभिन्न खेलों में मानसिक शक्ति का प्रदर्शन किया है, असाधारण FORTIS पदक के हकदार हैं।</string>
+    <string name="medalla_desc_tenax">दृढ़ता का पुरस्कार है! 600 पूरे किए गए गेम आपको TENAX पदक से सम्मानित करते हैं।</string>
+    <string name="medalla_desc_intrepidus">आपकी निडर आत्मा ने 700 चुनौतियों को पार कर लिया है, जिससे आपको सम्मानित INTREPIDUS पदक मिला है।</string>
+    <string name="medalla_desc_sapiens">ज्ञान अभ्यास से प्राप्त होता है: 800 पूरे किए गए गेम आपको SAPIENS पदक का हकदार बनाते हैं।</string>
+    <string name="medalla_desc_exemplar">आप दृढ़ संकल्प का एक उदाहरण हैं! 900 पार किए गए गेम ने आपको अनुकरणीय EXEMPLAR पदक प्रदान किया है।</string>
+    <string name="medalla_desc_gloriam">आपकी दृढ़ता को महिमा! आपने 1000 चुनौतियों पर विजय प्राप्त की है, शानदार GLORIAM पदक तक पहुंचे हैं।</string>
+    <string name="medalla_desc_magnus">शानदार उपलब्धि! 1100 विभिन्न गेम पूरा करने पर, आपने महान MAGNUS पदक प्राप्त किया है।</string>
+    <string name="medalla_desc_immortalis">अमर करतब! आपने 1200 अनोखी चुनौतियों को पूरा किया है, खुद को महान IMMORTALIS पदक के साथ प्रतिष्ठित किया है।</string>
+
+    <string name="medalla_motiv_initium">⭐ अगला लक्ष्य: FIDELIS - 100 नए स्तर पूरे करें और यह पदक आपका होगा</string>
+    <string name="medalla_motiv_fidelis">🎯 अगली चुनौती: VIRTUS - 100 और गेम जोड़ें और आप अपनी अगली उपलब्धि को अनलॉक कर देंगे</string>
+    <string name="medalla_motiv_virtus">🚀 आपकी अगली विजय: AUDAX - 100 अतिरिक्त स्तर आपका इंतजार कर रहे हैं</string>
+    <string name="medalla_motiv_audax">💫 महानता की ओर: FORTIS - 100 नए खेलों के साथ जारी रखें</string>
+    <string name="medalla_motiv_fortis">⚡ की ओर बढ़ें: TENAX - 100 और चुनौतियां और महिमा आपकी होगी</string>
+    <string name="medalla_motiv_tenax">🔥 क्षितिज पर: INTREPIDUS - इसे प्राप्त करने के लिए 100 और गेम जारी रखें</string>
+    <string name="medalla_motiv_intrepidus">🧠 ज्ञान की राह: SAPIENS - 100 नए स्तर आपको इसके करीब लाते हैं</string>
+    <string name="medalla_motiv_sapiens">👑 आपका भाग्य: EXEMPLAR - 100 अतिरिक्त गेम पूरे करें और एक उदाहरण बनें</string>
+    <string name="medalla_motiv_exemplar">🌟 महिमा आपका इंतजार कर रही है: GLORIAM - शिखर की ओर केवल 100 और स्तर</string>
+    <string name="medalla_motiv_gloriam">🏆 अगली महानता: MAGNUS - भव्यता के लिए 100 और चुनौतियां</string>
+    <string name="medalla_motiv_magnus">✨ अमरता की ओर: IMMORTALIS - किंवदंती के लिए 100 अंतिम गेम</string>
+    <string name="medalla_motiv_immortalis">🏆 पदक संग्रह पूरा! आप एक SumaMente किंवदंती हैं!</string>
+
+    <plurals name="medalla_contador_progreso">
+        <item quantity="one">📈 आपके पास %1$d पदक है, %2$d शेष हैं</item>
+        <item quantity="other">📈 आपके पास %1$d पदक हैं, %2$d शेष हैं</item>
+    </plurals>
+
+    <string name="medal_circle_background">पदक के लिए पृष्ठभूमि चक्र</string>
+    <string name="medal_image">प्राप्त पदक की छवि</string>
+
+
+    <string name="trofeo_titulo_initia">🏆 INITIA ट्रॉफी जीती! 🏆</string>
+    <string name="trofeo_titulo_constantia">🏆 CONSTANTIA ट्रॉफी प्राप्त! 🏆</string>
+    <string name="trofeo_titulo_confectus">🏆 CONFECTUS ट्रॉफी जीती! 🏆</string>
+    <string name="trofeo_titulo_via">🏆 VIA ट्रॉफी अनलॉक! 🏆</string>
+    <string name="trofeo_titulo_altus">🏆 ALTUS ट्रॉफी प्राप्त! 🏆</string>
+    <string name="trofeo_titulo_perseverantia">🏆 PERSEVERANTIA ट्रॉफी हासिल! 🏆</string>
+    <string name="trofeo_titulo_gradus">🏆 GRADUS ट्रॉफी जीती! 🏆</string>
+    <string name="trofeo_titulo_fortitudo">🏆 FORTITUDO ट्रॉफी महारत हासिल! 🏆</string>
+    <string name="trofeo_titulo_metam">🏆 METAM ट्रॉफी ताज पहनाया! 🏆</string>
+    <string name="trofeo_titulo_fundamentum">🏆 FUNDAMENTUM ट्रॉफी स्थापित! 🏆</string>
+    <string name="trofeo_titulo_praemium">🏆 PRAEMIUM ट्रॉफी पुरस्कृत! 🏆</string>
+    <string name="trofeo_titulo_glorificus">🏆 GLORIFICUS ट्रॉफी महिमामंडित! 🏆</string>
+    <string name="trofeo_titulo_scala">🏆 SCALA ट्रॉफी चढ़ाई! 🏆</string>
+    <string name="trofeo_titulo_tenacitas">🏆 TENACITAS ट्रॉफी टेम्पर्ड! 🏆</string>
+    <string name="trofeo_titulo_perfectus">🏆 PERFECTUS ट्रॉफी सिद्ध! 🏆</string>
+    <string name="trofeo_titulo_origo">🏆 ORIGO ट्रॉफी उत्पन्न! 🏆</string>
+    <string name="trofeo_titulo_proficium">🏆 PROFICIUM ट्रॉफी प्रगति! 🏆</string>
+    <string name="trofeo_titulo_exemplaritas">🏆 EXEMPLARITAS ट्रॉफी अनुकरणीय! 🏆</string>
+    <string name="trofeo_titulo_ascensus">🏆 ASCENSUS ट्रॉफी चढ़ाई! 🏆</string>
+    <string name="trofeo_titulo_magnificus">🏆 MAGNIFICUS ट्रॉफी शानदार! 🏆</string>
+    <string name="trofeo_titulo_potens">🏆 POTENS ट्रॉफी शक्तिशाली! 🏆</string>
+
+    <plurals name="trofeo_contador_progreso">
+        <item quantity="one">🏆 आपके पास %1$d ट्रॉफी है, %2$d शेष हैं</item>
+        <item quantity="other">🏆 आपके पास %1$d ट्रॉफी हैं, %2$d शेष हैं</item>
+    </plurals>
+
+    <string name="trofeo_motiv_1">🏆 यह आपकी पहली ट्रॉफी है! आपको जीतने के लिए 20 और चाहिए</string>
+    <string name="trofeo_motiv_21">🏆 ट्रॉफी संग्रह पूरा! आप एक SumaMente मास्टर हैं!</string>
+
+    <string name="doble_celebracion_titulo">🎊 दोहरा उत्सव! 🎊</string>
+    <string name="doble_celebracion_mensaje">आपने एक नया पदक और एक नई ट्रॉफी प्राप्त की है! हम आपके असाधारण गुणों का जश्न मनाते हैं</string>
+
+    <string name="doble_celebracion_apex_titulo">🏆✨ दोहरा सर्वोच्च उत्सव! ✨🏆</string>
+    <string name="doble_celebracion_apex_mensaje">आपने वह आखिरी ट्रॉफी प्राप्त की है जो आपको चाहिए थी और शानदार APEX SUPREMUS अलंकरण। शिखर आपका है! 👑</string>
+
+    <string name="apex_titulo">🌟 APEX SUPREMUS प्राप्त! 🌟</string>
+    <string name="apex_descripcion">1470 स्तर पूरे हुए, आप APEX SUPREMUS के योग्य हैं! 🏆✨ आपके समर्पण और मानसिक निपुणता ने आपको SumaMente के पूर्ण शिखर पर पहुंचा दिया है। 👑</string>
+
+    <string name="ranking_integral_s">इंटीग्रल रैंकिंग S⁺:</string>
+
+    <plurals name="ranking_integral_progreso_1">
+        <item quantity="one">आप सही रास्ते पर हैं, %1$s! आप पहले से ही SumaMente की %2$d रैंकिंग में हैं। विशेष इंटीग्रल रैंकिंग तक पहुंचने के लिए आपको केवल %3$d और चाहिए।</item>
+        <item quantity="other">आप सही रास्ते पर हैं, %1$s! आप पहले से ही SumaMente की %2$d रैंकिंग में हैं। विशेष इंटीग्रल रैंकिंग तक पहुंचने के लिए आपको केवल %3$d और चाहिए।</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_2">
+        <item quantity="one">%1$s, आपकी प्रगति उल्लेखनीय है: आप %2$d रैंकिंग में मौजूद हैं। अभिजात वर्ग का हिस्सा बनने के लिए शेष %3$d को जीतें!</item>
+        <item quantity="other">%1$s, आपकी प्रगति उल्लेखनीय है: आप %2$d रैंकिंग में मौजूद हैं। अभिजात वर्ग का हिस्सा बनने के लिए शेष %3$d को जीतें!</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_3">
+        <item quantity="one">बधाई हो %1$s! आप %2$d रैंकिंग में प्रवेश करने में कामयाब रहे। इंटीग्रल चुनौती तक पहुंचने के लिए आपको %3$d और चाहिए।</item>
+        <item quantity="other">बधाई हो %1$s! आप %2$d रैंकिंग में प्रवेश करने में कामयाब रहे। इंटीग्रल चुनौती तक पहुंचने के लिए आपको %3$d और चाहिए।</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_4">
+        <item quantity="one">%1$s, आपका नाम पहले से ही %2$d रैंकिंग में दिखाई देता है। केवल %3$d और और आप इंटीग्रल रैंकिंग को अनलॉक कर देंगे।</item>
+        <item quantity="other">%1$s, आपका नाम पहले से ही %2$d रैंकिंग में दिखाई देता है। केवल %3$d और और आप इंटीग्रल रैंकिंग को अनलॉक कर देंगे।</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_5">
+        <item quantity="one">इसे बनाए रखें, %1$s! आप 9 रैंकिंग में से %2$d में हैं। थोड़ा और आगे बढ़ें और आपके पास केवल %3$d शेष होंगे।</item>
+        <item quantity="other">इसे बनाए रखें, %1$s! आप 9 रैंकिंग में से %2$d में हैं। थोड़ा और आगे बढ़ें और आपके पास केवल %3$d शेष होंगे।</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_6">
+        <item quantity="one">%1$s, प्रत्येक जोड़ी गई रैंकिंग आपको लक्ष्य के करीब लाती है। अब आप %2$d रैंकिंग में हैं और आपके पास %3$d शेष हैं। रुको मत!</item>
+        <item quantity="other">%1$s, प्रत्येक जोड़ी गई रैंकिंग आपको लक्ष्य के करीब लाती है। अब आप %2$d रैंकिंग में हैं और आपके पास %3$d शेष हैं। रुको मत!</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_7">
+        <item quantity="one">चलो %1$s! आपकी प्रगति वास्तविक है: आप पहले से ही %2$d रैंकिंग में हैं और आपके पास जीतने के लिए %3$d शेष हैं।</item>
+        <item quantity="other">चलो %1$s! आपकी प्रगति वास्तविक है: आप पहले से ही %2$d रैंकिंग में हैं और आपके पास जीतने के लिए %3$d शेष हैं।</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_8">
+        <item quantity="one">%1$s, इंटीग्रल रैंकिंग का हिस्सा बनना करीब है: %2$d हासिल किया, %3$d हासिल करना है।</item>
+        <item quantity="other">%1$s, इंटीग्रल रैंकिंग का हिस्सा बनना करीब है: %2$d हासिल किए, %3$d हासिल करना है।</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_9">
+        <item quantity="one">आपका नाम %2$d रैंकिंग में सबसे अलग है, %1$s। केवल %3$d और और आप सर्वश्रेष्ठ का हिस्सा होंगे।</item>
+        <item quantity="other">आपका नाम %2$d रैंकिंग में सबसे अलग है, %1$s। केवल %3$d और और आप सर्वश्रेष्ठ का हिस्सा होंगे।</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_10">
+        <item quantity="one">%1$s, एक और उपलब्धि जोड़ें! आप पहले से ही %2$d रैंकिंग में हैं। इंटीग्रल लक्ष्य तक पहुंचने के लिए %3$d शेष हैं।</item>
+        <item quantity="other">%1$s, एक और उपलब्धि जोड़ें! आप पहले से ही %2$d रैंकिंग में हैं। इंटीग्रल लक्ष्य तक पहुंचने के लिए %3$d शेष हैं।</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_11">
+        <item quantity="one">%1$s, आप चुनौतियों पर काबू पा रहे हैं: %2$d रैंकिंग में पहले से ही आपका नाम है। उन %3$d के लिए जाओ जो आपके पास नहीं हैं!</item>
+        <item quantity="other">%1$s, आप चुनौतियों पर काबू पा रहे हैं: %2$d रैंकिंग में पहले से ही आपका नाम है। उन %3$d के लिए जाओ जो आपके पास नहीं हैं!</item>
+    </plurals>
+
+    <plurals name="ranking_integral_progreso_12">
+        <item quantity="one">अविश्वसनीय प्रगति, %1$s! आप %2$d रैंकिंग में दिखाई देते हैं और बड़े लक्ष्य के लिए केवल %3$d शेष हैं।</item>
+        <item quantity="other">अविश्वसनीय प्रगति, %1$s! आप %2$d रैंकिंग में दिखाई देते हैं और बड़े लक्ष्य के लिए केवल %3$d शेष हैं।</item>
+    </plurals>
+
+    <string name="ranking_estado_aparece_1">आप पहले से ही दिखाई देते हैं</string>
+    <string name="ranking_estado_aparece_2">विजय प्राप्त!</string>
+    <string name="ranking_estado_aparece_3">वर्तमान!</string>
+    <string name="ranking_estado_aparece_4">पहुंच गया</string>
+    <string name="ranking_estado_aparece_5">हासिल किया!</string>
+
+    <string name="ranking_estado_no_aparece_1">आप अभी तक दिखाई नहीं देते हैं</string>
+    <string name="ranking_estado_no_aparece_2">लंबित</string>
+    <string name="ranking_estado_no_aparece_3">पहुंचने के लिए</string>
+    <string name="ranking_estado_no_aparece_4">अभी तक नहीं</string>
+    <string name="ranking_estado_no_aparece_5">पंजीकृत नहीं है</string>
+
+    <string name="ranking_global_name">1.- वैश्विक रैंकिंग:</string>
+    <string name="ranking_vel_numeros">2.- गति रैंकिंग NUMEROS⁺:</string>
+    <string name="ranking_vel_deci">3.- गति रैंकिंग DECI⁺:</string>
+    <string name="ranking_vel_alfanumeros">4.- गति रैंकिंग ALFANÚMEROS⁺:</string>
+    <string name="ranking_vel_romas">5.- गति रैंकिंग ROMAS⁺:</string>
+    <string name="ranking_vel_sumaresta">6.- गति रैंकिंग SUMARESTA⁺:</string>
+    <string name="ranking_vel_mas">7.- गति रैंकिंग MÁS⁺:</string>
+    <string name="ranking_vel_genios">8.- गति रैंकिंग Genio⁺:</string>
+    <string name="ranking_iq">9.- IQ⁺ सूचकांक रैंकिंग:</string>
+
+    <string name="clasificacion_integral_s">इंटीग्रल वर्गीकरण S⁺</string>
+
+    <string name="ranking_integral_combined_message">%1$s\n\n%2$s</string>
+
+    <string name="ranking_progress_indicator">%1$d/9 रैंकिंग</string>
+
+    <string-array name="ranking_integral_info_messages">
+        <item>नमस्ते, %1$s! इंटीग्रल रैंकिंग S⁺ में प्रदर्शित होने के लिए आपको SumaMente की 9 रैंकिंग में मौजूद होना होगा।</item>
+        <item>%1$s, इंटीग्रल रैंकिंग S⁺ उन लोगों के लिए अनन्य है जो ऐप की सभी रैंकिंग में दिखाई देते हैं।</item>
+        <item>%1$s, आप अभी भी इंटीग्रल रैंकिंग के लिए आवश्यकताओं को पूरा नहीं करते हैं। आपको 9 रैंकिंग में दिखाई देना होगा।</item>
+        <item>चलो, %1$s! जब आप सभी रैंकिंग में होंगे तो इंटीग्रल रैंकिंग S⁺ आपका इंतजार करेगी।</item>
+        <item>%1$s, जब आप SumaMente की 9 रैंकिंग में भाग लेंगे तो आपका अभिन्न वर्गीकरण दिखाई देगा।</item>
+        <item>चुनौती के लिए तैयार हैं, %1$s? सभी रैंकिंग तक पहुंचें और इंटीग्रल रैंकिंग S⁺ को अनलॉक करें।</item>
+    </string-array>
+
+    <string-array name="ranking_integral_motiv_messages">
+        <item>आप यह कर सकते हैं! प्रत्येक अनलॉक की गई रैंकिंग आपको अभिजात वर्ग के करीब लाती है।</item>
+        <item>विशिष्टता की अपनी कीमत होती है। साबित करें कि आप सर्वश्रेष्ठ में से एक होने के लायक हैं!</item>
+        <item>रुको मत! इंटीग्रल रैंकिंग S⁺ सबसे समर्पित के लिए आरक्षित है।</item>
+        <item>हर गेम मायने रखता है। पूर्ण शिखर की ओर बढ़ते रहें!</item>
+        <item>लक्ष्य स्पष्ट है! सभी रैंकिंग पर हावी हों और SumaMente के अभिजात वर्ग में शामिल हों।</item>
+        <item>दृढ़ता महत्वपूर्ण है! हर नई रैंकिंग आपको अभिन्न महिमा के करीब लाती है।</item>
+    </string-array>
+
+
+    <string-array name="ranking_estado_aparece_messages">
+        <item>@string/ranking_estado_aparece_1</item>
+        <item>@string/ranking_estado_aparece_2</item>
+        <item>@string/ranking_estado_aparece_3</item>
+        <item>@string/ranking_estado_aparece_4</item>
+        <item>@string/ranking_estado_aparece_5</item>
+    </string-array>
+
+
+    <string-array name="ranking_estado_no_aparece_messages">
+        <item>@string/ranking_estado_no_aparece_1</item>
+        <item>@string/ranking_estado_no_aparece_2</item>
+        <item>@string/ranking_estado_no_aparece_3</item>
+        <item>@string/ranking_estado_no_aparece_4</item>
+        <item>@string/ranking_estado_no_aparece_5</item>
+    </string-array>
+
+    <string name="integral_ranking_scroll_description">अभिन्न रैंकिंग की स्क्रॉल करने योग्य सामग्री</string>
+
+    <string name="condecoracion_discipulus_optimus_7">DISCIPULUS OPTIMUS</string>
+    <string name="condecoracion_intellectus_primus_6">INTELLECTUS PRIMUS</string>
+    <string name="condecoracion_consilium_magnus_5">CONSILIUM MAGNUS</string>
+    <string name="condecoracion_doctrinae_princeps_4">DOCTRINAE PRINCEPS</string>
+    <string name="condecoracion_luminis_rex_3">LUMINIS REX</string>
+    <string name="condecoracion_mentis_aurea_2">MENTIS AUREA</string>
+    <string name="condecoracion_sapiens_supremus_1">SAPIENS SUPREMUS</string>
+
+
+    <string name="significado_discipulus_optimus_7">सबसे अच्छा छात्र</string>
+    <string name="significado_intellectus_primus_6">बुद्धि में प्रथम</string>
+    <string name="significado_consilium_magnus_5">महान ज्ञान</string>
+    <string name="significado_doctrinae_princeps_4">ज्ञान का राजकुमार</string>
+    <string name="significado_luminis_rex_3">प्रकाश का राजा</string>
+    <string name="significado_mentis_aurea_2">सुनहरा दिमाग</string>
+    <string name="significado_sapiens_supremus_1">सबसे बुद्धिमान</string>
+
+    <string name="los_7_mejores">IQ⁺ रैंकिंग के शीर्ष 7</string>
+
+    <string name="condecoracion_sapiens_supremus">SAPIENS SUPREMUS</string>
+    <string name="condecoracion_mentis_aurea">MENTIS AUREA</string>
+    <string name="condecoracion_luminis_rex">LUMINIS REX</string>
+    <string name="condecoracion_doctrinae_princeps">DOCTRINAE PRINCEPS</string>
+    <string name="condecoracion_consilium_magnus">CONSILIUM MAGNUS</string>
+    <string name="condecoracion_intellectus_primus">INTELLECTUS PRIMUS</string>
+    <string name="condecoracion_discipulus_optimus">DISCIPULUS OPTIMUS</string>
+
+    <string name="logro_iq7_sapiens_supremus">
+आपने बुद्धि के शिखर को प्राप्त कर लिया है! IQ⁺ रैंकिंग में प्रथम स्थान और अब सर्वोच्च SAPIENS SUPREMUS अलंकरण के धारक।
+</string>
+
+    <string name="logro_iq7_mentis_aurea">
+सुनहरा दिमाग! आपकी तीक्ष्णता ने आपको IQ⁺ रैंकिंग में दूसरे स्थान पर पहुंचा दिया है, MENTIS AUREA अलंकरण पर विजय प्राप्त की है।
+</string>
+
+    <string name="logro_iq7_luminis_rex">
+अकादमिक प्रकाश का राजा! IQ⁺ रैंकिंग में तीसरा स्थान आपका है, LUMINIS REX अलंकरण के साथ चमक रहा है।
+</string>
+
+    <string name="logro_iq7_doctrinae_princeps">
+ज्ञान का राजकुमार! आपने IQ⁺ रैंकिंग में चौथा स्थान हासिल किया है और DOCTRINAE PRINCEPS अलंकरण आपका है।
+</string>
+
+    <string name="logro_iq7_consilium_magnus">
+महान सलाहकार! आपका ज्ञान आपको IQ⁺ रैंकिंग में पांचवें स्थान पर रखता है और आपको CONSILIUM MAGNUS अलंकरण प्रदान करता है।
+</string>
+
+    <string name="logro_iq7_intellectus_primus">
+प्रथम बुद्धि! IQ⁺ रैंकिंग में छठा, आप INTELLECTUS PRIMUS अलंकरण के साथ सबसे अलग हैं।
+</string>
+
+    <string name="logro_iq7_discipulus_optimus">
+इष्टतम शिष्य! आपके प्रयास और दृढ़ता ने आपको IQ⁺ रैंकिंग में सातवें स्थान पर पहुंचा दिया है, DISCIPULUS OPTIMUS अलंकरण प्राप्त किया है।
+</string>
+
+    <string name="condecoracion_imperium_supremus">IMPERIUM SUPREMUS</string>
+    <string name="condecoracion_magnus_honor">MAGNUS HONOR</string>
+    <string name="condecoracion_virtus_totalis">VIRTUS TOTALIS</string>
+    <string name="condecoracion_excellentia_singulari">EXCELLENTIA SINGULARI</string>
+    <string name="condecoracion_gloria_integralis">GLORIA INTEGRALIS</string>
+
+    <string name="significado_imperium_supremus">सर्वोच्च शक्ति। क्या आप इसे जीतने में सक्षम होंगे?</string>
+    <string name="significado_magnus_honor">महान सम्मान। साबित करें कि आप योग्य हैं, इसे प्राप्त करें!</string>
+    <string name="significado_virtus_totalis">कुल गुण। केवल उन लोगों के लिए जो अपना सब कुछ देते हैं।</string>
+    <string name="significado_excellentia_singulari">अद्वितीय उत्कृष्टता। उच्चतम के लिए आकांक्षा करें, प्रयास करें।</string>
+    <string name="significado_gloria_integralis">अभिन्न महिमा। आपका नाम यहां चमकने के योग्य है।</string>
+
+    <string name="logro_imperium_supremus_1">%1$s, आपकी मानसिक सर्वोच्चता पूर्ण है! आपने IMPERIUM SUPREMUS प्राप्त किया है।</string>
+    <string name="logro_imperium_supremus_2">कोई भी आपसे तुलना नहीं कर सकता, %1$s। कुल प्रभुत्व IMPERIUM SUPREMUS के साथ आपका है।</string>
+
+    <string name="logro_magnus_honor_1">अधिकतम सम्मान प्राप्त, %1$s! MAGNUS HONOR आपकी महानता को पहचानता है।</string>
+    <string name="logro_magnus_honor_2">उच्चतम मान्यता आपकी है, %1$s। MAGNUS HONOR आपके प्रयास को ताज पहनाता है।</string>
+
+    <string name="logro_virtus_totalis_1">कुल गुण प्राप्त, %1$s! VIRTUS TOTALIS आपकी मानसिक उत्कृष्टता का जश्न मनाता है।</string>
+    <string name="logro_virtus_totalis_2">%1$s, आपके अनुशासन और शानदार दिमाग ने आपको VIRTUS TOTALIS दिया है।</string>
+
+    <string name="logro_excellentia_singulari_1">एकवचन उत्कृष्टता, %1$s! केवल सर्वश्रेष्ठ ही EXCELLENTIA SINGULARI प्राप्त करते हैं।</string>
+    <string name="logro_excellentia_singulari_2">%1$s, आपकी उत्कृष्टता अद्वितीय है। आपने EXCELLENTIA SINGULARI जीता है।</string>
+
+    <string name="logro_gloria_integralis_1">आपके लिए अभिन्न महिमा, %1$s! अधिकतम मान्यता आपकी है।</string>
+    <string name="logro_gloria_integralis_2">SumaMente आपकी सराहना करता है, %1$s: आपने GLORIA INTEGRALIS हासिल किया है।</string>
+
+    <string name="top5_ranking_integral">इंटीग्रल रैंकिंग के शीर्ष 5</string>
+
+
+    <string name="choose_language">अपनी भाषा चुनें</string>
+
+    <string name="language_selection_required_message">जारी रखने के लिए, कृपया सूची से अपनी पसंदीदा भाषा चुनें।</string>
+
+    <string name="confirm_change_language_message">क्या आप वाकई भाषा बदलना चाहते हैं?</string>
+
+    <string name="language">भाषा</string>
+    <string name="language_subtitle">एप्लिकेशन की भाषा बदलें</string>
+
+    <string name="integral_score_label">%1$.2f अंक</string>
+
+    <string name="my_progress">मेरी प्रगति</string>
+    <string name="graph_icon">ग्राफ आइकन</string>
+
+    <string name="levels_completed">पूर्ण किए गए स्तर:</string>
+    <string name="progress">प्रगति:</string>
+    <string name="percentage_format">%1$s%%</string>
+    <string name="default_percentage">0,00%</string>
+
+    <string name="cd_my_progress">समग्र प्रगति देखें</string>
+    <string name="cd_numeros_plus">Números Plus खेलें</string>
+    <string name="cd_deci_plus">Deci Plus खेलें</string>
+    <string name="cd_romas">Romas खेलें</string>
+    <string name="cd_alfa_numeros">AlfaNumeros खेलें</string>
+    <string name="cd_sumaresta">SumaResta खेलें</string>
+    <string name="cd_mas_plus">Mas Plus खेलें</string>
+    <string name="cd_genio_plus">Genio Plus खेलें</string>
+
+    <string name="progress_placeholder_total_levels">0/210 – 0,00%</string>
+
+    <string name="progress_placeholder_difficulty">0/70 – 0,00%</string>
+
+
+    <string name="global_progress_format">प्रगति: %1$s%%</string>
+    <string name="game_progress_format">%1$d/%2$d - %3$s%%</string>
+
+    <string name="global_levels_label">स्तर:</string>
+
+    <string name="insignia_supremus_integralis" translatable="false">SUPREMUS INTEGRALIS</string>
+
+    <string name="desc_insignia_supremus_integralis">हम इंटीग्रल रैंकिंग में आपके प्रवेश का जश्न मनाते हैं! SumaMente की 9 रैंकिंग में प्रदर्शित होकर आपने सभी गणितीय विषयों में अपनी पूरी महारत का प्रदर्शन किया है। यह SUPREMUS INTEGRALIS प्रतीक आपके अभिन्न अभिजात वर्ग में प्रवेश का प्रतीक है।</string>
+
+    <string name="share_message">नमस्ते! मैं आपके दिमाग को प्रशिक्षित करने के लिए इस अविश्वसनीय ऐप की सलाह देता हूं: SumaMente।\n\nइसे यहां डाउनलोड करें:\n</string>
+    <string name="share_chooser_title">SumaMente को इसके माध्यम से साझा करें…</string>
+
+    <string name="share_dare_1">SumaMente में यह उपलब्धि कठिन थी, लेकिन इनाम इसके लायक है। मैं आपको इसे बराबर करने की चुनौती देता हूं! 😉</string>
+    <string name="share_challenge_2">SumaMente में चुनौती पार! 🏆 क्या आपको लगता है कि आपका दिमाग बराबर है? इसे साबित करने की हिम्मत करो!</string>
+    <string name="share_question_3">क्या किसी उपलब्धि की भावना से बेहतर कुछ है? यह SumaMente है। इसे आज़माने की हिम्मत करो और मुझे बताओ!</string>
+    <string name="share_community_4">एकाग्रता का नया स्तर अनलॉक! 😎 SumaMente में अगली चुनौती के लिए कौन शामिल है?</string>
+    <string name="share_intensity_5">मेरा दिमाग जल रहा है! 🔥 यह उपलब्धि सबूत है। SumaMente कितना बढ़िया मानसिक व्यायाम है!</string>
+    <string name="share_progress_6">प्रगति ऐसी दिखती है। 💪 यदि आप ऐसी चुनौतियाँ पसंद करते हैं जो आपको सोचने पर मजबूर करती हैं, तो आपको SumaMente आज़माना होगा।</string>
+    <string name="share_emotion_7">मैंने कर दिखाया! 🚀 SumaMente में इसे अनलॉक करना अविश्वसनीय लगता है। यदि आप चुनौतियों को पसंद करते हैं तो पूरी तरह से अनुशंसित!</string>
+
+    <string name="error_share_image">अलंकरण साझा करते समय त्रुटि</string>
+
+
+
+    <string name="account_linked_success">खाता सफलतापूर्वक लिंक हो गया! आपकी प्रगति अब सुरक्षित है।</string>
+
+
+
+    <string name="profile_subtitle_linked">जुड़ा हुआ। अपना खाता प्रबंधित करें।</string>
+    <string name="profile_subtitle_unlinked">अपनी प्रगति को क्लाउड में सहेजें</string>
+
+    <string name="delete_account">खाता हटाएं</string>
+    <string name="delete_account_subtitle">अपने डेटा को स्थायी रूप से हटाएं</string>
+    <string name="delete_account_confirm_title">क्या आप निश्चित हैं?</string>
+    <string name="delete_account_confirm_message">यह कार्रवाई आपके खाते और आपकी सभी प्रगति (अंक, स्तर, पदक) को **स्थायी रूप से** हटा देगी। आप उन्हें पुनर्प्राप्त नहीं कर पाएंगे।</string>
+    <string name="delete_button">हटाएं</string>
+    <string name="cancel_button">रद्द करें</string>
+    <string name="account_deleted_success">आपका खाता हटा दिया गया है।</string>
+
+
+
+    <string name="link_prompt_title_tranquility">चिंता मुक्त खेलें।</string>
+    <string name="link_prompt_body_tranquility">अपने Google खाते को सेकंडों में कनेक्ट करें और हम यह सुनिश्चित करते हैं कि आपका प्रयास हमेशा सुरक्षित रहे।</string>
+    <string name="link_prompt_title_positive">आपका प्रयास सोने के लायक है!</string>
+    <string name="link_prompt_body_positive">आपने बहुत प्रगति की है। अपने खाते को लिंक करके अपनी सभी प्रगति को सुरक्षित करें ताकि कोई भी आपकी जगह न ले सके।</string>
+    <string name="link_prompt_title_minimalist">अपनी प्रगति को हमेशा के लिए सहेजें।</string>
+    <string name="link_prompt_body_minimalist">अपने Google खाते को एक टैप से लिंक करें और अपने डेटा को सुरक्षित रखें।</string>
+    <string name="link_prompt_title_concise">एक टैप में अपना खाता सुरक्षित करें।</string>
+    <string name="link_prompt_body_concise">अपनी प्रगति को Google से लिंक करें और इस विश्वास के साथ खेलें कि आपका डेटा सुरक्षित है।</string>
+
+    <string name="vincular_cuenta">खाता लिंक करने के लिए आइकन</string>
+
+    <string name="link_account_prompt_popup">अपनी प्रगति को सुरक्षित रखें! अपना खाता लिंक करने के लिए यहां टैप करें।</string>
+
+    <string name="dialog_link_title">आपका प्रयास सोने के लायक है!</string>
+    <string name="dialog_link_accept">खाता लिंक करें</string>
+    <string name="dialog_link_not_now">अभी नहीं</string>
+    <string name="dialog_link_remind_later">मुझे बाद में याद दिलाएं</string>
+
+    <string name="toast_button_dismissed">बटन अस्थायी रूप से छिपा हुआ है।</string>
+    <string name="toast_cooldown_long">समझ गया, हम कुछ समय के लिए परेशान नहीं करेंगे।</string>
+    <string name="toast_cooldown_short">हम आपको बाद में याद दिलाएंगे।</string>
+
+</resources>

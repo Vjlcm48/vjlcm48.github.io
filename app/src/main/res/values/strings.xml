@@ -21,10 +21,6 @@
     <string name="content_description_icon">Icono oficial de SumaMente</string>
 
 
-
-
-
-
     <string name="instruction_text">Escribe tu nombre de usuario.\nUtiliza entre 4 y 12 caracteres</string>
     <string name="btn_accept">Aceptar</string>
     <string name="content_description_check_icon">Icono de verificación</string>
@@ -1492,7 +1488,6 @@
     <string name="account_deleted_success">Tu cuenta ha sido eliminada.</string>
 
 
-
     <string name="link_prompt_title_tranquility">Juega sin preocupaciones.</string>
     <string name="link_prompt_body_tranquility">Conecta tu cuenta de Google en segundos y nosotros nos aseguramos de que tu esfuerzo esté siempre a salvo.</string>
     <string name="link_prompt_title_positive">¡Tu esfuerzo vale oro!</string>
@@ -1514,7 +1509,6 @@
     <string name="toast_button_dismissed">Botón oculto temporalmente.</string>
     <string name="toast_cooldown_long">Entendido, no molestaremos por un tiempo.</string>
     <string name="toast_cooldown_short">Te lo recordaremos más adelante.</string>
-
 
 
     </resources>
