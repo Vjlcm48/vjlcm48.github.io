@@ -9,10 +9,9 @@
     <string name="notification_text">Voulez-vous permettre à SumaMente de vous envoyer des notifications ?</string>
     <string name="content_description_bell_icon">Icône de cloche</string>
     <string name="content_description_icon">Icône officielle de SumaMente</string>
-    <string name="content_description_app_name">Nom de l’application</string>
-    <string name="content_description_notification_text">Question concernant l’autorisation des notifications de l’application SumaMente</string>
-    <string name="content_description_btn_allow">Bouton pour autoriser les notifications</string>
-    <string name="content_description_btn_deny">Bouton pour refuser les notifications</string>
+
+
+
     <string name="instruction_text">Écris ton nom d’utilisateur.\nUtilise entre 4 et 12 caractères</string>
     <string name="btn_accept">Accepter</string>
     <string name="content_description_check_icon">Icône de validation</string>
@@ -1446,12 +1445,9 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
 
     <string name="error_share_image">Erreur lors du partage de la récompense</string>
 
-    <string name="protect_account_title">Protégez votre progression !</string>
-    <string name="protect_account_message">Connectez votre compte Google pour sauvegarder vos réussites et participer aux classements. Ainsi, vous ne perdrez jamais vos progrès, même si vous changez de téléphone.</string>
-    <string name="protect_account_button">Protéger avec Google</string>
-    <string name="protect_account_later">Pas maintenant</string>
+
     <string name="account_linked_success">Compte lié avec succès ! Vos progrès sont maintenant en sécurité.</string>
-    <string name="account_linked_error">Impossible de lier le compte. Veuillez réessayer.</string>
+
     <string name="profile_subtitle_linked">Connecté. Gérez votre compte.</string>
     <string name="profile_subtitle_unlinked">Sauvegardez vos progrès dans le cloud</string>
 
@@ -1463,7 +1459,7 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
     <string name="cancel_button">Annuler</string>
     <string name="account_deleted_success">Votre compte a été supprimé.</string>
 
-    <string name="protect_your_progress_button">Protégez vos progrès !</string>
+
 
     <string name="link_prompt_title_tranquility">Joue sans soucis.</string>
     <string name="link_prompt_body_tranquility">Connecte ton compte Google en quelques secondes et nous nous assurons que tes progrès sont toujours en sécurité.</string>

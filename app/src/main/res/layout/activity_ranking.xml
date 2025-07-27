@@ -92,7 +92,7 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <!-- Container que se ajusta dinámicamente para el contenido -->
+
     <ScrollView
         android:id="@+id/content_container"
         android:layout_width="0dp"
@@ -152,7 +152,7 @@
         app:layout_constraintStart_toStartOf="@id/content_container"
         app:layout_constraintTop_toTopOf="@id/content_container" />
 
-    <!-- Botón flotante centrado en la parte inferior -->
+
     <include
         android:id="@+id/floating_link_button"
         layout="@layout/view_floating_link_button"

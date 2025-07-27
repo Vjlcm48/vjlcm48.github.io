@@ -9,10 +9,9 @@
     <string name="notification_text">Do you want to allow SumaMente to send you notifications?</string>
     <string name="content_description_bell_icon">Bell Icon</string>
     <string name="content_description_icon">Official Icon of SumaMente</string>
-    <string name="content_description_app_name">Application Name</string>
-    <string name="content_description_notification_text">Question about allowing notifications from the SumaMente app</string>
-    <string name="content_description_btn_allow">Button to allow notifications</string>
-    <string name="content_description_btn_deny">Button to deny notifications</string>
+
+
+
     <string name="instruction_text">Enter your username.\nUse between 4 and 12 characters</string>
     <string name="btn_accept">Accept</string>
     <string name="content_description_check_icon">Check Icon</string>
@@ -1444,12 +1443,9 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
 
     <string name="error_share_image">Error sharing the achievement</string>
 
-    <string name="protect_account_title">Protect Your Progress!</string>
-    <string name="protect_account_message">Connect your Google account to save your achievements and compete in the rankings. You’ll never lose your progress, even if you change your phone.</string>
-    <string name="protect_account_button">Protect with Google</string>
-    <string name="protect_account_later">Not Now</string>
+
     <string name="account_linked_success">Account successfully linked! Your progress is now safe.</string>
-    <string name="account_linked_error">Could not link account. Please try again.</string>
+
     <string name="profile_subtitle_linked">Connected. Manage your account.</string>
     <string name="profile_subtitle_unlinked">Save your progress in the cloud</string>
 
@@ -1461,7 +1457,6 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
     <string name="cancel_button">Cancel</string>
     <string name="account_deleted_success">Your account has been deleted.</string>
 
-    <string name="protect_your_progress_button">Protect your progress!</string>
 
     <string name="link_prompt_title_tranquility">Play without worries.</string>
     <string name="link_prompt_body_tranquility">Connect your Google account in seconds and we\'ll make sure your progress is always safe.</string>

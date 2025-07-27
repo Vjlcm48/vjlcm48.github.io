@@ -19,10 +19,12 @@
     <string name="notification_text">¿Quieres permitir que SumaMente te envíe notificaciones?</string>
     <string name="content_description_bell_icon">Icono de campana</string>
     <string name="content_description_icon">Icono oficial de SumaMente</string>
-    <string name="content_description_app_name">Nombre de la aplicación</string>
-    <string name="content_description_notification_text">Pregunta sobre permitir notificaciones de la aplicación SumaMente</string>
-    <string name="content_description_btn_allow">Botón para permitir notificaciones</string>
-    <string name="content_description_btn_deny">Botón para denegar notificaciones</string>
+
+
+
+
+
+
     <string name="instruction_text">Escribe tu nombre de usuario.\nUtiliza entre 4 y 12 caracteres</string>
     <string name="btn_accept">Aceptar</string>
     <string name="content_description_check_icon">Icono de verificación</string>
@@ -1472,12 +1474,12 @@
 
     <string name="error_share_image">Error al compartir la condecoración</string>
 
-    <string name="protect_account_title">¡Protege tu Progreso!</string>
-    <string name="protect_account_message">Conecta tu cuenta de Google para guardar tus logros y competir en los rankings. Así, nunca perderás tu avance, incluso si cambias de teléfono.</string>
-    <string name="protect_account_button">Proteger con Google</string>
-    <string name="protect_account_later">Ahora no</string>
+
+
     <string name="account_linked_success">¡Cuenta vinculada con éxito! Tu progreso está ahora a salvo.</string>
-    <string name="account_linked_error">No se pudo vincular la cuenta. Inténtalo de nuevo.</string>
+
+
+
     <string name="profile_subtitle_linked">Conectado. Gestiona tu cuenta.</string>
     <string name="profile_subtitle_unlinked">Guarda tu progreso en la nube</string>
 
@@ -1489,7 +1491,7 @@
     <string name="cancel_button">Cancelar</string>
     <string name="account_deleted_success">Tu cuenta ha sido eliminada.</string>
 
-    <string name="protect_your_progress_button">¡Protege tu avance!</string>
+
 
     <string name="link_prompt_title_tranquility">Juega sin preocupaciones.</string>
     <string name="link_prompt_body_tranquility">Conecta tu cuenta de Google en segundos y nosotros nos aseguramos de que tu esfuerzo esté siempre a salvo.</string>

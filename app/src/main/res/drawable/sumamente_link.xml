@@ -6,7 +6,7 @@
     android:viewportWidth="512"
     android:viewportHeight="512">
 
-    <!-- Sombra del hexágono -->
+
     <group
         android:translateX="261"
         android:translateY="261"
@@ -18,7 +18,7 @@
             android:fillAlpha="0.25"/>
     </group>
 
-    <!-- Hexágono principal con degradado -->
+
     <group
         android:translateX="256"
         android:translateY="256"
@@ -37,7 +37,7 @@
             </aapt:attr>
         </path>
 
-        <!-- Capa interna más clara -->
+
         <group android:scaleX="0.85" android:scaleY="0.85">
             <path android:pathData="M0,-20 L19.5,4.5 L-8.7,18 L-15.6,-12.5 L15.6,-12.5 L8.7,18 L-19.5,4.5 Z"
                 android:fillColor="#F5FBFF"

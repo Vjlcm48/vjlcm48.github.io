@@ -9,10 +9,9 @@
     <string name="notification_text">Deseja permitir que SumaMente lhe envie notificações?</string>
     <string name="content_description_bell_icon">Ícone de sino</string>
     <string name="content_description_icon">Ícone oficial de SumaMente</string>
-    <string name="content_description_app_name">Nome do aplicativo</string>
-    <string name="content_description_notification_text">Pergunta sobre permitir notificações do aplicativo SumaMente</string>
-    <string name="content_description_btn_allow">Botão para permitir notificações</string>
-    <string name="content_description_btn_deny">Botão para negar notificações</string>
+
+
+
     <string name="instruction_text">Digite seu nome de usuário.\nUse entre 4 e 12 caracteres</string>
     <string name="btn_accept">Aceitar</string>
     <string name="content_description_check_icon">Ícone de verificação</string>
@@ -1296,12 +1295,9 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
 
     <string name="error_share_image">Erro ao compartilhar a condecoração</string>
 
-    <string name="protect_account_title">Proteja seu Progresso!</string>
-    <string name="protect_account_message">Conecte sua conta Google para salvar suas conquistas e competir nos rankings. Assim, você nunca perderá seu progresso, mesmo se trocar de celular.</string>
-    <string name="protect_account_button">Proteger com Google</string>
-    <string name="protect_account_later">Agora não</string>
+
     <string name="account_linked_success">Conta vinculada com sucesso! Seu progresso está seguro agora.</string>
-    <string name="account_linked_error">Não foi possível vincular a conta. Tente novamente.</string>
+
     <string name="profile_subtitle_linked">Conectado. Gerencie sua conta.</string>
     <string name="profile_subtitle_unlinked">Salve seu progresso na nuvem</string>
 
@@ -1313,7 +1309,7 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
     <string name="cancel_button">Cancelar</string>
     <string name="account_deleted_success">Sua conta foi excluída.</string>
 
-    <string name="protect_your_progress_button">Proteja seu progresso!</string>
+
 
     <string name="link_prompt_title_tranquility">Jogue sem preocupações.</string>
     <string name="link_prompt_body_tranquility">Conecte sua conta do Google em segundos e nós garantimos que seu progresso esteja sempre seguro.</string>

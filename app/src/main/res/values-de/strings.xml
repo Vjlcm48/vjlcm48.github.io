@@ -9,10 +9,9 @@
     <string name="notification_text">Möchtest du SumaMente erlauben, dir Benachrichtigungen zu senden?</string>
     <string name="content_description_bell_icon">Glockensymbol</string>
     <string name="content_description_icon">Offizielles SumaMente-Symbol</string>
-    <string name="content_description_app_name">Name der Anwendung</string>
-    <string name="content_description_notification_text">Frage zum Erlauben von Benachrichtigungen der SumaMente-App</string>
-    <string name="content_description_btn_allow">Schaltfläche zum Erlauben von Benachrichtigungen</string>
-    <string name="content_description_btn_deny">Schaltfläche zum Ablehnen von Benachrichtigungen</string>
+
+
+
     <string name="instruction_text">Gib deinen Benutzernamen ein.\nVerwende zwischen 4 und 12 Zeichen</string>
     <string name="btn_accept">Akzeptieren</string>
     <string name="content_description_check_icon">Häkchen-Symbol</string>
@@ -1383,12 +1382,9 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
 
     <string name="error_share_image">Fehler beim Teilen der Auszeichnung</string>
 
-    <string name="protect_account_title">Schütze deinen Fortschritt!</string>
-    <string name="protect_account_message">Verbinde dein Google-Konto, um deine Erfolge zu speichern und an den Ranglisten teilzunehmen. So verlierst du deinen Fortschritt nie, selbst wenn du dein Handy wechselst.</string>
-    <string name="protect_account_button">Mit Google schützen</string>
-    <string name="protect_account_later">Jetzt nicht</string>
+
     <string name="account_linked_success">Konto erfolgreich verknüpft! Dein Fortschritt ist jetzt sicher.</string>
-    <string name="account_linked_error">Konto konnte nicht verknüpft werden. Bitte versuche es erneut.</string>
+
     <string name="profile_subtitle_linked">Verbunden. Verwalte dein Konto.</string>
     <string name="profile_subtitle_unlinked">Speichere deinen Fortschritt in der Cloud</string>
 
@@ -1400,7 +1396,7 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
     <string name="cancel_button">Abbrechen</string>
     <string name="account_deleted_success">Dein Konto wurde gelöscht.</string>
 
-    <string name="protect_your_progress_button">Schütze deinen Fortschritt!</string>
+
 
     <string name="link_prompt_title_tranquility">Spiele ohne Sorgen.</string>
     <string name="link_prompt_body_tranquility">Verbinde dein Google-Konto in Sekunden und wir sorgen dafür, dass deine Fortschritte immer sicher sind.</string>
