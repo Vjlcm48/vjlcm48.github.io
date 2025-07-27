@@ -11,6 +11,7 @@ import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.example.sumamente.R
@@ -49,8 +50,21 @@ class SpeedClassificationActivity : BaseActivity()  {
 
         initViews()
         setupButtons()
-
         setupGameNameColors()
+
+        // Inicio del cambio flecha de regresar del celular
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+
+                val intent = Intent(this@SpeedClassificationActivity, MainGameActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
+                finish()
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, callback)
+        // Fin del código de flecha de regresar del celular
+
     }
 
     private fun initViews() {

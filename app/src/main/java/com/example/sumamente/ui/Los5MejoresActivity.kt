@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import androidx.activity.OnBackPressedCallback
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sumamente.R
 import kotlin.math.abs
@@ -28,6 +29,20 @@ class Los5MejoresActivity : BaseActivity()  {
         initViews()
         setupCondecoraciones()
         setupNavigation()
+
+        // Inicio del cambio flecha de regresar del celular
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+
+                val intent = Intent(this@Los5MejoresActivity, MainGameActivity::class.java)
+                startActivity(intent)
+                finish()
+                TrofeosActivity.finishTrofeosActivity()
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, callback)
+        // Fin del código de flecha de regresar del celular
+
     }
 
     private fun initViews() {

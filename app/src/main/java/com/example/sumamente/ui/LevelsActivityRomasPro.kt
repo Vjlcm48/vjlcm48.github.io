@@ -17,6 +17,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import com.example.sumamente.R
 
@@ -72,6 +73,19 @@ class LevelsActivityRomasPro : BaseActivity()  {
         }
 
         createLevelButtons()
+
+        // Inicio del cambio flecha de regresar del celular
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+
+                val intent = Intent(this@LevelsActivityRomasPro, GameSelectionActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                finish()
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, callback)
+        // Fin del código de flecha de regresar del celular
     }
 
     override fun onResume() {

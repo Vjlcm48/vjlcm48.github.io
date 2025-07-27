@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sumamente.R
@@ -32,6 +33,20 @@ class TrofeosDetailActivity : BaseActivity()  {
         initViews()
         setupTrofeos()
         setupNavigation()
+
+        // Inicio del cambio flecha de regresar del celular
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+
+                val intent = Intent(this@TrofeosDetailActivity, MainGameActivity::class.java)
+                startActivity(intent)
+                finish()
+                TrofeosActivity.finishTrofeosActivity()
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, callback)
+        // Fin del código de flecha de regresar del celular
+
     }
 
     private fun initViews() {

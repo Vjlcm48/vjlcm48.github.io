@@ -24,8 +24,10 @@ import kotlin.math.max
 import kotlin.random.Random
 import com.example.sumamente.ui.utils.MusicManager
 import android.animation.ValueAnimator
+import android.content.Intent
 import android.view.MotionEvent
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.edit
 
 class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDialogListener {
@@ -113,6 +115,20 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
         }
 
         loadSpeedRankingData()
+
+        // Inicio del cambio flecha de regresar del celular
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+
+                val intent = Intent(this@SpeedRankingActivity, MainGameActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
+                finish()
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, callback)
+        // Fin del código de flecha de regresar del celular
+
     }
 
     private fun initViews() {

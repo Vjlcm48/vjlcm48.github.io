@@ -8,6 +8,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import androidx.activity.OnBackPressedCallback
 import com.example.sumamente.R
 import com.example.sumamente.ui.utils.MusicManager
 
@@ -25,9 +26,25 @@ class ApexSupremusActivity : BaseActivity()  {
         setContentView(R.layout.activity_apex_supremus)
 
         initViews()
-
         setupButtons()
         animateTrophy()
+
+        // Inicio del cambio flecha de regresar del celular
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+
+                TrofeosActivity.finishTrofeosActivity()
+
+                val intent = Intent(this@ApexSupremusActivity, MainGameActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
+
+                finish()
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, callback)
+         // Fin del código de flecha de regresar del celular
+
     }
 
     private fun initViews() {

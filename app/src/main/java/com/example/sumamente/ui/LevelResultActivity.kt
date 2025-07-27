@@ -22,6 +22,7 @@ import com.example.sumamente.R
 import java.util.Locale
 import kotlin.math.max
 import kotlin.math.roundToInt
+import androidx.activity.OnBackPressedCallback
 
 class LevelResultActivity : BaseActivity()  {
 
@@ -99,6 +100,16 @@ class LevelResultActivity : BaseActivity()  {
         reviewExerciseTextView = findViewById(R.id.review_exercise_textview)
 
         setupUI()
+        // Inicio del cambio flecha de regresar del celular
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+
+                navigateToLevels()
+                finish()
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, callback)
+        // Fin del código de flecha de regresar del celular
     }
 
     private fun setupUI() {

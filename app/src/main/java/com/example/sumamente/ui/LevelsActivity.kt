@@ -19,6 +19,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.sumamente.R
+import androidx.activity.OnBackPressedCallback
+
 
 class LevelsActivity : BaseActivity()  {
 
@@ -28,6 +30,8 @@ class LevelsActivity : BaseActivity()  {
     private lateinit var tvGameName: TextView
     private lateinit var tvDifficulty: TextView
     private lateinit var tvScore: TextView
+
+
 
     private val levelStrings = arrayOf(
         R.string.level_1, R.string.level_2, R.string.level_3, R.string.level_4, R.string.level_5,
@@ -74,6 +78,19 @@ class LevelsActivity : BaseActivity()  {
         }
 
         createLevelButtons()
+
+        // Inicio del cambio flecha de regresar del celular
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+
+                val intent = Intent(this@LevelsActivity, GameSelectionActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                finish()
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, callback)
+        // Fin del código de flecha de regresar del celular
     }
 
     override fun onResume() {

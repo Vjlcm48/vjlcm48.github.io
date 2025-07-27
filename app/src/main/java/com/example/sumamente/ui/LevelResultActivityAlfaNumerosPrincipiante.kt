@@ -14,6 +14,7 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import com.airbnb.lottie.LottieAnimationView
 import com.example.sumamente.R
 import java.util.Locale
@@ -95,6 +96,16 @@ class LevelResultActivityAlfaNumerosPrincipiante : BaseActivity()  {
         starImageView = findViewById(R.id.starImageView)
 
         setupUI()
+        // Inicio del cambio flecha de regresar del celular
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+
+                navigateToLevels()
+                finish()
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, callback)
+        // Fin del código de flecha de regresar del celular
     }
 
     private fun setupUI() {
