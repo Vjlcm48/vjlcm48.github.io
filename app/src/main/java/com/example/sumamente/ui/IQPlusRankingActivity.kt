@@ -223,18 +223,23 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
             }
         }
 
-
         colorAnimator = ValueAnimator.ofArgb(
+
+            getColor(R.color.blue_secondary),
             getColor(R.color.blue_primary),
+            getColor(R.color.blue_primary_dark),
             getColor(R.color.green_accent),
-            getColor(R.color.orange),
-            getColor(R.color.cyan),
-            getColor(R.color.blue_primary)
+            getColor(R.color.yellow),
+            getColor(R.color.red_primary),
+            getColor(R.color.yellow),
+            getColor(R.color.green_accent),
+            getColor(R.color.blue_primary_dark),
+            getColor(R.color.blue_primary),
+            getColor(R.color.blue_secondary)
         ).apply {
-            duration = 4000L
+            duration = 7000L
             repeatCount = ValueAnimator.INFINITE
             addUpdateListener { animator ->
-
                 val iconView = floatingLinkButton.findViewById<ImageView>(R.id.ic_link)
                 iconView?.setColorFilter(animator.animatedValue as Int)
             }

@@ -23,8 +23,12 @@ import java.util.Locale
 import kotlin.math.max
 import kotlin.random.Random
 import com.example.sumamente.ui.utils.MusicManager
+import android.animation.ValueAnimator
+import android.view.MotionEvent
+import android.widget.Toast
+import androidx.core.content.edit
 
-class SpeedRankingActivity : BaseActivity()  {
+class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDialogListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var loadingIndicator: ProgressBar
@@ -41,6 +45,11 @@ class SpeedRankingActivity : BaseActivity()  {
     private lateinit var sharedPreferences: android.content.SharedPreferences
 
     private var isFinishingByBack = false
+
+    private lateinit var floatingLinkButton: View
+    private var isDialogFromFloatingButton = false
+    private var pulseAnimator: ValueAnimator? = null
+    private var colorAnimator: ValueAnimator? = null
 
     companion object {
         const val EXTRA_GAME_TYPE = "game_type"
@@ -59,6 +68,8 @@ class SpeedRankingActivity : BaseActivity()  {
         initViews()
         setupButtons()
         setupGameSpecificUI()
+
+        setupFloatingButtonInteractions()
 
         val gameType = intent.getStringExtra(EXTRA_GAME_TYPE)
         if (gameType != null) {
@@ -114,6 +125,8 @@ class SpeedRankingActivity : BaseActivity()  {
 
         headerGameButton = findViewById(R.id.header_game_button)
         tvHeaderGameName = findViewById(R.id.tv_header_game_name)
+
+        floatingLinkButton = findViewById(R.id.floating_link_button)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         rankingItems = mutableListOf()
@@ -215,6 +228,9 @@ class SpeedRankingActivity : BaseActivity()  {
         loadingIndicator.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
         emptyView.visibility = View.GONE
+
+        floatingLinkButton.visibility = View.GONE
+
         val tvMsgSpeedRanking = findViewById<TextView>(R.id.tvMsgSpeedRanking)
         tvMsgSpeedRanking.visibility = View.GONE
 
@@ -326,6 +342,8 @@ class SpeedRankingActivity : BaseActivity()  {
                 loadingIndicator.visibility = View.GONE
                 return@postDelayed
             }
+
+            handleLinkAccountInvitation()
 
             // ----------- ESCENARIO B: Al menos un nivel jugado -----------
 
@@ -448,6 +466,215 @@ class SpeedRankingActivity : BaseActivity()  {
         }, 700)
     }
 
+    private fun handleLinkAccountInvitation() {
+        val isLinked = sharedPreferences.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)
+
+
+        if (isLinked || !ScoreManager.hasCompleted12LevelsInAnyGame()) {
+            return
+        }
+
+        val lastDismissal = sharedPreferences.getLong(SettingsActivity.LAST_PROMPT_DISMISSAL_TIMESTAMP, 0L)
+
+
+        if (System.currentTimeMillis() < lastDismissal) {
+            return
+        }
+
+        val promptInteracted = sharedPreferences.getBoolean(SettingsActivity.LINK_PROMPT_INTERACTED, false)
+        val isRanked = ScoreManager.isRankedInAtLeastOneGame()
+
+        if (promptInteracted || isRanked) {
+
+            floatingLinkButton.visibility = View.VISIBLE
+            centerFloatingButton()
+            startFloatingButtonAnimations()
+        } else {
+
+            val dialog = LinkAccountDialogFragment.newInstance()
+            dialog.show(supportFragmentManager, "LinkAccountDialog")
+        }
+    }
+
+    private fun startFloatingButtonAnimations() {
+
+        pulseAnimator = ValueAnimator.ofFloat(1.0f, 1.2f).apply {
+            duration = 1500L
+            repeatMode = ValueAnimator.REVERSE
+            repeatCount = ValueAnimator.INFINITE
+            addUpdateListener { animator ->
+                val scale = animator.animatedValue as Float
+                floatingLinkButton.scaleX = scale
+                floatingLinkButton.scaleY = scale
+            }
+        }
+
+        colorAnimator = ValueAnimator.ofArgb(
+
+            getColor(R.color.blue_secondary),
+            getColor(R.color.blue_primary),
+            getColor(R.color.blue_primary_dark),
+            getColor(R.color.green_accent),
+            getColor(R.color.yellow),
+            getColor(R.color.red_primary),
+            getColor(R.color.yellow),
+            getColor(R.color.green_accent),
+            getColor(R.color.blue_primary_dark),
+            getColor(R.color.blue_primary),
+            getColor(R.color.blue_secondary)
+        ).apply {
+            duration = 7000L
+            repeatCount = ValueAnimator.INFINITE
+            addUpdateListener { animator ->
+                val iconView = floatingLinkButton.findViewById<ImageView>(R.id.ic_link)
+                iconView?.setColorFilter(animator.animatedValue as Int)
+            }
+        }
+
+        pulseAnimator?.start()
+        colorAnimator?.start()
+    }
+
+    private fun stopFloatingButtonAnimations() {
+        pulseAnimator?.cancel()
+        colorAnimator?.cancel()
+        pulseAnimator = null
+        colorAnimator = null
+
+        floatingLinkButton.scaleX = 1.0f
+        floatingLinkButton.scaleY = 1.0f
+        val iconView = floatingLinkButton.findViewById<ImageView>(R.id.ic_link)
+        iconView?.clearColorFilter()
+    }
+
+    private fun centerFloatingButton() {
+        floatingLinkButton.post {
+            val screenWidth = resources.displayMetrics.widthPixels
+            val buttonWidth = floatingLinkButton.width
+            val centerX = (screenWidth - buttonWidth) / 2f
+            floatingLinkButton.x = centerX
+        }
+    }
+
+    private fun setupFloatingButtonInteractions() {
+        floatingLinkButton.setOnClickListener {
+            stopFloatingButtonAnimations()
+            isDialogFromFloatingButton = true
+            val dialog = LinkAccountDialogFragment.newInstance()
+            dialog.show(supportFragmentManager, "LinkAccountDialog_FromFloat")
+        }
+
+        floatingLinkButton.setOnTouchListener(object : View.OnTouchListener {
+            private var initialX = 0f
+            private var initialY = 0f
+            private var dX = 0f
+            private var dY = 0f
+            private var isDragging = false
+
+            override fun onTouch(view: View, event: MotionEvent): Boolean {
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        stopFloatingButtonAnimations()
+                        initialX = view.x
+                        initialY = view.y
+                        dX = view.x - event.rawX
+                        dY = view.y - event.rawY
+                        isDragging = false
+                        return true
+                    }
+                    MotionEvent.ACTION_MOVE -> {
+                        val newX = event.rawX + dX
+                        val newY = event.rawY + dY
+
+                        if (kotlin.math.abs(newX - initialX) > 10 || kotlin.math.abs(newY - initialY) > 10) {
+                            isDragging = true
+                        }
+
+                        val screenWidth = resources.displayMetrics.widthPixels
+                        val screenHeight = resources.displayMetrics.heightPixels
+                        val buttonWidth = view.width
+                        val buttonHeight = view.height
+
+                        val constrainedX = newX.coerceIn(0f, (screenWidth - buttonWidth).toFloat())
+                        val constrainedY = newY.coerceIn(0f, (screenHeight - buttonHeight).toFloat())
+
+                        view.animate()
+                            .x(constrainedX)
+                            .y(constrainedY)
+                            .setDuration(0)
+                            .start()
+                        return true
+                    }
+                    MotionEvent.ACTION_UP -> {
+                        val screenHeight = resources.displayMetrics.heightPixels
+
+                        if (view.y > screenHeight * 0.8) {
+
+                            view.visibility = View.GONE
+                            Toast.makeText(this@SpeedRankingActivity, getString(R.string.toast_button_dismissed), Toast.LENGTH_SHORT).show()
+
+                            val cooldown = SettingsActivity.COOLDOWN_FLOAT_DISMISS
+                            sharedPreferences.edit {
+                                putBoolean(SettingsActivity.LINK_PROMPT_INTERACTED, true)
+                                putLong(SettingsActivity.LAST_PROMPT_DISMISSAL_TIMESTAMP, System.currentTimeMillis() + cooldown)
+                            }
+                        } else if (!isDragging) {
+
+                            view.performClick()
+                        } else {
+
+                            startFloatingButtonAnimations()
+                        }
+
+                        isDragging = false
+                        return true
+                    }
+                }
+                return false
+            }
+        })
+    }
+
+    override fun onAcceptLink() {
+        sharedPreferences.edit {
+            putBoolean(SettingsActivity.ACCOUNT_LINKED, true)
+        }
+        Toast.makeText(this, getString(R.string.account_linked_success), Toast.LENGTH_LONG).show()
+        loadSpeedRankingData()
+    }
+
+    override fun onNotNow() {
+        val cooldown = if (isDialogFromFloatingButton) {
+            SettingsActivity.COOLDOWN_FLOAT_DIALOG_DISMISS
+        } else {
+            SettingsActivity.COOLDOWN_NOT_NOW
+        }
+
+        sharedPreferences.edit {
+            putBoolean(SettingsActivity.LINK_PROMPT_INTERACTED, true)
+            putLong(SettingsActivity.LAST_PROMPT_DISMISSAL_TIMESTAMP, System.currentTimeMillis() + cooldown)
+        }
+        Toast.makeText(this, getString(R.string.toast_cooldown_long), Toast.LENGTH_SHORT).show()
+        isDialogFromFloatingButton = false
+        loadSpeedRankingData()
+    }
+
+    override fun onRemindMeLater() {
+        val cooldown = if (isDialogFromFloatingButton) {
+            SettingsActivity.COOLDOWN_FLOAT_DIALOG_DISMISS
+        } else {
+            SettingsActivity.COOLDOWN_REMIND_LATER
+        }
+
+        sharedPreferences.edit {
+            putBoolean(SettingsActivity.LINK_PROMPT_INTERACTED, true)
+            putLong(SettingsActivity.LAST_PROMPT_DISMISSAL_TIMESTAMP, System.currentTimeMillis() + cooldown)
+        }
+        Toast.makeText(this, getString(R.string.toast_cooldown_short), Toast.LENGTH_SHORT).show()
+        isDialogFromFloatingButton = false
+        loadSpeedRankingData()
+    }
+
     private fun formatAvgTime(timeSeconds: Float): String {
         val totalCentis = (timeSeconds * 100).toInt()
         val seconds = totalCentis / 100
@@ -512,6 +739,9 @@ class SpeedRankingActivity : BaseActivity()  {
 
     override fun onStop() {
         super.onStop()
+
+        stopFloatingButtonAnimations()
+
         if (!isFinishingByBack) {
             MusicManager.pause()
         }
