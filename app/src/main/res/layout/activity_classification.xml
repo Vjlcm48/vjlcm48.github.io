@@ -1,200 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_primary">
+
+
+    <ImageView
+        android:id="@+id/app_logo"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="38dp"
+        android:alpha="0"
+        android:contentDescription="@string/app_logo"
+        android:src="@drawable/sumamentelt"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:alpha="1"
+        tools:ignore="ImageContrastCheck"/>
 
     <ImageView
         android:id="@+id/btn_back"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="18dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         android:focusable="true"
         android:scaleType="fitCenter"
         android:contentDescription="@string/back"
         android:src="@drawable/ic_arrowback"
+        android:alpha="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/app_logo"
+        tools:alpha="1"/>
 
     <ImageView
         android:id="@+id/btn_close"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginTop="18dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         android:focusable="true"
         android:scaleType="fitCenter"
         android:contentDescription="@string/close"
         android:src="@drawable/ic_close"
+        android:alpha="0"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/app_logo"
+        tools:alpha="1"/>
 
     <TextView
         android:id="@+id/tv_titulo_clasificaciones"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/roboto_bold"
         android:text="@string/clasificaciones_titulo"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="24sp"
+        android:alpha="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_back" />
+        app:layout_constraintTop_toBottomOf="@id/btn_back"
+        tools:alpha="1"/>
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/classification_buttons_scroll_view"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:orientation="vertical"
+        android:layout_marginBottom="24dp"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:scrollbarThumbVertical="@drawable/custom_scrollbar_thumb"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_titulo_clasificaciones">
 
         <LinearLayout
-            android:id="@+id/btn_como_funciona"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="12dp"
-            android:background="@drawable/premio_boton_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/btn_como_funciona"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/clasificaciones_como_funciona"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:layout_marginVertical="8dp"
+                android:alpha="0"
+                android:background="@drawable/premio_boton_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:minHeight="65dp"
+                android:orientation="vertical"
+                android:padding="16dp"
+                tools:alpha="1">
 
-        <LinearLayout
-            android:id="@+id/btn_ver_clasificacion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="12dp"
-            android:background="@drawable/premio_boton_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="16dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/clasificaciones_como_funciona"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="@string/clasificaciones_ver_mi"
-                android:src="@drawable/ic_estadisticas" />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/btn_ver_clasificacion"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/clasificaciones_ver_mi"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:layout_marginVertical="8dp"
+                android:alpha="0"
+                android:background="@drawable/premio_boton_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:minHeight="65dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                tools:alpha="1">
 
-        <LinearLayout
-            android:id="@+id/btn_clasificacion_velocidad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="12dp"
-            android:background="@drawable/premio_boton_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="16dp">
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="@string/clasificaciones_ver_mi"
+                    android:src="@drawable/ic_estadisticas" />
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="@string/clasificaciones_por_velocidad"
-                android:src="@drawable/ic_reloj" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/clasificaciones_ver_mi"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/btn_clasificacion_velocidad"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/clasificaciones_por_velocidad"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:layout_marginVertical="8dp"
+                android:alpha="0"
+                android:background="@drawable/premio_boton_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:minHeight="65dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                tools:alpha="1">
 
-        <LinearLayout
-            android:id="@+id/btn_clasificacion_iqplus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="12dp"
-            android:background="@drawable/premio_boton_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="16dp">
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="@string/clasificaciones_por_velocidad"
+                    android:src="@drawable/ic_reloj" />
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="@string/clasificaciones_por_iqplus"
-                android:src="@drawable/ic_target" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/clasificaciones_por_velocidad"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/btn_clasificacion_iqplus"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/clasificaciones_por_iqplus"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:layout_marginVertical="8dp"
+                android:alpha="0"
+                android:background="@drawable/premio_boton_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:minHeight="65dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                tools:alpha="1">
 
-        <LinearLayout
-            android:id="@+id/btn_clasificacion_integral"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="12dp"
-            android:background="@drawable/premio_boton_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="16dp">
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="@string/clasificaciones_por_iqplus"
+                    android:src="@drawable/ic_target" />
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="@string/clasificacion_integral_s"
-                android:src="@drawable/ic_ranking_heptagon_s_plus" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/clasificaciones_por_iqplus"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/btn_clasificacion_integral"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/clasificacion_integral_s"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:layout_marginVertical="8dp"
+                android:alpha="0"
+                android:background="@drawable/premio_boton_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:minHeight="65dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                tools:alpha="1">
 
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="@string/clasificacion_integral_s"
+                    android:src="@drawable/ic_ranking_heptagon_s_plus" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/clasificacion_integral_s"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

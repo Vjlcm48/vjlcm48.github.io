@@ -1436,5 +1436,15 @@
 
     <string name="language_list_description">चयन के लिए भाषाओं की सूची</string>
 
+    <string name="loading_text_1">🧠 दिमाग वार्म अप हो रहा है… चोट से बचें!</string>
+    <string name="loading_text_2">⚔️ मानसिक शक्ति लोड हो रही है… बुद्धिमत्ता आ रही है!</string>
+    <string name="loading_text_3">🦸‍♂️ जीनियस मोड चालू… बड़े नंबर्स, बड़ी जिम्मेदारियां!</string>
+    <string name="loading_text_4">💊 सुपरब्रेन 500mg… साइड इफेक्ट: तेज़ होना!</string>
+    <string name="loading_text_5">🔧 पसंदीदा न्यूरॉन कैलिब्रेट कर रहे हैं… बागी अब सहयोग कर रहा है!</string>
+    <string name="loading_text_6">🎯 एपिक स्पॉन 3… 2… 1… में!</string>
+    <string name="loading_text_7">🏆 शोहरत कंपाइल हो रही है… चमकने के लिए तैयार हो जाइए!</string>
+    <string name="loading_text_8">🚀 ह्यूस्टन, हमारे पास जीनियस है… मानसिक सीक्वेंस शुरू!</string>
+    <string name="loading_text_9">🧙‍♂️ गणित का जादू… अब्राकदब्रा + 2!</string>
+
 
 </resources>

@@ -1343,5 +1343,15 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
 
     <string name="language_list_description">Lista de idiomas para selecionar</string>
 
+    <string name="loading_text_1">🧠 Cérebro aquecendo… Não se machuque!</string>
+    <string name="loading_text_2">⚔️ Carregando poder mental… INTELIGÊNCIA chegando!</string>
+    <string name="loading_text_3">🦸‍♂️ Modo gênio ativado… Grandes números, grandes responsabilidades!</string>
+    <string name="loading_text_4">💊 SuperCérebro 500mg… Efeitos colaterais: ser brilhante!</string>
+    <string name="loading_text_5">🔧 Calibrando neurônio favorito… O rebelde agora coopera!</string>
+    <string name="loading_text_6">🎯 Spawn épico em 3… 2… 1…</string>
+    <string name="loading_text_7">🏆 Glória compilando… Prepare-se para brilhar!</string>
+    <string name="loading_text_8">🚀 Houston, temos um gênio… Sequência mental iniciada!</string>
+    <string name="loading_text_9">🧙‍♂️ Magia matemática… Abracadabra + 2!</string>
+
 
 </resources>

@@ -1224,5 +1224,15 @@
 
     <string name="language_list_description">منتخب کرنے کے لیے زبانوں کی فہرست</string>
 
+    <string name="loading_text_1">🧠 دماغ وارم اپ ہو رہا ہے… چوٹ سے بچیں!</string>
+    <string name="loading_text_2">⚔️ ذہنی طاقت لوڈ ہو رہی ہے… ذہانت آ رہی ہے!</string>
+    <string name="loading_text_3">🦸‍♂️ جینیئس موڈ فعال… بڑے نمبرز، بڑی ذمہ داریاں!</string>
+    <string name="loading_text_4">💊 سپر برین 500mg… ضمنی اثرات: ذہین ہونا!</string>
+    <string name="loading_text_5">🔧 پسندیدہ نیورون کیلیبریٹ کر رہے ہیں… باغی اب تعاون کر رہا ہے!</string>
+    <string name="loading_text_6">🎯 ایپک سپان 3… 2… 1… میں!</string>
+    <string name="loading_text_7">🏆 شہرت کمپائل ہو رہی ہے… چمکنے کے لیے تیار ہو جائیں!</string>
+    <string name="loading_text_8">🚀 ہیوسٹن، ہمارے پاس جینیئس ہے… ذہنی سیکوینس شروع!</string>
+    <string name="loading_text_9">🧙‍♂️ ریاضی کا جادو… ابراکاڈابرا + 2!</string>
+
 
 </resources>

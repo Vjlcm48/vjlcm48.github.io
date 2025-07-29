@@ -1432,5 +1432,14 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
 
     <string name="language_list_description">Sprachenliste zur Auswahl</string>
 
+    <string name="loading_text_1">🧠 Gehirn wärmt auf… Keine Verletzungen!</string>
+    <string name="loading_text_2">⚔️ Geisteskraft lädt… INTELLIGENZ ankommend!</string>
+    <string name="loading_text_3">🦸‍♂️ Genie-Modus aktiviert… Große Zahlen, große Verantwortung!</string>
+    <string name="loading_text_4">💊 SuperGehirn 500mg… Nebenwirkung: brillant sein!</string>
+    <string name="loading_text_5">🔧 Lieblingsneuron kalibrieren… Der Rebell kooperiert!</string>
+    <string name="loading_text_6">🎯 Epischer Spawn in 3… 2… 1…</string>
+    <string name="loading_text_7">🏆 Ruhm kompiliert… Bereite dich aufs Strahlen vor!</string>
+    <string name="loading_text_8">🚀 Houston, wir haben ein Genie… Geistige Sequenz gestartet!</string>
+    <string name="loading_text_9">🧙‍♂️ Mathe-Magie… Abrakadabra + 2!</string>
 
 </resources>

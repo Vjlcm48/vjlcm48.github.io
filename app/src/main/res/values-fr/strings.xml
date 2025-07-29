@@ -1493,5 +1493,15 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
 
     <string name="language_list_description">Liste des langues à sélectionner</string>
 
+    <string name="loading_text_1">🧠 Cerveau en échauffement… Ne te blesse pas!</string>
+    <string name="loading_text_2">⚔️ Puissance mentale en charge… INTELLIGENCE imminente!</string>
+    <string name="loading_text_3">🦸‍♂️ Mode génie activé… De grands nombres, de grandes responsabilités!</string>
+    <string name="loading_text_4">💊 SuperCerveau 500mg… Effets secondaires: être brillant!</string>
+    <string name="loading_text_5">🔧 Calibrage du neurone favori… Le rebelle coopère!</string>
+    <string name="loading_text_6">🎯 Apparition épique dans 3… 2… 1…</string>
+    <string name="loading_text_7">🏆 Gloire en compilation… Prépare-toi à briller!</string>
+    <string name="loading_text_8">🚀 Houston, nous avons un génie… Séquence mentale lancée!</string>
+    <string name="loading_text_9">🧙‍♂️ Magie mathématique… Abracadabra + 2!</string>
+
 
 </resources>

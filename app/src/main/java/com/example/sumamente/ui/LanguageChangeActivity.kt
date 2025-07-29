@@ -1,22 +1,33 @@
 package com.example.sumamente.ui
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.edit
+import androidx.core.view.isVisible
 import com.example.sumamente.R
 
 class LanguageChangeActivity : BaseActivity() {
 
     private lateinit var languageButtonsContainer: LinearLayout
+    private lateinit var scrollView: ScrollView
+    private lateinit var arrowIcon: ImageView
+    private lateinit var gradientView: View
+
     private val languageButtons = mutableListOf<LinearLayout>()
     private val checkMarks = mutableListOf<ImageView>()
-
     private val supportedLanguages by lazy { LanguageManager.getOrderedLanguages(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +36,11 @@ class LanguageChangeActivity : BaseActivity() {
 
         val btnClose = findViewById<ImageView>(R.id.btn_close)
         val btnBack = findViewById<ImageView>(R.id.btn_back)
+        findViewById<TextView>(R.id.title_choose_language)
         languageButtonsContainer = findViewById(R.id.language_buttons_container)
+        scrollView = findViewById(R.id.language_scroll_view)
+        arrowIcon = findViewById(R.id.arrow_icon)
+        gradientView = findViewById(R.id.gradient_view)
 
         btnClose.contentDescription = getString(R.string.close)
         btnBack.contentDescription = getString(R.string.back)
@@ -35,6 +50,8 @@ class LanguageChangeActivity : BaseActivity() {
 
         setupLanguageButtons()
         highlightSelectedLanguage()
+        startAnimations()
+        setupScrollListener()
     }
 
     private fun setupLanguageButtons() {
@@ -55,16 +72,20 @@ class LanguageChangeActivity : BaseActivity() {
             languageTextView.setText(languageItem.nameRes)
             checkImageView.visibility = View.GONE
 
+            languageButtonView.alpha = 0f
+            languageButtonView.translationY = 150f
+
             languageButtonView.setOnClickListener { view ->
                 applyBounceEffect(view) {
-                    showLanguageChangeConfirmationDialog(languageItem.code)
+                    if (getCurrentLocaleCode() != languageItem.code) {
+                        showLanguageChangeConfirmationDialog(languageItem.code)
+                    }
                 }
             }
 
             languageButtons.add(languageButtonView)
             checkMarks.add(checkImageView)
             languageButtonsContainer.addView(languageButtonView)
-
 
             if (index < supportedLanguages.size - 1) {
                 val layoutParams = languageButtonView.layoutParams as LinearLayout.LayoutParams
@@ -74,9 +95,13 @@ class LanguageChangeActivity : BaseActivity() {
         }
     }
 
+    private fun getCurrentLocaleCode(): String {
+        return resources.configuration.locales[0].language
+    }
+
     private fun highlightSelectedLanguage() {
         checkMarks.forEach { it.visibility = View.GONE }
-        val currentLocaleCode = resources.configuration.locales[0].language
+        val currentLocaleCode = getCurrentLocaleCode()
         val selectedIndex = supportedLanguages.indexOfFirst { it.code == currentLocaleCode }
         if (selectedIndex != -1) {
             checkMarks[selectedIndex].visibility = View.VISIBLE
@@ -99,26 +124,87 @@ class LanguageChangeActivity : BaseActivity() {
 
     private fun setAppLocale(languageCode: String) {
         LanguageManager.saveNewLanguageOrder(this, languageCode)
-
         val appDisplayLanguage = languageCode
-
         val preferences = getSharedPreferences("MyPrefers", MODE_PRIVATE)
         preferences.edit {
             putString("selected_language", languageCode)
-
             putString("app_display_language", appDisplayLanguage)
             apply()
         }
 
-        val intent = Intent(this, MainGameActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        val options = android.app.ActivityOptions.makeCustomAnimation(
-            this,
-            android.R.anim.fade_in,
-            android.R.anim.fade_out
-        )
-        startActivity(intent, options.toBundle())
-        finishAffinity()
+        Handler(Looper.getMainLooper()).postDelayed({
+            highlightSelectedLanguage()
+
+            val intent = Intent(this, MainGameActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            val options = ActivityOptions.makeCustomAnimation(this, android.R.anim.fade_in, android.R.anim.fade_out)
+            startActivity(intent, options.toBundle())
+            finishAffinity()
+        }, 150)
+    }
+
+    private fun startAnimations() {
+        val logo = findViewById<ImageView>(R.id.app_logo)
+        val card = findViewById<View>(R.id.card_view)
+        val logoZoomIn = AnimationUtils.loadAnimation(this, R.anim.logo_zoom_in)
+
+        logo.startAnimation(logoZoomIn)
+        logo.alpha = 1f
+
+        logoZoomIn.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
+            override fun onAnimationStart(animation: android.view.animation.Animation?) {}
+
+            override fun onAnimationEnd(animation: android.view.animation.Animation?) {
+                card.animate()
+                    .alpha(1f)
+                    .setDuration(800)
+                    .setStartDelay(0)
+                    .start()
+
+                languageButtons.forEachIndexed { index, button ->
+                    button.animate()
+                        .alpha(1f)
+                        .translationY(0f)
+                        .setDuration(500)
+                        .setStartDelay(200 + (80 * index).toLong())
+                        .start()
+                }
+                val bounceAnimation = AnimationUtils.loadAnimation(this@LanguageChangeActivity, R.anim.bounce_arrow)
+                arrowIcon.startAnimation(bounceAnimation)
+                arrowIcon.animate().alpha(1f).setDuration(400).setStartDelay(800).start()
+                gradientView.animate().alpha(1f).setDuration(400).setStartDelay(800).start()
+            }
+
+            override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
+        })
+
+        languageButtons.forEachIndexed { index, button ->
+            button.alpha = 0f
+            button.translationY = 150f
+            button.animate()
+                .alpha(1f)
+                .translationY(0f)
+                .setDuration(500)
+                .setStartDelay(500 + (80 * index).toLong())
+                .start()
+        }
+
+        val bounceAnimation = AnimationUtils.loadAnimation(this, R.anim.bounce_arrow)
+        arrowIcon.startAnimation(bounceAnimation)
+        arrowIcon.animate().alpha(1f).setDuration(400).setStartDelay(800).start()
+        gradientView.animate().alpha(1f).setDuration(400).setStartDelay(800).start()
+    }
+
+    private fun setupScrollListener() {
+        scrollView.setOnScrollChangeListener { _, _, scrollY, _, _ ->
+            if (scrollY > 50 && arrowIcon.isVisible) {
+                arrowIcon.clearAnimation()
+                arrowIcon.animate().alpha(0f).setDuration(200).withEndAction {
+                    arrowIcon.visibility = View.GONE
+                    gradientView.visibility = View.GONE
+                }.start()
+            }
+        }
     }
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
@@ -136,8 +222,8 @@ class LanguageChangeActivity : BaseActivity() {
 
         val animatorSet = android.animation.AnimatorSet()
         animatorSet.playSequentially(scaleDown, scaleUp)
-        animatorSet.addListener(object : android.animation.AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: android.animation.Animator) {
+        animatorSet.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator) {
                 onAnimationEnd()
             }
         })

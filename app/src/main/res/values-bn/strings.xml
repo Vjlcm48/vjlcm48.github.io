@@ -1210,4 +1210,16 @@
     <string name="language_list_description">নির্বাচনের জন্য ভাষার তালিকা</string>
 
 
+    <string name="loading_text_1">🧠 মস্তিষ্ক ওয়ার্ম আপ করছে… আঘাত এড়িয়ে চলুন!</string>
+    <string name="loading_text_2">⚔️ মানসিক শক্তি লোড হচ্ছে… বুদ্ধিমত্তা আসছে!</string>
+    <string name="loading_text_3">🦸‍♂️ প্রতিভা মোড চালু… বড় সংখ্যা, বড় দায়িত্ব!</string>
+    <string name="loading_text_4">💊 সুপার সেরেব্রো ৫০০মিগ্রা… পার্শ্বপ্রতিক্রিয়া: উজ্জ্বল হওয়া!</string>
+    <string name="loading_text_5">🔧 প্রিয় নিউরন ক্যালিব্রেট করা হচ্ছে… বিদ্রোহী এখন সহযোগিতা করছে!</string>
+    <string name="loading_text_6">🎯 মহাকাব্যিক প্রশ্ন ৩… ২… ১… এ!</string>
+    <string name="loading_text_7">🏆 গৌরব কম্পাইল হচ্ছে… উজ্জ্বল হতে প্রস্তুত হন!</string>
+    <string name="loading_text_8">🚀 হিউস্টন, আমাদের একজন প্রতিভাবান আছে… মানসিক ক্রম শুরু!</string>
+    <string name="loading_text_9">🧙‍♂️ গণিতের জাদু… আব্রাকাদাব্রা + ২!</string>
+
+
+
 </resources>

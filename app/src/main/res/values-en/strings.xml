@@ -1490,5 +1490,15 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
 
     <string name="language_list_description">Language list to select</string>
 
+    <string name="loading_text_1">🧠 Brain warming up… Don\'t get injured!</string>
+    <string name="loading_text_2">⚔️ Loading mental power… INTELLIGENCE incoming!</string>
+    <string name="loading_text_3">🦸‍♂️ Genius mode activated… With great numbers come great responsibilities!</string>
+    <string name="loading_text_4">💊 SuperBrain 500mg… Side effects: being brilliant!</string>
+    <string name="loading_text_5">🔧 Calibrating favorite neuron… The rebel one cooperates!</string>
+    <string name="loading_text_6">🎯 Epic spawn in 3… 2… 1…</string>
+    <string name="loading_text_7">🏆 Glory compiling… Get ready to shine!</string>
+    <string name="loading_text_8">🚀 Houston, we have a genius… Mental sequence initiated!</string>
+    <string name="loading_text_9">🧙‍♂️ Math magic… Abracadabra + 2!</string>
+
 
 </resources>

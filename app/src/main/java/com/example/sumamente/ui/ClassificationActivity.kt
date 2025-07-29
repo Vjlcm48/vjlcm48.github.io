@@ -8,8 +8,10 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import com.example.sumamente.R
 import com.example.sumamente.ui.utils.MusicManager
 import java.lang.ref.WeakReference
@@ -57,6 +59,8 @@ class ClassificationActivity : BaseActivity() {
         if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
             MusicManager.play(this, R.raw.clasificacion, looping = true, volume = 0.2f)
         }
+
+        startAnimations()
     }
 
     private fun initViews() {
@@ -158,6 +162,81 @@ class ClassificationActivity : BaseActivity() {
         }
 
         dialog.show()
+    }
+
+    private fun startAnimations() {
+        val logo = findViewById<ImageView>(R.id.app_logo)
+        val btnBack = findViewById<ImageView>(R.id.btn_back)
+        val btnClose = findViewById<ImageView>(R.id.btn_close)
+        val titulo = findViewById<TextView>(R.id.tv_titulo_clasificaciones)
+
+        val animZoomLogo = AnimationUtils.loadAnimation(this, R.anim.logo_zoom_in)
+        logo.startAnimation(animZoomLogo)
+        logo.alpha = 1f
+
+        animZoomLogo.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
+            override fun onAnimationStart(animation: android.view.animation.Animation?) {}
+
+            override fun onAnimationEnd(animation: android.view.animation.Animation?) {
+
+                btnBack.animate()
+                    .alpha(1f)
+                    .setDuration(350)
+                    .setStartDelay(0)
+                    .start()
+                btnClose.animate()
+                    .alpha(1f)
+                    .setDuration(350)
+                    .setStartDelay(0)
+                    .start()
+
+                titulo.animate()
+                    .alpha(1f)
+                    .setDuration(400)
+                    .setStartDelay(100)
+                    .start()
+
+                val buttons = arrayOf(
+                    findViewById(R.id.btn_como_funciona),
+                    findViewById(R.id.btn_ver_clasificacion),
+                    findViewById(R.id.btn_clasificacion_velocidad),
+                    findViewById(R.id.btn_clasificacion_iqplus),
+                    findViewById<LinearLayout>(R.id.btn_clasificacion_integral)
+                )
+                buttons.forEachIndexed { index, button ->
+                    button.animate()
+                        .alpha(1f)
+                        .translationYBy(0f)
+                        .setDuration(500)
+                        .setStartDelay(200 + (80 * index).toLong())
+                        .start()
+                }
+            }
+
+            override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
+        })
+
+        val buttons = arrayOf(
+            findViewById(R.id.btn_como_funciona),
+            findViewById(R.id.btn_ver_clasificacion),
+            findViewById(R.id.btn_clasificacion_velocidad),
+            findViewById(R.id.btn_clasificacion_iqplus),
+            findViewById<LinearLayout>(R.id.btn_clasificacion_integral)
+        )
+        buttons.forEachIndexed { index, button ->
+            button.alpha = 0f
+            button.translationY = 150f
+            button.animate()
+                .alpha(1f)
+                .translationY(0f)
+                .setDuration(500)
+                .setStartDelay(350 + (80 * index).toLong())
+                .start()
+        }
+
+        btnBack.alpha = 0f
+        btnClose.alpha = 0f
+        titulo.alpha = 0f
     }
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {

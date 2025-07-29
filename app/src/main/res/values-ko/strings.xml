@@ -1178,5 +1178,15 @@
 
     <string name="language_list_description">선택할 언어 목록</string>
 
+    <string name="loading_text_1">🧠 뇌가 워밍업 중… 다치지 마세요!</string>
+    <string name="loading_text_2">⚔️ 정신력 로딩 중… 지능 곧 도착!</string>
+    <string name="loading_text_3">🦸‍♂️ 천재 모드 활성화… 큰 숫자, 큰 책임!</string>
+    <string name="loading_text_4">💊 슈퍼브레인 500mg… 부작용: 천재 되기!</string>
+    <string name="loading_text_5">🔧 애정 뉴런 조정 중… 반항아도 협조 중!</string>
+    <string name="loading_text_6">🎯 에픽 스폰 3… 2… 1…</string>
+    <string name="loading_text_7">🏆 영광 컴파일 중… 빛날 준비하세요!</string>
+    <string name="loading_text_8">🚀 휴스턴, 천재 확인… 정신 시퀀스 시작!</string>
+    <string name="loading_text_9">🧙‍♂️ 수학 마법… 아브라카다브라 + 2!</string>
+
 
 </resources>

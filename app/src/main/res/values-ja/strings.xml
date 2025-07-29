@@ -1178,5 +1178,15 @@
 
     <string name="language_list_description">選択する言語のリスト</string>
 
+    <string name="loading_text_1">🧠 脳がウォーミングアップ中… ケガしないで！</string>
+    <string name="loading_text_2">⚔️ 精神力ロード中… 知能降臨！</string>
+    <string name="loading_text_3">🦸‍♂️ 天才モード発動… 大きな数字には大きな責任が！</string>
+    <string name="loading_text_4">💊 スーパーブレイン500mg… 副作用：天才になること！</string>
+    <string name="loading_text_5">🔧 お気に入りニューロン調整中… 反抗的なヤツも協力中！</string>
+    <string name="loading_text_6">🎯 エピックスポーン 3… 2… 1…</string>
+    <string name="loading_text_7">🏆 栄光コンパイル中… 輝く準備を！</string>
+    <string name="loading_text_8">🚀 ヒューストン、天才確認… 精神シーケンス開始！</string>
+    <string name="loading_text_9">🧙‍♂️ 数学マジック… アブラカダブラ + 2！</string>
+
 
 </resources>

@@ -1543,6 +1543,16 @@
 
     <string name="language_list_description">قائمة اللغات للاختيار</string>
 
+    <string name="loading_text_1">🧠 العقل يتحضر… لا تصب بإجهاد!</string>
+    <string name="loading_text_2">⚔️ قوة العقل تتزايد… الذكاء قادم!</string>
+    <string name="loading_text_3">🦸‍♂️ وضع العبقري مفعل… أرقام كبيرة، مسؤوليات كبيرة!</string>
+    <string name="loading_text_4">💊 سوبر سيريبرو 500 ملغ… الأثار الجانبية: كن لامعاً!</string>
+    <string name="loading_text_5">🔧 معايرة خليتك العصبية المفضلة… المتمردة تتعاون الآن!</string>
+    <string name="loading_text_6">🎯 أسئلة ملحمية في 3… 2… 1…</string>
+    <string name="loading_text_7">🏆 المجد يتم تجميعه… استعد للإشراق!</string>
+    <string name="loading_text_8">🚀 هيوستن، لدينا عبقري… تسلسل عقلي بدأ!</string>
+    <string name="loading_text_9">🧙‍♂️ سحر الرياضيات… أبرا كادابرا + 2!</string>
+
 
 
 </resources>

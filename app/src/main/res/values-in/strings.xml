@@ -1415,5 +1415,15 @@ Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di 
 
     <string name="language_list_description">Daftar bahasa untuk dipilih</string>
 
+    <string name="loading_text_1">🧠 Otak sedang pemanasan… Jangan sampai cedera!</string>
+    <string name="loading_text_2">⚔️ Memuat kekuatan mental… KECERDASAN datang!</string>
+    <string name="loading_text_3">🦸‍♂️ Mode jenius aktif… Angka besar, tanggung jawab besar!</string>
+    <string name="loading_text_4">💊 SuperOtak 500mg… Efek samping: jadi cemerlang!</string>
+    <string name="loading_text_5">🔧 Kalibrasi neuron favorit… Si pemberontak sekarang kooperatif!</string>
+    <string name="loading_text_6">🎯 Spawn epik dalam 3… 2… 1…</string>
+    <string name="loading_text_7">🏆 Kemuliaan sedang dikompilasi… Bersiap untuk bersinar!</string>
+    <string name="loading_text_8">🚀 Houston, kita punya jenius… Sekuens mental dimulai!</string>
+    <string name="loading_text_9">🧙‍♂️ Sihir matematika… Abrakadabra + 2!</string>
+
 
 </resources>
