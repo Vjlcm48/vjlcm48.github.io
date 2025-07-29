@@ -1426,4 +1426,15 @@
     <string name="toast_cooldown_long">समझ गया, हम कुछ समय के लिए परेशान नहीं करेंगे।</string>
     <string name="toast_cooldown_short">हम आपको बाद में याद दिलाएंगे।</string>
 
+    <string name="action_unlink_account">खाता अनलिंक करें</string>
+    <string name="account_unlinked_success">खाता सफलतापूर्वक अनलिंक किया गया।</string>
+
+    <string name="unlink_account_confirm_message">आपकी प्रगति अब क्लाउड में सहेजी नहीं जाएगी और आप इसे अन्य डिवाइस पर पुनर्प्राप्त नहीं कर पाएंगे। क्या आप जारी रखना चाहते हैं?</string>
+
+    <string name="link_account_confirm_message">क्या आप अपना Google खाता लिंक करना चाहते हैं?</string>
+    <string name="dialog_unlink_title">खाता अनलिंक करें?</string>
+
+    <string name="language_list_description">चयन के लिए भाषाओं की सूची</string>
+
+
 </resources>

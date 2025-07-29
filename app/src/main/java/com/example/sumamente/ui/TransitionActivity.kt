@@ -10,13 +10,11 @@ import com.example.sumamente.R
 
 class TransitionActivity : BaseActivity() {
 
-    private var isExistingUser = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_transition)
-
-        isExistingUser = intent.getBooleanExtra("IS_EXISTING_USER", false)
 
         clearAppDataOnLaunch()
 
@@ -28,9 +26,13 @@ class TransitionActivity : BaseActivity() {
 
     private fun transicionPantalla() {
 
-        val targetActivity = if (isExistingUser) {
+        val source = intent.getStringExtra("SOURCE")
+
+        val targetActivity = if (source == "SplashScreen") {
+
             MainGameActivity::class.java
         } else {
+
             NotificationsActivity::class.java
         }
 

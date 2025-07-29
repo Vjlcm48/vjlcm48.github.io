@@ -35,11 +35,8 @@ class MainGameActivity : BaseActivity() {
     private lateinit var profileText: TextView
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var preferenceChangeListener: SharedPreferences.OnSharedPreferenceChangeListener
-
     private lateinit var trophyContainer: FrameLayout
     private lateinit var trophyRedDot: View
-
-    // Handler para el fade out
     private var fadeHandler: Handler? = null
     private var fadeRunnable: Runnable? = null
     private var isActivityVisible = false
@@ -157,8 +154,8 @@ class MainGameActivity : BaseActivity() {
 
         profileText.setOnClickListener {
             applyBounceEffect(it) {
-                val profileEditDialog = ProfileEditDialog(this@MainGameActivity)
-                profileEditDialog.show()
+                val intent = Intent(this, ProfileEditActivity::class.java)
+                startActivity(intent)
             }
         }
 

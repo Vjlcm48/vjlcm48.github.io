@@ -1487,7 +1487,6 @@
     <string name="cancel_button">Cancelar</string>
     <string name="account_deleted_success">Tu cuenta ha sido eliminada.</string>
 
-
     <string name="link_prompt_title_tranquility">Juega sin preocupaciones.</string>
     <string name="link_prompt_body_tranquility">Conecta tu cuenta de Google en segundos y nosotros nos aseguramos de que tu esfuerzo esté siempre a salvo.</string>
     <string name="link_prompt_title_positive">¡Tu esfuerzo vale oro!</string>
@@ -1510,5 +1509,16 @@
     <string name="toast_cooldown_long">Entendido, no molestaremos por un tiempo.</string>
     <string name="toast_cooldown_short">Te lo recordaremos más adelante.</string>
 
+    <string name="action_unlink_account">Desvincular Cuenta</string>
 
-    </resources>
+    <string name="account_unlinked_success">Cuenta desvinculada con éxito.</string>
+
+    <string name="unlink_account_confirm_message">Tu progreso ya no se guardará en la nube y no podrás recuperarlo en otros dispositivos. ¿Deseas continuar?</string>
+
+    <string name="link_account_confirm_message">¿Deseas vincular tu cuenta de Google?</string>
+    <string name="dialog_unlink_title">¿Desvincular cuenta?</string>
+
+    <string name="language_list_description">Lista de idiomas para seleccionar</string>
+
+
+</resources>

@@ -1168,4 +1168,15 @@
     <string name="toast_cooldown_long">了解しました、しばらくの間お邪魔しません。</string>
     <string name="toast_cooldown_short">後ほどお知らせします。</string>
 
+    <string name="action_unlink_account">アカウントの連携を解除</string>
+    <string name="account_unlinked_success">アカウントの連携が正常に解除されました。</string>
+
+    <string name="unlink_account_confirm_message">進行状況はクラウドに保存されなくなり、他のデバイスで復元できません。続行しますか？</string>
+
+    <string name="link_account_confirm_message">Googleアカウントをリンクしますか？</string>
+    <string name="dialog_unlink_title">アカウントのリンクを解除しますか？</string>
+
+    <string name="language_list_description">選択する言語のリスト</string>
+
+
 </resources>

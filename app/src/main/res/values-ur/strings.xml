@@ -1214,5 +1214,15 @@
     <string name="toast_cooldown_long">سمجھ گیا، ہم کچھ دیر کے لیے پریشان نہیں کریں گے۔</string>
     <string name="toast_cooldown_short">ہم آپ کو بعد میں یاد دلائیں گے۔</string>
 
+    <string name="action_unlink_account">اکاؤنٹ کو اَن لنک کریں</string>
+    <string name="account_unlinked_success">اکاؤنٹ کامیابی سے اَن لنک ہوگیا۔</string>
+
+    <string name="unlink_account_confirm_message">آپ کی پیشرفت اب کلاؤڈ میں محفوظ نہیں ہوگی اور آپ اسے دیگر ڈیوائسز پر بحال نہیں کر سکیں گے۔ کیا آپ جاری رکھنا چاہتے ہیں؟</string>
+
+    <string name="link_account_confirm_message">کیا آپ اپنا Google اکاؤنٹ لنک کرنا چاہتے ہیں؟</string>
+    <string name="dialog_unlink_title">اکاؤنٹ کو ان لنک کریں؟</string>
+
+    <string name="language_list_description">منتخب کرنے کے لیے زبانوں کی فہرست</string>
+
 
 </resources>

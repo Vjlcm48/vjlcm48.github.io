@@ -13,11 +13,12 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.edit
 import com.example.sumamente.R
 
-class SettingsActivity : BaseActivity()  {
+class SettingsActivity : BaseActivity() {
 
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var profileSubtitleText: TextView
@@ -31,12 +32,6 @@ class SettingsActivity : BaseActivity()  {
         const val ACCOUNT_LINKED = "isAccountLinked"
         const val LAST_PROMPT_DISMISSAL_TIMESTAMP = "lastPromptDismissalTimestamp"
         const val LINK_PROMPT_INTERACTED = "linkPromptInteracted"
-
-
-        // const val COOLDOWN_REMIND_LATER = 7L * 24 * 60 * 60 * 1000 // 7 días
-        // const val COOLDOWN_NOT_NOW = 14L * 24 * 60 * 60 * 1000 // 14 días
-        // const val COOLDOWN_FLOAT_DISMISS = 4L * 24 * 60 * 60 * 1000 // 4 días
-        // const val COOLDOWN_FLOAT_DIALOG_DISMISS = 8L * 24 * 60 * 60 * 1000 // 8 días
 
         const val COOLDOWN_REMIND_LATER = 60 * 1000L
         const val COOLDOWN_NOT_NOW = 120 * 1000L
@@ -155,11 +150,9 @@ class SettingsActivity : BaseActivity()  {
                 showConfirmDeleteDialog()
             }
         }
-
     }
 
     private fun updateProfileOption() {
-
         val isLinked = sharedPreferences.getBoolean(ACCOUNT_LINKED, false)
         if (isLinked) {
             profileSubtitleText.text = getString(R.string.profile_subtitle_linked)
@@ -170,25 +163,11 @@ class SettingsActivity : BaseActivity()  {
 
     private fun handleProfileClick() {
 
-        val isLinked = sharedPreferences.getBoolean(ACCOUNT_LINKED, false)
-        if (isLinked) {
-            val dialog = ProfileEditDialog(this)
-            dialog.show()
-        } else {
-            showLinkAccountDialog()
-        }
-    }
-
-    private fun showLinkAccountDialog() {
-
-        sharedPreferences.edit { putBoolean(ACCOUNT_LINKED, true) }
-        Toast.makeText(this, getString(R.string.account_linked_success), Toast.LENGTH_LONG).show()
-        updateProfileOption()
+        startActivity(Intent(this, ProfileEditActivity::class.java))
     }
 
     private fun showConfirmDeleteDialog() {
-
-        androidx.appcompat.app.AlertDialog.Builder(this)
+        AlertDialog.Builder(this)
             .setTitle(getString(R.string.delete_account_confirm_title))
             .setMessage(getString(R.string.delete_account_confirm_message))
             .setPositiveButton(getString(R.string.delete_button)) { _, _ ->
@@ -198,7 +177,7 @@ class SettingsActivity : BaseActivity()  {
 
                 Toast.makeText(this, getString(R.string.account_deleted_success), Toast.LENGTH_LONG).show()
 
-                val intent = Intent(this, GatewayActivity::class.java)
+                val intent = Intent(this, SplashScreenActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
                 finish()

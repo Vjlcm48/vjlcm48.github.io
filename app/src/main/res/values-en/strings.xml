@@ -1480,4 +1480,15 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
     <string name="toast_cooldown_long">Got it, we won\'t bother you for a while.</string>
     <string name="toast_cooldown_short">We\'ll remind you later.</string>
 
+    <string name="action_unlink_account">Unlink Account</string>
+    <string name="account_unlinked_success">Account unlinked successfully.</string>
+
+    <string name="unlink_account_confirm_message">Your progress will no longer be saved to the cloud and you won\'t be able to recover it on other devices. Do you wish to continue?</string>
+
+    <string name="link_account_confirm_message">Do you want to link your Google account?</string>
+    <string name="dialog_unlink_title">Unlink account?</string>
+
+    <string name="language_list_description">Language list to select</string>
+
+
 </resources>

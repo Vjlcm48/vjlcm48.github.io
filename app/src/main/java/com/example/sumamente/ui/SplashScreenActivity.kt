@@ -152,8 +152,9 @@ class SplashScreenActivity : AppCompatActivity() {
 
                         intent = Intent(this@SplashScreenActivity, TransitionActivity::class.java)
 
-                        intent.putExtra("IS_EXISTING_USER", true)
+                        intent.putExtra("SOURCE", "SplashScreen")
                     }
+
 
                     val options = ActivityOptions.makeCustomAnimation(
                         this@SplashScreenActivity,

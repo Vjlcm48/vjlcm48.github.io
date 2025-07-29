@@ -1400,8 +1400,6 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
     <string name="cancel_button">Abbrechen</string>
     <string name="account_deleted_success">Dein Konto wurde gelöscht.</string>
 
-
-
     <string name="link_prompt_title_tranquility">Spiele ohne Sorgen.</string>
     <string name="link_prompt_body_tranquility">Verbinde dein Google-Konto in Sekunden und wir sorgen dafür, dass deine Fortschritte immer sicher sind.</string>
     <string name="link_prompt_title_positive">Deine Fortschritte sind wertvoll!</string>
@@ -1423,5 +1421,16 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
     <string name="toast_button_dismissed">Schaltfläche vorübergehend ausgeblendet.</string>
     <string name="toast_cooldown_long">Verstanden, wir werden eine Weile nicht stören.</string>
     <string name="toast_cooldown_short">Wir erinnern dich später daran.</string>
+
+    <string name="action_unlink_account">Konto trennen</string>
+    <string name="account_unlinked_success">Konto erfolgreich getrennt.</string>
+
+    <string name="unlink_account_confirm_message">Dein Fortschritt wird nicht mehr in der Cloud gespeichert und du kannst ihn auf anderen Geräten nicht wiederherstellen. Möchtest du fortfahren?</string>
+
+    <string name="link_account_confirm_message">Möchten Sie Ihr Google-Konto verknüpfen?</string>
+    <string name="dialog_unlink_title">Konto trennen?</string>
+
+    <string name="language_list_description">Sprachenliste zur Auswahl</string>
+
 
 </resources>

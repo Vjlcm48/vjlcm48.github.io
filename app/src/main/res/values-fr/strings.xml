@@ -1483,4 +1483,15 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
     <string name="toast_cooldown_long">Compris, nous ne te dérangerons pas pendant un moment.</string>
     <string name="toast_cooldown_short">Nous te le rappellerons plus tard.</string>
 
+    <string name="action_unlink_account">Dissocier le compte</string>
+    <string name="account_unlinked_success">Compte dissocié avec succès.</string>
+
+    <string name="unlink_account_confirm_message">Vos progrès ne seront plus enregistrés dans le cloud et vous ne pourrez pas les récupérer sur d\'autres appareils. Voulez-vous continuer ?</string>
+
+    <string name="link_account_confirm_message">Voulez-vous lier votre compte Google ?</string>
+    <string name="dialog_unlink_title">Dissocier le compte ?</string>
+
+    <string name="language_list_description">Liste des langues à sélectionner</string>
+
+
 </resources>

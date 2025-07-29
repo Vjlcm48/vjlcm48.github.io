@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/dialog_background"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center"
+    android:maxWidth="320dp">
+
+    <!-- Título: se establece dinámicamente en código, con cadenas como:
+         @string/dialog_link_title   o   @string/dialog_unlink_title -->
+    <TextView
+        android:id="@+id/tvDialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_link_title"
+        android:textColor="@android:color/black"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:fontFamily="@font/roboto_bold"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Mensaje: se establece dinámicamente en código, con cadenas como:
+         @string/link_account_confirm_message  o  @string/unlink_account_confirm_message -->
+    <TextView
+        android:id="@+id/tvDialogMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/link_account_confirm_message"
+        android:textColor="@android:color/black"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:layout_marginBottom="24dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <!-- Botón Cancelar: SIEMPRE debe ser este string -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel_button"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:textColor="@color/black"
+            android:layout_marginEnd="8dp"/>
+
+        <!-- Botón Acción: se establece dinámicamente en código, con cadenas como:
+             @string/dialog_link_accept o @string/action_unlink_account -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dialog_link_accept"
+            android:textColor="@android:color/white"
+            app:cornerRadius="16dp"
+            app:backgroundTint="@color/primary_button_color"/>
+    </LinearLayout>
+</LinearLayout>

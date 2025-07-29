@@ -1333,4 +1333,15 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
     <string name="toast_cooldown_long">Entendido, não incomodaremos por um tempo.</string>
     <string name="toast_cooldown_short">Lembraremos você mais tarde.</string>
 
+    <string name="action_unlink_account">Desvincular Conta</string>
+    <string name="account_unlinked_success">Conta desvinculada com sucesso.</string>
+
+    <string name="unlink_account_confirm_message">Seu progresso não será mais salvo na nuvem e você não poderá recuperá-lo em outros dispositivos. Deseja continuar?</string>
+
+    <string name="link_account_confirm_message">Deseja vincular sua conta do Google?</string>
+    <string name="dialog_unlink_title">Desvincular conta?</string>
+
+    <string name="language_list_description">Lista de idiomas para selecionar</string>
+
+
 </resources>

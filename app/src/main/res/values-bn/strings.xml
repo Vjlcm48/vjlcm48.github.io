@@ -1199,4 +1199,15 @@
     <string name="toast_cooldown_long">বুঝেছি, আমরা কিছুক্ষণের জন্য বিরক্ত করব না।</string>
     <string name="toast_cooldown_short">আমরা আপনাকে পরে মনে করিয়ে দেব।</string>
 
+    <string name="action_unlink_account">অ্যাকাউন্টের সংযোগ বিচ্ছিন্ন করুন</string>
+    <string name="account_unlinked_success">অ্যাকাউন্ট সফলভাবে সংযোগ বিচ্ছিন্ন হয়েছে।</string>
+
+    <string name="unlink_account_confirm_message">আপনার অগ্রগতি আর ক্লাউডে সংরক্ষণ করা হবে না এবং আপনি এটি অন্য ডিভাইসে পুনরুদ্ধার করতে পারবেন না। আপনি কি চালিয়ে যেতে চান?</string>
+
+    <string name="link_account_confirm_message">আপনি কি আপনার Google অ্যাকাউন্ট লিঙ্ক করতে চান?</string>
+    <string name="dialog_unlink_title">অ্যাকাউন্ট আনলিঙ্ক করবেন?</string>
+
+    <string name="language_list_description">নির্বাচনের জন্য ভাষার তালিকা</string>
+
+
 </resources>

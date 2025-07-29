@@ -1533,6 +1533,15 @@
     <string name="toast_cooldown_long">مفهوم، لن نزعجك لبعض الوقت.</string>
     <string name="toast_cooldown_short">سنذكرك لاحقًا.</string>
 
+    <string name="action_unlink_account">إلغاء ربط الحساب</string>
+    <string name="account_unlinked_success">تم إلغاء ربط الحساب بنجاح.</string>
+
+    <string name="unlink_account_confirm_message">لن يتم حفظ تقدمك في السحابة بعد الآن ولن تتمكن من استعادته على أجهزة أخرى. هل ترغب في المتابعة؟</string>
+
+    <string name="link_account_confirm_message">هل تريد ربط حساب Google الخاص بك؟</string>
+    <string name="dialog_unlink_title">إلغاء ربط الحساب؟</string>
+
+    <string name="language_list_description">قائمة اللغات للاختيار</string>
 
 
 

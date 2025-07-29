@@ -22,6 +22,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.ProfileEditActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.FlagSelectionActivity"
             android:exported="false" />
 
