@@ -174,6 +174,22 @@ class ClassificationActivity : BaseActivity() {
         logo.startAnimation(animZoomLogo)
         logo.alpha = 1f
 
+
+        btnBack.alpha = 0f
+        btnClose.alpha = 0f
+        titulo.alpha = 0f
+        val buttons = arrayOf(
+            findViewById(R.id.btn_como_funciona),
+            findViewById(R.id.btn_ver_clasificacion),
+            findViewById(R.id.btn_clasificacion_velocidad),
+            findViewById(R.id.btn_clasificacion_iqplus),
+            findViewById<LinearLayout>(R.id.btn_clasificacion_integral)
+        )
+        buttons.forEach {
+            it.alpha = 0f
+            it.translationY = 150f
+        }
+
         animZoomLogo.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
             override fun onAnimationStart(animation: android.view.animation.Animation?) {}
 
@@ -189,54 +205,26 @@ class ClassificationActivity : BaseActivity() {
                     .setDuration(350)
                     .setStartDelay(0)
                     .start()
-
                 titulo.animate()
                     .alpha(1f)
                     .setDuration(400)
                     .setStartDelay(100)
-                    .start()
+                    .withEndAction {
 
-                val buttons = arrayOf(
-                    findViewById(R.id.btn_como_funciona),
-                    findViewById(R.id.btn_ver_clasificacion),
-                    findViewById(R.id.btn_clasificacion_velocidad),
-                    findViewById(R.id.btn_clasificacion_iqplus),
-                    findViewById<LinearLayout>(R.id.btn_clasificacion_integral)
-                )
-                buttons.forEachIndexed { index, button ->
-                    button.animate()
-                        .alpha(1f)
-                        .translationYBy(0f)
-                        .setDuration(500)
-                        .setStartDelay(200 + (80 * index).toLong())
-                        .start()
-                }
+                        buttons.forEachIndexed { index, button ->
+                            button.animate()
+                                .alpha(1f)
+                                .translationY(0f)
+                                .setDuration(500)
+                                .setStartDelay((80 * index).toLong())
+                                .start()
+                        }
+                    }
+                    .start()
             }
 
             override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
         })
-
-        val buttons = arrayOf(
-            findViewById(R.id.btn_como_funciona),
-            findViewById(R.id.btn_ver_clasificacion),
-            findViewById(R.id.btn_clasificacion_velocidad),
-            findViewById(R.id.btn_clasificacion_iqplus),
-            findViewById<LinearLayout>(R.id.btn_clasificacion_integral)
-        )
-        buttons.forEachIndexed { index, button ->
-            button.alpha = 0f
-            button.translationY = 150f
-            button.animate()
-                .alpha(1f)
-                .translationY(0f)
-                .setDuration(500)
-                .setStartDelay(350 + (80 * index).toLong())
-                .start()
-        }
-
-        btnBack.alpha = 0f
-        btnClose.alpha = 0f
-        titulo.alpha = 0f
     }
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {

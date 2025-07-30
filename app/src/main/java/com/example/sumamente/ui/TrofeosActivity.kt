@@ -8,8 +8,10 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import com.example.sumamente.R
 import com.example.sumamente.ui.utils.MusicManager
 import java.lang.ref.WeakReference
@@ -38,13 +40,14 @@ class TrofeosActivity : BaseActivity() {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var preferenceChangeListener: SharedPreferences.OnSharedPreferenceChangeListener
     private lateinit var misCondecoracionesRedDot: View
+    private lateinit var appLogo: ImageView
+    private lateinit var titulo: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trofeos)
 
         instanceRef = WeakReference(this)
-
         CondecoracionTracker.init(this)
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
 
@@ -64,14 +67,17 @@ class TrofeosActivity : BaseActivity() {
         setupButtons()
 
         if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
-            MusicManager.play(this, R.raw.condecoraciones)
+            MusicManager.play(this, R.raw.condecoraciones, looping = true, volume = 0.2f)
         }
 
         CondecoracionTracker.verificarYEntregarPines()
         updateMisCondecoracionesRedDot()
+
+        startEntranceAnimation()
     }
 
     private fun initViews() {
+        appLogo = findViewById(R.id.app_logo)
         btnPin = findViewById(R.id.btn_pin)
         btnCorona = findViewById(R.id.btn_corona)
         btnMedalla = findViewById(R.id.btn_medalla)
@@ -84,23 +90,18 @@ class TrofeosActivity : BaseActivity() {
         btnClose = findViewById(R.id.btn_close)
         btnBack = findViewById(R.id.btn_back)
         misCondecoracionesRedDot = findViewById(R.id.mis_condecoraciones_red_dot)
+        titulo = findViewById(R.id.tv_titulo_trofeos)
     }
 
     private fun setupButtons() {
         btnClose.setOnClickListener {
             applyBounceEffect(it) {
-                MusicManager.stop()
-                val intent = Intent(this, MainGameActivity::class.java)
-                startActivity(intent)
                 finish()
             }
         }
 
         btnBack.setOnClickListener {
             applyBounceEffect(it) {
-                MusicManager.stop()
-                val intent = Intent(this, MainGameActivity::class.java)
-                startActivity(intent)
                 finish()
             }
         }
@@ -108,73 +109,55 @@ class TrofeosActivity : BaseActivity() {
         btnPin.setOnClickListener {
             applyBounceEffect(it) {
                 internalNavigation = true
-                val intent = Intent(this, PinesActivity::class.java)
-                startActivity(intent)
+                startActivity(Intent(this, PinesActivity::class.java))
             }
         }
-
         btnCorona.setOnClickListener {
             applyBounceEffect(it) {
                 internalNavigation = true
-                val intent = Intent(this, CoronasActivity::class.java)
-                startActivity(intent)
+                startActivity(Intent(this, CoronasActivity::class.java))
             }
         }
-
         btnMedalla.setOnClickListener {
-            internalNavigation = true
             applyBounceEffect(it) {
-                val intent = Intent(this, MedallasActivity::class.java)
-                startActivity(intent)
+                internalNavigation = true
+                startActivity(Intent(this, MedallasActivity::class.java))
             }
         }
-
         btnTrofeo.setOnClickListener {
-            internalNavigation = true
             applyBounceEffect(it) {
-                val intent = Intent(this, TrofeosDetailActivity::class.java)
-                startActivity(intent)
+                internalNavigation = true
+                startActivity(Intent(this, TrofeosDetailActivity::class.java))
             }
         }
-
-        btnTop10.setOnClickListener {
-            internalNavigation = true
-            applyBounceEffect(it) {
-                val intent = Intent(this, Top10Activity::class.java)
-                startActivity(intent)
-            }
-        }
-
-        btnApexSupremus.setOnClickListener {
-            internalNavigation = true
-            applyBounceEffect(it) {
-                val intent = Intent(this, ApexSupremusActivity::class.java)
-                startActivity(intent)
-            }
-        }
-
         btnMisCondecoraciones.setOnClickListener {
-            internalNavigation = true
             applyBounceEffect(it) {
-
-                val intent = Intent(this, MisCondecoracionesActivity::class.java)
-                startActivity(intent)
+                internalNavigation = true
+                startActivity(Intent(this, MisCondecoracionesActivity::class.java))
             }
         }
-
+        btnApexSupremus.setOnClickListener {
+            applyBounceEffect(it) {
+                internalNavigation = true
+                startActivity(Intent(this, ApexSupremusActivity::class.java))
+            }
+        }
+        btnTop10.setOnClickListener {
+            applyBounceEffect(it) {
+                internalNavigation = true
+                startActivity(Intent(this, Top10Activity::class.java))
+            }
+        }
         btnLos7Mejores.setOnClickListener {
-            internalNavigation = true
             applyBounceEffect(it) {
-                val intent = Intent(this, Los7MejoresActivity::class.java)
-                startActivity(intent)
+                internalNavigation = true
+                startActivity(Intent(this, Los7MejoresActivity::class.java))
             }
         }
-
         btnLos5Mejores.setOnClickListener {
-            internalNavigation = true
             applyBounceEffect(it) {
-                val intent = Intent(this, Los5MejoresActivity::class.java)
-                startActivity(intent)
+                internalNavigation = true
+                startActivity(Intent(this, Los5MejoresActivity::class.java))
             }
         }
     }
@@ -189,7 +172,6 @@ class TrofeosActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-
         updateMisCondecoracionesRedDot()
     }
 
@@ -201,13 +183,60 @@ class TrofeosActivity : BaseActivity() {
         internalNavigation = false
     }
 
-
     private fun updateMisCondecoracionesRedDot() {
-        if (CondecoracionTracker.shouldShowMisCondecoracionesRedDot()) {
-            misCondecoracionesRedDot.visibility = View.VISIBLE
-        } else {
-            misCondecoracionesRedDot.visibility = View.GONE
-        }
+        misCondecoracionesRedDot.visibility =
+            if (CondecoracionTracker.shouldShowMisCondecoracionesRedDot())
+                View.VISIBLE
+            else
+                View.GONE
+    }
+
+    private fun startEntranceAnimation() {
+        val animZoomLogo = AnimationUtils.loadAnimation(this, R.anim.logo_zoom_in)
+        appLogo.startAnimation(animZoomLogo)
+        appLogo.alpha = 1f
+
+        animZoomLogo.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
+            override fun onAnimationStart(animation: android.view.animation.Animation?) {}
+
+            override fun onAnimationEnd(animation: android.view.animation.Animation?) {
+                btnBack.animate()
+                    .alpha(1f)
+                    .setDuration(350)
+                    .setStartDelay(0)
+                    .start()
+                btnClose.animate()
+                    .alpha(1f)
+                    .setDuration(350)
+                    .setStartDelay(0)
+                    .start()
+                titulo.animate()
+                    .alpha(1f)
+                    .setDuration(400)
+                    .setStartDelay(100)
+                    .start()
+
+                val buttons = arrayOf(
+                    btnMisCondecoraciones, btnPin, btnCorona, btnMedalla, btnTrofeo,
+                    btnTop10, btnLos7Mejores, btnLos5Mejores, btnApexSupremus
+                )
+                buttons.forEachIndexed { index, button ->
+                    button.alpha = 0f
+                    button.translationY = 150f
+                    button.animate()
+                        .alpha(1f)
+                        .translationY(0f)
+                        .setDuration(500)
+                        .setStartDelay(350 + (80 * index).toLong())
+                        .start()
+                }
+            }
+            override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
+        })
+
+        btnBack.alpha = 0f
+        btnClose.alpha = 0f
+        titulo.alpha = 0f
     }
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
@@ -216,23 +245,15 @@ class TrofeosActivity : BaseActivity() {
         val scaleUpX = ObjectAnimator.ofFloat(view, "scaleX", 0.9f, 1f).setDuration(50)
         val scaleUpY = ObjectAnimator.ofFloat(view, "scaleY", 0.9f, 1f).setDuration(50)
 
-        val scaleDown = AnimatorSet().apply {
-            playTogether(scaleDownX, scaleDownY)
-        }
-
-        val scaleUp = AnimatorSet().apply {
-            playTogether(scaleUpX, scaleUpY)
-        }
-
+        val scaleDown = AnimatorSet().apply { playTogether(scaleDownX, scaleDownY) }
+        val scaleUp = AnimatorSet().apply { playTogether(scaleUpX, scaleUpY) }
         val animatorSet = AnimatorSet()
         animatorSet.playSequentially(scaleDown, scaleUp)
-
         animatorSet.addListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
                 onAnimationEnd()
             }
         })
-
         animatorSet.start()
     }
 
@@ -242,5 +263,4 @@ class TrofeosActivity : BaseActivity() {
         instanceRef = null
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(preferenceChangeListener)
     }
-
 }
