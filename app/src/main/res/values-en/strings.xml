@@ -181,7 +181,9 @@
     <string name="has_agotado_tus_intentos">You have used all your attempts!</string>
     <string name="se_agoto_el_tiempo">Oops! Time is up</string>
     <string name="tiempo_empleado">Time: %1$s sec</string>
-    <string name="select_game_to_reset">Select the game to reset</string>
+
+    <string name="select_game_to_reset">Select the game\nto reset.</string>
+
     <string name="check_blue_description">Blue check</string>
     <string name="check_description">Green check indicating success</string>
 

@@ -78,6 +78,7 @@
 
     <!-- SCROLL Y BOTONES -->
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"
@@ -179,7 +180,7 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <!-- Repite este patrón para los demás botones -->
+
             <LinearLayout
                 android:id="@+id/btn_medalla"
                 android:layout_width="match_parent"
@@ -326,4 +327,32 @@
 
         </LinearLayout>
     </ScrollView>
+
+
+    <View
+        android:id="@+id/gradient_view"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@drawable/gradient_fade_bottom"
+        app:layout_constraintBottom_toBottomOf="@id/scrollView"
+        app:layout_constraintEnd_toEndOf="@id/scrollView"
+        app:layout_constraintStart_toStartOf="@id/scrollView"
+        android:alpha="0" />
+
+
+
+    <ImageView
+        android:id="@+id/arrow_icon"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="10dp"
+        android:contentDescription="@string/scroll_view_description"
+        android:src="@drawable/ic_arrow_down"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="@color/white"
+        android:alpha="0" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

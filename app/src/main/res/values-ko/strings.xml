@@ -177,7 +177,9 @@
     <string name="has_agotado_tus_intentos">시도 횟수를 모두 사용했어요!</string>
     <string name="se_agoto_el_tiempo">앗! 시간이 다 됐어요</string>
     <string name="tiempo_empleado">소요 시간: %1$s초</string>
-    <string name="select_game_to_reset">초기화할 게임을 선택하세요</string>
+
+    <string name="select_game_to_reset">초기화할\n게임을 선택하세요.</string>
+
     <string name="check_blue_description">파란색 체크</string>
     <string name="check_description">성공을 나타내는 녹색 체크</string>
     <string name="select_data_to_reset">초기화할 데이터를 선택하세요</string>

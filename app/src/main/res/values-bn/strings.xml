@@ -177,7 +177,9 @@
     <string name="has_agotado_tus_intentos">আপনি আপনার সমস্ত প্রচেষ্টা শেষ করেছেন!</string>
     <string name="se_agoto_el_tiempo">উফ! সময় শেষ</string>
     <string name="tiempo_empleado">সময়: %1$s সেকেন্ড</string>
-    <string name="select_game_to_reset">রিসেট করার জন্য খেলা বাছাই করুন</string>
+
+    <string name="select_game_to_reset">রিসেট করার জন্য\nগেমটি নির্বাচন করুন।</string>
+
     <string name="check_blue_description">নীল চেক</string>
     <string name="check_description">সাফল্য নির্দেশক সবুজ চেক</string>
     <string name="select_data_to_reset">রিসেট করতে চান এমন ডেটা বাছাই করুন</string>

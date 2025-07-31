@@ -181,10 +181,11 @@
     <string name="has_agotado_tus_intentos">Tu as épuisé tes essais !</string>
     <string name="se_agoto_el_tiempo">Oups ! Le temps est écoulé</string>
     <string name="tiempo_empleado">Temps : %1$s sec</string>
-    <string name="select_game_to_reset">Sélectionnez le jeu à réinitialiser</string>
+
+    <string name="select_game_to_reset">Sélectionnez le jeu\nà réinitialiser.</string>
+
     <string name="check_blue_description">Check bleu</string>
     <string name="check_description">Check vert indiquant le succès</string>
-
 
 
     <string name="select_data_to_reset">Sélectionnez les données à réinitialiser</string>

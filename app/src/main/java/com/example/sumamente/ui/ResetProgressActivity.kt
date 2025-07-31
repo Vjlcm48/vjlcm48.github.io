@@ -1,9 +1,6 @@
 package com.example.sumamente.ui
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
+import android.animation.*
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
@@ -15,25 +12,42 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.core.graphics.drawable.toDrawable
 import com.example.sumamente.R
 import java.util.Locale
 
-class ResetProgressActivity : BaseActivity()  {
+class ResetProgressActivity : BaseActivity() {
 
     private var selectedGame: String? = null
     private var selectedDifficulty: String? = null
 
+    private lateinit var tvTitle: TextView
+    private lateinit var btnClose: ImageView
+    private lateinit var layoutButtons: LinearLayout
+    private lateinit var btnNumerosPlus: ConstraintLayout
+    private lateinit var btnDeciPlus: ConstraintLayout
+    private lateinit var btnRomas: ConstraintLayout
+    private lateinit var btnAlfaNumeros: ConstraintLayout
+    private lateinit var btnSumaresta: ConstraintLayout
+    private lateinit var btnMasPlus: ConstraintLayout
+    private lateinit var btnGenioPlus: ConstraintLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initializeScoreManagers()
+        setContentView(R.layout.activity_reset_progress)
+        bindViews()
+        styleColoredButtons()
+        setupClickListeners()
+        setupEntranceAnimations()
+    }
+
+    private fun initializeScoreManagers() {
         ScoreManager.init(this)
         ScoreManager.initPrincipiante(this)
         ScoreManager.initPro(this)
@@ -55,106 +69,228 @@ class ResetProgressActivity : BaseActivity()  {
         ScoreManager.initGenioPlus(this)
         ScoreManager.initGenioPlusPrincipiante(this)
         ScoreManager.initGenioPlusPro(this)
+    }
 
-        setContentView(R.layout.activity_reset_progress)
+    private fun bindViews() {
+        tvTitle = findViewById(R.id.tv_reset_title)
+        btnClose = findViewById(R.id.closeButton)
+        layoutButtons = findViewById(R.id.layout_reset_buttons)
+        btnNumerosPlus = findViewById(R.id.btn_numeros_plus)
+        btnDeciPlus = findViewById(R.id.btn_deci_plus)
+        btnRomas = findViewById(R.id.btn_romas)
+        btnAlfaNumeros = findViewById(R.id.btn_alfa_numeros)
+        btnSumaresta = findViewById(R.id.btn_sumaresta)
+        btnMasPlus = findViewById(R.id.btn_mas_plus)
+        btnGenioPlus = findViewById(R.id.btn_genio_plus)
 
-        val btnNumerosPlus = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_numeros_plus)
-        val btnDeciPlus = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_deci_plus)
-        val btnRomas = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_romas)
-        val btnAlfaNumeros = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_alfa_numeros)
-        val btnSumaresta = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_sumaresta)
-        val btnMasPlus = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_mas_plus)
-        val btnGenioPlus = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_genio_plus)
-        val closeButton = findViewById<ImageView>(R.id.closeButton)
+        btnNumerosPlus.findViewById<ImageView>(R.id.ic_reset_numeros_plus).tag = "reset"
+        btnDeciPlus.findViewById<ImageView>(R.id.ic_reset_deci_plus).tag = "reset"
+        btnRomas.findViewById<ImageView>(R.id.ic_reset_romas).tag = "reset"
+        btnAlfaNumeros.findViewById<ImageView>(R.id.ic_reset_alfa_numeros).tag = "reset"
+        btnSumaresta.findViewById<ImageView>(R.id.ic_reset_sumaresta).tag = "reset"
+        btnMasPlus.findViewById<ImageView>(R.id.ic_reset_mas_plus).tag = "reset"
+        btnGenioPlus.findViewById<ImageView>(R.id.ic_reset_genio_plus).tag = "reset"
+
+    }
+
+    private fun styleColoredButtons() {
 
         val alfaText = getString(R.string.text_alfa)
         val numerosText = getString(R.string.text_numeros)
-        val alfaNumerosText = "$alfaText$numerosText"
-        val spannableAlfaNumeros = SpannableString(alfaNumerosText)
-
-        spannableAlfaNumeros.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(this, R.color.red_primary)),
-            0, alfaText.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        spannableAlfaNumeros.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_primary_darker)),
-            alfaText.length, alfaNumerosText.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        btnAlfaNumeros.text = spannableAlfaNumeros
+        val spannableAlfaNumeros = SpannableString("$alfaText$numerosText").apply {
+            setSpan(
+                ForegroundColorSpan(ContextCompat.getColor(this@ResetProgressActivity, R.color.red_primary)),
+                0, alfaText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            setSpan(
+                ForegroundColorSpan(ContextCompat.getColor(this@ResetProgressActivity, R.color.blue_primary_darker)),
+                alfaText.length, alfaText.length + numerosText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+        }
+        val tvAlfaNumeros = btnAlfaNumeros.findViewById<TextView>(R.id.tv_game_name_alfa_numeros)
+        tvAlfaNumeros.text = spannableAlfaNumeros
 
         val sumaText = getString(R.string.text_suma)
         val restaText = getString(R.string.text_resta)
-        val sumarestaText = "$sumaText$restaText"
-        val spannableSumaresta = SpannableString(sumarestaText)
+        val spannableSumaresta = SpannableString("$sumaText$restaText").apply {
+            setSpan(
+                ForegroundColorSpan(ContextCompat.getColor(this@ResetProgressActivity, R.color.blue_pressed)),
+                0, sumaText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            setSpan(
+                ForegroundColorSpan(ContextCompat.getColor(this@ResetProgressActivity, R.color.red)),
+                sumaText.length, sumaText.length + restaText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+        }
+        val tvSumaresta = btnSumaresta.findViewById<TextView>(R.id.tv_game_name_sumaresta)
+        tvSumaresta.text = spannableSumaresta
+    }
 
-        spannableSumaresta.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_pressed)),
-            0, sumaText.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        spannableSumaresta.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)),
-            sumaText.length, sumarestaText.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        btnSumaresta.text = spannableSumaresta
-
+    private fun setupClickListeners() {
         btnNumerosPlus.setOnClickListener {
+            animateResetIcon(it.findViewWithTag("reset")!!)
             applyBounceEffect(it) {
-                selectedGame = "NumerosPlus"
-                showDifficultySelectionDialog(getString(R.string.game_numeros_plus))
+                it.postDelayed({
+                    selectGameAndShowDialog("NumerosPlus", R.string.game_numeros_plus)
+                }, 700)
             }
         }
-
         btnDeciPlus.setOnClickListener {
+            animateResetIcon(it.findViewWithTag("reset")!!)
             applyBounceEffect(it) {
-                selectedGame = "DeciPlus"
-                showDifficultySelectionDialog(getString(R.string.game_deci_plus))
+                it.postDelayed({
+                    selectGameAndShowDialog("DeciPlus", R.string.game_deci_plus)
+                }, 700)
             }
         }
-
         btnRomas.setOnClickListener {
+            animateResetIcon(it.findViewWithTag("reset")!!)
             applyBounceEffect(it) {
-                selectedGame = "Romas"
-                showDifficultySelectionDialog(getString(R.string.game_romas))
+                it.postDelayed({
+                    selectGameAndShowDialog("Romas", R.string.game_romas)
+                }, 700)
             }
         }
-
         btnAlfaNumeros.setOnClickListener {
+            animateResetIcon(it.findViewWithTag("reset")!!)
             applyBounceEffect(it) {
-                selectedGame = "AlfaNumeros"
-                showDifficultySelectionDialog(getString(R.string.game_alfa_numeros))
+                it.postDelayed({
+                    selectGameAndShowDialog("AlfaNumeros", R.string.game_alfa_numeros)
+                }, 700)
             }
         }
-
         btnSumaresta.setOnClickListener {
+            animateResetIcon(it.findViewWithTag("reset")!!)
             applyBounceEffect(it) {
-                selectedGame = "Sumaresta"
-                showDifficultySelectionDialog(getString(R.string.game_sumaresta))
+                it.postDelayed({
+                    selectGameAndShowDialog("Sumaresta", R.string.game_sumaresta)
+                }, 700)
             }
         }
-
         btnMasPlus.setOnClickListener {
+            animateResetIcon(it.findViewWithTag("reset")!!)
             applyBounceEffect(it) {
-                selectedGame = "MasPlus"
-                showDifficultySelectionDialog(getString(R.string.game_mas_plus))
+                it.postDelayed({
+                    selectGameAndShowDialog("MasPlus", R.string.game_mas_plus)
+                }, 700)
             }
         }
-
         btnGenioPlus.setOnClickListener {
+            animateResetIcon(it.findViewWithTag("reset")!!)
             applyBounceEffect(it) {
-                selectedGame = "GenioPlus"
-                showDifficultySelectionDialog(getString(R.string.game_genio_plus))
+                it.postDelayed({
+                    selectGameAndShowDialog("GenioPlus", R.string.game_genio_plus)
+                }, 700)
             }
         }
 
-        closeButton.setOnClickListener {
-            applyBounceEffect(it) {
-                finish()
-            }
+        btnClose.setOnClickListener { applyBounceEffect(it) { finish() } }
+    }
+
+
+    private fun animateResetIcon(icon: ImageView) {
+        ObjectAnimator.ofFloat(icon, "rotation", 0f, 360f).apply {
+            duration = 700
+            interpolator = android.view.animation.AccelerateDecelerateInterpolator()
+            start()
         }
+    }
+
+    private fun selectGameAndShowDialog(gameKey: String, titleRes: Int) {
+        selectedGame = gameKey
+        showDifficultySelectionDialog(getString(titleRes))
+    }
+
+    private fun setupEntranceAnimations() {
+        // Título
+        tvTitle.alpha = 0f
+        tvTitle.animate()
+            .alpha(1f)
+            .setDuration(450)
+            .setStartDelay(100)
+            .start()
+
+        btnClose.alpha = 0f
+        btnClose.translationY = 40f
+        btnClose.animate()
+            .alpha(1f)
+            .translationY(0f)
+            .setDuration(400)
+            .setStartDelay(70)
+            .start()
+
+        for (i in 0 until layoutButtons.childCount) {
+            val view = layoutButtons.getChildAt(i)
+            view.alpha = 0f
+            view.translationY = 60f
+            val animator = view.animate()
+                .alpha(1f)
+                .translationY(0f)
+                .setDuration(450)
+                .setStartDelay(200 + i * 80L)
+            if (i == layoutButtons.childCount - 1) {
+                animator.setListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator) {
+                        startTitleShineAnimation(tvTitle)
+                    }
+                })
+            }
+            animator.start()
+        }
+    }
+
+    private fun startTitleShineAnimation(textView: TextView) {
+        textView.post {
+            val textWidth = textView.paint.measureText(textView.text.toString())
+            val baseColor = textView.currentTextColor
+            val shineColor = ContextCompat.getColor(this, R.color.white)
+
+            val shader = android.graphics.LinearGradient(
+                -textWidth, 0f, 0f, 0f,
+                intArrayOf(baseColor, shineColor, baseColor),
+                floatArrayOf(0f, 0.5f, 1f),
+                android.graphics.Shader.TileMode.CLAMP
+            )
+
+            textView.paint.shader = shader
+            val matrix = android.graphics.Matrix()
+
+            val animator = ValueAnimator.ofFloat(0f, 2 * textWidth)
+            animator.duration = 800
+            animator.startDelay = 500
+            animator.addUpdateListener {
+                val translate = it.animatedValue as Float
+                matrix.setTranslate(translate, 0f)
+                shader.setLocalMatrix(matrix)
+                textView.invalidate()
+            }
+            animator.addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    textView.paint.shader = null
+                }
+            })
+            animator.start()
+        }
+    }
+
+    private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
+        val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.9f).setDuration(50)
+        val scaleDownY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 0.9f).setDuration(50)
+        val scaleUpX = ObjectAnimator.ofFloat(view, "scaleX", 0.9f, 1f).setDuration(50)
+        val scaleUpY = ObjectAnimator.ofFloat(view, "scaleY", 0.9f, 1f).setDuration(50)
+
+        val animatorSet = AnimatorSet()
+        animatorSet.playTogether(scaleDownX, scaleDownY)
+        animatorSet.playTogether(scaleUpX, scaleUpY)
+        animatorSet.playSequentially(scaleDownX, scaleUpX)
+
+        animatorSet.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator) {
+                onAnimationEnd()
+            }
+        })
+
+        animatorSet.start()
     }
 
     private fun getDifficultyKey(gameType: String): String {
@@ -214,44 +350,36 @@ class ResetProgressActivity : BaseActivity()  {
         btnPrincipiante.setOnClickListener {
             applyBounceEffect(it) {
                 selectedDifficulty = DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE
-
                 if (selectedGame == "NumerosPlus") {
                     val prefsNumeros = getSharedPreferences("MyPrefs", MODE_PRIVATE)
                     prefsNumeros.edit {
-                        putString(getDifficultyKey(selectedGame!!),
-                            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE)
+                        putString(getDifficultyKey(selectedGame!!), DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE)
                     }
                 }
                 alertDialog.dismiss()
                 showResetOptionsDialog()
             }
         }
-
         btnAvanzado.setOnClickListener {
             applyBounceEffect(it) {
                 selectedDifficulty = DifficultySelectionActivity.DIFFICULTY_AVANZADO
-
                 if (selectedGame == "NumerosPlus") {
                     val prefsNumeros = getSharedPreferences("MyPrefs", MODE_PRIVATE)
                     prefsNumeros.edit {
-                        putString(getDifficultyKey(selectedGame!!),
-                            DifficultySelectionActivity.DIFFICULTY_AVANZADO)
+                        putString(getDifficultyKey(selectedGame!!), DifficultySelectionActivity.DIFFICULTY_AVANZADO)
                     }
                 }
                 alertDialog.dismiss()
                 showResetOptionsDialog()
             }
         }
-
         btnPro.setOnClickListener {
             applyBounceEffect(it) {
                 selectedDifficulty = DifficultySelectionActivity.DIFFICULTY_PRO
-
                 if (selectedGame == "NumerosPlus") {
                     val prefsNumeros = getSharedPreferences("MyPrefs", MODE_PRIVATE)
                     prefsNumeros.edit {
-                        putString(getDifficultyKey(selectedGame!!),
-                            DifficultySelectionActivity.DIFFICULTY_PRO)
+                        putString(getDifficultyKey(selectedGame!!), DifficultySelectionActivity.DIFFICULTY_PRO)
                     }
                 }
                 alertDialog.dismiss()
@@ -263,7 +391,6 @@ class ResetProgressActivity : BaseActivity()  {
 
         alertDialog.window?.let { window ->
             window.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
-
             val roundedDrawable = GradientDrawable().apply {
                 setColor(Color.WHITE)
                 cornerRadius = 30f
@@ -276,31 +403,11 @@ class ResetProgressActivity : BaseActivity()  {
         return (this * context.resources.displayMetrics.density).toInt()
     }
 
-    private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
-        val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.9f).setDuration(50)
-        val scaleDownY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 0.9f).setDuration(50)
-        val scaleUpX = ObjectAnimator.ofFloat(view, "scaleX", 0.9f, 1f).setDuration(50)
-        val scaleUpY = ObjectAnimator.ofFloat(view, "scaleY", 0.9f, 1f).setDuration(50)
-
-        val animatorSet = AnimatorSet()
-        animatorSet.playTogether(scaleDownX, scaleDownY)
-        animatorSet.playTogether(scaleUpX, scaleUpY)
-        animatorSet.playSequentially(scaleDownX, scaleUpX)
-
-        animatorSet.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator) {
-                onAnimationEnd()
-            }
-        })
-
-        animatorSet.start()
-    }
-
     private fun showResetOptionsDialog() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_reset_options, null)
         val checkboxResetScore = dialogView.findViewById<CheckBox>(R.id.checkbox_reset_score)
         val checkboxResetResponseMode = dialogView.findViewById<CheckBox>(R.id.checkbox_reset_response_mode)
-        val buttonAccept = dialogView.findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.button_accept)
+        val buttonAccept = dialogView.findViewById<Button>(R.id.button_accept)
         val closeButtonDialog = dialogView.findViewById<ImageView>(R.id.closeButtonDialog)
 
         val alertDialog = AlertDialog.Builder(this)
@@ -336,7 +443,6 @@ class ResetProgressActivity : BaseActivity()  {
         alertDialog.show()
         alertDialog.window?.let { window ->
             window.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
-
             val rootView = dialogView.rootView
             if (rootView is ViewGroup) {
                 val roundedDrawable = GradientDrawable().apply {
@@ -391,31 +497,8 @@ class ResetProgressActivity : BaseActivity()  {
                 }
             }
         }
-
-        ScoreManager.init(this)
-        ScoreManager.initPrincipiante(this)
-        ScoreManager.initPro(this)
-        ScoreManager.initDeciPlus(this)
-        ScoreManager.initDeciPlusPrincipiante(this)
-        ScoreManager.initDeciPlusPro(this)
-        ScoreManager.initRomas(this)
-        ScoreManager.initRomasPrincipiante(this)
-        ScoreManager.initRomasPro(this)
-        ScoreManager.initAlfaNumeros(this)
-        ScoreManager.initAlfaNumerosPrincipiante(this)
-        ScoreManager.initAlfaNumerosPro(this)
-        ScoreManager.initSumaResta(this)
-        ScoreManager.initSumaRestaPrincipiante(this)
-        ScoreManager.initSumaRestaPro(this)
-        ScoreManager.initMasPlus(this)
-        ScoreManager.initMasPlusPrincipiante(this)
-        ScoreManager.initMasPlusPro(this)
-        ScoreManager.initGenioPlus(this)
-        ScoreManager.initGenioPlusPrincipiante(this)
-        ScoreManager.initGenioPlusPro(this)
-
+        initializeScoreManagers()
         Toast.makeText(this, "Datos reiniciados correctamente", Toast.LENGTH_SHORT).show()
-
         selectedGame = null
         selectedDifficulty = null
     }
@@ -829,3 +912,5 @@ class ResetProgressActivity : BaseActivity()  {
         }
     }
 }
+
+

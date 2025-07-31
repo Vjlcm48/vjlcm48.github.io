@@ -49,6 +49,7 @@ class DesafiosActivity : BaseActivity()   {
         showWelcomeMessage()
         setupCalendar()
         setupButtons()
+        startEntryAnimations()
     }
 
     private fun initViews() {
@@ -83,6 +84,28 @@ class DesafiosActivity : BaseActivity()   {
             }
         }
         colorAnimator.start()
+    }
+
+    private fun startEntryAnimations() {
+
+        val viewsToAnimate = listOf(
+            findViewById(R.id.btn_back),
+            findViewById(R.id.btn_close),
+            findViewById(R.id.icon_desafios),
+            findViewById(R.id.tv_app_name),
+            findViewById(R.id.card_calendario),
+            findViewById<View>(R.id.btn_entendido)
+        )
+
+        viewsToAnimate.forEachIndexed { index, view ->
+            view.translationY = 50f
+            view.animate()
+                .alpha(1f)
+                .translationY(0f)
+                .setDuration(500)
+                .setStartDelay(100 + (index * 100L))
+                .start()
+        }
     }
 
     private fun showWelcomeMessage() {

@@ -15,6 +15,7 @@ import android.widget.TextView
 import com.example.sumamente.R
 import com.example.sumamente.ui.utils.MusicManager
 import java.lang.ref.WeakReference
+import androidx.core.view.isVisible
 
 class TrofeosActivity : BaseActivity() {
 
@@ -42,6 +43,10 @@ class TrofeosActivity : BaseActivity() {
     private lateinit var misCondecoracionesRedDot: View
     private lateinit var appLogo: ImageView
     private lateinit var titulo: TextView
+    private lateinit var arrowIcon: ImageView
+    private lateinit var gradientView: View
+    private lateinit var scrollView: android.widget.ScrollView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +70,9 @@ class TrofeosActivity : BaseActivity() {
 
         initViews()
         setupButtons()
+
+        startArrowAnimation()
+        setupScrollListener()
 
         if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
             MusicManager.play(this, R.raw.condecoraciones, looping = true, volume = 0.2f)
@@ -91,6 +99,11 @@ class TrofeosActivity : BaseActivity() {
         btnBack = findViewById(R.id.btn_back)
         misCondecoracionesRedDot = findViewById(R.id.mis_condecoraciones_red_dot)
         titulo = findViewById(R.id.tv_titulo_trofeos)
+
+        scrollView = findViewById(R.id.scrollView)
+        arrowIcon = findViewById(R.id.arrow_icon)
+        gradientView = findViewById(R.id.gradient_view)
+
     }
 
     private fun setupButtons() {
@@ -238,6 +251,27 @@ class TrofeosActivity : BaseActivity() {
         btnClose.alpha = 0f
         titulo.alpha = 0f
     }
+
+    private fun startArrowAnimation() {
+        val bounceAnimation = AnimationUtils.loadAnimation(this, R.anim.bounce_arrow)
+        arrowIcon.startAnimation(bounceAnimation)
+        arrowIcon.animate().alpha(1f).setDuration(400).setStartDelay(800).start()
+        gradientView.animate().alpha(1f).setDuration(400).setStartDelay(800).start()
+    }
+
+    private fun setupScrollListener() {
+        scrollView.setOnScrollChangeListener { _, _, scrollY, _, _ ->
+            if (scrollY > 50 && arrowIcon.isVisible) {
+                arrowIcon.clearAnimation()
+                arrowIcon.animate().alpha(0f).setDuration(200).withEndAction {
+                    arrowIcon.visibility = View.GONE
+                    gradientView.visibility = View.GONE
+                }.start()
+            }
+        }
+    }
+
+
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
         val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.9f).setDuration(50)

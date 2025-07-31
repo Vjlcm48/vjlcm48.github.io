@@ -184,10 +184,11 @@
     <string name="has_agotado_tus_intentos">Anda telah kehabisan percobaan!</string>
     <string name="se_agoto_el_tiempo">Ups! Waktu habis</string>
     <string name="tiempo_empleado">Waktu: %1$s dtk</string>
-    <string name="select_game_to_reset">Pilih game untuk diatur ulang</string>
+
+    <string name="select_game_to_reset">Pilih permainan\nyang akan direset.</string>
+
     <string name="check_blue_description">Centang biru</string>
     <string name="check_description">Centang hijau yang menunjukkan keberhasilan</string>
-
 
 
     <string name="select_data_to_reset">Pilih data yang ingin Anda atur ulang</string>

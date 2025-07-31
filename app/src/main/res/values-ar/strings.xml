@@ -180,7 +180,9 @@
     <string name="has_agotado_tus_intentos">لقد استنفدت محاولاتك!</string>
     <string name="se_agoto_el_tiempo">عفوًا! لقد نفد الوقت</string>
     <string name="tiempo_empleado">الوقت: %1$s ثانية</string>
-    <string name="select_game_to_reset">اختر اللعبة لإعادة التعيين</string>
+
+    <string name="select_game_to_reset">اختر اللعبة\nالتي تريد إعادة تعيينها.</string>
+
     <string name="check_blue_description">علامة اختيار زرقاء</string>
     <string name="check_description">علامة اختيار خضراء تشير إلى النجاح</string>
 
@@ -1461,7 +1463,7 @@
 
     <string name="levels_completed">المستويات المكتملة:</string>
     <string name="progress">التقدم:</string>
-    <string name="percentage_format">%%1$s</string>
+    <string name="percentage_format">%1$s%%</string>
     <string name="default_percentage">0.00%</string>
 
     <string name="cd_my_progress">عرض التقدم العام</string>

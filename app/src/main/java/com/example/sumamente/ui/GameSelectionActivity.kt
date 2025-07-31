@@ -17,6 +17,8 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.example.sumamente.R
 import java.util.Locale
+import android.widget.LinearLayout
+
 
 class GameSelectionActivity : BaseActivity()  {
 
@@ -45,6 +47,32 @@ class GameSelectionActivity : BaseActivity()  {
         ScoreManager.initGenioPlusPro(this)
 
         setContentView(R.layout.activity_game_selection)
+
+        val tvTitle = findViewById<TextView>(R.id.tv_select_game_title)
+        val container = findViewById<LinearLayout>(R.id.layout_game_buttons)
+
+
+        tvTitle.translationY = 50f
+        tvTitle.animate()
+            .alpha(1f)
+            .translationY(0f)
+            .setDuration(450)
+            .setStartDelay(70)
+            .start()
+
+
+        for (i in 0 until container.childCount) {
+            val view = container.getChildAt(i)
+            view.alpha = 0f
+            view.translationY = 60f
+            view.animate()
+                .alpha(1f)
+                .translationY(0f)
+                .setDuration(450)
+                .setStartDelay(200 + i * 80L)
+                .start()
+        }
+
 
         val btnProgreso = findViewById<RelativeLayout>(R.id.btn_progreso)
         val pulseAnimation = AnimationUtils.loadAnimation(this, R.anim.pulse_progress_button)

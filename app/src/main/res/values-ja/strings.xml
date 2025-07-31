@@ -177,7 +177,9 @@
     <string name="has_agotado_tus_intentos">挑戦回数がなくなりました！</string>
     <string name="se_agoto_el_tiempo">おっと！時間切れです</string>
     <string name="tiempo_empleado">経過時間: %1$s 秒</string>
-    <string name="select_game_to_reset">リセットするゲームを選択してください</string>
+
+    <string name="select_game_to_reset">リセットする\nゲームを選択してください。</string>
+
     <string name="check_blue_description">青いチェックマーク</string>
     <string name="check_description">成功を示す緑のチェックマーク</string>
     <string name="select_data_to_reset">リセットしたいデータを選択してください</string>

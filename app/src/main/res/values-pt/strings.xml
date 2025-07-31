@@ -181,7 +181,9 @@
     <string name="has_agotado_tus_intentos">Você esgotou suas tentativas!</string>
     <string name="se_agoto_el_tiempo">Ops! O tempo acabou</string>
     <string name="tiempo_empleado">Tempo: %1$s seg</string>
-    <string name="select_game_to_reset">Selecione o jogo para reiniciar</string>
+
+    <string name="select_game_to_reset">Selecione o jogo\na ser reiniciado.</string>
+
     <string name="check_blue_description">Check azul</string>
     <string name="check_description">Check verde indicando sucesso</string>
 

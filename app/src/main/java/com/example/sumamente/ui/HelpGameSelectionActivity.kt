@@ -4,163 +4,174 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.content.Intent
+import android.graphics.LinearGradient
+import android.graphics.Matrix
+import android.graphics.Shader
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.widget.ImageView
-import android.widget.RelativeLayout
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.example.sumamente.R
 
-class HelpGameSelectionActivity : BaseActivity()  {
+class HelpGameSelectionActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_help_game_selection)
 
-        val btnNumerosPlus = findViewById<RelativeLayout>(R.id.btn_numeros_plus)
-        val btnDeciPlus = findViewById<RelativeLayout>(R.id.btn_deci_plus)
-        val btnRomas = findViewById<RelativeLayout>(R.id.btn_romas)
-        val btnAlfaNumeros = findViewById<RelativeLayout>(R.id.btn_alfa_numeros)
-        val btnSumaresta = findViewById<RelativeLayout>(R.id.btn_sumaresta)
-        val btnMasPlus = findViewById<RelativeLayout>(R.id.btn_mas_plus)
-        val btnGenioPlus = findViewById<RelativeLayout>(R.id.btn_genio_plus)
-        val closeButton = findViewById<ImageView>(R.id.closeButton)
-        val titleTextView = findViewById<TextView>(R.id.tv_help_title)
+        setupClickListeners()
+        setupGameNameColors()
+        setupAnimations()
+    }
 
-        titleTextView.text = getString(R.string.descubre_como_jugar)
-
-        val tvGameNameNumerosPlus = btnNumerosPlus.findViewById<TextView>(R.id.tv_game_name_numeros_plus)
-        val tvGameNameDeciPlus = btnDeciPlus.findViewById<TextView>(R.id.tv_game_name_deci_plus)
-        val tvGameNameRomas = btnRomas.findViewById<TextView>(R.id.tv_game_name_romas)
-        val tvGameNameAlfaNumeros = btnAlfaNumeros.findViewById<TextView>(R.id.tv_game_name_alfa_numeros)
-        val tvGameNameSumaresta = btnSumaresta.findViewById<TextView>(R.id.tv_game_name_sumaresta)
-        val tvGameNameMasPlus = btnMasPlus.findViewById<TextView>(R.id.tv_game_name_mas_plus)
-        val tvGameNameGenioPlus = btnGenioPlus.findViewById<TextView>(R.id.tv_game_name_genio_plus)
-
-        tvGameNameNumerosPlus.text = getString(R.string.game_numeros_plus)
-        tvGameNameDeciPlus.text = getString(R.string.game_deci_plus)
-        tvGameNameRomas.text = getString(R.string.game_romas)
-        tvGameNameAlfaNumeros.text = getString(R.string.game_alfa_numeros)
-        tvGameNameSumaresta.text = getString(R.string.game_sumaresta)
-        tvGameNameMasPlus.text = getString(R.string.game_mas_plus)
-        tvGameNameGenioPlus.text = getString(R.string.game_genio_plus)
-
-        applyAlfaNumerosColor(btnAlfaNumeros)
-        applySumarestaColor(btnSumaresta)
-
-        btnNumerosPlus.setOnClickListener {
-            applyBounceEffect(it) {
-                startActivity(Intent(this, HelpTutorialActivityNumeros::class.java))
-            }
+    private fun setupClickListeners() {
+        findViewById<ImageView>(R.id.closeButton).setOnClickListener {
+            applyBounceEffect(it) { finish() }
         }
-
-        btnDeciPlus.setOnClickListener {
-            applyBounceEffect(it) {
-                startActivity(Intent(this, HelpTutorialActivityDeciPlus::class.java))
-            }
+        findViewById<ConstraintLayout>(R.id.btn_numeros_plus).setOnClickListener {
+            applyBounceEffect(it) { startActivity(Intent(this, HelpTutorialActivityNumeros::class.java)) }
         }
-
-        btnRomas.setOnClickListener {
-            applyBounceEffect(it) {
-                startActivity(Intent(this, HelpTutorialActivityRomas::class.java))
-            }
+        findViewById<ConstraintLayout>(R.id.btn_deci_plus).setOnClickListener {
+            applyBounceEffect(it) { startActivity(Intent(this, HelpTutorialActivityDeciPlus::class.java)) }
         }
-
-        btnAlfaNumeros.setOnClickListener {
-            applyBounceEffect(it) {
-                startActivity(Intent(this, HelpTutorialActivityAlfaNumeros::class.java))
-            }
+        findViewById<ConstraintLayout>(R.id.btn_romas).setOnClickListener {
+            applyBounceEffect(it) { startActivity(Intent(this, HelpTutorialActivityRomas::class.java)) }
         }
-
-        btnSumaresta.setOnClickListener {
-            applyBounceEffect(it) {
-                startActivity(Intent(this, HelpTutorialActivitySumaResta::class.java))
-            }
+        findViewById<ConstraintLayout>(R.id.btn_alfa_numeros).setOnClickListener {
+            applyBounceEffect(it) { startActivity(Intent(this, HelpTutorialActivityAlfaNumeros::class.java)) }
         }
-
-        btnMasPlus.setOnClickListener {
-            applyBounceEffect(it) {
-                startActivity(Intent(this, HelpTutorialActivityMasPlus::class.java))
-            }
+        findViewById<ConstraintLayout>(R.id.btn_sumaresta).setOnClickListener {
+            applyBounceEffect(it) { startActivity(Intent(this, HelpTutorialActivitySumaResta::class.java)) }
         }
-
-        btnGenioPlus.setOnClickListener {
-            applyBounceEffect(it) {
-                startActivity(Intent(this, HelpTutorialActivityGenioPlus::class.java))
-            }
+        findViewById<ConstraintLayout>(R.id.btn_mas_plus).setOnClickListener {
+            applyBounceEffect(it) { startActivity(Intent(this, HelpTutorialActivityMasPlus::class.java)) }
         }
-
-        closeButton.setOnClickListener {
-            applyBounceEffect(it) {
-                finish()
-            }
+        findViewById<ConstraintLayout>(R.id.btn_genio_plus).setOnClickListener {
+            applyBounceEffect(it) { startActivity(Intent(this, HelpTutorialActivityGenioPlus::class.java)) }
         }
     }
 
-    private fun applyAlfaNumerosColor(button: RelativeLayout) {
-        val textView = button.findViewById<TextView>(R.id.tv_game_name_alfa_numeros)
+    private fun setupAnimations() {
+        val tvTitle = findViewById<TextView>(R.id.tv_help_title)
+        val container = findViewById<LinearLayout>(R.id.layout_help_buttons)
 
+        tvTitle.animate()
+            .alpha(1f)
+            .setDuration(450)
+            .setStartDelay(100)
+            .start()
+
+        for (i in 0 until container.childCount) {
+            val view = container.getChildAt(i)
+            view.translationY = 60f
+            val animator = view.animate()
+                .alpha(1f)
+                .translationY(0f)
+                .setDuration(450)
+                .setStartDelay(200 + i * 80L)
+
+            if (i == container.childCount - 1) {
+                animator.setListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator) {
+                        startTitleShineAnimation(tvTitle)
+                    }
+                })
+            }
+            animator.start()
+        }
+    }
+
+    private fun startTitleShineAnimation(textView: TextView) {
+
+        textView.post {
+            val textWidth = textView.paint.measureText(textView.text.toString())
+            val baseColor = textView.currentTextColor
+            val shineColor = ContextCompat.getColor(this, R.color.white)
+
+            val shader = LinearGradient(
+                -textWidth, 0f, 0f, 0f,
+                intArrayOf(baseColor, shineColor, baseColor),
+                floatArrayOf(0f, 0.5f, 1f),
+                Shader.TileMode.CLAMP
+            )
+
+            textView.paint.shader = shader
+            val matrix = Matrix()
+
+            val animator = ValueAnimator.ofFloat(0f, 2 * textWidth)
+            animator.duration = 800
+            animator.startDelay = 500
+            animator.addUpdateListener {
+                val translate = it.animatedValue as Float
+                matrix.setTranslate(translate, 0f)
+                shader.setLocalMatrix(matrix)
+                textView.invalidate()
+            }
+            animator.addListener(object: AnimatorListenerAdapter(){
+                override fun onAnimationEnd(animation: Animator) {
+
+                    textView.paint.shader = null
+                }
+            })
+            animator.start()
+        }
+    }
+
+
+    private fun setupGameNameColors() {
+        applyAlfaNumerosColor()
+        applySumarestaColor()
+    }
+
+    private fun applyAlfaNumerosColor() {
+        val textView = findViewById<TextView>(R.id.tv_game_name_alfa_numeros)
         val alfaText = getString(R.string.text_alfa)
         val numerosText = getString(R.string.text_numeros)
         val alfaNumerosText = "$alfaText$numerosText"
-        val spannableAlfaNumeros = SpannableString(alfaNumerosText)
-
-        spannableAlfaNumeros.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(this, R.color.red_primary)),
-            0, alfaText.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        spannableAlfaNumeros.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_primary_darker)),
-            alfaText.length, alfaNumerosText.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        textView.text = spannableAlfaNumeros
+        val spannable = SpannableString(alfaNumerosText)
+        spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.red_primary)), 0, alfaText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_primary_darker)), alfaText.length, alfaNumerosText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        textView.text = spannable
     }
 
-    private fun applySumarestaColor(button: RelativeLayout) {
-        val textView = button.findViewById<TextView>(R.id.tv_game_name_sumaresta)
-
+    private fun applySumarestaColor() {
+        val textView = findViewById<TextView>(R.id.tv_game_name_sumaresta)
         val sumaText = getString(R.string.text_suma)
         val restaText = getString(R.string.text_resta)
         val sumarestaText = "$sumaText$restaText"
-        val spannableSumaresta = SpannableString(sumarestaText)
-
-        spannableSumaresta.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_pressed)),
-            0, sumaText.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        spannableSumaresta.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)),
-            sumaText.length, sumarestaText.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        textView.text = spannableSumaresta
+        val spannable = SpannableString(sumarestaText)
+        spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_pressed)), 0, sumaText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)), sumaText.length, sumarestaText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        textView.text = spannable
     }
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
-        val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.9f).setDuration(50)
-        val scaleDownY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 0.9f).setDuration(50)
-        val scaleUpX = ObjectAnimator.ofFloat(view, "scaleX", 0.9f, 1f).setDuration(50)
-        val scaleUpY = ObjectAnimator.ofFloat(view, "scaleY", 0.9f, 1f).setDuration(50)
-
-        val animatorSet = AnimatorSet()
-        animatorSet.playTogether(scaleDownX, scaleDownY)
-        animatorSet.playTogether(scaleUpX, scaleUpY)
-        animatorSet.playSequentially(scaleDownX, scaleUpX)
-
-        animatorSet.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator) {
-                onAnimationEnd()
-            }
-        })
-
-        animatorSet.start()
+        val scaleDown = AnimatorSet().apply {
+            play(ObjectAnimator.ofFloat(view, View.SCALE_X, 1f, 0.9f))
+                .with(ObjectAnimator.ofFloat(view, View.SCALE_Y, 1f, 0.9f))
+            duration = 100
+        }
+        val scaleUp = AnimatorSet().apply {
+            play(ObjectAnimator.ofFloat(view, View.SCALE_X, 0.9f, 1f))
+                .with(ObjectAnimator.ofFloat(view, View.SCALE_Y, 0.9f, 1f))
+            duration = 100
+        }
+        AnimatorSet().apply {
+            playSequentially(scaleDown, scaleUp)
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    onAnimationEnd()
+                }
+            })
+            start()
+        }
     }
 }

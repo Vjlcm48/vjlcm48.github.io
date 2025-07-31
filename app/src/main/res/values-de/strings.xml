@@ -181,10 +181,11 @@
     <string name="has_agotado_tus_intentos">Du hast deine Versuche aufgebraucht!</string>
     <string name="se_agoto_el_tiempo">Oops! Die Zeit ist um</string>
     <string name="tiempo_empleado">Zeit: %1$s Sek.</string>
-    <string name="select_game_to_reset">Wähle das Spiel zum Zurücksetzen aus</string>
+
+    <string name="select_game_to_reset">Wähle das Spiel\naus,\ndas du zurücksetzen möchtest.</string>
+
     <string name="check_blue_description">Blaues Häkchen</string>
     <string name="check_description">Grünes Häkchen, das Erfolg anzeigt</string>
-
 
 
     <string name="select_data_to_reset">Wähle die Daten aus, die du zurücksetzen möchtest</string>

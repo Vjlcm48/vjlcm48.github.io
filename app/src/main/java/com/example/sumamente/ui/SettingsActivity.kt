@@ -17,12 +17,27 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.edit
 import com.example.sumamente.R
+import android.view.animation.AnimationUtils
 
 class SettingsActivity : BaseActivity() {
 
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var profileSubtitleText: TextView
     private lateinit var linearDeleteAccount: LinearLayout
+
+    // UI references
+    private lateinit var btnCloseSettings: ImageView
+    private lateinit var switchSound: SwitchCompat
+    private lateinit var switchNotifications: SwitchCompat
+    private lateinit var switchAds: SwitchCompat
+    private lateinit var adsText: TextView
+    private lateinit var itemsContainer: LinearLayout
+    private lateinit var linearProfile: LinearLayout
+    private lateinit var linearShare: LinearLayout
+    private lateinit var linearHelp: LinearLayout
+    private lateinit var linearResetProgress: LinearLayout
+    private lateinit var linearLanguage: LinearLayout
+    private lateinit var appLogo: ImageView
 
     companion object {
         const val SOUND_ENABLED = "sound_enabled"
@@ -44,47 +59,97 @@ class SettingsActivity : BaseActivity() {
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_settings)
 
-        val btnCloseSettings = findViewById<ImageView>(R.id.btn_close_settings)
-        val switchSound = findViewById<SwitchCompat>(R.id.switch_sound)
-        val switchNotifications = findViewById<SwitchCompat>(R.id.switch_notifications)
-        val switchAds = findViewById<SwitchCompat>(R.id.switch_ads)
-        val adsText = findViewById<TextView>(R.id.ads_text)
+        bindViews()
+        setupSwitchStates()
+        setupSwitchListeners()
+        setupOptionListeners()
+        setupColorAnimationForAds()
+        setupProfileSubtitle()
+        setupCloseButton()
+        setupItemsEntranceAnimation()
+        startLogoAnimation()
+    }
 
-        profileSubtitleText = findViewById(R.id.profile_subtitle_text)
-        linearDeleteAccount = findViewById(R.id.linear_delete_account)
+    private fun bindViews() {
+        appLogo              = findViewById(R.id.app_logo)
+        btnCloseSettings     = findViewById(R.id.btn_close_settings)
+        switchSound          = findViewById(R.id.switch_sound)
+        switchNotifications  = findViewById(R.id.switch_notifications)
+        switchAds            = findViewById(R.id.switch_ads)
+        adsText              = findViewById(R.id.ads_text)
+        itemsContainer       = findViewById(R.id.layout_settings_items)
+        profileSubtitleText  = findViewById(R.id.profile_subtitle_text)
+        linearDeleteAccount  = findViewById(R.id.linear_delete_account)
+        linearProfile        = findViewById(R.id.linear_profile)
+        linearShare          = findViewById(R.id.linear_share)
+        linearHelp           = findViewById(R.id.linear_help)
+        linearResetProgress  = findViewById(R.id.linear_reset_progress)
+        linearLanguage       = findViewById(R.id.linear_language)
+    }
 
-        val linearProfile = findViewById<LinearLayout>(R.id.linear_profile)
-        val linearShare = findViewById<LinearLayout>(R.id.linear_share)
-        val linearHelp = findViewById<LinearLayout>(R.id.linear_help)
-        val linearResetProgress = findViewById<LinearLayout>(R.id.linear_reset_progress)
-        val linearLanguage = findViewById<LinearLayout>(R.id.linear_language)
+    private fun startLogoAnimation() {
+        val pulseAnimation = AnimationUtils.loadAnimation(this, R.anim.pulse_progress_button)
+        appLogo.startAnimation(pulseAnimation)
+    }
 
-        btnCloseSettings.setOnClickListener { view ->
-            applyBounceEffect(view) {
-                finish()
-            }
-        }
+    private fun setupSwitchStates() {
+        switchSound.isChecked         = sharedPreferences.getBoolean(SOUND_ENABLED, true)
+        switchNotifications.isChecked = sharedPreferences.getBoolean(NOTIFICATIONS_ENABLED, false)
+        switchAds.isChecked           = sharedPreferences.getBoolean(ADS_ENABLED, true)
+    }
 
-        switchSound.isChecked = sharedPreferences.getBoolean(SOUND_ENABLED, true)
+    private fun setupSwitchListeners() {
         switchSound.setOnCheckedChangeListener { _, isChecked ->
-            Toast.makeText(this, getString(if (isChecked) R.string.sound_enabled else R.string.sound_disabled), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                getString(if (isChecked) R.string.sound_enabled else R.string.sound_disabled),
+                Toast.LENGTH_SHORT
+            ).show()
             sharedPreferences.edit { putBoolean(SOUND_ENABLED, isChecked) }
         }
 
-        switchNotifications.isChecked = sharedPreferences.getBoolean(NOTIFICATIONS_ENABLED, false)
         switchNotifications.setOnCheckedChangeListener { _, isChecked ->
-            Toast.makeText(this, getString(if (isChecked) R.string.notifications_enabled else R.string.notifications_disabled), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                getString(if (isChecked) R.string.notifications_enabled else R.string.notifications_disabled),
+                Toast.LENGTH_SHORT
+            ).show()
             sharedPreferences.edit { putBoolean(NOTIFICATIONS_ENABLED, isChecked) }
         }
 
-        switchAds.isChecked = sharedPreferences.getBoolean(ADS_ENABLED, true)
         switchAds.setOnCheckedChangeListener { _, isChecked ->
-            Toast.makeText(this, getString(if (isChecked) R.string.ads_enabled else R.string.ads_disabled), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                getString(if (isChecked) R.string.ads_enabled else R.string.ads_disabled),
+                Toast.LENGTH_SHORT
+            ).show()
             sharedPreferences.edit { putBoolean(ADS_ENABLED, isChecked) }
         }
+    }
 
+    private fun setupOptionListeners() {
+        linearShare.setOnClickListener { view ->
+            applyBounceEffect(view) { shareApp() }
+        }
+        linearHelp.setOnClickListener { view ->
+            applyBounceEffect(view) { startActivity(Intent(this, HelpGameSelectionActivity::class.java)) }
+        }
+        linearResetProgress.setOnClickListener { view ->
+            applyBounceEffect(view) { startActivity(Intent(this, ResetProgressActivity::class.java)) }
+        }
+        linearLanguage.setOnClickListener { view ->
+            applyBounceEffect(view) { startActivity(Intent(this, LanguageChangeActivity::class.java)) }
+        }
+        linearProfile.setOnClickListener { view ->
+            applyBounceEffect(view) { openProfileEdit() }
+        }
+        linearDeleteAccount.setOnClickListener { view ->
+            applyBounceEffect(view) { showConfirmDeleteDialog() }
+        }
+    }
 
-        val colorAnimator = ValueAnimator.ofArgb(
+    private fun setupColorAnimationForAds() {
+        ValueAnimator.ofArgb(
             getColor(R.color.blue_primary),
             getColor(R.color.red_primary)
         ).apply {
@@ -94,98 +159,86 @@ class SettingsActivity : BaseActivity() {
             addUpdateListener { animator ->
                 adsText.setTextColor(animator.animatedValue as Int)
             }
-        }
-        colorAnimator.start()
-
-        linearShare.setOnClickListener { view ->
-            applyBounceEffect(view) {
-
-                val messageTemplate = getString(R.string.share_message)
-                val chooserTitle = getString(R.string.share_chooser_title)
-                val appPackageName = packageName
-                val playStoreLink = "https://play.google.com/store/apps/details?id=$appPackageName"
-                val shareMessage = "$messageTemplate$playStoreLink"
-
-                val sendIntent = Intent().apply {
-                    action = Intent.ACTION_SEND
-                    putExtra(Intent.EXTRA_TEXT, shareMessage)
-                    type = "text/plain"
-                }
-
-                val shareIntent = Intent.createChooser(sendIntent, chooserTitle)
-                startActivity(shareIntent)
-            }
-        }
-
-        linearHelp.setOnClickListener { view ->
-            applyBounceEffect(view) {
-                startActivity(Intent(this, HelpGameSelectionActivity::class.java))
-            }
-        }
-
-        linearResetProgress.setOnClickListener { view ->
-            applyBounceEffect(view) {
-                val intent = Intent(this, ResetProgressActivity::class.java)
-                startActivity(intent)
-            }
-        }
-
-        linearLanguage.setOnClickListener { view ->
-            applyBounceEffect(view) {
-                val intent = Intent(this, LanguageChangeActivity::class.java)
-                startActivity(intent)
-            }
-        }
-
-        updateProfileOption()
-
-        linearProfile.setOnClickListener { view ->
-            applyBounceEffect(view) {
-                handleProfileClick()
-            }
-        }
-
-        linearDeleteAccount.setOnClickListener { view ->
-            applyBounceEffect(view) {
-                showConfirmDeleteDialog()
-            }
-        }
+        }.start()
     }
 
-    private fun updateProfileOption() {
+    private fun setupProfileSubtitle() {
         val isLinked = sharedPreferences.getBoolean(ACCOUNT_LINKED, false)
-        if (isLinked) {
-            profileSubtitleText.text = getString(R.string.profile_subtitle_linked)
-        } else {
-            profileSubtitleText.text = getString(R.string.profile_subtitle_unlinked)
+        profileSubtitleText.text = getString(
+            if (isLinked) R.string.profile_subtitle_linked else R.string.profile_subtitle_unlinked
+        )
+    }
+
+    private fun setupCloseButton() {
+        btnCloseSettings.setOnClickListener { view ->
+            applyBounceEffect(view) { finish() }
         }
     }
 
-    private fun handleProfileClick() {
+    private fun setupItemsEntranceAnimation() {
+        // Botón de cerrar (X)
+        btnCloseSettings.alpha = 0f
+        btnCloseSettings.translationY = 40f
+        btnCloseSettings.animate()
+            .alpha(1f)
+            .translationY(0f)
+            .setDuration(400)
+            .setStartDelay(70)
+            .start()
 
+
+        for (i in 0 until itemsContainer.childCount) {
+            val v = itemsContainer.getChildAt(i)
+            v.alpha = 0f
+            v.translationY = 60f
+            v.animate()
+                .alpha(1f)
+                .translationY(0f)
+                .setDuration(420)
+                .setStartDelay(200 + i * 70L)
+                .start()
+        }
+    }
+
+    private fun shareApp() {
+        val messageTemplate = getString(R.string.share_message)
+        val chooserTitle = getString(R.string.share_chooser_title)
+        val appPackageName = packageName
+        val playStoreLink = "https://play.google.com/store/apps/details?id=$appPackageName"
+        val shareMessage = "$messageTemplate$playStoreLink"
+
+        val sendIntent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, shareMessage)
+            type = "text/plain"
+        }
+        val shareIntent = Intent.createChooser(sendIntent, chooserTitle)
+        startActivity(shareIntent)
+    }
+
+
+    private fun openProfileEdit() {
         startActivity(Intent(this, ProfileEditActivity::class.java))
     }
+
 
     private fun showConfirmDeleteDialog() {
         AlertDialog.Builder(this)
             .setTitle(getString(R.string.delete_account_confirm_title))
             .setMessage(getString(R.string.delete_account_confirm_message))
             .setPositiveButton(getString(R.string.delete_button)) { _, _ ->
-
                 ScoreManager.resetAllProgress(this)
                 sharedPreferences.edit { clear() }
-
                 Toast.makeText(this, getString(R.string.account_deleted_success), Toast.LENGTH_LONG).show()
-
                 val intent = Intent(this, SplashScreenActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
                 finish()
-
             }
             .setNegativeButton(getString(R.string.cancel_button), null)
             .show()
     }
+
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
         val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.9f).setDuration(50)
@@ -193,12 +246,8 @@ class SettingsActivity : BaseActivity() {
         val scaleUpX = ObjectAnimator.ofFloat(view, "scaleX", 0.9f, 1f).setDuration(50)
         val scaleUpY = ObjectAnimator.ofFloat(view, "scaleY", 0.9f, 1f).setDuration(50)
 
-        val scaleDown = AnimatorSet().apply {
-            playTogether(scaleDownX, scaleDownY)
-        }
-        val scaleUp = AnimatorSet().apply {
-            playTogether(scaleUpX, scaleUpY)
-        }
+        val scaleDown = AnimatorSet().apply { playTogether(scaleDownX, scaleDownY) }
+        val scaleUp   = AnimatorSet().apply { playTogether(scaleUpX, scaleUpY) }
 
         val animatorSet = AnimatorSet().apply {
             playSequentially(scaleDown, scaleUp)
