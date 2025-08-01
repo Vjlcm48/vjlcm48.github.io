@@ -96,6 +96,17 @@
                 android:alpha="0" />
 
             <TextView
+                android:id="@+id/tv_letter_conversion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/blue_primary_darker"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:alpha="0"
+                android:gravity="center" />
+
+            <TextView
                 android:id="@+id/tv_instructions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -103,6 +114,7 @@
                 android:textColor="@android:color/black"
                 android:textSize="24sp"
                 android:alpha="0" />
+
 
             <TextView
                 android:id="@+id/tv_repeated_numbers"

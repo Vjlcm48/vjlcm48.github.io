@@ -55,6 +55,9 @@ class InstructionsActivityAlfaNumerosPrincipiante : BaseActivity()  {
         val tvInstructions = findViewById<TextView>(R.id.tv_instructions)
         val tvLevel = findViewById<TextView>(R.id.tv_level)
         val tvTimeLimit = findViewById<TextView>(R.id.tv_time_limit)
+
+        val tvLetterConversion = findViewById<TextView>(R.id.tv_letter_conversion)
+
         val tvRepeatedNumbersMessage = findViewById<TextView>(R.id.tv_repeated_numbers)
         val tvNegativeNumberWarning = findViewById<TextView>(R.id.tv_negative_numbers)
 
@@ -70,6 +73,8 @@ class InstructionsActivityAlfaNumerosPrincipiante : BaseActivity()  {
 
         tvLevel.text = getString(R.string.level_title, level)
         tvInstructions.text = getLevelInstructions(level)
+
+        tvLetterConversion.text = getString(R.string.letter_to_number_conversion)
 
         // IA1 Cambio para solucionar el formato de los decimales //
         val locale = resources.configuration.locales[0]
@@ -129,6 +134,9 @@ class InstructionsActivityAlfaNumerosPrincipiante : BaseActivity()  {
         val levelAnimation = ObjectAnimator.ofFloat(tvLevel, "alpha", 0f, 1f).setDuration(fadeInDuration)
         val instructionsAnimation = ObjectAnimator.ofFloat(tvInstructions, "alpha", 0f, 1f).setDuration(fadeInDuration)
         val repeatedNumbersAnimation = ObjectAnimator.ofFloat(tvRepeatedNumbersMessage, "alpha", 0f, 1f).setDuration(fadeInDuration)
+
+        val letterConversionAnimation = ObjectAnimator.ofFloat(tvLetterConversion, "alpha", 0f, 1f).setDuration(fadeInDuration)
+
         val negativeNumberAnimation = ObjectAnimator.ofFloat(tvNegativeNumberWarning, "alpha", 0f, 1f).setDuration(fadeInDuration)
         val timeLimitAnimation = ObjectAnimator.ofFloat(tvTimeLimit, "alpha", 0f, 1f).setDuration(fadeInDuration)
 
@@ -138,6 +146,9 @@ class InstructionsActivityAlfaNumerosPrincipiante : BaseActivity()  {
         animationsList.add(levelAnimation)
         animationsList.add(instructionsAnimation)
         animationsList.add(repeatedNumbersAnimation)
+
+        animationsList.add(letterConversionAnimation)
+
         animationsList.add(negativeNumberAnimation)
         animationsList.add(timeLimitAnimation)
 

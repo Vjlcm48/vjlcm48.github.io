@@ -1263,7 +1263,7 @@
 
     <string name="clasificacion_integral_s">Clasificación Integral S⁺</string>
 
-    <!-- Agregar estos recursos al final de strings.xml, justo antes de </resources> -->
+
 
     <!-- Mensajes combinados para ranking integral -->
     <string name="ranking_integral_combined_message">%1$s\n\n%2$s</string>
@@ -1529,6 +1529,8 @@
     <string name="loading_text_9">🧙‍♂️ Magia matemática… ¡Abracadabra + 2!</string>
 
     <string name="select_a_game">Elige un juego</string>
+
+    <string name="letter_to_number_conversion" translatable="false">A=1, B=2, C=3, D=4, \nE=5, F=6, G=7, H=8</string>
 
 
 

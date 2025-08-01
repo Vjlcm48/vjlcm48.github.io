@@ -19,7 +19,6 @@ import com.google.android.material.textfield.TextInputLayout
 
 class UsernameSelectionActivity : BaseActivity() {
 
-    private val occupiedUsernames = listOf("victor121$", "jose2376#", "maestro333$$", "r_marcano40")
     private lateinit var sharedPreferences: android.content.SharedPreferences
 
     private lateinit var icon: ImageView
@@ -75,14 +74,6 @@ class UsernameSelectionActivity : BaseActivity() {
 
         if (username.length !in 4..12) {
             usernameInputLayout.error = getString(R.string.error_invalid_username_length)
-            playErrorSound()
-            shakeView(usernameInputLayout)
-            return
-        }
-
-        val normalizedUsername = username.lowercase()
-        if (occupiedUsernames.any { it.lowercase() == normalizedUsername }) {
-            usernameInputLayout.error = getString(R.string.error_username_taken)
             playErrorSound()
             shakeView(usernameInputLayout)
             return

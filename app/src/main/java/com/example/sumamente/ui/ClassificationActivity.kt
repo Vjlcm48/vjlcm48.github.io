@@ -15,6 +15,7 @@ import android.widget.TextView
 import com.example.sumamente.R
 import com.example.sumamente.ui.utils.MusicManager
 import java.lang.ref.WeakReference
+import androidx.activity.OnBackPressedCallback
 
 class ClassificationActivity : BaseActivity() {
 
@@ -55,6 +56,15 @@ class ClassificationActivity : BaseActivity() {
 
         initViews()
         setupButtons()
+
+        onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                MusicManager.stop()
+                val intent = Intent(this@ClassificationActivity, MainGameActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        })
 
         if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
 

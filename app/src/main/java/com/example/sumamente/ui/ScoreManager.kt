@@ -1570,7 +1570,7 @@ object ScoreManager {
     }
 
     fun hasCompleted12LevelsInAnyGame(): Boolean {
-        return getTotalUniqueLevelsCompletedAllGames() >= 3
+        return getTotalUniqueLevelsCompletedAllGames() >= 12
     }
 
     fun isRankedInAtLeastOneGame(): Boolean {

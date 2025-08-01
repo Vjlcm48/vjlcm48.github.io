@@ -157,9 +157,9 @@ object CondecoracionTracker {
     )
 
     enum class MedallaType(val requiredLevels: Int, val nombreMedalla: String) {
-        INITIUM(2, "INITIUM"),
-        FIDELIS(6, "FIDELIS"),
-        VIRTUS(8, "VIRTUS"),
+        INITIUM(100, "INITIUM"),
+        FIDELIS(200, "FIDELIS"),
+        VIRTUS(300, "VIRTUS"),
         AUDAX(400, "AUDAX"),
         FORTIS(500, "FORTIS"),
         TENAX(600, "TENAX"),
@@ -904,7 +904,7 @@ object CondecoracionTracker {
     private fun procesarTrofeoDelUsuario(juego: String, grado: String): TrofeoObtenido? {
         val nivelesCompletados = obtenerNivelesCompletadosPorJuegoGrado(juego, grado)
 
-        if (nivelesCompletados >= 4) {
+        if (nivelesCompletados >= 70) {
             val nombreTrofeo = mapearJuegoGradoATrofeo(juego, grado)
             val yaObtenido = trofeosObtenidos.any {
                 it.juego == juego && it.grado == grado
@@ -1053,7 +1053,7 @@ object CondecoracionTracker {
         val totalNivelesUnicos = ScoreManager.getTotalUniqueLevelsCompletedAllGames()
         val totalTrofeos = trofeosObtenidos.size
 
-        if (totalNivelesUnicos >= 4 && totalTrofeos >= 1) {
+        if (totalNivelesUnicos >= 1470 && totalTrofeos >= 1) {
             val yaObtenida = apexSupremusObtenida != null
 
             if (!yaObtenida) {

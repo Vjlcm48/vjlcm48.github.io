@@ -127,7 +127,7 @@ class GameActivityRomasPro : BaseActivity()  {
         }
 
         bottomNavChallenges.setOnClickListener {
-            showExitConfirmation { }
+            showExitConfirmation { navigateToChallenges() }
         }
 
         bottomNavStatistics.setOnClickListener {
@@ -871,6 +871,12 @@ class GameActivityRomasPro : BaseActivity()  {
 
     private fun navigateToStatistics() {
         val intent = Intent(this, ClassificationActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun navigateToChallenges() {
+        val intent = Intent(this, DesafiosActivity::class.java)
         startActivity(intent)
         finish()
     }

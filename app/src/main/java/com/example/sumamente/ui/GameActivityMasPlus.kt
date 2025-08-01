@@ -130,7 +130,7 @@ class GameActivityMasPlus : BaseActivity()  {
         }
 
         bottomNavChallenges.setOnClickListener {
-            showExitConfirmation { }
+            showExitConfirmation { navigateToChallenges() }
         }
 
         bottomNavStatistics.setOnClickListener {
@@ -948,6 +948,11 @@ class GameActivityMasPlus : BaseActivity()  {
         finish()
     }
 
+    private fun navigateToChallenges() {
+        val intent = Intent(this, DesafiosActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 
     private fun generateRandomDecimal(min: Double, max: Double): Double {
         return Random.nextDouble(min, max)

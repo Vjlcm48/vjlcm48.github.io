@@ -54,6 +54,7 @@ class InstructionsActivityAlfaNumerosPro : BaseActivity()  {
         val tvInstructions          = findViewById<TextView>(R.id.tv_instructions)
         val tvLevel                 = findViewById<TextView>(R.id.tv_level)
         val tvTimeLimit             = findViewById<TextView>(R.id.tv_time_limit)
+        val tvLetterConversion      = findViewById<TextView>(R.id.tv_letter_conversion)
         val tvRepeatedNumbersMessage= findViewById<TextView>(R.id.tv_repeated_numbers)
         val tvNegativeNumberWarning = findViewById<TextView>(R.id.tv_negative_numbers)
 
@@ -70,6 +71,7 @@ class InstructionsActivityAlfaNumerosPro : BaseActivity()  {
 
         tvLevel.text         = getString(R.string.level_title, level)
         tvInstructions.text  = getLevelInstructions(level)
+        tvLetterConversion.text = getString(R.string.letter_to_number_conversion)
 
         // IA1 Cambio para solucionar el formato de los decimales //
         val locale = resources.configuration.locales[0]
@@ -127,11 +129,14 @@ class InstructionsActivityAlfaNumerosPro : BaseActivity()  {
 
 
         val fadeIn = 500L
+        val letterConversionAnimation = ObjectAnimator.ofFloat(tvLetterConversion, "alpha", 0f, 1f).setDuration(fadeIn)
+
         val animatorSet = AnimatorSet().apply {
             playSequentially(
                 ObjectAnimator.ofFloat(tvLevel,                 "alpha", 0f, 1f).setDuration(fadeIn),
                 ObjectAnimator.ofFloat(tvInstructions,          "alpha", 0f, 1f).setDuration(fadeIn),
                 ObjectAnimator.ofFloat(tvRepeatedNumbersMessage,"alpha", 0f, 1f).setDuration(fadeIn),
+                letterConversionAnimation,
                 ObjectAnimator.ofFloat(tvNegativeNumberWarning, "alpha", 0f, 1f).setDuration(fadeIn),
                 ObjectAnimator.ofFloat(tvTimeLimit,             "alpha", 0f, 1f).setDuration(fadeIn),
                 AnimatorSet().apply {

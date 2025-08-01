@@ -14,8 +14,7 @@
 
     <path
         android:pathData="M0,0 L480,0 L480,320 L0,320 Z M20,20 L20,300 L460,300 L460,20 Z"
-        android:fillColor="#FF0A3F8A"/>
-
+        android:fillColor="#FF0000"/>
 
     <group
         android:translateX="240"

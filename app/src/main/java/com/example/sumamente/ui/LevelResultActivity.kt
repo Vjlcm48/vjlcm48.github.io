@@ -201,11 +201,11 @@ class LevelResultActivity : BaseActivity()  {
     private fun verificarMedallasAntesDeMostrarExito() {
         CondecoracionTracker.verificarYEntregarMedallas { nuevaMedalla ->
 
-            if (nuevaMedalla != null && currentLevel == 4) {
+            if (nuevaMedalla != null && currentLevel == 70) {
                 verificarTrofeosParaDobleCondecoracion(nuevaMedalla)
             } else if (nuevaMedalla != null) {
                 mostrarAnimacionMedalla(nuevaMedalla)
-            } else if (currentLevel == 4) {
+            } else if (currentLevel == 70) {
                 verificarTrofeosAntesDeMostrarExito()
             } else {
                 showSuccessDialog()

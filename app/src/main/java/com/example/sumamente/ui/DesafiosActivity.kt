@@ -7,7 +7,6 @@ import android.animation.ValueAnimator
 import android.app.ActivityOptions
 import android.content.Intent
 import android.content.SharedPreferences
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -17,14 +16,16 @@ import android.widget.Button
 import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import com.example.sumamente.R
+import com.example.sumamente.ui.utils.MusicManager
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import java.util.TimeZone
 
-class DesafiosActivity : BaseActivity()   {
+class DesafiosActivity : BaseActivity() {
 
     private lateinit var tvAppName: TextView
     private lateinit var tvMensajeDesafios: TextView
@@ -33,7 +34,6 @@ class DesafiosActivity : BaseActivity()   {
     private lateinit var btnEntendido: Button
     private lateinit var btnClose: ImageView
     private lateinit var btnBack: ImageView
-    private lateinit var mediaPlayer: MediaPlayer
 
     private lateinit var sharedPreferences: SharedPreferences
     private val handler = Handler(Looper.getMainLooper())
@@ -49,6 +49,14 @@ class DesafiosActivity : BaseActivity()   {
         showWelcomeMessage()
         setupCalendar()
         setupButtons()
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                MusicManager.stop()
+                returnToMainGame()
+            }
+        })
+
         startEntryAnimations()
     }
 
@@ -64,10 +72,7 @@ class DesafiosActivity : BaseActivity()   {
 
     private fun startBackgroundMusic() {
         if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.desafios)
-            mediaPlayer.isLooping = true
-            mediaPlayer.setVolume(0.2f, 0.2f)
-            mediaPlayer.start()
+            MusicManager.play(this, R.raw.desafios, looping = true, volume = 0.2f)
         }
     }
 
@@ -87,7 +92,6 @@ class DesafiosActivity : BaseActivity()   {
     }
 
     private fun startEntryAnimations() {
-
         val viewsToAnimate = listOf(
             findViewById(R.id.btn_back),
             findViewById(R.id.btn_close),
@@ -131,10 +135,7 @@ class DesafiosActivity : BaseActivity()   {
     }
 
     private fun setupCalendar() {
-
         val calendar = Calendar.getInstance(TimeZone.getTimeZone("America/Chicago"))
-
-
         val currentLocale = resources.configuration.locales.get(0)
         val monthFormat = SimpleDateFormat("MMMM yyyy", currentLocale)
         tvMesActual.text = monthFormat.format(calendar.time).capitalize(currentLocale)
@@ -148,10 +149,7 @@ class DesafiosActivity : BaseActivity()   {
         var startOffset = firstDayOfWeek - Calendar.MONDAY
         if (startOffset < 0) startOffset += 7
 
-
         val daysInMonth = tempCalendar.getActualMaximum(Calendar.DAY_OF_MONTH)
-
-
         gridCalendario.removeAllViews()
 
         for (i in 1..42) {
@@ -172,12 +170,10 @@ class DesafiosActivity : BaseActivity()   {
             if (dayNumber in 1..daysInMonth) {
                 dayView.text = dayNumber.toString()
 
-
                 if (dayNumber == currentDay) {
                     dayView.background = ContextCompat.getDrawable(this, R.drawable.button_background)
                     dayView.setTextColor(ContextCompat.getColor(this, R.color.white))
                 } else {
-
                     val dayOfWeek = (i % 7)
                     when (dayOfWeek) {
                         6 -> dayView.setTextColor(ContextCompat.getColor(this, R.color.blue_primary))
@@ -188,7 +184,6 @@ class DesafiosActivity : BaseActivity()   {
             } else {
                 dayView.text = ""
             }
-
             gridCalendario.addView(dayView)
         }
     }
@@ -196,21 +191,21 @@ class DesafiosActivity : BaseActivity()   {
     private fun setupButtons() {
         btnEntendido.setOnClickListener {
             applyBounceEffect(it) {
-                fadeOutMusic()
+                MusicManager.stop()
                 returnToMainGame()
             }
         }
 
         btnClose.setOnClickListener {
             applyBounceEffect(it) {
-                fadeOutMusic()
+                MusicManager.stop()
                 returnToMainGame()
             }
         }
 
         btnBack.setOnClickListener {
             applyBounceEffect(it) {
-                fadeOutMusic()
+                MusicManager.stop()
                 returnToMainGame()
             }
         }
@@ -242,33 +237,6 @@ class DesafiosActivity : BaseActivity()   {
         animatorSet.start()
     }
 
-    private fun fadeOutMusic() {
-        val fadeOutDuration = 500L
-        val startVolume = 0.2f
-        val endVolume = 0.0f
-        val stepCount = 10
-        val stepDuration = fadeOutDuration / stepCount
-        val volumeStep = (startVolume - endVolume) / stepCount
-
-        val fadeRunnable = object : Runnable {
-            var currentVolume = startVolume
-            var currentStep = 0
-
-            override fun run() {
-                currentVolume -= volumeStep
-                if (currentStep < stepCount) {
-                    mediaPlayer.setVolume(currentVolume, currentVolume)
-                    currentStep++
-                    handler.postDelayed(this, stepDuration)
-                } else {
-                    mediaPlayer.stop()
-                }
-            }
-        }
-
-        handler.post(fadeRunnable)
-    }
-
     private fun returnToMainGame() {
         val intent = Intent(this, MainGameActivity::class.java)
         val options = ActivityOptions.makeCustomAnimation(
@@ -282,25 +250,19 @@ class DesafiosActivity : BaseActivity()   {
 
     override fun onPause() {
         super.onPause()
-        if (::mediaPlayer.isInitialized && mediaPlayer.isPlaying) {
-            mediaPlayer.pause()
-        }
+        MusicManager.pause()
     }
 
     override fun onResume() {
         super.onResume()
-
         val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
-        if (::mediaPlayer.isInitialized && !mediaPlayer.isPlaying && soundEnabled) {
-            mediaPlayer.start()
+        if (soundEnabled) {
+            MusicManager.resume()
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        if (::mediaPlayer.isInitialized) {
-            mediaPlayer.release()
-        }
         handler.removeCallbacksAndMessages(null)
     }
 
