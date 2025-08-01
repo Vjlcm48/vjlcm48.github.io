@@ -13,3 +13,7 @@ captures/
 .externalNativeBuild/
 .cxx/
 
+# Ignorar archivos de compilación de Android
+*.apk
+*.aab
+
