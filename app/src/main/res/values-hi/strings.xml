@@ -2,7 +2,7 @@
 
 
 
-    <string name="loading_text">लोड हो रहा है…</string>
+
 
     <string name="next_activity_text">अगली गतिविधि</string>
 
@@ -199,8 +199,7 @@
     <string name="confirmation_message">क्या आप वाकई चयनित डेटा रीसेट کرنا चाहते हैं?</string>
     <string name="yes">हाँ</string>
     <string name="no">नहीं</string>
-    <string name="edit_username_desc">उपयोगकर्ता नाम संशोधित करें</string>
-    <string name="edit_flag_desc">ध्वज संशोधित करें</string>
+
     <string name="title_profile_edit">आप कौन सा डेटा संशोधित करना चाहते हैं?</string>
     <string name="edit_username">उपयोगकर्ता नाम</string>
     <string name="edit_flag">ध्वज</string>
@@ -1369,7 +1368,7 @@
 
     <string name="global_levels_label">स्तर:</string>
 
-    <string name="insignia_supremus_integralis" translatable="false">SUPREMUS INTEGRALIS</string>
+
 
     <string name="desc_insignia_supremus_integralis">हम इंटीग्रल रैंकिंग में आपके प्रवेश का जश्न मनाते हैं! SumaMente की 9 रैंकिंग में प्रदर्शित होकर आपने सभी गणितीय विषयों में अपनी पूरी महारत का प्रदर्शन किया है। यह SUPREMUS INTEGRALIS प्रतीक आपके अभिन्न अभिजात वर्ग में प्रवेश का प्रतीक है।</string>
 

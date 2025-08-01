@@ -9,8 +9,7 @@
     android:gravity="center"
     android:maxWidth="320dp">
 
-    <!-- Título: se establece dinámicamente en código, con cadenas como:
-         @string/dialog_link_title   o   @string/dialog_unlink_title -->
+
     <TextView
         android:id="@+id/tvDialogTitle"
         android:layout_width="match_parent"
@@ -22,8 +21,6 @@
         android:fontFamily="@font/roboto_bold"
         android:layout_marginBottom="8dp" />
 
-    <!-- Mensaje: se establece dinámicamente en código, con cadenas como:
-         @string/link_account_confirm_message  o  @string/unlink_account_confirm_message -->
     <TextView
         android:id="@+id/tvDialogMessage"
         android:layout_width="match_parent"
@@ -40,7 +37,7 @@
         android:orientation="horizontal"
         android:gravity="end">
 
-        <!-- Botón Cancelar: SIEMPRE debe ser este string -->
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCancel"
             android:layout_width="wrap_content"
@@ -50,8 +47,7 @@
             android:textColor="@color/black"
             android:layout_marginEnd="8dp"/>
 
-        <!-- Botón Acción: se establece dinámicamente en código, con cadenas como:
-             @string/dialog_link_accept o @string/action_unlink_account -->
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAction"
             android:layout_width="wrap_content"

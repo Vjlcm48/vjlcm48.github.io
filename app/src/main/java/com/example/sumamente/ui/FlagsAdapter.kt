@@ -271,7 +271,8 @@ class FlagsAdapter(
             "yt" to R.drawable.yt,
             "za" to R.drawable.za,
             "zm" to R.drawable.zm,
-            "zw" to R.drawable.zw
+            "zw" to R.drawable.zw,
+            "sumamente" to R.drawable.default_flag
         )
     }
 

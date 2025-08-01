@@ -6,6 +6,7 @@ import androidx.core.content.edit
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
+
 object ScoreManager {
 
     private val gson = Gson()
@@ -19,7 +20,6 @@ object ScoreManager {
         }
     }
 
-    //Constantes globales//
     private const val KEY_TOTAL_GAMES_GLOBAL = "total_games_global"
     private const val KEY_CORRECT_GAMES_GLOBAL = "correct_games_global"
 
@@ -42,12 +42,8 @@ object ScoreManager {
 
     private const val KEY_TOTAL_GAMES_NUMEROS_PLUS = "total_games_numeros_plus"
     private const val KEY_TOTAL_TIME_NUMEROS_PLUS = "total_time_numeros_plus"
-
-    // --- AÑADE ESTAS NUEVAS ---
     private const val KEY_TOTAL_GAMES_NUMEROS_PLUS_EXITOS = "total_games_numeros_plus_exitos"
     private const val KEY_TOTAL_TIME_NUMEROS_PLUS_EXITOS = "total_time_numeros_plus_exitos"
-
-
 
     private const val PREFS_NAME_DECI_PLUS = "ScorePrefsDeciPlus"
     private const val KEY_CURRENT_SCORE_DECI_PLUS = "current_score_deci_plus"
@@ -66,11 +62,8 @@ object ScoreManager {
 
     private const val KEY_TOTAL_GAMES_DECI_PLUS = "total_games_deci_plus"
     private const val KEY_TOTAL_TIME_DECI_PLUS = "total_time_deci_plus"
-
     private const val KEY_TOTAL_GAMES_DECI_PLUS_EXITOS = "total_games_deci_plus_exitos"
     private const val KEY_TOTAL_TIME_DECI_PLUS_EXITOS = "total_time_deci_plus_exitos"
-
-
 
     private const val PREFS_NAME_ROMAS = "ScorePrefsRomas"
     private const val KEY_CURRENT_SCORE_ROMAS = "current_score_romas"
@@ -89,11 +82,8 @@ object ScoreManager {
 
     private const val KEY_TOTAL_GAMES_ROMAS = "total_games_romas"
     private const val KEY_TOTAL_TIME_ROMAS = "total_time_romas"
-
     private const val KEY_TOTAL_GAMES_ROMAS_EXITOS = "total_games_romas_exitos"
     private const val KEY_TOTAL_TIME_ROMAS_EXITOS = "total_time_romas_exitos"
-
-
 
     private const val PREFS_NAME_ALFANUMEROS = "ScorePrefsAlfaNumeros"
     private const val KEY_CURRENT_SCORE_ALFANUMEROS = "current_score_alfanumeros"
@@ -112,11 +102,8 @@ object ScoreManager {
 
     private const val KEY_TOTAL_GAMES_ALFANUMEROS = "total_games_alfanumeros"
     private const val KEY_TOTAL_TIME_ALFANUMEROS = "total_time_alfanumeros"
-
     private const val KEY_TOTAL_GAMES_ALFANUMEROS_EXITOS = "total_games_alfanumeros_exitos"
     private const val KEY_TOTAL_TIME_ALFANUMEROS_EXITOS = "total_time_alfanumeros_exitos"
-
-
 
     private const val PREFS_NAME_SUMARESTA = "ScorePrefsSumaResta"
     private const val KEY_CURRENT_SCORE_SUMARESTA = "current_score_sumaresta"
@@ -135,11 +122,8 @@ object ScoreManager {
 
     private const val KEY_TOTAL_GAMES_SUMARESTA = "total_games_sumaresta"
     private const val KEY_TOTAL_TIME_SUMARESTA = "total_time_sumaresta"
-
     private const val KEY_TOTAL_GAMES_SUMARESTA_EXITOS = "total_games_sumaresta_exitos"
     private const val KEY_TOTAL_TIME_SUMARESTA_EXITOS = "total_time_sumaresta_exitos"
-
-
 
     private const val PREFS_NAME_MAS_PLUS = "ScorePrefsMasPlus"
     private const val KEY_CURRENT_SCORE_MAS_PLUS = "current_score_mas_plus"
@@ -158,11 +142,8 @@ object ScoreManager {
 
     private const val KEY_TOTAL_GAMES_MAS_PLUS = "total_games_mas_plus"
     private const val KEY_TOTAL_TIME_MAS_PLUS = "total_time_mas_plus"
-
     private const val KEY_TOTAL_GAMES_MAS_PLUS_EXITOS = "total_games_mas_plus_exitos"
     private const val KEY_TOTAL_TIME_MAS_PLUS_EXITOS = "total_time_mas_plus_exitos"
-
-
 
     private const val PREFS_NAME_GENIO_PLUS = "ScorePrefsGenioPlus"
     private const val KEY_CURRENT_SCORE_GENIO_PLUS = "current_score_genio_plus"
@@ -181,17 +162,13 @@ object ScoreManager {
 
     private const val KEY_TOTAL_GAMES_GENIO_PLUS = "total_games_genio_plus"
     private const val KEY_TOTAL_TIME_GENIO_PLUS = "total_time_genio_plus"
-
     private const val KEY_TOTAL_GAMES_GENIO_PLUS_EXITOS = "total_games_genio_plus_exitos"
     private const val KEY_TOTAL_TIME_GENIO_PLUS_EXITOS = "total_time_genio_plus_exitos"
-
-
 
     var totalGamesGlobal: Int = 0
     var correctGamesGlobal: Int = 0
 
     var lastIqComponentByGame: MutableMap<String, Double> = mutableMapOf()
-
 
     var currentScore: Int = 0
     var unlockedLevels: Int = 2
@@ -211,12 +188,8 @@ object ScoreManager {
 
     var totalGamesNumerosPlus: Int = 0
     var totalTimeNumerosPlus: Double = 0.0
-
-    // --- AÑADE ESTAS NUEVAS ---
     var totalGamesNumerosPlusExitos: Int = 0
     var totalTimeNumerosPlusExitos: Double = 0.0
-
-
 
     var currentScoreDeciPlus: Int = 0
     var unlockedLevelsDeciPlus: Int = 2
@@ -236,11 +209,8 @@ object ScoreManager {
 
     var totalGamesDeciPlus: Int = 0
     var totalTimeDeciPlus: Double = 0.0
-
     var totalGamesDeciPlusExitos: Int = 0
     var totalTimeDeciPlusExitos: Double = 0.0
-
-
 
     var currentScoreRomas: Int = 0
     var unlockedLevelsRomas: Int = 2
@@ -260,11 +230,8 @@ object ScoreManager {
 
     var totalGamesRomas: Int = 0
     var totalTimeRomas: Double = 0.0
-
     var totalGamesRomasExitos: Int = 0
     var totalTimeRomasExitos: Double = 0.0
-
-
 
     var currentScoreAlfaNumeros: Int = 0
     var unlockedLevelsAlfaNumeros: Int = 2
@@ -284,11 +251,8 @@ object ScoreManager {
 
     var totalGamesAlfaNumeros: Int = 0
     var totalTimeAlfaNumeros: Double = 0.0
-
     var totalGamesAlfaNumerosExitos: Int = 0
     var totalTimeAlfaNumerosExitos: Double = 0.0
-
-
 
     var currentScoreSumaResta: Int = 0
     var unlockedLevelsSumaResta: Int = 2
@@ -308,10 +272,8 @@ object ScoreManager {
 
     var totalGamesSumaResta: Int = 0
     var totalTimeSumaResta: Double = 0.0
-
     var totalGamesSumaRestaExitos: Int = 0
     var totalTimeSumaRestaExitos: Double = 0.0
-
 
     var currentScoreMasPlus: Int = 0
     var unlockedLevelsMasPlus: Int = 2
@@ -331,11 +293,8 @@ object ScoreManager {
 
     var totalGamesMasPlus: Int = 0
     var totalTimeMasPlus: Double = 0.0
-
     var totalGamesMasPlusExitos: Int = 0
     var totalTimeMasPlusExitos: Double = 0.0
-
-
 
     var currentScoreGenioPlus: Int = 0
     var unlockedLevelsGenioPlus: Int = 2
@@ -355,11 +314,8 @@ object ScoreManager {
 
     var totalGamesGenioPlus: Int = 0
     var totalTimeGenioPlus: Double = 0.0
-
     var totalGamesGenioPlusExitos: Int = 0
     var totalTimeGenioPlusExitos: Double = 0.0
-
-
 
     private const val KEY_CONSECUTIVE_FAILURES = "consecutive_failures"
     private const val KEY_CONSECUTIVE_FAILURES_PRINCIPIANTE = "consecutive_failures_principiante"
@@ -405,8 +361,6 @@ object ScoreManager {
     private val consecutiveFailuresGenioPlusPrincipiante: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresGenioPlusPro: MutableMap<Int, Int> = mutableMapOf()
 
-    // aqui estaba la variable private lateinit var preferences: SharedPreferences //
-
     private lateinit var preferencesPrincipiante: SharedPreferences
     private lateinit var preferencesPro: SharedPreferences
     private lateinit var preferencesDeciPlus: SharedPreferences
@@ -428,87 +382,294 @@ object ScoreManager {
     private lateinit var preferencesGenioPlusPrincipiante: SharedPreferences
     private lateinit var preferencesGenioPlusPro: SharedPreferences
 
-
     data class RankingEntry(val userName: String, val valor: Double)
 
-    private fun isEligibleForGlobalRanking(): Boolean =
-        getTotalUniqueLevelsCompletedAllGames() >= RankingActivity.MIN_LEVELS_REQUIRED
+    private enum class Game {
+        NUMEROS_PLUS,
+        DECI_PLUS,
+        ROMAS,
+        ALFA_NUMEROS,
+        SUMA_RESTA,
+        MAS_PLUS,
+        GENIO_PLUS
+    }
 
+    private enum class Difficulty {
+        AVANZADO, PRINCIPIANTE, PRO
+    }
 
-    private fun isEligibleSpeedNumerosPlus()   = isEligibleForSpeedRankingNumerosPlus()
-    private fun isEligibleSpeedDeciPlus()      = isEligibleForSpeedRankingDeciPlus()
-    private fun isEligibleSpeedAlfaNumeros()   = isEligibleForSpeedRankingAlfaNumeros()
-    private fun isEligibleSpeedRomas()         = isEligibleForSpeedRankingRomas()
-    private fun isEligibleSpeedSumaResta()     = isEligibleForSpeedRankingSumaResta()
-    private fun isEligibleSpeedMasPlus()       = isEligibleForSpeedRankingMasPlus()
-    private fun isEligibleSpeedGenioPlus()     = isEligibleForSpeedRankingGenioPlus()
+    private class GameManager(
+        val currentScoreVar: () -> Int,
+        val setCurrentScore: (Int) -> Unit,
+        val unlockedLevelsVar: () -> Int,
+        val setUnlockedLevels: (Int) -> Unit,
+        val levelScoresMap: MutableMap<Int, Int>,
+        val preferences: SharedPreferences,
+        val currentScoreKey: String,
+        val unlockedLevelsKey: String,
+        val completedLevelsKey: String,
+        val consecutiveFailuresKey: String,
+        val consecutiveFailuresMap: MutableMap<Int, Int>
+    ) {
+        fun saveScore() {
+            preferences.edit {
+                putInt(currentScoreKey, currentScoreVar())
+                putInt(unlockedLevelsKey, unlockedLevelsVar())
+            }
+        }
 
+        fun getCompletedLevels(): Set<Int> {
+            return preferences.getStringSet(completedLevelsKey, emptySet())
+                ?.map { it.toInt() }?.toSet() ?: emptySet()
+        }
 
-    private fun isEligibleIQPlusRanking(): Boolean =
-        haJugadoAlMenosUnNivelEnCadaJuegoYGrado()
+        fun addCompletedLevel(level: Int) {
+            val completedLevels = getCompletedLevels().toMutableSet()
+            completedLevels.add(level)
+            preferences.edit {
+                putStringSet(completedLevelsKey, completedLevels.map { it.toString() }.toSet())
+            }
+            if (hasCompletedLevel(1) && hasCompletedLevel(2) && unlockedLevelsVar() < 3) {
+                setUnlockedLevels(3)
+                saveScore()
+            } else if (level >= 3 && level + 1 > unlockedLevelsVar()) {
+                setUnlockedLevels(level + 1)
+                saveScore()
+            }
+        }
 
+        fun hasCompletedLevel(level: Int): Boolean = getCompletedLevels().contains(level)
 
-    fun getRankingList(rankingName: String): List<RankingEntry> {
-        val me = preferences.getString("savedUserName", "User")!!
-        return when (rankingName) {
-            "GLOBAL"        -> if (isEligibleForGlobalRanking())      listOf(RankingEntry(me, 1.0)) else emptyList()
-            "VEL_NUMEROS"   -> if (isEligibleSpeedNumerosPlus())      listOf(RankingEntry(me, 1.0)) else emptyList()
-            "VEL_DECI"      -> if (isEligibleSpeedDeciPlus())         listOf(RankingEntry(me, 1.0)) else emptyList()
-            "VEL_ALFANUM"   -> if (isEligibleSpeedAlfaNumeros())      listOf(RankingEntry(me, 1.0)) else emptyList()
-            "VEL_ROMAS"     -> if (isEligibleSpeedRomas())            listOf(RankingEntry(me, 1.0)) else emptyList()
-            "VEL_SUMARESTA" -> if (isEligibleSpeedSumaResta())        listOf(RankingEntry(me, 1.0)) else emptyList()
-            "VEL_MAS"       -> if (isEligibleSpeedMasPlus())          listOf(RankingEntry(me, 1.0)) else emptyList()
-            "VEL_GENIOS"    -> if (isEligibleSpeedGenioPlus())        listOf(RankingEntry(me, 1.0)) else emptyList()
-            "IQ_PLUS"       -> if (isEligibleIQPlusRanking())         listOf(RankingEntry(me, 1.0)) else emptyList()
-            else            -> emptyList()
+        fun reset() {
+            setCurrentScore(0)
+            setUnlockedLevels(2)
+            levelScoresMap.clear()
+            preferences.edit {
+                putInt(currentScoreKey, 0)
+                putInt(unlockedLevelsKey, 2)
+                putStringSet(completedLevelsKey, emptySet())
+            }
+        }
+
+        fun incrementConsecutiveFailures(level: Int) {
+            val currentFailures = consecutiveFailuresMap[level] ?: 0
+            consecutiveFailuresMap[level] = currentFailures + 1
+            preferences.edit {
+                putInt("$consecutiveFailuresKey:$level", consecutiveFailuresMap[level] ?: 0)
+            }
+        }
+
+        fun resetConsecutiveFailures(level: Int) {
+            consecutiveFailuresMap[level] = 0
+            preferences.edit {
+                putInt("$consecutiveFailuresKey:$level", 0)
+            }
+        }
+
+        fun getConsecutiveFailures(level: Int): Int = consecutiveFailuresMap[level] ?: 0
+
+        fun isLevelBlockedByFailures(level: Int): Boolean {
+            if (level == 1) return false
+            return getConsecutiveFailures(level) >= 12
+        }
+
+        fun loadConsecutiveFailures() {
+            for (i in 1..70) {
+                val failures = preferences.getInt("$consecutiveFailuresKey:$i", 0)
+                if (failures > 0) {
+                    consecutiveFailuresMap[i] = failures
+                }
+            }
         }
     }
 
+    private val gameManagers = mutableMapOf<Triple<Game, Difficulty, String>, GameManager>()
 
-    fun getUserPositionInRanking(rankingName: String): Int {
-        val me = preferences.getString("savedUserName", "User")!!
-        return getRankingList(rankingName).indexOfFirst { it.userName == me }.let { if (it >= 0) it + 1 else -1 }
-    }
-
-    fun isUserInRanking(rankingName: String): Boolean =
-        getUserPositionInRanking(rankingName) > 0
-
-
-    fun getIntegralScore(): Double {
-        val rankings = listOf(
-            "GLOBAL", "VEL_NUMEROS", "VEL_DECI", "VEL_ALFANUM", "VEL_ROMAS",
-            "VEL_SUMARESTA", "VEL_MAS", "VEL_GENIOS", "IQ_PLUS"
-        )
-        val positions = rankings.map { pos ->
-            val p = getUserPositionInRanking(pos)
-            if (p > 0) p else (getRankingList(pos).size + 1)
+    private fun getOrCreateManager(game: Game, difficulty: Difficulty, suffix: String = ""): GameManager {
+        val key = Triple(game, difficulty, suffix)
+        return gameManagers.getOrPut(key) {
+            when (game) {
+                Game.NUMEROS_PLUS -> when (difficulty) {
+                    Difficulty.AVANZADO -> GameManager(
+                        { currentScore }, { currentScore = it },
+                        { unlockedLevels }, { unlockedLevels = it },
+                        levelScores, preferences,
+                        KEY_CURRENT_SCORE, KEY_UNLOCKED_LEVELS, KEY_COMPLETED_LEVELS,
+                        KEY_CONSECUTIVE_FAILURES, consecutiveFailures
+                    )
+                    Difficulty.PRINCIPIANTE -> GameManager(
+                        { currentScorePrincipiante }, { currentScorePrincipiante = it },
+                        { unlockedLevelsPrincipiante }, { unlockedLevelsPrincipiante = it },
+                        levelScoresPrincipiante, preferencesPrincipiante,
+                        KEY_CURRENT_SCORE_PRINCIPIANTE, KEY_UNLOCKED_LEVELS_PRINCIPIANTE, KEY_COMPLETED_LEVELS_PRINCIPIANTE,
+                        KEY_CONSECUTIVE_FAILURES_PRINCIPIANTE, consecutiveFailuresPrincipiante
+                    )
+                    Difficulty.PRO -> GameManager(
+                        { currentScorePro }, { currentScorePro = it },
+                        { unlockedLevelsPro }, { unlockedLevelsPro = it },
+                        levelScoresPro, preferencesPro,
+                        KEY_CURRENT_SCORE_PRO, KEY_UNLOCKED_LEVELS_PRO, KEY_COMPLETED_LEVELS_PRO,
+                        KEY_CONSECUTIVE_FAILURES_PRO, consecutiveFailuresPro
+                    )
+                }
+                Game.DECI_PLUS -> when (difficulty) {
+                    Difficulty.AVANZADO -> GameManager(
+                        { currentScoreDeciPlus }, { currentScoreDeciPlus = it },
+                        { unlockedLevelsDeciPlus }, { unlockedLevelsDeciPlus = it },
+                        levelScoresDeciPlus, preferencesDeciPlus,
+                        KEY_CURRENT_SCORE_DECI_PLUS, KEY_UNLOCKED_LEVELS_DECI_PLUS, KEY_COMPLETED_LEVELS_DECI_PLUS,
+                        KEY_CONSECUTIVE_FAILURES_DECI_PLUS, consecutiveFailuresDeciPlus
+                    )
+                    Difficulty.PRINCIPIANTE -> GameManager(
+                        { currentScoreDeciPlusPrincipiante }, { currentScoreDeciPlusPrincipiante = it },
+                        { unlockedLevelsDeciPlusPrincipiante }, { unlockedLevelsDeciPlusPrincipiante = it },
+                        levelScoresDeciPlusPrincipiante, preferencesDeciPlusPrincipiante,
+                        KEY_CURRENT_SCORE_DECI_PLUS_PRINCIPIANTE, KEY_UNLOCKED_LEVELS_DECI_PLUS_PRINCIPIANTE, KEY_COMPLETED_LEVELS_DECI_PLUS_PRINCIPIANTE,
+                        KEY_CONSECUTIVE_FAILURES_DECI_PLUS_PRINCIPIANTE, consecutiveFailuresDeciPlusPrincipiante
+                    )
+                    Difficulty.PRO -> GameManager(
+                        { currentScoreDeciPlusPro }, { currentScoreDeciPlusPro = it },
+                        { unlockedLevelsDeciPlusPro }, { unlockedLevelsDeciPlusPro = it },
+                        levelScoresDeciPlusPro, preferencesDeciPlusPro,
+                        KEY_CURRENT_SCORE_DECI_PLUS_PRO, KEY_UNLOCKED_LEVELS_DECI_PLUS_PRO, KEY_COMPLETED_LEVELS_DECI_PLUS_PRO,
+                        KEY_CONSECUTIVE_FAILURES_DECI_PLUS_PRO, consecutiveFailuresDeciPlusPro
+                    )
+                }
+                Game.ROMAS -> when (difficulty) {
+                    Difficulty.AVANZADO -> GameManager(
+                        { currentScoreRomas }, { currentScoreRomas = it },
+                        { unlockedLevelsRomas }, { unlockedLevelsRomas = it },
+                        levelScoresRomas, preferencesRomas,
+                        KEY_CURRENT_SCORE_ROMAS, KEY_UNLOCKED_LEVELS_ROMAS, KEY_COMPLETED_LEVELS_ROMAS,
+                        KEY_CONSECUTIVE_FAILURES_ROMAS, consecutiveFailuresRomas
+                    )
+                    Difficulty.PRINCIPIANTE -> GameManager(
+                        { currentScoreRomasPrincipiante }, { currentScoreRomasPrincipiante = it },
+                        { unlockedLevelsRomasPrincipiante }, { unlockedLevelsRomasPrincipiante = it },
+                        levelScoresRomasPrincipiante, preferencesRomasPrincipiante,
+                        KEY_CURRENT_SCORE_ROMAS_PRINCIPIANTE, KEY_UNLOCKED_LEVELS_ROMAS_PRINCIPIANTE, KEY_COMPLETED_LEVELS_ROMAS_PRINCIPIANTE,
+                        KEY_CONSECUTIVE_FAILURES_ROMAS_PRINCIPIANTE, consecutiveFailuresRomasPrincipiante
+                    )
+                    Difficulty.PRO -> GameManager(
+                        { currentScoreRomasPro }, { currentScoreRomasPro = it },
+                        { unlockedLevelsRomasPro }, { unlockedLevelsRomasPro = it },
+                        levelScoresRomasPro, preferencesRomasPro,
+                        KEY_CURRENT_SCORE_ROMAS_PRO, KEY_UNLOCKED_LEVELS_ROMAS_PRO, KEY_COMPLETED_LEVELS_ROMAS_PRO,
+                        KEY_CONSECUTIVE_FAILURES_ROMAS_PRO, consecutiveFailuresRomasPro
+                    )
+                }
+                Game.ALFA_NUMEROS -> when (difficulty) {
+                    Difficulty.AVANZADO -> GameManager(
+                        { currentScoreAlfaNumeros }, { currentScoreAlfaNumeros = it },
+                        { unlockedLevelsAlfaNumeros }, { unlockedLevelsAlfaNumeros = it },
+                        levelScoresAlfaNumeros, preferencesAlfaNumeros,
+                        KEY_CURRENT_SCORE_ALFANUMEROS, KEY_UNLOCKED_LEVELS_ALFANUMEROS, KEY_COMPLETED_LEVELS_ALFANUMEROS,
+                        KEY_CONSECUTIVE_FAILURES_ALFANUMEROS, consecutiveFailuresAlfaNumeros
+                    )
+                    Difficulty.PRINCIPIANTE -> GameManager(
+                        { currentScoreAlfaNumerosPrincipiante }, { currentScoreAlfaNumerosPrincipiante = it },
+                        { unlockedLevelsAlfaNumerosPrincipiante }, { unlockedLevelsAlfaNumerosPrincipiante = it },
+                        levelScoresAlfaNumerosPrincipiante, preferencesAlfaNumerosPrincipiante,
+                        KEY_CURRENT_SCORE_ALFANUMEROS_PRINCIPIANTE, KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRINCIPIANTE, KEY_COMPLETED_LEVELS_ALFANUMEROS_PRINCIPIANTE,
+                        KEY_CONSECUTIVE_FAILURES_ALFANUMEROS_PRINCIPIANTE, consecutiveFailuresAlfaNumerosPrincipiante
+                    )
+                    Difficulty.PRO -> GameManager(
+                        { currentScoreAlfaNumerosPro }, { currentScoreAlfaNumerosPro = it },
+                        { unlockedLevelsAlfaNumerosPro }, { unlockedLevelsAlfaNumerosPro = it },
+                        levelScoresAlfaNumerosPro, preferencesAlfaNumerosPro,
+                        KEY_CURRENT_SCORE_ALFANUMEROS_PRO, KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRO, KEY_COMPLETED_LEVELS_ALFANUMEROS_PRO,
+                        KEY_CONSECUTIVE_FAILURES_ALFANUMEROS_PRO, consecutiveFailuresAlfaNumerosPro
+                    )
+                }
+                Game.SUMA_RESTA -> when (difficulty) {
+                    Difficulty.AVANZADO -> GameManager(
+                        { currentScoreSumaResta }, { currentScoreSumaResta = it },
+                        { unlockedLevelsSumaResta }, { unlockedLevelsSumaResta = it },
+                        levelScoresSumaResta, preferencesSumaResta,
+                        KEY_CURRENT_SCORE_SUMARESTA, KEY_UNLOCKED_LEVELS_SUMARESTA, KEY_COMPLETED_LEVELS_SUMARESTA,
+                        KEY_CONSECUTIVE_FAILURES_SUMARESTA, consecutiveFailuresSumaResta
+                    )
+                    Difficulty.PRINCIPIANTE -> GameManager(
+                        { currentScoreSumaRestaPrincipiante }, { currentScoreSumaRestaPrincipiante = it },
+                        { unlockedLevelsSumaRestaPrincipiante }, { unlockedLevelsSumaRestaPrincipiante = it },
+                        levelScoresSumaRestaPrincipiante, preferencesSumaRestaPrincipiante,
+                        KEY_CURRENT_SCORE_SUMARESTA_PRINCIPIANTE, KEY_UNLOCKED_LEVELS_SUMARESTA_PRINCIPIANTE, KEY_COMPLETED_LEVELS_SUMARESTA_PRINCIPIANTE,
+                        KEY_CONSECUTIVE_FAILURES_SUMARESTA_PRINCIPIANTE, consecutiveFailuresSumaRestaPrincipiante
+                    )
+                    Difficulty.PRO -> GameManager(
+                        { currentScoreSumaRestaPro }, { currentScoreSumaRestaPro = it },
+                        { unlockedLevelsSumaRestaPro }, { unlockedLevelsSumaRestaPro = it },
+                        levelScoresSumaRestaPro, preferencesSumaRestaPro,
+                        KEY_CURRENT_SCORE_SUMARESTA_PRO, KEY_UNLOCKED_LEVELS_SUMARESTA_PRO, KEY_COMPLETED_LEVELS_SUMARESTA_PRO,
+                        KEY_CONSECUTIVE_FAILURES_SUMARESTA_PRO, consecutiveFailuresSumaRestaPro
+                    )
+                }
+                Game.MAS_PLUS -> when (difficulty) {
+                    Difficulty.AVANZADO -> GameManager(
+                        { currentScoreMasPlus }, { currentScoreMasPlus = it },
+                        { unlockedLevelsMasPlus }, { unlockedLevelsMasPlus = it },
+                        levelScoresMasPlus, preferencesMasPlus,
+                        KEY_CURRENT_SCORE_MAS_PLUS, KEY_UNLOCKED_LEVELS_MAS_PLUS, KEY_COMPLETED_LEVELS_MAS_PLUS,
+                        KEY_CONSECUTIVE_FAILURES_MAS_PLUS, consecutiveFailuresMasPlus
+                    )
+                    Difficulty.PRINCIPIANTE -> GameManager(
+                        { currentScoreMasPlusPrincipiante }, { currentScoreMasPlusPrincipiante = it },
+                        { unlockedLevelsMasPlusPrincipiante }, { unlockedLevelsMasPlusPrincipiante = it },
+                        levelScoresMasPlusPrincipiante, preferencesMasPlusPrincipiante,
+                        KEY_CURRENT_SCORE_MAS_PLUS_PRINCIPIANTE, KEY_UNLOCKED_LEVELS_MAS_PLUS_PRINCIPIANTE, KEY_COMPLETED_LEVELS_MAS_PLUS_PRINCIPIANTE,
+                        KEY_CONSECUTIVE_FAILURES_MAS_PLUS_PRINCIPIANTE, consecutiveFailuresMasPlusPrincipiante
+                    )
+                    Difficulty.PRO -> GameManager(
+                        { currentScoreMasPlusPro }, { currentScoreMasPlusPro = it },
+                        { unlockedLevelsMasPlusPro }, { unlockedLevelsMasPlusPro = it },
+                        levelScoresMasPlusPro, preferencesMasPlusPro,
+                        KEY_CURRENT_SCORE_MAS_PLUS_PRO, KEY_UNLOCKED_LEVELS_MAS_PLUS_PRO, KEY_COMPLETED_LEVELS_MAS_PLUS_PRO,
+                        KEY_CONSECUTIVE_FAILURES_MAS_PLUS_PRO, consecutiveFailuresMasPlusPro
+                    )
+                }
+                Game.GENIO_PLUS -> when (difficulty) {
+                    Difficulty.AVANZADO -> GameManager(
+                        { currentScoreGenioPlus }, { currentScoreGenioPlus = it },
+                        { unlockedLevelsGenioPlus }, { unlockedLevelsGenioPlus = it },
+                        levelScoresGenioPlus, preferencesGenioPlus,
+                        KEY_CURRENT_SCORE_GENIO_PLUS, KEY_UNLOCKED_LEVELS_GENIO_PLUS, KEY_COMPLETED_LEVELS_GENIO_PLUS,
+                        KEY_CONSECUTIVE_FAILURES_GENIO_PLUS, consecutiveFailuresGenioPlus
+                    )
+                    Difficulty.PRINCIPIANTE -> GameManager(
+                        { currentScoreGenioPlusPrincipiante }, { currentScoreGenioPlusPrincipiante = it },
+                        { unlockedLevelsGenioPlusPrincipiante }, { unlockedLevelsGenioPlusPrincipiante = it },
+                        levelScoresGenioPlusPrincipiante, preferencesGenioPlusPrincipiante,
+                        KEY_CURRENT_SCORE_GENIO_PLUS_PRINCIPIANTE, KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRINCIPIANTE, KEY_COMPLETED_LEVELS_GENIO_PLUS_PRINCIPIANTE,
+                        KEY_CONSECUTIVE_FAILURES_GENIO_PLUS_PRINCIPIANTE, consecutiveFailuresGenioPlusPrincipiante
+                    )
+                    Difficulty.PRO -> GameManager(
+                        { currentScoreGenioPlusPro }, { currentScoreGenioPlusPro = it },
+                        { unlockedLevelsGenioPlusPro }, { unlockedLevelsGenioPlusPro = it },
+                        levelScoresGenioPlusPro, preferencesGenioPlusPro,
+                        KEY_CURRENT_SCORE_GENIO_PLUS_PRO, KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRO, KEY_COMPLETED_LEVELS_GENIO_PLUS_PRO,
+                        KEY_CONSECUTIVE_FAILURES_GENIO_PLUS_PRO, consecutiveFailuresGenioPlusPro
+                    )
+                }
+            }
         }
-        return positions.sum().toDouble() / rankings.size
     }
 
     fun init(context: Context) {
-
         ensurePreferencesInitialized(context)
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
         if (!::preferencesPrincipiante.isInitialized) {
-            preferencesPrincipiante =
-                context.getSharedPreferences(PREFS_NAME_PRINCIPIANTE, Context.MODE_PRIVATE)
+            preferencesPrincipiante = context.getSharedPreferences(PREFS_NAME_PRINCIPIANTE, Context.MODE_PRIVATE)
         }
         if (!::preferencesPro.isInitialized) {
-            preferencesPro =
-                context.getSharedPreferences(PREFS_NAME_PRO, Context.MODE_PRIVATE)
+            preferencesPro = context.getSharedPreferences(PREFS_NAME_PRO, Context.MODE_PRIVATE)
         }
 
         currentScore = preferences.getInt(KEY_CURRENT_SCORE, 0)
         unlockedLevels = preferences.getInt(KEY_UNLOCKED_LEVELS, 2)
 
-        for (i in 1..70) {
-            val failures = preferences.getInt("$KEY_CONSECUTIVE_FAILURES:$i", 0)
-            if (failures > 0) {
-                consecutiveFailures[i] = failures
-            }
-        }
+        getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.AVANZADO).loadConsecutiveFailures()
+
         totalGamesNumerosPlusAvanzado = preferences.getInt("total_games_numeros_plus_avanzado", 0)
         totalGamesNumerosPlusPrincipiante = preferences.getInt("total_games_numeros_plus_principiante", 0)
         totalGamesNumerosPlusPro = preferences.getInt("total_games_numeros_plus_pro", 0)
@@ -516,70 +677,50 @@ object ScoreManager {
         correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
         totalGamesNumerosPlus = preferences.getInt(KEY_TOTAL_GAMES_NUMEROS_PLUS, 0)
         totalTimeNumerosPlus = preferences.getFloat(KEY_TOTAL_TIME_NUMEROS_PLUS, 0f).toDouble()
-
-
         totalGamesNumerosPlusExitos = preferences.getInt(KEY_TOTAL_GAMES_NUMEROS_PLUS_EXITOS, 0)
         totalTimeNumerosPlusExitos = preferences.getFloat(KEY_TOTAL_TIME_NUMEROS_PLUS_EXITOS, 0f).toDouble()
 
         val storedMap = preferences.getString(KEY_LAST_IQ_COMPONENTS, null)
         lastIqComponentByGame = if (storedMap != null) gson.fromJson(storedMap, mapType) else mutableMapOf()
-
     }
+
     fun initLight(context: Context) {
         ensurePreferencesInitialized(context)
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
-        currentScore      = preferences.getInt(KEY_CURRENT_SCORE, 0)
-        unlockedLevels    = preferences.getInt(KEY_UNLOCKED_LEVELS, 2)
+        currentScore = preferences.getInt(KEY_CURRENT_SCORE, 0)
+        unlockedLevels = preferences.getInt(KEY_UNLOCKED_LEVELS, 2)
         totalGamesNumerosPlus = preferences.getInt(KEY_TOTAL_GAMES_NUMEROS_PLUS, 0)
-        totalTimeNumerosPlus  = preferences.getFloat(KEY_TOTAL_TIME_NUMEROS_PLUS, 0f).toDouble()
+        totalTimeNumerosPlus = preferences.getFloat(KEY_TOTAL_TIME_NUMEROS_PLUS, 0f).toDouble()
         totalGamesNumerosPlusExitos = preferences.getInt(KEY_TOTAL_GAMES_NUMEROS_PLUS_EXITOS, 0)
-        totalTimeNumerosPlusExitos  = preferences.getFloat(KEY_TOTAL_TIME_NUMEROS_PLUS_EXITOS, 0f).toDouble()
-        totalGamesGlobal    = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
-        correctGamesGlobal  = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
+        totalTimeNumerosPlusExitos = preferences.getFloat(KEY_TOTAL_TIME_NUMEROS_PLUS_EXITOS, 0f).toDouble()
+        totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
+        correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
     }
 
     fun initPrincipiante(context: Context) {
-
-        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
+        ensurePreferencesInitialized(context)
         preferencesPrincipiante = context.getSharedPreferences(PREFS_NAME_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScorePrincipiante = preferencesPrincipiante.getInt(KEY_CURRENT_SCORE_PRINCIPIANTE, 0)
         unlockedLevelsPrincipiante = preferencesPrincipiante.getInt(KEY_UNLOCKED_LEVELS_PRINCIPIANTE, 2)
-
-        for (i in 1..70) {
-            val failures = preferencesPrincipiante.getInt("$KEY_CONSECUTIVE_FAILURES_PRINCIPIANTE:$i", 0)
-            if (failures > 0) {
-                consecutiveFailuresPrincipiante[i] = failures
-            }
-        }
+        getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRINCIPIANTE).loadConsecutiveFailures()
     }
-    fun initPro(context: Context) {
 
-        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
+    fun initPro(context: Context) {
+        ensurePreferencesInitialized(context)
         preferencesPro = context.getSharedPreferences(PREFS_NAME_PRO, Context.MODE_PRIVATE)
         currentScorePro = preferencesPro.getInt(KEY_CURRENT_SCORE_PRO, 0)
         unlockedLevelsPro = preferencesPro.getInt(KEY_UNLOCKED_LEVELS_PRO, 2)
-
-        for (i in 1..70) {
-            val failures = preferencesPro.getInt("$KEY_CONSECUTIVE_FAILURES_PRO:$i", 0)
-            if (failures > 0) {
-                consecutiveFailuresPro[i] = failures
-            }
-        }
+        getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRO).loadConsecutiveFailures()
     }
 
     fun initDeciPlus(context: Context) {
-        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
+        ensurePreferencesInitialized(context)
         preferencesDeciPlus = context.getSharedPreferences(PREFS_NAME_DECI_PLUS, Context.MODE_PRIVATE)
         currentScoreDeciPlus = preferencesDeciPlus.getInt(KEY_CURRENT_SCORE_DECI_PLUS, 0)
         unlockedLevelsDeciPlus = preferencesDeciPlus.getInt(KEY_UNLOCKED_LEVELS_DECI_PLUS, 2)
+        getOrCreateManager(Game.DECI_PLUS, Difficulty.AVANZADO).loadConsecutiveFailures()
 
-        for (i in 1..70) {
-            val failures = preferencesDeciPlus.getInt("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS:$i", 0)
-            if (failures > 0) {
-                consecutiveFailuresDeciPlus[i] = failures
-            }
-        }
         totalGamesDeciPlusAvanzado = preferences.getInt("total_games_deci_plus_avanzado", 0)
         totalGamesDeciPlusPrincipiante = preferences.getInt("total_games_deci_plus_principiante", 0)
         totalGamesDeciPlusPro = preferences.getInt("total_games_deci_plus_pro", 0)
@@ -588,13 +729,13 @@ object ScoreManager {
         correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
         totalGamesDeciPlus = preferencesDeciPlus.getInt(KEY_TOTAL_GAMES_DECI_PLUS, 0)
         totalTimeDeciPlus = preferencesDeciPlus.getFloat(KEY_TOTAL_TIME_DECI_PLUS, 0f).toDouble()
-
         totalGamesDeciPlusExitos = preferences.getInt(KEY_TOTAL_GAMES_DECI_PLUS_EXITOS, 0)
         totalTimeDeciPlusExitos = preferences.getFloat(KEY_TOTAL_TIME_DECI_PLUS_EXITOS, 0f).toDouble()
 
         val storedMap = preferences.getString(KEY_LAST_IQ_COMPONENTS, null)
         lastIqComponentByGame = if (storedMap != null) gson.fromJson(storedMap, mapType) else mutableMapOf()
     }
+
     fun initDeciPlusPrincipiante(context: Context) {
         ensurePreferencesInitialized(context)
         preferencesDeciPlusPrincipiante = context.getSharedPreferences(PREFS_NAME_DECI_PLUS_PRINCIPIANTE, Context.MODE_PRIVATE)
@@ -608,8 +749,9 @@ object ScoreManager {
             }
         }
     }
+
     fun initDeciPlusPro(context: Context) {
-        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
+        ensurePreferencesInitialized(context)
         preferencesDeciPlusPro = context.getSharedPreferences(PREFS_NAME_DECI_PLUS_PRO, Context.MODE_PRIVATE)
         currentScoreDeciPlusPro = preferencesDeciPlusPro.getInt(KEY_CURRENT_SCORE_DECI_PLUS_PRO, 0)
         unlockedLevelsDeciPlusPro = preferencesDeciPlusPro.getInt(KEY_UNLOCKED_LEVELS_DECI_PLUS_PRO, 2)
@@ -623,17 +765,12 @@ object ScoreManager {
     }
 
     fun initRomas(context: Context) {
-        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
+        ensurePreferencesInitialized(context)
         preferencesRomas = context.getSharedPreferences(PREFS_NAME_ROMAS, Context.MODE_PRIVATE)
         currentScoreRomas = preferencesRomas.getInt(KEY_CURRENT_SCORE_ROMAS, 0)
         unlockedLevelsRomas = preferencesRomas.getInt(KEY_UNLOCKED_LEVELS_ROMAS, 2)
+        getOrCreateManager(Game.ROMAS, Difficulty.AVANZADO).loadConsecutiveFailures()
 
-        for (i in 1..70) {
-            val failures = preferencesRomas.getInt("$KEY_CONSECUTIVE_FAILURES_ROMAS:$i", 0)
-            if (failures > 0) {
-                consecutiveFailuresRomas[i] = failures
-            }
-        }
         totalGamesRomasAvanzado = preferences.getInt("total_games_romas_avanzado", 0)
         totalGamesRomasPrincipiante = preferences.getInt("total_games_romas_principiante", 0)
         totalGamesRomasPro = preferences.getInt("total_games_romas_pro", 0)
@@ -642,54 +779,36 @@ object ScoreManager {
         correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
         totalGamesRomas = preferencesRomas.getInt(KEY_TOTAL_GAMES_ROMAS, 0)
         totalTimeRomas = preferencesRomas.getFloat(KEY_TOTAL_TIME_ROMAS, 0f).toDouble()
-
         totalGamesRomasExitos = preferences.getInt(KEY_TOTAL_GAMES_ROMAS_EXITOS, 0)
         totalTimeRomasExitos = preferences.getFloat(KEY_TOTAL_TIME_ROMAS_EXITOS, 0f).toDouble()
 
         val storedMap = preferences.getString(KEY_LAST_IQ_COMPONENTS, null)
         lastIqComponentByGame = if (storedMap != null) gson.fromJson(storedMap, mapType) else mutableMapOf()
     }
+
     fun initRomasPrincipiante(context: Context) {
-        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
+        ensurePreferencesInitialized(context)
         preferencesRomasPrincipiante = context.getSharedPreferences(PREFS_NAME_ROMAS_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScoreRomasPrincipiante = preferencesRomasPrincipiante.getInt(KEY_CURRENT_SCORE_ROMAS_PRINCIPIANTE, 0)
         unlockedLevelsRomasPrincipiante = preferencesRomasPrincipiante.getInt(KEY_UNLOCKED_LEVELS_ROMAS_PRINCIPIANTE, 2)
-
-        for (i in 1..70) {
-            val failures = preferencesRomasPrincipiante.getInt("$KEY_CONSECUTIVE_FAILURES_ROMAS_PRINCIPIANTE:$i", 0)
-            if (failures > 0) {
-                consecutiveFailuresRomasPrincipiante[i] = failures
-            }
-        }
+        getOrCreateManager(Game.ROMAS, Difficulty.PRINCIPIANTE).loadConsecutiveFailures()
     }
+
     fun initRomasPro(context: Context) {
-        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
+        ensurePreferencesInitialized(context)
         preferencesRomasPro = context.getSharedPreferences(PREFS_NAME_ROMAS_PRO, Context.MODE_PRIVATE)
         currentScoreRomasPro = preferencesRomasPro.getInt(KEY_CURRENT_SCORE_ROMAS_PRO, 0)
         unlockedLevelsRomasPro = preferencesRomasPro.getInt(KEY_UNLOCKED_LEVELS_ROMAS_PRO, 2)
-
-        for (i in 1..70) {
-            val failures = preferencesRomasPro.getInt("$KEY_CONSECUTIVE_FAILURES_ROMAS_PRO:$i", 0)
-            if (failures > 0) {
-                consecutiveFailuresRomasPro[i] = failures
-            }
-        }
+        getOrCreateManager(Game.ROMAS, Difficulty.PRO).loadConsecutiveFailures()
     }
 
-
-
     fun initAlfaNumeros(context: Context) {
-        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
+        ensurePreferencesInitialized(context)
         preferencesAlfaNumeros = context.getSharedPreferences(PREFS_NAME_ALFANUMEROS, Context.MODE_PRIVATE)
         currentScoreAlfaNumeros = preferencesAlfaNumeros.getInt(KEY_CURRENT_SCORE_ALFANUMEROS, 0)
         unlockedLevelsAlfaNumeros = preferencesAlfaNumeros.getInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS, 2)
+        getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.AVANZADO).loadConsecutiveFailures()
 
-        for (i in 1..70) {
-            val failures = preferencesAlfaNumeros.getInt("$KEY_CONSECUTIVE_FAILURES_ALFANUMEROS:$i", 0)
-            if (failures > 0) {
-                consecutiveFailuresAlfaNumeros[i] = failures
-            }
-        }
         totalGamesAlfaNumerosAvanzado = preferences.getInt("total_games_alfanumeros_avanzado", 0)
         totalGamesAlfaNumerosPrincipiante = preferences.getInt("total_games_alfanumeros_principiante", 0)
         totalGamesAlfaNumerosPro = preferences.getInt("total_games_alfanumeros_pro", 0)
@@ -698,51 +817,36 @@ object ScoreManager {
         correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
         totalGamesAlfaNumeros = preferencesAlfaNumeros.getInt(KEY_TOTAL_GAMES_ALFANUMEROS, 0)
         totalTimeAlfaNumeros = preferencesAlfaNumeros.getFloat(KEY_TOTAL_TIME_ALFANUMEROS, 0f).toDouble()
-
         totalGamesAlfaNumerosExitos = preferences.getInt(KEY_TOTAL_GAMES_ALFANUMEROS_EXITOS, 0)
         totalTimeAlfaNumerosExitos = preferences.getFloat(KEY_TOTAL_TIME_ALFANUMEROS_EXITOS, 0f).toDouble()
 
         val storedMap = preferences.getString(KEY_LAST_IQ_COMPONENTS, null)
         lastIqComponentByGame = if (storedMap != null) gson.fromJson(storedMap, mapType) else mutableMapOf()
     }
+
     fun initAlfaNumerosPrincipiante(context: Context) {
-        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
+        ensurePreferencesInitialized(context)
         preferencesAlfaNumerosPrincipiante = context.getSharedPreferences(PREFS_NAME_ALFANUMEROS_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScoreAlfaNumerosPrincipiante = preferencesAlfaNumerosPrincipiante.getInt(KEY_CURRENT_SCORE_ALFANUMEROS_PRINCIPIANTE, 0)
         unlockedLevelsAlfaNumerosPrincipiante = preferencesAlfaNumerosPrincipiante.getInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRINCIPIANTE, 2)
-
-        for (i in 1..70) {
-            val failures = preferencesAlfaNumerosPrincipiante.getInt("$KEY_CONSECUTIVE_FAILURES_ALFANUMEROS_PRINCIPIANTE:$i", 0)
-            if (failures > 0) {
-                consecutiveFailuresAlfaNumerosPrincipiante[i] = failures
-            }
-        }
+        getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRINCIPIANTE).loadConsecutiveFailures()
     }
+
     fun initAlfaNumerosPro(context: Context) {
-        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
+        ensurePreferencesInitialized(context)
         preferencesAlfaNumerosPro = context.getSharedPreferences(PREFS_NAME_ALFANUMEROS_PRO, Context.MODE_PRIVATE)
         currentScoreAlfaNumerosPro = preferencesAlfaNumerosPro.getInt(KEY_CURRENT_SCORE_ALFANUMEROS_PRO, 0)
         unlockedLevelsAlfaNumerosPro = preferencesAlfaNumerosPro.getInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRO, 2)
-        for (i in 1..70) {
-            val failures = preferencesAlfaNumerosPro.getInt("$KEY_CONSECUTIVE_FAILURES_ALFANUMEROS_PRO:$i", 0)
-            if (failures > 0) consecutiveFailuresAlfaNumerosPro[i] = failures
-        }
+        getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRO).loadConsecutiveFailures()
     }
 
-
-
     fun initSumaResta(context: Context) {
-        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
+        ensurePreferencesInitialized(context)
         preferencesSumaResta = context.getSharedPreferences(PREFS_NAME_SUMARESTA, Context.MODE_PRIVATE)
         currentScoreSumaResta = preferencesSumaResta.getInt(KEY_CURRENT_SCORE_SUMARESTA, 0)
         unlockedLevelsSumaResta = preferencesSumaResta.getInt(KEY_UNLOCKED_LEVELS_SUMARESTA, 2)
+        getOrCreateManager(Game.SUMA_RESTA, Difficulty.AVANZADO).loadConsecutiveFailures()
 
-        for (i in 1..70) {
-            val failures = preferencesSumaResta.getInt("$KEY_CONSECUTIVE_FAILURES_SUMARESTA:$i", 0)
-            if (failures > 0) {
-                consecutiveFailuresSumaResta[i] = failures
-            }
-        }
         totalGamesSumaRestaAvanzado = preferences.getInt("total_games_sumaresta_avanzado", 0)
         totalGamesSumaRestaPrincipiante = preferences.getInt("total_games_sumaresta_principiante", 0)
         totalGamesSumaRestaPro = preferences.getInt("total_games_sumaresta_pro", 0)
@@ -751,7 +855,6 @@ object ScoreManager {
         correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
         totalGamesSumaResta = preferencesSumaResta.getInt(KEY_TOTAL_GAMES_SUMARESTA, 0)
         totalTimeSumaResta = preferencesSumaResta.getFloat(KEY_TOTAL_TIME_SUMARESTA, 0f).toDouble()
-
         totalGamesSumaRestaExitos = preferences.getInt(KEY_TOTAL_GAMES_SUMARESTA_EXITOS, 0)
         totalTimeSumaRestaExitos = preferences.getFloat(KEY_TOTAL_TIME_SUMARESTA_EXITOS, 0f).toDouble()
 
@@ -760,46 +863,28 @@ object ScoreManager {
     }
 
     fun initSumaRestaPrincipiante(context: Context) {
-        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
+        ensurePreferencesInitialized(context)
         preferencesSumaRestaPrincipiante = context.getSharedPreferences(PREFS_NAME_SUMARESTA_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScoreSumaRestaPrincipiante = preferencesSumaRestaPrincipiante.getInt(KEY_CURRENT_SCORE_SUMARESTA_PRINCIPIANTE, 0)
         unlockedLevelsSumaRestaPrincipiante = preferencesSumaRestaPrincipiante.getInt(KEY_UNLOCKED_LEVELS_SUMARESTA_PRINCIPIANTE, 2)
-
-        for (i in 1..70) {
-            val failures = preferencesSumaRestaPrincipiante.getInt("$KEY_CONSECUTIVE_FAILURES_SUMARESTA_PRINCIPIANTE:$i", 0)
-            if (failures > 0) {
-                consecutiveFailuresSumaRestaPrincipiante[i] = failures
-            }
-        }
+        getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRINCIPIANTE).loadConsecutiveFailures()
     }
+
     fun initSumaRestaPro(context: Context) {
-        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
+        ensurePreferencesInitialized(context)
         preferencesSumaRestaPro = context.getSharedPreferences(PREFS_NAME_SUMARESTA_PRO, Context.MODE_PRIVATE)
         currentScoreSumaRestaPro = preferencesSumaRestaPro.getInt(KEY_CURRENT_SCORE_SUMARESTA_PRO, 0)
         unlockedLevelsSumaRestaPro = preferencesSumaRestaPro.getInt(KEY_UNLOCKED_LEVELS_SUMARESTA_PRO, 2)
-
-        for (i in 1..70) {
-            val failures = preferencesSumaRestaPro.getInt("$KEY_CONSECUTIVE_FAILURES_SUMARESTA_PRO:$i", 0)
-            if (failures > 0) {
-                consecutiveFailuresSumaRestaPro[i] = failures
-            }
-        }
+        getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRO).loadConsecutiveFailures()
     }
 
-
-
     fun initMasPlus(context: Context) {
-        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
+        ensurePreferencesInitialized(context)
         preferencesMasPlus = context.getSharedPreferences(PREFS_NAME_MAS_PLUS, Context.MODE_PRIVATE)
         currentScoreMasPlus = preferencesMasPlus.getInt(KEY_CURRENT_SCORE_MAS_PLUS, 0)
         unlockedLevelsMasPlus = preferencesMasPlus.getInt(KEY_UNLOCKED_LEVELS_MAS_PLUS, 2)
+        getOrCreateManager(Game.MAS_PLUS, Difficulty.AVANZADO).loadConsecutiveFailures()
 
-        for (i in 1..70) {
-            val failures = preferencesMasPlus.getInt("$KEY_CONSECUTIVE_FAILURES_MAS_PLUS:$i", 0)
-            if (failures > 0) {
-                consecutiveFailuresMasPlus[i] = failures
-            }
-        }
         totalGamesMasPlusAvanzado = preferences.getInt("total_games_masplus_avanzado", 0)
         totalGamesMasPlusPrincipiante = preferences.getInt("total_games_masplus_principiante", 0)
         totalGamesMasPlusPro = preferences.getInt("total_games_masplus_pro", 0)
@@ -808,54 +893,36 @@ object ScoreManager {
         correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
         totalGamesMasPlus = preferencesMasPlus.getInt(KEY_TOTAL_GAMES_MAS_PLUS, 0)
         totalTimeMasPlus = preferencesMasPlus.getFloat(KEY_TOTAL_TIME_MAS_PLUS, 0f).toDouble()
-
         totalGamesMasPlusExitos = preferences.getInt(KEY_TOTAL_GAMES_MAS_PLUS_EXITOS, 0)
         totalTimeMasPlusExitos = preferences.getFloat(KEY_TOTAL_TIME_MAS_PLUS_EXITOS, 0f).toDouble()
 
         val storedMap = preferences.getString(KEY_LAST_IQ_COMPONENTS, null)
         lastIqComponentByGame = if (storedMap != null) gson.fromJson(storedMap, mapType) else mutableMapOf()
     }
+
     fun initMasPlusPrincipiante(context: Context) {
-        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
+        ensurePreferencesInitialized(context)
         preferencesMasPlusPrincipiante = context.getSharedPreferences(PREFS_NAME_MAS_PLUS_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScoreMasPlusPrincipiante = preferencesMasPlusPrincipiante.getInt(KEY_CURRENT_SCORE_MAS_PLUS_PRINCIPIANTE, 0)
         unlockedLevelsMasPlusPrincipiante = preferencesMasPlusPrincipiante.getInt(KEY_UNLOCKED_LEVELS_MAS_PLUS_PRINCIPIANTE, 2)
-
-        for (i in 1..70) {
-            val failures = preferencesMasPlusPrincipiante.getInt("$KEY_CONSECUTIVE_FAILURES_MAS_PLUS_PRINCIPIANTE:$i", 0)
-            if (failures > 0) {
-                consecutiveFailuresMasPlusPrincipiante[i] = failures
-            }
-        }
+        getOrCreateManager(Game.MAS_PLUS, Difficulty.PRINCIPIANTE).loadConsecutiveFailures()
     }
+
     fun initMasPlusPro(context: Context) {
-        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
+        ensurePreferencesInitialized(context)
         preferencesMasPlusPro = context.getSharedPreferences(PREFS_NAME_MAS_PLUS_PRO, Context.MODE_PRIVATE)
         currentScoreMasPlusPro = preferencesMasPlusPro.getInt(KEY_CURRENT_SCORE_MAS_PLUS_PRO, 0)
         unlockedLevelsMasPlusPro = preferencesMasPlusPro.getInt(KEY_UNLOCKED_LEVELS_MAS_PLUS_PRO, 2)
-
-        for (i in 1..70) {
-            val failures = preferencesMasPlusPro.getInt("$KEY_CONSECUTIVE_FAILURES_MAS_PLUS_PRO:$i", 0)
-            if (failures > 0) {
-                consecutiveFailuresMasPlusPro[i] = failures
-            }
-        }
+        getOrCreateManager(Game.MAS_PLUS, Difficulty.PRO).loadConsecutiveFailures()
     }
 
-
-
     fun initGenioPlus(context: Context) {
-        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
+        ensurePreferencesInitialized(context)
         preferencesGenioPlus = context.getSharedPreferences(PREFS_NAME_GENIO_PLUS, Context.MODE_PRIVATE)
         currentScoreGenioPlus = preferencesGenioPlus.getInt(KEY_CURRENT_SCORE_GENIO_PLUS, 0)
         unlockedLevelsGenioPlus = preferencesGenioPlus.getInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS, 2)
+        getOrCreateManager(Game.GENIO_PLUS, Difficulty.AVANZADO).loadConsecutiveFailures()
 
-        for (i in 1..70) {
-            val failures = preferencesGenioPlus.getInt("$KEY_CONSECUTIVE_FAILURES_GENIO_PLUS:$i", 0)
-            if (failures > 0) {
-                consecutiveFailuresGenioPlus[i] = failures
-            }
-        }
         totalGamesGenioPlusAvanzado = preferences.getInt("total_games_genioplus_avanzado", 0)
         totalGamesGenioPlusPrincipiante = preferences.getInt("total_games_genioplus_principiante", 0)
         totalGamesGenioPlusPro = preferences.getInt("total_games_genioplus_pro", 0)
@@ -864,2001 +931,479 @@ object ScoreManager {
         correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
         totalGamesGenioPlus = preferencesGenioPlus.getInt(KEY_TOTAL_GAMES_GENIO_PLUS, 0)
         totalTimeGenioPlus = preferencesGenioPlus.getFloat(KEY_TOTAL_TIME_GENIO_PLUS, 0f).toDouble()
-
         totalGamesGenioPlusExitos = preferences.getInt(KEY_TOTAL_GAMES_GENIO_PLUS_EXITOS, 0)
         totalTimeGenioPlusExitos = preferences.getFloat(KEY_TOTAL_TIME_GENIO_PLUS_EXITOS, 0f).toDouble()
 
         val storedMap = preferences.getString(KEY_LAST_IQ_COMPONENTS, null)
         lastIqComponentByGame = if (storedMap != null) gson.fromJson(storedMap, mapType) else mutableMapOf()
     }
+
     fun initGenioPlusPrincipiante(context: Context) {
-        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
+        ensurePreferencesInitialized(context)
         preferencesGenioPlusPrincipiante = context.getSharedPreferences(PREFS_NAME_GENIO_PLUS_PRINCIPIANTE, Context.MODE_PRIVATE)
         currentScoreGenioPlusPrincipiante = preferencesGenioPlusPrincipiante.getInt(KEY_CURRENT_SCORE_GENIO_PLUS_PRINCIPIANTE, 0)
         unlockedLevelsGenioPlusPrincipiante = preferencesGenioPlusPrincipiante.getInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRINCIPIANTE, 2)
-
-        for (i in 1..70) {
-            val failures = preferencesGenioPlusPrincipiante.getInt("$KEY_CONSECUTIVE_FAILURES_GENIO_PLUS_PRINCIPIANTE:$i", 0)
-            if (failures > 0) {
-                consecutiveFailuresGenioPlusPrincipiante[i] = failures
-            }
-        }
+        getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRINCIPIANTE).loadConsecutiveFailures()
     }
+
     fun initGenioPlusPro(context: Context) {
-        ensurePreferencesInitialized(context) // <<--- ESTA LÍNEA es la clave
+        ensurePreferencesInitialized(context)
         preferencesGenioPlusPro = context.getSharedPreferences(PREFS_NAME_GENIO_PLUS_PRO, Context.MODE_PRIVATE)
         currentScoreGenioPlusPro = preferencesGenioPlusPro.getInt(KEY_CURRENT_SCORE_GENIO_PLUS_PRO, 0)
         unlockedLevelsGenioPlusPro = preferencesGenioPlusPro.getInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRO, 2)
-
-        for (i in 1..70) {
-            val failures = preferencesGenioPlusPro.getInt("$KEY_CONSECUTIVE_FAILURES_GENIO_PLUS_PRO:$i", 0)
-            if (failures > 0) {
-                consecutiveFailuresGenioPlusPro[i] = failures
-            }
-        }
+        getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRO).loadConsecutiveFailures()
     }
 
+    fun saveScore() = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.AVANZADO).saveScore()
+    fun saveScorePrincipiante() = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRINCIPIANTE).saveScore()
+    fun saveScorePro() = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRO).saveScore()
+    fun saveScoreDeciPlus() = getOrCreateManager(Game.DECI_PLUS, Difficulty.AVANZADO).saveScore()
+    fun saveScoreDeciPlusPrincipiante() = getOrCreateManager(Game.DECI_PLUS, Difficulty.PRINCIPIANTE).saveScore()
+    fun saveScoreDeciPlusPro() = getOrCreateManager(Game.DECI_PLUS, Difficulty.PRO).saveScore()
+    fun saveScoreRomas() = getOrCreateManager(Game.ROMAS, Difficulty.AVANZADO).saveScore()
+    fun saveScoreRomasPrincipiante() = getOrCreateManager(Game.ROMAS, Difficulty.PRINCIPIANTE).saveScore()
+    fun saveScoreRomasPro() = getOrCreateManager(Game.ROMAS, Difficulty.PRO).saveScore()
+    fun saveScoreAlfaNumeros() = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.AVANZADO).saveScore()
+    fun saveScoreAlfaNumerosPrincipiante() = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRINCIPIANTE).saveScore()
+    fun saveScoreAlfaNumerosPro() = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRO).saveScore()
+    fun saveScoreSumaResta() = getOrCreateManager(Game.SUMA_RESTA, Difficulty.AVANZADO).saveScore()
+    fun saveScoreSumaRestaPrincipiante() = getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRINCIPIANTE).saveScore()
+    fun saveScoreSumaRestaPro() = getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRO).saveScore()
+    fun saveScoreMasPlus() = getOrCreateManager(Game.MAS_PLUS, Difficulty.AVANZADO).saveScore()
+    fun saveScoreMasPlusPrincipiante() = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRINCIPIANTE).saveScore()
+    fun saveScoreMasPlusPro() = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRO).saveScore()
+    fun saveScoreGenioPlus() = getOrCreateManager(Game.GENIO_PLUS, Difficulty.AVANZADO).saveScore()
+    fun saveScoreGenioPlusPrincipiante() = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRINCIPIANTE).saveScore()
+    fun saveScoreGenioPlusPro() = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRO).saveScore()
 
-    fun saveScore() {
-        preferences.edit {
-            putInt(KEY_CURRENT_SCORE, currentScore)
-                .putInt(KEY_UNLOCKED_LEVELS, unlockedLevels)
-        }
-    }
-    fun saveScorePrincipiante() {
-        preferencesPrincipiante.edit {
-            putInt(KEY_CURRENT_SCORE_PRINCIPIANTE, currentScorePrincipiante)
-                .putInt(KEY_UNLOCKED_LEVELS_PRINCIPIANTE, unlockedLevelsPrincipiante)
-        }
-    }
-    fun saveScorePro() {
-        preferencesPro.edit {
-            putInt(KEY_CURRENT_SCORE_PRO, currentScorePro)
-                .putInt(KEY_UNLOCKED_LEVELS_PRO, unlockedLevelsPro)
-        }
-    }
+
     fun saveStatsGlobalAndNumerosPlus() {
         preferences.edit {
             putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
             putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
             putInt(KEY_TOTAL_GAMES_NUMEROS_PLUS, totalGamesNumerosPlus)
             putFloat(KEY_TOTAL_TIME_NUMEROS_PLUS, totalTimeNumerosPlus.toFloat())
-            // --- NUEVOS CONTADORES DE ÉXITO ---
             putInt(KEY_TOTAL_GAMES_NUMEROS_PLUS_EXITOS, totalGamesNumerosPlusExitos)
             putFloat(KEY_TOTAL_TIME_NUMEROS_PLUS_EXITOS, totalTimeNumerosPlusExitos.toFloat())
-
             putInt("total_games_numeros_plus_avanzado", totalGamesNumerosPlusAvanzado)
             putInt("total_games_numeros_plus_principiante", totalGamesNumerosPlusPrincipiante)
             putInt("total_games_numeros_plus_pro", totalGamesNumerosPlusPro)
-
             putString(KEY_LAST_IQ_COMPONENTS, gson.toJson(lastIqComponentByGame))
         }
     }
 
-    fun getPrecisionGlobal(): Double {
-        return if (totalGamesGlobal > 0) correctGamesGlobal.toDouble() / totalGamesGlobal else 1.0
-    }
-    fun getTiempoPromedioNumerosPlus(): Double {
-        return if (totalGamesNumerosPlusExitos > 0) {
-            totalTimeNumerosPlusExitos / totalGamesNumerosPlusExitos
-        } else 1.0
-    }
-
-
-
-    fun saveScoreDeciPlus() {
-        preferencesDeciPlus.edit {
-            putInt(KEY_CURRENT_SCORE_DECI_PLUS, currentScoreDeciPlus)
-            putInt(KEY_UNLOCKED_LEVELS_DECI_PLUS, unlockedLevelsDeciPlus)
-        }
-    }
-    fun saveScoreDeciPlusPrincipiante() {
-        preferencesDeciPlusPrincipiante.edit {
-            putInt(KEY_CURRENT_SCORE_DECI_PLUS_PRINCIPIANTE, currentScoreDeciPlusPrincipiante)
-            putInt(KEY_UNLOCKED_LEVELS_DECI_PLUS_PRINCIPIANTE, unlockedLevelsDeciPlusPrincipiante)
-        }
-    }
-    fun saveScoreDeciPlusPro() {
-        preferencesDeciPlusPro.edit {
-            putInt(KEY_CURRENT_SCORE_DECI_PLUS_PRO, currentScoreDeciPlusPro)
-            putInt(KEY_UNLOCKED_LEVELS_DECI_PLUS_PRO, unlockedLevelsDeciPlusPro)
-        }
-    }
     fun saveStatsGlobalAndDeciPlus() {
         preferences.edit {
             putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
             putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
-
             putInt(KEY_TOTAL_GAMES_DECI_PLUS, totalGamesDeciPlus)
             putFloat(KEY_TOTAL_TIME_DECI_PLUS, totalTimeDeciPlus.toFloat())
-
-            // --- NUEVOS CONTADORES DE ÉXITO ---
             putInt(KEY_TOTAL_GAMES_DECI_PLUS_EXITOS, totalGamesDeciPlusExitos)
             putFloat(KEY_TOTAL_TIME_DECI_PLUS_EXITOS, totalTimeDeciPlusExitos.toFloat())
-
             putInt("total_games_deci_plus_avanzado", totalGamesDeciPlusAvanzado)
             putInt("total_games_deci_plus_principiante", totalGamesDeciPlusPrincipiante)
             putInt("total_games_deci_plus_pro", totalGamesDeciPlusPro)
-
             putString(KEY_LAST_IQ_COMPONENTS, gson.toJson(lastIqComponentByGame))
         }
     }
-    fun getTiempoPromedioDeciPlus(): Double {
-        return if (totalGamesDeciPlusExitos > 0) {
-            totalTimeDeciPlusExitos / totalGamesDeciPlusExitos
-        } else 1.0
-    }
 
-
-
-    fun saveScoreRomas() {
-        preferencesRomas.edit {
-            putInt(KEY_CURRENT_SCORE_ROMAS, currentScoreRomas)
-                .putInt(KEY_UNLOCKED_LEVELS_ROMAS, unlockedLevelsRomas)
-        }
-    }
-    fun saveScoreRomasPrincipiante() {
-        preferencesRomasPrincipiante.edit {
-            putInt(KEY_CURRENT_SCORE_ROMAS_PRINCIPIANTE, currentScoreRomasPrincipiante)
-                .putInt(KEY_UNLOCKED_LEVELS_ROMAS_PRINCIPIANTE, unlockedLevelsRomasPrincipiante)
-        }
-    }
-    fun saveScoreRomasPro() {
-        preferencesRomasPro.edit {
-            putInt(KEY_CURRENT_SCORE_ROMAS_PRO, currentScoreRomasPro)
-                .putInt(KEY_UNLOCKED_LEVELS_ROMAS_PRO, unlockedLevelsRomasPro)
-        }
-    }
     fun saveStatsGlobalAndRomas() {
         preferences.edit {
             putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
             putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
-
             putInt(KEY_TOTAL_GAMES_ROMAS, totalGamesRomas)
             putFloat(KEY_TOTAL_TIME_ROMAS, totalTimeRomas.toFloat())
-
-            // --- NUEVOS CONTADORES DE ÉXITO ---
             putInt(KEY_TOTAL_GAMES_ROMAS_EXITOS, totalGamesRomasExitos)
             putFloat(KEY_TOTAL_TIME_ROMAS_EXITOS, totalTimeRomasExitos.toFloat())
-
             putInt("total_games_romas_avanzado", totalGamesRomasAvanzado)
             putInt("total_games_romas_principiante", totalGamesRomasPrincipiante)
             putInt("total_games_romas_pro", totalGamesRomasPro)
-
             putString(KEY_LAST_IQ_COMPONENTS, gson.toJson(lastIqComponentByGame))
         }
     }
 
-    fun getTiempoPromedioRomas(): Double {
-        return if (totalGamesRomasExitos > 0) {
-            totalTimeRomasExitos / totalGamesRomasExitos
-        } else 1.0
-    }
-
-
-
-    fun saveScoreAlfaNumeros() {
-        preferencesAlfaNumeros.edit {
-            putInt(KEY_CURRENT_SCORE_ALFANUMEROS, currentScoreAlfaNumeros)
-                .putInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS, unlockedLevelsAlfaNumeros)
-        }
-    }
-    fun saveScoreAlfaNumerosPrincipiante() {
-        preferencesAlfaNumerosPrincipiante.edit {
-            putInt(KEY_CURRENT_SCORE_ALFANUMEROS_PRINCIPIANTE, currentScoreAlfaNumerosPrincipiante)
-                .putInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRINCIPIANTE, unlockedLevelsAlfaNumerosPrincipiante)
-        }
-    }
-    fun saveScoreAlfaNumerosPro() {
-        preferencesAlfaNumerosPro.edit {
-            putInt(KEY_CURRENT_SCORE_ALFANUMEROS_PRO, currentScoreAlfaNumerosPro)
-            putInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRO, unlockedLevelsAlfaNumerosPro)
-        }
-    }
     fun saveStatsGlobalAndAlfaNumeros() {
         preferences.edit {
             putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
             putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
-
             putInt(KEY_TOTAL_GAMES_ALFANUMEROS, totalGamesAlfaNumeros)
             putFloat(KEY_TOTAL_TIME_ALFANUMEROS, totalTimeAlfaNumeros.toFloat())
-
-            // --- NUEVOS CONTADORES DE ÉXITO ---
             putInt(KEY_TOTAL_GAMES_ALFANUMEROS_EXITOS, totalGamesAlfaNumerosExitos)
             putFloat(KEY_TOTAL_TIME_ALFANUMEROS_EXITOS, totalTimeAlfaNumerosExitos.toFloat())
-
             putInt("total_games_alfanumeros_avanzado", totalGamesAlfaNumerosAvanzado)
             putInt("total_games_alfanumeros_principiante", totalGamesAlfaNumerosPrincipiante)
             putInt("total_games_alfanumeros_pro", totalGamesAlfaNumerosPro)
-
-
             putString(KEY_LAST_IQ_COMPONENTS, gson.toJson(lastIqComponentByGame))
         }
     }
-    fun getTiempoPromedioAlfaNumeros(): Double {
-        return if (totalGamesAlfaNumerosExitos > 0) {
-            totalTimeAlfaNumerosExitos / totalGamesAlfaNumerosExitos
-        } else 1.0
-    }
 
-
-
-    fun saveScoreSumaResta() {
-        preferencesSumaResta.edit {
-            putInt(KEY_CURRENT_SCORE_SUMARESTA, currentScoreSumaResta)
-                .putInt(KEY_UNLOCKED_LEVELS_SUMARESTA, unlockedLevelsSumaResta)
-        }
-    }
-    fun saveScoreSumaRestaPrincipiante() {
-        preferencesSumaRestaPrincipiante.edit {
-            putInt(KEY_CURRENT_SCORE_SUMARESTA_PRINCIPIANTE, currentScoreSumaRestaPrincipiante)
-                .putInt(KEY_UNLOCKED_LEVELS_SUMARESTA_PRINCIPIANTE, unlockedLevelsSumaRestaPrincipiante)
-        }
-    }
-    fun saveScoreSumaRestaPro() {
-        preferencesSumaRestaPro.edit {
-            putInt(KEY_CURRENT_SCORE_SUMARESTA_PRO, currentScoreSumaRestaPro)
-                .putInt(KEY_UNLOCKED_LEVELS_SUMARESTA_PRO, unlockedLevelsSumaRestaPro)
-        }
-    }
     fun saveStatsGlobalAndSumaResta() {
         preferences.edit {
             putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
             putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
-
             putInt(KEY_TOTAL_GAMES_SUMARESTA, totalGamesSumaResta)
             putFloat(KEY_TOTAL_TIME_SUMARESTA, totalTimeSumaResta.toFloat())
-
-            // --- NUEVOS CONTADORES DE ÉXITO ---
             putInt(KEY_TOTAL_GAMES_SUMARESTA_EXITOS, totalGamesSumaRestaExitos)
             putFloat(KEY_TOTAL_TIME_SUMARESTA_EXITOS, totalTimeSumaRestaExitos.toFloat())
-
             putInt("total_games_sumaresta_avanzado", totalGamesSumaRestaAvanzado)
             putInt("total_games_sumaresta_principiante", totalGamesSumaRestaPrincipiante)
             putInt("total_games_sumaresta_pro", totalGamesSumaRestaPro)
-
             putString(KEY_LAST_IQ_COMPONENTS, gson.toJson(lastIqComponentByGame))
         }
     }
-    fun getTiempoPromedioSumaResta(): Double {
-        return if (totalGamesSumaRestaExitos > 0) {
-            totalTimeSumaRestaExitos / totalGamesSumaRestaExitos
-        } else 1.0
-    }
 
-
-
-    fun saveScoreMasPlus() {
-        preferencesMasPlus.edit {
-            putInt(KEY_CURRENT_SCORE_MAS_PLUS, currentScoreMasPlus)
-                .putInt(KEY_UNLOCKED_LEVELS_MAS_PLUS, unlockedLevelsMasPlus)
-        }
-    }
-    fun saveScoreMasPlusPrincipiante() {
-        preferencesMasPlusPrincipiante.edit {
-            putInt(KEY_CURRENT_SCORE_MAS_PLUS_PRINCIPIANTE, currentScoreMasPlusPrincipiante)
-                .putInt(KEY_UNLOCKED_LEVELS_MAS_PLUS_PRINCIPIANTE, unlockedLevelsMasPlusPrincipiante)
-        }
-    }
-    fun saveScoreMasPlusPro() {
-        preferencesMasPlusPro.edit {
-            putInt(KEY_CURRENT_SCORE_MAS_PLUS_PRO, currentScoreMasPlusPro)
-                .putInt(KEY_UNLOCKED_LEVELS_MAS_PLUS_PRO, unlockedLevelsMasPlusPro)
-        }
-    }
     fun saveStatsGlobalAndMasPlus() {
         preferences.edit {
             putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
             putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
-
             putInt(KEY_TOTAL_GAMES_MAS_PLUS, totalGamesMasPlus)
             putFloat(KEY_TOTAL_TIME_MAS_PLUS, totalTimeMasPlus.toFloat())
-
-            // --- NUEVOS CONTADORES DE ÉXITO ---
             putInt(KEY_TOTAL_GAMES_MAS_PLUS_EXITOS, totalGamesMasPlusExitos)
             putFloat(KEY_TOTAL_TIME_MAS_PLUS_EXITOS, totalTimeMasPlusExitos.toFloat())
-
             putInt("total_games_masplus_avanzado", totalGamesMasPlusAvanzado)
             putInt("total_games_masplus_principiante", totalGamesMasPlusPrincipiante)
             putInt("total_games_masplus_pro", totalGamesMasPlusPro)
-
             putString(KEY_LAST_IQ_COMPONENTS, gson.toJson(lastIqComponentByGame))
         }
     }
-    fun getTiempoPromedioMasPlus(): Double {
-        return if (totalGamesMasPlusExitos > 0) {
-            totalTimeMasPlusExitos / totalGamesMasPlusExitos
-        } else 1.0
-    }
 
-
-
-    fun saveScoreGenioPlus() {
-        preferencesGenioPlus.edit {
-            putInt(KEY_CURRENT_SCORE_GENIO_PLUS, currentScoreGenioPlus)
-                .putInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS, unlockedLevelsGenioPlus)
-        }
-    }
-    fun saveScoreGenioPlusPrincipiante() {
-        preferencesGenioPlusPrincipiante.edit {
-            putInt(KEY_CURRENT_SCORE_GENIO_PLUS_PRINCIPIANTE, currentScoreGenioPlusPrincipiante)
-                .putInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRINCIPIANTE, unlockedLevelsGenioPlusPrincipiante)
-        }
-    }
-    fun saveScoreGenioPlusPro() {
-        preferencesGenioPlusPro.edit {
-            putInt(KEY_CURRENT_SCORE_GENIO_PLUS_PRO, currentScoreGenioPlusPro)
-                .putInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRO, unlockedLevelsGenioPlusPro)
-        }
-    }
     fun saveStatsGlobalAndGenioPlus() {
         preferences.edit {
             putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
             putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
-
             putInt(KEY_TOTAL_GAMES_GENIO_PLUS, totalGamesGenioPlus)
             putFloat(KEY_TOTAL_TIME_GENIO_PLUS, totalTimeGenioPlus.toFloat())
-
-            // --- NUEVOS CONTADORES DE ÉXITO ---
             putInt(KEY_TOTAL_GAMES_GENIO_PLUS_EXITOS, totalGamesGenioPlusExitos)
             putFloat(KEY_TOTAL_TIME_GENIO_PLUS_EXITOS, totalTimeGenioPlusExitos.toFloat())
-
             putInt("total_games_genioplus_avanzado", totalGamesGenioPlusAvanzado)
             putInt("total_games_genioplus_principiante", totalGamesGenioPlusPrincipiante)
             putInt("total_games_genioplus_pro", totalGamesGenioPlusPro)
-
             putString(KEY_LAST_IQ_COMPONENTS, gson.toJson(lastIqComponentByGame))
         }
     }
 
-    fun getTiempoPromedioGenioPlus(): Double {
-        return if (totalGamesGenioPlusExitos > 0) {
-            totalTimeGenioPlusExitos / totalGamesGenioPlusExitos
-        } else 1.0
-    }
 
-    private fun getCompletedLevels(): Set<Int> {
-        return preferences.getStringSet(KEY_COMPLETED_LEVELS, emptySet())
-            ?.map { it.toInt() }?.toSet() ?: emptySet()
-    }
-
-    private fun getCompletedLevelsPrincipiante(): Set<Int> {
-        return preferencesPrincipiante.getStringSet(KEY_COMPLETED_LEVELS_PRINCIPIANTE, emptySet())
-            ?.map { it.toInt() }?.toSet() ?: emptySet()
-    }
-
-    private fun getCompletedLevelsPro(): Set<Int> {
-        return preferencesPro.getStringSet(KEY_COMPLETED_LEVELS_PRO, emptySet())
-            ?.map { it.toInt() }?.toSet() ?: emptySet()
-    }
-
-    private fun getCompletedLevelsDeciPlus(): Set<Int> {
-        return preferencesDeciPlus.getStringSet(KEY_COMPLETED_LEVELS_DECI_PLUS, emptySet())
-            ?.map { it.toInt() }?.toSet() ?: emptySet()
-    }
-
-    private fun getCompletedLevelsDeciPlusPrincipiante(): Set<Int> {
-        return preferencesDeciPlusPrincipiante.getStringSet(KEY_COMPLETED_LEVELS_DECI_PLUS_PRINCIPIANTE, emptySet())
-            ?.map { it.toInt() }?.toSet() ?: emptySet()
-    }
-
-    private fun getCompletedLevelsDeciPlusPro(): Set<Int> {
-        return preferencesDeciPlusPro.getStringSet(KEY_COMPLETED_LEVELS_DECI_PLUS_PRO, emptySet())
-            ?.map { it.toInt() }?.toSet() ?: emptySet()
-    }
-
-    private fun getCompletedLevelsRomas(): Set<Int> {
-        return preferencesRomas.getStringSet(KEY_COMPLETED_LEVELS_ROMAS, emptySet())
-            ?.map { it.toInt() }?.toSet() ?: emptySet()
-    }
-
-    private fun getCompletedLevelsRomasPrincipiante(): Set<Int> {
-        return preferencesRomasPrincipiante.getStringSet(KEY_COMPLETED_LEVELS_ROMAS_PRINCIPIANTE, emptySet())
-            ?.map { it.toInt() }?.toSet() ?: emptySet()
-    }
-
-    private fun getCompletedLevelsRomasPro(): Set<Int> {
-        return preferencesRomasPro.getStringSet(KEY_COMPLETED_LEVELS_ROMAS_PRO, emptySet())
-            ?.map { it.toInt() }?.toSet() ?: emptySet()
-    }
-
-    private fun getCompletedLevelsAlfaNumeros(): Set<Int> {
-        return preferencesAlfaNumeros.getStringSet(KEY_COMPLETED_LEVELS_ALFANUMEROS, emptySet())
-            ?.map { it.toInt() }?.toSet() ?: emptySet()
-    }
-
-    private fun getCompletedLevelsAlfaNumerosPrincipiante(): Set<Int> {
-        return preferencesAlfaNumerosPrincipiante.getStringSet(KEY_COMPLETED_LEVELS_ALFANUMEROS_PRINCIPIANTE, emptySet())
-            ?.map { it.toInt() }?.toSet() ?: emptySet()
-    }
-
-    private fun getCompletedLevelsAlfaNumerosPro(): Set<Int> {
-        return preferencesAlfaNumerosPro.getStringSet(KEY_COMPLETED_LEVELS_ALFANUMEROS_PRO, emptySet())
-            ?.map { it.toInt() }?.toSet() ?: emptySet()
-    }
-
-    private fun getCompletedLevelsSumaResta(): Set<Int> {
-        return preferencesSumaResta.getStringSet(KEY_COMPLETED_LEVELS_SUMARESTA, emptySet())
-            ?.map { it.toInt() }?.toSet() ?: emptySet()
-    }
-
-    private fun getCompletedLevelsSumaRestaPrincipiante(): Set<Int> {
-        return preferencesSumaRestaPrincipiante.getStringSet(KEY_COMPLETED_LEVELS_SUMARESTA_PRINCIPIANTE, emptySet())
-            ?.map { it.toInt() }?.toSet() ?: emptySet()
-    }
-
-    private fun getCompletedLevelsSumaRestaPro(): Set<Int> {
-        return preferencesSumaRestaPro.getStringSet(KEY_COMPLETED_LEVELS_SUMARESTA_PRO, emptySet())
-            ?.map { it.toInt() }?.toSet() ?: emptySet()
-    }
-
-    private fun getCompletedLevelsMasPlus(): Set<Int> {
-        return preferencesMasPlus.getStringSet(KEY_COMPLETED_LEVELS_MAS_PLUS, emptySet())
-            ?.map { it.toInt() }?.toSet() ?: emptySet()
-    }
-
-    private fun getCompletedLevelsMasPlusPrincipiante(): Set<Int> {
-        return preferencesMasPlusPrincipiante.getStringSet(KEY_COMPLETED_LEVELS_MAS_PLUS_PRINCIPIANTE, emptySet())
-            ?.map { it.toInt() }?.toSet() ?: emptySet()
-    }
-
-    private fun getCompletedLevelsMasPlusPro(): Set<Int> {
-        return preferencesMasPlusPro.getStringSet(KEY_COMPLETED_LEVELS_MAS_PLUS_PRO, emptySet())
-            ?.map { it.toInt() }?.toSet() ?: emptySet()
-    }
-
-    private fun getCompletedLevelsGenioPlus(): Set<Int> {
-        return preferencesGenioPlus.getStringSet(KEY_COMPLETED_LEVELS_GENIO_PLUS, emptySet())
-            ?.map { it.toInt() }?.toSet() ?: emptySet()
-    }
-
-    private fun getCompletedLevelsGenioPlusPrincipiante(): Set<Int> {
-        return preferencesGenioPlusPrincipiante.getStringSet(KEY_COMPLETED_LEVELS_GENIO_PLUS_PRINCIPIANTE, emptySet())
-            ?.map { it.toInt() }?.toSet() ?: emptySet()
-    }
-
-    private fun getCompletedLevelsGenioPlusPro(): Set<Int> {
-        return preferencesGenioPlusPro.getStringSet(KEY_COMPLETED_LEVELS_GENIO_PLUS_PRO, emptySet())
-            ?.map { it.toInt() }?.toSet() ?: emptySet()
-    }
-
-    fun addCompletedLevel(level: Int) {
-        val completedLevels = getCompletedLevels().toMutableSet()
-        completedLevels.add(level)
-        preferences.edit {
-            putStringSet(KEY_COMPLETED_LEVELS, completedLevels.map { it.toString() }.toSet())
-        }
-        if (hasCompletedLevel(1) && hasCompletedLevel(2) && unlockedLevels < 3) {
-            unlockedLevels = 3
-            saveScore()
-        }
-        else if (level >= 3 && level + 1 > unlockedLevels) {
-            unlockedLevels = level + 1
-            saveScore()
-        }
-    }
-
-    fun addCompletedLevelPrincipiante(level: Int) {
-        val completedLevelsPrincipiante = getCompletedLevelsPrincipiante().toMutableSet()
-        completedLevelsPrincipiante.add(level)
-        preferencesPrincipiante.edit {
-            putStringSet(
-                KEY_COMPLETED_LEVELS_PRINCIPIANTE,
-                completedLevelsPrincipiante.map { it.toString() }.toSet()
-            )
-        }
-        if (hasCompletedLevelPrincipiante(1) && hasCompletedLevelPrincipiante(2) && unlockedLevelsPrincipiante < 3) {
-            unlockedLevelsPrincipiante = 3
-            saveScorePrincipiante()
-        } else if (level >= 3 && level + 1 > unlockedLevelsPrincipiante) {
-            unlockedLevelsPrincipiante = level + 1
-            saveScorePrincipiante()
-        }
-    }
-
-    fun addCompletedLevelPro(level: Int) {
-        val completedLevelsPro = getCompletedLevelsPro().toMutableSet()
-        completedLevelsPro.add(level)
-        preferencesPro.edit {
-            putStringSet(
-                KEY_COMPLETED_LEVELS_PRO,
-                completedLevelsPro.map { it.toString() }.toSet()
-            )
-        }
-        if (hasCompletedLevelPro(1) && hasCompletedLevelPro(2) && unlockedLevelsPro < 3) {
-            unlockedLevelsPro = 3
-            saveScorePro()
-        } else if (level >= 3 && level + 1 > unlockedLevelsPro) {
-            unlockedLevelsPro = level + 1
-            saveScorePro()
-        }
-    }
-
-    fun addCompletedLevelDeciPlus(level: Int) {
-        val completedLevelsDeciPlus = getCompletedLevelsDeciPlus().toMutableSet()
-        completedLevelsDeciPlus.add(level)
-        preferencesDeciPlus.edit {
-            putStringSet(
-                KEY_COMPLETED_LEVELS_DECI_PLUS, completedLevelsDeciPlus.map { it.toString() }.toSet()
-            )
-        }
-        if (hasCompletedLevelDeciPlus(1) && hasCompletedLevelDeciPlus(2) && unlockedLevelsDeciPlus < 3) {
-            unlockedLevelsDeciPlus = 3
-            saveScoreDeciPlus()
-        } else if (level >= 3 && level + 1 > unlockedLevelsDeciPlus) {
-            unlockedLevelsDeciPlus = level + 1
-            saveScoreDeciPlus()
-        }
-    }
-
-    fun addCompletedLevelDeciPlusPrincipiante(level: Int) {
-        val completedLevelsDeciPlusPrincipiante = getCompletedLevelsDeciPlusPrincipiante().toMutableSet()
-        completedLevelsDeciPlusPrincipiante.add(level)
-        preferencesDeciPlusPrincipiante.edit {
-            putStringSet(
-                KEY_COMPLETED_LEVELS_DECI_PLUS_PRINCIPIANTE, completedLevelsDeciPlusPrincipiante.map { it.toString() }.toSet()
-            )
-        }
-        if (hasCompletedLevelDeciPlusPrincipiante(1) && hasCompletedLevelDeciPlusPrincipiante(2) && unlockedLevelsDeciPlusPrincipiante < 3) {
-            unlockedLevelsDeciPlusPrincipiante = 3
-            saveScoreDeciPlusPrincipiante()
-        } else if (level >= 3 && level + 1 > unlockedLevelsDeciPlusPrincipiante) {
-            unlockedLevelsDeciPlusPrincipiante = level + 1
-            saveScoreDeciPlusPrincipiante()
-        }
-    }
-
-    fun addCompletedLevelDeciPlusPro(level: Int) {
-        val completedLevelsDeciPlusPro = getCompletedLevelsDeciPlusPro().toMutableSet()
-        completedLevelsDeciPlusPro.add(level)
-        preferencesDeciPlusPro.edit {
-            putStringSet(
-                KEY_COMPLETED_LEVELS_DECI_PLUS_PRO, completedLevelsDeciPlusPro.map { it.toString() }.toSet()
-            )
-        }
-        if (hasCompletedLevelDeciPlusPro(1) && hasCompletedLevelDeciPlusPro(2) && unlockedLevelsDeciPlusPro < 3) {
-            unlockedLevelsDeciPlusPro = 3
-            saveScoreDeciPlusPro()
-        } else if (level >= 3 && level + 1 > unlockedLevelsDeciPlusPro) {
-            unlockedLevelsDeciPlusPro = level + 1
-            saveScoreDeciPlusPro()
-        }
-    }
-
-    fun addCompletedLevelRomas(level: Int) {
-        val completedLevelsRomas = getCompletedLevelsRomas().toMutableSet()
-        completedLevelsRomas.add(level)
-        preferencesRomas.edit {
-            putStringSet(
-                KEY_COMPLETED_LEVELS_ROMAS,
-                completedLevelsRomas.map { it.toString() }.toSet()
-            )
-        }
-        if (hasCompletedLevelRomas(1) && hasCompletedLevelRomas(2) && unlockedLevelsRomas < 3) {
-            unlockedLevelsRomas = 3
-            saveScoreRomas()
-        } else if (level >= 3 && level + 1 > unlockedLevelsRomas) {
-            unlockedLevelsRomas = level + 1
-            saveScoreRomas()
-        }
-    }
-
-    fun addCompletedLevelRomasPrincipiante(level: Int) {
-        val completedLevelsRomasPrincipiante = getCompletedLevelsRomasPrincipiante().toMutableSet()
-        completedLevelsRomasPrincipiante.add(level)
-        preferencesRomasPrincipiante.edit {
-            putStringSet(
-                KEY_COMPLETED_LEVELS_ROMAS_PRINCIPIANTE,
-                completedLevelsRomasPrincipiante.map { it.toString() }.toSet()
-            )
-        }
-        if (hasCompletedLevelRomasPrincipiante(1) && hasCompletedLevelRomasPrincipiante(2) && unlockedLevelsRomasPrincipiante < 3) {
-            unlockedLevelsRomasPrincipiante = 3
-            saveScoreRomasPrincipiante()
-        } else if (level >= 3 && level + 1 > unlockedLevelsRomasPrincipiante) {
-            unlockedLevelsRomasPrincipiante = level + 1
-            saveScoreRomasPrincipiante()
-        }
-    }
-
-    fun addCompletedLevelRomasPro(level: Int) {
-        val completedLevelsRomasPro = getCompletedLevelsRomasPro().toMutableSet()
-        completedLevelsRomasPro.add(level)
-        preferencesRomasPro.edit {
-            putStringSet(
-                KEY_COMPLETED_LEVELS_ROMAS_PRO,
-                completedLevelsRomasPro.map { it.toString() }.toSet()
-            )
-        }
-        if (hasCompletedLevelRomasPro(1) && hasCompletedLevelRomasPro(2) && unlockedLevelsRomasPro < 3) {
-            unlockedLevelsRomasPro = 3
-            saveScoreRomasPro()
-        } else if (level >= 3 && level + 1 > unlockedLevelsRomasPro) {
-            unlockedLevelsRomasPro = level + 1
-            saveScoreRomasPro()
-        }
-    }
-
-    fun addCompletedLevelAlfaNumeros(level: Int) {
-        val completedLevelsAlfaNumeros = getCompletedLevelsAlfaNumeros().toMutableSet()
-        completedLevelsAlfaNumeros.add(level)
-        preferencesAlfaNumeros.edit {
-            putStringSet(
-                KEY_COMPLETED_LEVELS_ALFANUMEROS,
-                completedLevelsAlfaNumeros.map { it.toString() }.toSet()
-            )
-        }
-        if (hasCompletedLevelAlfaNumeros(1) && hasCompletedLevelAlfaNumeros(2) && unlockedLevelsAlfaNumeros < 3) {
-            unlockedLevelsAlfaNumeros = 3
-            saveScoreAlfaNumeros()
-        } else if (level >= 3 && level + 1 > unlockedLevelsAlfaNumeros) {
-            unlockedLevelsAlfaNumeros = level + 1
-            saveScoreAlfaNumeros()
-        }
-    }
-
-    fun addCompletedLevelAlfaNumerosPrincipiante(level: Int) {
-        val completedLevelsAlfaNumerosPrincipiante = getCompletedLevelsAlfaNumerosPrincipiante().toMutableSet()
-        completedLevelsAlfaNumerosPrincipiante.add(level)
-        preferencesAlfaNumerosPrincipiante.edit {
-            putStringSet(
-                KEY_COMPLETED_LEVELS_ALFANUMEROS_PRINCIPIANTE,
-                completedLevelsAlfaNumerosPrincipiante.map { it.toString() }.toSet()
-            )
-        }
-        if (hasCompletedLevelAlfaNumerosPrincipiante(1) && hasCompletedLevelAlfaNumerosPrincipiante(2) && unlockedLevelsAlfaNumerosPrincipiante < 3) {
-            unlockedLevelsAlfaNumerosPrincipiante = 3
-            saveScoreAlfaNumerosPrincipiante()
-        } else if (level >= 3 && level + 1 > unlockedLevelsAlfaNumerosPrincipiante) {
-            unlockedLevelsAlfaNumerosPrincipiante = level + 1
-            saveScoreAlfaNumerosPrincipiante()
-        }
-    }
-
-    fun addCompletedLevelAlfaNumerosPro(level: Int) {
-        val completedLevelsAlfaNumerosPro = getCompletedLevelsAlfaNumerosPro().toMutableSet()
-        completedLevelsAlfaNumerosPro.add(level)
-        preferencesAlfaNumerosPro.edit {
-            putStringSet(
-                KEY_COMPLETED_LEVELS_ALFANUMEROS_PRO,
-                completedLevelsAlfaNumerosPro.map { it.toString() }.toSet()
-            )
-        }
-        if (hasCompletedLevelAlfaNumerosPro(1) && hasCompletedLevelAlfaNumerosPro(2) && unlockedLevelsAlfaNumerosPro < 3) {
-            unlockedLevelsAlfaNumerosPro = 3
-            saveScoreAlfaNumerosPro()
-        } else if (level >= 3 && level + 1 > unlockedLevelsAlfaNumerosPro) {
-            unlockedLevelsAlfaNumerosPro = level + 1
-            saveScoreAlfaNumerosPro()
-        }
-    }
-
-    fun addCompletedLevelSumaResta(level: Int) {
-        val completedLevelsSumaResta = getCompletedLevelsSumaResta().toMutableSet()
-        completedLevelsSumaResta.add(level)
-        preferencesSumaResta.edit {
-            putStringSet(
-                KEY_COMPLETED_LEVELS_SUMARESTA,
-                completedLevelsSumaResta.map { it.toString() }.toSet()
-            )
-        }
-        if (hasCompletedLevelSumaResta(1) && hasCompletedLevelSumaResta(2) && unlockedLevelsSumaResta < 3) {
-            unlockedLevelsSumaResta = 3
-            saveScoreSumaResta()
-        } else if (level >= 3 && level + 1 > unlockedLevelsSumaResta) {
-            unlockedLevelsSumaResta = level + 1
-            saveScoreSumaResta()
-        }
-    }
-
-    fun addCompletedLevelSumaRestaPrincipiante(level: Int) {
-        val completedLevelsSumaRestaPrincipiante = getCompletedLevelsSumaRestaPrincipiante().toMutableSet()
-        completedLevelsSumaRestaPrincipiante.add(level)
-        preferencesSumaRestaPrincipiante.edit {
-            putStringSet(
-                KEY_COMPLETED_LEVELS_SUMARESTA_PRINCIPIANTE,
-                completedLevelsSumaRestaPrincipiante.map { it.toString() }.toSet()
-            )
-        }
-        if (hasCompletedLevelSumaRestaPrincipiante(1) && hasCompletedLevelSumaRestaPrincipiante(2) && unlockedLevelsSumaRestaPrincipiante < 3) {
-            unlockedLevelsSumaRestaPrincipiante = 3
-            saveScoreSumaRestaPrincipiante()
-        } else if (level >= 3 && level + 1 > unlockedLevelsSumaRestaPrincipiante) {
-            unlockedLevelsSumaRestaPrincipiante = level + 1
-            saveScoreSumaRestaPrincipiante()
-        }
-    }
-
-    fun addCompletedLevelSumaRestaPro(level: Int) {
-        val completedLevelsSumaRestaPro = getCompletedLevelsSumaRestaPro().toMutableSet()
-        completedLevelsSumaRestaPro.add(level)
-        preferencesSumaRestaPro.edit {
-            putStringSet(
-                KEY_COMPLETED_LEVELS_SUMARESTA_PRO,
-                completedLevelsSumaRestaPro.map { it.toString() }.toSet()
-            )
-        }
-        if (hasCompletedLevelSumaRestaPro(1) && hasCompletedLevelSumaRestaPro(2) && unlockedLevelsSumaRestaPro < 3) {
-            unlockedLevelsSumaRestaPro = 3
-            saveScoreSumaRestaPro()
-        } else if (level >= 3 && level + 1 > unlockedLevelsSumaRestaPro) {
-            unlockedLevelsSumaRestaPro = level + 1
-            saveScoreSumaRestaPro()
-        }
-    }
-
-    fun addCompletedLevelMasPlus(level: Int) {
-        val completedLevelsMasPlus = getCompletedLevelsMasPlus().toMutableSet()
-        completedLevelsMasPlus.add(level)
-        preferencesMasPlus.edit {
-            putStringSet(
-                KEY_COMPLETED_LEVELS_MAS_PLUS,
-                completedLevelsMasPlus.map { it.toString() }.toSet()
-            )
-        }
-        if (hasCompletedLevelMasPlus(1) && hasCompletedLevelMasPlus(2) && unlockedLevelsMasPlus < 3) {
-            unlockedLevelsMasPlus = 3
-            saveScoreMasPlus()
-        } else if (level >= 3 && level + 1 > unlockedLevelsMasPlus) {
-            unlockedLevelsMasPlus = level + 1
-            saveScoreMasPlus()
-        }
-    }
-
-    fun addCompletedLevelMasPlusPrincipiante(level: Int) {
-        val completedLevelsMasPlusPrincipiante = getCompletedLevelsMasPlusPrincipiante().toMutableSet()
-        completedLevelsMasPlusPrincipiante.add(level)
-        preferencesMasPlusPrincipiante.edit {
-            putStringSet(
-                KEY_COMPLETED_LEVELS_MAS_PLUS_PRINCIPIANTE,
-                completedLevelsMasPlusPrincipiante.map { it.toString() }.toSet()
-            )
-        }
-        if (hasCompletedLevelMasPlusPrincipiante(1) && hasCompletedLevelMasPlusPrincipiante(2) && unlockedLevelsMasPlusPrincipiante < 3) {
-            unlockedLevelsMasPlusPrincipiante = 3
-            saveScoreMasPlusPrincipiante()
-        } else if (level >= 3 && level + 1 > unlockedLevelsMasPlusPrincipiante) {
-            unlockedLevelsMasPlusPrincipiante = level + 1
-            saveScoreMasPlusPrincipiante()
-        }
-    }
-
-    fun addCompletedLevelMasPlusPro(level: Int) {
-        val completedLevelsMasPlusPro = getCompletedLevelsMasPlusPro().toMutableSet()
-        completedLevelsMasPlusPro.add(level)
-        preferencesMasPlusPro.edit {
-            putStringSet(
-                KEY_COMPLETED_LEVELS_MAS_PLUS_PRO,
-                completedLevelsMasPlusPro.map { it.toString() }.toSet()
-            )
-        }
-        if (hasCompletedLevelMasPlusPro(1) && hasCompletedLevelMasPlusPro(2) && unlockedLevelsMasPlusPro < 3) {
-            unlockedLevelsMasPlusPro = 3
-            saveScoreMasPlusPro()
-        } else if (level >= 3 && level + 1 > unlockedLevelsMasPlusPro) {
-            unlockedLevelsMasPlusPro = level + 1
-            saveScoreMasPlusPro()
-        }
-    }
-
-    fun addCompletedLevelGenioPlus(level: Int) {
-        val completedLevelsGenioPlus = getCompletedLevelsGenioPlus().toMutableSet()
-        completedLevelsGenioPlus.add(level)
-        preferencesGenioPlus.edit {
-            putStringSet(
-                KEY_COMPLETED_LEVELS_GENIO_PLUS,
-                completedLevelsGenioPlus.map { it.toString() }.toSet()
-            )
-        }
-        if (hasCompletedLevelGenioPlus(1) && hasCompletedLevelGenioPlus(2) && unlockedLevelsGenioPlus < 3) {
-            unlockedLevelsGenioPlus = 3
-            saveScoreGenioPlus()
-        } else if (level >= 3 && level + 1 > unlockedLevelsGenioPlus) {
-            unlockedLevelsGenioPlus = level + 1
-            saveScoreGenioPlus()
-        }
-    }
-
-    fun addCompletedLevelGenioPlusPrincipiante(level: Int) {
-        val completedLevelsGenioPlusPrincipiante = getCompletedLevelsGenioPlusPrincipiante().toMutableSet()
-        completedLevelsGenioPlusPrincipiante.add(level)
-        preferencesGenioPlusPrincipiante.edit {
-            putStringSet(
-                KEY_COMPLETED_LEVELS_GENIO_PLUS_PRINCIPIANTE,
-                completedLevelsGenioPlusPrincipiante.map { it.toString() }.toSet()
-            )
-        }
-        if (hasCompletedLevelGenioPlusPrincipiante(1) && hasCompletedLevelGenioPlusPrincipiante(2) && unlockedLevelsGenioPlusPrincipiante < 3) {
-            unlockedLevelsGenioPlusPrincipiante = 3
-            saveScoreGenioPlusPrincipiante()
-        } else if (level >= 3 && level + 1 > unlockedLevelsGenioPlusPrincipiante) {
-            unlockedLevelsGenioPlusPrincipiante = level + 1
-            saveScoreGenioPlusPrincipiante()
-        }
-    }
-
-    fun addCompletedLevelGenioPlusPro(level: Int) {
-        val completedLevelsGenioPlusPro = getCompletedLevelsGenioPlusPro().toMutableSet()
-        completedLevelsGenioPlusPro.add(level)
-        preferencesGenioPlusPro.edit {
-            putStringSet(
-                KEY_COMPLETED_LEVELS_GENIO_PLUS_PRO,
-                completedLevelsGenioPlusPro.map { it.toString() }.toSet()
-            )
-        }
-        if (hasCompletedLevelGenioPlusPro(1) && hasCompletedLevelGenioPlusPro(2) && unlockedLevelsGenioPlusPro < 3) {
-            unlockedLevelsGenioPlusPro = 3
-            saveScoreGenioPlusPro()
-        } else if (level >= 3 && level + 1 > unlockedLevelsGenioPlusPro) {
-            unlockedLevelsGenioPlusPro = level + 1
-            saveScoreGenioPlusPro()
-        }
-    }
-
-    fun hasCompletedLevel(level: Int): Boolean {
-        return getCompletedLevels().contains(level)
-    }
-
-    fun hasCompletedLevelPrincipiante(level: Int): Boolean {
-        return getCompletedLevelsPrincipiante().contains(level)
-    }
-
-    fun hasCompletedLevelPro(level: Int): Boolean {
-        return getCompletedLevelsPro().contains(level)
-    }
-
-    // --- NÚMEROS PLUS ---
-
-    fun getUniqueLevelsPlayedNumerosPlusPrincipiante(): Int {
-        return getCompletedLevelsPrincipiante().size
-    }
-
-    fun getUniqueLevelsPlayedNumerosPlusAvanzado(): Int {
-        return getCompletedLevels().size
-    }
-
-    fun getUniqueLevelsPlayedNumerosPlusPro(): Int {
-        return getCompletedLevelsPro().size
-    }
-
-    fun getMissingLevelsNumerosPlusPrincipiante(): Int {
-        return (12 - getUniqueLevelsPlayedNumerosPlusPrincipiante()).coerceAtLeast(0)
-    }
-
-    fun getMissingLevelsNumerosPlusAvanzado(): Int {
-        return (12 - getUniqueLevelsPlayedNumerosPlusAvanzado()).coerceAtLeast(0)
-    }
-
-    fun getMissingLevelsNumerosPlusPro(): Int {
-        return (12 - getUniqueLevelsPlayedNumerosPlusPro()).coerceAtLeast(0)
-    }
-
-    fun isEligibleForSpeedRankingNumerosPlus(): Boolean {
-        return getUniqueLevelsPlayedNumerosPlusPrincipiante() >= 12 &&
-                getUniqueLevelsPlayedNumerosPlusAvanzado() >= 12 &&
-                getUniqueLevelsPlayedNumerosPlusPro() >= 12
-    }
-
-
-
-    fun hasCompletedLevelDeciPlus(level: Int): Boolean {
-        return getCompletedLevelsDeciPlus().contains(level)
-    }
-
-    fun hasCompletedLevelDeciPlusPrincipiante(level: Int): Boolean {
-        return getCompletedLevelsDeciPlusPrincipiante().contains(level)
-    }
-
-    fun hasCompletedLevelDeciPlusPro(level: Int): Boolean {
-        return getCompletedLevelsDeciPlusPro().contains(level)
-    }
-    // --- DECI PLUS ---
-
-    fun getUniqueLevelsPlayedDeciPlusPrincipiante(): Int {
-        return getCompletedLevelsDeciPlusPrincipiante().size
-    }
-
-    fun getUniqueLevelsPlayedDeciPlusAvanzado(): Int {
-        return getCompletedLevelsDeciPlus().size
-    }
-
-    fun getUniqueLevelsPlayedDeciPlusPro(): Int {
-        return getCompletedLevelsDeciPlusPro().size
-    }
-
-    fun getMissingLevelsDeciPlusPrincipiante(): Int {
-        return (12 - getUniqueLevelsPlayedDeciPlusPrincipiante()).coerceAtLeast(0)
-    }
-
-    fun getMissingLevelsDeciPlusAvanzado(): Int {
-        return (12 - getUniqueLevelsPlayedDeciPlusAvanzado()).coerceAtLeast(0)
-    }
-
-    fun getMissingLevelsDeciPlusPro(): Int {
-        return (12 - getUniqueLevelsPlayedDeciPlusPro()).coerceAtLeast(0)
-    }
-
-    fun isEligibleForSpeedRankingDeciPlus(): Boolean {
-        return getUniqueLevelsPlayedDeciPlusPrincipiante() >= 12 &&
-                getUniqueLevelsPlayedDeciPlusAvanzado() >= 12 &&
-                getUniqueLevelsPlayedDeciPlusPro() >= 12
-    }
-
-
-    fun hasCompletedLevelRomas(level: Int): Boolean {
-        return getCompletedLevelsRomas().contains(level)
-    }
-
-    fun hasCompletedLevelRomasPrincipiante(level: Int): Boolean {
-        return getCompletedLevelsRomasPrincipiante().contains(level)
-    }
-
-    fun hasCompletedLevelRomasPro(level: Int): Boolean {
-        return getCompletedLevelsRomasPro().contains(level)
-    }
-    // --- ROMAS ---
-
-    fun getUniqueLevelsPlayedRomasPrincipiante(): Int {
-        return getCompletedLevelsRomasPrincipiante().size
-    }
-
-    fun getUniqueLevelsPlayedRomasAvanzado(): Int {
-        return getCompletedLevelsRomas().size
-    }
-
-    fun getUniqueLevelsPlayedRomasPro(): Int {
-        return getCompletedLevelsRomasPro().size
-    }
-
-    fun getMissingLevelsRomasPrincipiante(): Int {
-        return (12 - getUniqueLevelsPlayedRomasPrincipiante()).coerceAtLeast(0)
-    }
-
-    fun getMissingLevelsRomasAvanzado(): Int {
-        return (12 - getUniqueLevelsPlayedRomasAvanzado()).coerceAtLeast(0)
-    }
-
-    fun getMissingLevelsRomasPro(): Int {
-        return (12 - getUniqueLevelsPlayedRomasPro()).coerceAtLeast(0)
-    }
-
-    fun isEligibleForSpeedRankingRomas(): Boolean {
-        return getUniqueLevelsPlayedRomasPrincipiante() >= 12 &&
-                getUniqueLevelsPlayedRomasAvanzado() >= 12 &&
-                getUniqueLevelsPlayedRomasPro() >= 12
-    }
-
-
-    fun hasCompletedLevelAlfaNumeros(level: Int): Boolean {
-        return getCompletedLevelsAlfaNumeros().contains(level)
-    }
-
-    fun hasCompletedLevelAlfaNumerosPrincipiante(level: Int): Boolean {
-        return getCompletedLevelsAlfaNumerosPrincipiante().contains(level)
-    }
-
-    fun hasCompletedLevelAlfaNumerosPro(level: Int): Boolean {
-        return getCompletedLevelsAlfaNumerosPro().contains(level)
-    }
-    // --- ALFANUMEROS ---
-
-    fun getUniqueLevelsPlayedAlfaNumerosPrincipiante(): Int {
-        return getCompletedLevelsAlfaNumerosPrincipiante().size
-    }
-
-    fun getUniqueLevelsPlayedAlfaNumerosAvanzado(): Int {
-        return getCompletedLevelsAlfaNumeros().size
-    }
-
-    fun getUniqueLevelsPlayedAlfaNumerosPro(): Int {
-        return getCompletedLevelsAlfaNumerosPro().size
-    }
-
-    fun getMissingLevelsAlfaNumerosPrincipiante(): Int {
-        return (12 - getUniqueLevelsPlayedAlfaNumerosPrincipiante()).coerceAtLeast(0)
-    }
-
-    fun getMissingLevelsAlfaNumerosAvanzado(): Int {
-        return (12 - getUniqueLevelsPlayedAlfaNumerosAvanzado()).coerceAtLeast(0)
-    }
-
-    fun getMissingLevelsAlfaNumerosPro(): Int {
-        return (12 - getUniqueLevelsPlayedAlfaNumerosPro()).coerceAtLeast(0)
-    }
-
-    fun isEligibleForSpeedRankingAlfaNumeros(): Boolean {
-        return getUniqueLevelsPlayedAlfaNumerosPrincipiante() >= 12 &&
-                getUniqueLevelsPlayedAlfaNumerosAvanzado() >= 12 &&
-                getUniqueLevelsPlayedAlfaNumerosPro() >= 12
-    }
-
-
-    fun hasCompletedLevelSumaResta(level: Int): Boolean {
-        return getCompletedLevelsSumaResta().contains(level)
-    }
-
-    fun hasCompletedLevelSumaRestaPrincipiante(level: Int): Boolean {
-        return getCompletedLevelsSumaRestaPrincipiante().contains(level)
-    }
-
-    fun hasCompletedLevelSumaRestaPro(level: Int): Boolean {
-        return getCompletedLevelsSumaRestaPro().contains(level)
-    }
-    // --- SUMARESTA ---
-
-    fun getUniqueLevelsPlayedSumaRestaPrincipiante(): Int {
-        return getCompletedLevelsSumaRestaPrincipiante().size
-    }
-
-    fun getUniqueLevelsPlayedSumaRestaAvanzado(): Int {
-        return getCompletedLevelsSumaResta().size
-    }
-
-    fun getUniqueLevelsPlayedSumaRestaPro(): Int {
-        return getCompletedLevelsSumaRestaPro().size
-    }
-
-    fun getMissingLevelsSumaRestaPrincipiante(): Int {
-        return (12 - getUniqueLevelsPlayedSumaRestaPrincipiante()).coerceAtLeast(0)
-    }
-
-    fun getMissingLevelsSumaRestaAvanzado(): Int {
-        return (12 - getUniqueLevelsPlayedSumaRestaAvanzado()).coerceAtLeast(0)
-    }
-
-    fun getMissingLevelsSumaRestaPro(): Int {
-        return (12 - getUniqueLevelsPlayedSumaRestaPro()).coerceAtLeast(0)
-    }
-
-    fun isEligibleForSpeedRankingSumaResta(): Boolean {
-        return getUniqueLevelsPlayedSumaRestaPrincipiante() >= 12 &&
-                getUniqueLevelsPlayedSumaRestaAvanzado() >= 12 &&
-                getUniqueLevelsPlayedSumaRestaPro() >= 12
-    }
-
-
-    fun hasCompletedLevelMasPlus(level: Int): Boolean {
-        return getCompletedLevelsMasPlus().contains(level)
-    }
-
-    fun hasCompletedLevelMasPlusPrincipiante(level: Int): Boolean {
-        return getCompletedLevelsMasPlusPrincipiante().contains(level)
-    }
-
-    fun hasCompletedLevelMasPlusPro(level: Int): Boolean {
-        return getCompletedLevelsMasPlusPro().contains(level)
-    }
-    // --- MASPLUS ---
-
-    fun getUniqueLevelsPlayedMasPlusPrincipiante(): Int {
-        return getCompletedLevelsMasPlusPrincipiante().size
-    }
-
-    fun getUniqueLevelsPlayedMasPlusAvanzado(): Int {
-        return getCompletedLevelsMasPlus().size
-    }
-
-    fun getUniqueLevelsPlayedMasPlusPro(): Int {
-        return getCompletedLevelsMasPlusPro().size
-    }
-
-    fun getMissingLevelsMasPlusPrincipiante(): Int {
-        return (12 - getUniqueLevelsPlayedMasPlusPrincipiante()).coerceAtLeast(0)
-    }
-
-    fun getMissingLevelsMasPlusAvanzado(): Int {
-        return (12 - getUniqueLevelsPlayedMasPlusAvanzado()).coerceAtLeast(0)
-    }
-
-    fun getMissingLevelsMasPlusPro(): Int {
-        return (12 - getUniqueLevelsPlayedMasPlusPro()).coerceAtLeast(0)
-    }
-
-    fun isEligibleForSpeedRankingMasPlus(): Boolean {
-        return getUniqueLevelsPlayedMasPlusPrincipiante() >= 12 &&
-                getUniqueLevelsPlayedMasPlusAvanzado() >= 12 &&
-                getUniqueLevelsPlayedMasPlusPro() >= 12
-    }
-
-
-    fun hasCompletedLevelGenioPlus(level: Int): Boolean {
-        return getCompletedLevelsGenioPlus().contains(level)
-    }
-
-    fun hasCompletedLevelGenioPlusPrincipiante(level: Int): Boolean {
-        return getCompletedLevelsGenioPlusPrincipiante().contains(level)
-    }
-
-    fun hasCompletedLevelGenioPlusPro(level: Int): Boolean {
-        return getCompletedLevelsGenioPlusPro().contains(level)
-    }
-    // --- GENIOPLUS ---
-
-    fun getUniqueLevelsPlayedGenioPlusPrincipiante(): Int {
-        return getCompletedLevelsGenioPlusPrincipiante().size
-    }
-
-    fun getUniqueLevelsPlayedGenioPlusAvanzado(): Int {
-        return getCompletedLevelsGenioPlus().size
-    }
-
-    fun getUniqueLevelsPlayedGenioPlusPro(): Int {
-        return getCompletedLevelsGenioPlusPro().size
-    }
-
-    fun getMissingLevelsGenioPlusPrincipiante(): Int {
-        return (12 - getUniqueLevelsPlayedGenioPlusPrincipiante()).coerceAtLeast(0)
-    }
-
-    fun getMissingLevelsGenioPlusAvanzado(): Int {
-        return (12 - getUniqueLevelsPlayedGenioPlusAvanzado()).coerceAtLeast(0)
-    }
-
-    fun getMissingLevelsGenioPlusPro(): Int {
-        return (12 - getUniqueLevelsPlayedGenioPlusPro()).coerceAtLeast(0)
-    }
-
-    fun isEligibleForSpeedRankingGenioPlus(): Boolean {
-        return getUniqueLevelsPlayedGenioPlusPrincipiante() >= 12 &&
-                getUniqueLevelsPlayedGenioPlusAvanzado() >= 12 &&
-                getUniqueLevelsPlayedGenioPlusPro() >= 12
-    }
-
-
-    fun reset() {
-        currentScore = 0
-        unlockedLevels = 2
-        levelScores.clear()
-        preferences.edit {
-            putInt(KEY_CURRENT_SCORE, currentScore)
-                .putInt(KEY_UNLOCKED_LEVELS, unlockedLevels)
-                .putStringSet(KEY_COMPLETED_LEVELS, emptySet())
-        }
-    }
-
-    fun resetPrincipiante() {
-        currentScorePrincipiante = 0
-        unlockedLevelsPrincipiante = 2
-        levelScoresPrincipiante.clear()
-        preferencesPrincipiante.edit {
-            putInt(KEY_CURRENT_SCORE_PRINCIPIANTE, currentScorePrincipiante)
-                .putInt(KEY_UNLOCKED_LEVELS_PRINCIPIANTE, unlockedLevelsPrincipiante)
-                .putStringSet(KEY_COMPLETED_LEVELS_PRINCIPIANTE, emptySet())
-        }
-    }
-
-    fun resetPro() {
-        currentScorePro = 0
-        unlockedLevelsPro = 2
-        levelScoresPro.clear()
-        preferencesPro.edit {
-            putInt(KEY_CURRENT_SCORE_PRO, currentScorePro)
-                .putInt(KEY_UNLOCKED_LEVELS_PRO, unlockedLevelsPro)
-                .putStringSet(KEY_COMPLETED_LEVELS_PRO, emptySet())
-        }
-    }
-
-    fun resetDeciPlus() {
-        currentScoreDeciPlus = 0
-        unlockedLevelsDeciPlus = 2
-        levelScoresDeciPlus.clear()
-        preferencesDeciPlus.edit {
-            putInt(KEY_CURRENT_SCORE_DECI_PLUS, currentScoreDeciPlus)
-                .putInt(KEY_UNLOCKED_LEVELS_DECI_PLUS, unlockedLevelsDeciPlus)
-                .putStringSet(KEY_COMPLETED_LEVELS_DECI_PLUS, emptySet())
-        }
-    }
-
-    fun resetDeciPlusPrincipiante() {
-        currentScoreDeciPlusPrincipiante = 0
-        unlockedLevelsDeciPlusPrincipiante = 2
-        levelScoresDeciPlusPrincipiante.clear()
-        preferencesDeciPlusPrincipiante.edit {
-            putInt(KEY_CURRENT_SCORE_DECI_PLUS_PRINCIPIANTE, currentScoreDeciPlusPrincipiante)
-                .putInt(KEY_UNLOCKED_LEVELS_DECI_PLUS_PRINCIPIANTE, unlockedLevelsDeciPlusPrincipiante)
-                .putStringSet(KEY_COMPLETED_LEVELS_DECI_PLUS_PRINCIPIANTE, emptySet())
-        }
-    }
-
-    fun resetDeciPlusPro() {
-        currentScoreDeciPlusPro = 0
-        unlockedLevelsDeciPlusPro = 2
-        levelScoresDeciPlusPro.clear()
-        preferencesDeciPlusPro.edit {
-            putInt(KEY_CURRENT_SCORE_DECI_PLUS_PRO, currentScoreDeciPlusPro)
-                .putInt(KEY_UNLOCKED_LEVELS_DECI_PLUS_PRO, unlockedLevelsDeciPlusPro)
-                .putStringSet(KEY_COMPLETED_LEVELS_DECI_PLUS_PRO, emptySet())
-        }
-    }
-
-    fun resetRomas() {
-        currentScoreRomas = 0
-        unlockedLevelsRomas = 2
-        levelScoresRomas.clear()
-        preferencesRomas.edit {
-            putInt(KEY_CURRENT_SCORE_ROMAS, currentScoreRomas)
-                .putInt(KEY_UNLOCKED_LEVELS_ROMAS, unlockedLevelsRomas)
-                .putStringSet(KEY_COMPLETED_LEVELS_ROMAS, emptySet())
-        }
-    }
-
-    fun resetRomasPrincipiante() {
-        currentScoreRomasPrincipiante = 0
-        unlockedLevelsRomasPrincipiante = 2
-        levelScoresRomasPrincipiante.clear()
-        preferencesRomasPrincipiante.edit {
-            putInt(KEY_CURRENT_SCORE_ROMAS_PRINCIPIANTE, currentScoreRomasPrincipiante)
-                .putInt(KEY_UNLOCKED_LEVELS_ROMAS_PRINCIPIANTE, unlockedLevelsRomasPrincipiante)
-                .putStringSet(KEY_COMPLETED_LEVELS_ROMAS_PRINCIPIANTE, emptySet())
-        }
-    }
-
-    fun resetRomasPro() {
-        currentScoreRomasPro = 0
-        unlockedLevelsRomasPro = 2
-        levelScoresRomasPro.clear()
-        preferencesRomasPro.edit {
-            putInt(KEY_CURRENT_SCORE_ROMAS_PRO, currentScoreRomasPro)
-                .putInt(KEY_UNLOCKED_LEVELS_ROMAS_PRO, unlockedLevelsRomasPro)
-                .putStringSet(KEY_COMPLETED_LEVELS_ROMAS_PRO, emptySet())
-        }
-    }
-
-    fun resetAlfaNumeros() {
-        currentScoreAlfaNumeros = 0
-        unlockedLevelsAlfaNumeros = 2
-        levelScoresAlfaNumeros.clear()
-        preferencesAlfaNumeros.edit {
-            putInt(KEY_CURRENT_SCORE_ALFANUMEROS, currentScoreAlfaNumeros)
-                .putInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS, unlockedLevelsAlfaNumeros)
-                .putStringSet(KEY_COMPLETED_LEVELS_ALFANUMEROS, emptySet())
-        }
-    }
-
-    fun resetAlfaNumerosPrincipiante() {
-        currentScoreAlfaNumerosPrincipiante = 0
-        unlockedLevelsAlfaNumerosPrincipiante = 2
-        levelScoresAlfaNumerosPrincipiante.clear()
-        preferencesAlfaNumerosPrincipiante.edit {
-            putInt(KEY_CURRENT_SCORE_ALFANUMEROS_PRINCIPIANTE, currentScoreAlfaNumerosPrincipiante)
-                .putInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRINCIPIANTE, unlockedLevelsAlfaNumerosPrincipiante)
-                .putStringSet(KEY_COMPLETED_LEVELS_ALFANUMEROS_PRINCIPIANTE, emptySet())
-        }
-    }
-
-    fun resetAlfaNumerosPro() {
-        currentScoreAlfaNumerosPro = 0
-        unlockedLevelsAlfaNumerosPro = 2
-        levelScoresAlfaNumerosPro.clear()
-        preferencesAlfaNumerosPro.edit {
-            putInt(KEY_CURRENT_SCORE_ALFANUMEROS_PRO, currentScoreAlfaNumerosPro)
-                .putInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRO, unlockedLevelsAlfaNumerosPro)
-                .putStringSet(KEY_COMPLETED_LEVELS_ALFANUMEROS_PRO, emptySet())
-        }
-    }
-
-    fun resetSumaResta() {
-        currentScoreSumaResta = 0
-        unlockedLevelsSumaResta = 2
-        levelScoresSumaResta.clear()
-        preferencesSumaResta.edit {
-            putInt(KEY_CURRENT_SCORE_SUMARESTA, currentScoreSumaResta)
-                .putInt(KEY_UNLOCKED_LEVELS_SUMARESTA, unlockedLevelsSumaResta)
-                .putStringSet(KEY_COMPLETED_LEVELS_SUMARESTA, emptySet())
-        }
-    }
-
-    fun resetSumaRestaPrincipiante() {
-        currentScoreSumaRestaPrincipiante = 0
-        unlockedLevelsSumaRestaPrincipiante = 2
-        levelScoresSumaRestaPrincipiante.clear()
-        preferencesSumaRestaPrincipiante.edit {
-            putInt(KEY_CURRENT_SCORE_SUMARESTA_PRINCIPIANTE, currentScoreSumaRestaPrincipiante)
-                .putInt(KEY_UNLOCKED_LEVELS_SUMARESTA_PRINCIPIANTE, unlockedLevelsSumaRestaPrincipiante)
-                .putStringSet(KEY_COMPLETED_LEVELS_SUMARESTA_PRINCIPIANTE, emptySet())
-        }
-    }
-
-    fun resetSumaRestaPro() {
-        currentScoreSumaRestaPro = 0
-        unlockedLevelsSumaRestaPro = 2
-        levelScoresSumaRestaPro.clear()
-        preferencesSumaRestaPro.edit {
-            putInt(KEY_CURRENT_SCORE_SUMARESTA_PRO, currentScoreSumaRestaPro)
-                .putInt(KEY_UNLOCKED_LEVELS_SUMARESTA_PRO, unlockedLevelsSumaRestaPro)
-                .putStringSet(KEY_COMPLETED_LEVELS_SUMARESTA_PRO, emptySet())
-        }
-    }
-
-    fun resetMasPlus() {
-        currentScoreMasPlus = 0
-        unlockedLevelsMasPlus = 2
-        levelScoresMasPlus.clear()
-        preferencesMasPlus.edit {
-            putInt(KEY_CURRENT_SCORE_MAS_PLUS, currentScoreMasPlus)
-                .putInt(KEY_UNLOCKED_LEVELS_MAS_PLUS, unlockedLevelsMasPlus)
-                .putStringSet(KEY_COMPLETED_LEVELS_MAS_PLUS, emptySet())
-        }
-    }
-
-    fun resetMasPlusPrincipiante() {
-        currentScoreMasPlusPrincipiante = 0
-        unlockedLevelsMasPlusPrincipiante = 2
-        levelScoresMasPlusPrincipiante.clear()
-        preferencesMasPlusPrincipiante.edit {
-            putInt(KEY_CURRENT_SCORE_MAS_PLUS_PRINCIPIANTE, currentScoreMasPlusPrincipiante)
-                .putInt(KEY_UNLOCKED_LEVELS_MAS_PLUS_PRINCIPIANTE, unlockedLevelsMasPlusPrincipiante)
-                .putStringSet(KEY_COMPLETED_LEVELS_MAS_PLUS_PRINCIPIANTE, emptySet())
-        }
-    }
-
-    fun resetMasPlusPro() {
-        currentScoreMasPlusPro = 0
-        unlockedLevelsMasPlusPro = 2
-        levelScoresMasPlusPro.clear()
-        preferencesMasPlusPro.edit {
-            putInt(KEY_CURRENT_SCORE_MAS_PLUS_PRO, currentScoreMasPlusPro)
-                .putInt(KEY_UNLOCKED_LEVELS_MAS_PLUS_PRO, unlockedLevelsMasPlusPro)
-                .putStringSet(KEY_COMPLETED_LEVELS_MAS_PLUS_PRO, emptySet())
-        }
-    }
-
-    fun resetGenioPlus() {
-        currentScoreGenioPlus = 0
-        unlockedLevelsGenioPlus = 2
-        levelScoresGenioPlus.clear()
-        preferencesGenioPlus.edit {
-            putInt(KEY_CURRENT_SCORE_GENIO_PLUS, currentScoreGenioPlus)
-                .putInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS, unlockedLevelsGenioPlus)
-                .putStringSet(KEY_COMPLETED_LEVELS_GENIO_PLUS, emptySet())
-        }
-    }
-
-    fun resetGenioPlusPrincipiante() {
-        currentScoreGenioPlusPrincipiante = 0
-        unlockedLevelsGenioPlusPrincipiante = 2
-        levelScoresGenioPlusPrincipiante.clear()
-        preferencesGenioPlusPrincipiante.edit {
-            putInt(KEY_CURRENT_SCORE_GENIO_PLUS_PRINCIPIANTE, currentScoreGenioPlusPrincipiante)
-                .putInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRINCIPIANTE, unlockedLevelsGenioPlusPrincipiante)
-                .putStringSet(KEY_COMPLETED_LEVELS_GENIO_PLUS_PRINCIPIANTE, emptySet())
-        }
-    }
-
-    fun resetGenioPlusPro() {
-        currentScoreGenioPlusPro = 0
-        unlockedLevelsGenioPlusPro = 2
-        levelScoresGenioPlusPro.clear()
-        preferencesGenioPlusPro.edit {
-            putInt(KEY_CURRENT_SCORE_GENIO_PLUS_PRO, currentScoreGenioPlusPro)
-                .putInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRO, unlockedLevelsGenioPlusPro)
-                .putStringSet(KEY_COMPLETED_LEVELS_GENIO_PLUS_PRO, emptySet())
-        }
-    }
-
-    fun incrementConsecutiveFailures(level: Int) {
-        val currentFailures = consecutiveFailures[level] ?: 0
-        consecutiveFailures[level] = currentFailures + 1
-        preferences.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES:$level", consecutiveFailures[level] ?: 0)
-        }
-    }
-
-    fun resetConsecutiveFailures(level: Int) {
-        consecutiveFailures[level] = 0
-        preferences.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES:$level", 0)
-        }
-    }
-
-    fun getConsecutiveFailures(level: Int): Int {
-        return consecutiveFailures[level] ?: 0
-    }
-
-    fun isLevelBlockedByFailures(level: Int): Boolean {
-        if (level == 1) return false
-        return getConsecutiveFailures(level) >= 12
-    }
-
-    fun incrementConsecutiveFailuresPrincipiante(level: Int) {
-        val currentFailures = consecutiveFailuresPrincipiante[level] ?: 0
-        consecutiveFailuresPrincipiante[level] = currentFailures + 1
-        preferencesPrincipiante.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_PRINCIPIANTE:$level", consecutiveFailuresPrincipiante[level] ?: 0)
-        }
-    }
-
-    fun resetConsecutiveFailuresPrincipiante(level: Int) {
-        consecutiveFailuresPrincipiante[level] = 0
-        preferencesPrincipiante.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_PRINCIPIANTE:$level", 0)
-        }
-    }
-
-    fun getConsecutiveFailuresPrincipiante(level: Int): Int {
-        return consecutiveFailuresPrincipiante[level] ?: 0
-    }
-
-    fun isLevelBlockedByFailuresPrincipiante(level: Int): Boolean {
-        if (level == 1) return false
-        return getConsecutiveFailuresPrincipiante(level) >= 12
-    }
-
-    fun incrementConsecutiveFailuresPro(level: Int) {
-        val currentFailures = consecutiveFailuresPro[level] ?: 0
-        consecutiveFailuresPro[level] = currentFailures + 1
-        preferencesPro.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_PRO:$level", consecutiveFailuresPro[level] ?: 0)
-        }
-    }
-
-    fun resetConsecutiveFailuresPro(level: Int) {
-        consecutiveFailuresPro[level] = 0
-        preferencesPro.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_PRO:$level", 0)
-        }
-    }
-
-    fun getConsecutiveFailuresPro(level: Int): Int {
-        return consecutiveFailuresPro[level] ?: 0
-    }
-
-    fun isLevelBlockedByFailuresPro(level: Int): Boolean {
-        if (level == 1) return false
-        return getConsecutiveFailuresPro(level) >= 12
-    }
-
-    fun incrementConsecutiveFailuresDeciPlus(level: Int) {
-        val currentFailures = consecutiveFailuresDeciPlus[level] ?: 0
-        consecutiveFailuresDeciPlus[level] = currentFailures + 1
-        preferencesDeciPlus.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS:$level", consecutiveFailuresDeciPlus[level] ?: 0)
-        }
-    }
-
-    fun resetConsecutiveFailuresDeciPlus(level: Int) {
-        consecutiveFailuresDeciPlus[level] = 0
-        preferencesDeciPlus.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS:$level", 0)
-        }
-    }
-
-    fun getConsecutiveFailuresDeciPlus(level: Int): Int {
-        return consecutiveFailuresDeciPlus[level] ?: 0
-    }
-
-    fun isLevelBlockedByFailuresDeciPlus(level: Int): Boolean {
-        if (level == 1) return false
-        return getConsecutiveFailuresDeciPlus(level) >= 12
-    }
-
-    fun incrementConsecutiveFailuresDeciPlusPrincipiante(level: Int) {
-        val currentFailures = consecutiveFailuresDeciPlusPrincipiante[level] ?: 0
-        consecutiveFailuresDeciPlusPrincipiante[level] = currentFailures + 1
-        preferencesDeciPlusPrincipiante.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS_PRINCIPIANTE:$level", consecutiveFailuresDeciPlusPrincipiante[level] ?: 0)
-        }
-    }
-
-    fun resetConsecutiveFailuresDeciPlusPrincipiante(level: Int) {
-        consecutiveFailuresDeciPlusPrincipiante[level] = 0
-        preferencesDeciPlusPrincipiante.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS_PRINCIPIANTE:$level", 0)
-        }
-    }
-
-    fun getConsecutiveFailuresDeciPlusPrincipiante(level: Int): Int {
-        return consecutiveFailuresDeciPlusPrincipiante[level] ?: 0
-    }
-
-    fun isLevelBlockedByFailuresDeciPlusPrincipiante(level: Int): Boolean {
-        if (level == 1) return false
-        return getConsecutiveFailuresDeciPlusPrincipiante(level) >= 12
-    }
-
-    fun incrementConsecutiveFailuresDeciPlusPro(level: Int) {
-        val currentFailures = consecutiveFailuresDeciPlusPro[level] ?: 0
-        consecutiveFailuresDeciPlusPro[level] = currentFailures + 1
-        preferencesDeciPlusPro.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS_PRO:$level", consecutiveFailuresDeciPlusPro[level] ?: 0)
-        }
-    }
-
-    fun resetConsecutiveFailuresDeciPlusPro(level: Int) {
-        consecutiveFailuresDeciPlusPro[level] = 0
-        preferencesDeciPlusPro.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS_PRO:$level", 0)
-        }
-    }
-
-    fun getConsecutiveFailuresDeciPlusPro(level: Int): Int {
-        return consecutiveFailuresDeciPlusPro[level] ?: 0
-    }
-
-    fun isLevelBlockedByFailuresDeciPlusPro(level: Int): Boolean {
-        if (level == 1) return false
-        return getConsecutiveFailuresDeciPlusPro(level) >= 12
-    }
-
-    fun incrementConsecutiveFailuresRomas(level: Int) {
-        val currentFailures = consecutiveFailuresRomas[level] ?: 0
-        consecutiveFailuresRomas[level] = currentFailures + 1
-        preferencesRomas.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_ROMAS:$level", consecutiveFailuresRomas[level] ?: 0)
-        }
-    }
-
-    fun resetConsecutiveFailuresRomas(level: Int) {
-        consecutiveFailuresRomas[level] = 0
-        preferencesRomas.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_ROMAS:$level", 0)
-        }
-    }
-
-    fun getConsecutiveFailuresRomas(level: Int): Int {
-        return consecutiveFailuresRomas[level] ?: 0
-    }
-
-    fun isLevelBlockedByFailuresRomas(level: Int): Boolean {
-        if (level == 1) return false
-        return getConsecutiveFailuresRomas(level) >= 12
-    }
-
-    fun incrementConsecutiveFailuresRomasPrincipiante(level: Int) {
-        val currentFailures = consecutiveFailuresRomasPrincipiante[level] ?: 0
-        consecutiveFailuresRomasPrincipiante[level] = currentFailures + 1
-        preferencesRomasPrincipiante.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_ROMAS_PRINCIPIANTE:$level", consecutiveFailuresRomasPrincipiante[level] ?: 0)
-        }
-    }
-
-    fun resetConsecutiveFailuresRomasPrincipiante(level: Int) {
-        consecutiveFailuresRomasPrincipiante[level] = 0
-        preferencesRomasPrincipiante.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_ROMAS_PRINCIPIANTE:$level", 0)
-        }
-    }
-
-    fun getConsecutiveFailuresRomasPrincipiante(level: Int): Int {
-        return consecutiveFailuresRomasPrincipiante[level] ?: 0
-    }
-
-    fun isLevelBlockedByFailuresRomasPrincipiante(level: Int): Boolean {
-        if (level == 1) return false
-        return getConsecutiveFailuresRomasPrincipiante(level) >= 12
-    }
-
-    fun incrementConsecutiveFailuresRomasPro(level: Int) {
-        val currentFailures = consecutiveFailuresRomasPro[level] ?: 0
-        consecutiveFailuresRomasPro[level] = currentFailures + 1
-        preferencesRomasPro.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_ROMAS_PRO:$level", consecutiveFailuresRomasPro[level] ?: 0)
-        }
-    }
-
-    fun resetConsecutiveFailuresRomasPro(level: Int) {
-        consecutiveFailuresRomasPro[level] = 0
-        preferencesRomasPro.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_ROMAS_PRO:$level", 0)
-        }
-    }
-
-    fun getConsecutiveFailuresRomasPro(level: Int): Int {
-        return consecutiveFailuresRomasPro[level] ?: 0
-    }
-
-    fun isLevelBlockedByFailuresRomasPro(level: Int): Boolean {
-        if (level == 1) return false
-        return getConsecutiveFailuresRomasPro(level) >= 12
-    }
-
-    fun incrementConsecutiveFailuresAlfaNumeros(level: Int) {
-        val currentFailures = consecutiveFailuresAlfaNumeros[level] ?: 0
-        consecutiveFailuresAlfaNumeros[level] = currentFailures + 1
-        preferencesAlfaNumeros.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_ALFANUMEROS:$level", consecutiveFailuresAlfaNumeros[level] ?: 0)
-        }
-    }
-
-    fun resetConsecutiveFailuresAlfaNumeros(level: Int) {
-        consecutiveFailuresAlfaNumeros[level] = 0
-        preferencesAlfaNumeros.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_ALFANUMEROS:$level", 0)
-        }
-    }
-
-    fun getConsecutiveFailuresAlfaNumeros(level: Int): Int {
-        return consecutiveFailuresAlfaNumeros[level] ?: 0
-    }
-
-    fun isLevelBlockedByFailuresAlfaNumeros(level: Int): Boolean {
-        if (level == 1) return false
-        return getConsecutiveFailuresAlfaNumeros(level) >= 12
-    }
-
-    fun incrementConsecutiveFailuresAlfaNumerosPrincipiante(level: Int) {
-        val currentFailures = consecutiveFailuresAlfaNumerosPrincipiante[level] ?: 0
-        consecutiveFailuresAlfaNumerosPrincipiante[level] = currentFailures + 1
-        preferencesAlfaNumerosPrincipiante.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_ALFANUMEROS_PRINCIPIANTE:$level", consecutiveFailuresAlfaNumerosPrincipiante[level] ?: 0)
-        }
-    }
-
-    fun resetConsecutiveFailuresAlfaNumerosPrincipiante(level: Int) {
-        consecutiveFailuresAlfaNumerosPrincipiante[level] = 0
-        preferencesAlfaNumerosPrincipiante.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_ALFANUMEROS_PRINCIPIANTE:$level", 0)
-        }
-    }
-
-    fun getConsecutiveFailuresAlfaNumerosPrincipiante(level: Int): Int {
-        return consecutiveFailuresAlfaNumerosPrincipiante[level] ?: 0
-    }
-
-    fun isLevelBlockedByFailuresAlfaNumerosPrincipiante(level: Int): Boolean {
-        if (level == 1) return false
-        return getConsecutiveFailuresAlfaNumerosPrincipiante(level) >= 12
-    }
-
-    fun incrementConsecutiveFailuresAlfaNumerosPro(level: Int) {
-        val currentFailures = consecutiveFailuresAlfaNumerosPro[level] ?: 0
-        consecutiveFailuresAlfaNumerosPro[level] = currentFailures + 1
-        preferencesAlfaNumerosPro.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_ALFANUMEROS_PRO:$level", consecutiveFailuresAlfaNumerosPro[level] ?: 0)
-        }
-    }
-
-    fun resetConsecutiveFailuresAlfaNumerosPro(level: Int) {
-        consecutiveFailuresAlfaNumerosPro[level] = 0
-        preferencesAlfaNumerosPro.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_ALFANUMEROS_PRO:$level", 0)
-        }
-    }
-
-    fun getConsecutiveFailuresAlfaNumerosPro(level: Int): Int {
-        return consecutiveFailuresAlfaNumerosPro[level] ?: 0
-    }
-
-    fun isLevelBlockedByFailuresAlfaNumerosPro(level: Int): Boolean {
-        if (level == 1) return false
-        return getConsecutiveFailuresAlfaNumerosPro(level) >= 12
-    }
-
-    fun incrementConsecutiveFailuresSumaResta(level: Int) {
-        val currentFailures = consecutiveFailuresSumaResta[level] ?: 0
-        consecutiveFailuresSumaResta[level] = currentFailures + 1
-        preferencesSumaResta.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_SUMARESTA:$level", consecutiveFailuresSumaResta[level] ?: 0)
-        }
-    }
-
-    fun resetConsecutiveFailuresSumaResta(level: Int) {
-        consecutiveFailuresSumaResta[level] = 0
-        preferencesSumaResta.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_SUMARESTA:$level", 0)
-        }
-    }
-
-    fun getConsecutiveFailuresSumaResta(level: Int): Int {
-        return consecutiveFailuresSumaResta[level] ?: 0
-    }
-
-    fun isLevelBlockedByFailuresSumaResta(level: Int): Boolean {
-        if (level == 1) return false
-        return getConsecutiveFailuresSumaResta(level) >= 12
-    }
-
-    fun incrementConsecutiveFailuresSumaRestaPrincipiante(level: Int) {
-        val currentFailures = consecutiveFailuresSumaRestaPrincipiante[level] ?: 0
-        consecutiveFailuresSumaRestaPrincipiante[level] = currentFailures + 1
-        preferencesSumaRestaPrincipiante.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_SUMARESTA_PRINCIPIANTE:$level", consecutiveFailuresSumaRestaPrincipiante[level] ?: 0)
-        }
-    }
-
-    fun resetConsecutiveFailuresSumaRestaPrincipiante(level: Int) {
-        consecutiveFailuresSumaRestaPrincipiante[level] = 0
-        preferencesSumaRestaPrincipiante.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_SUMARESTA_PRINCIPIANTE:$level", 0)
-        }
-    }
-
-    fun getConsecutiveFailuresSumaRestaPrincipiante(level: Int): Int {
-        return consecutiveFailuresSumaRestaPrincipiante[level] ?: 0
-    }
-
-    fun isLevelBlockedByFailuresSumaRestaPrincipiante(level: Int): Boolean {
-        if (level == 1) return false
-        return getConsecutiveFailuresSumaRestaPrincipiante(level) >= 12
-    }
-
-    fun incrementConsecutiveFailuresSumaRestaPro(level: Int) {
-        val currentFailures = consecutiveFailuresSumaRestaPro[level] ?: 0
-        consecutiveFailuresSumaRestaPro[level] = currentFailures + 1
-        preferencesSumaRestaPro.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_SUMARESTA_PRO:$level", consecutiveFailuresSumaRestaPro[level] ?: 0)
-        }
-    }
-
-    fun resetConsecutiveFailuresSumaRestaPro(level: Int) {
-        consecutiveFailuresSumaRestaPro[level] = 0
-        preferencesSumaRestaPro.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_SUMARESTA_PRO:$level", 0)
-        }
-    }
-
-    fun getConsecutiveFailuresSumaRestaPro(level: Int): Int {
-        return consecutiveFailuresSumaRestaPro[level] ?: 0
-    }
-
-    fun isLevelBlockedByFailuresSumaRestaPro(level: Int): Boolean {
-        if (level == 1) return false
-        return getConsecutiveFailuresSumaRestaPro(level) >= 12
-    }
-
-    fun incrementConsecutiveFailuresMasPlus(level: Int) {
-        val currentFailures = consecutiveFailuresMasPlus[level] ?: 0
-        consecutiveFailuresMasPlus[level] = currentFailures + 1
-        preferencesMasPlus.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_MAS_PLUS:$level", consecutiveFailuresMasPlus[level] ?: 0)
-        }
-    }
-
-    fun resetConsecutiveFailuresMasPlus(level: Int) {
-        consecutiveFailuresMasPlus[level] = 0
-        preferencesMasPlus.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_MAS_PLUS:$level", 0)
-        }
-    }
-
-    fun getConsecutiveFailuresMasPlus(level: Int): Int {
-        return consecutiveFailuresMasPlus[level] ?: 0
-    }
-
-    fun isLevelBlockedByFailuresMasPlus(level: Int): Boolean {
-        if (level == 1) return false
-        return getConsecutiveFailuresMasPlus(level) >= 12
-    }
-
-    fun incrementConsecutiveFailuresMasPlusPrincipiante(level: Int) {
-        val currentFailures = consecutiveFailuresMasPlusPrincipiante[level] ?: 0
-        consecutiveFailuresMasPlusPrincipiante[level] = currentFailures + 1
-        preferencesMasPlusPrincipiante.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_MAS_PLUS_PRINCIPIANTE:$level", consecutiveFailuresMasPlusPrincipiante[level] ?: 0)
-        }
-    }
-
-    fun resetConsecutiveFailuresMasPlusPrincipiante(level: Int) {
-        consecutiveFailuresMasPlusPrincipiante[level] = 0
-        preferencesMasPlusPrincipiante.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_MAS_PLUS_PRINCIPIANTE:$level", 0)
-        }
-    }
-
-    fun getConsecutiveFailuresMasPlusPrincipiante(level: Int): Int {
-        return consecutiveFailuresMasPlusPrincipiante[level] ?: 0
-    }
-
-    fun isLevelBlockedByFailuresMasPlusPrincipiante(level: Int): Boolean {
-        if (level == 1) return false
-        return getConsecutiveFailuresMasPlusPrincipiante(level) >= 12
-    }
-
-    fun incrementConsecutiveFailuresMasPlusPro(level: Int) {
-        val currentFailures = consecutiveFailuresMasPlusPro[level] ?: 0
-        consecutiveFailuresMasPlusPro[level] = currentFailures + 1
-        preferencesMasPlusPro.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_MAS_PLUS_PRO:$level", consecutiveFailuresMasPlusPro[level] ?: 0)
-        }
-    }
-
-    fun resetConsecutiveFailuresMasPlusPro(level: Int) {
-        consecutiveFailuresMasPlusPro[level] = 0
-        preferencesMasPlusPro.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_MAS_PLUS_PRO:$level", 0)
-        }
-    }
-
-    fun getConsecutiveFailuresMasPlusPro(level: Int): Int {
-        return consecutiveFailuresMasPlusPro[level] ?: 0
-    }
-
-    fun isLevelBlockedByFailuresMasPlusPro(level: Int): Boolean {
-        if (level == 1) return false
-        return getConsecutiveFailuresMasPlusPro(level) >= 12
-    }
-
-    fun incrementConsecutiveFailuresGenioPlus(level: Int) {
-        val currentFailures = consecutiveFailuresGenioPlus[level] ?: 0
-        consecutiveFailuresGenioPlus[level] = currentFailures + 1
-        preferencesGenioPlus.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_GENIO_PLUS:$level", consecutiveFailuresGenioPlus[level] ?: 0)
-        }
-    }
-
-    fun resetConsecutiveFailuresGenioPlus(level: Int) {
-        val prefs = preferencesGenioPlus
-        prefs.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_GENIO_PLUS:$level", 0)
-        }
-    }
-
-    fun getConsecutiveFailuresGenioPlus(level: Int): Int {
-        val prefs = preferencesGenioPlus
-        return prefs.getInt("$KEY_CONSECUTIVE_FAILURES_GENIO_PLUS:$level", 0)
-    }
-
-    fun isLevelBlockedByFailuresGenioPlus(level: Int): Boolean {
-        if (level == 1) return false
-        return getConsecutiveFailuresGenioPlus(level) >= 12
-    }
-
-    fun incrementConsecutiveFailuresGenioPlusPrincipiante(level: Int) {
-        val currentFailures = consecutiveFailuresGenioPlusPrincipiante[level] ?: 0
-        consecutiveFailuresGenioPlusPrincipiante[level] = currentFailures + 1
-        preferencesGenioPlusPrincipiante.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_GENIO_PLUS_PRINCIPIANTE:$level", consecutiveFailuresGenioPlusPrincipiante[level] ?: 0)
-        }
-    }
-
-    fun resetConsecutiveFailuresGenioPlusPrincipiante(level: Int) {
-        consecutiveFailuresGenioPlusPrincipiante[level] = 0
-        preferencesGenioPlusPrincipiante.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_GENIO_PLUS_PRINCIPIANTE:$level", 0)
-        }
-    }
-
-    fun getConsecutiveFailuresGenioPlusPrincipiante(level: Int): Int {
-        return consecutiveFailuresGenioPlusPrincipiante[level] ?: 0
-    }
-
-    fun isLevelBlockedByFailuresGenioPlusPrincipiante(level: Int): Boolean {
-        if (level == 1) return false
-        return getConsecutiveFailuresGenioPlusPrincipiante(level) >= 12
-    }
-
-    fun incrementConsecutiveFailuresGenioPlusPro(level: Int) {
-        val currentFailures = consecutiveFailuresGenioPlusPro[level] ?: 0
-        consecutiveFailuresGenioPlusPro[level] = currentFailures + 1
-        preferencesGenioPlusPro.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_GENIO_PLUS_PRO:$level", consecutiveFailuresGenioPlusPro[level] ?: 0)
-        }
-    }
-
-    fun resetConsecutiveFailuresGenioPlusPro(level: Int) {
-        consecutiveFailuresGenioPlusPro[level] = 0
-        preferencesGenioPlusPro.edit {
-            putInt("$KEY_CONSECUTIVE_FAILURES_GENIO_PLUS_PRO:$level", 0)
-        }
-    }
-
-    fun getConsecutiveFailuresGenioPlusPro(level: Int): Int {
-        return consecutiveFailuresGenioPlusPro[level] ?: 0
-    }
-
-    fun isLevelBlockedByFailuresGenioPlusPro(level: Int): Boolean {
-        if (level == 1) return false
-        return getConsecutiveFailuresGenioPlusPro(level) >= 12
-    }
-
-    fun resetStatsAndTimes() {
-        totalGamesGlobal = 0
-        correctGamesGlobal = 0
-
-        lastIqComponentByGame.clear()
-
-        totalGamesNumerosPlus = 0
-        totalTimeNumerosPlus = 0.0
-
-        // --- NUEVOS CONTADORES DE ÉXITO ---
-        totalGamesNumerosPlusExitos = 0
-        totalTimeNumerosPlusExitos = 0.0
-
-        totalGamesDeciPlus = 0
-        totalTimeDeciPlus = 0.0
-
-        totalGamesDeciPlusExitos = 0
-        totalTimeDeciPlusExitos = 0.0
-
-        totalGamesRomas = 0
-        totalTimeRomas = 0.0
-
-        totalGamesRomasExitos = 0
-        totalTimeRomasExitos = 0.0
-
-        totalGamesAlfaNumeros = 0
-        totalTimeAlfaNumeros = 0.0
-
-        totalGamesAlfaNumerosExitos = 0
-        totalTimeAlfaNumerosExitos = 0.0
-
-        totalGamesSumaResta = 0
-        totalTimeSumaResta = 0.0
-
-        totalGamesSumaRestaExitos = 0
-        totalTimeSumaRestaExitos = 0.0
-
-        totalGamesMasPlus = 0
-        totalTimeMasPlus = 0.0
-
-        totalGamesMasPlusExitos = 0
-        totalTimeMasPlusExitos = 0.0
-
-        totalGamesGenioPlus = 0
-        totalTimeGenioPlus = 0.0
-
-        totalGamesGenioPlusExitos = 0
-        totalTimeGenioPlusExitos = 0.0
-    }
-
-    fun getTotalUniqueLevelsCompletedAllGames(): Int {
-        return getCompletedLevelsPrincipiante().size +
-                getCompletedLevels().size +
-                getCompletedLevelsPro().size +
-                getCompletedLevelsDeciPlusPrincipiante().size +
-                getCompletedLevelsDeciPlus().size +
-                getCompletedLevelsDeciPlusPro().size +
-                getCompletedLevelsRomasPrincipiante().size +
-                getCompletedLevelsRomas().size +
-                getCompletedLevelsRomasPro().size +
-                getCompletedLevelsAlfaNumerosPrincipiante().size +
-                getCompletedLevelsAlfaNumeros().size +
-                getCompletedLevelsAlfaNumerosPro().size +
-                getCompletedLevelsSumaRestaPrincipiante().size +
-                getCompletedLevelsSumaResta().size +
-                getCompletedLevelsSumaRestaPro().size +
-                getCompletedLevelsMasPlusPrincipiante().size +
-                getCompletedLevelsMasPlus().size +
-                getCompletedLevelsMasPlusPro().size +
-                getCompletedLevelsGenioPlusPrincipiante().size +
-                getCompletedLevelsGenioPlus().size +
-                getCompletedLevelsGenioPlusPro().size
-    }
+    fun getPrecisionGlobal(): Double = if (totalGamesGlobal > 0) correctGamesGlobal.toDouble() / totalGamesGlobal else 1.0
+    fun getTiempoPromedioNumerosPlus(): Double = if (totalGamesNumerosPlusExitos > 0) totalTimeNumerosPlusExitos / totalGamesNumerosPlusExitos else 1.0
+    fun getTiempoPromedioDeciPlus(): Double = if (totalGamesDeciPlusExitos > 0) totalTimeDeciPlusExitos / totalGamesDeciPlusExitos else 1.0
+    fun getTiempoPromedioRomas(): Double = if (totalGamesRomasExitos > 0) totalTimeRomasExitos / totalGamesRomasExitos else 1.0
+    fun getTiempoPromedioAlfaNumeros(): Double = if (totalGamesAlfaNumerosExitos > 0) totalTimeAlfaNumerosExitos / totalGamesAlfaNumerosExitos else 1.0
+    fun getTiempoPromedioSumaResta(): Double = if (totalGamesSumaRestaExitos > 0) totalTimeSumaRestaExitos / totalGamesSumaRestaExitos else 1.0
+    fun getTiempoPromedioMasPlus(): Double = if (totalGamesMasPlusExitos > 0) totalTimeMasPlusExitos / totalGamesMasPlusExitos else 1.0
+    fun getTiempoPromedioGenioPlus(): Double = if (totalGamesGenioPlusExitos > 0) totalTimeGenioPlusExitos / totalGamesGenioPlusExitos else 1.0
 
     fun getTiempoPromedioGlobal(): Double {
-        val totalTiempo =
-                totalTimeNumerosPlusExitos +
-                totalTimeDeciPlusExitos +
-                totalTimeRomasExitos +
-                totalTimeAlfaNumerosExitos +
-                totalTimeSumaRestaExitos +
-                totalTimeMasPlusExitos +
-                totalTimeGenioPlusExitos
-
-        val totalJuegos =
-                totalGamesNumerosPlusExitos +
-                totalGamesDeciPlusExitos +
-                totalGamesRomasExitos +
-                totalGamesAlfaNumerosExitos +
-                totalGamesSumaRestaExitos +
-                totalGamesMasPlusExitos +
-                totalGamesGenioPlusExitos
-
+        val totalTiempo = totalTimeNumerosPlusExitos + totalTimeDeciPlusExitos + totalTimeRomasExitos +
+                totalTimeAlfaNumerosExitos + totalTimeSumaRestaExitos + totalTimeMasPlusExitos + totalTimeGenioPlusExitos
+        val totalJuegos = totalGamesNumerosPlusExitos + totalGamesDeciPlusExitos + totalGamesRomasExitos +
+                totalGamesAlfaNumerosExitos + totalGamesSumaRestaExitos + totalGamesMasPlusExitos + totalGamesGenioPlusExitos
         return if (totalJuegos > 0) totalTiempo / totalJuegos else 1.0
     }
 
-    fun haJugadoAlMenosUnNivelEnCadaJuegoYGrado(): Boolean {
-        return getCompletedLevelsPrincipiante().isNotEmpty() &&
-                getCompletedLevels().isNotEmpty() &&
-                getCompletedLevelsPro().isNotEmpty() &&
-                getCompletedLevelsDeciPlusPrincipiante().isNotEmpty() &&
-                getCompletedLevelsDeciPlus().isNotEmpty() &&
-                getCompletedLevelsDeciPlusPro().isNotEmpty() &&
-                getCompletedLevelsRomasPrincipiante().isNotEmpty() &&
-                getCompletedLevelsRomas().isNotEmpty() &&
-                getCompletedLevelsRomasPro().isNotEmpty() &&
-                getCompletedLevelsAlfaNumerosPrincipiante().isNotEmpty() &&
-                getCompletedLevelsAlfaNumeros().isNotEmpty() &&
-                getCompletedLevelsAlfaNumerosPro().isNotEmpty() &&
-                getCompletedLevelsSumaRestaPrincipiante().isNotEmpty() &&
-                getCompletedLevelsSumaResta().isNotEmpty() &&
-                getCompletedLevelsSumaRestaPro().isNotEmpty() &&
-                getCompletedLevelsMasPlusPrincipiante().isNotEmpty() &&
-                getCompletedLevelsMasPlus().isNotEmpty() &&
-                getCompletedLevelsMasPlusPro().isNotEmpty() &&
-                getCompletedLevelsGenioPlusPrincipiante().isNotEmpty() &&
-                getCompletedLevelsGenioPlus().isNotEmpty() &&
-                getCompletedLevelsGenioPlusPro().isNotEmpty()
+
+    fun addCompletedLevel(level: Int) = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.AVANZADO).addCompletedLevel(level)
+    fun addCompletedLevelPrincipiante(level: Int) = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRINCIPIANTE).addCompletedLevel(level)
+    fun addCompletedLevelPro(level: Int) = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRO).addCompletedLevel(level)
+    fun addCompletedLevelDeciPlus(level: Int) = getOrCreateManager(Game.DECI_PLUS, Difficulty.AVANZADO).addCompletedLevel(level)
+    fun addCompletedLevelDeciPlusPrincipiante(level: Int) = getOrCreateManager(Game.DECI_PLUS, Difficulty.PRINCIPIANTE).addCompletedLevel(level)
+    fun addCompletedLevelDeciPlusPro(level: Int) = getOrCreateManager(Game.DECI_PLUS, Difficulty.PRO).addCompletedLevel(level)
+    fun addCompletedLevelRomas(level: Int) = getOrCreateManager(Game.ROMAS, Difficulty.AVANZADO).addCompletedLevel(level)
+    fun addCompletedLevelRomasPrincipiante(level: Int) = getOrCreateManager(Game.ROMAS, Difficulty.PRINCIPIANTE).addCompletedLevel(level)
+    fun addCompletedLevelRomasPro(level: Int) = getOrCreateManager(Game.ROMAS, Difficulty.PRO).addCompletedLevel(level)
+    fun addCompletedLevelAlfaNumeros(level: Int) = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.AVANZADO).addCompletedLevel(level)
+    fun addCompletedLevelAlfaNumerosPrincipiante(level: Int) = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRINCIPIANTE).addCompletedLevel(level)
+    fun addCompletedLevelAlfaNumerosPro(level: Int) = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRO).addCompletedLevel(level)
+    fun addCompletedLevelSumaResta(level: Int) = getOrCreateManager(Game.SUMA_RESTA, Difficulty.AVANZADO).addCompletedLevel(level)
+    fun addCompletedLevelSumaRestaPrincipiante(level: Int) = getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRINCIPIANTE).addCompletedLevel(level)
+    fun addCompletedLevelSumaRestaPro(level: Int) = getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRO).addCompletedLevel(level)
+    fun addCompletedLevelMasPlus(level: Int) = getOrCreateManager(Game.MAS_PLUS, Difficulty.AVANZADO).addCompletedLevel(level)
+    fun addCompletedLevelMasPlusPrincipiante(level: Int) = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRINCIPIANTE).addCompletedLevel(level)
+    fun addCompletedLevelMasPlusPro(level: Int) = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRO).addCompletedLevel(level)
+    fun addCompletedLevelGenioPlus(level: Int) = getOrCreateManager(Game.GENIO_PLUS, Difficulty.AVANZADO).addCompletedLevel(level)
+    fun addCompletedLevelGenioPlusPrincipiante(level: Int) = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRINCIPIANTE).addCompletedLevel(level)
+    fun addCompletedLevelGenioPlusPro(level: Int) = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRO).addCompletedLevel(level)
+
+
+    fun hasCompletedLevel(level: Int): Boolean = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.AVANZADO).hasCompletedLevel(level)
+    fun hasCompletedLevelPrincipiante(level: Int): Boolean = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRINCIPIANTE).hasCompletedLevel(level)
+    fun hasCompletedLevelPro(level: Int): Boolean = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRO).hasCompletedLevel(level)
+    fun hasCompletedLevelDeciPlus(level: Int): Boolean = getOrCreateManager(Game.DECI_PLUS, Difficulty.AVANZADO).hasCompletedLevel(level)
+    fun hasCompletedLevelDeciPlusPrincipiante(level: Int): Boolean = getOrCreateManager(Game.DECI_PLUS, Difficulty.PRINCIPIANTE).hasCompletedLevel(level)
+    fun hasCompletedLevelDeciPlusPro(level: Int): Boolean = getOrCreateManager(Game.DECI_PLUS, Difficulty.PRO).hasCompletedLevel(level)
+    fun hasCompletedLevelRomas(level: Int): Boolean = getOrCreateManager(Game.ROMAS, Difficulty.AVANZADO).hasCompletedLevel(level)
+    fun hasCompletedLevelRomasPrincipiante(level: Int): Boolean = getOrCreateManager(Game.ROMAS, Difficulty.PRINCIPIANTE).hasCompletedLevel(level)
+    fun hasCompletedLevelRomasPro(level: Int): Boolean = getOrCreateManager(Game.ROMAS, Difficulty.PRO).hasCompletedLevel(level)
+    fun hasCompletedLevelAlfaNumeros(level: Int): Boolean = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.AVANZADO).hasCompletedLevel(level)
+    fun hasCompletedLevelAlfaNumerosPrincipiante(level: Int): Boolean = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRINCIPIANTE).hasCompletedLevel(level)
+    fun hasCompletedLevelAlfaNumerosPro(level: Int): Boolean = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRO).hasCompletedLevel(level)
+    fun hasCompletedLevelSumaResta(level: Int): Boolean = getOrCreateManager(Game.SUMA_RESTA, Difficulty.AVANZADO).hasCompletedLevel(level)
+    fun hasCompletedLevelSumaRestaPrincipiante(level: Int): Boolean = getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRINCIPIANTE).hasCompletedLevel(level)
+    fun hasCompletedLevelSumaRestaPro(level: Int): Boolean = getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRO).hasCompletedLevel(level)
+    fun hasCompletedLevelMasPlus(level: Int): Boolean = getOrCreateManager(Game.MAS_PLUS, Difficulty.AVANZADO).hasCompletedLevel(level)
+    fun hasCompletedLevelMasPlusPrincipiante(level: Int): Boolean = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRINCIPIANTE).hasCompletedLevel(level)
+    fun hasCompletedLevelMasPlusPro(level: Int): Boolean = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRO).hasCompletedLevel(level)
+    fun hasCompletedLevelGenioPlus(level: Int): Boolean = getOrCreateManager(Game.GENIO_PLUS, Difficulty.AVANZADO).hasCompletedLevel(level)
+    fun hasCompletedLevelGenioPlusPrincipiante(level: Int): Boolean = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRINCIPIANTE).hasCompletedLevel(level)
+    fun hasCompletedLevelGenioPlusPro(level: Int): Boolean = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRO).hasCompletedLevel(level)
+
+
+    fun getUniqueLevelsPlayedNumerosPlusPrincipiante(): Int = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRINCIPIANTE).getCompletedLevels().size
+    fun getUniqueLevelsPlayedNumerosPlusAvanzado(): Int = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.AVANZADO).getCompletedLevels().size
+    fun getUniqueLevelsPlayedNumerosPlusPro(): Int = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRO).getCompletedLevels().size
+    fun getUniqueLevelsPlayedDeciPlusPrincipiante(): Int = getOrCreateManager(Game.DECI_PLUS, Difficulty.PRINCIPIANTE).getCompletedLevels().size
+    fun getUniqueLevelsPlayedDeciPlusAvanzado(): Int = getOrCreateManager(Game.DECI_PLUS, Difficulty.AVANZADO).getCompletedLevels().size
+    fun getUniqueLevelsPlayedDeciPlusPro(): Int = getOrCreateManager(Game.DECI_PLUS, Difficulty.PRO).getCompletedLevels().size
+    fun getUniqueLevelsPlayedRomasPrincipiante(): Int = getOrCreateManager(Game.ROMAS, Difficulty.PRINCIPIANTE).getCompletedLevels().size
+    fun getUniqueLevelsPlayedRomasAvanzado(): Int = getOrCreateManager(Game.ROMAS, Difficulty.AVANZADO).getCompletedLevels().size
+    fun getUniqueLevelsPlayedRomasPro(): Int = getOrCreateManager(Game.ROMAS, Difficulty.PRO).getCompletedLevels().size
+    fun getUniqueLevelsPlayedAlfaNumerosPrincipiante(): Int = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRINCIPIANTE).getCompletedLevels().size
+    fun getUniqueLevelsPlayedAlfaNumerosAvanzado(): Int = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.AVANZADO).getCompletedLevels().size
+    fun getUniqueLevelsPlayedAlfaNumerosPro(): Int = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRO).getCompletedLevels().size
+    fun getUniqueLevelsPlayedSumaRestaPrincipiante(): Int = getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRINCIPIANTE).getCompletedLevels().size
+    fun getUniqueLevelsPlayedSumaRestaAvanzado(): Int = getOrCreateManager(Game.SUMA_RESTA, Difficulty.AVANZADO).getCompletedLevels().size
+    fun getUniqueLevelsPlayedSumaRestaPro(): Int = getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRO).getCompletedLevels().size
+    fun getUniqueLevelsPlayedMasPlusPrincipiante(): Int = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRINCIPIANTE).getCompletedLevels().size
+    fun getUniqueLevelsPlayedMasPlusAvanzado(): Int = getOrCreateManager(Game.MAS_PLUS, Difficulty.AVANZADO).getCompletedLevels().size
+    fun getUniqueLevelsPlayedMasPlusPro(): Int = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRO).getCompletedLevels().size
+    fun getUniqueLevelsPlayedGenioPlusPrincipiante(): Int = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRINCIPIANTE).getCompletedLevels().size
+    fun getUniqueLevelsPlayedGenioPlusAvanzado(): Int = getOrCreateManager(Game.GENIO_PLUS, Difficulty.AVANZADO).getCompletedLevels().size
+    fun getUniqueLevelsPlayedGenioPlusPro(): Int = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRO).getCompletedLevels().size
+
+
+    fun getMissingLevelsNumerosPlusPrincipiante(): Int = (12 - getUniqueLevelsPlayedNumerosPlusPrincipiante()).coerceAtLeast(0)
+    fun getMissingLevelsNumerosPlusAvanzado(): Int = (12 - getUniqueLevelsPlayedNumerosPlusAvanzado()).coerceAtLeast(0)
+    fun getMissingLevelsNumerosPlusPro(): Int = (12 - getUniqueLevelsPlayedNumerosPlusPro()).coerceAtLeast(0)
+    fun getMissingLevelsDeciPlusPrincipiante(): Int = (12 - getUniqueLevelsPlayedDeciPlusPrincipiante()).coerceAtLeast(0)
+    fun getMissingLevelsDeciPlusAvanzado(): Int = (12 - getUniqueLevelsPlayedDeciPlusAvanzado()).coerceAtLeast(0)
+    fun getMissingLevelsDeciPlusPro(): Int = (12 - getUniqueLevelsPlayedDeciPlusPro()).coerceAtLeast(0)
+    fun getMissingLevelsRomasPrincipiante(): Int = (12 - getUniqueLevelsPlayedRomasPrincipiante()).coerceAtLeast(0)
+    fun getMissingLevelsRomasAvanzado(): Int = (12 - getUniqueLevelsPlayedRomasAvanzado()).coerceAtLeast(0)
+    fun getMissingLevelsRomasPro(): Int = (12 - getUniqueLevelsPlayedRomasPro()).coerceAtLeast(0)
+    fun getMissingLevelsAlfaNumerosPrincipiante(): Int = (12 - getUniqueLevelsPlayedAlfaNumerosPrincipiante()).coerceAtLeast(0)
+    fun getMissingLevelsAlfaNumerosAvanzado(): Int = (12 - getUniqueLevelsPlayedAlfaNumerosAvanzado()).coerceAtLeast(0)
+    fun getMissingLevelsAlfaNumerosPro(): Int = (12 - getUniqueLevelsPlayedAlfaNumerosPro()).coerceAtLeast(0)
+    fun getMissingLevelsSumaRestaPrincipiante(): Int = (12 - getUniqueLevelsPlayedSumaRestaPrincipiante()).coerceAtLeast(0)
+    fun getMissingLevelsSumaRestaAvanzado(): Int = (12 - getUniqueLevelsPlayedSumaRestaAvanzado()).coerceAtLeast(0)
+    fun getMissingLevelsSumaRestaPro(): Int = (12 - getUniqueLevelsPlayedSumaRestaPro()).coerceAtLeast(0)
+    fun getMissingLevelsMasPlusPrincipiante(): Int = (12 - getUniqueLevelsPlayedMasPlusPrincipiante()).coerceAtLeast(0)
+    fun getMissingLevelsMasPlusAvanzado(): Int = (12 - getUniqueLevelsPlayedMasPlusAvanzado()).coerceAtLeast(0)
+    fun getMissingLevelsMasPlusPro(): Int = (12 - getUniqueLevelsPlayedMasPlusPro()).coerceAtLeast(0)
+    fun getMissingLevelsGenioPlusPrincipiante(): Int = (12 - getUniqueLevelsPlayedGenioPlusPrincipiante()).coerceAtLeast(0)
+    fun getMissingLevelsGenioPlusAvanzado(): Int = (12 - getUniqueLevelsPlayedGenioPlusAvanzado()).coerceAtLeast(0)
+    fun getMissingLevelsGenioPlusPro(): Int = (12 - getUniqueLevelsPlayedGenioPlusPro()).coerceAtLeast(0)
+
+
+    fun isEligibleForSpeedRankingNumerosPlus(): Boolean =
+        getUniqueLevelsPlayedNumerosPlusPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedNumerosPlusAvanzado() >= 12 &&
+                getUniqueLevelsPlayedNumerosPlusPro() >= 12
+
+    fun isEligibleForSpeedRankingDeciPlus(): Boolean =
+        getUniqueLevelsPlayedDeciPlusPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedDeciPlusAvanzado() >= 12 &&
+                getUniqueLevelsPlayedDeciPlusPro() >= 12
+
+    fun isEligibleForSpeedRankingRomas(): Boolean =
+        getUniqueLevelsPlayedRomasPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedRomasAvanzado() >= 12 &&
+                getUniqueLevelsPlayedRomasPro() >= 12
+
+    fun isEligibleForSpeedRankingAlfaNumeros(): Boolean =
+        getUniqueLevelsPlayedAlfaNumerosPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedAlfaNumerosAvanzado() >= 12 &&
+                getUniqueLevelsPlayedAlfaNumerosPro() >= 12
+
+    fun isEligibleForSpeedRankingSumaResta(): Boolean =
+        getUniqueLevelsPlayedSumaRestaPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedSumaRestaAvanzado() >= 12 &&
+                getUniqueLevelsPlayedSumaRestaPro() >= 12
+
+    fun isEligibleForSpeedRankingMasPlus(): Boolean =
+        getUniqueLevelsPlayedMasPlusPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedMasPlusAvanzado() >= 12 &&
+                getUniqueLevelsPlayedMasPlusPro() >= 12
+
+    fun isEligibleForSpeedRankingGenioPlus(): Boolean =
+        getUniqueLevelsPlayedGenioPlusPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedGenioPlusAvanzado() >= 12 &&
+                getUniqueLevelsPlayedGenioPlusPro() >= 12
+
+
+    fun reset() = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.AVANZADO).reset()
+    fun resetPrincipiante() = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRINCIPIANTE).reset()
+    fun resetPro() = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRO).reset()
+    fun resetDeciPlus() = getOrCreateManager(Game.DECI_PLUS, Difficulty.AVANZADO).reset()
+    fun resetDeciPlusPrincipiante() = getOrCreateManager(Game.DECI_PLUS, Difficulty.PRINCIPIANTE).reset()
+    fun resetDeciPlusPro() = getOrCreateManager(Game.DECI_PLUS, Difficulty.PRO).reset()
+    fun resetRomas() = getOrCreateManager(Game.ROMAS, Difficulty.AVANZADO).reset()
+    fun resetRomasPrincipiante() = getOrCreateManager(Game.ROMAS, Difficulty.PRINCIPIANTE).reset()
+    fun resetRomasPro() = getOrCreateManager(Game.ROMAS, Difficulty.PRO).reset()
+    fun resetAlfaNumeros() = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.AVANZADO).reset()
+    fun resetAlfaNumerosPrincipiante() = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRINCIPIANTE).reset()
+    fun resetAlfaNumerosPro() = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRO).reset()
+    fun resetSumaResta() = getOrCreateManager(Game.SUMA_RESTA, Difficulty.AVANZADO).reset()
+    fun resetSumaRestaPrincipiante() = getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRINCIPIANTE).reset()
+    fun resetSumaRestaPro() = getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRO).reset()
+    fun resetMasPlus() = getOrCreateManager(Game.MAS_PLUS, Difficulty.AVANZADO).reset()
+    fun resetMasPlusPrincipiante() = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRINCIPIANTE).reset()
+    fun resetMasPlusPro() = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRO).reset()
+    fun resetGenioPlus() = getOrCreateManager(Game.GENIO_PLUS, Difficulty.AVANZADO).reset()
+    fun resetGenioPlusPrincipiante() = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRINCIPIANTE).reset()
+    fun resetGenioPlusPro() = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRO).reset()
+
+
+    fun incrementConsecutiveFailures(level: Int) = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.AVANZADO).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailures(level: Int) = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.AVANZADO).resetConsecutiveFailures(level)
+    fun getConsecutiveFailures(level: Int): Int = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.AVANZADO).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailures(level: Int): Boolean = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.AVANZADO).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresPrincipiante(level: Int) = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRINCIPIANTE).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresPrincipiante(level: Int) = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRINCIPIANTE).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresPrincipiante(level: Int): Int = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRINCIPIANTE).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresPrincipiante(level: Int): Boolean = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRINCIPIANTE).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresPro(level: Int) = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRO).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresPro(level: Int) = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRO).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresPro(level: Int): Int = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRO).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresPro(level: Int): Boolean = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRO).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresDeciPlus(level: Int) = getOrCreateManager(Game.DECI_PLUS, Difficulty.AVANZADO).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresDeciPlus(level: Int) = getOrCreateManager(Game.DECI_PLUS, Difficulty.AVANZADO).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresDeciPlus(level: Int): Int = getOrCreateManager(Game.DECI_PLUS, Difficulty.AVANZADO).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresDeciPlus(level: Int): Boolean = getOrCreateManager(Game.DECI_PLUS, Difficulty.AVANZADO).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresDeciPlusPrincipiante(level: Int) = getOrCreateManager(Game.DECI_PLUS, Difficulty.PRINCIPIANTE).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresDeciPlusPrincipiante(level: Int) = getOrCreateManager(Game.DECI_PLUS, Difficulty.PRINCIPIANTE).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresDeciPlusPrincipiante(level: Int): Int = getOrCreateManager(Game.DECI_PLUS, Difficulty.PRINCIPIANTE).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresDeciPlusPrincipiante(level: Int): Boolean = getOrCreateManager(Game.DECI_PLUS, Difficulty.PRINCIPIANTE).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresDeciPlusPro(level: Int) = getOrCreateManager(Game.DECI_PLUS, Difficulty.PRO).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresDeciPlusPro(level: Int) = getOrCreateManager(Game.DECI_PLUS, Difficulty.PRO).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresDeciPlusPro(level: Int): Int = getOrCreateManager(Game.DECI_PLUS, Difficulty.PRO).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresDeciPlusPro(level: Int): Boolean = getOrCreateManager(Game.DECI_PLUS, Difficulty.PRO).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresRomas(level: Int) = getOrCreateManager(Game.ROMAS, Difficulty.AVANZADO).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresRomas(level: Int) = getOrCreateManager(Game.ROMAS, Difficulty.AVANZADO).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresRomas(level: Int): Int = getOrCreateManager(Game.ROMAS, Difficulty.AVANZADO).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresRomas(level: Int): Boolean = getOrCreateManager(Game.ROMAS, Difficulty.AVANZADO).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresRomasPrincipiante(level: Int) = getOrCreateManager(Game.ROMAS, Difficulty.PRINCIPIANTE).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresRomasPrincipiante(level: Int) = getOrCreateManager(Game.ROMAS, Difficulty.PRINCIPIANTE).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresRomasPrincipiante(level: Int): Int = getOrCreateManager(Game.ROMAS, Difficulty.PRINCIPIANTE).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresRomasPrincipiante(level: Int): Boolean = getOrCreateManager(Game.ROMAS, Difficulty.PRINCIPIANTE).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresRomasPro(level: Int) = getOrCreateManager(Game.ROMAS, Difficulty.PRO).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresRomasPro(level: Int) = getOrCreateManager(Game.ROMAS, Difficulty.PRO).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresRomasPro(level: Int): Int = getOrCreateManager(Game.ROMAS, Difficulty.PRO).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresRomasPro(level: Int): Boolean = getOrCreateManager(Game.ROMAS, Difficulty.PRO).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresAlfaNumeros(level: Int) = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.AVANZADO).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresAlfaNumeros(level: Int) = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.AVANZADO).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresAlfaNumeros(level: Int): Int = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.AVANZADO).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresAlfaNumeros(level: Int): Boolean = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.AVANZADO).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresAlfaNumerosPrincipiante(level: Int) = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRINCIPIANTE).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresAlfaNumerosPrincipiante(level: Int) = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRINCIPIANTE).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresAlfaNumerosPrincipiante(level: Int): Int = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRINCIPIANTE).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresAlfaNumerosPrincipiante(level: Int): Boolean = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRINCIPIANTE).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresAlfaNumerosPro(level: Int) = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRO).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresAlfaNumerosPro(level: Int) = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRO).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresAlfaNumerosPro(level: Int): Int = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRO).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresAlfaNumerosPro(level: Int): Boolean = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRO).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresSumaResta(level: Int) = getOrCreateManager(Game.SUMA_RESTA, Difficulty.AVANZADO).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresSumaResta(level: Int) = getOrCreateManager(Game.SUMA_RESTA, Difficulty.AVANZADO).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresSumaResta(level: Int): Int = getOrCreateManager(Game.SUMA_RESTA, Difficulty.AVANZADO).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresSumaResta(level: Int): Boolean = getOrCreateManager(Game.SUMA_RESTA, Difficulty.AVANZADO).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresSumaRestaPrincipiante(level: Int) = getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRINCIPIANTE).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresSumaRestaPrincipiante(level: Int) = getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRINCIPIANTE).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresSumaRestaPrincipiante(level: Int): Int = getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRINCIPIANTE).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresSumaRestaPrincipiante(level: Int): Boolean = getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRINCIPIANTE).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresSumaRestaPro(level: Int) = getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRO).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresSumaRestaPro(level: Int) = getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRO).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresSumaRestaPro(level: Int): Int = getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRO).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresSumaRestaPro(level: Int): Boolean = getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRO).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresMasPlus(level: Int) = getOrCreateManager(Game.MAS_PLUS, Difficulty.AVANZADO).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresMasPlus(level: Int) = getOrCreateManager(Game.MAS_PLUS, Difficulty.AVANZADO).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresMasPlus(level: Int): Int = getOrCreateManager(Game.MAS_PLUS, Difficulty.AVANZADO).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresMasPlus(level: Int): Boolean = getOrCreateManager(Game.MAS_PLUS, Difficulty.AVANZADO).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresMasPlusPrincipiante(level: Int) = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRINCIPIANTE).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresMasPlusPrincipiante(level: Int) = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRINCIPIANTE).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresMasPlusPrincipiante(level: Int): Int = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRINCIPIANTE).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresMasPlusPrincipiante(level: Int): Boolean = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRINCIPIANTE).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresMasPlusPro(level: Int) = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRO).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresMasPlusPro(level: Int) = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRO).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresMasPlusPro(level: Int): Int = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRO).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresMasPlusPro(level: Int): Boolean = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRO).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresGenioPlus(level: Int) = getOrCreateManager(Game.GENIO_PLUS, Difficulty.AVANZADO).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresGenioPlus(level: Int) = getOrCreateManager(Game.GENIO_PLUS, Difficulty.AVANZADO).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresGenioPlus(level: Int): Int = getOrCreateManager(Game.GENIO_PLUS, Difficulty.AVANZADO).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresGenioPlus(level: Int): Boolean = getOrCreateManager(Game.GENIO_PLUS, Difficulty.AVANZADO).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresGenioPlusPrincipiante(level: Int) = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRINCIPIANTE).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresGenioPlusPrincipiante(level: Int) = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRINCIPIANTE).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresGenioPlusPrincipiante(level: Int): Int = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRINCIPIANTE).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresGenioPlusPrincipiante(level: Int): Boolean = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRINCIPIANTE).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresGenioPlusPro(level: Int) = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRO).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresGenioPlusPro(level: Int) = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRO).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresGenioPlusPro(level: Int): Int = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRO).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresGenioPlusPro(level: Int): Boolean = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRO).isLevelBlockedByFailures(level)
+
+
+    private fun isEligibleForGlobalRanking(): Boolean =
+        getTotalUniqueLevelsCompletedAllGames() >= RankingActivity.MIN_LEVELS_REQUIRED
+
+    private fun isEligibleSpeedNumerosPlus() = isEligibleForSpeedRankingNumerosPlus()
+    private fun isEligibleSpeedDeciPlus() = isEligibleForSpeedRankingDeciPlus()
+    private fun isEligibleSpeedAlfaNumeros() = isEligibleForSpeedRankingAlfaNumeros()
+    private fun isEligibleSpeedRomas() = isEligibleForSpeedRankingRomas()
+    private fun isEligibleSpeedSumaResta() = isEligibleForSpeedRankingSumaResta()
+    private fun isEligibleSpeedMasPlus() = isEligibleForSpeedRankingMasPlus()
+    private fun isEligibleSpeedGenioPlus() = isEligibleForSpeedRankingGenioPlus()
+
+    private fun isEligibleIQPlusRanking(): Boolean = haJugadoAlMenosUnNivelEnCadaJuegoYGrado()
+
+    fun getRankingList(rankingName: String): List<RankingEntry> {
+        val me = preferences.getString("savedUserName", "User")!!
+        return when (rankingName) {
+            "GLOBAL" -> if (isEligibleForGlobalRanking()) listOf(RankingEntry(me, 1.0)) else emptyList()
+            "VEL_NUMEROS" -> if (isEligibleSpeedNumerosPlus()) listOf(RankingEntry(me, 1.0)) else emptyList()
+            "VEL_DECI" -> if (isEligibleSpeedDeciPlus()) listOf(RankingEntry(me, 1.0)) else emptyList()
+            "VEL_ALFANUM" -> if (isEligibleSpeedAlfaNumeros()) listOf(RankingEntry(me, 1.0)) else emptyList()
+            "VEL_ROMAS" -> if (isEligibleSpeedRomas()) listOf(RankingEntry(me, 1.0)) else emptyList()
+            "VEL_SUMARESTA" -> if (isEligibleSpeedSumaResta()) listOf(RankingEntry(me, 1.0)) else emptyList()
+            "VEL_MAS" -> if (isEligibleSpeedMasPlus()) listOf(RankingEntry(me, 1.0)) else emptyList()
+            "VEL_GENIOS" -> if (isEligibleSpeedGenioPlus()) listOf(RankingEntry(me, 1.0)) else emptyList()
+            "IQ_PLUS" -> if (isEligibleIQPlusRanking()) listOf(RankingEntry(me, 1.0)) else emptyList()
+            else -> emptyList()
+        }
+    }
+
+    fun getUserPositionInRanking(rankingName: String): Int {
+        val me = preferences.getString("savedUserName", "User")!!
+        return getRankingList(rankingName).indexOfFirst { it.userName == me }.let { if (it >= 0) it + 1 else -1 }
+    }
+
+    fun isUserInRanking(rankingName: String): Boolean = getUserPositionInRanking(rankingName) > 0
+
+    fun getIntegralScore(): Double {
+        val rankings = listOf(
+            "GLOBAL", "VEL_NUMEROS", "VEL_DECI", "VEL_ALFANUM", "VEL_ROMAS",
+            "VEL_SUMARESTA", "VEL_MAS", "VEL_GENIOS", "IQ_PLUS"
+        )
+        val positions = rankings.map { pos ->
+            val p = getUserPositionInRanking(pos)
+            if (p > 0) p else (getRankingList(pos).size + 1)
+        }
+        return positions.sum().toDouble() / rankings.size
     }
 
     fun getUserPositionInRankingIntegral(): Int {
@@ -2873,70 +1418,118 @@ object ScoreManager {
             isUserInRanking("VEL_GENIOS"),
             isUserInRanking("IQ_PLUS")
         )
-
         val rankingsCount = rankingsStatus.count { it }
-
-        return if (rankingsCount == 9) {
-            1
-        } else {
-            -1
-        }
+        return if (rankingsCount == 9) 1 else -1
     }
 
-    fun getMaxLevelForCombo(juego: String, grado: String): Int {
-        return when (juego) {
-            "NumerosPlus" -> when (grado) {
-                "Principiante" -> getCompletedLevelsPrincipiante().maxOrNull() ?: 0
-                "Avanzado" -> getCompletedLevels().maxOrNull() ?: 0
-                "Pro" -> getCompletedLevelsPro().maxOrNull() ?: 0
-                else -> 0
-            }
-            "DeciPlus" -> when (grado) {
-                "Principiante" -> getCompletedLevelsDeciPlusPrincipiante().maxOrNull() ?: 0
-                "Avanzado" -> getCompletedLevelsDeciPlus().maxOrNull() ?: 0
-                "Pro" -> getCompletedLevelsDeciPlusPro().maxOrNull() ?: 0
-                else -> 0
-            }
-            "Romas" -> when (grado) {
-                "Principiante" -> getCompletedLevelsRomasPrincipiante().maxOrNull() ?: 0
-                "Avanzado" -> getCompletedLevelsRomas().maxOrNull() ?: 0
-                "Pro" -> getCompletedLevelsRomasPro().maxOrNull() ?: 0
-                else -> 0
-            }
-            "AlfaNumeros" -> when (grado) {
-                "Principiante" -> getCompletedLevelsAlfaNumerosPrincipiante().maxOrNull() ?: 0
-                "Avanzado" -> getCompletedLevelsAlfaNumeros().maxOrNull() ?: 0
-                "Pro" -> getCompletedLevelsAlfaNumerosPro().maxOrNull() ?: 0
-                else -> 0
-            }
-            "SumaResta" -> when (grado) {
-                "Principiante" -> getCompletedLevelsSumaRestaPrincipiante().maxOrNull() ?: 0
-                "Avanzado" -> getCompletedLevelsSumaResta().maxOrNull() ?: 0
-                "Pro" -> getCompletedLevelsSumaRestaPro().maxOrNull() ?: 0
-                else -> 0
-            }
-            "MasPlus" -> when (grado) {
-                "Principiante" -> getCompletedLevelsMasPlusPrincipiante().maxOrNull() ?: 0
-                "Avanzado" -> getCompletedLevelsMasPlus().maxOrNull() ?: 0
-                "Pro" -> getCompletedLevelsMasPlusPro().maxOrNull() ?: 0
-                else -> 0
-            }
-            "GenioPlus" -> when (grado) {
-                "Principiante" -> getCompletedLevelsGenioPlusPrincipiante().maxOrNull() ?: 0
-                "Avanzado" -> getCompletedLevelsGenioPlus().maxOrNull() ?: 0
-                "Pro" -> getCompletedLevelsGenioPlusPro().maxOrNull() ?: 0
-                else -> 0
-            }
-            else -> 0
-        }
+
+    fun getTotalUniqueLevelsCompletedAllGames(): Int {
+        return getUniqueLevelsPlayedNumerosPlusPrincipiante() +
+                getUniqueLevelsPlayedNumerosPlusAvanzado() +
+                getUniqueLevelsPlayedNumerosPlusPro() +
+                getUniqueLevelsPlayedDeciPlusPrincipiante() +
+                getUniqueLevelsPlayedDeciPlusAvanzado() +
+                getUniqueLevelsPlayedDeciPlusPro() +
+                getUniqueLevelsPlayedRomasPrincipiante() +
+                getUniqueLevelsPlayedRomasAvanzado() +
+                getUniqueLevelsPlayedRomasPro() +
+                getUniqueLevelsPlayedAlfaNumerosPrincipiante() +
+                getUniqueLevelsPlayedAlfaNumerosAvanzado() +
+                getUniqueLevelsPlayedAlfaNumerosPro() +
+                getUniqueLevelsPlayedSumaRestaPrincipiante() +
+                getUniqueLevelsPlayedSumaRestaAvanzado() +
+                getUniqueLevelsPlayedSumaRestaPro() +
+                getUniqueLevelsPlayedMasPlusPrincipiante() +
+                getUniqueLevelsPlayedMasPlusAvanzado() +
+                getUniqueLevelsPlayedMasPlusPro() +
+                getUniqueLevelsPlayedGenioPlusPrincipiante() +
+                getUniqueLevelsPlayedGenioPlusAvanzado() +
+                getUniqueLevelsPlayedGenioPlusPro()
+    }
+
+    fun haJugadoAlMenosUnNivelEnCadaJuegoYGrado(): Boolean {
+        return getUniqueLevelsPlayedNumerosPlusPrincipiante() > 0 &&
+                getUniqueLevelsPlayedNumerosPlusAvanzado() > 0 &&
+                getUniqueLevelsPlayedNumerosPlusPro() > 0 &&
+                getUniqueLevelsPlayedDeciPlusPrincipiante() > 0 &&
+                getUniqueLevelsPlayedDeciPlusAvanzado() > 0 &&
+                getUniqueLevelsPlayedDeciPlusPro() > 0 &&
+                getUniqueLevelsPlayedRomasPrincipiante() > 0 &&
+                getUniqueLevelsPlayedRomasAvanzado() > 0 &&
+                getUniqueLevelsPlayedRomasPro() > 0 &&
+                getUniqueLevelsPlayedAlfaNumerosPrincipiante() > 0 &&
+                getUniqueLevelsPlayedAlfaNumerosAvanzado() > 0 &&
+                getUniqueLevelsPlayedAlfaNumerosPro() > 0 &&
+                getUniqueLevelsPlayedSumaRestaPrincipiante() > 0 &&
+                getUniqueLevelsPlayedSumaRestaAvanzado() > 0 &&
+                getUniqueLevelsPlayedSumaRestaPro() > 0 &&
+                getUniqueLevelsPlayedMasPlusPrincipiante() > 0 &&
+                getUniqueLevelsPlayedMasPlusAvanzado() > 0 &&
+                getUniqueLevelsPlayedMasPlusPro() > 0 &&
+                getUniqueLevelsPlayedGenioPlusPrincipiante() > 0 &&
+                getUniqueLevelsPlayedGenioPlusAvanzado() > 0 &&
+                getUniqueLevelsPlayedGenioPlusPro() > 0
+    }
+
+    fun resetStatsAndTimes() {
+        totalGamesGlobal = 0
+        correctGamesGlobal = 0
+        lastIqComponentByGame.clear()
+        totalGamesNumerosPlus = 0
+        totalTimeNumerosPlus = 0.0
+        totalGamesNumerosPlusExitos = 0
+        totalTimeNumerosPlusExitos = 0.0
+        totalGamesDeciPlus = 0
+        totalTimeDeciPlus = 0.0
+        totalGamesDeciPlusExitos = 0
+        totalTimeDeciPlusExitos = 0.0
+        totalGamesRomas = 0
+        totalTimeRomas = 0.0
+        totalGamesRomasExitos = 0
+        totalTimeRomasExitos = 0.0
+        totalGamesAlfaNumeros = 0
+        totalTimeAlfaNumeros = 0.0
+        totalGamesAlfaNumerosExitos = 0
+        totalTimeAlfaNumerosExitos = 0.0
+        totalGamesSumaResta = 0
+        totalTimeSumaResta = 0.0
+        totalGamesSumaRestaExitos = 0
+        totalTimeSumaRestaExitos = 0.0
+        totalGamesMasPlus = 0
+        totalTimeMasPlus = 0.0
+        totalGamesMasPlusExitos = 0
+        totalTimeMasPlusExitos = 0.0
+        totalGamesGenioPlus = 0
+        totalTimeGenioPlus = 0.0
+        totalGamesGenioPlusExitos = 0
+        totalTimeGenioPlusExitos = 0.0
     }
 
     fun updateIqComponent(juego: String, grado: String, valor: Double) {
         lastIqComponentByGame["${juego}_${grado}"] = valor
     }
 
-    fun resetAllProgress(context: Context) {
+    fun getMaxLevelForCombo(juego: String, grado: String): Int {
+        val game = when (juego) {
+            "NumerosPlus" -> Game.NUMEROS_PLUS
+            "DeciPlus" -> Game.DECI_PLUS
+            "Romas" -> Game.ROMAS
+            "AlfaNumeros" -> Game.ALFA_NUMEROS
+            "SumaResta" -> Game.SUMA_RESTA
+            "MasPlus" -> Game.MAS_PLUS
+            "GenioPlus" -> Game.GENIO_PLUS
+            else -> return 0
+        }
+        val difficulty = when (grado) {
+            "Principiante" -> Difficulty.PRINCIPIANTE
+            "Avanzado" -> Difficulty.AVANZADO
+            "Pro" -> Difficulty.PRO
+            else -> return 0
+        }
+        return getOrCreateManager(game, difficulty).getCompletedLevels().maxOrNull() ?: 0
+    }
 
+    fun resetAllProgress(context: Context) {
         reset()
         resetPrincipiante()
         resetPro()
@@ -2974,7 +1567,6 @@ object ScoreManager {
         for (prefName in prefsToClear) {
             context.getSharedPreferences(prefName, Context.MODE_PRIVATE).edit { clear() }
         }
-
     }
 
     fun hasCompleted12LevelsInAnyGame(): Boolean {
@@ -2988,8 +1580,4 @@ object ScoreManager {
         )
         return rankingNames.any { isUserInRanking(it) }
     }
-
-
 }
-
-

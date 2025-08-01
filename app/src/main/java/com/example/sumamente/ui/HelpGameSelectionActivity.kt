@@ -37,25 +37,68 @@ class HelpGameSelectionActivity : BaseActivity() {
             applyBounceEffect(it) { finish() }
         }
         findViewById<ConstraintLayout>(R.id.btn_numeros_plus).setOnClickListener {
-            applyBounceEffect(it) { startActivity(Intent(this, HelpTutorialActivityNumeros::class.java)) }
+            animateHelpIcon(it.findViewById(R.id.ic_help_numeros_plus))
+            applyBounceEffect(it) {
+                it.postDelayed({
+                    startActivity(Intent(this, HelpTutorialActivityNumeros::class.java))
+                }, 700)
+            }
         }
         findViewById<ConstraintLayout>(R.id.btn_deci_plus).setOnClickListener {
-            applyBounceEffect(it) { startActivity(Intent(this, HelpTutorialActivityDeciPlus::class.java)) }
+            animateHelpIcon(it.findViewById(R.id.ic_help_deci_plus))
+            applyBounceEffect(it) {
+                it.postDelayed({
+                    startActivity(Intent(this, HelpTutorialActivityDeciPlus::class.java))
+                }, 700)
+            }
         }
         findViewById<ConstraintLayout>(R.id.btn_romas).setOnClickListener {
-            applyBounceEffect(it) { startActivity(Intent(this, HelpTutorialActivityRomas::class.java)) }
+            animateHelpIcon(it.findViewById(R.id.ic_help_romas))
+            applyBounceEffect(it) {
+                it.postDelayed({
+                    startActivity(Intent(this, HelpTutorialActivityRomas::class.java))
+                }, 700)
+            }
         }
         findViewById<ConstraintLayout>(R.id.btn_alfa_numeros).setOnClickListener {
-            applyBounceEffect(it) { startActivity(Intent(this, HelpTutorialActivityAlfaNumeros::class.java)) }
+            animateHelpIcon(it.findViewById(R.id.ic_help_alfa_numeros))
+            applyBounceEffect(it) {
+                it.postDelayed({
+                    startActivity(Intent(this, HelpTutorialActivityAlfaNumeros::class.java))
+                }, 700)
+            }
         }
         findViewById<ConstraintLayout>(R.id.btn_sumaresta).setOnClickListener {
-            applyBounceEffect(it) { startActivity(Intent(this, HelpTutorialActivitySumaResta::class.java)) }
+            animateHelpIcon(it.findViewById(R.id.ic_help_sumaresta))
+            applyBounceEffect(it) {
+                it.postDelayed({
+                    startActivity(Intent(this, HelpTutorialActivitySumaResta::class.java))
+                }, 700)
+            }
         }
         findViewById<ConstraintLayout>(R.id.btn_mas_plus).setOnClickListener {
-            applyBounceEffect(it) { startActivity(Intent(this, HelpTutorialActivityMasPlus::class.java)) }
+            animateHelpIcon(it.findViewById(R.id.ic_help_mas_plus))
+            applyBounceEffect(it) {
+                it.postDelayed({
+                    startActivity(Intent(this, HelpTutorialActivityMasPlus::class.java))
+                }, 700)
+            }
         }
         findViewById<ConstraintLayout>(R.id.btn_genio_plus).setOnClickListener {
-            applyBounceEffect(it) { startActivity(Intent(this, HelpTutorialActivityGenioPlus::class.java)) }
+            animateHelpIcon(it.findViewById(R.id.ic_help_genio_plus))
+            applyBounceEffect(it) {
+                it.postDelayed({
+                    startActivity(Intent(this, HelpTutorialActivityGenioPlus::class.java))
+                }, 700)
+            }
+        }
+    }
+
+    private fun animateHelpIcon(icon: ImageView) {
+        ObjectAnimator.ofFloat(icon, "rotation", 0f, 360f).apply {
+            duration = 700
+            interpolator = android.view.animation.AccelerateDecelerateInterpolator()
+            start()
         }
     }
 

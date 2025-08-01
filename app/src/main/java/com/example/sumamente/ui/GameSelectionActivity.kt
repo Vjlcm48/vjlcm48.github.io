@@ -12,339 +12,271 @@ import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.example.sumamente.R
 import java.util.Locale
-import android.widget.LinearLayout
+import android.animation.ValueAnimator
+import android.graphics.LinearGradient
+import android.graphics.Matrix
+import android.graphics.Shader
 
 
-class GameSelectionActivity : BaseActivity()  {
+class GameSelectionActivity : BaseActivity() {
+
+
+    private companion object {
+        const val TOTAL_LEVELS = 1470.0
+        const val ANIMATION_DURATION = 450L
+        const val ANIMATION_DELAY_START = 70L
+        const val ANIMATION_DELAY_ITEM = 80L
+        const val ANIMATION_TRANSLATION_Y = 50f
+        const val ANIMATION_TRANSLATION_Y_ITEMS = 60f
+        const val BOUNCE_SCALE_DOWN = 0.9f
+        const val BOUNCE_DURATION = 50L
+    }
+
+    private enum class Game(
+        val buttonId: Int,
+        val prefsName: String,
+        val instructionsKey: String,
+        val difficultyKey: String,
+        val tutorialActivity: Class<*>,
+        val principianteActivity: Class<*>,
+        val avanzadoActivity: Class<*>,
+        val proActivity: Class<*>
+    ) {
+        NUMEROS_PLUS(
+            R.id.btn_numeros_plus,
+            "MyPrefs",
+            "hasSeenInstructionsNumeros",
+            "difficulty_numerosplus",
+            TutorialActivityNumeros::class.java,
+            LevelsActivityPrincipiante::class.java,
+            LevelsActivity::class.java,
+            LevelsActivityPro::class.java
+        ),
+        DECI_PLUS(
+            R.id.btn_deci_plus,
+            "MyPrefsDeciPlus",
+            "hasSeenInstructionsDeciPlus",
+            "difficulty_deciplus",
+            TutorialActivityDeciPlus::class.java,
+            LevelsActivityDeciPlusPrincipiante::class.java,
+            LevelsActivityDeciPlus::class.java,
+            LevelsActivityDeciPlusPro::class.java
+        ),
+        ROMAS(
+            R.id.btn_romas,
+            "MyPrefsRomas",
+            "hasSeenInstructionsRomas",
+            "difficulty_romas",
+            TutorialActivityRomas::class.java,
+            LevelsActivityRomasPrincipiante::class.java,
+            LevelsActivityRomas::class.java,
+            LevelsActivityRomasPro::class.java
+        ),
+        ALFA_NUMEROS(
+            R.id.btn_alfa_numeros,
+            "MyPrefsAlfaNumeros",
+            "hasSeenInstructionsAlfaNumeros",
+            "difficulty_alfanumeros",
+            TutorialActivityAlfaNumeros::class.java,
+            LevelsActivityAlfaNumerosPrincipiante::class.java,
+            LevelsActivityAlfaNumeros::class.java,
+            LevelsActivityAlfaNumerosPro::class.java
+        ),
+        SUMA_RESTA(
+            R.id.btn_sumaresta,
+            "MyPrefsSumaResta",
+            "hasSeenInstructionsSumaResta",
+            "difficulty_sumaresta",
+            TutorialActivitySumaResta::class.java,
+            LevelsActivitySumaRestaPrincipiante::class.java,
+            LevelsActivitySumaResta::class.java,
+            LevelsActivitySumaRestaPro::class.java
+        ),
+        MAS_PLUS(
+            R.id.btn_mas_plus,
+            "MyPrefsMasPlus",
+            "hasSeenInstructionsMasPlus",
+            "difficulty_masplus",
+            TutorialActivityMasPlus::class.java,
+            LevelsActivityMasPlusPrincipiante::class.java,
+            LevelsActivityMasPlus::class.java,
+            LevelsActivityMasPlusPro::class.java
+        ),
+        GENIO_PLUS(
+            R.id.btn_genio_plus,
+            "MyPrefsGenioPlus",
+            "hasSeenInstructionsGenioPlus",
+            "difficulty_genioplus",
+            TutorialActivityGenioPlus::class.java,
+            LevelsActivityGenioPlusPrincipiante::class.java,
+            LevelsActivityGenioPlus::class.java,
+            LevelsActivityGenioPlusPro::class.java
+        )
+    }
+
+    // Datos del juego
+    private data class GameScores(
+        val avanzado: Int,
+        val principiante: Int,
+        val pro: Int
+    ) {
+        val total: Int get() = avanzado + principiante + pro
+    }
+
+    private lateinit var tvTitle: TextView
+    private lateinit var container: LinearLayout
+    private lateinit var btnProgreso: RelativeLayout
+    private lateinit var closeButton: ImageView
+    private lateinit var tvPercentageProgreso: TextView
+
+    private val gameButtons = mutableMapOf<Game, RelativeLayout>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ScoreManager.init(this)
-        ScoreManager.initPrincipiante(this)
-        ScoreManager.initPro(this)
-        ScoreManager.initDeciPlus(this)
-        ScoreManager.initDeciPlusPrincipiante(this)
-        ScoreManager.initDeciPlusPro(this)
-        ScoreManager.initRomas(this)
-        ScoreManager.initRomasPrincipiante(this)
-        ScoreManager.initRomasPro(this)
-        ScoreManager.initAlfaNumeros(this)
-        ScoreManager.initAlfaNumerosPrincipiante(this)
-        ScoreManager.initAlfaNumerosPro(this)
-        ScoreManager.initSumaResta(this)
-        ScoreManager.initSumaRestaPrincipiante(this)
-        ScoreManager.initSumaRestaPro(this)
-        ScoreManager.initMasPlus(this)
-        ScoreManager.initMasPlusPrincipiante(this)
-        ScoreManager.initMasPlusPro(this)
-        ScoreManager.initGenioPlus(this)
-        ScoreManager.initGenioPlusPrincipiante(this)
-        ScoreManager.initGenioPlusPro(this)
-
         setContentView(R.layout.activity_game_selection)
 
-        val tvTitle = findViewById<TextView>(R.id.tv_select_game_title)
-        val container = findViewById<LinearLayout>(R.id.layout_game_buttons)
+        initializeScoreManager()
+        initializeViews()
+        setupAnimations()
+        setupClickListeners()
+        updateUI()
+    }
 
+    override fun onResume() {
+        super.onResume()
+        initializeScoreManager()
+        updateUI()
+        updateProgressButton()
+    }
 
-        tvTitle.translationY = 50f
-        tvTitle.animate()
-            .alpha(1f)
-            .translationY(0f)
-            .setDuration(450)
-            .setStartDelay(70)
-            .start()
+    private fun initializeScoreManager() {
+        with(ScoreManager) {
+            init(this@GameSelectionActivity)
+            initPrincipiante(this@GameSelectionActivity)
+            initPro(this@GameSelectionActivity)
+            initDeciPlus(this@GameSelectionActivity)
+            initDeciPlusPrincipiante(this@GameSelectionActivity)
+            initDeciPlusPro(this@GameSelectionActivity)
+            initRomas(this@GameSelectionActivity)
+            initRomasPrincipiante(this@GameSelectionActivity)
+            initRomasPro(this@GameSelectionActivity)
+            initAlfaNumeros(this@GameSelectionActivity)
+            initAlfaNumerosPrincipiante(this@GameSelectionActivity)
+            initAlfaNumerosPro(this@GameSelectionActivity)
+            initSumaResta(this@GameSelectionActivity)
+            initSumaRestaPrincipiante(this@GameSelectionActivity)
+            initSumaRestaPro(this@GameSelectionActivity)
+            initMasPlus(this@GameSelectionActivity)
+            initMasPlusPrincipiante(this@GameSelectionActivity)
+            initMasPlusPro(this@GameSelectionActivity)
+            initGenioPlus(this@GameSelectionActivity)
+            initGenioPlusPrincipiante(this@GameSelectionActivity)
+            initGenioPlusPro(this@GameSelectionActivity)
+        }
+    }
 
+    private fun initializeViews() {
+        tvTitle = findViewById(R.id.tv_select_game_title)
+        container = findViewById(R.id.layout_game_buttons)
+        btnProgreso = findViewById(R.id.btn_progreso)
+        closeButton = findViewById(R.id.closeButton)
+        tvPercentageProgreso = btnProgreso.findViewById(R.id.tv_percentage_progreso)
 
+        Game.entries.forEach { game ->
+            gameButtons[game] = findViewById(game.buttonId)
+        }
+    }
+
+    private fun setupAnimations() {
+        animateTitleEntry()
+        animateButtonsEntry()
+        animateProgressButton()
+    }
+
+    private fun animateTitleEntry() {
+        tvTitle.apply {
+            translationY = ANIMATION_TRANSLATION_Y
+            animate()
+                .alpha(1f)
+                .translationY(0f)
+                .setDuration(ANIMATION_DURATION)
+                .setStartDelay(ANIMATION_DELAY_START)
+                .start()
+        }
+    }
+
+    private fun animateButtonsEntry() {
         for (i in 0 until container.childCount) {
             val view = container.getChildAt(i)
             view.alpha = 0f
-            view.translationY = 60f
-            view.animate()
+            view.translationY = ANIMATION_TRANSLATION_Y_ITEMS
+            val animator = view.animate()
                 .alpha(1f)
                 .translationY(0f)
-                .setDuration(450)
-                .setStartDelay(200 + i * 80L)
-                .start()
+                .setDuration(ANIMATION_DURATION)
+                .setStartDelay(200 + i * ANIMATION_DELAY_ITEM)
+
+            if (i == container.childCount - 1) {
+                animator.setListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator) {
+                        startTitleShineAnimation(tvTitle)
+                    }
+                })
+            }
+            animator.start()
         }
+    }
 
-
-        val btnProgreso = findViewById<RelativeLayout>(R.id.btn_progreso)
+    private fun animateProgressButton() {
         val pulseAnimation = AnimationUtils.loadAnimation(this, R.anim.pulse_progress_button)
         btnProgreso.startAnimation(pulseAnimation)
+    }
 
-        val btnNumerosPlus = findViewById<RelativeLayout>(R.id.btn_numeros_plus)
-        val btnDeciPlus = findViewById<RelativeLayout>(R.id.btn_deci_plus)
-        val btnRomas = findViewById<RelativeLayout>(R.id.btn_romas)
-        val btnAlfaNumeros = findViewById<RelativeLayout>(R.id.btn_alfa_numeros)
-        val btnSumaresta = findViewById<RelativeLayout>(R.id.btn_sumaresta)
-        val btnMasPlus = findViewById<RelativeLayout>(R.id.btn_mas_plus)
-        val btnGenioPlus = findViewById<RelativeLayout>(R.id.btn_genio_plus)
-        val closeButton = findViewById<ImageView>(R.id.closeButton)
+    private fun startTitleShineAnimation(textView: TextView) {
+        textView.post {
+            val textWidth = textView.paint.measureText(textView.text.toString())
+            val baseColor = textView.currentTextColor
+            val shineColor = ContextCompat.getColor(this, R.color.white)
 
-        val puntosNumerosPlus = ScoreManager.currentScore
-        val puntosPrincipiante = ScoreManager.currentScorePrincipiante
-        val puntosPro = ScoreManager.currentScorePro
-        val puntosDeciPlus = ScoreManager.currentScoreDeciPlus
-        val puntosDeciPlusPrincipiante = ScoreManager.currentScoreDeciPlusPrincipiante
-        val puntosDeciPlusPro = ScoreManager.currentScoreDeciPlusPro
-        val puntosRomas = ScoreManager.currentScoreRomas
-        val puntosRomasPrincipiante = ScoreManager.currentScoreRomasPrincipiante
-        val puntosRomasPro = ScoreManager.currentScoreRomasPro
-        val puntosAlfaNumeros = ScoreManager.currentScoreAlfaNumeros
-        val puntosAlfaNumerosPrincipiante = ScoreManager.currentScoreAlfaNumerosPrincipiante
-        val puntosAlfaNumerosPro = ScoreManager.currentScoreAlfaNumerosPro
-        val puntosSumaResta = ScoreManager.currentScoreSumaResta
-        val puntosSumaRestaPrincipiante = ScoreManager.currentScoreSumaRestaPrincipiante
-        val puntosSumaRestaPro = ScoreManager.currentScoreSumaRestaPro
-        val puntosMasPlus = ScoreManager.currentScoreMasPlus
-        val puntosMasPlusPrincipiante = ScoreManager.currentScoreMasPlusPrincipiante
-        val puntosMasPlusPro = ScoreManager.currentScoreMasPlusPro
-        val puntosGenioPlus = ScoreManager.currentScoreGenioPlus
-        val puntosGenioPlusPrincipiante = ScoreManager.currentScoreGenioPlusPrincipiante
-        val puntosGenioPlusPro = ScoreManager.currentScoreGenioPlusPro
+            val shader = LinearGradient(
+                -textWidth, 0f, 0f, 0f,
+                intArrayOf(baseColor, shineColor, baseColor),
+                floatArrayOf(0f, 0.5f, 1f),
+                Shader.TileMode.CLAMP
+            )
 
-        val tvGameNameNumerosPlus = btnNumerosPlus.findViewById<TextView>(R.id.tv_game_name_numeros_plus)
-        val tvGameNameDeciPlus = btnDeciPlus.findViewById<TextView>(R.id.tv_game_name_deci_plus)
-        val tvGameNameRomas = btnRomas.findViewById<TextView>(R.id.tv_game_name_romas)
+            textView.paint.shader = shader
+            val matrix = Matrix()
 
-        tvGameNameNumerosPlus.text = getString(R.string.game_numeros_plus)
-        tvGameNameDeciPlus.text = getString(R.string.game_deci_plus)
-        tvGameNameRomas.text = getString(R.string.game_romas)
+            val animator = ValueAnimator.ofFloat(0f, 2 * textWidth)
+            animator.duration = 800
+            animator.startDelay = 500
+            animator.addUpdateListener {
+                val translate = it.animatedValue as Float
+                matrix.setTranslate(translate, 0f)
+                shader.setLocalMatrix(matrix)
+                textView.invalidate()
+            }
+            animator.addListener(object: AnimatorListenerAdapter(){
+                override fun onAnimationEnd(animation: Animator) {
 
-        applyAlfaNumerosColor(btnAlfaNumeros)
-        applySumarestaColor(btnSumaresta)
-        applyMasPlusColor(btnMasPlus)
-        applyGenioPlusColor(btnGenioPlus)
+                    textView.paint.shader = null
+                }
+            })
+            animator.start()
+        }
+    }
 
-        updateNumerosPlusButton(btnNumerosPlus, puntosNumerosPlus, puntosPrincipiante, puntosPro)
-        updateDeciPlusButton(btnDeciPlus, puntosDeciPlus, puntosDeciPlusPrincipiante, puntosDeciPlusPro)
-        updateRomasButton(btnRomas, puntosRomas, puntosRomasPrincipiante, puntosRomasPro)
-        updateAlfaNumerosButton(btnAlfaNumeros, puntosAlfaNumeros, puntosAlfaNumerosPrincipiante, puntosAlfaNumerosPro)
-        updateSumaRestaButton(btnSumaresta, puntosSumaResta, puntosSumaRestaPrincipiante, puntosSumaRestaPro)
-        updateMasPlusButton(btnMasPlus, puntosMasPlus, puntosMasPlusPrincipiante, puntosMasPlusPro)
-        updateGenioPlusButton(btnGenioPlus, puntosGenioPlus, puntosGenioPlusPrincipiante, puntosGenioPlusPro)
-
+    private fun setupClickListeners() {
         btnProgreso.setOnClickListener {
             applyBounceEffect(it) {
-                val intent = Intent(this, ProgressSummaryActivity::class.java)
-                startActivity(intent)
-            }
-        }
-
-        btnNumerosPlus.setOnClickListener {
-            applyBounceEffect(it) {
-                val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
-                val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsNumeros", false)
-
-                if (hasSeenInstructions) {
-                    val difficultyKey = "difficulty_numerosplus"
-                    val hasDifficulty = prefs.contains(difficultyKey)
-
-                    if (hasDifficulty) {
-
-                        val difficulty = prefs.getString(difficultyKey,
-                            DifficultySelectionActivity.DIFFICULTY_AVANZADO)
-
-                        val intent = when (difficulty) {
-                            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE ->
-                                Intent(this, LevelsActivityPrincipiante::class.java)
-                            DifficultySelectionActivity.DIFFICULTY_PRO ->
-                                Intent(this, LevelsActivityPro::class.java)
-                            else -> Intent(this, LevelsActivity::class.java)
-                        }
-                        startActivity(intent)
-                    } else {
-                        startActivity(DifficultySelectionActivity.createIntent(this, "NumerosPlus"))
-                    }
-                } else {
-                    startActivity(Intent(this, TutorialActivityNumeros::class.java))
-                }
-            }
-        }
-
-        btnDeciPlus.setOnClickListener {
-            applyBounceEffect(it) {
-                val prefs = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
-                val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsDeciPlus", false)
-
-                if (hasSeenInstructions) {
-                    val difficultyKey = "difficulty_deciplus"
-                    val hasDifficulty = prefs.contains(difficultyKey)
-
-                    if (hasDifficulty) {
-                        val difficulty = prefs.getString(difficultyKey,
-                            DifficultySelectionActivity.DIFFICULTY_AVANZADO)
-
-                        val intent = when (difficulty) {
-                            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE ->
-                                Intent(this, LevelsActivityDeciPlusPrincipiante::class.java)
-                            DifficultySelectionActivity.DIFFICULTY_PRO ->
-                                Intent(this, LevelsActivityDeciPlusPro::class.java)
-                            else -> Intent(this, LevelsActivityDeciPlus::class.java)
-                        }
-                        startActivity(intent)
-                    } else {
-                        startActivity(DifficultySelectionActivity.createIntent(this, "DeciPlus"))
-                    }
-                } else {
-                    startActivity(Intent(this, TutorialActivityDeciPlus::class.java))
-                }
-            }
-        }
-
-        btnRomas.setOnClickListener {
-            applyBounceEffect(it) {
-                val prefs = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
-                val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsRomas", false)
-
-                if (hasSeenInstructions) {
-                    val difficultyKey = "difficulty_romas"
-                    val hasDifficulty = prefs.contains(difficultyKey)
-
-                    if (hasDifficulty) {
-                        val difficulty = prefs.getString(difficultyKey,
-                            DifficultySelectionActivity.DIFFICULTY_AVANZADO)
-
-                        val intent = when (difficulty) {
-                            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE ->
-                                Intent(this, LevelsActivityRomasPrincipiante::class.java)
-                            DifficultySelectionActivity.DIFFICULTY_PRO ->
-                                Intent(this, LevelsActivityRomasPro::class.java)
-                            else -> Intent(this, LevelsActivityRomas::class.java)
-                        }
-                        startActivity(intent)
-                    } else {
-                        startActivity(DifficultySelectionActivity.createIntent(this, "Romas"))
-                    }
-                } else {
-                    startActivity(Intent(this, TutorialActivityRomas::class.java))
-                }
-            }
-        }
-
-        btnAlfaNumeros.setOnClickListener {
-            applyBounceEffect(it) {
-                val prefs = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
-                val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsAlfaNumeros", false)
-
-                if (hasSeenInstructions) {
-                    val difficultyKey = "difficulty_alfanumeros"
-                    val hasDifficulty = prefs.contains(difficultyKey)
-
-                    if (hasDifficulty) {
-                        val difficulty = prefs.getString(difficultyKey,
-                            DifficultySelectionActivity.DIFFICULTY_AVANZADO)
-
-                        val intent = when (difficulty) {
-                            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE ->
-                                Intent(this, LevelsActivityAlfaNumerosPrincipiante::class.java)
-                            DifficultySelectionActivity.DIFFICULTY_PRO ->
-                                Intent(this, LevelsActivityAlfaNumerosPro::class.java)
-                            else -> Intent(this, LevelsActivityAlfaNumeros::class.java)
-                        }
-                        startActivity(intent)
-                    } else {
-                        startActivity(DifficultySelectionActivity.createIntent(this, "AlfaNumeros"))
-                    }
-                } else {
-                    startActivity(Intent(this, TutorialActivityAlfaNumeros::class.java))
-                }
-            }
-        }
-
-        btnSumaresta.setOnClickListener {
-            applyBounceEffect(it) {
-                val prefs = getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
-                val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsSumaResta", false)
-
-                if (hasSeenInstructions) {
-                    val difficultyKey = "difficulty_sumaresta"
-                    val hasDifficulty = prefs.contains(difficultyKey)
-
-                    if (hasDifficulty) {
-                        val difficulty = prefs.getString(difficultyKey,
-                            DifficultySelectionActivity.DIFFICULTY_AVANZADO)
-
-                        val intent = when (difficulty) {
-                            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE ->
-                                Intent(this, LevelsActivitySumaRestaPrincipiante::class.java)
-                            DifficultySelectionActivity.DIFFICULTY_PRO ->
-                                Intent(this, LevelsActivitySumaRestaPro::class.java)
-                            else -> Intent(this, LevelsActivitySumaResta::class.java)
-                        }
-                        startActivity(intent)
-                    } else {
-                        startActivity(DifficultySelectionActivity.createIntent(this, "SumaResta"))
-                    }
-                } else {
-                    startActivity(Intent(this, TutorialActivitySumaResta::class.java))
-                }
-            }
-        }
-
-        btnMasPlus.setOnClickListener {
-            applyBounceEffect(it) {
-                val prefs = getSharedPreferences("MyPrefsMasPlus", MODE_PRIVATE)
-                val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsMasPlus", false)
-
-                if (hasSeenInstructions) {
-                    val difficultyKey = "difficulty_masplus"
-                    val hasDifficulty = prefs.contains(difficultyKey)
-
-                    if (hasDifficulty) {
-                        val difficulty = prefs.getString(difficultyKey,
-                            DifficultySelectionActivity.DIFFICULTY_AVANZADO)
-
-                        val intent = when (difficulty) {
-                            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE ->
-                                Intent(this, LevelsActivityMasPlusPrincipiante::class.java)
-                            DifficultySelectionActivity.DIFFICULTY_PRO ->
-                                Intent(this, LevelsActivityMasPlusPro::class.java)
-                            else -> Intent(this, LevelsActivityMasPlus::class.java)
-                        }
-                        startActivity(intent)
-                    } else {
-                        startActivity(DifficultySelectionActivity.createIntent(this, "MasPlus"))
-                    }
-                } else {
-                    startActivity(Intent(this, TutorialActivityMasPlus::class.java))
-                }
-            }
-        }
-
-        btnGenioPlus.setOnClickListener {
-            applyBounceEffect(it) {
-                val prefs = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
-                val hasSeenInstructions = prefs.getBoolean("hasSeenInstructionsGenioPlus", false)
-
-                if (hasSeenInstructions) {
-                    val difficultyKey = "difficulty_genioplus"
-                    val hasDifficulty = prefs.contains(difficultyKey)
-
-                    if (hasDifficulty) {
-                        val difficulty = prefs.getString(difficultyKey,
-                            DifficultySelectionActivity.DIFFICULTY_AVANZADO)
-
-                        val intent = when (difficulty) {
-                            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE ->
-                                Intent(this, LevelsActivityGenioPlusPrincipiante::class.java)
-                            DifficultySelectionActivity.DIFFICULTY_PRO ->
-                                Intent(this, LevelsActivityGenioPlusPro::class.java)
-                            else -> Intent(this, LevelsActivityGenioPlus::class.java)
-                        }
-                        startActivity(intent)
-                    } else {
-                        startActivity(DifficultySelectionActivity.createIntent(this, "GenioPlus"))
-                    }
-                } else {
-                    startActivity(Intent(this, TutorialActivityGenioPlus::class.java))
-                }
+                startActivity(Intent(this, ProgressSummaryActivity::class.java))
             }
         }
 
@@ -353,166 +285,145 @@ class GameSelectionActivity : BaseActivity()  {
                 startActivity(Intent(this, MainGameActivity::class.java))
             }
         }
-    }
 
-    override fun onResume() {
-        super.onResume()
-
-        ScoreManager.init(this)
-        ScoreManager.initPrincipiante(this)
-        ScoreManager.initPro(this)
-        ScoreManager.initDeciPlus(this)
-        ScoreManager.initDeciPlusPrincipiante(this)
-        ScoreManager.initDeciPlusPro(this)
-        ScoreManager.initRomas(this)
-        ScoreManager.initRomasPrincipiante(this)
-        ScoreManager.initRomasPro(this)
-        ScoreManager.initAlfaNumeros(this)
-        ScoreManager.initAlfaNumerosPrincipiante(this)
-        ScoreManager.initAlfaNumerosPro(this)
-        ScoreManager.initSumaResta(this)
-        ScoreManager.initSumaRestaPrincipiante(this)
-        ScoreManager.initSumaRestaPro(this)
-        ScoreManager.initMasPlus(this)
-        ScoreManager.initMasPlusPrincipiante(this)
-        ScoreManager.initMasPlusPro(this)
-        ScoreManager.initGenioPlus(this)
-        ScoreManager.initGenioPlusPrincipiante(this)
-        ScoreManager.initGenioPlusPro(this)
-
-        val puntosNumerosPlus = ScoreManager.currentScore
-        val puntosPrincipiante = ScoreManager.currentScorePrincipiante
-        val puntosPro = ScoreManager.currentScorePro
-        val puntosDeciPlus = ScoreManager.currentScoreDeciPlus
-        val puntosDeciPlusPrincipiante = ScoreManager.currentScoreDeciPlusPrincipiante
-        val puntosDeciPlusPro = ScoreManager.currentScoreDeciPlusPro
-        val puntosRomas = ScoreManager.currentScoreRomas
-        val puntosRomasPrincipiante = ScoreManager.currentScoreRomasPrincipiante
-        val puntosRomasPro = ScoreManager.currentScoreRomasPro
-        val puntosAlfaNumeros = ScoreManager.currentScoreAlfaNumeros
-        val puntosAlfaNumerosPrincipiante = ScoreManager.currentScoreAlfaNumerosPrincipiante
-        val puntosAlfaNumerosPro = ScoreManager.currentScoreAlfaNumerosPro
-        val puntosSumaResta = ScoreManager.currentScoreSumaResta
-        val puntosSumaRestaPrincipiante = ScoreManager.currentScoreSumaRestaPrincipiante
-        val puntosSumaRestaPro = ScoreManager.currentScoreSumaRestaPro
-        val puntosMasPlus = ScoreManager.currentScoreMasPlus
-        val puntosMasPlusPrincipiante = ScoreManager.currentScoreMasPlusPrincipiante
-        val puntosMasPlusPro = ScoreManager.currentScoreMasPlusPro
-        val puntosGenioPlus = ScoreManager.currentScoreGenioPlus
-        val puntosGenioPlusPrincipiante = ScoreManager.currentScoreGenioPlusPrincipiante
-        val puntosGenioPlusPro = ScoreManager.currentScoreGenioPlusPro
-
-        val btnNumerosPlus = findViewById<RelativeLayout>(R.id.btn_numeros_plus)
-        val btnDeciPlus = findViewById<RelativeLayout>(R.id.btn_deci_plus)
-        val btnRomas = findViewById<RelativeLayout>(R.id.btn_romas)
-        val btnAlfaNumeros = findViewById<RelativeLayout>(R.id.btn_alfa_numeros)
-        val btnSumaresta = findViewById<RelativeLayout>(R.id.btn_sumaresta)
-        val btnMasPlus = findViewById<RelativeLayout>(R.id.btn_mas_plus)
-        val btnGenioPlus = findViewById<RelativeLayout>(R.id.btn_genio_plus)
-
-        applyAlfaNumerosColor(btnAlfaNumeros)
-        applySumarestaColor(btnSumaresta)
-        applyMasPlusColor(btnMasPlus)
-        applyGenioPlusColor(btnGenioPlus)
-
-        updateNumerosPlusButton(btnNumerosPlus, puntosNumerosPlus, puntosPrincipiante, puntosPro)
-        updateDeciPlusButton(btnDeciPlus, puntosDeciPlus, puntosDeciPlusPrincipiante, puntosDeciPlusPro)
-        updateRomasButton(btnRomas, puntosRomas, puntosRomasPrincipiante, puntosRomasPro)
-        updateAlfaNumerosButton(btnAlfaNumeros, puntosAlfaNumeros, puntosAlfaNumerosPrincipiante, puntosAlfaNumerosPro)
-        updateSumaRestaButton(btnSumaresta, puntosSumaResta, puntosSumaRestaPrincipiante, puntosSumaRestaPro)
-        updateMasPlusButton(btnMasPlus, puntosMasPlus, puntosMasPlusPrincipiante, puntosMasPlusPro)
-        updateGenioPlusButton(btnGenioPlus, puntosGenioPlus, puntosGenioPlusPrincipiante, puntosGenioPlusPro)
-
-        val btnProgreso = findViewById<RelativeLayout>(R.id.btn_progreso)
-        val tvPercentageProgreso = btnProgreso.findViewById<TextView>(R.id.tv_percentage_progreso)
-        val totalCompleted = ScoreManager.getTotalUniqueLevelsCompletedAllGames()
-        val totalLevels = 1470.0
-        val percentage = (totalCompleted / totalLevels) * 100
-        val percentageString = String.format(Locale.getDefault(), "%.2f", percentage)
-
-        tvPercentageProgreso.text = getString(R.string.percentage_format, percentageString)
-
-    }
-
-    private fun updateNumerosPlusButton(button: RelativeLayout, score: Int, principianteScore: Int, proScore: Int) {
-        val gameNameTextView = button.findViewById<TextView>(R.id.tv_game_name_numeros_plus)
-        val pointsTextView = button.findViewById<TextView>(R.id.tv_points_numeros_plus)
-        val starIcon = button.findViewById<ImageView>(R.id.icon_star_numeros_plus)
-        val totalScore = score + principianteScore + proScore
-
-        if (totalScore > 0) {
-            gameNameTextView.text = getString(R.string.game_numeros_plus)
-            pointsTextView.text = totalScore.toString()
-            pointsTextView.visibility = View.VISIBLE
-            starIcon.visibility = View.VISIBLE
-        } else {
-            gameNameTextView.text = getString(R.string.game_numeros_plus)
-            pointsTextView.visibility = View.GONE
-            starIcon.visibility = View.GONE
+        Game.entries.forEach { game ->
+            gameButtons[game]?.setOnClickListener {
+                applyBounceEffect(it) {
+                    handleGameButtonClick(game)
+                }
+            }
         }
     }
 
-    private fun updateDeciPlusButton(button: RelativeLayout, score: Int, principianteScore: Int, proScore: Int) {
-        val gameNameTextView = button.findViewById<TextView>(R.id.tv_game_name_deci_plus)
-        val pointsTextView = button.findViewById<TextView>(R.id.tv_points_deci_plus)
-        val starIcon = button.findViewById<ImageView>(R.id.icon_star_deci_plus)
-        val totalScore = score + principianteScore + proScore
+    private fun handleGameButtonClick(game: Game) {
+        val prefs = getSharedPreferences(game.prefsName, MODE_PRIVATE)
+        val hasSeenInstructions = prefs.getBoolean(game.instructionsKey, false)
 
-        if (totalScore > 0) {
-            gameNameTextView.text = getString(R.string.game_deci_plus)
-            pointsTextView.text = totalScore.toString()
-            pointsTextView.visibility = View.VISIBLE
-            starIcon.visibility = View.VISIBLE
-        } else {
-            gameNameTextView.text = getString(R.string.game_deci_plus)
-            pointsTextView.visibility = View.GONE
-            starIcon.visibility = View.GONE
+        if (!hasSeenInstructions) {
+            startActivity(Intent(this, game.tutorialActivity))
+            return
         }
+
+        val hasDifficulty = prefs.contains(game.difficultyKey)
+        if (!hasDifficulty) {
+            startActivity(DifficultySelectionActivity.createIntent(this, game.name))
+            return
+        }
+
+        val difficulty = prefs.getString(game.difficultyKey, DifficultySelectionActivity.DIFFICULTY_AVANZADO)
+        val intent = when (difficulty) {
+            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> Intent(this, game.principianteActivity)
+            DifficultySelectionActivity.DIFFICULTY_PRO -> Intent(this, game.proActivity)
+            else -> Intent(this, game.avanzadoActivity)
+        }
+        startActivity(intent)
     }
 
-    private fun updateRomasButton(button: RelativeLayout, score: Int, principianteScore: Int, proScore: Int) {
-        val gameNameTextView = button.findViewById<TextView>(R.id.tv_game_name_romas)
-        val pointsTextView = button.findViewById<TextView>(R.id.tv_points_romas)
-        val starIcon = button.findViewById<ImageView>(R.id.icon_star_romas)
-        val totalScore = score + principianteScore + proScore
+    private fun updateUI() {
+        val scores = getGameScores()
 
-        if (totalScore > 0) {
-            gameNameTextView.text = getString(R.string.game_romas)
-            pointsTextView.text = totalScore.toString()
-            pointsTextView.visibility = View.VISIBLE
-            starIcon.visibility = View.VISIBLE
-        } else {
-            gameNameTextView.text = getString(R.string.game_romas)
-            pointsTextView.visibility = View.GONE
-            starIcon.visibility = View.GONE
-        }
+        updateGameButton(Game.NUMEROS_PLUS, scores[Game.NUMEROS_PLUS]!!)
+        updateGameButton(Game.DECI_PLUS, scores[Game.DECI_PLUS]!!)
+        updateGameButton(Game.ROMAS, scores[Game.ROMAS]!!)
+        updateGameButton(Game.ALFA_NUMEROS, scores[Game.ALFA_NUMEROS]!!)
+        updateGameButton(Game.SUMA_RESTA, scores[Game.SUMA_RESTA]!!)
+        updateGameButton(Game.MAS_PLUS, scores[Game.MAS_PLUS]!!)
+        updateGameButton(Game.GENIO_PLUS, scores[Game.GENIO_PLUS]!!)
+
+        applySpecialColors()
     }
 
-    private fun updateAlfaNumerosButton(button: RelativeLayout, score: Int, principianteScore: Int, proScore: Int) {
-        val gameNameTextView = button.findViewById<TextView>(R.id.tv_game_name_alfa_numeros)
-        val pointsTextView   = button.findViewById<TextView>(R.id.tv_points_alfa_numeros)
-        val starIcon         = button.findViewById<ImageView>(R.id.icon_star_alfa_numeros)
-        val totalScore = score + principianteScore + proScore
-
-        val alfaText = getString(R.string.text_alfa)
-        val numerosText = getString(R.string.text_numeros)
-        val alfaNumerosText = "$alfaText$numerosText"
-        val spannableAlfaNumeros = SpannableString(alfaNumerosText)
-
-        spannableAlfaNumeros.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(this, R.color.red_primary)),
-            0, alfaText.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+    private fun getGameScores(): Map<Game, GameScores> {
+        return mapOf(
+            Game.NUMEROS_PLUS to GameScores(
+                ScoreManager.currentScore,
+                ScoreManager.currentScorePrincipiante,
+                ScoreManager.currentScorePro
+            ),
+            Game.DECI_PLUS to GameScores(
+                ScoreManager.currentScoreDeciPlus,
+                ScoreManager.currentScoreDeciPlusPrincipiante,
+                ScoreManager.currentScoreDeciPlusPro
+            ),
+            Game.ROMAS to GameScores(
+                ScoreManager.currentScoreRomas,
+                ScoreManager.currentScoreRomasPrincipiante,
+                ScoreManager.currentScoreRomasPro
+            ),
+            Game.ALFA_NUMEROS to GameScores(
+                ScoreManager.currentScoreAlfaNumeros,
+                ScoreManager.currentScoreAlfaNumerosPrincipiante,
+                ScoreManager.currentScoreAlfaNumerosPro
+            ),
+            Game.SUMA_RESTA to GameScores(
+                ScoreManager.currentScoreSumaResta,
+                ScoreManager.currentScoreSumaRestaPrincipiante,
+                ScoreManager.currentScoreSumaRestaPro
+            ),
+            Game.MAS_PLUS to GameScores(
+                ScoreManager.currentScoreMasPlus,
+                ScoreManager.currentScoreMasPlusPrincipiante,
+                ScoreManager.currentScoreMasPlusPro
+            ),
+            Game.GENIO_PLUS to GameScores(
+                ScoreManager.currentScoreGenioPlus,
+                ScoreManager.currentScoreGenioPlusPrincipiante,
+                ScoreManager.currentScoreGenioPlusPro
+            )
         )
-        spannableAlfaNumeros.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_primary_darker)),
-            alfaText.length, alfaNumerosText.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        gameNameTextView.text = spannableAlfaNumeros
+    }
 
-        if (totalScore > 0) {
-            pointsTextView.text = totalScore.toString()
+    private fun updateGameButton(game: Game, scores: GameScores) {
+        val button = gameButtons[game] ?: return
+
+        val gameNameTextView = when (game) {
+            Game.NUMEROS_PLUS -> button.findViewById(R.id.tv_game_name_numeros_plus)
+            Game.DECI_PLUS -> button.findViewById(R.id.tv_game_name_deci_plus)
+            Game.ROMAS -> button.findViewById(R.id.tv_game_name_romas)
+            Game.ALFA_NUMEROS -> button.findViewById(R.id.tv_game_name_alfa_numeros)
+            Game.SUMA_RESTA -> button.findViewById(R.id.tv_game_name_sumaresta)
+            Game.MAS_PLUS -> button.findViewById(R.id.tv_game_name_mas_plus)
+            Game.GENIO_PLUS -> button.findViewById<TextView>(R.id.tv_game_name_genio_plus)
+        }
+
+        val pointsTextView = when (game) {
+            Game.NUMEROS_PLUS -> button.findViewById(R.id.tv_points_numeros_plus)
+            Game.DECI_PLUS -> button.findViewById(R.id.tv_points_deci_plus)
+            Game.ROMAS -> button.findViewById(R.id.tv_points_romas)
+            Game.ALFA_NUMEROS -> button.findViewById(R.id.tv_points_alfa_numeros)
+            Game.SUMA_RESTA -> button.findViewById(R.id.tv_points_sumaresta)
+            Game.MAS_PLUS -> button.findViewById(R.id.tv_points_mas_plus)
+            Game.GENIO_PLUS -> button.findViewById<TextView>(R.id.tv_points_genio_plus)
+        }
+
+        val starIcon = when (game) {
+            Game.NUMEROS_PLUS -> button.findViewById(R.id.icon_star_numeros_plus)
+            Game.DECI_PLUS -> button.findViewById(R.id.icon_star_deci_plus)
+            Game.ROMAS -> button.findViewById(R.id.icon_star_romas)
+            Game.ALFA_NUMEROS -> button.findViewById(R.id.icon_star_alfa_numeros)
+            Game.SUMA_RESTA -> button.findViewById(R.id.icon_star_sumaresta)
+            Game.MAS_PLUS -> button.findViewById(R.id.icon_star_mas_plus)
+            Game.GENIO_PLUS -> button.findViewById<ImageView>(R.id.icon_star_genio_plus)
+        }
+
+
+        when (game) {
+            Game.NUMEROS_PLUS -> gameNameTextView.text = getString(R.string.game_numeros_plus)
+            Game.DECI_PLUS -> gameNameTextView.text = getString(R.string.game_deci_plus)
+            Game.ROMAS -> gameNameTextView.text = getString(R.string.game_romas)
+            Game.ALFA_NUMEROS -> {
+
+            }
+            Game.SUMA_RESTA -> {
+
+            }
+            Game.MAS_PLUS -> gameNameTextView.text = getString(R.string.game_mas_plus)
+            Game.GENIO_PLUS -> gameNameTextView.text = getString(R.string.game_genio_plus)
+        }
+
+
+        if (scores.total > 0) {
+            pointsTextView.text = scores.total.toString()
             pointsTextView.visibility = View.VISIBLE
             starIcon.visibility = View.VISIBLE
         } else {
@@ -521,121 +432,92 @@ class GameSelectionActivity : BaseActivity()  {
         }
     }
 
-    private fun updateSumaRestaButton(button: RelativeLayout, score: Int, principianteScore: Int, proScore: Int) {
-        val pointsTextView = button.findViewById<TextView>(R.id.tv_points_sumaresta)
-        val starIcon = button.findViewById<ImageView>(R.id.icon_star_sumaresta)
-        val totalScore = score + principianteScore + proScore
+    private fun applySpecialColors() {
 
-        if (totalScore > 0) {
-            pointsTextView.text = totalScore.toString()
-            pointsTextView.visibility = View.VISIBLE
-            starIcon.visibility = View.VISIBLE
-        } else {
-            pointsTextView.visibility = View.GONE
-            starIcon.visibility = View.GONE
+        gameButtons[Game.ALFA_NUMEROS]?.let { button ->
+            applyAlfaNumerosColor(button)
         }
-    }
 
-    private fun updateMasPlusButton(button: RelativeLayout, score: Int, principianteScore: Int, proScore: Int) {
-        val pointsTextView = button.findViewById<TextView>(R.id.tv_points_mas_plus)
-        val starIcon = button.findViewById<ImageView>(R.id.icon_star_mas_plus)
-        val totalScore = score + principianteScore + proScore
-
-        if (totalScore > 0) {
-            pointsTextView.text = totalScore.toString()
-            pointsTextView.visibility = View.VISIBLE
-            starIcon.visibility = View.VISIBLE
-        } else {
-            pointsTextView.visibility = View.GONE
-            starIcon.visibility = View.GONE
+        gameButtons[Game.SUMA_RESTA]?.let { button ->
+            applySumarestaColor(button)
         }
-    }
 
-    private fun updateGenioPlusButton(button: RelativeLayout, score: Int, principianteScore: Int, proScore: Int) {
-        val pointsTextView = button.findViewById<TextView>(R.id.tv_points_genio_plus)
-        val starIcon = button.findViewById<ImageView>(R.id.icon_star_genio_plus)
+        gameButtons[Game.MAS_PLUS]?.let { button ->
+            val textView = button.findViewById<TextView>(R.id.tv_game_name_mas_plus)
+            textView.setTextColor(ContextCompat.getColor(this, R.color.grey_light))
+        }
 
-        val totalScore = score + principianteScore + proScore
-
-        if (totalScore > 0) {
-            pointsTextView.text = totalScore.toString()
-            pointsTextView.visibility = View.VISIBLE
-            starIcon.visibility = View.VISIBLE
-        } else {
-            pointsTextView.visibility = View.GONE
-            starIcon.visibility = View.GONE
+        gameButtons[Game.GENIO_PLUS]?.let { button ->
+            val textView = button.findViewById<TextView>(R.id.tv_game_name_genio_plus)
+            textView.setTextColor(ContextCompat.getColor(this, R.color.blue_pressed))
         }
     }
 
     private fun applyAlfaNumerosColor(button: RelativeLayout) {
         val textView = button.findViewById<TextView>(R.id.tv_game_name_alfa_numeros)
-
         val alfaText = getString(R.string.text_alfa)
         val numerosText = getString(R.string.text_numeros)
         val alfaNumerosText = "$alfaText$numerosText"
-        val spannableAlfaNumeros = SpannableString(alfaNumerosText)
+        val spannable = SpannableString(alfaNumerosText)
 
-        spannableAlfaNumeros.setSpan(
+        spannable.setSpan(
             ForegroundColorSpan(ContextCompat.getColor(this, R.color.red_primary)),
             0, alfaText.length,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-        spannableAlfaNumeros.setSpan(
+        spannable.setSpan(
             ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_primary_darker)),
             alfaText.length, alfaNumerosText.length,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-        textView.text = spannableAlfaNumeros
+        textView.text = spannable
     }
 
     private fun applySumarestaColor(button: RelativeLayout) {
         val textView = button.findViewById<TextView>(R.id.tv_game_name_sumaresta)
-
         val sumaText = getString(R.string.text_suma)
         val restaText = getString(R.string.text_resta)
         val sumarestaText = "$sumaText$restaText"
-        val spannableSumaresta = SpannableString(sumarestaText)
+        val spannable = SpannableString(sumarestaText)
 
-        spannableSumaresta.setSpan(
+        spannable.setSpan(
             ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_pressed)),
             0, sumaText.length,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-        spannableSumaresta.setSpan(
+        spannable.setSpan(
             ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)),
             sumaText.length, sumarestaText.length,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-        textView.text = spannableSumaresta
+        textView.text = spannable
     }
 
-    private fun applyMasPlusColor(button: RelativeLayout) {
-        val textView = button.findViewById<TextView>(R.id.tv_game_name_mas_plus)
-        textView.setTextColor(ContextCompat.getColor(this, R.color.grey_light))
-    }
-
-    private fun applyGenioPlusColor(button: RelativeLayout) {
-        val textView = button.findViewById<TextView>(R.id.tv_game_name_genio_plus)
-        textView.setTextColor(ContextCompat.getColor(this, R.color.blue_pressed))
+    private fun updateProgressButton() {
+        val totalCompleted = ScoreManager.getTotalUniqueLevelsCompletedAllGames()
+        val percentage = (totalCompleted / TOTAL_LEVELS) * 100
+        val percentageString = String.format(Locale.getDefault(), "%.2f", percentage)
+        tvPercentageProgreso.text = getString(R.string.percentage_format, percentageString)
     }
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
-        val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.9f).setDuration(50)
-        val scaleDownY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 0.9f).setDuration(50)
-        val scaleUpX = ObjectAnimator.ofFloat(view, "scaleX", 0.9f, 1f).setDuration(50)
-        val scaleUpY = ObjectAnimator.ofFloat(view, "scaleY", 0.9f, 1f).setDuration(50)
+        val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, BOUNCE_SCALE_DOWN).setDuration(BOUNCE_DURATION)
+        val scaleDownY = ObjectAnimator.ofFloat(view, "scaleY", 1f, BOUNCE_SCALE_DOWN).setDuration(BOUNCE_DURATION)
+        val scaleUpX = ObjectAnimator.ofFloat(view, "scaleX", BOUNCE_SCALE_DOWN, 1f).setDuration(BOUNCE_DURATION)
+        val scaleUpY = ObjectAnimator.ofFloat(view, "scaleY", BOUNCE_SCALE_DOWN, 1f).setDuration(BOUNCE_DURATION)
 
-        val animatorSet = AnimatorSet()
-        animatorSet.playTogether(scaleDownX, scaleDownY)
-        animatorSet.playTogether(scaleUpX, scaleUpY)
-        animatorSet.playSequentially(scaleDownX, scaleUpX)
+        AnimatorSet().apply {
+            playTogether(scaleDownX, scaleDownY)
+            playTogether(scaleUpX, scaleUpY)
+            playSequentially(scaleDownX, scaleUpX)
 
-        animatorSet.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator) {
-                onAnimationEnd()
-            }
-        })
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    onAnimationEnd()
+                }
+            })
 
-        animatorSet.start()
+            start()
+        }
     }
 }

@@ -86,7 +86,7 @@ class IQPlusRankingAdapter(
 
 
         val countryCode = item.countryCode.lowercase(Locale.ROOT)
-        val resId = countryFlagMap[countryCode]
+        val resId = FlagsAdapter.flagResourceMap[countryCode]
 
         if (resId != null) {
             holder.ivFlag.setImageResource(resId)

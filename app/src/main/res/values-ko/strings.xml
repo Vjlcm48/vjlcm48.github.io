@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="loading_text">로드 중…</string>
+
     <string name="next_activity_text">다음 활동</string>
     <string name="btn_allow">허용</string>
     <string name="btn_deny">허용 안 함</string>
@@ -190,8 +190,7 @@
     <string name="confirmation_message">선택한 데이터를 정말로 초기화하시겠어요?</string>
     <string name="yes">예</string>
     <string name="no">아니요</string>
-    <string name="edit_username_desc">사용자 이름 수정</string>
-    <string name="edit_flag_desc">국기 수정</string>
+
     <string name="title_profile_edit">어떤 데이터를 수정하시겠어요?</string>
     <string name="edit_username">사용자 이름</string>
     <string name="edit_flag">국기</string>
@@ -1128,7 +1127,9 @@
     <string name="cd_genio_plus">Genio Plus 플레이하기</string>
     <string name="progress_placeholder_total_levels">0/210 – 0.00%</string>
     <string name="progress_placeholder_difficulty">0/70 – 0.00%</string>
+
     <string name="global_progress_format">진행률: %1$s%%</string>
+
     <string name="game_progress_format">%1$d/%2$d - %3$s%%</string>
     <string name="global_levels_label">레벨:</string>
     <string name="desc_insignia_supremus_integralis">통합 랭킹 진입을 축하합니다! SumaMente의 9개 랭킹에 모두 오르면서 모든 수학 분야에서 완전한 숙달을 증명했습니다. 이 SUPREMUS INTEGRALIS 휘장은 통합 엘리트로의 진입을 의미합니다.</string>

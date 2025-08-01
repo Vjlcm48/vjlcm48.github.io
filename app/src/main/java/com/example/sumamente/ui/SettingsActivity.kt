@@ -9,6 +9,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -17,7 +18,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.edit
 import com.example.sumamente.R
-import android.view.animation.AnimationUtils
+import androidx.core.content.ContextCompat
 
 class SettingsActivity : BaseActivity() {
 
@@ -52,6 +53,7 @@ class SettingsActivity : BaseActivity() {
         const val COOLDOWN_NOT_NOW = 120 * 1000L
         const val COOLDOWN_FLOAT_DISMISS = 30 * 1000L
         const val COOLDOWN_FLOAT_DIALOG_DISMISS = 90 * 1000L
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,8 +68,13 @@ class SettingsActivity : BaseActivity() {
         setupColorAnimationForAds()
         setupProfileSubtitle()
         setupCloseButton()
-        setupItemsEntranceAnimation()
-        startLogoAnimation()
+
+        appLogo.alpha = 0f
+        btnCloseSettings.alpha = 0f
+        findViewById<View>(R.id.card_settings).alpha = 0f
+        itemsContainer.alpha = 0f
+
+        startEntranceSequence()
     }
 
     private fun bindViews() {
@@ -87,7 +94,48 @@ class SettingsActivity : BaseActivity() {
         linearLanguage       = findViewById(R.id.linear_language)
     }
 
-    private fun startLogoAnimation() {
+    private fun startEntranceSequence() {
+
+        appLogo.alpha = 1f
+        val animLogo = AnimationUtils.loadAnimation(this, R.anim.logo_zoom_in)
+        appLogo.startAnimation(animLogo)
+
+        btnCloseSettings.alpha = 1f
+        val animX = AnimationUtils.loadAnimation(this, R.anim.logo_zoom_in)
+        btnCloseSettings.startAnimation(animX)
+
+        val card = findViewById<View>(R.id.card_settings)
+        card.alpha = 0f // Inicia invisible
+        card.postDelayed({
+            card.animate()
+                .alpha(1f)
+                .setDuration(220)
+                .withEndAction {
+                    animateItems()
+                    startLogoPulseAnimation()
+                }
+                .start()
+        }, 100)
+    }
+
+    private fun animateItems() {
+        itemsContainer.visibility = View.VISIBLE
+        itemsContainer.alpha = 1f
+
+        for (i in 0 until itemsContainer.childCount) {
+            val v = itemsContainer.getChildAt(i)
+            v.alpha = 0f
+            v.translationY = 50f
+            v.animate()
+                .alpha(1f)
+                .translationY(0f)
+                .setDuration(350)
+                .setStartDelay((i * 60L))
+                .start()
+        }
+    }
+
+    private fun startLogoPulseAnimation() {
         val pulseAnimation = AnimationUtils.loadAnimation(this, R.anim.pulse_progress_button)
         appLogo.startAnimation(pulseAnimation)
     }
@@ -175,31 +223,6 @@ class SettingsActivity : BaseActivity() {
         }
     }
 
-    private fun setupItemsEntranceAnimation() {
-        // Botón de cerrar (X)
-        btnCloseSettings.alpha = 0f
-        btnCloseSettings.translationY = 40f
-        btnCloseSettings.animate()
-            .alpha(1f)
-            .translationY(0f)
-            .setDuration(400)
-            .setStartDelay(70)
-            .start()
-
-
-        for (i in 0 until itemsContainer.childCount) {
-            val v = itemsContainer.getChildAt(i)
-            v.alpha = 0f
-            v.translationY = 60f
-            v.animate()
-                .alpha(1f)
-                .translationY(0f)
-                .setDuration(420)
-                .setStartDelay(200 + i * 70L)
-                .start()
-        }
-    }
-
     private fun shareApp() {
         val messageTemplate = getString(R.string.share_message)
         val chooserTitle = getString(R.string.share_chooser_title)
@@ -216,14 +239,13 @@ class SettingsActivity : BaseActivity() {
         startActivity(shareIntent)
     }
 
-
     private fun openProfileEdit() {
         startActivity(Intent(this, ProfileEditActivity::class.java))
     }
 
-
     private fun showConfirmDeleteDialog() {
-        AlertDialog.Builder(this)
+
+        val dialog = AlertDialog.Builder(this)
             .setTitle(getString(R.string.delete_account_confirm_title))
             .setMessage(getString(R.string.delete_account_confirm_message))
             .setPositiveButton(getString(R.string.delete_button)) { _, _ ->
@@ -236,9 +258,12 @@ class SettingsActivity : BaseActivity() {
                 finish()
             }
             .setNegativeButton(getString(R.string.cancel_button), null)
-            .show()
-    }
+            .create()
 
+        dialog.window?.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.dialog_background_with_border))
+
+        dialog.show()
+    }
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
         val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.9f).setDuration(50)

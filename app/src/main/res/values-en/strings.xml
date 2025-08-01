@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <string name="loading_text">Loading…</string>
+
     <string name="next_activity_text">Next Activity</string>
 
 
@@ -196,8 +196,7 @@
     <string name="confirmation_message">Are you sure you want to reset the selected data?</string>
     <string name="yes">YES</string>
     <string name="no">NO</string>
-    <string name="edit_username_desc">Edit username</string>
-    <string name="edit_flag_desc">Edit flag</string>
+
     <string name="title_profile_edit">What data do you want to edit?</string>
     <string name="edit_username">Username</string>
     <string name="edit_flag">Flag</string>
@@ -1424,6 +1423,7 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
     <string name="progress_placeholder_difficulty">0/70 – 0.00%</string>
 
     <string name="global_progress_format">PROGRESS: %1$s%%</string>
+
     <string name="game_progress_format">%1$d/%2$d - %3$s%%</string>
 
     <string name="global_levels_label">LEVELS:</string>

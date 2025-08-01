@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
@@ -17,6 +18,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.PopupWindow
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.edit
 import androidx.core.widget.addTextChangedListener
@@ -49,7 +51,7 @@ class FlagSelectionActivity : BaseActivity()  {
         "sd", "se", "sg", "si", "sk", "sl", "sm", "sn", "so", "sr", "ss",
         "st", "sv", "sy", "sz", "td", "tg", "th", "tj", "tl", "tm", "tn",
         "to", "tr", "tt", "tv", "tw", "tz", "ua", "ug", "us", "uy", "uz",
-        "va", "ve", "vn", "vu", "ws", "ye", "za", "zm", "zw"
+        "va", "ve", "vn", "vu", "ws", "ye", "za", "zm", "zw","sumamente"
     )
 
     companion object {
@@ -279,7 +281,8 @@ class FlagSelectionActivity : BaseActivity()  {
             "ye" to R.string.country_ye,
             "za" to R.string.country_za,
             "zm" to R.string.country_zm,
-            "zw" to R.string.country_zw
+            "zw" to R.string.country_zw,
+            "sumamente" to R.string.app_name
         )
     }
 
@@ -290,10 +293,9 @@ class FlagSelectionActivity : BaseActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+
         currentCountryCode = sharedPreferences.getString("savedCountryCode", null)
         setContentView(R.layout.activity_flag_selection)
-
-
 
         flagsRecyclerView = findViewById(R.id.flagsRecyclerView)
         searchEditText = findViewById(R.id.searchEditText)
@@ -301,11 +303,11 @@ class FlagSelectionActivity : BaseActivity()  {
         currentFlagLabel = findViewById(R.id.currentFlagLabel)
 
         currentFlagLabel.text = getString(R.string.current_flag)
-        currentCountryCode?.let { code ->
-            val flagResId = FlagsAdapter.flagResourceMap[code]
-            if (flagResId != null) {
-                currentFlagImageView.setImageResource(flagResId)
-            }
+
+        val codeToDisplay = currentCountryCode ?: "sumamente"
+        val flagResId = FlagsAdapter.flagResourceMap[codeToDisplay]
+        if (flagResId != null) {
+            currentFlagImageView.setImageResource(flagResId)
         }
 
         val spanCount = 4
@@ -322,9 +324,20 @@ class FlagSelectionActivity : BaseActivity()  {
 
         findViewById<View>(R.id.closeButton).setOnClickListener {
             applyBounceEffect(it) {
+                val intent = Intent(this, MainGameActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                startActivity(intent)
                 finish()
             }
         }
+
+        onBackPressedDispatcher.addCallback(this) {
+            val intent = Intent(this@FlagSelectionActivity, MainGameActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            startActivity(intent)
+            finish()
+        }
+
     }
 
     private fun onFlagSelected(countryCode: String, itemView: View) {

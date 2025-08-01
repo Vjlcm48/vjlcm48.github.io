@@ -22,13 +22,14 @@ import androidx.core.content.edit
 import androidx.core.view.isVisible
 import com.example.sumamente.R
 import com.google.android.material.card.MaterialCardView
-import java.util.*
+import java.util.Locale
 
 class LanguageSelectionActivity : BaseActivity() {
 
     private lateinit var sharedPreferences: SharedPreferences
     private val languageButtons = mutableListOf<LinearLayout>()
     private val checkMarks = mutableListOf<ImageView>()
+
     private val supportedLanguages by lazy { LanguageManager.getOrderedLanguages(this) }
 
     private lateinit var scrollView: ScrollView

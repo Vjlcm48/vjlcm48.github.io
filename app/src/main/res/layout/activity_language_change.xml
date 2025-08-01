@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <!-- Logo animado -->
+
     <ImageView
         android:id="@+id/app_logo"
         android:layout_width="110dp"
@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Card central con barra superior custom -->
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_view"
         android:layout_width="330dp"
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!-- Barra superior: Back, Título, Close -->
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/top_bar"
                 android:layout_width="0dp"
@@ -87,7 +87,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- Lista de idiomas con scroll y container -->
+
             <ScrollView
                 android:id="@+id/language_scroll_view"
                 android:layout_width="0dp"

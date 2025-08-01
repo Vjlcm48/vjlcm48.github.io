@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 
-    <string name="loading_text">Memuat…</string>
+
 
     <string name="next_activity_text">Aktivitas Berikutnya</string>
 
@@ -199,8 +199,7 @@
     <string name="confirmation_message">Apakah Anda yakin ingin mengatur ulang data yang dipilih?</string>
     <string name="yes">YA</string>
     <string name="no">TIDAK</string>
-    <string name="edit_username_desc">Ubah nama pengguna</string>
-    <string name="edit_flag_desc">Ubah bendera</string>
+
     <string name="title_profile_edit">Data apa yang ingin Anda ubah?</string>
     <string name="edit_username">Nama pengguna</string>
     <string name="edit_flag">Bendera</string>
@@ -1344,11 +1343,12 @@ Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di 
 
 
     <string name="global_progress_format">KEMAJUAN: %1$s%%</string>
+
     <string name="game_progress_format">%1$d/%2$d - %3$s%%</string>
 
     <string name="global_levels_label">LEVEL:</string>
 
-    <string name="insignia_supremus_integralis" translatable="false">SUPREMUS INTEGRALIS</string>
+
 
     <string name="desc_insignia_supremus_integralis">Kami merayakan masuknya Anda ke Peringkat Integral! Dengan muncul di 9 peringkat SumaMente, Anda telah menunjukkan penguasaan penuh Anda dalam semua disiplin matematika. Lencana SUPREMUS INTEGRALIS ini menandai masuknya Anda ke elit integral.</string>
 

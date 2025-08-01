@@ -57,7 +57,10 @@ class ClassificationActivity : BaseActivity() {
         setupButtons()
 
         if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
-            MusicManager.play(this, R.raw.clasificacion, looping = true, volume = 0.2f)
+
+            if (!MusicManager.isPlaying()) {
+                MusicManager.play(this, R.raw.clasificacion, looping = true, volume = 0.2f)
+            }
         }
 
         startAnimations()

@@ -25,10 +25,8 @@ object CondecoracionTracker {
     private const val KEY_LAST_CORONA_CHECK_DATE = "last_corona_check_date"
     private const val KEY_CONDECORACIONES_TOP10 = "condecoraciones_top10"
     private const val KEY_LAST_TOP10_CHECK_DATE = "last_top10_check_date"
-
     private const val KEY_CONDECORACIONES_IQ7 = "condecoraciones_iq7"
     private const val KEY_LAST_IQ7_CHECK_DATE = "last_iq7_check_date"
-
     private const val KEY_CONDECORACIONES_TOP5_INTEGRAL = "condecoraciones_top5_integral"
     private const val KEY_LAST_TOP5_INTEGRAL_CHECK_DATE = "last_top5_integral_check_date"
     private const val KEY_MEDALLAS_OBTENIDAS = "medallas_obtenidas"
@@ -36,6 +34,47 @@ object CondecoracionTracker {
     private const val KEY_APEX_SUPREMUS_OBTENIDA = "apex_supremus_obtenida"
     private const val KEY_INSIGNIA_RI_PLUS = "insignia_ri_plus_obtenida"
     private const val KEY_LAST_RI_PLUS_CHECK_DATE = "last_ri_plus_check_date"
+
+    private val TOP10_CONFIG = mapOf(
+        1 to "EXCELSITUR",
+        2 to "SUMMUM",
+        3 to "MAGNANIMOUS",
+        4 to "VENERABILIS",
+        5 to "GLORIOSUS",
+        6 to "ILLUSTRIS",
+        7 to "PRAESTANS",
+        8 to "INSIGNIS",
+        9 to "VIRTUOSUS",
+        10 to "HONORABILIS"
+    )
+
+    private val IQ7_CONFIG = mapOf(
+        1 to "SAPIENS_SUPREMUS",
+        2 to "MENTIS_AUREA",
+        3 to "LUMINIS_REX",
+        4 to "DOCTRINAE_PRINCEPS",
+        5 to "CONSILIUM_MAGNUS",
+        6 to "INTELLECTUS_PRIMUS",
+        7 to "DISCIPULUS_OPTIMUS"
+    )
+
+    private val TOP5_INTEGRAL_CONFIG = mapOf(
+        1 to "IMPERIUM_SUPREMUS",
+        2 to "MAGNUS_HONOR",
+        3 to "VIRTUS_TOTALIS",
+        4 to "EXCELLENTIA_SINGULARI",
+        5 to "GLORIA_INTEGRALIS"
+    )
+
+    private val GAME_NAME_MAP = mapOf(
+        "NumerosPlus" to R.string.game_numeros_plus,
+        "DeciPlus" to R.string.game_deci_plus,
+        "Romas" to R.string.game_romas,
+        "AlfaNumeros" to R.string.game_alfa_numeros,
+        "SumaResta" to R.string.game_sumaresta,
+        "MasPlus" to R.string.game_mas_plus,
+        "GenioPlus" to R.string.game_genio_plus
+    )
 
     data class CompletedLevel(
         val game: String,
@@ -136,55 +175,116 @@ object CondecoracionTracker {
     private var pinesObtenidos: MutableList<PinObtained> = mutableListOf()
     private var carryOverLevels: MutableList<CompletedLevel> = mutableListOf()
     private var lastPinCheckDate: String = ""
-//    private var hasNewPinsIndicator: Boolean = false 132 157 279
     private var coronasActivas: MutableList<CoronaActiva> = mutableListOf()
     private var lastCoronaCheckDate: String = ""
-
     private var condecoracionesTop10: MutableList<CondecoracionTop10> = mutableListOf()
     private var lastTop10CheckDate: String = ""
-
     private var condecoracionesIQ7: MutableList<CondecoracionIQ7> = mutableListOf()
     private var lastIQ7CheckDate: String = ""
-
     private var condecoracionesTop5Integral: MutableList<CondecoracionTop5Integral> = mutableListOf()
     private var lastTop5IntegralCheckDate: String = ""
     private var medallasObtenidas: MutableList<MedallaObtenida> = mutableListOf()
     private var trofeosObtenidos: MutableList<TrofeoObtenido> = mutableListOf()
     private var apexSupremusObtenida: ApexSupremusObtenida? = null
-
     private var insigniaRIPlus: InsigniaRIPlus? = null
     private var lastRIPlusCheckDate: String = ""
-
     private var trophyRedDotVisible: Boolean = false
     private var misCondecoracionesRedDotVisible: Boolean = false
 
+    private inline fun <reified T> saveList(key: String, list: List<T>) {
+        val jsonString = gson.toJson(list)
+        preferences.edit {
+            putString(key, jsonString)
+        }
+    }
+
+    private inline fun <reified T> loadList(key: String): MutableList<T> {
+        val jsonString = preferences.getString(key, null)
+        return if (jsonString != null) {
+            gson.fromJson(jsonString, object : TypeToken<MutableList<T>>() {}.type)
+        } else {
+            mutableListOf()
+        }
+    }
+
+    private inline fun <reified T> saveObject(key: String, obj: T?) {
+        val jsonString = gson.toJson(obj)
+        preferences.edit {
+            putString(key, jsonString)
+        }
+    }
+
+    private inline fun <reified T> loadObject(key: String, clazz: Class<T>): T? {
+        val jsonString = preferences.getString(key, null)
+        return if (jsonString != null) {
+            gson.fromJson(jsonString, clazz)
+        } else {
+            null
+        }
+    }
+
+    private inline fun <reified T> marcarComoVisto(
+        lista: MutableList<T>,
+        condicion: (T) -> Boolean,
+        transformar: (T) -> T,
+        guardar: () -> Unit
+    ) {
+        var cambiosRealizados = false
+
+        lista.forEachIndexed { index, item ->
+            if (condicion(item)) {
+                lista[index] = transformar(item)
+                cambiosRealizados = true
+            }
+        }
+
+        if (cambiosRealizados) {
+            guardar()
+            updateRedDotsStatus()
+        }
+    }
+
+    private inline fun verificarDiariamente(
+        lastCheckDateKey: String,
+        lastCheckDate: String,
+        updateLastCheckDate: (String) -> Unit,
+        procesarDia: () -> Unit
+    ) {
+        val currentDate = getCurrentDateChicago()
+        if (lastCheckDate != currentDate) {
+            procesarDia()
+            updateLastCheckDate(currentDate)
+            preferences.edit {
+                putString(lastCheckDateKey, currentDate)
+            }
+        }
+    }
+
     fun init(context: Context) {
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        loadCompletedLevelsUnified()
-        loadPinesObtenidos()
-        loadCarryOverLevels()
+
+        completedLevelsUnified = loadList(KEY_COMPLETED_LEVELS_JSON)
+        pinesObtenidos = loadList(KEY_PINS_OBTAINED)
+        carryOverLevels = loadList(KEY_CARRY_OVER_LEVELS)
+        coronasActivas = loadList(KEY_CORONAS_ACTIVAS)
+        condecoracionesTop10 = loadList(KEY_CONDECORACIONES_TOP10)
+        condecoracionesIQ7 = loadList(KEY_CONDECORACIONES_IQ7)
+        condecoracionesTop5Integral = loadList(KEY_CONDECORACIONES_TOP5_INTEGRAL)
+        medallasObtenidas = loadList(KEY_MEDALLAS_OBTENIDAS)
+        trofeosObtenidos = loadList(KEY_TROFEOS_OBTENIDOS)
+
+        apexSupremusObtenida = loadObject(KEY_APEX_SUPREMUS_OBTENIDA, ApexSupremusObtenida::class.java)
+        insigniaRIPlus = loadObject(KEY_INSIGNIA_RI_PLUS, InsigniaRIPlus::class.java)
+
         lastPinCheckDate = preferences.getString(KEY_LAST_PIN_CHECK_DATE, "") ?: ""
+        lastCoronaCheckDate = preferences.getString(KEY_LAST_CORONA_CHECK_DATE, "") ?: ""
+        lastTop10CheckDate = preferences.getString(KEY_LAST_TOP10_CHECK_DATE, "") ?: ""
+        lastIQ7CheckDate = preferences.getString(KEY_LAST_IQ7_CHECK_DATE, "") ?: ""
+        lastTop5IntegralCheckDate = preferences.getString(KEY_LAST_TOP5_INTEGRAL_CHECK_DATE, "") ?: ""
+        lastRIPlusCheckDate = preferences.getString(KEY_LAST_RI_PLUS_CHECK_DATE, "") ?: ""
 
         trophyRedDotVisible = preferences.getBoolean(KEY_TROPHY_RED_DOT, false)
         misCondecoracionesRedDotVisible = preferences.getBoolean(KEY_MIS_CONDECORACIONES_RED_DOT, false)
-
-        loadCoronasActivas()
-        lastCoronaCheckDate = preferences.getString(KEY_LAST_CORONA_CHECK_DATE, "") ?: ""
-
-        loadCondecoracionesTop10()
-        lastTop10CheckDate = preferences.getString(KEY_LAST_TOP10_CHECK_DATE, "") ?: ""
-
-        loadCondecoracionesIQ7()
-        lastIQ7CheckDate = preferences.getString(KEY_LAST_IQ7_CHECK_DATE, "") ?: ""
-
-        loadCondecoracionesTop5Integral()
-        lastTop5IntegralCheckDate = preferences.getString(KEY_LAST_TOP5_INTEGRAL_CHECK_DATE, "") ?: ""
-
-        loadMedallas()
-        loadTrofeos()
-        loadApexSupremus()
-        loadInsigniaRIPlus()
-        lastRIPlusCheckDate = preferences.getString(KEY_LAST_RI_PLUS_CHECK_DATE, "") ?: ""
     }
 
     fun clearGlobalRedDotFlags() {
@@ -196,53 +296,17 @@ object CondecoracionTracker {
         }
     }
 
-    private fun loadCompletedLevelsUnified() {
-        val jsonString = preferences.getString(KEY_COMPLETED_LEVELS_JSON, null)
-        completedLevelsUnified = if (jsonString != null) {
-            gson.fromJson(jsonString, object : TypeToken<MutableList<CompletedLevel>>() {}.type)
-        } else {
-            mutableListOf()
-        }
-    }
-
-    private fun loadPinesObtenidos() {
-        val jsonString = preferences.getString(KEY_PINS_OBTAINED, null)
-        pinesObtenidos = if (jsonString != null) {
-            gson.fromJson(jsonString, object : TypeToken<MutableList<PinObtained>>() {}.type)
-        } else {
-            mutableListOf()
-        }
-    }
-
-    private fun loadCarryOverLevels() {
-        val jsonString = preferences.getString(KEY_CARRY_OVER_LEVELS, null)
-        carryOverLevels = if (jsonString != null) {
-            gson.fromJson(jsonString, object : TypeToken<MutableList<CompletedLevel>>() {}.type)
-        } else {
-            mutableListOf()
-        }
-    }
-
-    private fun saveCompletedLevelsUnified() {
-        val jsonString = gson.toJson(completedLevelsUnified)
-        preferences.edit {
-            putString(KEY_COMPLETED_LEVELS_JSON, jsonString)
-        }
-    }
-
-    private fun savePinesObtenidos() {
-        val jsonString = gson.toJson(pinesObtenidos)
-        preferences.edit {
-            putString(KEY_PINS_OBTAINED, jsonString)
-        }
-    }
-
-    private fun saveCarryOverLevels() {
-        val jsonString = gson.toJson(carryOverLevels)
-        preferences.edit {
-            putString(KEY_CARRY_OVER_LEVELS, jsonString)
-        }
-    }
+    private fun saveCompletedLevelsUnified() = saveList(KEY_COMPLETED_LEVELS_JSON, completedLevelsUnified)
+    private fun savePinesObtenidos() = saveList(KEY_PINS_OBTAINED, pinesObtenidos)
+    private fun saveCarryOverLevels() = saveList(KEY_CARRY_OVER_LEVELS, carryOverLevels)
+    private fun saveCoronasActivas() = saveList(KEY_CORONAS_ACTIVAS, coronasActivas)
+    private fun saveCondecoracionesTop10() = saveList(KEY_CONDECORACIONES_TOP10, condecoracionesTop10)
+    private fun saveCondecoracionesIQ7() = saveList(KEY_CONDECORACIONES_IQ7, condecoracionesIQ7)
+    private fun saveCondecoracionesTop5Integral() = saveList(KEY_CONDECORACIONES_TOP5_INTEGRAL, condecoracionesTop5Integral)
+    private fun saveMedallas() = saveList(KEY_MEDALLAS_OBTENIDAS, medallasObtenidas)
+    private fun saveTrofeos() = saveList(KEY_TROFEOS_OBTENIDOS, trofeosObtenidos)
+    private fun saveApexSupremus() = saveObject(KEY_APEX_SUPREMUS_OBTENIDA, apexSupremusObtenida)
+    private fun saveInsigniaRIPlus() = saveObject(KEY_INSIGNIA_RI_PLUS, insigniaRIPlus)
 
     fun marcarNivelConTimestamp(game: String, grade: String, level: Int) {
         val currentTime = System.currentTimeMillis()
@@ -262,15 +326,15 @@ object CondecoracionTracker {
     }
 
     fun verificarYEntregarPines() {
-        val currentDate = getCurrentDateChicago()
-        if (lastPinCheckDate != currentDate) {
-            val yesterday = getYesterdayDateChicago()
-            procesarPinesDelDia(yesterday)
-            lastPinCheckDate = currentDate
-            preferences.edit {
-                putString(KEY_LAST_PIN_CHECK_DATE, currentDate)
+        verificarDiariamente(
+            lastCheckDateKey = KEY_LAST_PIN_CHECK_DATE,
+            lastCheckDate = lastPinCheckDate,
+            updateLastCheckDate = { lastPinCheckDate = it },
+            procesarDia = {
+                val yesterday = getYesterdayDateChicago()
+                procesarPinesDelDia(yesterday)
             }
-        }
+        )
     }
 
     private fun procesarPinesDelDia(fecha: String) {
@@ -297,7 +361,6 @@ object CondecoracionTracker {
                 saveCarryOverLevels()
             }
             if (pinesEntregados > 0) {
-
                 updateRedDotsStatus()
                 preferences.edit {
                     putBoolean(KEY_NEW_PINS_INDICATOR, true)
@@ -372,103 +435,416 @@ object CondecoracionTracker {
         saveCarryOverLevels()
     }
 
-
-
     fun marcarPinIndividualComoVisto(pinTipo: String, fechaObtencion: Long) {
-        var cambiosRealizados = false
-        pinesObtenidos.forEach { pin ->
-            if (pin.tipo == pinTipo && pin.fechaObtencion == fechaObtencion && !pin.visto) {
-                pin.visto = true
-                cambiosRealizados = true
-            }
-        }
-        if (cambiosRealizados) {
-            savePinesObtenidos()
-            updateRedDotsStatus()
-        }
+        marcarComoVisto(
+            lista = pinesObtenidos,
+            condicion = { pin ->
+                pin.tipo == pinTipo && pin.fechaObtencion == fechaObtencion && !pin.visto
+            },
+            transformar = { pin ->
+                pin.copy(visto = true)
+            },
+            guardar = ::savePinesObtenidos
+        )
     }
 
     fun getAllPines(): List<PinObtained> = pinesObtenidos.toList()
 
+    fun verificarYActualizarCoronasDeVelocidad(context: Context) {
+        verificarDiariamente(
+            lastCheckDateKey = KEY_LAST_CORONA_CHECK_DATE,
+            lastCheckDate = lastCoronaCheckDate,
+            updateLastCheckDate = { lastCoronaCheckDate = it },
+            procesarDia = { procesarCoronasDelDia(context) }
+        )
+    }
 
-    private fun loadCoronasActivas() {
-        val jsonString = preferences.getString(KEY_CORONAS_ACTIVAS, null)
-        coronasActivas = if (jsonString != null) {
-            gson.fromJson(jsonString, object : TypeToken<MutableList<CoronaActiva>>() {}.type)
+    fun verificarYActualizarCondecoracionesTop10(context: Context) {
+        verificarDiariamente(
+            lastCheckDateKey = KEY_LAST_TOP10_CHECK_DATE,
+            lastCheckDate = lastTop10CheckDate,
+            updateLastCheckDate = { lastTop10CheckDate = it },
+            procesarDia = { procesarCondecoracionesTop10DelDia(context) }
+        )
+    }
+
+    private fun procesarCondecoracionesTop10DelDia(context: Context) {
+        val posicionUsuario = consultarPosicionRankingGlobal(context)
+        actualizarCondecoracionTop10DelUsuario(posicionUsuario, context)
+    }
+
+    private fun consultarPosicionRankingGlobal(context: Context): Int {
+        ScoreManager.ensurePreferencesInitialized(context)
+        ScoreManager.init(context)
+        ScoreManager.initPrincipiante(context)
+        ScoreManager.initPro(context)
+        ScoreManager.initDeciPlus(context)
+        ScoreManager.initDeciPlusPrincipiante(context)
+        ScoreManager.initDeciPlusPro(context)
+        ScoreManager.initRomas(context)
+        ScoreManager.initRomasPrincipiante(context)
+        ScoreManager.initRomasPro(context)
+        ScoreManager.initAlfaNumeros(context)
+        ScoreManager.initAlfaNumerosPrincipiante(context)
+        ScoreManager.initAlfaNumerosPro(context)
+        ScoreManager.initSumaResta(context)
+        ScoreManager.initSumaRestaPrincipiante(context)
+        ScoreManager.initSumaRestaPro(context)
+        ScoreManager.initMasPlus(context)
+        ScoreManager.initMasPlusPrincipiante(context)
+        ScoreManager.initMasPlusPro(context)
+        ScoreManager.initGenioPlus(context)
+        ScoreManager.initGenioPlusPrincipiante(context)
+        ScoreManager.initGenioPlusPro(context)
+        return ScoreManager.getUserPositionInRanking("GLOBAL")
+    }
+
+    private fun actualizarCondecoracionTop10DelUsuario(posicion: Int, context: Context) {
+        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val usuarioActual = sharedPreferences.getString("savedUserName", "Usuario") ?: "Usuario"
+
+        if (posicion in 1..10) {
+            val yaExiste = condecoracionesTop10.any { it.posicion == posicion }
+
+            if (!yaExiste) {
+                val tipoCondecoracion = TOP10_CONFIG[posicion] ?: ""
+                val mensaje = generarMensajeTop10(tipoCondecoracion, usuarioActual, context)
+
+                condecoracionesTop10.add(
+                    CondecoracionTop10(
+                        posicion = posicion,
+                        tipoCondecoracion = tipoCondecoracion,
+                        fechaAsignacion = System.currentTimeMillis(),
+                        esNueva = true,
+                        mensaje = mensaje
+                    )
+                )
+
+                updateRedDotsStatus()
+                saveCondecoracionesTop10()
+            }
         } else {
-            mutableListOf()
+            if (condecoracionesTop10.isNotEmpty()) {
+                condecoracionesTop10.clear()
+                saveCondecoracionesTop10()
+                updateRedDotsStatus()
+            }
         }
     }
 
-    private fun saveCoronasActivas() {
-        val jsonString = gson.toJson(coronasActivas)
-        preferences.edit {
-            putString(KEY_CORONAS_ACTIVAS, jsonString)
+    private fun generarMensajeTop10(tipoCondecoracion: String, nombreUsuario: String, context: Context): String {
+        val random = kotlin.random.Random.nextInt(1, 4)
+
+        val stringResId = when (tipoCondecoracion) {
+            "EXCELSITUR" -> when (random) {
+                1 -> R.string.msg_top10_excelsitur_1
+                2 -> R.string.msg_top10_excelsitur_2
+                else -> R.string.msg_top10_excelsitur_3
+            }
+            "SUMMUM" -> when (random) {
+                1 -> R.string.msg_top10_summum_1
+                2 -> R.string.msg_top10_summum_2
+                else -> R.string.msg_top10_summum_3
+            }
+            "MAGNANIMOUS" -> when (random) {
+                1 -> R.string.msg_top10_magnanimous_1
+                2 -> R.string.msg_top10_magnanimous_2
+                else -> R.string.msg_top10_magnanimous_3
+            }
+            "VENERABILIS" -> when (random) {
+                1 -> R.string.msg_top10_venerabilis_1
+                2 -> R.string.msg_top10_venerabilis_2
+                else -> R.string.msg_top10_venerabilis_3
+            }
+            "GLORIOSUS" -> when (random) {
+                1 -> R.string.msg_top10_gloriosus_1
+                2 -> R.string.msg_top10_gloriosus_2
+                else -> R.string.msg_top10_gloriosus_3
+            }
+            "ILLUSTRIS" -> when (random) {
+                1 -> R.string.msg_top10_illustris_1
+                2 -> R.string.msg_top10_illustris_2
+                else -> R.string.msg_top10_illustris_3
+            }
+            "PRAESTANS" -> when (random) {
+                1 -> R.string.msg_top10_praestans_1
+                2 -> R.string.msg_top10_praestans_2
+                else -> R.string.msg_top10_praestans_3
+            }
+            "INSIGNIS" -> when (random) {
+                1 -> R.string.msg_top10_insignis_1
+                2 -> R.string.msg_top10_insignis_2
+                else -> R.string.msg_top10_insignis_3
+            }
+            "VIRTUOSUS" -> when (random) {
+                1 -> R.string.msg_top10_virtuosus_1
+                2 -> R.string.msg_top10_virtuosus_2
+                else -> R.string.msg_top10_virtuosus_3
+            }
+            "HONORABILIS" -> when (random) {
+                1 -> R.string.msg_top10_honorabilis_1
+                2 -> R.string.msg_top10_honorabilis_2
+                else -> R.string.msg_top10_honorabilis_3
+            }
+            else -> R.string.msg_top10_honorabilis_1
         }
+
+        return context.getString(stringResId, nombreUsuario, tipoCondecoracion)
     }
 
-    private fun loadCondecoracionesTop10() {
-        val jsonString = preferences.getString(KEY_CONDECORACIONES_TOP10, null)
-        condecoracionesTop10 = if (jsonString != null) {
-            gson.fromJson(jsonString, object : TypeToken<MutableList<CondecoracionTop10>>() {}.type)
+    fun verificarYActualizarCondecoracionesIQ7(context: Context) {
+        verificarDiariamente(
+            lastCheckDateKey = KEY_LAST_IQ7_CHECK_DATE,
+            lastCheckDate = lastIQ7CheckDate,
+            updateLastCheckDate = { lastIQ7CheckDate = it },
+            procesarDia = { procesarCondecoracionesIQ7DelDia(context) }
+        )
+    }
+
+    private fun procesarCondecoracionesIQ7DelDia(context: Context) {
+        val posicionUsuario = consultarPosicionRankingIQ7(context)
+        actualizarCondecoracionIQ7DelUsuario(posicionUsuario, context)
+    }
+
+    private fun consultarPosicionRankingIQ7(context: Context): Int {
+        ScoreManager.ensurePreferencesInitialized(context)
+        return ScoreManager.getUserPositionInRanking("IQ_PLUS")
+    }
+
+    private fun actualizarCondecoracionIQ7DelUsuario(posicion: Int, context: Context) {
+        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val usuarioActual = sharedPreferences.getString("savedUserName", "Usuario") ?: "Usuario"
+
+        if (posicion in 1..7) {
+            val yaExiste = condecoracionesIQ7.any { it.posicion == posicion }
+
+            if (!yaExiste) {
+                val tipoCondecoracion = IQ7_CONFIG[posicion] ?: ""
+                val mensaje = generarMensajeIQ7(tipoCondecoracion, usuarioActual, posicion, context)
+
+                condecoracionesIQ7.add(
+                    CondecoracionIQ7(
+                        posicion = posicion,
+                        tipoCondecoracion = tipoCondecoracion,
+                        fechaAsignacion = System.currentTimeMillis(),
+                        esNueva = true,
+                        mensaje = mensaje
+                    )
+                )
+
+                updateRedDotsStatus()
+                saveCondecoracionesIQ7()
+            }
         } else {
-            mutableListOf()
+            if (condecoracionesIQ7.isNotEmpty()) {
+                condecoracionesIQ7.clear()
+                saveCondecoracionesIQ7()
+                updateRedDotsStatus()
+            }
         }
     }
 
-    private fun saveCondecoracionesTop10() {
-        val jsonString = gson.toJson(condecoracionesTop10)
-        preferences.edit {
-            putString(KEY_CONDECORACIONES_TOP10, jsonString)
-        }
+    private fun generarMensajeIQ7(
+        tipoCondecoracion: String,
+        usuarioActual1: String,
+        posicion: Int,
+        context: Context
+    ): String {
+        return context.getString(
+            when (tipoCondecoracion) {
+                "SAPIENS_SUPREMUS" -> R.string.logro_iq7_sapiens_supremus
+                "MENTIS_AUREA" -> R.string.logro_iq7_mentis_aurea
+                "LUMINIS_REX" -> R.string.logro_iq7_luminis_rex
+                "DOCTRINAE_PRINCEPS" -> R.string.logro_iq7_doctrinae_princeps
+                "CONSILIUM_MAGNUS" -> R.string.logro_iq7_consilium_magnus
+                "INTELLECTUS_PRIMUS" -> R.string.logro_iq7_intellectus_primus
+                "DISCIPULUS_OPTIMUS" -> R.string.logro_iq7_discipulus_optimus
+                else -> R.string.logro_iq7_discipulus_optimus
+            },
+            usuarioActual1,
+            posicion,
+            tipoCondecoracion
+        )
     }
 
+    fun getCondecoracionesIQ7(): List<CondecoracionIQ7> = condecoracionesIQ7.toList()
 
-    private fun loadCondecoracionesIQ7() {
-        val jsonString = preferences.getString(KEY_CONDECORACIONES_IQ7, null)
-        condecoracionesIQ7 = if (jsonString != null) {
-            gson.fromJson(jsonString, object : TypeToken<MutableList<CondecoracionIQ7>>() {}.type)
+    fun marcarCondecoracionIQ7IndividualComoVista(posicion: Int, tipoCondecoracion: String, fechaAsignacion: Long) {
+        marcarComoVisto(
+            lista = condecoracionesIQ7,
+            condicion = { condecoracion ->
+                condecoracion.posicion == posicion &&
+                        condecoracion.tipoCondecoracion == tipoCondecoracion &&
+                        condecoracion.fechaAsignacion == fechaAsignacion &&
+                        condecoracion.esNueva
+            },
+            transformar = { condecoracion ->
+                condecoracion.copy(esNueva = false)
+            },
+            guardar = ::saveCondecoracionesIQ7
+        )
+    }
+
+    fun verificarYActualizarCondecoracionesTop5Integral(context: Context) {
+        verificarDiariamente(
+            lastCheckDateKey = KEY_LAST_TOP5_INTEGRAL_CHECK_DATE,
+            lastCheckDate = lastTop5IntegralCheckDate,
+            updateLastCheckDate = { lastTop5IntegralCheckDate = it },
+            procesarDia = { procesarCondecoracionesTop5IntegralDelDia(context) }
+        )
+    }
+
+    private fun procesarCondecoracionesTop5IntegralDelDia(context: Context) {
+        val posicionUsuario = consultarPosicionRankingIntegral(context)
+        actualizarCondecoracionTop5IntegralDelUsuario(posicionUsuario, context)
+    }
+
+    private fun consultarPosicionRankingIntegral(context: Context): Int {
+        ScoreManager.ensurePreferencesInitialized(context)
+        ScoreManager.init(context)
+        ScoreManager.initPrincipiante(context)
+        ScoreManager.initPro(context)
+        ScoreManager.initDeciPlus(context)
+        ScoreManager.initDeciPlusPrincipiante(context)
+        ScoreManager.initDeciPlusPro(context)
+        ScoreManager.initRomas(context)
+        ScoreManager.initRomasPrincipiante(context)
+        ScoreManager.initRomasPro(context)
+        ScoreManager.initAlfaNumeros(context)
+        ScoreManager.initAlfaNumerosPrincipiante(context)
+        ScoreManager.initAlfaNumerosPro(context)
+        ScoreManager.initSumaResta(context)
+        ScoreManager.initSumaRestaPrincipiante(context)
+        ScoreManager.initSumaRestaPro(context)
+        ScoreManager.initMasPlus(context)
+        ScoreManager.initMasPlusPrincipiante(context)
+        ScoreManager.initMasPlusPro(context)
+        ScoreManager.initGenioPlus(context)
+        ScoreManager.initGenioPlusPrincipiante(context)
+        ScoreManager.initGenioPlusPro(context)
+        return ScoreManager.getUserPositionInRankingIntegral()
+    }
+
+    private fun actualizarCondecoracionTop5IntegralDelUsuario(posicion: Int, context: Context) {
+        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val usuarioActual = sharedPreferences.getString("savedUserName", "Usuario") ?: "Usuario"
+
+        if (posicion in 1..5) {
+            val yaExiste = condecoracionesTop5Integral.any { it.posicion == posicion }
+
+            if (!yaExiste) {
+                val tipoCondecoracion = TOP5_INTEGRAL_CONFIG[posicion] ?: ""
+                val mensaje = generarMensajeTop5Integral(tipoCondecoracion, usuarioActual, context)
+
+                condecoracionesTop5Integral.add(
+                    CondecoracionTop5Integral(
+                        posicion = posicion,
+                        tipoCondecoracion = tipoCondecoracion,
+                        fechaAsignacion = System.currentTimeMillis(),
+                        esNueva = true,
+                        mensaje = mensaje
+                    )
+                )
+
+                updateRedDotsStatus()
+                saveCondecoracionesTop5Integral()
+            }
         } else {
-            mutableListOf()
+            if (condecoracionesTop5Integral.isNotEmpty()) {
+                condecoracionesTop5Integral.clear()
+                saveCondecoracionesTop5Integral()
+                updateRedDotsStatus()
+            }
         }
     }
 
-    private fun saveCondecoracionesIQ7() {
-        val jsonString = gson.toJson(condecoracionesIQ7)
-        preferences.edit {
-            putString(KEY_CONDECORACIONES_IQ7, jsonString)
+    private fun generarMensajeTop5Integral(tipoCondecoracion: String, nombreUsuario: String, context: Context): String {
+        val random = kotlin.random.Random.nextInt(1, 3)
+
+        val stringResId = when (tipoCondecoracion) {
+            "IMPERIUM_SUPREMUS" -> when (random) {
+                1 -> R.string.logro_imperium_supremus_1
+                else -> R.string.logro_imperium_supremus_2
+            }
+            "MAGNUS_HONOR" -> when (random) {
+                1 -> R.string.logro_magnus_honor_1
+                else -> R.string.logro_magnus_honor_2
+            }
+            "VIRTUS_TOTALIS" -> when (random) {
+                1 -> R.string.logro_virtus_totalis_1
+                else -> R.string.logro_virtus_totalis_2
+            }
+            "EXCELLENTIA_SINGULARI" -> when (random) {
+                1 -> R.string.logro_excellentia_singulari_1
+                else -> R.string.logro_excellentia_singulari_2
+            }
+            "GLORIA_INTEGRALIS" -> when (random) {
+                1 -> R.string.logro_gloria_integralis_1
+                else -> R.string.logro_gloria_integralis_2
+            }
+            else -> R.string.logro_gloria_integralis_1
+        }
+
+        return context.getString(stringResId, nombreUsuario)
+    }
+
+    fun getCondecoracionesTop5Integral(): List<CondecoracionTop5Integral> = condecoracionesTop5Integral.toList()
+
+    fun marcarCondecoracionTop5IntegralIndividualComoVista(posicion: Int, tipoCondecoracion: String, fechaAsignacion: Long) {
+        marcarComoVisto(
+            lista = condecoracionesTop5Integral,
+            condicion = { condecoracion ->
+                condecoracion.posicion == posicion &&
+                        condecoracion.tipoCondecoracion == tipoCondecoracion &&
+                        condecoracion.fechaAsignacion == fechaAsignacion &&
+                        condecoracion.esNueva
+            },
+            transformar = { condecoracion ->
+                condecoracion.copy(esNueva = false)
+            },
+            guardar = ::saveCondecoracionesTop5Integral
+        )
+    }
+
+    fun verificarYActualizarInsigniaRIPlus(context: Context) {
+        verificarDiariamente(
+            lastCheckDateKey = KEY_LAST_RI_PLUS_CHECK_DATE,
+            lastCheckDate = lastRIPlusCheckDate,
+            updateLastCheckDate = { lastRIPlusCheckDate = it },
+            procesarDia = { procesarInsigniaRIPlusDelDia(context) }
+        )
+    }
+
+    private fun procesarInsigniaRIPlusDelDia(context: Context) {
+        val posicionUsuario = consultarPosicionRankingIntegral(context)
+        actualizarInsigniaRIPlusDelUsuario(posicionUsuario)
+    }
+
+    private fun actualizarInsigniaRIPlusDelUsuario(posicion: Int) {
+        if (posicion == 1) {
+            val yaObtenida = insigniaRIPlus != null
+            if (!yaObtenida) {
+                val nuevaInsignia = InsigniaRIPlus(
+                    fechaObtencion = System.currentTimeMillis(),
+                    vista = false
+                )
+
+                insigniaRIPlus = nuevaInsignia
+                saveInsigniaRIPlus()
+                updateRedDotsStatus()
+            }
         }
     }
 
-    private fun loadCondecoracionesTop5Integral() {
-        val jsonString = preferences.getString(KEY_CONDECORACIONES_TOP5_INTEGRAL, null)
-        condecoracionesTop5Integral = if (jsonString != null) {
-            gson.fromJson(jsonString, object : TypeToken<MutableList<CondecoracionTop5Integral>>() {}.type)
-        } else {
-            mutableListOf()
-        }
-    }
+    fun getInsigniaRIPlus(): InsigniaRIPlus? = insigniaRIPlus
 
-    private fun saveCondecoracionesTop5Integral() {
-        val jsonString = gson.toJson(condecoracionesTop5Integral)
-        preferences.edit {
-            putString(KEY_CONDECORACIONES_TOP5_INTEGRAL, jsonString)
-        }
-    }
-
-    private fun loadMedallas() {
-        val jsonString = preferences.getString(KEY_MEDALLAS_OBTENIDAS, null)
-        medallasObtenidas = if (jsonString != null) {
-            gson.fromJson(jsonString, object : TypeToken<MutableList<MedallaObtenida>>() {}.type)
-        } else {
-            mutableListOf()
-        }
-    }
-
-    private fun saveMedallas() {
-        val jsonString = gson.toJson(medallasObtenidas)
-        preferences.edit {
-            putString(KEY_MEDALLAS_OBTENIDAS, jsonString)
+    fun marcarInsigniaRIPlusComoVista() {
+        insigniaRIPlus?.let { insignia ->
+            if (!insignia.vista) {
+                insigniaRIPlus = insignia.copy(vista = true)
+                saveInsigniaRIPlus()
+                updateRedDotsStatus()
+            }
         }
     }
 
@@ -507,67 +883,17 @@ object CondecoracionTracker {
 
     fun getMedallasObtenidas(): List<MedallaObtenida> = medallasObtenidas.toList()
 
-
     fun marcarMedallaIndividualComoVista(tipo: String, fechaObtencion: Long) {
-        var cambiosRealizados = false
-        medallasObtenidas.forEach { medalla ->
-            if (medalla.tipo == tipo && medalla.fechaObtencion == fechaObtencion && !medalla.vista) {
-                medalla.vista = true
-                cambiosRealizados = true
-            }
-        }
-        if (cambiosRealizados) {
-            saveMedallas()
-            updateRedDotsStatus()
-        }
-    }
-
-    private fun loadTrofeos() {
-        val jsonString = preferences.getString(KEY_TROFEOS_OBTENIDOS, null)
-        trofeosObtenidos = if (jsonString != null) {
-            gson.fromJson(jsonString, object : TypeToken<MutableList<TrofeoObtenido>>() {}.type)
-        } else {
-            mutableListOf()
-        }
-    }
-
-    private fun saveTrofeos() {
-        val jsonString = gson.toJson(trofeosObtenidos)
-        preferences.edit {
-            putString(KEY_TROFEOS_OBTENIDOS, jsonString)
-        }
-    }
-
-    private fun loadApexSupremus() {
-        val jsonString = preferences.getString(KEY_APEX_SUPREMUS_OBTENIDA, null)
-        apexSupremusObtenida = if (jsonString != null) {
-            gson.fromJson(jsonString, ApexSupremusObtenida::class.java)
-        } else {
-            null
-        }
-    }
-
-    private fun saveApexSupremus() {
-        val jsonString = gson.toJson(apexSupremusObtenida)
-        preferences.edit {
-            putString(KEY_APEX_SUPREMUS_OBTENIDA, jsonString)
-        }
-    }
-
-    private fun loadInsigniaRIPlus() {
-        val jsonString = preferences.getString(KEY_INSIGNIA_RI_PLUS, null)
-        insigniaRIPlus = if (jsonString != null) {
-            gson.fromJson(jsonString, InsigniaRIPlus::class.java)
-        } else {
-            null
-        }
-    }
-
-    private fun saveInsigniaRIPlus() {
-        val jsonString = gson.toJson(insigniaRIPlus)
-        preferences.edit {
-            putString(KEY_INSIGNIA_RI_PLUS, jsonString)
-        }
+        marcarComoVisto(
+            lista = medallasObtenidas,
+            condicion = { medalla ->
+                medalla.tipo == tipo && medalla.fechaObtencion == fechaObtencion && !medalla.vista
+            },
+            transformar = { medalla ->
+                medalla.copy(vista = true)
+            },
+            guardar = ::saveMedallas
+        )
     }
 
     fun verificarYEntregarTrofeos(juego: String, grado: String, callback: (TrofeoObtenido?) -> Unit) {
@@ -702,22 +1028,20 @@ object CondecoracionTracker {
 
     fun getTrofeosObtenidos(): List<TrofeoObtenido> = trofeosObtenidos.toList()
 
-
     fun marcarTrofeoIndividualComoVisto(juego: String, grado: String, fechaObtencion: Long) {
-        var cambiosRealizados = false
-        trofeosObtenidos.forEach { trofeo ->
-            if (trofeo.juego == juego &&
-                trofeo.grado == grado &&
-                trofeo.fechaObtencion == fechaObtencion &&
-                !trofeo.visto) {
-                trofeo.visto = true
-                cambiosRealizados = true
-            }
-        }
-        if (cambiosRealizados) {
-            saveTrofeos()
-            updateRedDotsStatus()
-        }
+        marcarComoVisto(
+            lista = trofeosObtenidos,
+            condicion = { trofeo ->
+                trofeo.juego == juego &&
+                        trofeo.grado == grado &&
+                        trofeo.fechaObtencion == fechaObtencion &&
+                        !trofeo.visto
+            },
+            transformar = { trofeo ->
+                trofeo.copy(visto = true)
+            },
+            guardar = ::saveTrofeos
+        )
     }
 
     fun verificarYEntregarApexSupremus(callback: (ApexSupremusObtenida?) -> Unit) {
@@ -765,479 +1089,6 @@ object CondecoracionTracker {
 
     fun getCoronasActivas(): List<CoronaActiva> = coronasActivas.toList()
 
-    fun verificarYActualizarCoronasDeVelocidad(context: Context) {
-        val currentDate = getCurrentDateChicago()
-        if (lastCoronaCheckDate != currentDate) {
-            procesarCoronasDelDia(context)
-            lastCoronaCheckDate = currentDate
-            preferences.edit {
-                putString(KEY_LAST_CORONA_CHECK_DATE, currentDate)
-            }
-        }
-    }
-
-    fun verificarYActualizarCondecoracionesTop10(context: Context) {
-        val currentDate = getCurrentDateChicago()
-        if (lastTop10CheckDate != currentDate) {
-            procesarCondecoracionesTop10DelDia(context)
-            lastTop10CheckDate = currentDate
-            preferences.edit {
-                putString(KEY_LAST_TOP10_CHECK_DATE, currentDate)
-            }
-        }
-    }
-
-    private fun procesarCondecoracionesTop10DelDia(context: Context) {
-        val posicionUsuario = consultarPosicionRankingGlobal(context)
-        actualizarCondecoracionTop10DelUsuario(posicionUsuario, context)
-    }
-
-    private fun consultarPosicionRankingGlobal(context: Context): Int {
-        ScoreManager.ensurePreferencesInitialized(context)
-        ScoreManager.init(context)
-        ScoreManager.initPrincipiante(context)
-        ScoreManager.initPro(context)
-        ScoreManager.initDeciPlus(context)
-        ScoreManager.initDeciPlusPrincipiante(context)
-        ScoreManager.initDeciPlusPro(context)
-        ScoreManager.initRomas(context)
-        ScoreManager.initRomasPrincipiante(context)
-        ScoreManager.initRomasPro(context)
-        ScoreManager.initAlfaNumeros(context)
-        ScoreManager.initAlfaNumerosPrincipiante(context)
-        ScoreManager.initAlfaNumerosPro(context)
-        ScoreManager.initSumaResta(context)
-        ScoreManager.initSumaRestaPrincipiante(context)
-        ScoreManager.initSumaRestaPro(context)
-        ScoreManager.initMasPlus(context)
-        ScoreManager.initMasPlusPrincipiante(context)
-        ScoreManager.initMasPlusPro(context)
-        ScoreManager.initGenioPlus(context)
-        ScoreManager.initGenioPlusPrincipiante(context)
-        ScoreManager.initGenioPlusPro(context)
-        return ScoreManager.getUserPositionInRanking("GLOBAL")
-    }
-
-    private fun actualizarCondecoracionTop10DelUsuario(posicion: Int, context: Context) {
-        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val usuarioActual = sharedPreferences.getString("savedUserName", "Usuario") ?: "Usuario"
-
-        if (posicion in 1..10) {
-            // 🔧 CAMBIO CLAVE: Verificar si ya existe antes de crear
-            val yaExiste = condecoracionesTop10.any { it.posicion == posicion }
-
-            if (!yaExiste) {
-                val tipoCondecoracion = when (posicion) {
-                    1 -> "EXCELSITUR"
-                    2 -> "SUMMUM"
-                    3 -> "MAGNANIMOUS"
-                    4 -> "VENERABILIS"
-                    5 -> "GLORIOSUS"
-                    6 -> "ILLUSTRIS"
-                    7 -> "PRAESTANS"
-                    8 -> "INSIGNIS"
-                    9 -> "VIRTUOSUS"
-                    10 -> "HONORABILIS"
-                    else -> ""
-                }
-
-                val mensaje = generarMensajeTop10(tipoCondecoracion, usuarioActual, context)
-
-                condecoracionesTop10.add(
-                    CondecoracionTop10(
-                        posicion = posicion,
-                        tipoCondecoracion = tipoCondecoracion,
-                        fechaAsignacion = System.currentTimeMillis(),
-                        esNueva = true,  // ← Solo se marca como nueva la PRIMERA vez
-                        mensaje = mensaje
-                    )
-                )
-
-                updateRedDotsStatus()
-                saveCondecoracionesTop10()
-            }
-
-
-        } else {
-
-            if (condecoracionesTop10.isNotEmpty()) {
-                condecoracionesTop10.clear()
-                saveCondecoracionesTop10()
-                updateRedDotsStatus()
-            }
-        }
-    }
-
-    private fun generarMensajeTop10(tipoCondecoracion: String, nombreUsuario: String, context: Context): String {
-        val random = kotlin.random.Random.nextInt(1, 4)
-
-        val stringResId = when (tipoCondecoracion) {
-            "EXCELSITUR" -> when (random) {
-                1 -> R.string.msg_top10_excelsitur_1
-                2 -> R.string.msg_top10_excelsitur_2
-                else -> R.string.msg_top10_excelsitur_3
-            }
-            "SUMMUM" -> when (random) {
-                1 -> R.string.msg_top10_summum_1
-                2 -> R.string.msg_top10_summum_2
-                else -> R.string.msg_top10_summum_3
-            }
-            "MAGNANIMOUS" -> when (random) {
-                1 -> R.string.msg_top10_magnanimous_1
-                2 -> R.string.msg_top10_magnanimous_2
-                else -> R.string.msg_top10_magnanimous_3
-            }
-            "VENERABILIS" -> when (random) {
-                1 -> R.string.msg_top10_venerabilis_1
-                2 -> R.string.msg_top10_venerabilis_2
-                else -> R.string.msg_top10_venerabilis_3
-            }
-            "GLORIOSUS" -> when (random) {
-                1 -> R.string.msg_top10_gloriosus_1
-                2 -> R.string.msg_top10_gloriosus_2
-                else -> R.string.msg_top10_gloriosus_3
-            }
-            "ILLUSTRIS" -> when (random) {
-                1 -> R.string.msg_top10_illustris_1
-                2 -> R.string.msg_top10_illustris_2
-                else -> R.string.msg_top10_illustris_3
-            }
-            "PRAESTANS" -> when (random) {
-                1 -> R.string.msg_top10_praestans_1
-                2 -> R.string.msg_top10_praestans_2
-                else -> R.string.msg_top10_praestans_3
-            }
-            "INSIGNIS" -> when (random) {
-                1 -> R.string.msg_top10_insignis_1
-                2 -> R.string.msg_top10_insignis_2
-                else -> R.string.msg_top10_insignis_3
-            }
-            "VIRTUOSUS" -> when (random) {
-                1 -> R.string.msg_top10_virtuosus_1
-                2 -> R.string.msg_top10_virtuosus_2
-                else -> R.string.msg_top10_virtuosus_3
-            }
-            "HONORABILIS" -> when (random) {
-                1 -> R.string.msg_top10_honorabilis_1
-                2 -> R.string.msg_top10_honorabilis_2
-                else -> R.string.msg_top10_honorabilis_3
-            }
-            else -> R.string.msg_top10_honorabilis_1
-        }
-
-        return context.getString(stringResId, nombreUsuario, tipoCondecoracion)
-    }
-
-    fun verificarYActualizarCondecoracionesIQ7(context: Context) {
-        val currentDate = getCurrentDateChicago()
-        if (lastIQ7CheckDate != currentDate) {
-            procesarCondecoracionesIQ7DelDia(context)
-            lastIQ7CheckDate = currentDate
-            preferences.edit {
-                putString(KEY_LAST_IQ7_CHECK_DATE, currentDate)
-            }
-        }
-    }
-
-    private fun procesarCondecoracionesIQ7DelDia(context: Context) {
-        val posicionUsuario = consultarPosicionRankingIQ7(context)
-        actualizarCondecoracionIQ7DelUsuario(posicionUsuario, context)
-    }
-
-    private fun consultarPosicionRankingIQ7(context: Context): Int {
-        ScoreManager.ensurePreferencesInitialized(context)
-        return ScoreManager.getUserPositionInRanking("IQ_PLUS")  // ← REAL
-    }
-
-    private fun actualizarCondecoracionIQ7DelUsuario(posicion: Int, context: Context) {
-        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val usuarioActual = sharedPreferences.getString("savedUserName", "Usuario") ?: "Usuario"
-
-        if (posicion in 1..7) {
-            // 🔧 CAMBIO CLAVE: Verificar si ya existe antes de crear
-            val yaExiste = condecoracionesIQ7.any { it.posicion == posicion }
-
-            if (!yaExiste) {
-                val tipoCondecoracion = when (posicion) {
-                    1 -> "SAPIENS_SUPREMUS"
-                    2 -> "MENTIS_AUREA"
-                    3 -> "LUMINIS_REX"
-                    4 -> "DOCTRINAE_PRINCEPS"
-                    5 -> "CONSILIUM_MAGNUS"
-                    6 -> "INTELLECTUS_PRIMUS"
-                    7 -> "DISCIPULUS_OPTIMUS"
-                    else -> ""
-                }
-
-                val mensaje = generarMensajeIQ7(tipoCondecoracion, usuarioActual, posicion, context)
-
-                condecoracionesIQ7.add(
-                    CondecoracionIQ7(
-                        posicion = posicion,
-                        tipoCondecoracion = tipoCondecoracion,
-                        fechaAsignacion = System.currentTimeMillis(),
-                        esNueva = true,  // ← Solo se marca como nueva la PRIMERA vez
-                        mensaje = mensaje
-                    )
-                )
-
-                updateRedDotsStatus()
-                saveCondecoracionesIQ7()
-            }
-
-        } else {
-
-            if (condecoracionesIQ7.isNotEmpty()) {
-                condecoracionesIQ7.clear()
-                saveCondecoracionesIQ7()
-                updateRedDotsStatus()
-            }
-        }
-    }
-
-    private fun generarMensajeIQ7(
-        tipoCondecoracion: String,
-        usuarioActual1: String,
-        posicion: Int,
-        context: Context
-    ): String {
-        return context.getString(
-            when (tipoCondecoracion) {
-                "SAPIENS_SUPREMUS" -> R.string.logro_iq7_sapiens_supremus
-                "MENTIS_AUREA" -> R.string.logro_iq7_mentis_aurea
-                "LUMINIS_REX" -> R.string.logro_iq7_luminis_rex
-                "DOCTRINAE_PRINCEPS" -> R.string.logro_iq7_doctrinae_princeps
-                "CONSILIUM_MAGNUS" -> R.string.logro_iq7_consilium_magnus
-                "INTELLECTUS_PRIMUS" -> R.string.logro_iq7_intellectus_primus
-                "DISCIPULUS_OPTIMUS" -> R.string.logro_iq7_discipulus_optimus
-                else -> R.string.logro_iq7_discipulus_optimus
-            },
-            usuarioActual1,
-            posicion,
-            tipoCondecoracion
-        )
-    }
-
-    fun getCondecoracionesIQ7(): List<CondecoracionIQ7> = condecoracionesIQ7.toList()
-
-
-
-    fun marcarCondecoracionIQ7IndividualComoVista(posicion: Int, tipoCondecoracion: String, fechaAsignacion: Long) {
-        var cambiosRealizados = false
-        condecoracionesIQ7.forEach { condecoracion ->
-            if (condecoracion.posicion == posicion &&
-                condecoracion.tipoCondecoracion == tipoCondecoracion &&
-                condecoracion.fechaAsignacion == fechaAsignacion &&
-                condecoracion.esNueva
-            ) {
-                val index = condecoracionesIQ7.indexOf(condecoracion)
-                if (index != -1) {
-                    condecoracionesIQ7[index] = condecoracion.copy(esNueva = false)
-                    cambiosRealizados = true
-                }
-            }
-        }
-        if (cambiosRealizados) {
-            saveCondecoracionesIQ7()
-            updateRedDotsStatus()
-        }
-    }
-
-    private fun hasNewIQ7(): Boolean {
-        return condecoracionesIQ7.any { it.esNueva }
-    }
-
-    fun verificarYActualizarCondecoracionesTop5Integral(context: Context) {
-        val currentDate = getCurrentDateChicago()
-        if (lastTop5IntegralCheckDate != currentDate) {
-            procesarCondecoracionesTop5IntegralDelDia(context)
-            lastTop5IntegralCheckDate = currentDate
-            preferences.edit {
-                putString(KEY_LAST_TOP5_INTEGRAL_CHECK_DATE, currentDate)
-            }
-        }
-    }
-
-    private fun procesarCondecoracionesTop5IntegralDelDia(context: Context) {
-        val posicionUsuario = consultarPosicionRankingIntegral(context)
-        actualizarCondecoracionTop5IntegralDelUsuario(posicionUsuario, context)
-    }
-
-    private fun consultarPosicionRankingIntegral(context: Context): Int {
-        ScoreManager.ensurePreferencesInitialized(context)
-        ScoreManager.init(context)
-        ScoreManager.initPrincipiante(context)
-        ScoreManager.initPro(context)
-        ScoreManager.initDeciPlus(context)
-        ScoreManager.initDeciPlusPrincipiante(context)
-        ScoreManager.initDeciPlusPro(context)
-        ScoreManager.initRomas(context)
-        ScoreManager.initRomasPrincipiante(context)
-        ScoreManager.initRomasPro(context)
-        ScoreManager.initAlfaNumeros(context)
-        ScoreManager.initAlfaNumerosPrincipiante(context)
-        ScoreManager.initAlfaNumerosPro(context)
-        ScoreManager.initSumaResta(context)
-        ScoreManager.initSumaRestaPrincipiante(context)
-        ScoreManager.initSumaRestaPro(context)
-        ScoreManager.initMasPlus(context)
-        ScoreManager.initMasPlusPrincipiante(context)
-        ScoreManager.initMasPlusPro(context)
-        ScoreManager.initGenioPlus(context)
-        ScoreManager.initGenioPlusPrincipiante(context)
-        ScoreManager.initGenioPlusPro(context)
-        return ScoreManager.getUserPositionInRankingIntegral()
-    }
-
-    private fun actualizarCondecoracionTop5IntegralDelUsuario(posicion: Int, context: Context) {
-        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val usuarioActual = sharedPreferences.getString("savedUserName", "Usuario") ?: "Usuario"
-
-        if (posicion in 1..5) {
-            val yaExiste = condecoracionesTop5Integral.any { it.posicion == posicion }
-
-            if (!yaExiste) {
-                val tipoCondecoracion = when (posicion) {
-                    1 -> "IMPERIUM_SUPREMUS"
-                    2 -> "MAGNUS_HONOR"
-                    3 -> "VIRTUS_TOTALIS"
-                    4 -> "EXCELLENTIA_SINGULARI"
-                    5 -> "GLORIA_INTEGRALIS"
-                    else -> ""
-                }
-
-                val mensaje = generarMensajeTop5Integral(tipoCondecoracion, usuarioActual, context)
-
-                condecoracionesTop5Integral.add(
-                    CondecoracionTop5Integral(
-                        posicion = posicion,
-                        tipoCondecoracion = tipoCondecoracion,
-                        fechaAsignacion = System.currentTimeMillis(),
-                        esNueva = true,
-                        mensaje = mensaje
-                    )
-                )
-
-                updateRedDotsStatus()
-                saveCondecoracionesTop5Integral()
-            }
-        } else {
-            if (condecoracionesTop5Integral.isNotEmpty()) {
-                condecoracionesTop5Integral.clear()
-                saveCondecoracionesTop5Integral()
-                updateRedDotsStatus()
-            }
-        }
-    }
-
-    private fun generarMensajeTop5Integral(tipoCondecoracion: String, nombreUsuario: String, context: Context): String {
-        val random = kotlin.random.Random.nextInt(1, 3)
-
-        val stringResId = when (tipoCondecoracion) {
-            "IMPERIUM_SUPREMUS" -> when (random) {
-                1 -> R.string.logro_imperium_supremus_1
-                else -> R.string.logro_imperium_supremus_2
-            }
-            "MAGNUS_HONOR" -> when (random) {
-                1 -> R.string.logro_magnus_honor_1
-                else -> R.string.logro_magnus_honor_2
-            }
-            "VIRTUS_TOTALIS" -> when (random) {
-                1 -> R.string.logro_virtus_totalis_1
-                else -> R.string.logro_virtus_totalis_2
-            }
-            "EXCELLENTIA_SINGULARI" -> when (random) {
-                1 -> R.string.logro_excellentia_singulari_1
-                else -> R.string.logro_excellentia_singulari_2
-            }
-            "GLORIA_INTEGRALIS" -> when (random) {
-                1 -> R.string.logro_gloria_integralis_1
-                else -> R.string.logro_gloria_integralis_2
-            }
-            else -> R.string.logro_gloria_integralis_1
-        }
-
-        return context.getString(stringResId, nombreUsuario)
-    }
-
-    fun getCondecoracionesTop5Integral(): List<CondecoracionTop5Integral> = condecoracionesTop5Integral.toList()
-
-    private fun hasNewTop5Integral(): Boolean {
-        return condecoracionesTop5Integral.any { it.esNueva }
-    }
-
-    private fun hasNewInsigniaRIPlus(): Boolean {
-        return insigniaRIPlus?.let { !it.vista } ?: false
-    }
-
-    fun verificarYActualizarInsigniaRIPlus(context: Context) {
-        val currentDate = getCurrentDateChicago()
-        if (lastRIPlusCheckDate != currentDate) {
-            procesarInsigniaRIPlusDelDia(context)
-            lastRIPlusCheckDate = currentDate
-            preferences.edit {
-                putString(KEY_LAST_RI_PLUS_CHECK_DATE, currentDate)
-            }
-        }
-    }
-
-    private fun procesarInsigniaRIPlusDelDia(context: Context) {
-        val posicionUsuario = consultarPosicionRankingIntegral(context)
-        actualizarInsigniaRIPlusDelUsuario(posicionUsuario)
-    }
-
-    private fun actualizarInsigniaRIPlusDelUsuario(posicion: Int) {
-
-        if (posicion == 1) {
-            val yaObtenida = insigniaRIPlus != null
-            if (!yaObtenida) {
-                val nuevaInsignia = InsigniaRIPlus(
-                    fechaObtencion = System.currentTimeMillis(),
-                    vista = false
-                )
-
-                insigniaRIPlus = nuevaInsignia
-                saveInsigniaRIPlus()
-                updateRedDotsStatus()
-            }
-        }
-    }
-
-    fun getInsigniaRIPlus(): InsigniaRIPlus? = insigniaRIPlus
-
-    fun marcarInsigniaRIPlusComoVista() {
-        insigniaRIPlus?.let { insignia ->
-            if (!insignia.vista) {
-                insigniaRIPlus = insignia.copy(vista = true)
-                saveInsigniaRIPlus()
-                updateRedDotsStatus()
-            }
-        }
-    }
-
-
-
-    fun marcarCondecoracionTop5IntegralIndividualComoVista(posicion: Int, tipoCondecoracion: String, fechaAsignacion: Long) {
-        var cambiosRealizados = false
-        condecoracionesTop5Integral.forEach { condecoracion ->
-            if (condecoracion.posicion == posicion &&
-                condecoracion.tipoCondecoracion == tipoCondecoracion &&
-                condecoracion.fechaAsignacion == fechaAsignacion &&
-                condecoracion.esNueva
-            ) {
-                val index = condecoracionesTop5Integral.indexOf(condecoracion)
-                if (index != -1) {
-                    condecoracionesTop5Integral[index] = condecoracion.copy(esNueva = false)
-                    cambiosRealizados = true
-                }
-            }
-        }
-        if (cambiosRealizados) {
-            saveCondecoracionesTop5Integral()
-            updateRedDotsStatus()
-        }
-    }
-
     private fun procesarCoronasDelDia(context: Context) {
         val juegos = listOf(
             "NumerosPlus", "DeciPlus", "Romas",
@@ -1250,7 +1101,6 @@ object CondecoracionTracker {
     }
 
     private fun consultarRankingExistente(juego: String, context: Context): List<String> {
-
         when (juego) {
             "NumerosPlus" -> {
                 ScoreManager.ensurePreferencesInitialized(context)
@@ -1317,8 +1167,6 @@ object CondecoracionTracker {
         return listOf(username)
     }
 
-
-
     private fun actualizarCoronasDelJuego(juego: String, top3Ranking: List<String>, context: Context) {
         val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val usuarioActual = sharedPreferences.getString("savedUserName", "Usuario") ?: "Usuario"
@@ -1333,7 +1181,6 @@ object CondecoracionTracker {
         if (nuevaCorona != null) {
             val coronaExistente = coronasExistentes.find { it.tipoCorona == nuevaCorona }
             if (coronaExistente == null) {
-
                 coronasActivas.removeAll { it.juego == juego }
 
                 val mensaje = generarMensajeCorona(
@@ -1355,9 +1202,7 @@ object CondecoracionTracker {
                 updateRedDotsStatus()
                 saveCoronasActivas()
             }
-
         } else {
-
             if (coronasExistentes.isNotEmpty()) {
                 coronasActivas.removeAll { it.juego == juego }
                 saveCoronasActivas()
@@ -1395,105 +1240,76 @@ object CondecoracionTracker {
     }
 
     private fun mapearNombreJuego(juegoInterno: String, context: Context): String {
-        return when (juegoInterno) {
-            "NumerosPlus" -> context.getString(R.string.game_numeros_plus)
-            "DeciPlus" -> context.getString(R.string.game_deci_plus)
-            "Romas" -> context.getString(R.string.game_romas)
-            "AlfaNumeros" -> context.getString(R.string.game_alfa_numeros)
-            "SumaResta" -> context.getString(R.string.game_sumaresta)
-            "MasPlus" -> context.getString(R.string.game_mas_plus)
-            "GenioPlus" -> context.getString(R.string.game_genio_plus)
-            else -> juegoInterno
-        }
+        return GAME_NAME_MAP[juegoInterno]?.let { context.getString(it) } ?: juegoInterno
     }
 
-
-    private fun hasNewCrowns(): Boolean {
-        return coronasActivas.any { it.esNueva }
-    }
-
-    private fun hasNewTop10(): Boolean {
-        return condecoracionesTop10.any { it.esNueva }
-    }
-
-    private fun hasNewMedals(): Boolean {
-        return medallasObtenidas.any { !it.vista }
-    }
+    private fun hasNewPins(): Boolean = pinesObtenidos.any { !it.visto }
+    private fun hasNewCrowns(): Boolean = coronasActivas.any { it.esNueva }
+    private fun hasNewTop10(): Boolean = condecoracionesTop10.any { it.esNueva }
+    private fun hasNewMedals(): Boolean = medallasObtenidas.any { !it.vista }
+    private fun hasNewIQ7(): Boolean = condecoracionesIQ7.any { it.esNueva }
+    private fun hasNewTop5Integral(): Boolean = condecoracionesTop5Integral.any { it.esNueva }
+    private fun hasNewInsigniaRIPlus(): Boolean = insigniaRIPlus?.vista == false
 
     private fun hasNewTrophies(): Boolean {
         val hasNewRegularTrophies = trofeosObtenidos.any { !it.visto }
-        val hasNewApex = apexSupremusObtenida?.let { !it.vista } ?: false
+        val hasNewApex = apexSupremusObtenida?.vista == false
         return hasNewRegularTrophies || hasNewApex
     }
 
     private fun updateRedDotsStatus() {
-        val hasNewPins = pinesObtenidos.any { !it.visto }
-        val hasNewCrowns = hasNewCrowns()
-        val hasNewTop10 = hasNewTop10()
-        val hasNewMedals = hasNewMedals()
-        val hasNewTrophies = hasNewTrophies()
-        val hasNewIQ7 = hasNewIQ7()
-        val hasNewTop5Integral = hasNewTop5Integral()
-        val hasNewInsigniaRIPlus = hasNewInsigniaRIPlus()
+        val hasAnyNew = hasNewPins() ||
+                hasNewCrowns() ||
+                hasNewTop10() ||
+                hasNewMedals() ||
+                hasNewTrophies() ||
+                hasNewIQ7() ||
+                hasNewTop5Integral() ||
+                hasNewInsigniaRIPlus()
 
-        trophyRedDotVisible = hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals || hasNewTrophies || hasNewIQ7 || hasNewTop5Integral || hasNewInsigniaRIPlus
-        misCondecoracionesRedDotVisible = hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals || hasNewTrophies || hasNewIQ7 || hasNewTop5Integral || hasNewInsigniaRIPlus
+        if (trophyRedDotVisible != hasAnyNew || misCondecoracionesRedDotVisible != hasAnyNew) {
+            trophyRedDotVisible = hasAnyNew
+            misCondecoracionesRedDotVisible = hasAnyNew
 
-        preferences.edit {
-            putBoolean(KEY_TROPHY_RED_DOT, hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals || hasNewTrophies || hasNewIQ7 || hasNewTop5Integral || hasNewInsigniaRIPlus)
-            putBoolean(KEY_MIS_CONDECORACIONES_RED_DOT, hasNewPins || hasNewCrowns || hasNewTop10 || hasNewMedals || hasNewTrophies || hasNewIQ7 || hasNewTop5Integral || hasNewInsigniaRIPlus)
+            preferences.edit {
+                putBoolean(KEY_TROPHY_RED_DOT, hasAnyNew)
+                putBoolean(KEY_MIS_CONDECORACIONES_RED_DOT, hasAnyNew)
+            }
         }
     }
-
 
     fun marcarCoronaIndividualComoVista(juego: String, tipoCorona: String, fechaAsignacion: Long) {
-        var cambiosRealizados = false
-        coronasActivas.forEach { corona ->
-            if (corona.juego == juego &&
-                corona.tipoCorona == tipoCorona &&
-                corona.fechaAsignacion == fechaAsignacion &&
-                corona.esNueva
-            ) {
-                val index = coronasActivas.indexOf(corona)
-                if (index != -1) {
-                    coronasActivas[index] = corona.copy(esNueva = false)
-                    cambiosRealizados = true
-                }
-            }
-        }
-        if (cambiosRealizados) {
-            saveCoronasActivas()
-            updateRedDotsStatus()
-        }
+        marcarComoVisto(
+            lista = coronasActivas,
+            condicion = { corona ->
+                corona.juego == juego &&
+                        corona.tipoCorona == tipoCorona &&
+                        corona.fechaAsignacion == fechaAsignacion &&
+                        corona.esNueva
+            },
+            transformar = { corona ->
+                corona.copy(esNueva = false)
+            },
+            guardar = ::saveCoronasActivas
+        )
     }
 
-
-
     fun marcarCondecoracionTop10IndividualComoVista(posicion: Int, tipoCondecoracion: String, fechaAsignacion: Long) {
-        var cambiosRealizados = false
-        condecoracionesTop10.forEach { condecoracion ->
-            if (condecoracion.posicion == posicion &&
-                condecoracion.tipoCondecoracion == tipoCondecoracion &&
-                condecoracion.fechaAsignacion == fechaAsignacion &&
-                condecoracion.esNueva
-            ) {
-                val index = condecoracionesTop10.indexOf(condecoracion)
-                if (index != -1) {
-                    condecoracionesTop10[index] = condecoracion.copy(esNueva = false)
-                    cambiosRealizados = true
-                }
-            }
-        }
-        if (cambiosRealizados) {
-            saveCondecoracionesTop10()
-            updateRedDotsStatus()
-        }
+        marcarComoVisto(
+            lista = condecoracionesTop10,
+            condicion = { condecoracion ->
+                condecoracion.posicion == posicion &&
+                        condecoracion.tipoCondecoracion == tipoCondecoracion &&
+                        condecoracion.fechaAsignacion == fechaAsignacion &&
+                        condecoracion.esNueva
+            },
+            transformar = { condecoracion ->
+                condecoracion.copy(esNueva = false)
+            },
+            guardar = ::saveCondecoracionesTop10
+        )
     }
 
     fun shouldShowTrophyRedDot(): Boolean = trophyRedDotVisible
     fun shouldShowMisCondecoracionesRedDot(): Boolean = misCondecoracionesRedDotVisible
-
 }
-
-
-

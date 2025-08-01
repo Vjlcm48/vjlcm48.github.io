@@ -2,8 +2,6 @@
 
     <string name="company_name" translatable="false">HEPTACREATION</string>
 
-    <string name="loading_text">Cargando…</string>
-
     <string name="next_activity_text">Próxima Actividad</string>
 
     <string name="app_name" translatable="false">SumaMente</string>
@@ -210,8 +208,6 @@
     <string name="confirmation_message">¿Estás seguro que deseas reiniciar los datos seleccionados?</string>
     <string name="yes">SÍ</string>
     <string name="no">NO</string>
-    <string name="edit_username_desc">Modificar el nombre de usuario</string>
-    <string name="edit_flag_desc">Modificar la bandera</string>
     <string name="title_profile_edit">¿Qué datos deseas modificar?</string>
     <string name="edit_username">Nombre de usuario</string>
     <string name="edit_flag">Bandera</string>
@@ -1447,8 +1443,8 @@
 
     <string name="progress_placeholder_difficulty">0/70 – 0,00%</string>
 
-
     <string name="global_progress_format">PROGRESO: %1$s%%</string>
+
     <string name="game_progress_format">%1$d/%2$d - %3$s%%</string>
 
     <string name="global_levels_label">NIVELES:</string>

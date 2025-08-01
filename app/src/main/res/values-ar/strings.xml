@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="loading_text">جارٍ التحميل…</string>
+
 
     <string name="next_activity_text">النشاط التالي</string>
 
@@ -194,8 +194,7 @@
     <string name="confirmation_message">هل أنت متأكد من أنك تريد إعادة تعيين البيانات المحددة؟</string>
     <string name="yes">نعم</string>
     <string name="no">لا</string>
-    <string name="edit_username_desc">تعديل اسم المستخدم</string>
-    <string name="edit_flag_desc">تعديل العلم</string>
+
     <string name="title_profile_edit">ما هي البيانات التي ترغب في تعديلها؟</string>
     <string name="edit_username">اسم المستخدم</string>
     <string name="edit_flag">العلم</string>
@@ -1479,9 +1478,9 @@
 
     <string name="progress_placeholder_difficulty">0/70 – 0.00%</string>
 
+    <string name="global_progress_format">التقدم: %1$s%%</string>
 
-    <string name="global_progress_format">التقدم: %%1$s</string>
-    <string name="game_progress_format">%1$d/%2$d - %%3$s</string>
+    <string name="game_progress_format">%1$d/%2$d - %3$s%%</string>
 
     <string name="global_levels_label">المستويات:</string>
 

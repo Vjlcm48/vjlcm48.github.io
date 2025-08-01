@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="loading_text">লোড হচ্ছে…</string>
+
     <string name="next_activity_text">পরবর্তী কার্যকলাপ</string>
     <string name="btn_allow">অনুমতি দিন</string>
     <string name="btn_deny">অনুমতি দেবেন না</string>
@@ -190,8 +190,7 @@
     <string name="confirmation_message">আপনি কি নির্বাচিত ডেটা রিসেট করতে নিশ্চিত?</string>
     <string name="yes">হ্যাঁ</string>
     <string name="no">না</string>
-    <string name="edit_username_desc">ব্যবহারকারীর নাম পরিবর্তন করুন</string>
-    <string name="edit_flag_desc">পতাকা পরিবর্তন করুন</string>
+
     <string name="title_profile_edit">আপনি কোন ডেটা পরিবর্তন করতে চান?</string>
     <string name="edit_username">ব্যবহারকারীর নাম</string>
     <string name="edit_flag">পতাকা</string>
@@ -1159,8 +1158,11 @@
     <string name="cd_genio_plus">Genio Plus খেলুন</string>
     <string name="progress_placeholder_total_levels">০/২১০ – ০.০০%</string>
     <string name="progress_placeholder_difficulty">০/৭০ – ০.০০%</string>
+
     <string name="global_progress_format">অগ্রগতি: %1$s%%</string>
+
     <string name="game_progress_format">%1$d/%2$d - %3$s%%</string>
+
     <string name="global_levels_label">লেভেল:</string>
     <string name="desc_insignia_supremus_integralis">আমরা আপনার ইন্টিগ্রাল র‍্যাঙ্কিং-এ প্রবেশের উদযাপন করি! SumaMente-এর ৯টি র‍্যাঙ্কিং-এ উপস্থিত হয়ে আপনি সমস্ত গাণিতিক শাখায় আপনার সম্পূর্ণ দক্ষতা প্রদর্শন করেছেন। এই SUPREMUS INTEGRALIS ব্যাজটি আপনার ইন্টিগ্রাল অভিজাতদের মধ্যে প্রবেশের চিহ্ন।</string>
     <string name="share_message">হ্যালো! আমি আপনার মনকে প্রশিক্ষণ দেওয়ার জন্য এই অবিশ্বাস্য অ্যাপটি সুপারিশ করছি: SumaMente।\n\nএখানে ডাউনলোড করুন:\n</string>

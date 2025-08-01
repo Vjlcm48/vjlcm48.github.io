@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <string name="loading_text">Chargement…</string>
+
     <string name="next_activity_text">Activité suivante</string>
 
 
@@ -196,8 +196,7 @@
     <string name="confirmation_message">Êtes-vous sûr de vouloir réinitialiser les données sélectionnées ?</string>
     <string name="yes">OUI</string>
     <string name="no">NON</string>
-    <string name="edit_username_desc">Modifier le nom d’utilisateur</string>
-    <string name="edit_flag_desc">Modifier le drapeau</string>
+
     <string name="title_profile_edit">Quelles données souhaitez-vous modifier ?</string>
     <string name="edit_username">Nom d’utilisateur</string>
     <string name="edit_flag">Drapeau</string>
@@ -1424,6 +1423,7 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
     <string name="progress_placeholder_difficulty">0/70 – 0,00%</string>
 
     <string name="global_progress_format">PROGRÈS: %1$s%%</string>
+
     <string name="game_progress_format">%1$d/%2$d - %3$s%%</string>
 
     <string name="global_levels_label">NIVEAUX :</string>

@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <string name="loading_text">Carregando…</string>
+
     <string name="next_activity_text">Próxima Atividade</string>
 
 
@@ -195,8 +195,7 @@
     <string name="confirmation_message">Tem certeza de que deseja reiniciar os dados selecionados?</string>
     <string name="yes">SIM</string>
     <string name="no">NÃO</string>
-    <string name="edit_username_desc">Modificar o nome de usuário</string>
-    <string name="edit_flag_desc">Modificar a bandeira</string>
+
     <string name="title_profile_edit">Quais dados deseja modificar?</string>
     <string name="edit_username">Nome de usuário</string>
     <string name="edit_flag">Bandeira</string>
@@ -1276,6 +1275,7 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
     <string name="progress_placeholder_difficulty">0/70 – 0,00%</string>
 
     <string name="global_progress_format">PROGRESSO: %1$s%%</string>
+
     <string name="game_progress_format">%1$d/%2$d - %3$s%%</string>
 
     <string name="global_levels_label">NÍVEIS:</string>

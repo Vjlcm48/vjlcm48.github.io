@@ -75,7 +75,10 @@ class TrofeosActivity : BaseActivity() {
         setupScrollListener()
 
         if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
-            MusicManager.play(this, R.raw.condecoraciones, looping = true, volume = 0.2f)
+
+            if (!MusicManager.isPlaying()) {
+                MusicManager.play(this, R.raw.condecoraciones, looping = true, volume = 0.2f)
+            }
         }
 
         CondecoracionTracker.verificarYEntregarPines()

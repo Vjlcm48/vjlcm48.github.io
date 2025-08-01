@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="loading_text">لوڈ ہو رہا ہے…</string>
+
     <string name="next_activity_text">اگلی سرگرمی</string>
     <string name="btn_allow">اجازت دیں</string>
     <string name="btn_deny">اجازت نہ دیں</string>
@@ -190,8 +190,7 @@
     <string name="confirmation_message">کیا آپ واقعی منتخب ڈیٹا کو ری سیٹ کرنا چاہتے ہیں؟</string>
     <string name="yes">ہاں</string>
     <string name="no">نہیں</string>
-    <string name="edit_username_desc">صارف نام میں ترمیم کریں</string>
-    <string name="edit_flag_desc">جھنڈے میں ترمیم کریں</string>
+
     <string name="title_profile_edit">آپ کون سا ڈیٹا تبدیل کرنا چاہتے ہیں؟</string>
     <string name="edit_username">صارف نام</string>
     <string name="edit_flag">جھنڈا</string>
@@ -1174,8 +1173,11 @@
     <string name="cd_genio_plus">Genio Plus کھیلیں</string>
     <string name="progress_placeholder_total_levels">0/210 – 0.00%</string>
     <string name="progress_placeholder_difficulty">0/70 – 0.00%</string>
+
     <string name="global_progress_format">پیشرفت: %1$s%%</string>
+
     <string name="game_progress_format">%1$d/%2$d - %3$s%%</string>
+
     <string name="global_levels_label">لیولز:</string>
     <string name="desc_insignia_supremus_integralis">ہم آپ کے انٹیگرل درجہ بندی میں داخلے کا جشن مناتے ہیں! SumaMente کی 9 درجہ بندیوں میں ظاہر ہو کر آپ نے تمام ریاضیاتی شعبوں میں اپنی مکمل مہارت کا مظاہرہ کیا ہے۔ یہ SUPREMUS INTEGRALIS بیج آپ کے انٹیگرل اشرافیہ میں داخلے کی نشاندہی کرتا ہے۔</string>
     <string name="share_message">ہیلو! میں آپ کے دماغ کو تربیت دینے کے لیے اس ناقابل یقین ایپ کی سفارش کرتا ہوں: SumaMente۔\n\nاسے یہاں سے ڈاؤن لوڈ کریں:\n</string>

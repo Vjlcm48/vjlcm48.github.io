@@ -15,6 +15,7 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.core.view.isVisible
 import com.example.sumamente.R
@@ -28,6 +29,7 @@ class LanguageChangeActivity : BaseActivity() {
 
     private val languageButtons = mutableListOf<LinearLayout>()
     private val checkMarks = mutableListOf<ImageView>()
+
     private val supportedLanguages by lazy { LanguageManager.getOrderedLanguages(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,7 +111,8 @@ class LanguageChangeActivity : BaseActivity() {
     }
 
     private fun showLanguageChangeConfirmationDialog(languageCode: String) {
-        AlertDialog.Builder(this)
+
+        val dialog = AlertDialog.Builder(this)
             .setTitle(R.string.difficulty_exit_dialog_title)
             .setMessage(R.string.confirm_change_language_message)
             .setPositiveButton(R.string.btn_accept) { dialog, _ ->
@@ -119,7 +122,13 @@ class LanguageChangeActivity : BaseActivity() {
             .setNegativeButton(R.string.difficulty_exit_dialog_negative) { dialog, _ ->
                 dialog.dismiss()
             }
-            .show()
+            .create()
+
+        dialog.window?.setBackgroundDrawable(
+            ContextCompat.getDrawable(this, R.drawable.dialog_background_with_border)
+        )
+
+        dialog.show()
     }
 
     private fun setAppLocale(languageCode: String) {

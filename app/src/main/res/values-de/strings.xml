@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <string name="loading_text">Wird geladen…</string>
+
     <string name="next_activity_text">Nächste Aktivität</string>
 
 
@@ -196,8 +196,7 @@
     <string name="confirmation_message">Bist du sicher, dass du die ausgewählten Daten zurücksetzen möchtest?</string>
     <string name="yes">JA</string>
     <string name="no">NEIN</string>
-    <string name="edit_username_desc">Benutzernamen ändern</string>
-    <string name="edit_flag_desc">Flagge ändern</string>
+
     <string name="title_profile_edit">Welche Daten möchtest du ändern?</string>
     <string name="edit_username">Benutzername</string>
     <string name="edit_flag">Flagge</string>
@@ -1365,6 +1364,7 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
     <string name="progress_placeholder_difficulty">0/70 – 0,00%</string>
 
     <string name="global_progress_format">FORTSCHRITT: %1$s%%</string>
+
     <string name="game_progress_format">%1$d/%2$d - %3$s%%</string>
 
     <string name="global_levels_label">LEVELS:</string>
