@@ -41,7 +41,7 @@ class InstructionsActivitySumaRestaPro : BaseActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferencesSumaResta = getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
-        setContentView(R.layout.activity_instructions_suma_resta_pro)
+        setContentView(R.layout.activity_instructions_suma_resta)
 
         tvGameName = findViewById(R.id.tv_game_name)
         tvDifficulty = findViewById(R.id.tv_difficulty)

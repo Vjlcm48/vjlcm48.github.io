@@ -42,7 +42,7 @@ class InstructionsActivityAlfaNumerosPrincipiante : BaseActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferencesAlfaNumeros = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
-        setContentView(R.layout.activity_instructions_alfanumeros_principiante)
+        setContentView(R.layout.activity_instructions_alfanumeros)
 
         tvGameName = findViewById(R.id.tv_game_name)
         tvDifficulty = findViewById(R.id.tv_difficulty)

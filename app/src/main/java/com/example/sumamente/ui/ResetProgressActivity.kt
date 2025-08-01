@@ -412,7 +412,6 @@ class ResetProgressActivity : BaseActivity() {
 
         val alertDialog = AlertDialog.Builder(this)
             .setView(dialogView)
-            .setCancelable(false)
             .create()
 
         buttonAccept.setOnClickListener { view ->
@@ -498,7 +497,7 @@ class ResetProgressActivity : BaseActivity() {
             }
         }
         initializeScoreManagers()
-        Toast.makeText(this, "Datos reiniciados correctamente", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.data_reset_successfully), Toast.LENGTH_SHORT).show()
         selectedGame = null
         selectedDifficulty = null
     }

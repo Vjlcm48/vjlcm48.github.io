@@ -1445,5 +1445,7 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
 
     <string name="select_a_game">Wähle ein Spiel</string>
 
+    <string name="data_reset_successfully">Daten erfolgreich zurückgesetzt</string>
+
 
 </resources>

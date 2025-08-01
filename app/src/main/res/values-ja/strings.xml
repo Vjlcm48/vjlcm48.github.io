@@ -1193,6 +1193,6 @@
 
     <string name="select_a_game">ゲームを選択</string>
 
-
+    <string name="data_reset_successfully">データが正常にリセットされました</string>
 
 </resources>

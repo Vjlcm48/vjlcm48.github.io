@@ -19,326 +19,407 @@
 
         <activity
             android:name=".ui.SettingsActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.ProfileEditActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.FlagSelectionActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LevelsActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LevelsActivityPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LevelsActivityPro"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LevelsActivityDeciPlus"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LevelsActivityDeciPlusPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LevelsActivityDeciPlusPro"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LevelsActivityRomas"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LevelsActivityRomasPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LevelsActivityRomasPro"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LevelsActivityAlfaNumeros"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LevelsActivityAlfaNumerosPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LevelsActivityAlfaNumerosPro"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LevelsActivitySumaResta"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LevelsActivitySumaRestaPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LevelsActivitySumaRestaPro"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LevelsActivityMasPlus"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LevelsActivityMasPlusPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LevelsActivityMasPlusPro"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LevelsActivityGenioPlus"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LevelsActivityGenioPlusPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LevelsActivityGenioPlusPro"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.TutorialActivityNumeros"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.TutorialActivityDeciPlus"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.TutorialActivityRomas"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.TutorialActivitySumaResta"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.TutorialActivityAlfaNumeros"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.TutorialActivityMasPlus"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.TutorialActivityGenioPlus"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.HelpTutorialActivityNumeros"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.HelpTutorialActivityDeciPlus"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.HelpTutorialActivityRomas"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.HelpTutorialActivitySumaResta"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.HelpTutorialActivityAlfaNumeros"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.HelpTutorialActivityMasPlus"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.HelpTutorialActivityGenioPlus"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.InstructionsActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.InstructionsActivityPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.InstructionsActivityPro"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.InstructionsActivityDeciPlus"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.InstructionsActivityDeciPlusPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.InstructionsActivityDeciPlusPro"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.InstructionsActivityRomas"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.InstructionsActivityRomasPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.InstructionsActivityRomasPro"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.InstructionsActivityAlfaNumeros"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.InstructionsActivityAlfaNumerosPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.InstructionsActivityAlfaNumerosPro"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.InstructionsActivitySumaResta"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.InstructionsActivitySumaRestaPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.InstructionsActivitySumaRestaPro"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.InstructionsActivityMasPlus"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.InstructionsActivityMasPlusPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.InstructionsActivityMasPlusPro"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.InstructionsActivityGenioPlus"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.InstructionsActivityGenioPlusPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.InstructionsActivityGenioPlusPro"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.GameActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.GameActivityPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.GameActivityPro"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.GameActivityDeciPlus"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.GameActivityDeciPlusPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.GameActivityDeciPlusPro"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.GameActivityRomas"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.GameActivityRomasPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.GameActivityRomasPro"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.GameActivityAlfaNumeros"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.GameActivityAlfaNumerosPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.GameActivityAlfaNumerosPro"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.GameActivitySumaResta"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.GameActivitySumaRestaPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.GameActivitySumaRestaPro"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.GameActivityMasPlus"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.GameActivityMasPlusPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.GameActivityMasPlusPro"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.GameActivityGenioPlus"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.GameActivityGenioPlusPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.GameActivityGenioPlusPro"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.SplashScreenActivity"
+            android:screenOrientation="portrait"
             android:exported="true"
             android:theme="@style/Theme.SumaMente.Launcher">
             <intent-filter>
@@ -349,279 +430,335 @@
 
         <activity
             android:name=".ui.LanguageSelectionActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.LanguageChangeActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.TransitionActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.NotificationsActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.UsernameSelectionActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.MainGameActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.ClassificationActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.TrofeosActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.PinesActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.CoronasActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.MedallasActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.TrofeosDetailActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.Top10Activity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.Los7MejoresActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.Los5MejoresActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.DesafiosActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.LevelResultActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.LevelResultActivityPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.LevelResultActivityPro"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.ExerciseReviewActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
 
         <activity
             android:name=".ui.LevelResultActivityDeciPlus"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.LevelResultActivityDeciPlusPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.LevelResultActivityDeciPlusPro"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.ExerciseReviewActivityDeciPlus"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
 
         <activity
             android:name=".ui.LevelResultActivityRomas"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.LevelResultActivityRomasPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.LevelResultActivityRomasPro"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.ExerciseReviewActivityRomas"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.LevelResultActivityAlfaNumeros"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.LevelResultActivityAlfaNumerosPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.LevelResultActivityAlfaNumerosPro"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.ExerciseReviewActivityAlfaNumeros"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.LevelResultActivitySumaResta"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.LevelResultActivitySumaRestaPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.LevelResultActivitySumaRestaPro"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.ExerciseReviewActivitySumaResta"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.LevelResultActivityMasPlus"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.LevelResultActivityMasPlusPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.LevelResultActivityMasPlusPro"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.ExerciseReviewActivityMasPlus"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.LevelResultActivityGenioPlus"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.LevelResultActivityGenioPlusPrincipiante"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.LevelResultActivityGenioPlusPro"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.ExerciseReviewActivityGenioPlus"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.GameSelectionActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.ProgressSummaryActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.DifficultySelectionActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity
             android:name=".ui.HelpGameSelectionActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.ResetProgressActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.ApexSupremusActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.RankingActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.SpeedRankingActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.IQPlusRankingActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.IntegralRankingActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.SpeedClassificationActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name=".ui.MisCondecoracionesActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
@@ -634,9 +771,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-
-
-
 
     </application>
 

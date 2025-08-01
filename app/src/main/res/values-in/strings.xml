@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-
-
-
     <string name="next_activity_text">Aktivitas Berikutnya</string>
-
-
 
     <string name="btn_allow">Izinkan</string>
     <string name="btn_deny">Tolak</string>
     <string name="notification_text">Apakah Anda ingin mengizinkan SumaMente mengirimi Anda notifikasi?</string>
     <string name="content_description_bell_icon">Ikon lonceng</string>
     <string name="content_description_icon">Ikon resmi SumaMente</string>
-
 
     <string name="instruction_text">Tulis nama pengguna Anda.\nGunakan antara 4 dan 12 karakter</string>
     <string name="btn_accept">Terima</string>
@@ -1427,6 +1421,8 @@ Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di 
     <string name="loading_text_9">🧙‍♂️ Sihir matematika… Abrakadabra + 2!</string>
 
     <string name="select_a_game">Pilih permainan</string>
+
+    <string name="data_reset_successfully">Data berhasil direset</string>
 
 
 

@@ -44,7 +44,7 @@ class InstructionsActivityDeciPlusPrincipiante : BaseActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
-        setContentView(R.layout.activity_instructions_deci_plus_principiante)
+        setContentView(R.layout.activity_instructions_deci_plus)
 
         tvGameName = findViewById(R.id.tv_game_name)
         tvDifficulty = findViewById(R.id.tv_difficulty)

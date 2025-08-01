@@ -42,7 +42,7 @@ class InstructionsActivityPro : BaseActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
-        setContentView(R.layout.activity_instructions_pro)
+        setContentView(R.layout.activity_instructions)
 
         tvGameName = findViewById(R.id.tv_game_name)
         tvDifficulty = findViewById(R.id.tv_difficulty)

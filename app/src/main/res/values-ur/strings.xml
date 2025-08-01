@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
     <string name="next_activity_text">اگلی سرگرمی</string>
     <string name="btn_allow">اجازت دیں</string>
     <string name="btn_deny">اجازت نہ دیں</string>
@@ -1240,6 +1239,6 @@
 
     <string name="select_a_game">ایک کھیل منتخب کریں</string>
 
-
+    <string name="data_reset_successfully">ڈیٹا کامیابی سے دوبارہ ترتیب دیا گیا۔</string>
 
 </resources>

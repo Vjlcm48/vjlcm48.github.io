@@ -18,16 +18,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/tv_sumamente_title"
         android:layout_width="304dp"
         android:layout_height="78dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/roboto_bold"
         android:text="@string/notification_app_name"
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:textSize="30sp"
+        android:textSize="38sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/icon_central" />
 
@@ -97,16 +98,15 @@
         android:id="@+id/new_game_button"
         android:layout_width="271dp"
         android:layout_height="59dp"
-        android:layout_marginTop="564dp"
+        android:layout_marginBottom="100dp"
         android:background="@drawable/button_background"
         android:fontFamily="@font/roboto_bold"
         android:text="@string/new_game"
         android:textColor="@android:color/black"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/home_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/home_icon"
@@ -141,7 +141,7 @@
         android:src="@drawable/ic_calendario"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/statistics_icon"
-        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toEndOf="@id/home_icon" />
 
     <TextView

@@ -63,6 +63,7 @@ class MainGameActivity : BaseActivity() {
     private lateinit var trophyRedDot: View
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var preferenceChangeListener: SharedPreferences.OnSharedPreferenceChangeListener
+    private lateinit var tvSumaMenteTitle: TextView
 
     private var isActivityVisible = false
 
@@ -72,13 +73,12 @@ class MainGameActivity : BaseActivity() {
 
         inicializarPreferencias()
         setContentView(R.layout.activity_main_game)
-
         inicializarComponentes()
         configurarListeners()
         configurarBackPressedCallback()
-
         inicializarCondecoraciones()
         inicializarMusica()
+        aplicarAnimacionDeColor(tvSumaMenteTitle)
     }
 
     private fun configurarTransiciones() {
@@ -104,6 +104,7 @@ class MainGameActivity : BaseActivity() {
         profileText = findViewById(R.id.profile_text)
         trophyContainer = findViewById(R.id.trophy_container)
         trophyRedDot = findViewById(R.id.trophy_red_dot)
+        tvSumaMenteTitle = findViewById(R.id.tv_sumamente_title)
     }
 
     private fun configurarListeners() {
@@ -442,6 +443,24 @@ class MainGameActivity : BaseActivity() {
         }
     }
 
+    private fun aplicarAnimacionDeColor(textView: TextView) {
+        val colorAnimator = android.animation.ValueAnimator.ofArgb(
+
+            ContextCompat.getColor(this, R.color.blue_primary),
+            ContextCompat.getColor(this, R.color.grey_dark),
+            ContextCompat.getColor(this, R.color.red_primary)
+        ).apply {
+
+            duration = 8000L
+
+            repeatMode = android.animation.ValueAnimator.REVERSE
+            repeatCount = android.animation.ValueAnimator.INFINITE
+            addUpdateListener { animator ->
+                textView.setTextColor(animator.animatedValue as Int)
+            }
+        }
+        colorAnimator.start()
+    }
 
     private fun scheduleDailyCondecoracionesWork() {
         val delayMs = calcularDelayHastaMedianoche()

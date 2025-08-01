@@ -1,16 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-
     <string name="next_activity_text">Próxima Atividade</string>
-
 
     <string name="btn_allow">Permitir</string>
     <string name="btn_deny">Não permitir</string>
     <string name="notification_text">Deseja permitir que SumaMente lhe envie notificações?</string>
     <string name="content_description_bell_icon">Ícone de sino</string>
     <string name="content_description_icon">Ícone oficial de SumaMente</string>
-
-
 
     <string name="instruction_text">Digite seu nome de usuário.\nUse entre 4 e 12 caracteres</string>
     <string name="btn_accept">Aceitar</string>
@@ -1357,6 +1353,6 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
 
     <string name="select_a_game">Escolha um jogo</string>
 
-
+    <string name="data_reset_successfully">Dados redefinidos com sucesso</string>
 
 </resources>

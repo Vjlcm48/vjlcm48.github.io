@@ -43,7 +43,7 @@ class InstructionsActivityRomasPrincipiante : BaseActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferencesRomas = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
-        setContentView(R.layout.activity_instructions_romas_principiante)
+        setContentView(R.layout.activity_instructions_romas)
 
         val btnClose = findViewById<ImageView>(R.id.btn_close)
         val btnStart = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_start)
