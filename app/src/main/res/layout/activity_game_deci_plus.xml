@@ -168,6 +168,7 @@
             android:background="@drawable/input_field_background"
             android:padding="12dp"
             android:layout_marginEnd="8dp"
+            android:gravity="center"
             android:importantForAutofill="no"/>
 
         <androidx.appcompat.widget.AppCompatButton

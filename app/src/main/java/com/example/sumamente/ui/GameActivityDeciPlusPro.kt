@@ -73,6 +73,7 @@ class GameActivityDeciPlusPro : BaseActivity()  {
     private var soundPlayed = false
     private var timeSpentInSeconds: Double = 0.0
     private var userResponses = mutableListOf<Double>()
+    private var inputBlocked = false // Cambio #1 bloqueo de mas de 2 intentos //
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -143,7 +144,7 @@ class GameActivityDeciPlusPro : BaseActivity()  {
         })
 
         attempts = 0
-
+        inputBlocked = false  // Cambio #2 bloqueo de mas de 2 intentos //
         generateNumbers()
         calculateTimePerNumber()
         startSequence()
@@ -625,6 +626,7 @@ class GameActivityDeciPlusPro : BaseActivity()  {
 
 
     private fun checkManualAnswer(userAnswer: Double) {
+        if (inputBlocked) return // Cambio #3 bloqueo de mas de 2 intentos //
         val epsilon = 0.1
         userResponses.add(userAnswer)
         val isCorrect = abs(userAnswer - correctAnswer) < epsilon
@@ -632,6 +634,9 @@ class GameActivityDeciPlusPro : BaseActivity()  {
         if (isCorrect) {
             answerTimer?.cancel()
             chronometerTimer?.cancel()
+
+            inputBlocked = true  // Cambio #02 para bloqueo después de respuesta correcta
+            disableAllInputs()   // Cambio #02 para bloqueo después de respuesta correcta
 
             manualAnswerEditText.setBackgroundResource(R.drawable.sombra_correcta)
             val shake = AnimationUtils.loadAnimation(this, R.anim.shake)
@@ -652,6 +657,8 @@ class GameActivityDeciPlusPro : BaseActivity()  {
             attempts++
 
             if (attempts >= 2) {
+                inputBlocked = true  // Cambio #4 bloqueo de mas de 2 intentos //
+                disableAllInputs() // Cambio #4 bloqueo de mas de 2 intentos //
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
 
@@ -751,6 +758,7 @@ class GameActivityDeciPlusPro : BaseActivity()  {
     }
 
     private fun checkAnswer(selectedButton: Button) {
+        if (inputBlocked) return // Cambio #5 bloqueo de mas de 2 intentos //
         selectedButton.clearFocus()
 
         val selectedAnswer = selectedButton.text.toString().replace(",", ".").toDouble()
@@ -761,6 +769,9 @@ class GameActivityDeciPlusPro : BaseActivity()  {
         if (isCorrect) {
             answerTimer?.cancel()
             chronometerTimer?.cancel()
+
+            inputBlocked = true  // Cambio #02 para bloqueo después de respuesta correcta
+            disableAllInputs()   // Cambio #02 para bloqueo después de respuesta correcta
 
             selectedButton.setBackgroundResource(R.drawable.sombra_correcta)
             val shake = AnimationUtils.loadAnimation(this, R.anim.shake)
@@ -784,6 +795,8 @@ class GameActivityDeciPlusPro : BaseActivity()  {
 
             attempts++
             if (attempts >= 2) {
+                inputBlocked = true // Cambio #6 bloqueo de mas de 2 intentos //
+                disableAllInputs() // Cambio #6 bloqueo de mas de 2 intentos //
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
 
@@ -795,6 +808,18 @@ class GameActivityDeciPlusPro : BaseActivity()  {
                 }, 1000)
             }
         }
+    }
+
+    // Cambio #7 bloqueo de mas de 2 intentos //
+    private fun disableAllInputs() {
+
+        btnAnswer1.isEnabled = false
+        btnAnswer2.isEnabled = false
+        btnAnswer3.isEnabled = false
+        btnAnswer4.isEnabled = false
+
+        manualAnswerEditText.isEnabled = false
+        submitAnswerButton.isEnabled = false
     }
 
     private fun showExitConfirmation(onConfirm: () -> Unit) {

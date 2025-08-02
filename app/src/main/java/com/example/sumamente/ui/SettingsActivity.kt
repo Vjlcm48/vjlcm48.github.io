@@ -49,10 +49,10 @@ class SettingsActivity : BaseActivity() {
         const val LAST_PROMPT_DISMISSAL_TIMESTAMP = "lastPromptDismissalTimestamp"
         const val LINK_PROMPT_INTERACTED = "linkPromptInteracted"
 
-        const val COOLDOWN_REMIND_LATER = 60 * 1000L
-        const val COOLDOWN_NOT_NOW = 120 * 1000L
-        const val COOLDOWN_FLOAT_DISMISS = 30 * 1000L
-        const val COOLDOWN_FLOAT_DIALOG_DISMISS = 90 * 1000L
+        const val COOLDOWN_REMIND_LATER = 3 * 24 * 60 * 60 * 1000L
+        const val COOLDOWN_NOT_NOW = 6 * 24 * 60 * 60 * 1000L
+        const val COOLDOWN_FLOAT_DISMISS = 4 * 24 * 60 * 60 * 1000L
+        const val COOLDOWN_FLOAT_DIALOG_DISMISS = 3 * 24 * 60 * 60 * 1000L
 
     }
 
