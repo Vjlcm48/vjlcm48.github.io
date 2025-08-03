@@ -661,7 +661,7 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
 
     override fun onNotNow() {
         val cooldown = if (isDialogFromFloatingButton) {
-            SettingsActivity.COOLDOWN_FLOAT_DIALOG_DISMISS
+            SettingsActivity.COOLDOWN_FLOAT_DIALOG_NOT_NOW
         } else {
             SettingsActivity.COOLDOWN_NOT_NOW
         }

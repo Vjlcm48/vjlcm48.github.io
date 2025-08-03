@@ -184,6 +184,18 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
         heartbeatAnimator?.cancel()
     }
 
+    override fun onPause() {
+        super.onPause()
+        if (!isFinishing) {
+
+            answerTimer?.cancel()
+            handler.removeCallbacksAndMessages(null)
+            chronometerTimer?.cancel()
+            heartbeatAnimator?.cancel()
+            finish()
+        }
+    }
+
     private fun startSequence() {
         progressRing.visibility = View.INVISIBLE
         blueCircle.visibility = View.INVISIBLE

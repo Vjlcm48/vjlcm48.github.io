@@ -49,10 +49,12 @@ class SettingsActivity : BaseActivity() {
         const val LAST_PROMPT_DISMISSAL_TIMESTAMP = "lastPromptDismissalTimestamp"
         const val LINK_PROMPT_INTERACTED = "linkPromptInteracted"
 
-        const val COOLDOWN_REMIND_LATER = 3 * 24 * 60 * 60 * 1000L
-        const val COOLDOWN_NOT_NOW = 6 * 24 * 60 * 60 * 1000L
-        const val COOLDOWN_FLOAT_DISMISS = 4 * 24 * 60 * 60 * 1000L
-        const val COOLDOWN_FLOAT_DIALOG_DISMISS = 3 * 24 * 60 * 60 * 1000L
+        const val COOLDOWN_REMIND_LATER = 4 * 24 * 60 * 60 * 1000L // 4 días
+        const val COOLDOWN_NOT_NOW = 7 * 24 * 60 * 60 * 1000L // 7 días
+        const val COOLDOWN_FLOAT_DISMISS = 2 * 24 * 60 * 60 * 1000L // 2 días (descartar botón)
+        const val COOLDOWN_FLOAT_DIALOG_DISMISS = 3 * 24 * 60 * 60 * 1000L // 3 días (más tarde desde el flotante)
+        const val COOLDOWN_FLOAT_DIALOG_NOT_NOW = 5 * 24 * 60 * 60 * 1000L // 5 días (no por ahora desde el flotante)
+
 
     }
 

@@ -78,10 +78,12 @@ class DesafiosActivity : BaseActivity() {
 
     private fun animateAppName() {
         val colorAnimator = ValueAnimator.ofArgb(
-            getColor(R.color.blue_primary),
-            getColor(R.color.red_primary)
+            ContextCompat.getColor(this, R.color.blue_primary_darker),
+            ContextCompat.getColor(this, R.color.blue_primary),
+            ContextCompat.getColor(this, R.color.grey_dark),
+            ContextCompat.getColor(this, R.color.red_primary)
         ).apply {
-            duration = 2000L
+            duration = 8000L
             repeatMode = ValueAnimator.REVERSE
             repeatCount = ValueAnimator.INFINITE
             addUpdateListener { animator ->
@@ -90,6 +92,7 @@ class DesafiosActivity : BaseActivity() {
         }
         colorAnimator.start()
     }
+
 
     private fun startEntryAnimations() {
         val viewsToAnimate = listOf(

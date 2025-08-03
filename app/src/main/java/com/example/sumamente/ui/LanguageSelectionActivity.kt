@@ -186,7 +186,7 @@ class LanguageSelectionActivity : BaseActivity() {
 
         val selectedIndex = supportedLanguages.indexOfFirst { it.code.equals(languageCode, ignoreCase = true) }
         if (selectedIndex != -1) {
-            checkMarks[selectedIndex].visibility = View.VISIBLE
+            animateCheck(checkMarks[selectedIndex])
         }
 
         setAppLanguage(languageCode)
@@ -198,7 +198,7 @@ class LanguageSelectionActivity : BaseActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             proceedToMainApp()
-        }, 300)
+        }, 700)
     }
 
     private fun setAppLanguage(languageCode: String) {
@@ -235,6 +235,31 @@ class LanguageSelectionActivity : BaseActivity() {
             start()
         }
     }
+
+    private fun animateCheck(view: ImageView) {
+        view.scaleX = 0f
+        view.scaleY = 0f
+        view.alpha = 0f
+        view.visibility = View.VISIBLE
+
+        val animatorX = android.animation.ObjectAnimator.ofFloat(view, "scaleX", 1f).apply {
+            duration = 600
+            interpolator = android.view.animation.AccelerateDecelerateInterpolator()
+        }
+        val animatorY = android.animation.ObjectAnimator.ofFloat(view, "scaleY", 1f).apply {
+            duration = 600
+            interpolator = android.view.animation.AccelerateDecelerateInterpolator()
+        }
+        val animatorAlpha = android.animation.ObjectAnimator.ofFloat(view, "alpha", 1f).apply {
+            duration = 600
+            interpolator = android.view.animation.AccelerateDecelerateInterpolator()
+        }
+        android.animation.AnimatorSet().apply {
+            playTogether(animatorX, animatorY, animatorAlpha)
+            start()
+        }
+    }
+
 
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {

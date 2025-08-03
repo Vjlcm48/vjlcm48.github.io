@@ -2,6 +2,8 @@ package com.example.sumamente.ui
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.app.ActivityOptions
 import android.content.Intent
 import android.media.MediaPlayer
@@ -69,7 +71,6 @@ class UsernameSelectionActivity : BaseActivity() {
 
         val username = usernameInputLayout.editText?.text.toString().trim()
         usernameInputLayout.error = null
-
         usernameInputLayout.endIconMode = TextInputLayout.END_ICON_NONE
 
         if (username.length !in 4..12) {
@@ -81,15 +82,30 @@ class UsernameSelectionActivity : BaseActivity() {
 
         btnAccept.isEnabled = false
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            playValidationSound()
-            showSuccessCheckmark()
+        checkUsernameAvailable(username) { available ->
+            if (!available) {
+                usernameInputLayout.error = getString(R.string.error_username_taken)
+                playErrorSound()
+                shakeView(usernameInputLayout)
+                btnAccept.isEnabled = true
+                return@checkUsernameAvailable
+            }
 
-            Handler(Looper.getMainLooper()).postDelayed({
-                usernameInputLayout.isEnabled = false
-                saveUsernameAndProceed(username)
-            }, 1500)
-        }, 300)
+                playValidationSound()
+                showSuccessCheckmark()
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    usernameInputLayout.isEnabled = false
+                    saveUsernameAndProceed(username)
+                }, 1500)
+        }
+    }
+
+    private fun checkUsernameAvailable(username: String, onResult: (Boolean) -> Unit) {
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            onResult(username.lowercase() != "admin")
+        }, 700)
     }
 
     private fun showSuccessCheckmark() {
@@ -99,6 +115,9 @@ class UsernameSelectionActivity : BaseActivity() {
         usernameInputLayout.endIconContentDescription = getString(R.string.check_description)
         usernameInputLayout.setEndIconTintList(null)
         usernameInputLayout.isEndIconVisible = true
+
+        val endIconView = usernameInputLayout.findViewById<ImageView>(com.google.android.material.R.id.text_input_end_icon)
+        endIconView?.let { animateCheck(it) }
     }
 
     private fun saveUsernameAndProceed(username: String) {
@@ -167,4 +186,29 @@ class UsernameSelectionActivity : BaseActivity() {
             setOnCompletionListener { release() }
         }
     }
+
+    private fun animateCheck(view: ImageView) {
+        view.scaleX = 0f
+        view.scaleY = 0f
+        view.alpha = 0f
+        view.visibility = View.VISIBLE
+
+        val animatorX = ObjectAnimator.ofFloat(view, "scaleX", 1f).apply {
+            duration = 600
+            interpolator = android.view.animation.AccelerateDecelerateInterpolator()
+        }
+        val animatorY = ObjectAnimator.ofFloat(view, "scaleY", 1f).apply {
+            duration = 600
+            interpolator = android.view.animation.AccelerateDecelerateInterpolator()
+        }
+        val animatorAlpha = ObjectAnimator.ofFloat(view, "alpha", 1f).apply {
+            duration = 600
+            interpolator = android.view.animation.AccelerateDecelerateInterpolator()
+        }
+        AnimatorSet().apply {
+            playTogether(animatorX, animatorY, animatorAlpha)
+            start()
+        }
+    }
+
 }

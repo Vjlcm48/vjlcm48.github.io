@@ -112,6 +112,17 @@ class LevelResultActivity : BaseActivity()  {
         // Fin del código de flecha de regresar del celular
     }
 
+    override fun onPause() {
+        super.onPause()
+        stopCurrentSound()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        stopCurrentSound()
+        mainHandler.removeCallbacksAndMessages(null)
+    }
+
     private fun setupUI() {
         applyTouchAnimation(unlockLevelTextView)
         applyTouchAnimation(rankingChangedTextView)

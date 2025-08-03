@@ -446,6 +446,7 @@ class MainGameActivity : BaseActivity() {
     private fun aplicarAnimacionDeColor(textView: TextView) {
         val colorAnimator = android.animation.ValueAnimator.ofArgb(
 
+            ContextCompat.getColor(this, R.color.blue_primary_darker),
             ContextCompat.getColor(this, R.color.blue_primary),
             ContextCompat.getColor(this, R.color.grey_dark),
             ContextCompat.getColor(this, R.color.red_primary)

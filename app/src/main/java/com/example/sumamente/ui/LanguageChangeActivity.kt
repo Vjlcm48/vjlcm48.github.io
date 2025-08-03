@@ -5,8 +5,6 @@ import android.animation.AnimatorListenerAdapter
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -14,11 +12,14 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.core.view.isVisible
 import com.example.sumamente.R
+
 
 class LanguageChangeActivity : BaseActivity() {
 
@@ -101,12 +102,14 @@ class LanguageChangeActivity : BaseActivity() {
         return resources.configuration.locales[0].language
     }
 
-    private fun highlightSelectedLanguage() {
+    private fun highlightSelectedLanguage(onAnimationEnd: () -> Unit = {}) {
         checkMarks.forEach { it.visibility = View.GONE }
         val currentLocaleCode = getCurrentLocaleCode()
         val selectedIndex = supportedLanguages.indexOfFirst { it.code == currentLocaleCode }
         if (selectedIndex != -1) {
-            checkMarks[selectedIndex].visibility = View.VISIBLE
+            animateCheck(checkMarks[selectedIndex], onAnimationEnd)
+        } else {
+            onAnimationEnd()
         }
     }
 
@@ -141,16 +144,31 @@ class LanguageChangeActivity : BaseActivity() {
             apply()
         }
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            highlightSelectedLanguage()
+        checkMarks.forEach { it.visibility = View.GONE }
 
-            val intent = Intent(this, MainGameActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            val options = ActivityOptions.makeCustomAnimation(this, android.R.anim.fade_in, android.R.anim.fade_out)
-            startActivity(intent, options.toBundle())
-            finishAffinity()
-        }, 150)
+        Handler(Looper.getMainLooper()).postDelayed({
+
+            val selectedIndex = supportedLanguages.indexOfFirst { it.code == languageCode }
+            if (selectedIndex != -1) {
+                animateCheck(checkMarks[selectedIndex]) {
+
+                    val intent = Intent(this, MainGameActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    val options = ActivityOptions.makeCustomAnimation(this, android.R.anim.fade_in, android.R.anim.fade_out)
+                    startActivity(intent, options.toBundle())
+                    finishAffinity()
+                }
+            } else {
+
+                val intent = Intent(this, MainGameActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                val options = ActivityOptions.makeCustomAnimation(this, android.R.anim.fade_in, android.R.anim.fade_out)
+                startActivity(intent, options.toBundle())
+                finishAffinity()
+            }
+        }, 350)
     }
+
 
     private fun startAnimations() {
         val logo = findViewById<ImageView>(R.id.app_logo)
@@ -238,4 +256,35 @@ class LanguageChangeActivity : BaseActivity() {
         })
         animatorSet.start()
     }
+
+    private fun animateCheck(view: ImageView, onEndAction: () -> Unit = {}) {
+        view.scaleX = 0f
+        view.scaleY = 0f
+        view.alpha = 0f
+        view.visibility = View.VISIBLE
+
+        val animatorX = android.animation.ObjectAnimator.ofFloat(view, "scaleX", 1f).apply {
+            duration = 600
+            interpolator = android.view.animation.AccelerateDecelerateInterpolator()
+        }
+        val animatorY = android.animation.ObjectAnimator.ofFloat(view, "scaleY", 1f).apply {
+            duration = 600
+            interpolator = android.view.animation.AccelerateDecelerateInterpolator()
+        }
+        val animatorAlpha = android.animation.ObjectAnimator.ofFloat(view, "alpha", 1f).apply {
+            duration = 600
+            interpolator = android.view.animation.AccelerateDecelerateInterpolator()
+        }
+        android.animation.AnimatorSet().apply {
+            playTogether(animatorX, animatorY, animatorAlpha)
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+
+                    onEndAction()
+                }
+            })
+            start()
+        }
+    }
+
 }
