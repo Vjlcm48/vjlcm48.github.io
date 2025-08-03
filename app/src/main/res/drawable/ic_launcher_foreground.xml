@@ -34,8 +34,8 @@
                 android:pathData="M0,-20 L19.5,4.5 L-8.7,18 L-15.6,-12.5 L15.6,-12.5 L8.7,18 L-19.5,4.5 Z"
                 android:fillColor="#FFFFFF"/>
             <group
-                android:scaleX="0.83"
-                android:scaleY="0.83">
+                android:scaleX="0.85"
+                android:scaleY="0.85">
                 <path
                     android:pathData="M0,-20 L19.5,4.5 L-8.7,18 L-15.6,-12.5 L15.6,-12.5 L8.7,18 L-19.5,4.5 Z">
                     <aapt:attr name="android:fillColor">
@@ -43,9 +43,9 @@
                             android:type="linear"
                             android:angle="135">
                             <item android:offset="0.0" android:color="@color/blue_secondary" />
-                            <item android:offset="0.1" android:color="@color/blue_secondary" />
-                            <item android:offset="0.35" android:color="@color/blue_primary" />
-                            <item android:offset="0.5" android:color="@color/blue_primary_dark" />
+                            <item android:offset="0.40" android:color="@color/blue_secondary" />
+                            <item android:offset="0.55" android:color="@color/blue_primary" />
+                            <item android:offset="0.65" android:color="@color/blue_primary_dark" />
                             <item android:offset="0.8" android:color="@color/blue_primary_darker" />
                             <item android:offset="0.95" android:color="@color/blue_primary_darkest" />
                             <item android:offset="1.0" android:color="@color/blue_primary_darkest" />

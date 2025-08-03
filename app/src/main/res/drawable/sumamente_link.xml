@@ -30,9 +30,13 @@
                 <gradient
                     android:type="linear"
                     android:angle="135">
-                    <item android:offset="0.0" android:color="#FF1E88E5" />
-                    <item android:offset="0.7" android:color="#FF1565C0" />
-                    <item android:offset="1.0" android:color="#FF0A3F8A" />
+                    <item android:offset="0.0" android:color="@color/blue_secondary" />
+                    <item android:offset="0.40" android:color="@color/blue_secondary" />
+                    <item android:offset="0.55" android:color="@color/blue_primary" />
+                    <item android:offset="0.65" android:color="@color/blue_primary_dark" />
+                    <item android:offset="0.8" android:color="@color/blue_primary_darker" />
+                    <item android:offset="0.95" android:color="@color/blue_primary_darkest" />
+                    <item android:offset="1.0" android:color="@color/blue_primary_darkest" />
                 </gradient>
             </aapt:attr>
         </path>
