@@ -75,7 +75,8 @@
                     android:padding="8dp"
                     android:textColor="@android:color/black"
                     android:textSize="14sp"
-                    android:contentDescription="@string/change_difficulty" />
+                    android:contentDescription="@string/change_difficulty"
+                    app:drawableEndCompat="@drawable/ic_edit"/>
 
                 <TextView
                     android:id="@+id/tv_score"

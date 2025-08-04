@@ -20,7 +20,7 @@ abstract class BaseActivity : AppCompatActivity()  {
     }
 
     private fun getSavedLanguage(context: Context): String {
-        val preferences = context.getSharedPreferences("MyPrefers", MODE_PRIVATE)
+        val preferences = context.getSharedPreferences("MyPrefs", MODE_PRIVATE)
         return preferences.getString("app_display_language", "es") ?: "es"
     }
 

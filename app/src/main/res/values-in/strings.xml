@@ -1424,6 +1424,11 @@ Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di 
 
     <string name="data_reset_successfully">Data berhasil direset</string>
 
+    <string name="account_linked_error">Terjadi kesalahan saat menautkan akun.</string>
+    <string name="google_signin_failed">Login dengan Google gagal</string>
+    <string name="firebase_link_failed">Gagal menautkan dengan Firebase.</string>
+    <string name="invalid_google_account">Akun Google tidak valid.</string>
 
+    <string name="user_not_authenticated">Pengguna tidak terautentikasi</string>
 
 </resources>

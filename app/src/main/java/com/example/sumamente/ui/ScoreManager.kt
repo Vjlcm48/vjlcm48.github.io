@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import com.google.gson.Gson
+import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 
 
@@ -1580,4 +1581,137 @@ object ScoreManager {
         )
         return rankingNames.any { isUserInRanking(it) }
     }
+
+    // ====== SYNC: EXPORT / IMPORT PARA SCORE MANAGER======
+
+    private data class TypedPrefValue(
+        val type: String,
+        val value: Any?
+    )
+
+    fun exportAllDataAsJson(context: Context): String {
+        ensurePreferencesInitialized(context)
+        val gson = Gson()
+
+        val scorePrefsNames = listOf(
+            // NumerosPlus
+            "ScorePrefs", "ScorePrefsPrincipiante", "ScorePrefsPro",
+            // DeciPlus
+            "ScorePrefsDeciPlus", "ScorePrefsDeciPlusPrincipiante", "ScorePrefsDeciPlusPro",
+            // Romas
+            "ScorePrefsRomas", "ScorePrefsRomasPrincipiante", "ScorePrefsRomasPro",
+            // AlfaNumeros
+            "ScorePrefsAlfaNumeros", "ScorePrefsAlfaNumerosPrincipiante", "ScorePrefsAlfaNumerosPro",
+            // SumaResta
+            "ScorePrefsSumaResta", "ScorePrefsSumaRestaPrincipiante", "ScorePrefsSumaRestaPro",
+            // MasPlus
+            "ScorePrefsMasPlus", "ScorePrefsMasPlusPrincipiante", "ScorePrefsMasPlusPro",
+            // GenioPlus
+            "ScorePrefsGenioPlus", "ScorePrefsGenioPlusPrincipiante", "ScorePrefsGenioPlusPro"
+        )
+
+        fun dumpPrefs(name: String): Map<String, TypedPrefValue> {
+            val sp = context.getSharedPreferences(name, Context.MODE_PRIVATE)
+            return sp.all.mapNotNull { (k, v) ->
+                when (v) {
+                    is Int    -> k to TypedPrefValue("int", v)
+                    is Long   -> k to TypedPrefValue("long", v)
+                    is Float  -> k to TypedPrefValue("float", v)
+                    is Boolean-> k to TypedPrefValue("boolean", v)
+                    is String -> k to TypedPrefValue("string", v)
+                    is Set<*> -> {
+                        val onlyStrings = v.all { it is String }
+                        if (onlyStrings) k to TypedPrefValue("string_set", v.toList())
+                        else null
+                    }
+                    else -> null
+                }
+            }.toMap()
+        }
+
+        val prefsDump = mutableMapOf<String, Map<String, TypedPrefValue>>()
+        scorePrefsNames.forEach { name ->
+            prefsDump[name] = dumpPrefs(name)
+        }
+
+        val allowedPrefixes = listOf("total_games_", "total_time_")
+        val allowedExactKeys = listOf(
+            KEY_TOTAL_GAMES_GLOBAL, KEY_CORRECT_GAMES_GLOBAL, KEY_LAST_IQ_COMPONENTS
+        )
+
+        val myPrefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val mySubset = myPrefs.all.mapNotNull { (k, v) ->
+            val keep = allowedExactKeys.contains(k) || allowedPrefixes.any { k.startsWith(it) }
+            if (!keep) return@mapNotNull null
+            when (v) {
+                is Int    -> k to TypedPrefValue("int", v)
+                is Long   -> k to TypedPrefValue("long", v)
+                is Float  -> k to TypedPrefValue("float", v)
+                is Boolean-> k to TypedPrefValue("boolean", v)
+                is String -> k to TypedPrefValue("string", v)
+                is Set<*> -> {
+                    val onlyStrings = v.all { it is String }
+                    if (onlyStrings) k to TypedPrefValue("string_set", v.toList())
+                    else null
+                }
+                else -> null
+            }
+        }.toMap()
+
+        val root = mapOf(
+            "schema_version" to 2,
+            "updated_at" to System.currentTimeMillis(),
+            "prefs_dump" to prefsDump,
+            "my_prefs_subset" to mySubset
+        )
+
+        return gson.toJson(root)
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun importAllDataFromJson(context: Context, json: String) {
+        ensurePreferencesInitialized(context)
+        val gson = Gson()
+        val rootObj = gson.fromJson(json, JsonObject::class.java) ?: return
+
+        fun applyMapToPrefs(prefsName: String, map: Map<String, Any?>) {
+            val sp = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
+            sp.edit {
+                map.forEach { (key, tvRaw) ->
+                    val typed = tvRaw as? Map<*, *> ?: return@forEach
+                    val type = typed["type"] as? String ?: return@forEach
+                    val value = typed["value"]
+
+                    when (type) {
+                        "int" -> (value as? Number)?.toInt()?.let { putInt(key, it) }
+                        "long" -> (value as? Number)?.toLong()?.let { putLong(key, it) }
+                        "float" -> (value as? Number)?.toFloat()?.let { putFloat(key, it) }
+                        "boolean" -> (value as? Boolean)?.let { putBoolean(key, it) }
+                        "string" -> (value as? String)?.let { putString(key, it) }
+                        "string_set" -> {
+                            val list = (value as? List<*>)?.filterIsInstance<String>() ?: emptyList()
+                            putStringSet(key, list.toSet())
+                        }
+                    }
+                }
+            }
+        }
+
+        rootObj.getAsJsonObject("prefs_dump")?.entrySet()?.forEach { entry ->
+            val prefsName = entry.key
+            val map = gson.fromJson<Map<String, Any?>>(
+                entry.value, object : TypeToken<Map<String, Any?>>() {}.type
+            )
+            applyMapToPrefs(prefsName, map)
+        }
+
+        rootObj.getAsJsonObject("my_prefs_subset")?.let { jo ->
+            val map = gson.fromJson<Map<String, Any?>>(
+                jo, object : TypeToken<Map<String, Any?>>() {}.type
+            )
+            applyMapToPrefs("MyPrefs", map)
+        }
+    }
+
+
 }

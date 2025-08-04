@@ -6,7 +6,8 @@ import androidx.core.content.edit
 import com.example.sumamente.R
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.util.*
+import java.util.Calendar
+import java.util.TimeZone
 
 object CondecoracionTracker {
 
@@ -1312,4 +1313,126 @@ object CondecoracionTracker {
 
     fun shouldShowTrophyRedDot(): Boolean = trophyRedDotVisible
     fun shouldShowMisCondecoracionesRedDot(): Boolean = misCondecoracionesRedDotVisible
+
+    // ====== INICIO: SYNC CONDECORACIONES (EXPORT / IMPORT) ======
+
+    private data class CondecoracionData(
+        val schemaVersion: Int = 2,
+
+        val completedLevelsUnified: List<CompletedLevel> = emptyList(),
+        val pinesObtenidos: List<PinObtained> = emptyList(),
+        val carryOverLevels: List<CompletedLevel> = emptyList(),
+
+        val coronasActivas: List<CoronaActiva> = emptyList(),
+        val condecoracionesTop10: List<CondecoracionTop10> = emptyList(),
+        val condecoracionesIQ7: List<CondecoracionIQ7> = emptyList(),
+        val condecoracionesTop5Integral: List<CondecoracionTop5Integral> = emptyList(),
+
+        val medallasObtenidas: List<MedallaObtenida> = emptyList(),
+        val trofeosObtenidos: List<TrofeoObtenido> = emptyList(),
+        val apexSupremusObtenida: ApexSupremusObtenida? = null,
+        val insigniaRIPlus: InsigniaRIPlus? = null,
+
+        val lastPinCheckDate: String = "",
+        val lastCoronaCheckDate: String = "",
+        val lastTop10CheckDate: String = "",
+        val lastIQ7CheckDate: String = "",
+        val lastTop5IntegralCheckDate: String = "",
+        val lastRIPlusCheckDate: String = ""
+    )
+
+    fun exportAllDataAsJson(context: Context): String {
+
+        if (!::preferences.isInitialized) {
+            init(context)
+        }
+
+        val box = CondecoracionData(
+            completedLevelsUnified = completedLevelsUnified,
+            pinesObtenidos = pinesObtenidos,
+            carryOverLevels = carryOverLevels,
+
+            coronasActivas = coronasActivas,
+            condecoracionesTop10 = condecoracionesTop10,
+            condecoracionesIQ7 = condecoracionesIQ7,
+            condecoracionesTop5Integral = condecoracionesTop5Integral,
+
+            medallasObtenidas = medallasObtenidas,
+            trofeosObtenidos = trofeosObtenidos,
+            apexSupremusObtenida = apexSupremusObtenida,
+            insigniaRIPlus = insigniaRIPlus,
+
+            lastPinCheckDate = lastPinCheckDate,
+            lastCoronaCheckDate = lastCoronaCheckDate,
+            lastTop10CheckDate = lastTop10CheckDate,
+            lastIQ7CheckDate = lastIQ7CheckDate,
+            lastTop5IntegralCheckDate = lastTop5IntegralCheckDate,
+            lastRIPlusCheckDate = lastRIPlusCheckDate
+        )
+
+        return gson.toJson(box)
+    }
+
+    fun importAllDataFromJson(context: Context, json: String) {
+        if (!::preferences.isInitialized) {
+            init(context)
+        }
+
+        val restored = runCatching { gson.fromJson(json, CondecoracionData::class.java) }.getOrNull()
+            ?: return
+
+        if (restored.schemaVersion != 2) {
+            return
+        }
+
+        completedLevelsUnified = restored.completedLevelsUnified.toMutableList()
+        pinesObtenidos = restored.pinesObtenidos.toMutableList()
+        carryOverLevels = restored.carryOverLevels.toMutableList()
+
+        coronasActivas = restored.coronasActivas.toMutableList()
+        condecoracionesTop10 = restored.condecoracionesTop10.toMutableList()
+        condecoracionesIQ7 = restored.condecoracionesIQ7.toMutableList()
+        condecoracionesTop5Integral = restored.condecoracionesTop5Integral.toMutableList()
+
+        medallasObtenidas = restored.medallasObtenidas.toMutableList()
+        trofeosObtenidos = restored.trofeosObtenidos.toMutableList()
+        apexSupremusObtenida = restored.apexSupremusObtenida
+        insigniaRIPlus = restored.insigniaRIPlus
+
+        lastPinCheckDate = restored.lastPinCheckDate
+        lastCoronaCheckDate = restored.lastCoronaCheckDate
+        lastTop10CheckDate = restored.lastTop10CheckDate
+        lastIQ7CheckDate = restored.lastIQ7CheckDate
+        lastTop5IntegralCheckDate = restored.lastTop5IntegralCheckDate
+        lastRIPlusCheckDate = restored.lastRIPlusCheckDate
+
+        saveCompletedLevelsUnified()
+        savePinesObtenidos()
+        saveCarryOverLevels()
+
+        saveCoronasActivas()
+        saveCondecoracionesTop10()
+        saveCondecoracionesIQ7()
+        saveCondecoracionesTop5Integral()
+
+        saveMedallas()
+        saveTrofeos()
+        saveApexSupremus()
+        saveInsigniaRIPlus()
+
+        preferences.edit {
+            putString(KEY_LAST_PIN_CHECK_DATE, lastPinCheckDate)
+            putString(KEY_LAST_CORONA_CHECK_DATE, lastCoronaCheckDate)
+            putString(KEY_LAST_TOP10_CHECK_DATE, lastTop10CheckDate)
+            putString(KEY_LAST_IQ7_CHECK_DATE, lastIQ7CheckDate)
+            putString(KEY_LAST_TOP5_INTEGRAL_CHECK_DATE, lastTop5IntegralCheckDate)
+            putString(KEY_LAST_RI_PLUS_CHECK_DATE, lastRIPlusCheckDate)
+        }
+
+        updateRedDotsStatus()
+    }
+
+// ====== FIN: SYNC CONDECORACIONES (EXPORT / IMPORT) ======
+
+
 }

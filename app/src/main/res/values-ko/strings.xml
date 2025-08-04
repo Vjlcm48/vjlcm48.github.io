@@ -1194,5 +1194,12 @@
 
     <string name="data_reset_successfully">데이터가 성공적으로 초기화되었습니다</string>
 
+    <string name="account_linked_error">계정을 연결하는 동안 오류가 발생했습니다.</string>
+    <string name="google_signin_failed">Google 로그인 실패</string>
+    <string name="firebase_link_failed">Firebase 연결에 실패했습니다.</string>
+    <string name="invalid_google_account">잘못된 Google 계정입니다.</string>
+
+    <string name="user_not_authenticated">사용자가 인증되지 않았습니다</string>
+
 
 </resources>

@@ -29,6 +29,8 @@ import android.view.MotionEvent
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.edit
+import com.example.sumamente.ui.utils.DataSyncManager
+
 
 class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDialogListener {
 
@@ -114,7 +116,8 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
             }
         }
 
-        loadSpeedRankingData()
+        ensureFreshThen { loadSpeedRankingData() }
+
 
         // Inicio del cambio flecha de regresar del celular
         val callback = object : OnBackPressedCallback(true) {
@@ -652,11 +655,34 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
     }
 
     override fun onAcceptLink() {
-        sharedPreferences.edit {
-            putBoolean(SettingsActivity.ACCOUNT_LINKED, true)
+        FirebaseAuthManager.startGoogleSignIn(
+            this,
+            getString(R.string.default_web_client_id)
+        ) { success, message ->
+            if (success) {
+                sharedPreferences.edit {
+                    putBoolean(SettingsActivity.ACCOUNT_LINKED, true)
+                }
+
+                DataSyncManager.syncDataToCloud(this) { ok, err ->
+                    Toast.makeText(
+                        this,
+                        if (ok) getString(R.string.account_linked_success)
+                        else getString(R.string.firebase_link_failed) + (err?.let { ": $it" } ?: ""),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    loadSpeedRankingData()
+                }
+            } else {
+                Toast.makeText(this, message ?: getString(R.string.account_linked_error), Toast.LENGTH_SHORT).show()
+            }
         }
-        Toast.makeText(this, getString(R.string.account_linked_success), Toast.LENGTH_LONG).show()
-        loadSpeedRankingData()
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        FirebaseAuthManager.handleSignInResult(this, requestCode, data)
     }
 
     override fun onNotNow() {
@@ -764,5 +790,10 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
         isFinishingByBack = false
     }
 
+    private fun ensureFreshThen(block: () -> Unit) {
+        val isLinked = sharedPreferences.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)
+        if (!isLinked) { block(); return }
+        DataSyncManager.syncDataFromCloud(this) { _, _ -> block() }
+    }
 
 }

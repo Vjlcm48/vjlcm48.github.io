@@ -1,19 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-
-
-
-
     <string name="next_activity_text">अगली गतिविधि</string>
-
-
 
     <string name="btn_allow">अनुमति दें</string>
     <string name="btn_deny">अनुमति न दें</string>
     <string name="notification_text">क्या आप SumaMente को सूचनाएं भेजने की अनुमति देना चाहते हैं?</string>
     <string name="content_description_bell_icon">घंटी का आइकन</string>
     <string name="content_description_icon">SumaMente का आधिकारिक आइकन</string>
-
 
     <string name="instruction_text">अपना उपयोगकर्ता नाम लिखें।\n4 से 12 अक्षरों का उपयोग करें</string>
     <string name="btn_accept">स्वीकार करें</string>
@@ -1450,6 +1443,11 @@
 
     <string name="data_reset_successfully">डेटा सफलतापूर्वक रीसेट हो गया</string>
 
+    <string name="account_linked_error">अकाउंट लिंक करते समय एक त्रुटि हुई।</string>
+    <string name="google_signin_failed">Google साइन-इन विफल रहा</string>
+    <string name="firebase_link_failed">Firebase के साथ लिंक करने में विफल।</string>
+    <string name="invalid_google_account">अमान्य Google अकाउंट।</string>
 
+    <string name="user_not_authenticated">उपयोगकर्ता प्रमाणित नहीं है</string>
 
 </resources>

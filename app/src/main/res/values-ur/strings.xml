@@ -1241,4 +1241,11 @@
 
     <string name="data_reset_successfully">ڈیٹا کامیابی سے دوبارہ ترتیب دیا گیا۔</string>
 
+    <string name="account_linked_error">اکاؤنٹ کو منسلک کرنے کے دوران ایک خرابی پیش آئی۔</string>
+    <string name="google_signin_failed">گوگل سائن ان ناکام ہو گیا</string>
+    <string name="firebase_link_failed">Firebase کے ساتھ منسلک کرنے میں ناکامی۔</string>
+    <string name="invalid_google_account">غلط گوگل اکاؤنٹ۔</string>
+
+    <string name="user_not_authenticated">صارف کی تصدیق نہیں ہوئی</string>
+
 </resources>

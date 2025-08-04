@@ -1228,6 +1228,11 @@
 
     <string name="data_reset_successfully">ডেটা সফলভাবে রিসেট করা হয়েছে</string>
 
+    <string name="account_linked_error">অ্যাকাউন্ট লিঙ্ক করার সময় একটি ত্রুটি ঘটেছে।</string>
+    <string name="google_signin_failed">Google সাইন-ইন ব্যর্থ হয়েছে</string>
+    <string name="firebase_link_failed">Firebase এর সাথে লিঙ্ক করতে ব্যর্থ হয়েছে।</string>
+    <string name="invalid_google_account">অবৈধ Google অ্যাকাউন্ট।</string>
 
+    <string name="user_not_authenticated">ব্যবহারকারী প্রমাণীকৃত নয়</string>
 
 </resources>

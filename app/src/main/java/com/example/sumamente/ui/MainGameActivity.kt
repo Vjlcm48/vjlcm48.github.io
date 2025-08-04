@@ -36,6 +36,11 @@ import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import com.example.sumamente.ui.utils.DailyCondecoracionesWorker
 import java.util.concurrent.TimeUnit
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.example.sumamente.ui.utils.DataSyncManager
+import com.google.firebase.FirebaseApp
+
+
 
 class MainGameActivity : BaseActivity() {
 
@@ -54,6 +59,9 @@ class MainGameActivity : BaseActivity() {
     private var mediaPlayer: MediaPlayer? = null
     private var fadeHandler: Handler? = null
     private var fadeRunnable: Runnable? = null
+    private var didCloudRestore = false
+    private var lastSyncUpMs = 0L
+
 
     private lateinit var locationManager: LocationManager
     private val locationListener = createLocationListener()
@@ -68,6 +76,7 @@ class MainGameActivity : BaseActivity() {
     private var isActivityVisible = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        FirebaseApp.initializeApp(this)
         configurarTransiciones()
         super.onCreate(savedInstanceState)
 
@@ -79,7 +88,20 @@ class MainGameActivity : BaseActivity() {
         inicializarCondecoraciones()
         inicializarMusica()
         aplicarAnimacionDeColor(tvSumaMenteTitle)
+
+        if (sharedPreferences.getBoolean(SettingsActivity.ACCOUNT_LINKED, false) && !didCloudRestore) {
+            DataSyncManager.syncDataFromCloud(this) { ok, _ ->
+                if (ok) didCloudRestore = true
+            }
+        }
+
+        val firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+        val bundle = Bundle().apply {
+            putString(FirebaseAnalytics.Param.METHOD, "check_firebase_setup")
+        }
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, bundle)
     }
+
 
     private fun configurarTransiciones() {
         window.exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
@@ -523,6 +545,15 @@ class MainGameActivity : BaseActivity() {
         updateTrophyRedDot()
         actualizarEstadoMusica()
         actualizarPerfil()
+
+        if (sharedPreferences.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)) {
+            val now = System.currentTimeMillis()
+            if (now - lastSyncUpMs > 60_000) {
+                DataSyncManager.syncDataToCloud(this) { _, _ -> /* no-op */ }
+                lastSyncUpMs = now
+            }
+        }
+
     }
 
     private fun actualizarCondecoraciones() {

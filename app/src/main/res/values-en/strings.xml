@@ -1506,6 +1506,11 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
 
     <string name="data_reset_successfully">Data reset successfully</string>
 
+    <string name="account_linked_error">An error occurred while linking the account.</string>
+    <string name="google_signin_failed">Google Sign-In failed</string>
+    <string name="firebase_link_failed">Failed to link with Firebase.</string>
+    <string name="invalid_google_account">Invalid Google account.</string>
 
+    <string name="user_not_authenticated">User not authenticated</string>
 
 </resources>

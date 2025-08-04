@@ -1195,4 +1195,11 @@
 
     <string name="data_reset_successfully">データが正常にリセットされました</string>
 
+    <string name="account_linked_error">アカウントのリンク中にエラーが発生しました。</string>
+    <string name="google_signin_failed">Googleサインインに失敗しました</string>
+    <string name="firebase_link_failed">Firebaseとのリンクに失敗しました。</string>
+    <string name="invalid_google_account">無効なGoogleアカウントです。</string>
+
+    <string name="user_not_authenticated">ユーザーが認証されていません</string>
+
 </resources>

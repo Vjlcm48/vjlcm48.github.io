@@ -42,7 +42,6 @@ android {
         }
     }
 
-
     buildFeatures {
         compose = true
         viewBinding = true
@@ -92,9 +91,12 @@ dependencies {
     implementation(libs.lottie)
     implementation(libs.photoview)
     implementation(libs.gson)
-
-    // Añade estas dos líneas al final
     testImplementation(project(":app"))
     androidTestImplementation(project(":app"))
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics.ktx)
+    implementation(libs.play.services.auth)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore.ktx)
 
 }

@@ -1355,4 +1355,11 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
 
     <string name="data_reset_successfully">Dados redefinidos com sucesso</string>
 
+    <string name="account_linked_error">Ocorreu um erro ao vincular a conta.</string>
+    <string name="google_signin_failed">Falha no login com o Google</string>
+    <string name="firebase_link_failed">Falha ao vincular com o Firebase.</string>
+    <string name="invalid_google_account">Conta do Google inválida.</string>
+
+    <string name="user_not_authenticated">Usuário não autenticado</string>
+
 </resources>

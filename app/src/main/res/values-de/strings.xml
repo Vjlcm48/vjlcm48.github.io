@@ -1447,5 +1447,11 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
 
     <string name="data_reset_successfully">Daten erfolgreich zurückgesetzt</string>
 
+    <string name="account_linked_error">Beim Verknüpfen des Kontos ist ein Fehler aufgetreten.</string>
+    <string name="google_signin_failed">Google-Anmeldung fehlgeschlagen</string>
+    <string name="firebase_link_failed">Verknüpfung mit Firebase fehlgeschlagen.</string>
+    <string name="invalid_google_account">Ungültiges Google-Konto.</string>
+
+    <string name="user_not_authenticated">Benutzer nicht authentifiziert</string>
 
 </resources>

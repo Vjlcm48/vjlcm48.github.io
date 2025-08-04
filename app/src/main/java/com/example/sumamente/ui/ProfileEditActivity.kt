@@ -13,6 +13,8 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.edit
 import com.example.sumamente.R
+import com.example.sumamente.ui.utils.DataSyncManager
+
 
 class ProfileEditActivity : BaseActivity(), LinkUnlinkAccountDialogFragment.Listener {
 
@@ -130,15 +132,40 @@ class ProfileEditActivity : BaseActivity(), LinkUnlinkAccountDialogFragment.List
         animatorSet.start()
     }
 
-
     override fun onDialogAction() {
         if (isLinking) {
-            sharedPreferences.edit { putBoolean(SettingsActivity.ACCOUNT_LINKED, true) }
-            Toast.makeText(this, getString(R.string.account_linked_success), Toast.LENGTH_LONG).show()
+
+            FirebaseAuthManager.startGoogleSignIn(
+                this,
+                getString(R.string.default_web_client_id)
+            ) { success, message ->
+                if (success) {
+                    sharedPreferences.edit { putBoolean(SettingsActivity.ACCOUNT_LINKED, true) }
+
+                    DataSyncManager.syncDataToCloud(this) { ok, err ->
+                        Toast.makeText(
+                            this,
+                            if (ok) getString(R.string.account_linked_success)
+                            else getString(R.string.account_linked_error) + (err?.let { ": $it" } ?: ""),
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                } else {
+                    Toast.makeText(this, message ?: getString(R.string.account_linked_error), Toast.LENGTH_SHORT).show()
+                }
+                updateLinkButtonState()
+            }
         } else {
+
             sharedPreferences.edit { putBoolean(SettingsActivity.ACCOUNT_LINKED, false) }
             Toast.makeText(this, getString(R.string.account_unlinked_success), Toast.LENGTH_LONG).show()
+            updateLinkButtonState()
         }
-        updateLinkButtonState()
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        FirebaseAuthManager.handleSignInResult(this, requestCode, data)
+    }
+
 }

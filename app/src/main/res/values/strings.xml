@@ -1469,9 +1469,7 @@
     <string name="error_share_image">Error al compartir la condecoración</string>
 
 
-
     <string name="account_linked_success">¡Cuenta vinculada con éxito! Tu progreso está ahora a salvo.</string>
-
 
 
     <string name="profile_subtitle_linked">Conectado. Gestiona tu cuenta.</string>
@@ -1529,10 +1527,17 @@
     <string name="loading_text_9">🧙‍♂️ Magia matemática… ¡Abracadabra + 2!</string>
 
     <string name="select_a_game">Elige un juego</string>
-
     <string name="letter_to_number_conversion" translatable="false">A=1, B=2, C=3, D=4, \nE=5, F=6, G=7, H=8</string>
-
     <string name="data_reset_successfully">Datos reiniciados correctamente</string>
+
+    <string name="default_web_client_id" translatable="false">113803539978-i45kn298r9aipd3oh2a1r8pujqj52pam.apps.googleusercontent.com</string>
+
+    <string name="account_linked_error">Ocurrió un error al vincular la cuenta.</string>
+    <string name="google_signin_failed">Fallo en Google Sign-In</string>
+    <string name="firebase_link_failed">Fallo al vincular con Firebase.</string>
+    <string name="invalid_google_account">Cuenta de Google inválida.</string>
+
+    <string name="user_not_authenticated">Usuario no autenticado</string>
 
 
 </resources>

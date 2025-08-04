@@ -25,8 +25,6 @@ class SettingsActivity : BaseActivity() {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var profileSubtitleText: TextView
     private lateinit var linearDeleteAccount: LinearLayout
-
-    // UI references
     private lateinit var btnCloseSettings: ImageView
     private lateinit var switchSound: SwitchCompat
     private lateinit var switchNotifications: SwitchCompat

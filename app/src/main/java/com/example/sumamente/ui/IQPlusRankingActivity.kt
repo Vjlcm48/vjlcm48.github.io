@@ -32,6 +32,8 @@ import com.example.sumamente.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.Locale
 import kotlin.random.Random
+import com.example.sumamente.ui.utils.DataSyncManager
+
 
 import com.example.sumamente.ui.utils.MusicManager
 
@@ -97,7 +99,8 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
         setupFloatingButtonInteractions()
 
         spinnerFiltro.visibility = View.GONE
-        loadIQPlusRankingData()
+        ensureFreshThen { loadIQPlusRankingData() }
+
 
         // Inicio del cambio flecha de regresar del celular
         val callback = object : OnBackPressedCallback(true) {
@@ -607,13 +610,35 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
     }
 
     override fun onAcceptLink() {
-        sharedPreferences.edit {
-            putBoolean(SettingsActivity.ACCOUNT_LINKED, true)
-        }
-        Toast.makeText(this, getString(R.string.account_linked_success), Toast.LENGTH_LONG).show()
+        FirebaseAuthManager.startGoogleSignIn(
+            this,
+            getString(R.string.default_web_client_id)
+        ) { success, message ->
+            if (success) {
+                sharedPreferences.edit {
+                    putBoolean(SettingsActivity.ACCOUNT_LINKED, true)
+                }
 
-        loadIQPlusRankingData()
+                DataSyncManager.syncDataToCloud(this) { ok, err ->
+                    Toast.makeText(
+                        this,
+                        if (ok) getString(R.string.account_linked_success)
+                        else getString(R.string.firebase_link_failed) + (err?.let { ": $it" } ?: ""),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    loadIQPlusRankingData()
+                }
+            } else {
+                Toast.makeText(this, message ?: getString(R.string.account_linked_error), Toast.LENGTH_SHORT).show()
+            }
+        }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        FirebaseAuthManager.handleSignInResult(this, requestCode, data)
+    }
+
 
     override fun onNotNow() {
         val cooldown = if (isDialogFromFloatingButton) {
@@ -648,6 +673,13 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
 
         loadIQPlusRankingData()
     }
+
+    private fun ensureFreshThen(block: () -> Unit) {
+        val isLinked = sharedPreferences.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)
+        if (!isLinked) { block(); return }
+        DataSyncManager.syncDataFromCloud(this) { _, _ -> block() }
+    }
+
 }
 
 object IQPlusCombos {

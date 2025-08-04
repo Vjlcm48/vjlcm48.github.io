@@ -1558,7 +1558,11 @@
 
     <string name="data_reset_successfully">تمت إعادة ضبط البيانات بنجاح</string>
 
+    <string name="account_linked_error">حدث خطأ أثناء ربط الحساب.</string>
+    <string name="google_signin_failed">فشل تسجيل الدخول بحساب Google</string>
+    <string name="firebase_link_failed">فشل الربط مع Firebase.</string>
+    <string name="invalid_google_account">حساب Google غير صالح.</string>
 
-
+    <string name="user_not_authenticated">المستخدم غير موثّق</string>
 
 </resources>

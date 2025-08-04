@@ -1508,6 +1508,11 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
 
     <string name="data_reset_successfully">Données réinitialisées avec succès</string>
 
+    <string name="account_linked_error">Une erreur s\'est produite lors de l\'association du compte.</string>
+    <string name="google_signin_failed">La connexion avec Google a échoué</string>
+    <string name="firebase_link_failed">Échec de l\'association avec Firebase.</string>
+    <string name="invalid_google_account">Compte Google invalide.</string>
 
+    <string name="user_not_authenticated">Utilisateur non authentifié</string>
 
 </resources>

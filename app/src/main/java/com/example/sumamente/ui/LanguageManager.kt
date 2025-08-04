@@ -21,7 +21,7 @@ object LanguageManager {
         LanguageSelectionActivity.LanguageItem("ko", R.string.language_korean, R.drawable.kr)
     )
 
-    private const val PREFS_NAME = "MyPrefers"
+    private const val PREFS_NAME = "MyPrefs"
     private const val KEY_LANGUAGE_ORDER = "language_order"
 
     fun getOrderedLanguages(context: Context): List<LanguageSelectionActivity.LanguageItem> {

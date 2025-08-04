@@ -23,6 +23,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sumamente.R
 import com.example.sumamente.ui.utils.MusicManager
 import kotlin.random.Random
+import com.example.sumamente.ui.utils.DataSyncManager
+
 
 class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDialogListener {
 
@@ -84,7 +86,7 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
         initViews()
         setupButtons()
 
-        loadRankingData()
+        ensureFreshThen { loadRankingData() }
 
         // Inicio del cambio flecha de regresar del celular
         val callback = object : OnBackPressedCallback(true) {
@@ -450,13 +452,28 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
     }
 
     override fun onAcceptLink() {
+        FirebaseAuthManager.startGoogleSignIn(
+            this,
+            getString(R.string.default_web_client_id)
+        ) { success, message ->
+            if (success) {
+                sharedPreferences.edit {
+                    putBoolean(SettingsActivity.ACCOUNT_LINKED, true)
+                }
 
-        sharedPreferences.edit {
-            putBoolean(SettingsActivity.ACCOUNT_LINKED, true)
+                DataSyncManager.syncDataToCloud(this) { ok, err ->
+                    Toast.makeText(
+                        this,
+                        if (ok) getString(R.string.account_linked_success)
+                        else getString(R.string.firebase_link_failed) + (err?.let { ": $it" } ?: ""),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    loadRankingData()
+                }
+            } else {
+                Toast.makeText(this, message ?: getString(R.string.account_linked_error), Toast.LENGTH_SHORT).show()
+            }
         }
-        Toast.makeText(this, getString(R.string.account_linked_success), Toast.LENGTH_LONG).show()
-
-        loadRankingData()
     }
 
     override fun onNotNow() {
@@ -476,6 +493,12 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
         loadRankingData()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        FirebaseAuthManager.handleSignInResult(this, requestCode, data)
+    }
+
+
     override fun onRemindMeLater() {
         val cooldown = if (isDialogFromFloatingButton) {
             SettingsActivity.COOLDOWN_FLOAT_DIALOG_DISMISS
@@ -493,6 +516,11 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
         loadRankingData()
     }
 
+    private fun ensureFreshThen(block: () -> Unit) {
+        val isLinked = sharedPreferences.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)
+        if (!isLinked) { block(); return }
+        DataSyncManager.syncDataFromCloud(this) { _, _ -> block() }
+    }
 
 }
 
