@@ -1530,7 +1530,6 @@
     <string name="firebase_link_failed">Fallo al vincular con Firebase.</string>
     <string name="invalid_google_account">Cuenta de Google inválida.</string>
 
-    <string name="user_not_authenticated">Usuario no autenticado</string>
 
     <string name="btn_restore_progress">RECUPERAR PROGRESO</string>
     <string name="dialog_restore_title">Recuperar tu progreso anterior</string>
@@ -1556,5 +1555,11 @@
     <string name="cancel_button">Cancelar</string>
     <string name="account_deleted_success">Tu cuenta ha sido eliminada.</string>
     <string name="delete_account_confirm_message">Esta acción eliminará tu cuenta y todo tu progreso (puntos, niveles, medallas) de forma **permanente**. No podrás recuperarlos.</string>
+    <string name="user_not_authenticated">Usuario no autenticado</string>
+    <string name="account_deleted_error_firestore">No se pudo eliminar los datos en la nube. Intenta de nuevo.</string>
+    <string name="account_deleted_error_auth">No se pudo eliminar la cuenta de autenticación. Intenta de nuevo.</string>
+    <string name="account_delete_error_auth_recent">Por seguridad, vuelve a iniciar sesión para poder eliminar tu cuenta.</string>
+    <string name="account_delete_in_progress">Eliminando tu cuenta…</string>
+
 
 </resources>

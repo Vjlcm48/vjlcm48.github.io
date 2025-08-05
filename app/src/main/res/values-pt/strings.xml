@@ -1381,4 +1381,11 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
     <string name="btn_keep_local_progress">MANTER PROGRESSO ATUAL</string>
     <string name="update_success_title">PROGRESSO ATUALIZADO</string>
 
+    <string name="account_deleted_error_firestore">Não foi possível excluir os dados na nuvem. Tente novamente.</string>
+    <string name="account_deleted_error_auth">Não foi possível excluir a conta de autenticação. Tente novamente.</string>
+
+    <string name="account_delete_error_auth_recent">Por segurança, faça login novamente para excluir sua conta.</string>
+    <string name="account_delete_in_progress">Excluindo sua conta…</string>
+
+
 </resources>

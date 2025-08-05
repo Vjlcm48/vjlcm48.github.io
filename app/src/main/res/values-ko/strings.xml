@@ -1220,5 +1220,12 @@
     <string name="btn_keep_local_progress">현재 진행 상황 유지</string>
     <string name="update_success_title">진행 상황 업데이트됨</string>
 
+    <string name="account_deleted_error_firestore">클라우드 데이터를 삭제할 수 없습니다. 다시 시도해 주세요.</string>
+    <string name="account_deleted_error_auth">인증 계정을 삭제할 수 없습니다. 다시 시도해 주세요.</string>
+
+    <string name="account_delete_error_auth_recent">보안을 위해 다시 로그인하여 계정을 삭제해 주세요.</string>
+    <string name="account_delete_in_progress">계정을 삭제하는 중…</string>
+
+
 
 </resources>

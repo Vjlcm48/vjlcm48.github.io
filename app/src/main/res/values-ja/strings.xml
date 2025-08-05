@@ -1221,4 +1221,11 @@
     <string name="btn_keep_local_progress">現在の進行状況を保持</string>
     <string name="update_success_title">進行状況を更新しました</string>
 
+    <string name="account_deleted_error_firestore">クラウドデータを削除できませんでした。もう一度お試しください。</string>
+    <string name="account_deleted_error_auth">認証アカウントを削除できませんでした。もう一度お試しください。</string>
+
+    <string name="account_delete_error_auth_recent">セキュリティのため、もう一度サインインしてアカウントを削除してください。</string>
+    <string name="account_delete_in_progress">アカウントを削除しています…</string>
+
+
 </resources>

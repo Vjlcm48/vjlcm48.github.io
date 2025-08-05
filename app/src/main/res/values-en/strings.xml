@@ -1532,4 +1532,11 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
     <string name="btn_keep_local_progress">KEEP CURRENT PROGRESS</string>
     <string name="update_success_title">PROGRESS UPDATED</string>
 
+    <string name="account_deleted_error_firestore">Could not delete cloud data. Please try again.</string>
+    <string name="account_deleted_error_auth">Could not delete authentication account. Please try again.</string>
+
+    <string name="account_delete_error_auth_recent">For security, please sign in again to delete your account.</string>
+    <string name="account_delete_in_progress">Deleting your account…</string>
+
+
 </resources>

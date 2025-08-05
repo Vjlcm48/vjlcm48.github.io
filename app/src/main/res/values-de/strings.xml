@@ -1473,4 +1473,11 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
     <string name="btn_keep_local_progress">AKTUELLEN FORTSCHRITT BEHALTEN</string>
     <string name="update_success_title">FORTSCHRITT AKTUALISIERT</string>
 
+    <string name="account_deleted_error_firestore">Cloud-Daten konnten nicht gelöscht werden. Bitte versuche es erneut.</string>
+    <string name="account_deleted_error_auth">Authentifizierungskonto konnte nicht gelöscht werden. Bitte versuche es erneut.</string>
+
+    <string name="account_delete_error_auth_recent">Aus Sicherheitsgründen melde dich bitte erneut an, um dein Konto zu löschen.</string>
+    <string name="account_delete_in_progress">Dein Konto wird gelöscht…</string>
+
+
 </resources>

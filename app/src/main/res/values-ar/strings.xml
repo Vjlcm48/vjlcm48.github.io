@@ -1584,4 +1584,11 @@
     <string name="btn_keep_local_progress">الإبقاء على التقدم الحالي</string>
     <string name="update_success_title">تم تحديث التقدم</string>
 
+    <string name="account_deleted_error_firestore">تعذّر حذف بيانات السحابة. الرجاء المحاولة مرة أخرى.</string>
+    <string name="account_deleted_error_auth">تعذّر حذف حساب المصادقة. الرجاء المحاولة مرة أخرى.</string>
+
+    <string name="account_delete_error_auth_recent">لأسباب أمنية، يرجى تسجيل الدخول مرة أخرى لحذف حسابك.</string>
+    <string name="account_delete_in_progress">يتم حذف حسابك…</string>
+
+
 </resources>

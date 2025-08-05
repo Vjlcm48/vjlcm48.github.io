@@ -1450,4 +1450,11 @@ Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di 
     <string name="btn_keep_local_progress">PERTAHANKAN PROGRES SAAT INI</string>
     <string name="update_success_title">PROGRES DIPERBARUI</string>
 
+    <string name="account_deleted_error_firestore">Tidak dapat menghapus data cloud. Silakan coba lagi.</string>
+    <string name="account_deleted_error_auth">Tidak dapat menghapus akun autentikasi. Silakan coba lagi.</string>
+
+    <string name="account_delete_error_auth_recent">Demi keamanan, silakan masuk kembali untuk menghapus akun Anda.</string>
+    <string name="account_delete_in_progress">Menghapus akun Anda…</string>
+
+
 </resources>

@@ -1254,4 +1254,11 @@
     <string name="btn_keep_local_progress">বর্তমান অগ্রগতি রাখুন</string>
     <string name="update_success_title">অগ্রগতি আপডেট করা হয়েছে</string>
 
+    <string name="account_deleted_error_firestore">ক্লাউড ডেটা মুছে ফেলা যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন।</string>
+    <string name="account_deleted_error_auth">প্রমাণীকরণ অ্যাকাউন্ট মুছে ফেলা যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন।</string>
+
+    <string name="account_delete_error_auth_recent">নিরাপত্তার জন্য, আপনার অ্যাকাউন্ট মুছে ফেলতে আবার সাইন ইন করুন।</string>
+    <string name="account_delete_in_progress">আপনার অ্যাকাউন্ট মুছে ফেলা হচ্ছে…</string>
+
+
 </resources>
