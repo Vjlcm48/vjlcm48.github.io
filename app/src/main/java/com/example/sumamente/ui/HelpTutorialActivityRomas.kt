@@ -268,6 +268,8 @@ class HelpTutorialActivityRomas : BaseActivity()  {
             appearDelay = 2000,
             clickDelay = 2800,
             hideDelay = 4000,
+            adjustX = 20f,
+            adjustY = 5f,
             onComplete = {
                 showTooltip(infoType, R.string.write_answer_title, R.string.write_answer_message)
             }
@@ -278,6 +280,8 @@ class HelpTutorialActivityRomas : BaseActivity()  {
             appearDelay = 5800,
             clickDelay = 6800,
             hideDelay = 8000,
+            adjustX = 20f,
+            adjustY = 5f,
             onComplete = {
                 showTooltip(infoSimple, R.string.selection_simple_title, R.string.selection_simple_message)
             }
@@ -288,6 +292,8 @@ class HelpTutorialActivityRomas : BaseActivity()  {
             appearDelay = 9800,
             clickDelay = 10800,
             hideDelay = 12000,
+            adjustX = 0f,
+            adjustY = 15f,
             onComplete = {
                 val dp = resources.displayMetrics.density
                 infoType.post {
@@ -589,6 +595,8 @@ class HelpTutorialActivityRomas : BaseActivity()  {
             appearDelay = 0L,
             clickDelay = 600L,
             hideDelay = 2500L,
+            adjustX = 0f,
+            adjustY = 10f,
             onComplete = {
                 hideSoftKeyboard()
                 etUserAnswer.clearFocus()
@@ -712,13 +720,14 @@ class HelpTutorialActivityRomas : BaseActivity()  {
         appearDelay: Long,
         clickDelay: Long,
         hideDelay: Long,
+        adjustX: Float = 0f,
+        adjustY: Float = 0f,
         onComplete: (() -> Unit)? = null
     ) {
         handler.postDelayed({
             lottieHandAnswer.alpha = 0f
             lottieHandAnswer.visibility = View.VISIBLE
-
-            showHandOnViewFor(targetView = targetView)
+            showHandOnViewFor(targetView = targetView, adjustX = adjustX, adjustY = adjustY)
             lottieHandAnswer.animate()
                 .alpha(1f)
                 .setDuration(200)
@@ -742,28 +751,46 @@ class HelpTutorialActivityRomas : BaseActivity()  {
     }
 
     private fun showHandOnViewFor(
-
         targetView: View,
         onAnimationComplete: (() -> Unit)? = null,
-        adjustX: Float = 27f,
-        adjustY: Float = -1f
+        adjustX: Float = 0f,
+        adjustY: Float = 0f
     ) {
-        val coords = IntArray(2)
-        targetView.getLocationOnScreen(coords)
+        val targetPos = IntArray(2)
+        val rootPos = IntArray(2)
+        val rootLayout = findViewById<View>(R.id.root_instructions_numeros)
 
-        targetView.post {
-            val xCenter = coords[0] + targetView.width / 2f
-            val yCenter = coords[1] + targetView.height / 2f
+        targetView.getLocationOnScreen(targetPos)
+        rootLayout.getLocationOnScreen(rootPos)
 
-            lottieHandAnswer.x = xCenter - (lottieHandAnswer.width / 2f) + adjustX
-            lottieHandAnswer.y = yCenter - (lottieHandAnswer.height / 2f) + adjustY
+        val density = resources.displayMetrics.density
+
+        lottieHandAnswer.post {
+            val handWidth = lottieHandAnswer.width.toFloat()
+            val handHeight = lottieHandAnswer.height.toFloat()
+
+            val fingerOffsetFromTop = handHeight * 0.15f
+
+            val dynamicAdjustX = when {
+                targetView.width < 100 * density -> -10f * density
+                targetView.width < 200 * density -> 0f
+                else -> 10f * density
+            }
+
+            val finalAdjustX = (adjustX * density) + dynamicAdjustX
+            val finalAdjustY = (adjustY * density)
+
+            val xCenter = targetPos[0] - rootPos[0] + targetView.width / 2f
+            val yCenter = targetPos[1] - rootPos[1] + targetView.height / 2f
+
+            lottieHandAnswer.x = xCenter - (handWidth / 2f) + finalAdjustX
+            lottieHandAnswer.y = yCenter - fingerOffsetFromTop + finalAdjustY
             lottieHandAnswer.visibility = View.VISIBLE
             lottieHandAnswer.bringToFront()
             lottieHandAnswer.setAnimation("handanswer_animation.json")
             lottieHandAnswer.playAnimation()
 
             handler.postDelayed({
-                lottieHandAnswer.visibility = View.VISIBLE
                 onAnimationComplete?.invoke()
             }, 2000)
         }

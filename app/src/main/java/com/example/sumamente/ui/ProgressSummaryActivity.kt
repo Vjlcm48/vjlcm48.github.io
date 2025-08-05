@@ -114,7 +114,7 @@ class ProgressSummaryActivity : BaseActivity() {
                 borderColorRes = R.color.blue_primary_dark,
                 totalRowBackgroundRes = R.drawable.button_background,
                 gameNameRes = R.string.game_numeros_plus,
-                gameNameTextColorRes = android.R.color.black,
+                gameNameTextColorRes = android.R.color.white,
                 getPrincipianteData = { ScoreManager.getUniqueLevelsPlayedNumerosPlusPrincipiante() },
                 getAvanzadoData = { ScoreManager.getUniqueLevelsPlayedNumerosPlusAvanzado() },
                 getProData = { ScoreManager.getUniqueLevelsPlayedNumerosPlusPro() }
