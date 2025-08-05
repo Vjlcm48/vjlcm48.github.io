@@ -9,14 +9,18 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.edit
 import com.example.sumamente.R
 import com.example.sumamente.ui.utils.DataSyncManager
+import android.app.Dialog
+import android.os.Handler
 
 
-class ProfileEditActivity : BaseActivity(), LinkUnlinkAccountDialogFragment.Listener {
+
+class ProfileEditActivity : BaseActivity(), LinkUnlinkAccountDialogFragment.Listener, ProgressConflictDialogFragment.Listener {
 
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var btnLinkUnlink: AppCompatButton
@@ -134,38 +138,67 @@ class ProfileEditActivity : BaseActivity(), LinkUnlinkAccountDialogFragment.List
 
     override fun onDialogAction() {
         if (isLinking) {
-
             FirebaseAuthManager.startGoogleSignIn(
                 this,
                 getString(R.string.default_web_client_id)
             ) { success, message ->
                 if (success) {
                     sharedPreferences.edit { putBoolean(SettingsActivity.ACCOUNT_LINKED, true) }
+                    updateLinkButtonState()
 
-                    DataSyncManager.syncDataToCloud(this) { ok, err ->
-                        Toast.makeText(
-                            this,
-                            if (ok) getString(R.string.account_linked_success)
-                            else getString(R.string.account_linked_error) + (err?.let { ": $it" } ?: ""),
-                            Toast.LENGTH_LONG
-                        ).show()
+                    DataSyncManager.getLocalAndCloudProgress(this) { localProgress, cloudProgress ->
+                        if (localProgress != null && cloudProgress != null && localProgress != cloudProgress) {
+
+                            ProgressConflictDialogFragment.newInstance()
+                                .show(supportFragmentManager, "ProgressConflictDialog")
+                        } else {
+
+                            DataSyncManager.syncDataToCloud(this) { ok, err ->
+                                showResultDialog(restoring = false)
+                                updateLinkButtonState()
+                            }
+                        }
                     }
                 } else {
                     Toast.makeText(this, message ?: getString(R.string.account_linked_error), Toast.LENGTH_SHORT).show()
+                    updateLinkButtonState()
                 }
-                updateLinkButtonState()
             }
-        } else {
-
-            sharedPreferences.edit { putBoolean(SettingsActivity.ACCOUNT_LINKED, false) }
-            Toast.makeText(this, getString(R.string.account_unlinked_success), Toast.LENGTH_LONG).show()
-            updateLinkButtonState()
         }
+
+    }
+
+    private fun showResultDialog(restoring: Boolean) {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_restore_success)
+        val tvResult = dialog.findViewById<TextView>(R.id.tvRestoreSuccess)
+        tvResult.text = if (restoring)
+            getString(R.string.restore_success_title)
+        else
+            getString(R.string.update_success_title)
+        dialog.show()
+
+        Handler(mainLooper).postDelayed({
+            dialog.dismiss()
+        }, 2000)
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         FirebaseAuthManager.handleSignInResult(this, requestCode, data)
+    }
+
+    override fun onRestoreCloud() {
+        DataSyncManager.syncDataFromCloud(this) { ok, _ ->
+            showResultDialog(restoring = true)
+        }
+    }
+
+    override fun onKeepLocal() {
+        DataSyncManager.syncDataToCloud(this) { ok, _ ->
+            showResultDialog(restoring = false)
+        }
     }
 
 }

@@ -1450,4 +1450,23 @@
 
     <string name="user_not_authenticated">उपयोगकर्ता प्रमाणित नहीं है</string>
 
+    <string name="btn_restore_progress">प्रगति पुनर्स्थापित करें</string>
+    <string name="dialog_restore_title">अपनी पिछली प्रगति पुनर्स्थापित करें</string>
+    <string name="dialog_restore_message">आप अपने Google खाते से साइन इन करके अपनी प्रगति, उपलब्धियां और प्रोफ़ाइल पुनर्स्थापित कर सकते हैं।</string>
+    <string name="dialog_restore_cancel">रद्द करें</string>
+    <string name="dialog_restore_login">अपने Google खाते से साइन इन करें</string>
+    <string name="restore_success_title">प्रगति पुनर्स्थापित!</string>
+    <string name="restore_success_message">आपकी प्रगति सफलतापूर्वक पुनर्स्थापित हो गई है।</string>
+    <string name="restore_error_title">प्रगति पुनर्स्थापित करने में त्रुटि</string>
+    <string name="restore_error_message">आपके Google खाते के लिए कोई सहेजी गई प्रगति नहीं मिली।</string>
+    <string name="restore_error_network">कनेक्शन की समस्या हुई। कृपया पुनः प्रयास करें।</string>
+    <string name="restore_error_login">Google से साइन इन नहीं हो सका। पुनः प्रयास करें।</string>
+    <string name="restore_check_icon_desc">सफल पुनर्प्राप्ति को दर्शाने वाला हरा चेक</string>
+
+    <string name="conflict_progress_title">आप कौन सी प्रगति रखना चाहते हैं?</string>
+    <string name="conflict_progress_message">आपकी प्रगति क्लाउड और इस डिवाइस पर सहेजी गई है।\nक्या आप सहेजी गई प्रगति को पुनर्स्थापित करना चाहते हैं या वर्तमान प्रगति को रखना चाहते हैं?</string>
+    <string name="btn_restore_cloud_progress">सहेजी गई प्रगति को पुनर्स्थापित करें</string>
+    <string name="btn_keep_local_progress">वर्तमान प्रगति रखें</string>
+    <string name="update_success_title">प्रगति अपडेट की गई</string>
+
 </resources>

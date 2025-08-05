@@ -1565,4 +1565,23 @@
 
     <string name="user_not_authenticated">المستخدم غير موثّق</string>
 
+    <string name="btn_restore_progress">استعادة التقدم</string>
+    <string name="dialog_restore_title">استعادة تقدمك السابق</string>
+    <string name="dialog_restore_message">يمكنك استعادة تقدمك وإنجازاتك وملفك الشخصي عن طريق تسجيل الدخول بحساب Google الخاص بك.</string>
+    <string name="dialog_restore_cancel">إلغاء</string>
+    <string name="dialog_restore_login">تسجيل الدخول بحساب Google</string>
+    <string name="restore_success_title">تم استعادة التقدم!</string>
+    <string name="restore_success_message">تم استعادة تقدمك بنجاح.</string>
+    <string name="restore_error_title">خطأ في استعادة التقدم</string>
+    <string name="restore_error_message">لم يتم العثور على أي تقدم محفوظ لحساب Google الخاص بك.</string>
+    <string name="restore_error_network">حدثت مشكلة في الاتصال. يرجى المحاولة مرة أخرى.</string>
+    <string name="restore_error_login">تعذر تسجيل الدخول باستخدام Google. حاول مرة أخرى.</string>
+    <string name="restore_check_icon_desc">علامة خضراء تشير إلى نجاح الاستعادة</string>
+
+    <string name="conflict_progress_title">أي تقدم تريد الاحتفاظ به؟</string>
+    <string name="conflict_progress_message">لديك تقدم محفوظ في السحابة وآخر على هذا الجهاز.\nهل تفضل استعادة التقدم المحفوظ أم الإبقاء على التقدم الحالي؟</string>
+    <string name="btn_restore_cloud_progress">استعادة التقدم المحفوظ</string>
+    <string name="btn_keep_local_progress">الإبقاء على التقدم الحالي</string>
+    <string name="update_success_title">تم تحديث التقدم</string>
+
 </resources>

@@ -1454,4 +1454,23 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
 
     <string name="user_not_authenticated">Benutzer nicht authentifiziert</string>
 
+    <string name="btn_restore_progress">FORTSCHRITT WIEDERHERSTELLEN</string>
+    <string name="dialog_restore_title">Ihren vorherigen Fortschritt wiederherstellen</string>
+    <string name="dialog_restore_message">Sie können Ihren Fortschritt, Erfolge und Ihr Profil wiederherstellen, indem Sie sich mit Ihrem Google-Konto anmelden.</string>
+    <string name="dialog_restore_cancel">Abbrechen</string>
+    <string name="dialog_restore_login">Mit Google-Konto anmelden</string>
+    <string name="restore_success_title">FORTSCHRITT WIEDERHERGESTELLT!</string>
+    <string name="restore_success_message">Ihr Fortschritt wurde erfolgreich wiederhergestellt.</string>
+    <string name="restore_error_title">Fehler beim Wiederherstellen des Fortschritts</string>
+    <string name="restore_error_message">Für Ihr Google-Konto wurde kein gespeicherter Fortschritt gefunden.</string>
+    <string name="restore_error_network">Es gab ein Verbindungsproblem. Bitte versuchen Sie es erneut.</string>
+    <string name="restore_error_login">Anmeldung mit Google nicht möglich. Bitte versuchen Sie es erneut.</string>
+    <string name="restore_check_icon_desc">Grünes Häkchen für erfolgreiche Wiederherstellung</string>
+
+    <string name="conflict_progress_title">Welchen Fortschritt möchtest du behalten?</string>
+    <string name="conflict_progress_message">Du hast einen Fortschritt in der Cloud und auf diesem Gerät gespeichert.\nMöchtest du den gespeicherten Fortschritt wiederherstellen oder den aktuellen behalten?</string>
+    <string name="btn_restore_cloud_progress">GESPEICHERTEN FORTSCHRITT WIEDERHERSTELLEN</string>
+    <string name="btn_keep_local_progress">AKTUELLEN FORTSCHRITT BEHALTEN</string>
+    <string name="update_success_title">FORTSCHRITT AKTUALISIERT</string>
+
 </resources>

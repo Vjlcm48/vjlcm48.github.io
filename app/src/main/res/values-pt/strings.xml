@@ -1362,4 +1362,23 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
 
     <string name="user_not_authenticated">Usuário não autenticado</string>
 
+    <string name="btn_restore_progress">RESTAURAR PROGRESSO</string>
+    <string name="dialog_restore_title">Restaurar seu Progresso Anterior</string>
+    <string name="dialog_restore_message">Você pode restaurar seu progresso, conquistas e perfil fazendo login com sua conta do Google.</string>
+    <string name="dialog_restore_cancel">Cancelar</string>
+    <string name="dialog_restore_login">Fazer login com sua conta do Google</string>
+    <string name="restore_success_title">PROGRESSO RESTAURADO!</string>
+    <string name="restore_success_message">Seu progresso foi restaurado com sucesso.</string>
+    <string name="restore_error_title">Erro ao Restaurar Progresso</string>
+    <string name="restore_error_message">Nenhum progresso salvo foi encontrado para sua conta do Google.</string>
+    <string name="restore_error_network">Houve um problema de conexão. Por favor, tente novamente.</string>
+    <string name="restore_error_login">Não foi possível fazer login com o Google. Tente novamente.</string>
+    <string name="restore_check_icon_desc">Marca verde indicando recuperação bem-sucedida</string>
+
+    <string name="conflict_progress_title">Qual progresso você deseja manter?</string>
+    <string name="conflict_progress_message">Você tem um progresso salvo na nuvem e outro neste dispositivo.\nDeseja restaurar o progresso salvo ou manter o atual?</string>
+    <string name="btn_restore_cloud_progress">RESTAURAR PROGRESSO SALVO</string>
+    <string name="btn_keep_local_progress">MANTER PROGRESSO ATUAL</string>
+    <string name="update_success_title">PROGRESSO ATUALIZADO</string>
+
 </resources>

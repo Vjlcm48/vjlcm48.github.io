@@ -1515,4 +1515,23 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
 
     <string name="user_not_authenticated">Utilisateur non authentifié</string>
 
+    <string name="btn_restore_progress">RESTAURER LE PROGRÈS</string>
+    <string name="dialog_restore_title">Restaurer votre progression précédente</string>
+    <string name="dialog_restore_message">Vous pouvez restaurer votre progression, vos succès et votre profil en vous connectant avec votre compte Google.</string>
+    <string name="dialog_restore_cancel">Annuler</string>
+    <string name="dialog_restore_login">Se connecter avec votre compte Google</string>
+    <string name="restore_success_title">PROGRESSION RESTAURÉE !</string>
+    <string name="restore_success_message">Votre progression a été restaurée avec succès.</string>
+    <string name="restore_error_title">Erreur lors de la restauration</string>
+    <string name="restore_error_message">Aucune progression sauvegardée n\'a été trouvée pour votre compte Google.</string>
+    <string name="restore_error_network">Il y a eu un problème de connexion. Veuillez réessayer.</string>
+    <string name="restore_error_login">Impossible de se connecter avec Google. Veuillez réessayer.</string>
+    <string name="restore_check_icon_desc">Coche verte indiquant une récupération réussie</string>
+
+    <string name="conflict_progress_title">Quelle progression souhaitez-vous conserver ?</string>
+    <string name="conflict_progress_message">Vous avez une progression enregistrée dans le cloud et une autre sur cet appareil.\nPréférez-vous restaurer la progression enregistrée ou conserver l\'actuelle ?</string>
+    <string name="btn_restore_cloud_progress">RESTAURER LA PROGRESSION</string>
+    <string name="btn_keep_local_progress">CONSERVER LA PROGRESSION ACTUELLE</string>
+    <string name="update_success_title">PROGRESSION MISE À JOUR</string>
+
 </resources>

@@ -10,10 +10,10 @@
     android:maxWidth="320dp">
 
     <TextView
-        android:id="@+id/tvDialogTitle"
+        android:id="@+id/dialogTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/dialog_link_title"
+        android:text="@string/conflict_progress_title"
         android:textColor="@android:color/black"
         android:textAlignment="center"
         android:textSize="20sp"
@@ -21,13 +21,14 @@
         android:layout_marginBottom="8dp" />
 
     <TextView
-        android:id="@+id/tvDialogMessage"
+        android:id="@+id/dialogMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/link_account_confirm_message"
+        android:text="@string/conflict_progress_message"
         android:textColor="@android:color/black"
         android:textAlignment="center"
         android:textSize="16sp"
+        android:fontFamily="@font/roboto_regular"
         android:layout_marginBottom="24dp" />
 
     <LinearLayout
@@ -37,26 +38,25 @@
         android:gravity="center_vertical">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnCancel"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:id="@+id/btnRestoreCloud"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
-            android:text="@string/cancel_button"
             android:background="@drawable/button_background_avanzado"
+            android:text="@string/btn_restore_cloud_progress"
             android:textColor="@color/black"
             app:backgroundTint="@null"/>
 
-
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAction"
+            android:id="@+id/btnKeepLocal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/dialog_link_accept"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/button_background"
+            android:text="@string/btn_keep_local_progress"
             android:textColor="@android:color/white"
-            app:cornerRadius="16dp"
-            app:backgroundTint="@color/primary_button_color"/>
+            app:backgroundTint="@null"/>
     </LinearLayout>
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.sumamente.ui.utils
 
 import android.content.Context
+import android.util.Log
 import androidx.core.content.edit
 import com.example.sumamente.R
 import com.example.sumamente.ui.CondecoracionTracker
@@ -110,6 +111,47 @@ object DataSyncManager {
             SettingsActivity.ACCOUNT_LINKED to prefs.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)
         )
 
+        val allPrefsNames = listOf(
+
+            "MyPrefs", "MyPrefsDeciPlus", "MyPrefsRomas", "MyPrefsAlfaNumeros",
+            "MyPrefsSumaResta", "MyPrefsMasPlus", "MyPrefsGenioPlus",
+
+            "ScorePrefs", "ScorePrefsPrincipiante", "ScorePrefsPro",
+            "ScorePrefsDeciPlus", "ScorePrefsDeciPlusPrincipiante", "ScorePrefsDeciPlusPro",
+            "ScorePrefsRomas", "ScorePrefsRomasPrincipiante", "ScorePrefsRomasPro",
+            "ScorePrefsAlfaNumeros", "ScorePrefsAlfaNumerosPrincipiante", "ScorePrefsAlfaNumerosPro",
+            "ScorePrefsSumaResta", "ScorePrefsSumaRestaPrincipiante", "ScorePrefsSumaRestaPro",
+            "ScorePrefsMasPlus", "ScorePrefsMasPlusPrincipiante", "ScorePrefsMasPlusPro",
+            "ScorePrefsGenioPlus", "ScorePrefsGenioPlusPrincipiante", "ScorePrefsGenioPlusPro"
+        )
+
+        val allGamePrefs = mutableMapOf<String, Map<String, Any>>()
+
+        allPrefsNames.forEach { prefsName ->
+            val gamePrefs = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
+            val prefMap = mutableMapOf<String, Any>()
+
+            gamePrefs.all.forEach { (key, value) ->
+                when (value) {
+                    is Set<*> -> {
+
+                        prefMap[key] = value.toList()
+                    }
+                    is Boolean -> prefMap[key] = value
+                    is Int -> prefMap[key] = value
+                    is Long -> prefMap[key] = value
+                    is Float -> prefMap[key] = value
+                    is String -> prefMap[key] = value
+                    else -> prefMap[key] = value?.toString() ?: ""
+                }
+            }
+
+            if (prefMap.isNotEmpty()) {
+                allGamePrefs[prefsName] = prefMap
+            }
+        }
+
+        map["game_preferences"] = allGamePrefs
         return map
     }
 
@@ -117,6 +159,8 @@ object DataSyncManager {
         val prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
         val username = raw["savedUserName"] as? String
+        Log.d("DataSync", "Restaurando savedUserName: $username")
+
         val country = raw["savedCountryCode"] as? String
         val language = raw["selected_language"] as? String
         val sound = raw[SettingsActivity.SOUND_ENABLED] as? Boolean
@@ -131,8 +175,72 @@ object DataSyncManager {
             sound?.let { putBoolean(SettingsActivity.SOUND_ENABLED, it) }
             notif?.let { putBoolean(SettingsActivity.NOTIFICATIONS_ENABLED, it) }
             ads?.let { putBoolean(SettingsActivity.ADS_ENABLED, it) }
-
             putBoolean(SettingsActivity.ACCOUNT_LINKED, linked)
         }
+
+
+        val allGamePrefs = raw["game_preferences"] as? Map<*, *>
+        allGamePrefs?.forEach { (prefsName, prefsData) ->
+            val gamePrefs = context.getSharedPreferences(prefsName as String, Context.MODE_PRIVATE)
+
+            gamePrefs.edit {
+
+                clear()
+
+                (prefsData as? Map<*, *>)?.forEach { (key, value) ->
+                    val keyStr = key as String
+
+                    when (value) {
+                        is Boolean -> putBoolean(keyStr, value)
+                        is Float -> putFloat(keyStr, value)
+                        is Double -> putFloat(keyStr, value.toFloat())
+                        is Int -> putInt(keyStr, value)
+                        is Long -> putLong(keyStr, value)
+                        is String -> putString(keyStr, value)
+                        is List<*> -> {
+
+                            if (keyStr.contains("completed_levels") || keyStr.contains("unlocked_levels")) {
+                                val stringSet = value.filterIsInstance<String>().toSet()
+                                putStringSet(keyStr, stringSet)
+                            } else {
+
+                                putString(keyStr, value.toString())
+                            }
+                        }
+                        else -> {
+
+                            putString(keyStr, value?.toString() ?: "")
+                        }
+                    }
+                }
+            }
+        }
     }
+
+    fun getLocalAndCloudProgress(
+        context: Context,
+        callback: (localProgress: String?, cloudProgress: String?) -> Unit
+    ) {
+        val firestore = FirebaseFirestore.getInstance()
+        val user = FirebaseAuth.getInstance().currentUser
+
+        val localProgress = ScoreManager.exportAllDataAsJson(context)
+
+        if (user == null) {
+            callback(localProgress, null)
+            return
+        }
+
+        firestore.collection("usuarios")
+            .document(user.uid)
+            .get()
+            .addOnSuccessListener { doc ->
+                val cloudProgress = doc.getString("score_data")
+                callback(localProgress, cloudProgress)
+            }
+            .addOnFailureListener {
+                callback(localProgress, null)
+            }
+    }
+
 }

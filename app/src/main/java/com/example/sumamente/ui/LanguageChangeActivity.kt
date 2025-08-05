@@ -19,6 +19,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.core.view.isVisible
 import com.example.sumamente.R
+import java.util.Locale
+import android.content.res.Configuration
 
 
 class LanguageChangeActivity : BaseActivity() {
@@ -102,6 +104,15 @@ class LanguageChangeActivity : BaseActivity() {
         return resources.configuration.locales[0].language
     }
 
+    private fun setAppLanguage(languageCode: String) {
+        val locale = Locale.Builder().setLanguage(languageCode).build()
+        Locale.setDefault(locale)
+        val config = Configuration(resources.configuration)
+        config.setLocale(locale)
+        @Suppress("DEPRECATION")
+        resources.updateConfiguration(config, resources.displayMetrics)
+    }
+
     private fun highlightSelectedLanguage(onAnimationEnd: () -> Unit = {}) {
         checkMarks.forEach { it.visibility = View.GONE }
         val currentLocaleCode = getCurrentLocaleCode()
@@ -143,6 +154,8 @@ class LanguageChangeActivity : BaseActivity() {
             putString("app_display_language", appDisplayLanguage)
             apply()
         }
+
+        setAppLanguage(languageCode)
 
         checkMarks.forEach { it.visibility = View.GONE }
 

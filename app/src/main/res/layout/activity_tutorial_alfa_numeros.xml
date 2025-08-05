@@ -361,18 +361,27 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_skip_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.82"
+        android:orientation="horizontal" />
+
     <ImageView
         android:id="@+id/btn_skip_tutorial"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:src="@drawable/ic_skip_tutorial"
-        android:contentDescription="@string/skip_tutorial"
-        android:visibility="visible"
-        android:alpha="0.9"
-        android:padding="8dp"
         android:layout_margin="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:layout_marginEnd="16dp"
+        android:alpha="0.9"
+        android:contentDescription="@string/skip_tutorial"
+        android:padding="8dp"
+        android:src="@drawable/ic_skip_tutorial"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_skip_button"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 
     <TextView

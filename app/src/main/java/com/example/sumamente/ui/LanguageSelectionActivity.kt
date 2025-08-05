@@ -21,27 +21,38 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.edit
 import androidx.core.view.isVisible
 import com.example.sumamente.R
+import com.example.sumamente.ui.utils.DataSyncManager
 import com.google.android.material.card.MaterialCardView
 import java.util.Locale
+import com.google.android.material.button.MaterialButton
 
 class LanguageSelectionActivity : BaseActivity() {
 
     private lateinit var sharedPreferences: SharedPreferences
     private val languageButtons = mutableListOf<LinearLayout>()
     private val checkMarks = mutableListOf<ImageView>()
-
     private val supportedLanguages by lazy { LanguageManager.getOrderedLanguages(this) }
-
     private lateinit var scrollView: ScrollView
     private lateinit var arrowIcon: ImageView
     private lateinit var gradientView: View
+    private lateinit var webClientId: String
+    private var restoreProgressDialog: AlertDialog? = null
+    private val rcGoogleSignIn = 9001
+    private var restoringLanguage: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         val suggestedLanguageCode = loadAndSetInitialLanguageState()
 
+        webClientId = getString(R.string.default_web_client_id)
+
         setContentView(R.layout.activity_language_selection)
+
+        findViewById<MaterialButton>(R.id.btn_restore_progress).setOnClickListener {
+            showRestoreProgressDialog()
+        }
 
         scrollView = findViewById(R.id.language_scroll_view)
         arrowIcon = findViewById(R.id.arrow_icon)
@@ -260,7 +271,6 @@ class LanguageSelectionActivity : BaseActivity() {
         }
     }
 
-
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
             if (!sharedPreferences.getBoolean("language_selected", false)) {
@@ -278,6 +288,124 @@ class LanguageSelectionActivity : BaseActivity() {
             .setPositiveButton(android.R.string.ok) { dialog, _ -> dialog.dismiss() }
             .setCancelable(false)
             .show()
+    }
+
+    private fun showRestoreProgressDialog() {
+
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_restore_progress, null, false)
+        val builder = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+
+        val dialog = builder.create()
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        restoreProgressDialog = dialog
+
+        val btnCancel = dialogView.findViewById<MaterialButton>(R.id.btnCancel)
+        val btnAction = dialogView.findViewById<MaterialButton>(R.id.btnAction)
+
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        btnAction.setOnClickListener {
+            dialog.dismiss()
+
+            startRestoreProgress()
+        }
+
+        dialog.show()
+    }
+
+    private fun showRestoreSuccessDialog() {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_restore_success, null, false)
+        val builder = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+        val dialog = builder.create()
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        restoreProgressDialog = dialog
+
+        val tvSuccess = dialogView.findViewById<TextView>(R.id.tvRestoreSuccess)
+        tvSuccess.text = getString(R.string.restore_success_title)
+        tvSuccess.alpha = 0f
+
+        val appNameText = dialogView.findViewById<TextView>(R.id.appName)
+        appNameText.text = getString(R.string.app_name)
+
+        dialog.setOnShowListener {
+            tvSuccess.animate().alpha(1f).setDuration(600).start()
+        }
+
+        dialog.show()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            dialog.dismiss()
+            proceedToMainApp()
+        }, 3000)
+    }
+
+    private fun startRestoreProgress() {
+        FirebaseAuthManager.startGoogleSignIn(
+            this,
+            webClientId
+        ) { success, message ->
+            if (success) {
+                DataSyncManager.syncDataFromCloud(this) { ok, error ->
+                    if (ok) {
+
+                        val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+                        val languageCode = prefs.getString("selected_language", "en") ?: "en"
+                        restoringLanguage = languageCode
+                        setAppLanguage(languageCode)
+                        showRestoreSuccessDialog()
+                    } else {
+
+                        if (error?.contains("network", true) == true) {
+                            showErrorDialog(
+                                getString(R.string.restore_error_title),
+                                getString(R.string.restore_error_network)
+                            )
+                        } else if (error?.contains("no data", true) == true) {
+                            showErrorDialog(
+                                getString(R.string.restore_error_title),
+                                getString(R.string.restore_error_message)
+                            )
+                        } else {
+                            showErrorDialog(
+                                getString(R.string.restore_error_title),
+                                error ?: getString(R.string.restore_error_message)
+                            )
+                        }
+                    }
+                }
+            } else {
+
+                showErrorDialog(
+                    getString(R.string.restore_error_title),
+                    message ?: getString(R.string.restore_error_login)
+                )
+            }
+        }
+    }
+
+    private fun showErrorDialog(title: String, message: String) {
+        AlertDialog.Builder(this)
+            .setTitle(title)
+            .setMessage(message)
+            .setPositiveButton(android.R.string.ok, null)
+            .show()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == rcGoogleSignIn) {
+            FirebaseAuthManager.handleSignInResult(this, requestCode, data)
+        }
     }
 
     data class LanguageItem(

@@ -1202,4 +1202,23 @@
 
     <string name="user_not_authenticated">ユーザーが認証されていません</string>
 
+    <string name="btn_restore_progress">進行状況を復元</string>
+    <string name="dialog_restore_title">以前の進行状況を復元する</string>
+    <string name="dialog_restore_message">Googleアカウントでサインインして、進行状況、実績、プロフィールを復元できます。</string>
+    <string name="dialog_restore_cancel">キャンセル</string>
+    <string name="dialog_restore_login">Googleアカウントでサインイン</string>
+    <string name="restore_success_title">進行状況が復元されました！</string>
+    <string name="restore_success_message">進行状況が正常に復元されました。</string>
+    <string name="restore_error_title">進行状況の復元エラー</string>
+    <string name="restore_error_message">Googleアカウントの保存された進行状況が見つかりませんでした。</string>
+    <string name="restore_error_network">接続に問題が発生しました。もう一度お試しください。</string>
+    <string name="restore_error_login">Googleでサインインできませんでした。もう一度お試しください。</string>
+    <string name="restore_check_icon_desc">復元成功を示す緑のチェック</string>
+
+    <string name="conflict_progress_title">どちらの進行状況を保持しますか？</string>
+    <string name="conflict_progress_message">クラウドとこのデバイスに進行状況が保存されています。\n保存された進行状況を復元しますか、それとも現在の進行状況を保持しますか？</string>
+    <string name="btn_restore_cloud_progress">保存した進行状況を復元</string>
+    <string name="btn_keep_local_progress">現在の進行状況を保持</string>
+    <string name="update_success_title">進行状況を更新しました</string>
+
 </resources>

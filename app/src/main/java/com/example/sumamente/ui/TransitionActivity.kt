@@ -92,18 +92,26 @@ class TransitionActivity : BaseActivity() {
     }
 
     private fun navigateToNextScreen() {
-        if (hasNavigated) {
 
-            hasNavigated = true
-        }
         val source = intent.getStringExtra("SOURCE")
-        val targetActivity = if (source == "SplashScreen") {
-            MainGameActivity::class.java
-        } else {
-            NotificationsActivity::class.java
+        val sharedPrefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        val hasUsername = sharedPrefs.getString("savedUserName", null) != null
+
+        val targetActivity = when (source) {
+            "SplashScreen" -> MainGameActivity::class.java
+            "LanguageSelection" -> {
+                if (hasUsername) MainGameActivity::class.java
+                else NotificationsActivity::class.java
+            }
+            else -> NotificationsActivity::class.java
         }
+
         val intent = Intent(this, targetActivity)
-        val options = ActivityOptions.makeCustomAnimation(this, android.R.anim.fade_in, android.R.anim.fade_out)
+        val options = ActivityOptions.makeCustomAnimation(
+            this,
+            android.R.anim.fade_in,
+            android.R.anim.fade_out
+        )
         startActivity(intent, options.toBundle())
         finish()
     }

@@ -1235,4 +1235,23 @@
 
     <string name="user_not_authenticated">ব্যবহারকারী প্রমাণীকৃত নয়</string>
 
+    <string name="btn_restore_progress">অগ্রগতি পুনরুদ্ধার করুন</string>
+    <string name="dialog_restore_title">আপনার পূর্ববর্তী অগ্রগতি পুনরুদ্ধার করুন</string>
+    <string name="dialog_restore_message">আপনার Google অ্যাকাউন্ট দিয়ে সাইন ইন করে আপনার অগ্রগতি, অর্জন এবং প্রোফাইল পুনরুদ্ধার করতে পারেন।</string>
+    <string name="dialog_restore_cancel">বাতিল</string>
+    <string name="dialog_restore_login">আপনার Google অ্যাকাউন্ট দিয়ে সাইন ইন করুন</string>
+    <string name="restore_success_title">অগ্রগতি পুনরুদ্ধার হয়েছে!</string>
+    <string name="restore_success_message">আপনার অগ্রগতি সফলভাবে পুনরুদ্ধার হয়েছে।</string>
+    <string name="restore_error_title">অগ্রগতি পুনরুদ্ধারে ত্রুটি</string>
+    <string name="restore_error_message">আপনার Google অ্যাকাউন্টের জন্য কোনো সংরক্ষিত অগ্রগতি পাওয়া যায়নি।</string>
+    <string name="restore_error_network">সংযোগে সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন।</string>
+    <string name="restore_error_login">Google দিয়ে সাইন ইন করা যায়নি। আবার চেষ্টা করুন।</string>
+    <string name="restore_check_icon_desc">সফল পুনরুদ্ধার নির্দেশকারী সবুজ চেক</string>
+
+    <string name="conflict_progress_title">আপনি কোন অগ্রগতি রাখতে চান?</string>
+    <string name="conflict_progress_message">আপনার অগ্রগতি ক্লাউডে এবং এই ডিভাইসে সেভ করা আছে।\nআপনি কি সেভ করা অগ্রগতি পুনরুদ্ধার করতে চান নাকি বর্তমানটি রাখতে চান?</string>
+    <string name="btn_restore_cloud_progress">সংরক্ষিত অগ্রগতি পুনরুদ্ধার করুন</string>
+    <string name="btn_keep_local_progress">বর্তমান অগ্রগতি রাখুন</string>
+    <string name="update_success_title">অগ্রগতি আপডেট করা হয়েছে</string>
+
 </resources>

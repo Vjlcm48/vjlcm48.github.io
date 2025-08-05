@@ -1248,4 +1248,23 @@
 
     <string name="user_not_authenticated">صارف کی تصدیق نہیں ہوئی</string>
 
+    <string name="btn_restore_progress">پیش قدمی بحال کریں</string>
+    <string name="dialog_restore_title">اپنی پچھلی پیش قدمی بحال کریں</string>
+    <string name="dialog_restore_message">آپ اپنے Google اکاؤنٹ سے سائن ان کر کے اپنی پیش قدمی، کامیابیاں اور پروفائل بحال کر سکتے ہیں۔</string>
+    <string name="dialog_restore_cancel">منسوخ</string>
+    <string name="dialog_restore_login">اپنے Google اکاؤنٹ سے سائن ان کریں</string>
+    <string name="restore_success_title">پیش قدمی بحال ہو گئی!</string>
+    <string name="restore_success_message">آپ کی پیش قدمی کامیابی سے بحال ہو گئی ہے۔</string>
+    <string name="restore_error_title">پیش قدمی بحالی میں خرابی</string>
+    <string name="restore_error_message">آپ کے Google اکاؤنٹ کے لیے کوئی محفوظ شدہ پیش قدمی نہیں ملی۔</string>
+    <string name="restore_error_network">کنکشن میں مسئلہ ہوا۔ براہ کرم دوبارہ کوشش کریں۔</string>
+    <string name="restore_error_login">Google سے سائن ان نہیں ہو سکا۔ دوبارہ کوشش کریں۔</string>
+    <string name="restore_check_icon_desc">کامیاب بحالی کو ظاہر کرنے والا سبز چیک</string>
+
+    <string name="conflict_progress_title">آپ کون سی پیشرفت رکھنا چاہتے ہیں؟</string>
+    <string name="conflict_progress_message">آپ کی پیشرفت کلاؤڈ میں اور اس ڈیوائس پر محفوظ ہے۔\nکیا آپ محفوظ شدہ پیشرفت کو بحال کرنا چاہتے ہیں یا موجودہ کو رکھنا چاہتے ہیں؟</string>
+    <string name="btn_restore_cloud_progress">محفوظ شدہ پیشرفت بحال کریں</string>
+    <string name="btn_keep_local_progress">موجودہ پیشرفت رکھیں</string>
+    <string name="update_success_title">پیشرفت اپ ڈیٹ ہوگئی</string>
+
 </resources>

@@ -254,15 +254,15 @@ class TutorialActivityNumeros : BaseActivity()  {
         infoSimple.visibility = View.VISIBLE
         infoType.visibility = View.VISIBLE
 
-        showHandWithFade(infoType, 2000, 2800, 4000) {
+        showHandWithFade(infoType, 2000, 2800, 4000, adjustX = 20f, adjustY = 5f) {
             showTooltip(infoType, R.string.write_answer_title, R.string.write_answer_message)
         }
 
-        showHandWithFade(infoSimple, 5800, 6800, 8000) {
+        showHandWithFade(infoSimple, 5800, 6800, 8000, adjustX = 20f, adjustY = 5f) {
             showTooltip(infoSimple, R.string.selection_simple_title, R.string.selection_simple_message)
         }
 
-        showHandWithFade(btnSeleccionSimple, 9800, 10800, 12000) {
+        showHandWithFade(btnSeleccionSimple, 9800, 10800, 12000, adjustX = 0f, adjustY = 15f) {
             animateCheck(checkSeleccionSimple)
         }
 
@@ -466,6 +466,8 @@ class TutorialActivityNumeros : BaseActivity()  {
                             appearDelay = 0L,
                             clickDelay = 600L,
                             hideDelay = 2000L,
+                            adjustX = 0f,
+                            adjustY = 10f,
                             onComplete = {
                                 highlightCorrectButton(btnAnswer2)
                             }
@@ -650,13 +652,15 @@ class TutorialActivityNumeros : BaseActivity()  {
         appearDelay: Long,
         clickDelay: Long,
         hideDelay: Long,
+        adjustX: Float = 0f,
+        adjustY: Float = 0f,
         onComplete: (() -> Unit)? = null
     ) {
         handler.postDelayed({
             lottieHandAnswer.alpha = 0f
             lottieHandAnswer.visibility = View.VISIBLE
 
-            showHandOnViewFor(targetView = targetView)
+            showHandOnViewFor(targetView = targetView, adjustX = adjustX, adjustY = adjustY)
             lottieHandAnswer.animate().alpha(1f).setDuration(200).start()
         }, appearDelay)
 
@@ -677,28 +681,46 @@ class TutorialActivityNumeros : BaseActivity()  {
     }
 
     private fun showHandOnViewFor(
-
         targetView: View,
         onAnimationComplete: (() -> Unit)? = null,
-        adjustX: Float = 27f,
-        adjustY: Float = -1f
+        adjustX: Float = 0f,
+        adjustY: Float = 0f
     ) {
-        val coords = IntArray(2)
-        targetView.getLocationOnScreen(coords)
+        val targetPos = IntArray(2)
+        val rootPos = IntArray(2)
+        val rootLayout = findViewById<View>(R.id.root_instructions_numeros)
 
-        targetView.post {
-            val xCenter = coords[0] + targetView.width / 2f
-            val yCenter = coords[1] + targetView.height / 2f
+        targetView.getLocationOnScreen(targetPos)
+        rootLayout.getLocationOnScreen(rootPos)
 
-            lottieHandAnswer.x = xCenter - (lottieHandAnswer.width / 2f) + adjustX
-            lottieHandAnswer.y = yCenter - (lottieHandAnswer.height / 2f) + adjustY
+        val density = resources.displayMetrics.density
+
+        lottieHandAnswer.post {
+            val handWidth = lottieHandAnswer.width.toFloat()
+            val handHeight = lottieHandAnswer.height.toFloat()
+
+            val fingerOffsetFromTop = handHeight * 0.15f
+
+            val dynamicAdjustX = when {
+                targetView.width < 100 * density -> -10f * density
+                targetView.width < 200 * density -> 0f
+                else -> 10f * density
+            }
+
+            val finalAdjustX = (adjustX * density) + dynamicAdjustX
+            val finalAdjustY = (adjustY * density)
+
+            val xCenter = targetPos[0] - rootPos[0] + targetView.width / 2f
+            val yCenter = targetPos[1] - rootPos[1] + targetView.height / 2f
+
+            lottieHandAnswer.x = xCenter - (handWidth / 2f) + finalAdjustX
+            lottieHandAnswer.y = yCenter - fingerOffsetFromTop + finalAdjustY
             lottieHandAnswer.visibility = View.VISIBLE
             lottieHandAnswer.bringToFront()
             lottieHandAnswer.setAnimation("handanswer_animation.json")
             lottieHandAnswer.playAnimation()
 
             handler.postDelayed({
-                lottieHandAnswer.visibility = View.VISIBLE
                 onAnimationComplete?.invoke()
             }, 2000)
         }

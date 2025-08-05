@@ -41,14 +41,14 @@
                     <aapt:attr name="android:fillColor">
                         <gradient
                             android:type="linear"
-                            android:angle="135">
+                            android:angle="90">
                             <item android:offset="0.0" android:color="@color/blue_secondary" />
-                            <item android:offset="0.40" android:color="@color/blue_secondary" />
-                            <item android:offset="0.55" android:color="@color/blue_primary" />
-                            <item android:offset="0.65" android:color="@color/blue_primary_dark" />
-                            <item android:offset="0.8" android:color="@color/blue_primary_darker" />
-                            <item android:offset="0.95" android:color="@color/blue_primary_darkest" />
-                            <item android:offset="1.0" android:color="@color/blue_primary_darkest" />
+                            <item android:offset="0.70" android:color="@color/blue_secondary" />
+                            <item android:offset="0.75" android:color="@color/blue_primary" />
+                            <item android:offset="0.85" android:color="@color/blue_primary_dark" />
+                            <item android:offset="0.92" android:color="@color/blue_primary_darker" />
+                            <item android:offset="1.0" android:color="@color/blue_primary_darker" />
+
                         </gradient>
                     </aapt:attr>
                 </path>

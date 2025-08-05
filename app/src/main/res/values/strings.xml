@@ -1468,20 +1468,13 @@
 
     <string name="error_share_image">Error al compartir la condecoración</string>
 
-
     <string name="account_linked_success">¡Cuenta vinculada con éxito! Tu progreso está ahora a salvo.</string>
-
 
     <string name="profile_subtitle_linked">Conectado. Gestiona tu cuenta.</string>
     <string name="profile_subtitle_unlinked">Guarda tu progreso en la nube</string>
 
-    <string name="delete_account">Eliminar Cuenta</string>
     <string name="delete_account_subtitle">Borra permanentemente tus datos</string>
     <string name="delete_account_confirm_title">¿Estás seguro?</string>
-    <string name="delete_account_confirm_message">Esta acción eliminará tu cuenta y todo tu progreso (puntos, niveles, medallas) de forma **permanente**. No podrás recuperarlos.</string>
-    <string name="delete_button">Eliminar</string>
-    <string name="cancel_button">Cancelar</string>
-    <string name="account_deleted_success">Tu cuenta ha sido eliminada.</string>
 
     <string name="link_prompt_title_tranquility">Juega sin preocupaciones.</string>
     <string name="link_prompt_body_tranquility">Conecta tu cuenta de Google en segundos y nosotros nos aseguramos de que tu esfuerzo esté siempre a salvo.</string>
@@ -1539,5 +1532,29 @@
 
     <string name="user_not_authenticated">Usuario no autenticado</string>
 
+    <string name="btn_restore_progress">RECUPERAR PROGRESO</string>
+    <string name="dialog_restore_title">Recuperar tu progreso anterior</string>
+    <string name="dialog_restore_message">Puedes restaurar tu avance, logros y perfil iniciando sesión con tu cuenta de Google.</string>
+    <string name="dialog_restore_cancel">Cancelar</string>
+    <string name="dialog_restore_login">Inicia sesión con tu cuenta de Google</string>
+    <string name="restore_success_title">¡PROGRESO RECUPERADO!</string>
+    <string name="restore_success_message">Tu progreso se ha restaurado correctamente.</string>
+    <string name="restore_error_title">Error al recuperar progreso</string>
+    <string name="restore_error_message">No se encontró ningún progreso guardado para tu cuenta de Google.</string>
+    <string name="restore_error_network">Hubo un problema de conexión. Por favor, inténtalo de nuevo.</string>
+    <string name="restore_error_login">No se pudo iniciar sesión con Google. Intenta nuevamente.</string>
+    <string name="restore_check_icon_desc">Check verde indicando éxito en recuperación</string>
+
+    <string name="conflict_progress_title">¿Cuál progreso deseas conservar?</string>
+    <string name="conflict_progress_message">Tienes un progreso guardado en la nube y otro en este dispositivo.\n¿Prefieres recuperar el progreso guardado o mantener el actual?</string>
+    <string name="btn_restore_cloud_progress">RECUPERAR PROGRESO GUARDADO</string>
+    <string name="btn_keep_local_progress">MANTENER PROGRESO ACTUAL</string>
+    <string name="update_success_title">¡PROGRESO ACTUALIZADO!</string>
+
+    <string name="delete_account">Eliminar Cuenta</string>
+    <string name="delete_button">Eliminar</string>
+    <string name="cancel_button">Cancelar</string>
+    <string name="account_deleted_success">Tu cuenta ha sido eliminada.</string>
+    <string name="delete_account_confirm_message">Esta acción eliminará tu cuenta y todo tu progreso (puntos, niveles, medallas) de forma **permanente**. No podrás recuperarlos.</string>
 
 </resources>

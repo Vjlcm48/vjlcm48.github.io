@@ -1,84 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:padding="24dp"
-    tools:context=".ui.ProfileEditActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#1976D2">
+
+    <!-- Contenedor central tipo diálogo -->
+    <RelativeLayout
+        android:id="@+id/profile_edit_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="320dp"
+        android:minHeight="360dp"
+        android:background="@drawable/dialog_background"
+        android:elevation="8dp"
+        android:padding="24dp"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/title_profile_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/title_profile_edit"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_edit_username"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title_profile_edit"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/edit_username"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_edit_flag"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_edit_username"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/edit_flag"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_link_unlink"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_edit_flag"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/button_background_avanzado"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/blue_primary"
+            android:textSize="16sp"
+            tools:text="Vincular Cuenta" />
+
+    </RelativeLayout>
+
 
     <ImageView
         android:id="@+id/closeButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_alignTop="@id/profile_edit_container"
+        android:layout_alignEnd="@id/profile_edit_container"
+        android:layout_marginTop="-76dp"
+        android:layout_marginEnd="2dp"
         android:clickable="true"
-        android:contentDescription="@string/cerrar"
         android:focusable="true"
-        android:src="@drawable/ic_close"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:contentDescription="@string/cerrar"
+        android:src="@drawable/ic_close" />
 
-    <TextView
-        android:id="@+id/title_profile_edit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold"
-        android:gravity="center"
-        android:text="@string/title_profile_edit"
-        android:textColor="@color/black"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/btn_edit_username"
-        app:layout_constraintVertical_chainStyle="packed"
-        app:layout_constraintWidth_max="360dp" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_edit_username"
-        android:layout_width="0dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/button_background"
-        android:fontFamily="@font/roboto_bold"
-        android:text="@string/edit_username"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_edit_flag"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_profile_edit"
-        app:layout_constraintWidth_max="320dp" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_edit_flag"
-        android:layout_width="0dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/button_background"
-        android:fontFamily="@font/roboto_bold"
-        android:text="@string/edit_flag"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_link_unlink"
-        app:layout_constraintEnd_toEndOf="@id/btn_edit_username"
-        app:layout_constraintStart_toStartOf="@id/btn_edit_username"
-        app:layout_constraintTop_toBottomOf="@+id/btn_edit_username" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_link_unlink"
-        android:layout_width="0dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/button_background_avanzado"
-        android:fontFamily="@font/roboto_bold"
-        android:textColor="@color/blue_primary"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/btn_edit_flag"
-        app:layout_constraintStart_toStartOf="@id/btn_edit_flag"
-        app:layout_constraintTop_toBottomOf="@+id/btn_edit_flag"
-        tools:text="Vincular Cuenta" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

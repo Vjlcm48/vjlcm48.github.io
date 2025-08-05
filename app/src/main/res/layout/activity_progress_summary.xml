@@ -10,7 +10,7 @@
         android:id="@+id/header_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_marginTop="50dp">
 
         <ImageView
             android:id="@+id/iv_back_arrow"
@@ -31,7 +31,7 @@
             android:layout_toEndOf="@id/iv_back_arrow"
             android:layout_toStartOf="@id/iv_close_button"
             android:gravity="center_horizontal"
-            android:layout_marginTop="18dp"/>
+            android:layout_marginTop="20dp"/>
 
         <ImageView
             android:id="@+id/iv_close_button"
@@ -48,9 +48,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/header_layout"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="16dp">
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_marginTop="50dp">
 
         <TextView
             android:id="@+id/tv_global_levels_completed"
@@ -81,7 +81,7 @@
         android:layout_below="@id/global_summary_layout"
         android:paddingStart="48dp"
         android:paddingEnd="48dp"
-        android:paddingTop="8dp"
+        android:layout_marginTop="30dp"
         android:clipToPadding="false"
         tools:listitem="@layout/item_game_progress" />
 

@@ -10,12 +10,12 @@
         android:id="@+id/app_logo"
         android:layout_width="110dp"
         android:layout_height="110dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="50dp"
         android:contentDescription="@string/app_logo"
         android:src="@drawable/sumamentelt"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageView

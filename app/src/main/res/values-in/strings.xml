@@ -1431,4 +1431,23 @@ Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di 
 
     <string name="user_not_authenticated">Pengguna tidak terautentikasi</string>
 
+    <string name="btn_restore_progress">PULIHKAN KEMAJUAN</string>
+    <string name="dialog_restore_title">Pulihkan Kemajuan Sebelumnya</string>
+    <string name="dialog_restore_message">Anda dapat memulihkan kemajuan, pencapaian, dan profil dengan masuk menggunakan akun Google Anda.</string>
+    <string name="dialog_restore_cancel">Batal</string>
+    <string name="dialog_restore_login">Masuk dengan akun Google Anda</string>
+    <string name="restore_success_title">KEMAJUAN DIPULIHKAN!</string>
+    <string name="restore_success_message">Kemajuan Anda telah berhasil dipulihkan.</string>
+    <string name="restore_error_title">Kesalahan Memulihkan Kemajuan</string>
+    <string name="restore_error_message">Tidak ditemukan kemajuan tersimpan untuk akun Google Anda.</string>
+    <string name="restore_error_network">Terjadi masalah koneksi. Silakan coba lagi.</string>
+    <string name="restore_error_login">Tidak dapat masuk dengan Google. Silakan coba lagi.</string>
+    <string name="restore_check_icon_desc">Centang hijau menandakan pemulihan berhasil</string>
+
+    <string name="conflict_progress_title">Progres mana yang ingin Anda simpan?</string>
+    <string name="conflict_progress_message">Anda memiliki progres yang tersimpan di cloud dan di perangkat ini.\nApakah Anda ingin memulihkan progres yang tersimpan atau mempertahankan yang sekarang?</string>
+    <string name="btn_restore_cloud_progress">PULIHKAN PROGRES TERSIMPAN</string>
+    <string name="btn_keep_local_progress">PERTAHANKAN PROGRES SAAT INI</string>
+    <string name="update_success_title">PROGRES DIPERBARUI</string>
+
 </resources>

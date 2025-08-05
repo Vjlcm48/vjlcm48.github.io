@@ -22,10 +22,10 @@ import android.animation.ValueAnimator
 import android.graphics.LinearGradient
 import android.graphics.Matrix
 import android.graphics.Shader
+import androidx.activity.OnBackPressedCallback
 
 
 class GameSelectionActivity : BaseActivity() {
-
 
     private companion object {
         const val TOTAL_LEVELS = 1470.0
@@ -146,6 +146,13 @@ class GameSelectionActivity : BaseActivity() {
         setupAnimations()
         setupClickListeners()
         updateUI()
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                startActivity(Intent(this@GameSelectionActivity, MainGameActivity::class.java))
+                finish()
+            }
+        })
     }
 
     override fun onResume() {
