@@ -1395,17 +1395,6 @@ object ScoreManager {
 
     fun isUserInRanking(rankingName: String): Boolean = getUserPositionInRanking(rankingName) > 0
 
-    fun getIntegralScore(): Double {
-        val rankings = listOf(
-            "GLOBAL", "VEL_NUMEROS", "VEL_DECI", "VEL_ALFANUM", "VEL_ROMAS",
-            "VEL_SUMARESTA", "VEL_MAS", "VEL_GENIOS", "IQ_PLUS"
-        )
-        val positions = rankings.map { pos ->
-            val p = getUserPositionInRanking(pos)
-            if (p > 0) p else (getRankingList(pos).size + 1)
-        }
-        return positions.sum().toDouble() / rankings.size
-    }
 
     fun getUserPositionInRankingIntegral(): Int {
         val rankingsStatus = listOf(

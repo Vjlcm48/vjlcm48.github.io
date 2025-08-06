@@ -31,31 +31,44 @@ object DataSyncManager {
         context: Context,
         onResult: (success: Boolean, error: String?) -> Unit
     ) {
-        val firestore = FirebaseFirestore.getInstance() // AGREGAR ESTA LÍNEA
+        val firestore = FirebaseFirestore.getInstance()
         val user = auth.currentUser
         if (user == null) {
             onResult(false, context.getString(R.string.user_not_authenticated))
             return
         }
 
+
         val profileBox = buildProfilePreferencesBox(context)
         val scoreJson = ScoreManager.exportAllDataAsJson(context)
         val condecoJson = CondecoracionTracker.exportAllDataAsJson(context)
 
+        val privateData = hashMapOf(
+            "profile_preferences" to profileBox,
+            "score_data" to scoreJson,
+            "condecoracion_data" to condecoJson
+        )
+
+        val prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val userName = prefs.getString("savedUserName", "") ?: ""
+        val countryCode = prefs.getString("savedCountryCode", "sumamente") ?: "sumamente"
+
+
         val data = hashMapOf(
 
-            "profile_preferences" to profileBox,
+            "username" to userName,
+            "countryCode" to countryCode,
+            "lastUpdate" to FieldValue.serverTimestamp(),
 
-            "score_data" to scoreJson,
+            "iqPlus" to (ScoreManager.lastIqComponentByGame["IQ_PLUS_OVERALL"] ?: 0.0),
+            "global_ranking_points" to ScoreManager.getTotalUniqueLevelsCompletedAllGames().toLong(),
+
+            "private" to privateData,
+
             "score_schema_version" to SCHEMA_VERSION_SCORE,
-            "score_updated_at" to FieldValue.serverTimestamp(),
-
-            "condecoracion_data" to condecoJson,
-            "condecoracion_schema_version" to SCHEMA_VERSION_CONDECO,
-            "condecoracion_updated_at" to FieldValue.serverTimestamp(),
-
-            "updated_at" to FieldValue.serverTimestamp()
+            "condecoracion_schema_version" to SCHEMA_VERSION_CONDECO
         )
+
 
         firestore.collection("usuarios")
             .document(user.uid)
@@ -68,7 +81,7 @@ object DataSyncManager {
         context: Context,
         onResult: (success: Boolean, error: String?) -> Unit
     ) {
-        val firestore = FirebaseFirestore.getInstance() // AGREGAR ESTA LÍNEA
+        val firestore = FirebaseFirestore.getInstance()
         val user = auth.currentUser
         if (user == null) {
             onResult(false, context.getString(R.string.user_not_authenticated))
@@ -83,18 +96,24 @@ object DataSyncManager {
                     onResult(true, null)
                     return@addOnSuccessListener
                 }
-                // 1) Perfil
-                (doc.get("profile_preferences") as? Map<*, *>)?.let {
-                    applyProfilePreferencesBox(context, it)
+
+                val privateData = doc.get("private") as? Map<*, *>
+
+                if (privateData != null) {
+                    // 1) Perfil
+                    (privateData["profile_preferences"] as? Map<*, *>)?.let {
+                        applyProfilePreferencesBox(context, it)
+                    }
+                    // 2) Progreso
+                    (privateData["score_data"] as? String)?.let { json ->
+                        ScoreManager.importAllDataFromJson(context, json)
+                    }
+                    // 3) Condecoraciones
+                    (privateData["condecoracion_data"] as? String)?.let { json ->
+                        CondecoracionTracker.importAllDataFromJson(context, json)
+                    }
                 }
-                // 2) Progreso
-                (doc.getString("score_data"))?.let { json ->
-                    ScoreManager.importAllDataFromJson(context, json)
-                }
-                // 3) Condecoraciones
-                (doc.getString("condecoracion_data"))?.let { json ->
-                    CondecoracionTracker.importAllDataFromJson(context, json)
-                }
+                // --- Fin del Cambio ---
 
                 onResult(true, null)
             }
@@ -365,8 +384,8 @@ object DataSyncManager {
                 var previousIQPlus: Double? = null
 
                 for (doc in result) {
-                    val name = (doc.get("profile_preferences.savedUserName") ?: "") as String
-                    val code = (doc.get("profile_preferences.savedCountryCode") ?: "us") as String
+                    val name = doc.getString("username") ?: ""
+                    val code = doc.getString("countryCode") ?: "us"
                     val value = (doc.get("iqPlus") ?: 0.0) as Double
                     val thisUserId = doc.id
                     val isCurrent = thisUserId == userId
@@ -458,8 +477,8 @@ object DataSyncManager {
                 var previousTime: Double? = null
 
                 for (doc in result) {
-                    val name = (doc.get("profile_preferences.savedUserName") ?: "") as String
-                    val code = (doc.get("profile_preferences.savedCountryCode") ?: "us") as String
+                    val name = doc.getString("username") ?: ""
+                    val code = doc.getString("countryCode") ?: "us"
                     val timeData = doc.get("speed_ranking_$gameType") as? Map<*, *>
                     val value = (timeData?.get("averageTime") ?: 0.0) as Double
                     val thisUserId = doc.id
@@ -550,8 +569,8 @@ object DataSyncManager {
                 var previousPoints: Long? = null
 
                 for (doc in result) {
-                    val name = (doc.get("profile_preferences.savedUserName") ?: "") as String
-                    val code = (doc.get("profile_preferences.savedCountryCode") ?: "us") as String
+                    val name = doc.getString("username") ?: ""
+                    val code = doc.getString("countryCode") ?: "us"
                     val pointsData = doc.get("global_ranking") as? Map<*, *>
                     val value = ((pointsData?.get("totalPoints") ?: 0L) as Number).toLong()
                     val thisUserId = doc.id
@@ -643,8 +662,8 @@ object DataSyncManager {
                 var previousAverage: Double? = null
 
                 for (doc in result) {
-                    val name = (doc.get("profile_preferences.savedUserName") ?: "") as String
-                    val code = (doc.get("profile_preferences.savedCountryCode") ?: "us") as String
+                    val name = doc.getString("username") ?: ""
+                    val code = doc.getString("countryCode") ?: "us"
                     val integralData = doc.get("integral_ranking") as? Map<*, *>
                     val value = ((integralData?.get("averagePosition") ?: 0.0) as Number).toDouble()
                     val thisUserId = doc.id
