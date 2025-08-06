@@ -7,6 +7,8 @@ import com.example.sumamente.R
 import com.example.sumamente.ui.CondecoracionTracker
 import com.example.sumamente.ui.ScoreManager
 import com.example.sumamente.ui.SettingsActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
@@ -241,6 +243,84 @@ object DataSyncManager {
             .addOnFailureListener {
                 callback(localProgress, null)
             }
+    }
+
+    fun deleteAccountData(context: Context, onResult: (success: Boolean, error: String?) -> Unit) {
+
+        val user = auth.currentUser
+        val isLinked = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+            .getBoolean(SettingsActivity.ACCOUNT_LINKED, false)
+
+        Log.d("DataSync", "deleteAccountData - isLinked: $isLinked, user: ${user?.email}")
+
+
+        if (user == null || !isLinked) {
+            clearAllLocalData(context)
+            onResult(true, null)
+            return
+        }
+
+
+        val firestore = FirebaseFirestore.getInstance()
+
+        firestore.collection("usuarios").document(user.uid).delete()
+            .addOnSuccessListener {
+
+                user.delete()
+                    .addOnSuccessListener {
+
+                        clearAllLocalData(context)
+                        signOutFromGoogle(context)
+                        onResult(true, null)
+                    }
+                    .addOnFailureListener { authException ->
+                        val errorMessage = if (authException is com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException) {
+                            context.getString(R.string.account_delete_error_auth_recent)
+                        } else {
+                            context.getString(R.string.account_deleted_error_auth)
+                        }
+                        onResult(false, errorMessage)
+                    }
+            }
+            .addOnFailureListener { firestoreException ->
+                onResult(false, context.getString(R.string.account_deleted_error_firestore))
+            }
+    }
+
+    private fun clearAllLocalData(context: Context) {
+
+        val allPrefsNames = listOf(
+            "MyPrefs",
+            "MyPrefsDeciPlus", "MyPrefsRomas", "MyPrefsAlfaNumeros",
+            "MyPrefsSumaResta", "MyPrefsMasPlus", "MyPrefsGenioPlus",
+            "ScorePrefs", "ScorePrefsPrincipiante", "ScorePrefsPro",
+            "ScorePrefsDeciPlus", "ScorePrefsDeciPlusPrincipiante", "ScorePrefsDeciPlusPro",
+            "ScorePrefsRomas", "ScorePrefsRomasPrincipiante", "ScorePrefsRomasPro",
+            "ScorePrefsAlfaNumeros", "ScorePrefsAlfaNumerosPrincipiante", "ScorePrefsAlfaNumerosPro",
+            "ScorePrefsSumaResta", "ScorePrefsSumaRestaPrincipiante", "ScorePrefsSumaRestaPro",
+            "ScorePrefsMasPlus", "ScorePrefsMasPlusPrincipiante", "ScorePrefsMasPlusPro",
+            "ScorePrefsGenioPlus", "ScorePrefsGenioPlusPrincipiante", "ScorePrefsGenioPlusPro",
+            "CondecoracionPrefs"
+        )
+
+        allPrefsNames.forEach { prefsName ->
+            context.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
+                .edit { clear() }
+        }
+    }
+
+    private fun signOutFromGoogle(context: Context) {
+        auth.signOut()
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(context.getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        GoogleSignIn.getClient(context, gso).apply {
+            signOut()
+            revokeAccess()
+        }
     }
 
 }

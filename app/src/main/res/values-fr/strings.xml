@@ -1540,5 +1540,6 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
     <string name="account_delete_error_auth_recent">Pour des raisons de sécurité, veuillez vous reconnecter pour supprimer votre compte.</string>
     <string name="account_delete_in_progress">Suppression de votre compte…</string>
 
+    <string name="restore_error_no_progress">Aucune progression sauvegardée n\'est \nassociée à votre compte Google.</string>
 
 </resources>

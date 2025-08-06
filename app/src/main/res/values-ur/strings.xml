@@ -1273,5 +1273,6 @@
     <string name="account_delete_error_auth_recent">سیکورٹی کے لیے، براہ کرم اپنا اکاؤنٹ حذف کرنے کے لیے دوبارہ سائن ان کریں۔</string>
     <string name="account_delete_in_progress">آپ کا اکاؤنٹ حذف کیا جا رہا ہے…</string>
 
+    <string name="restore_error_no_progress">آپ کے Google اکاؤنٹ سے منسلک \nکوئی محفوظ پیش رفت نہیں ہے۔</string>
 
 </resources>

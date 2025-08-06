@@ -1590,5 +1590,6 @@
     <string name="account_delete_error_auth_recent">لأسباب أمنية، يرجى تسجيل الدخول مرة أخرى لحذف حسابك.</string>
     <string name="account_delete_in_progress">يتم حذف حسابك…</string>
 
+    <string name="restore_error_no_progress">لا يوجد أي تقدم محفوظ \nمرتبط بحسابك على Google.</string>
 
 </resources>

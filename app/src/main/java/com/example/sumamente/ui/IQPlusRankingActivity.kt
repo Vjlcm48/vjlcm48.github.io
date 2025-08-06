@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -95,6 +96,9 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
         initViews()
         setupRecyclerView()
         setupShareButton()
+
+        setupShareFabMovable()
+
         setupBackButton()
         setupFloatingButtonInteractions()
 
@@ -374,6 +378,63 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
         })
     }
 
+    private fun setupShareFabMovable() {
+        @SuppressLint("ClickableViewAccessibility")
+        btnShareRanking.setOnTouchListener(object : View.OnTouchListener {
+            private var initialX = 0f
+            private var initialY = 0f
+            private var dX = 0f
+            private var dY = 0f
+            private var isDragging = false
+
+            override fun onTouch(view: View, event: MotionEvent): Boolean {
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        initialX = view.x
+                        initialY = view.y
+                        dX = view.x - event.rawX
+                        dY = view.y - event.rawY
+                        isDragging = false
+                        return true
+                    }
+                    MotionEvent.ACTION_MOVE -> {
+                        val newX = event.rawX + dX
+                        val newY = event.rawY + dY
+
+                        if (kotlin.math.abs(newX - initialX) > 10 || kotlin.math.abs(newY - initialY) > 10) {
+                            isDragging = true
+                        }
+
+                        val screenWidth = resources.displayMetrics.widthPixels
+                        val screenHeight = resources.displayMetrics.heightPixels
+                        val buttonWidth = view.width
+                        val buttonHeight = view.height
+
+                        val constrainedX = newX.coerceIn(0f, (screenWidth - buttonWidth).toFloat())
+                        val constrainedY = newY.coerceIn(0f, (screenHeight - buttonHeight).toFloat())
+
+                        view.animate()
+                            .x(constrainedX)
+                            .y(constrainedY)
+                            .setDuration(0)
+                            .start()
+                        return true
+                    }
+                    MotionEvent.ACTION_UP -> {
+                        if (!isDragging) {
+
+                            view.performClick()
+                        }
+                        isDragging = false
+                        return true
+                    }
+                }
+                return false
+            }
+        })
+
+    }
+
     private fun mostrarMensajeInicial(nombre: String) {
         val startMsgIndex = Random.nextInt(6)
         val startMsg = getString(
@@ -453,7 +514,6 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
         }
 
         val mensajeFinal = "$infoMsg\n\n$levelsInfoMsg\n\n$motivMsg"
-
         val spannableText = hacerIQPlusInteractivo(mensajeFinal, iqPlus)
 
         tvMsgIQPlus.apply {

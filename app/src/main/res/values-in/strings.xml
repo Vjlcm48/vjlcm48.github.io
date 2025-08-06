@@ -1456,5 +1456,6 @@ Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di 
     <string name="account_delete_error_auth_recent">Demi keamanan, silakan masuk kembali untuk menghapus akun Anda.</string>
     <string name="account_delete_in_progress">Menghapus akun Anda…</string>
 
+    <string name="restore_error_no_progress">Tidak ada progres yang tersimpan yang \nterkait dengan akun Google Anda.</string>
 
 </resources>

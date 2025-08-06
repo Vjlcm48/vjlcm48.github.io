@@ -37,7 +37,6 @@ class LanguageSelectionActivity : BaseActivity() {
     private lateinit var gradientView: View
     private lateinit var webClientId: String
     private var restoreProgressDialog: AlertDialog? = null
-    private val rcGoogleSignIn = 9001
     private var restoringLanguage: String? = null
 
 
@@ -350,6 +349,23 @@ class LanguageSelectionActivity : BaseActivity() {
     }
 
     private fun startRestoreProgress() {
+
+        FirebaseAuthManager.checkProgressOnly(
+            this,
+            webClientId
+        ) { hasProgress, account ->
+            if (hasProgress && account != null) {
+
+                proceedWithRestore()
+            } else {
+
+                showRestoreFailureDialogAndReturn()
+            }
+        }
+    }
+
+    private fun proceedWithRestore() {
+
         FirebaseAuthManager.startGoogleSignIn(
             this,
             webClientId
@@ -357,30 +373,22 @@ class LanguageSelectionActivity : BaseActivity() {
             if (success) {
                 DataSyncManager.syncDataFromCloud(this) { ok, error ->
                     if (ok) {
-
                         val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
                         val languageCode = prefs.getString("selected_language", "en") ?: "en"
                         restoringLanguage = languageCode
                         setAppLanguage(languageCode)
+
+                        prefs.edit {
+                            putBoolean(SettingsActivity.ACCOUNT_LINKED, true)
+                        }
+
                         showRestoreSuccessDialog()
                     } else {
 
-                        if (error?.contains("network", true) == true) {
-                            showErrorDialog(
-                                getString(R.string.restore_error_title),
-                                getString(R.string.restore_error_network)
-                            )
-                        } else if (error?.contains("no data", true) == true) {
-                            showErrorDialog(
-                                getString(R.string.restore_error_title),
-                                getString(R.string.restore_error_message)
-                            )
-                        } else {
-                            showErrorDialog(
-                                getString(R.string.restore_error_title),
-                                error ?: getString(R.string.restore_error_message)
-                            )
-                        }
+                        showErrorDialog(
+                            getString(R.string.restore_error_title),
+                            error ?: getString(R.string.restore_error_message)
+                        )
                     }
                 }
             } else {
@@ -401,11 +409,31 @@ class LanguageSelectionActivity : BaseActivity() {
             .show()
     }
 
+    private fun showRestoreFailureDialogAndReturn() {
+
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_restore_failure, null, false)
+
+        val builder = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+
+        val dialog = builder.create()
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        dialog.show()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            if (dialog.isShowing) {
+                dialog.dismiss()
+            }
+
+        }, 3500)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == rcGoogleSignIn) {
-            FirebaseAuthManager.handleSignInResult(this, requestCode, data)
-        }
+        FirebaseAuthManager.handleSignInResult(this, requestCode, data)
     }
 
     data class LanguageItem(

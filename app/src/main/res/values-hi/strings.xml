@@ -1475,5 +1475,6 @@
     <string name="account_delete_error_auth_recent">सुरक्षा के लिए, कृपया अपना खाता हटाने के लिए फिर से साइन इन करें।</string>
     <string name="account_delete_in_progress">आपका खाता हटाया जा रहा है…</string>
 
+    <string name="restore_error_no_progress">आपके Google खाते से जुड़ी कोई भी \nसहेजी गई प्रगति नहीं है।</string>
 
 </resources>

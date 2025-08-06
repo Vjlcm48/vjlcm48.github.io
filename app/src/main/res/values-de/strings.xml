@@ -1479,5 +1479,6 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
     <string name="account_delete_error_auth_recent">Aus Sicherheitsgründen melde dich bitte erneut an, um dein Konto zu löschen.</string>
     <string name="account_delete_in_progress">Dein Konto wird gelöscht…</string>
 
+    <string name="restore_error_no_progress">Es gibt keinen gespeicherten Fortschritt, der \nmit deinem Google-Konto verbunden ist.</string>
 
 </resources>

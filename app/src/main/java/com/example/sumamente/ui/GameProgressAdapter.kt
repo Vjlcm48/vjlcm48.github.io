@@ -44,8 +44,17 @@ class GameProgressAdapter(
             ContextCompat.getColor(context, item.borderColorRes)
         )
         holder.totalRow.setBackgroundResource(item.totalRowBackgroundRes)
+
         holder.gameNameTextView.setTextColor(ContextCompat.getColor(context, item.gameNameTextColorRes))
-        holder.tvProgressTotal.setTextColor(ContextCompat.getColor(context, android.R.color.black))
+
+        if (item.gameNameRes == R.string.game_numeros_plus || item.gameNameRes == R.string.game_mas_plus) {
+
+            holder.tvProgressTotal.setTextColor(ContextCompat.getColor(context, android.R.color.white))
+        } else {
+
+            holder.tvProgressTotal.setTextColor(ContextCompat.getColor(context, android.R.color.black))
+        }
+
         holder.tvProgressTotal.setTypeface(null, Typeface.BOLD)
 
         if (item.gameNameSpannable != null) {

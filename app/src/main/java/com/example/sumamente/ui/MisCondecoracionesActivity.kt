@@ -297,24 +297,6 @@ class MisCondecoracionesActivity : BaseActivity()  {
             )
         }
 
-        condecoraciones.add(
-            Condecoracion(
-                tipo = TipoCondecoracion.MEDALLA,
-                nombre = "INITIUM",
-                descripcion = getString(R.string.logro_medalla_initium),
-                imagen = R.drawable.ic_medalla_initium_cintas
-            )
-        )
-
-        condecoraciones.add(
-            Condecoracion(
-                tipo = TipoCondecoracion.TROFEO,
-                nombre = "GRADUS",
-                descripcion = getString(R.string.logro_trofeo_gradus),
-                imagen = R.drawable.ic_trofeo_gradus
-            )
-        )
-
         val trofeos = CondecoracionTracker.getTrofeosObtenidos()
         trofeos.forEach { trofeo ->
             val (nombre, descripcion, imagen) = mapearTrofeo(trofeo.nombreTrofeo)

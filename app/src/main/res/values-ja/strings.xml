@@ -1227,5 +1227,6 @@
     <string name="account_delete_error_auth_recent">セキュリティのため、もう一度サインインしてアカウントを削除してください。</string>
     <string name="account_delete_in_progress">アカウントを削除しています…</string>
 
+    <string name="restore_error_no_progress">あなたの Google アカウントには \n保存された進行状況がありません。</string>
 
 </resources>

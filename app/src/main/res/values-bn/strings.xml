@@ -1260,5 +1260,6 @@
     <string name="account_delete_error_auth_recent">নিরাপত্তার জন্য, আপনার অ্যাকাউন্ট মুছে ফেলতে আবার সাইন ইন করুন।</string>
     <string name="account_delete_in_progress">আপনার অ্যাকাউন্ট মুছে ফেলা হচ্ছে…</string>
 
+    <string name="restore_error_no_progress">আপনার Google অ্যাকাউন্টের সাথে সম্পর্কিত \nকোনো সংরক্ষিত অগ্রগতি নেই।</string>
 
 </resources>

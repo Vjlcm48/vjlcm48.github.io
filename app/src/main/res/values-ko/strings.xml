@@ -1226,6 +1226,6 @@
     <string name="account_delete_error_auth_recent">보안을 위해 다시 로그인하여 계정을 삭제해 주세요.</string>
     <string name="account_delete_in_progress">계정을 삭제하는 중…</string>
 
-
+    <string name="restore_error_no_progress">Google 계정과 연관된 저장된 \n진행 상황이 없습니다.</string>
 
 </resources>

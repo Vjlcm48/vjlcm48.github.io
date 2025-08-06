@@ -1538,5 +1538,6 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
     <string name="account_delete_error_auth_recent">For security, please sign in again to delete your account.</string>
     <string name="account_delete_in_progress">Deleting your account…</string>
 
+    <string name="restore_error_no_progress">There is no saved progress associated \nwith your Google account.</string>
 
 </resources>

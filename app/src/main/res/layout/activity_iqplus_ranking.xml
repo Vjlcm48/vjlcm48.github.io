@@ -134,18 +134,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnShareRanking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
         android:src="@drawable/ic_share"
         android:contentDescription="@string/share"
-        android:visibility="gone"
         app:backgroundTint="@color/blue_primary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="120dp"
+        android:visibility="gone"
+        />
 
     <ProgressBar
         android:id="@+id/loadingIndicator"

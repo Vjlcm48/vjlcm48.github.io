@@ -1387,5 +1387,6 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
     <string name="account_delete_error_auth_recent">Por segurança, faça login novamente para excluir sua conta.</string>
     <string name="account_delete_in_progress">Excluindo sua conta…</string>
 
+    <string name="restore_error_no_progress">Não existe nenhum progresso salvo \nassociado à sua conta Google.</string>
 
 </resources>

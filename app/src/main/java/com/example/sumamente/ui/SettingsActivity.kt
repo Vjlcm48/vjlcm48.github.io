@@ -37,6 +37,8 @@ class SettingsActivity : BaseActivity() {
     private lateinit var linearResetProgress: LinearLayout
     private lateinit var linearLanguage: LinearLayout
     private lateinit var appLogo: ImageView
+    private var progressDialog: AlertDialog? = null
+    private var isReauthenticatingForDelete = false
 
     companion object {
         const val SOUND_ENABLED = "sound_enabled"
@@ -244,25 +246,88 @@ class SettingsActivity : BaseActivity() {
     }
 
     private fun showConfirmDeleteDialog() {
-
         val dialog = AlertDialog.Builder(this)
             .setTitle(getString(R.string.delete_account_confirm_title))
             .setMessage(getString(R.string.delete_account_confirm_message))
             .setPositiveButton(getString(R.string.delete_button)) { _, _ ->
-                ScoreManager.resetAllProgress(this)
-                sharedPreferences.edit { clear() }
-                Toast.makeText(this, getString(R.string.account_deleted_success), Toast.LENGTH_LONG).show()
-                val intent = Intent(this, SplashScreenActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                startActivity(intent)
-                finish()
+                performAccountDeletion()
             }
             .setNegativeButton(getString(R.string.cancel_button), null)
             .create()
 
         dialog.window?.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.dialog_background_with_border))
-
         dialog.show()
+    }
+
+    private fun showProgressDialog(message: String) {
+        if (progressDialog?.isShowing == true) {
+            progressDialog?.dismiss()
+        }
+        val dialogView = layoutInflater.inflate(R.layout.dialog_progress, null, false)
+        dialogView.findViewById<TextView>(R.id.tvProgressMessage).text = message
+
+        progressDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+        progressDialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        progressDialog?.show()
+    }
+
+    private fun performAccountDeletion() {
+        showProgressDialog(getString(R.string.account_delete_in_progress))
+
+        com.example.sumamente.ui.utils.DataSyncManager.deleteAccountData(this) { success, error ->
+            progressDialog?.dismiss()
+            if (success) {
+                Toast.makeText(this, getString(R.string.account_deleted_success), Toast.LENGTH_LONG).show()
+                val intent = Intent(this, SplashScreenActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
+                finishAffinity()
+            } else {
+                if (error == getString(R.string.account_delete_error_auth_recent)) {
+
+                    showReauthDialog()
+                } else {
+
+                    Toast.makeText(this, error, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+    private fun showReauthDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.delete_account_confirm_title))
+            .setMessage(getString(R.string.account_delete_error_auth_recent))
+            .setPositiveButton(getString(R.string.btn_accept)) { _, _ ->
+                isReauthenticatingForDelete = true
+                val webClientId = getString(R.string.default_web_client_id)
+                FirebaseAuthManager.startGoogleSignIn(this, webClientId) { _, _ ->
+
+                }
+            }
+            .setNegativeButton(getString(R.string.cancel_button), null)
+            .create().apply {
+                window?.setBackgroundDrawable(ContextCompat.getDrawable(this.context, R.drawable.dialog_background_with_border))
+                show()
+            }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (isReauthenticatingForDelete) {
+            isReauthenticatingForDelete = false
+            FirebaseAuthManager.handleSignInResult(this, requestCode, data)
+
+            if (resultCode == RESULT_OK) {
+
+                android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+                    performAccountDeletion()
+                }, 1000)
+            }
+        }
     }
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
