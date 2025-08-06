@@ -1592,4 +1592,9 @@
 
     <string name="restore_error_no_progress">لا يوجد أي تقدم محفوظ \nمرتبط بحسابك على Google.</string>
 
+    <string name="share_speed_ranking_message">حصلت على المركز %2$d في تصنيف السرعة للعبة %1$s في تطبيق SumaMente بمتوسط وقت %3$.2f ثانية! هل يمكنك أن تكون أسرع مني؟</string>
+    <string name="share_global_ranking_message">درجتي هي %1$s نقطة في التصنيف العالمي لتطبيق SumaMente، أنا في المركز %2$d. هل يمكنك التفوق عليّ؟ https://play.google.com/store/apps/details?id=com.example.sumamente</string>
+    <string name="share_integral_ranking_message">غزوت المركز %2$d في التصنيف الشامل لتطبيق SumaMente! معدلي %1$.1f يضعني بين الأساتذة الذين أتقنوا التحديات التسعة. هل لديك ما يلزم؟ https://play.google.com/store/apps/details?id=com.example.sumamente</string>
+
+
 </resources>

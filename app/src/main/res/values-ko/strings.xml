@@ -1228,4 +1228,9 @@
 
     <string name="restore_error_no_progress">Google 계정과 연관된 저장된 \n진행 상황이 없습니다.</string>
 
+    <string name="share_speed_ranking_message">SumaMente 앱의 %1$s 게임 속도 랭킹에서 %2$d위를 기록했고, 평균 시간은 %3$.2f초였습니다! 당신은 저보다 더 빠를 수 있나요?</string>
+    <string name="share_global_ranking_message">SumaMente 앱의 글로벌 랭킹에서 내 점수는 %1$s점이고, 나는 %2$d위에 있어요. 당신은 나를 이길 수 있나요? https://play.google.com/store/apps/details?id=com.example.sumamente</string>
+    <string name="share_integral_ranking_message">SumaMente의 INTEGRAL 랭킹에서 %2$d위를 정복했습니다! 나의 평균 %1$.1f는 9개의 도전을 마스터한 달인들 중 하나로 만듭니다. 당신에게도 그런 실력이 있나요? https://play.google.com/store/apps/details?id=com.example.sumamente</string>
+
+
 </resources>

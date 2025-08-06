@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -21,27 +22,24 @@ import androidx.core.content.edit
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sumamente.R
-import com.example.sumamente.ui.utils.MusicManager
-import kotlin.random.Random
 import com.example.sumamente.ui.utils.DataSyncManager
-
+import com.example.sumamente.ui.utils.MusicManager
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlin.random.Random
 
 class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDialogListener {
-
     private lateinit var recyclerView: RecyclerView
     private lateinit var loadingIndicator: ProgressBar
     private lateinit var emptyView: TextView
     private lateinit var btnBack: ImageView
+    private lateinit var btnShareRanking: FloatingActionButton
     private lateinit var adapter: RankingAdapter
     private lateinit var rankingItems: MutableList<RankingItem>
-
     private lateinit var sharedPreferences: android.content.SharedPreferences
     private lateinit var tvMsgGlobalRanking: TextView
-
     private var isFinishingByBack = false
     private lateinit var floatingLinkButton: View
     private var isDialogFromFloatingButton = false
-
     private var pulseAnimator: ValueAnimator? = null
     private var colorAnimator: ValueAnimator? = null
 
@@ -85,6 +83,8 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         initViews()
         setupButtons()
+        setupShareButton()
+        setupShareFabMovable()
 
         ensureFreshThen { loadRankingData() }
 
@@ -108,6 +108,7 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
         loadingIndicator = findViewById(R.id.loading_indicator)
         emptyView = findViewById(R.id.empty_view)
         btnBack = findViewById(R.id.btn_back)
+        btnShareRanking = findViewById(R.id.btnShareRanking)
         tvMsgGlobalRanking = findViewById(R.id.tvMsgGlobalRanking)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -130,6 +131,87 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
         }
     }
 
+
+    private fun setupShareButton() {
+        btnShareRanking.setOnClickListener { compartirRanking() }
+    }
+
+
+    private fun setupShareFabMovable() {
+        @SuppressLint("ClickableViewAccessibility")
+        btnShareRanking.setOnTouchListener(object : View.OnTouchListener {
+            private var initialX = 0f
+            private var initialY = 0f
+            private var dX = 0f
+            private var dY = 0f
+            private var isDragging = false
+
+            override fun onTouch(view: View, event: MotionEvent): Boolean {
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        initialX = view.x
+                        initialY = view.y
+                        dX = view.x - event.rawX
+                        dY = view.y - event.rawY
+                        isDragging = false
+                        return true
+                    }
+                    MotionEvent.ACTION_MOVE -> {
+                        val newX = event.rawX + dX
+                        val newY = event.rawY + dY
+
+                        if (kotlin.math.abs(newX - initialX) > 10 || kotlin.math.abs(newY - initialY) > 10) {
+                            isDragging = true
+                        }
+
+                        val screenWidth = resources.displayMetrics.widthPixels
+                        val screenHeight = resources.displayMetrics.heightPixels
+                        val buttonWidth = view.width
+                        val buttonHeight = view.height
+
+                        val constrainedX = newX.coerceIn(0f, (screenWidth - buttonWidth).toFloat())
+                        val constrainedY = newY.coerceIn(0f, (screenHeight - buttonHeight).toFloat())
+
+                        view.animate()
+                            .x(constrainedX)
+                            .y(constrainedY)
+                            .setDuration(0)
+                            .start()
+                        return true
+                    }
+                    MotionEvent.ACTION_UP -> {
+                        if (!isDragging) {
+                            view.performClick()
+                        }
+                        isDragging = false
+                        return true
+                    }
+                }
+                return false
+            }
+        })
+    }
+
+    private fun compartirRanking() {
+        val currentUser = rankingItems.firstOrNull { it.isCurrentUser }
+        if (currentUser != null) {
+
+            val formattedScore = java.text.NumberFormat.getNumberInstance().format(currentUser.score)
+
+            val mensaje = getString(
+                R.string.share_global_ranking_message,
+                formattedScore,
+                currentUser.position
+            )
+            val intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, mensaje)
+                type = "text/plain"
+            }
+            startActivity(Intent.createChooser(intent, getString(R.string.share)))
+        }
+    }
+
     private fun getTotalLevelsPlayed(): Int {
         return ScoreManager.getTotalUniqueLevelsCompletedAllGames()
     }
@@ -140,6 +222,7 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
         emptyView.visibility = View.GONE
         tvMsgGlobalRanking.visibility = View.GONE
         floatingLinkButton.visibility = View.GONE
+        btnShareRanking.visibility = View.GONE
 
         Handler(Looper.getMainLooper()).postDelayed({
             val totalLevels = getTotalLevelsPlayed()
@@ -165,20 +248,54 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
                 return@postDelayed
             }
 
-
             handleLinkAccountInvitation()
 
             if (totalLevels >= MIN_LEVELS_REQUIRED) {
+                val globalRankingItems: MutableList<GlobalRankingItem> = mutableListOf()
 
-                rankingItems.clear()
-                rankingItems.add(
-                    RankingItem(
-                        position = 1, username = username, countryCode = countryCode,
-                        score = score, isCurrentUser = true
-                    )
+
+                // Subir datos a Firebase y obtener ranking real
+                DataSyncManager.uploadGlobalRankingToFirebase(
+                    userId = getUserId(),
+                    userName = username,
+                    country = countryCode,
+                    totalPoints = score.toLong()
                 )
-                adapter.notifyItemInserted(0)
-                recyclerView.visibility = View.VISIBLE
+
+                DataSyncManager.getTopGlobalRanking(
+                    userId = getUserId(),
+                    userName = username,
+                    country = countryCode,
+                    totalPoints = score.toLong()
+                ) { rankingList, userPosition, userItem ->
+                    globalRankingItems.clear()
+                    globalRankingItems.addAll(rankingList)
+
+                    if (userItem != null && userPosition > 200) {
+                        globalRankingItems.add(userItem.copy(position = userPosition))
+                    }
+
+                    rankingItems.clear()
+                    globalRankingItems.forEach { globalItem ->
+                        rankingItems.add(
+                            RankingItem(
+                                position = globalItem.position,
+                                username = globalItem.username,
+                                countryCode = globalItem.countryCode,
+                                score = globalItem.totalPoints.toInt(),
+                                isCurrentUser = globalItem.isCurrentUser,
+                                hasInsigniaRIPlus = globalItem.hasInsigniaRIPlus
+                            )
+                        )
+                    }
+                    @Suppress("NotifyDataSetChanged")
+                    adapter.notifyDataSetChanged()
+                    recyclerView.visibility = View.VISIBLE
+                    btnShareRanking.visibility = View.VISIBLE
+                    emptyView.visibility = View.GONE
+                    loadingIndicator.visibility = View.GONE
+                }
+
 
             } else {
 
@@ -349,11 +466,9 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
                         val newX = event.rawX + dX
                         val newY = event.rawY + dY
 
-
                         if (kotlin.math.abs(newX - initialX) > 10 || kotlin.math.abs(newY - initialY) > 10) {
                             isDragging = true
                         }
-
 
                         val screenWidth = resources.displayMetrics.widthPixels
                         val screenHeight = resources.displayMetrics.heightPixels
@@ -520,6 +635,27 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
         val isLinked = sharedPreferences.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)
         if (!isLinked) { block(); return }
         DataSyncManager.syncDataFromCloud(this) { _, _ -> block() }
+    }
+
+    private fun getUserId(): String {
+        val user = try {
+            com.google.firebase.auth.FirebaseAuth.getInstance().currentUser
+        } catch (_: Exception) {
+            null
+        }
+        return user?.uid
+            ?: sharedPreferences.getString("anonymous_user_id", null)
+            ?: generateAnonymousUserId().also { saveAnonymousUserId(it) }
+    }
+
+    private fun generateAnonymousUserId(): String {
+        val id = java.util.UUID.randomUUID().toString()
+        saveAnonymousUserId(id)
+        return id
+    }
+
+    private fun saveAnonymousUserId(id: String) {
+        sharedPreferences.edit { putString("anonymous_user_id", id) }
     }
 
 }

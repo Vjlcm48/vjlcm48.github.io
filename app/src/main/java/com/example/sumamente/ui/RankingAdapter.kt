@@ -11,6 +11,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sumamente.R
 import java.util.Locale
 
+data class GlobalRankingItem(
+    val position: Int,
+    val username: String,
+    val countryCode: String,
+    val totalPoints: Long,
+    val isCurrentUser: Boolean = false,
+    val hasInsigniaRIPlus: Boolean = false
+)
+
 data class RankingItem(
     val position: Int,
     val username: String,
@@ -125,15 +134,29 @@ class RankingAdapter(
             )
         }
 
-        when (item.position) {
-            1 -> holder.positionTextView.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.gold)
+        if (!item.isCurrentUser) {
+            when (item.position) {
+                1 -> {
+                    holder.positionTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.gold))
+                    holder.scoreTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.gold))
+                }
+                2 -> {
+                    holder.positionTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.silver))
+                    holder.scoreTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.silver))
+                }
+                3 -> {
+                    holder.positionTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.bronze))
+                    holder.scoreTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.bronze))
+                }
+            }
+        }
+
+        if (item.isCurrentUser) {
+            holder.positionTextView.setTextColor(
+                ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_text)
             )
-            2 -> holder.positionTextView.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.silver)
-            )
-            3 -> holder.positionTextView.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.bronze)
+            holder.scoreTextView.setTextColor(
+                ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_text)
             )
         }
     }

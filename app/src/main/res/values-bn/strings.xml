@@ -1262,4 +1262,9 @@
 
     <string name="restore_error_no_progress">আপনার Google অ্যাকাউন্টের সাথে সম্পর্কিত \nকোনো সংরক্ষিত অগ্রগতি নেই।</string>
 
+    <string name="share_speed_ranking_message">আমি SumaMente অ্যাপে %1$s গেমের স্পিড র‍্যাংকিংয়ে %2$d নম্বর স্থান পেয়েছি, গড় সময় %3$.2f সেকেন্ড! তুমি কি আমার চেয়ে দ্রুত হতে পারবে?</string>
+    <string name="share_global_ranking_message">SumaMente অ্যাপের গ্লোবাল র‍্যাংকিংয়ে আমার স্কোর %1$s পয়েন্ট, আমি %2$d নম্বর স্থানে আছি। তুমি কি আমাকে হারাতে পারবে? https://play.google.com/store/apps/details?id=com.example.sumamente</string>
+    <string name="share_integral_ranking_message">আমি SumaMente-এর INTEGRAL র‍্যাংকিংয়ে %2$d নম্বর স্থান জিতেছি! আমার %1$.1f গড় আমাকে সেই মাস্টারদের মধ্যে রাখে যারা ৯টি চ্যালেঞ্জে পারদর্শী। তোমার কি আছে সেই দক্ষতা? https://play.google.com/store/apps/details?id=com.example.sumamente</string>
+
+
 </resources>

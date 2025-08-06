@@ -5,26 +5,28 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sumamente.R
-import kotlin.random.Random
-import com.example.sumamente.ui.utils.MusicManager
-import android.view.MotionEvent
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
-import androidx.core.content.edit
 import com.example.sumamente.ui.utils.DataSyncManager
+import com.example.sumamente.ui.utils.MusicManager
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlin.random.Random
 
 
 class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDialogListener {
@@ -37,6 +39,7 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
     private lateinit var rankingListContainer: LinearLayout
     private lateinit var adapter: IntegralRankingAdapter
     private lateinit var rankingItems: MutableList<IntegralRankingItem>
+    private lateinit var btnShareIntegralRanking: FloatingActionButton
 
     private lateinit var sharedPreferences: android.content.SharedPreferences
     private var isFinishingByBack = false
@@ -74,6 +77,8 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
 
         initViews()
         setupButtons()
+        setupShareButton()
+        setupShareFabMovable()
         ensureFreshThen { loadIntegralRankingData() }
 
         // Inicio del cambio flecha de regresar del celular
@@ -104,6 +109,9 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
         adapter = IntegralRankingAdapter(rankingItems)
         recyclerView.adapter = adapter
         floatingLinkButton = findViewById(R.id.floating_link_button)
+
+        btnShareIntegralRanking = findViewById(R.id.btnShareIntegralRanking)
+
         setupFloatingButtonInteractions()
 
     }
@@ -117,6 +125,104 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
         }
     }
 
+    private fun setupShareButton() {
+        btnShareIntegralRanking.setOnClickListener { compartirIntegralRanking() }
+    }
+
+    private fun setupShareFabMovable() {
+        @SuppressLint("ClickableViewAccessibility")
+        btnShareIntegralRanking.setOnTouchListener(object : View.OnTouchListener {
+            private var initialX = 0f
+            private var initialY = 0f
+            private var dX = 0f
+            private var dY = 0f
+            private var isDragging = false
+
+            override fun onTouch(view: View, event: MotionEvent): Boolean {
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        initialX = view.x
+                        initialY = view.y
+                        dX = view.x - event.rawX
+                        dY = view.y - event.rawY
+                        isDragging = false
+                        return true
+                    }
+                    MotionEvent.ACTION_MOVE -> {
+                        val newX = event.rawX + dX
+                        val newY = event.rawY + dY
+
+                        if (kotlin.math.abs(newX - initialX) > 10 || kotlin.math.abs(newY - initialY) > 10) {
+                            isDragging = true
+                        }
+
+                        val screenWidth = resources.displayMetrics.widthPixels
+                        val screenHeight = resources.displayMetrics.heightPixels
+                        val buttonWidth = view.width
+                        val buttonHeight = view.height
+
+                        val constrainedX = newX.coerceIn(0f, (screenWidth - buttonWidth).toFloat())
+                        val constrainedY = newY.coerceIn(0f, (screenHeight - buttonHeight).toFloat())
+
+                        view.animate()
+                            .x(constrainedX)
+                            .y(constrainedY)
+                            .setDuration(0)
+                            .start()
+                        return true
+                    }
+                    MotionEvent.ACTION_UP -> {
+                        if (!isDragging) {
+                            view.performClick()
+                        }
+                        isDragging = false
+                        return true
+                    }
+                }
+                return false
+            }
+        })
+    }
+
+    private fun compartirIntegralRanking() {
+        val currentUser = rankingItems.firstOrNull { it.isCurrentUser }
+        if (currentUser != null) {
+            val mensaje = getString(
+                R.string.share_integral_ranking_message,
+                currentUser.integralScore,
+                currentUser.position
+            )
+            val intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, mensaje)
+                type = "text/plain"
+            }
+            startActivity(Intent.createChooser(intent, getString(R.string.share)))
+        }
+    }
+
+    private fun isUserEligibleForIntegralRanking(): Boolean {
+        val rankingsStatus = checkUserRankingsStatus()
+        return rankingsStatus.all { it } // Debe estar en TODOS los 9 rankings
+    }
+
+    private fun calculateAveragePosition(): Double {
+
+        val positions = listOf(
+            ScoreManager.getUserPositionInRanking("GLOBAL"),
+            ScoreManager.getUserPositionInRanking("VEL_NUMEROS"),
+            ScoreManager.getUserPositionInRanking("VEL_DECI"),
+            ScoreManager.getUserPositionInRanking("VEL_ALFANUM"),
+            ScoreManager.getUserPositionInRanking("VEL_ROMAS"),
+            ScoreManager.getUserPositionInRanking("VEL_SUMARESTA"),
+            ScoreManager.getUserPositionInRanking("VEL_MAS"),
+            ScoreManager.getUserPositionInRanking("VEL_GENIOS"),
+            ScoreManager.getUserPositionInRanking("IQ_PLUS")
+        )
+
+        return positions.average()
+    }
+
     private fun loadIntegralRankingData() {
 
         loadingIndicator.visibility = View.VISIBLE
@@ -125,6 +231,7 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
         tvProgressIndicator.visibility = View.GONE
         rankingListContainer.visibility = View.GONE
         floatingLinkButton.visibility = View.GONE
+        btnShareIntegralRanking.visibility = View.GONE
 
         Handler(Looper.getMainLooper()).postDelayed({
             val rankingsStatus = checkUserRankingsStatus()
@@ -137,8 +244,9 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
                 0      -> showNoRankingsMessage()
                 in 1..8 -> showProgressMessage(rankingsCount, rankingsStatus)
                 9      -> {
-                    val integralScore = ScoreManager.getIntegralScore()
-                    showIntegralRanking(integralScore)
+
+                    calculateAveragePosition()
+                    showIntegralRanking()
                 }
             }
         }, 800)
@@ -269,7 +377,7 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
         }
     }
 
-    private fun showIntegralRanking(integralScore: Double) {
+    private fun showIntegralRanking() {
         tvProgressIndicator.visibility = View.GONE
         tvMsgIntegralRanking.visibility = View.GONE
         rankingListContainer.visibility = View.GONE
@@ -278,19 +386,43 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
             ?: getString(R.string.default_username)
         val countryCode = sharedPreferences.getString("savedCountryCode", "us") ?: "us"
 
-        rankingItems.clear()
-        rankingItems.add(
-            IntegralRankingItem(
-                position       = 1,
-                username       = username,
-                countryCode    = countryCode,
-                integralScore  = integralScore,
-                isCurrentUser  = true
-            )
+        if (!isUserEligibleForIntegralRanking()) {
+
+            return
+        }
+
+        val averagePosition = calculateAveragePosition()
+
+        // Subir datos a Firebase y obtener ranking real
+        DataSyncManager.uploadIntegralRankingToFirebase(
+            userId = getUserId(),
+            userName = username,
+            country = countryCode,
+            averagePosition = averagePosition
         )
 
-        adapter.notifyItemInserted(0)
-        recyclerView.visibility = View.VISIBLE
+        DataSyncManager.getTopIntegralRanking(
+            userId = getUserId(),
+            userName = username,
+            country = countryCode,
+            averagePosition = averagePosition
+        ) { rankingList, userPosition, userItem ->
+            rankingItems.clear()
+            rankingItems.addAll(rankingList)
+
+
+            if (userItem != null && userPosition > 200) {
+                rankingItems.add(userItem.copy(position = userPosition))
+            }
+            @Suppress("NotifyDataSetChanged")
+            adapter.notifyDataSetChanged()
+            recyclerView.visibility = View.VISIBLE
+            btnShareIntegralRanking.visibility = View.VISIBLE
+        }
+
+
+
+        btnShareIntegralRanking.visibility = View.VISIBLE
     }
 
     private fun handleLinkAccountInvitation() {
@@ -570,6 +702,27 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
         val isLinked = sharedPreferences.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)
         if (!isLinked) { block(); return }
         DataSyncManager.syncDataFromCloud(this) { _, _ -> block() }
+    }
+
+    private fun getUserId(): String {
+        val user = try {
+            com.google.firebase.auth.FirebaseAuth.getInstance().currentUser
+        } catch (_: Exception) {
+            null
+        }
+        return user?.uid
+            ?: sharedPreferences.getString("anonymous_user_id", null)
+            ?: generateAnonymousUserId().also { saveAnonymousUserId(it) }
+    }
+
+    private fun generateAnonymousUserId(): String {
+        val id = java.util.UUID.randomUUID().toString()
+        saveAnonymousUserId(id)
+        return id
+    }
+
+    private fun saveAnonymousUserId(id: String) {
+        sharedPreferences.edit { putString("anonymous_user_id", id) }
     }
 
 }

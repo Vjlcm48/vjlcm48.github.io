@@ -1472,40 +1472,6 @@ object ScoreManager {
                 getUniqueLevelsPlayedGenioPlusPro() > 0
     }
 
-    fun resetStatsAndTimes() {
-        totalGamesGlobal = 0
-        correctGamesGlobal = 0
-        lastIqComponentByGame.clear()
-        totalGamesNumerosPlus = 0
-        totalTimeNumerosPlus = 0.0
-        totalGamesNumerosPlusExitos = 0
-        totalTimeNumerosPlusExitos = 0.0
-        totalGamesDeciPlus = 0
-        totalTimeDeciPlus = 0.0
-        totalGamesDeciPlusExitos = 0
-        totalTimeDeciPlusExitos = 0.0
-        totalGamesRomas = 0
-        totalTimeRomas = 0.0
-        totalGamesRomasExitos = 0
-        totalTimeRomasExitos = 0.0
-        totalGamesAlfaNumeros = 0
-        totalTimeAlfaNumeros = 0.0
-        totalGamesAlfaNumerosExitos = 0
-        totalTimeAlfaNumerosExitos = 0.0
-        totalGamesSumaResta = 0
-        totalTimeSumaResta = 0.0
-        totalGamesSumaRestaExitos = 0
-        totalTimeSumaRestaExitos = 0.0
-        totalGamesMasPlus = 0
-        totalTimeMasPlus = 0.0
-        totalGamesMasPlusExitos = 0
-        totalTimeMasPlusExitos = 0.0
-        totalGamesGenioPlus = 0
-        totalTimeGenioPlus = 0.0
-        totalGamesGenioPlusExitos = 0
-        totalTimeGenioPlusExitos = 0.0
-    }
-
     fun updateIqComponent(juego: String, grado: String, valor: Double) {
         lastIqComponentByGame["${juego}_${grado}"] = valor
     }
@@ -1528,46 +1494,6 @@ object ScoreManager {
             else -> return 0
         }
         return getOrCreateManager(game, difficulty).getCompletedLevels().maxOrNull() ?: 0
-    }
-
-    fun resetAllProgress(context: Context) {
-        reset()
-        resetPrincipiante()
-        resetPro()
-        resetDeciPlus()
-        resetDeciPlusPrincipiante()
-        resetDeciPlusPro()
-        resetRomas()
-        resetRomasPrincipiante()
-        resetRomasPro()
-        resetAlfaNumeros()
-        resetAlfaNumerosPrincipiante()
-        resetAlfaNumerosPro()
-        resetSumaResta()
-        resetSumaRestaPrincipiante()
-        resetSumaRestaPro()
-        resetMasPlus()
-        resetMasPlusPrincipiante()
-        resetMasPlusPro()
-        resetGenioPlus()
-        resetGenioPlusPrincipiante()
-        resetGenioPlusPro()
-
-        resetStatsAndTimes()
-
-        val prefsToClear = listOf(
-            PREFS_NAME, PREFS_NAME_PRINCIPIANTE, PREFS_NAME_PRO,
-            PREFS_NAME_DECI_PLUS, PREFS_NAME_DECI_PLUS_PRINCIPIANTE, PREFS_NAME_DECI_PLUS_PRO,
-            PREFS_NAME_ROMAS, PREFS_NAME_ROMAS_PRINCIPIANTE, PREFS_NAME_ROMAS_PRO,
-            PREFS_NAME_ALFANUMEROS, PREFS_NAME_ALFANUMEROS_PRINCIPIANTE, PREFS_NAME_ALFANUMEROS_PRO,
-            PREFS_NAME_SUMARESTA, PREFS_NAME_SUMARESTA_PRINCIPIANTE, PREFS_NAME_SUMARESTA_PRO,
-            PREFS_NAME_MAS_PLUS, PREFS_NAME_MAS_PLUS_PRINCIPIANTE, PREFS_NAME_MAS_PLUS_PRO,
-            PREFS_NAME_GENIO_PLUS, PREFS_NAME_GENIO_PLUS_PRINCIPIANTE, PREFS_NAME_GENIO_PLUS_PRO
-        )
-
-        for (prefName in prefsToClear) {
-            context.getSharedPreferences(prefName, Context.MODE_PRIVATE).edit { clear() }
-        }
     }
 
     fun hasCompleted12LevelsInAnyGame(): Boolean {

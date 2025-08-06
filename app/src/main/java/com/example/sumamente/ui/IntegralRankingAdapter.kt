@@ -129,15 +129,29 @@ class IntegralRankingAdapter(
             )
         }
 
-        when (item.position) {
-            1 -> holder.positionTextView.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.gold)
+        if (!item.isCurrentUser) {
+            when (item.position) {
+                1 -> {
+                    holder.positionTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.gold))
+                    holder.integralScoreTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.gold))
+                }
+                2 -> {
+                    holder.positionTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.silver))
+                    holder.integralScoreTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.silver))
+                }
+                3 -> {
+                    holder.positionTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.bronze))
+                    holder.integralScoreTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.bronze))
+                }
+            }
+        }
+
+        if (item.isCurrentUser) {
+            holder.positionTextView.setTextColor(
+                ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_text)
             )
-            2 -> holder.positionTextView.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.silver)
-            )
-            3 -> holder.positionTextView.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.bronze)
+            holder.integralScoreTextView.setTextColor(
+                ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_text)
             )
         }
     }

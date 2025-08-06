@@ -5,14 +5,18 @@ import android.util.Log
 import androidx.core.content.edit
 import com.example.sumamente.R
 import com.example.sumamente.ui.CondecoracionTracker
+import com.example.sumamente.ui.IQPlusRankingItem
 import com.example.sumamente.ui.ScoreManager
 import com.example.sumamente.ui.SettingsActivity
+import com.example.sumamente.ui.SpeedRankingItem
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.example.sumamente.ui.GlobalRankingItem
+import com.example.sumamente.ui.IntegralRankingItem
 
 object DataSyncManager {
 
@@ -322,5 +326,372 @@ object DataSyncManager {
             revokeAccess()
         }
     }
+
+    fun uploadIQPlusToFirebase(
+        userId: String,
+        userName: String,
+        country: String,
+        iqPlus: Double
+    ) {
+        val db = FirebaseFirestore.getInstance()
+        val userDoc = db.collection("usuarios").document(userId)
+        val data = hashMapOf(
+            "profile_preferences" to hashMapOf(
+                "savedUserName" to userName,
+                "savedCountryCode" to country
+            ),
+            "iqPlus" to iqPlus
+        )
+        userDoc.set(data, SetOptions.merge())
+    }
+
+    fun getTopIQPlusRanking(
+        userId: String,
+        userName: String,
+        country: String,
+        iqPlus: Double,
+        callback: (List<IQPlusRankingItem>, Int, IQPlusRankingItem?) -> Unit
+    ) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("usuarios")
+            .orderBy("iqPlus", com.google.firebase.firestore.Query.Direction.DESCENDING)
+            .limit(200)
+            .get()
+            .addOnSuccessListener { result ->
+                val rankingList = mutableListOf<IQPlusRankingItem>()
+                var userPosition = -1
+                var userItem: IQPlusRankingItem? = null
+                var currentPosition = 1
+                var previousIQPlus: Double? = null
+
+                for (doc in result) {
+                    val name = (doc.get("profile_preferences.savedUserName") ?: "") as String
+                    val code = (doc.get("profile_preferences.savedCountryCode") ?: "us") as String
+                    val value = (doc.get("iqPlus") ?: 0.0) as Double
+                    val thisUserId = doc.id
+                    val isCurrent = thisUserId == userId
+
+                    if (previousIQPlus != null && value < previousIQPlus) {
+                        currentPosition++
+                    }
+
+                    val item = IQPlusRankingItem(
+                        position = currentPosition,
+                        username = name,
+                        countryCode = code,
+                        iqPlus = value,
+                        isCurrentUser = isCurrent
+                    )
+                    rankingList.add(item)
+                    if (isCurrent) {
+                        userPosition = currentPosition
+                        userItem = item
+                    }
+                    previousIQPlus = value
+                }
+
+                // Si el usuario NO está en el top 200, busca su posición real
+                if (userPosition == -1) {
+                    db.collection("usuarios")
+                        .whereGreaterThan("iqPlus", iqPlus)
+                        .get()
+                        .addOnSuccessListener { others ->
+                            userPosition = others.size() + 1
+                            userItem = IQPlusRankingItem(
+                                position = userPosition,
+                                username = userName,
+                                countryCode = country,
+                                iqPlus = iqPlus,
+                                isCurrentUser = true
+                            )
+                            callback(rankingList, userPosition, userItem)
+                        }
+                        .addOnFailureListener { callback(rankingList, -1, null) }
+                } else {
+                    callback(rankingList, userPosition, userItem)
+                }
+            }
+            .addOnFailureListener { callback(emptyList(), -1, null) }
+    }
+
+    fun uploadSpeedRankingToFirebase(
+        userId: String,
+        userName: String,
+        country: String,
+        gameType: String,
+        averageTime: Double
+    ) {
+        val db = FirebaseFirestore.getInstance()
+        val userDoc = db.collection("usuarios").document(userId)
+        val data = hashMapOf(
+            "profile_preferences" to hashMapOf(
+                "savedUserName" to userName,
+                "savedCountryCode" to country
+            ),
+            "speed_ranking_$gameType" to hashMapOf(
+                "averageTime" to averageTime,
+                "updated_at" to FieldValue.serverTimestamp()
+            )
+        )
+        userDoc.set(data, SetOptions.merge())
+    }
+
+    fun getTopSpeedRanking(
+        userId: String,
+        userName: String,
+        country: String,
+        gameType: String,
+        averageTime: Double,
+        callback: (List<SpeedRankingItem>, Int, SpeedRankingItem?) -> Unit
+    ) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("usuarios")
+            .whereNotEqualTo("speed_ranking_$gameType", null)
+            .orderBy("speed_ranking_$gameType.averageTime")
+            .limit(200)
+            .get()
+            .addOnSuccessListener { result ->
+                val rankingList = mutableListOf<SpeedRankingItem>()
+                var userPosition = -1
+                var userItem: SpeedRankingItem? = null
+                var currentPosition = 1
+                var previousTime: Double? = null
+
+                for (doc in result) {
+                    val name = (doc.get("profile_preferences.savedUserName") ?: "") as String
+                    val code = (doc.get("profile_preferences.savedCountryCode") ?: "us") as String
+                    val timeData = doc.get("speed_ranking_$gameType") as? Map<*, *>
+                    val value = (timeData?.get("averageTime") ?: 0.0) as Double
+                    val thisUserId = doc.id
+                    val isCurrent = thisUserId == userId
+
+                    if (previousTime != null && value > previousTime) {
+                        currentPosition++
+                    }
+
+                    val item = SpeedRankingItem(
+                        position = currentPosition,
+                        username = name,
+                        countryCode = code,
+                        averageTime = value.toFloat(),
+                        isCurrentUser = isCurrent
+                    )
+                    rankingList.add(item)
+                    if (isCurrent) {
+                        userPosition = currentPosition
+                        userItem = item
+                    }
+                    previousTime = value
+                }
+
+                if (userPosition == -1) {
+                    db.collection("usuarios")
+                        .whereNotEqualTo("speed_ranking_$gameType", null)
+                        .whereLessThan("speed_ranking_$gameType.averageTime", averageTime)
+                        .get()
+                        .addOnSuccessListener { betterUsers ->
+                            userPosition = betterUsers.size() + 1
+                            userItem = SpeedRankingItem(
+                                position = userPosition,
+                                username = userName,
+                                countryCode = country,
+                                averageTime = averageTime.toFloat(),
+                                isCurrentUser = true
+                            )
+                            callback(rankingList, userPosition, userItem)
+                        }
+                        .addOnFailureListener { callback(rankingList, -1, null) }
+                } else {
+                    callback(rankingList, userPosition, userItem)
+                }
+            }
+            .addOnFailureListener { callback(emptyList(), -1, null) }
+    }
+
+    fun uploadGlobalRankingToFirebase(
+        userId: String,
+        userName: String,
+        country: String,
+        totalPoints: Long
+    ) {
+        val db = FirebaseFirestore.getInstance()
+        val userDoc = db.collection("usuarios").document(userId)
+        val data = hashMapOf(
+            "profile_preferences" to hashMapOf(
+                "savedUserName" to userName,
+                "savedCountryCode" to country
+            ),
+            "global_ranking" to hashMapOf(
+                "totalPoints" to totalPoints,
+                "updated_at" to FieldValue.serverTimestamp()
+            )
+        )
+        userDoc.set(data, SetOptions.merge())
+    }
+
+    fun getTopGlobalRanking(
+        userId: String,
+        userName: String,
+        country: String,
+        totalPoints: Long,
+        callback: (List<GlobalRankingItem>, Int, GlobalRankingItem?) -> Unit
+    ) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("usuarios")
+            .whereNotEqualTo("global_ranking", null)
+            .orderBy("global_ranking.totalPoints", com.google.firebase.firestore.Query.Direction.DESCENDING)
+            .limit(200)
+            .get()
+            .addOnSuccessListener { result ->
+                val rankingList = mutableListOf<GlobalRankingItem>()
+                var userPosition = -1
+                var userItem: GlobalRankingItem? = null
+                var currentPosition = 1
+                var previousPoints: Long? = null
+
+                for (doc in result) {
+                    val name = (doc.get("profile_preferences.savedUserName") ?: "") as String
+                    val code = (doc.get("profile_preferences.savedCountryCode") ?: "us") as String
+                    val pointsData = doc.get("global_ranking") as? Map<*, *>
+                    val value = ((pointsData?.get("totalPoints") ?: 0L) as Number).toLong()
+                    val thisUserId = doc.id
+                    val isCurrent = thisUserId == userId
+
+                    if (previousPoints != null && value < previousPoints) {
+                        currentPosition++
+                    }
+
+                    val item = GlobalRankingItem(
+                        position = currentPosition,
+                        username = name,
+                        countryCode = code,
+                        totalPoints = value,
+                        isCurrentUser = isCurrent
+                    )
+                    rankingList.add(item)
+                    if (isCurrent) {
+                        userPosition = currentPosition
+                        userItem = item
+                    }
+                    previousPoints = value
+                }
+
+                if (userPosition == -1) {
+                    db.collection("usuarios")
+                        .whereNotEqualTo("global_ranking", null)
+                        .whereGreaterThan("global_ranking.totalPoints", totalPoints)
+                        .get()
+                        .addOnSuccessListener { betterUsers ->
+                            userPosition = betterUsers.size() + 1
+                            userItem = GlobalRankingItem(
+                                position = userPosition,
+                                username = userName,
+                                countryCode = country,
+                                totalPoints = totalPoints,
+                                isCurrentUser = true
+                            )
+                            callback(rankingList, userPosition, userItem)
+                        }
+                        .addOnFailureListener { callback(rankingList, -1, null) }
+                } else {
+                    callback(rankingList, userPosition, userItem)
+                }
+            }
+            .addOnFailureListener { callback(emptyList(), -1, null) }
+    }
+
+    fun uploadIntegralRankingToFirebase(
+        userId: String,
+        userName: String,
+        country: String,
+        averagePosition: Double
+    ) {
+        val db = FirebaseFirestore.getInstance()
+        val userDoc = db.collection("usuarios").document(userId)
+        val data = hashMapOf(
+            "profile_preferences" to hashMapOf(
+                "savedUserName" to userName,
+                "savedCountryCode" to country
+            ),
+            "integral_ranking" to hashMapOf(
+                "averagePosition" to averagePosition,
+                "eligible" to true,
+                "updated_at" to FieldValue.serverTimestamp()
+            )
+        )
+        userDoc.set(data, SetOptions.merge())
+    }
+
+    fun getTopIntegralRanking(
+        userId: String,
+        userName: String,
+        country: String,
+        averagePosition: Double,
+        callback: (List<IntegralRankingItem>, Int, IntegralRankingItem?) -> Unit
+    ) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("usuarios")
+            .whereNotEqualTo("integral_ranking", null)
+            .orderBy("integral_ranking.averagePosition")
+            .limit(200)
+            .get()
+            .addOnSuccessListener { result ->
+                val rankingList = mutableListOf<IntegralRankingItem>()
+                var userPosition = -1
+                var userItem: IntegralRankingItem? = null
+                var currentPosition = 1
+                var previousAverage: Double? = null
+
+                for (doc in result) {
+                    val name = (doc.get("profile_preferences.savedUserName") ?: "") as String
+                    val code = (doc.get("profile_preferences.savedCountryCode") ?: "us") as String
+                    val integralData = doc.get("integral_ranking") as? Map<*, *>
+                    val value = ((integralData?.get("averagePosition") ?: 0.0) as Number).toDouble()
+                    val thisUserId = doc.id
+                    val isCurrent = thisUserId == userId
+
+                    if (previousAverage != null && value > previousAverage) {
+                        currentPosition++
+                    }
+
+                    val item = IntegralRankingItem(
+                        position = currentPosition,
+                        username = name,
+                        countryCode = code,
+                        integralScore = value,
+                        isCurrentUser = isCurrent
+                    )
+                    rankingList.add(item)
+                    if (isCurrent) {
+                        userPosition = currentPosition
+                        userItem = item
+                    }
+                    previousAverage = value
+                }
+
+                if (userPosition == -1) {
+                    db.collection("usuarios")
+                        .whereNotEqualTo("integral_ranking", null)
+                        .whereLessThan("integral_ranking.averagePosition", averagePosition)
+                        .get()
+                        .addOnSuccessListener { betterUsers ->
+                            userPosition = betterUsers.size() + 1
+                            userItem = IntegralRankingItem(
+                                position = userPosition,
+                                username = userName,
+                                countryCode = country,
+                                integralScore = averagePosition,
+                                isCurrentUser = true
+                            )
+                            callback(rankingList, userPosition, userItem)
+                        }
+                        .addOnFailureListener { callback(rankingList, -1, null) }
+                } else {
+                    callback(rankingList, userPosition, userItem)
+                }
+            }
+            .addOnFailureListener { callback(emptyList(), -1, null) }
+    }
+
 
 }

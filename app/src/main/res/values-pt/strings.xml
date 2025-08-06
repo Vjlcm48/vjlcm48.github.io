@@ -1389,4 +1389,9 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
 
     <string name="restore_error_no_progress">Não existe nenhum progresso salvo \nassociado à sua conta Google.</string>
 
+    <string name="share_speed_ranking_message">Conquistei a posição %2$d no Ranking de Velocidade do jogo %1$s no app SumaMente com um tempo médio de %3$.2f segundos! Você consegue ser mais rápido do que eu?</string>
+    <string name="share_global_ranking_message">Minha pontuação é %1$s pontos no Ranking Global do app SumaMente, estou na posição %2$d. Você consegue me superar? https://play.google.com/store/apps/details?id=com.example.sumamente</string>
+    <string name="share_integral_ranking_message">Conquistei a posição %2$d no Ranking INTEGRAL do SumaMente! Minha média de %1$.1f me coloca entre os mestres que dominam os 9 desafios. Você tem o que é preciso? https://play.google.com/store/apps/details?id=com.example.sumamente</string>
+
+
 </resources>

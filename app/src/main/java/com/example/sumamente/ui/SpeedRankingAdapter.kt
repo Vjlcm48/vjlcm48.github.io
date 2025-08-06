@@ -158,6 +158,5 @@ class SpeedRankingAdapter(
         val seconds = timeInSeconds.toInt()
         val milliseconds = ((timeInSeconds - seconds) * 100).toInt()
         return String.format(Locale.getDefault(), "%02d:%02d", seconds, milliseconds)
-
     }
 }

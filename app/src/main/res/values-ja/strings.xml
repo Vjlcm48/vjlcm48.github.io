@@ -1229,4 +1229,9 @@
 
     <string name="restore_error_no_progress">あなたの Google アカウントには \n保存された進行状況がありません。</string>
 
+    <string name="share_speed_ranking_message">SumaMenteアプリの%1$sゲームでスピードランキング%2$d位を獲得し、平均タイムは%3$.2f秒でした！あなたは私より速くなれますか？</string>
+    <string name="share_global_ranking_message">SumaMenteアプリのグローバルランキングで私のスコアは%1$sポイント、順位は%2$d位です。あなたは私を超えられますか？ https://play.google.com/store/apps/details?id=com.example.sumamente</string>
+    <string name="share_integral_ranking_message">SumaMenteのINTEGRALランキングで%2$d位を獲得しました！私の平均%1$.1fは、9つのチャレンジを極めた達人の一人です。あなたにもその力がありますか？ https://play.google.com/store/apps/details?id=com.example.sumamente</string>
+
+
 </resources>

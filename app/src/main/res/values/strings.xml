@@ -194,11 +194,7 @@
     <string name="check_blue_description">Check azul</string>
     <string name="check_description">Check verde indicando éxito</string>
 
-    <string name="game_numeros_plus" translatable="false">NÚMEROS⁺</string>
-    <string name="game_deci_plus" translatable="false">DECI⁺</string>
-    <string name="game_mas_plus" translatable="false">MÁS⁺</string>
-    <string name="game_genio_plus" translatable="false">GENIO⁺</string>
-    <string name="game_romas" translatable="false">ROMAS</string>
+
 
     <string name="select_data_to_reset">Selecciona los datos que deseas reiniciar</string>
     <string name="reset_score">Reiniciar puntaje</string>
@@ -217,11 +213,17 @@
     <string name="reset_progress_subtitle">Restablecer el progreso del juego</string>
 
     <string name="game_sumaresta" translatable="false">SUMARESTA</string>
+    <string name="game_numeros_plus" translatable="false">NÚMEROS⁺</string>
+    <string name="game_deci_plus" translatable="false">DECI⁺</string>
+    <string name="game_mas_plus" translatable="false">MÁS⁺</string>
+    <string name="game_genio_plus" translatable="false">GENIO⁺</string>
+    <string name="game_romas" translatable="false">ROMAS</string>
+    <string name="game_alfa_numeros" translatable="false">ALFANÚMEROS</string>
 
     <string name="error_invalid_username_length">El nombre debe tener entre 4 y 12 caracteres.</string>
     <string name="error_username_taken">Ops¡ parece que alguien ya está usando \nese nombre, trata con otro.</string>
 
-    <string name="game_alfa_numeros" translatable="false">ALFANÚMEROS</string>
+
 
     <string name="repeated_numbers_yellow_formatted">"Los números %1$s son repetidos. ¡Súmalos bien!"</string>
     <string name="repeated_numbers_blue_formatted">"Los números %1$s son repetidos. ¡Súmalos bien!"</string>
@@ -993,8 +995,10 @@
 
     <string name="precision_global_title">Precisión Global</string>
     <string name="velocidad_promedio_title">Velocidad Promedio Global</string>
-    <string name="precision_global_explanation">La precisión global mide el porcentaje de aciertos en todos tus juegos. Se calcula como:\n\n(Respuestas correctas ÷ Total de juegos) × 100%</string>
-    <string name="velocidad_promedio_explanation">La velocidad promedio global es el tiempo promedio que tardas en responder. Se calcula como:\n\nTiempo total ÷ Número de juegos completados</string>
+    <string name="precision_global_explanation">La precisión global mide el porcentaje de aciertos en todos tus juegos. Se
+        calcula como:\n\n(Respuestas correctas ÷ Total de juegos) × 100%</string>
+    <string name="velocidad_promedio_explanation">La velocidad promedio global es el tiempo promedio que tardas en responder.
+        Se calcula como:\n\nTiempo total ÷ Número de juegos completados</string>
     <string name="info_precision">Información sobre precisión</string>
     <string name="info_velocidad">Información sobre velocidad</string>
 
@@ -1170,7 +1174,8 @@
 
     <!-- 1.2 - ANIMACIÓN APEX SUPREMUS -->
     <string name="apex_titulo">🌟 ¡APEX SUPREMUS CONSEGUIDO! 🌟</string>
-    <string name="apex_descripcion">¡1470 niveles completados, eres digno de la APEX SUPREMUS! 🏆✨ Tu dedicación y maestría mental te han llevado a la cima absoluta de SumaMente. 👑</string>
+    <string name="apex_descripcion">¡1470 niveles completados, eres digno de la APEX SUPREMUS! 🏆✨ Tu dedicación y maestría
+        mental te han llevado a la cima absoluta de SumaMente. 👑</string>
 
     <!-- 1.3 - NOMBRE PARA "MIS CONDECORACIONES LOGRADAS" -->
 
@@ -1544,7 +1549,8 @@
     <string name="restore_check_icon_desc">Check verde indicando éxito en recuperación</string>
 
     <string name="conflict_progress_title">¿Cuál progreso deseas conservar?</string>
-    <string name="conflict_progress_message">Tienes un progreso guardado en la nube y otro en este dispositivo.\n¿Prefieres recuperar el progreso guardado o mantener el actual?</string>
+    <string name="conflict_progress_message">Tienes un progreso guardado en la nube y otro en este dispositivo.\n¿Prefieres recuperar el progreso
+        guardado o mantener el actual?</string>
     <string name="btn_restore_cloud_progress">RECUPERAR PROGRESO GUARDADO</string>
     <string name="btn_keep_local_progress">MANTENER PROGRESO ACTUAL</string>
     <string name="update_success_title">¡PROGRESO ACTUALIZADO!</string>
@@ -1553,7 +1559,8 @@
     <string name="delete_button">Eliminar</string>
     <string name="cancel_button">Cancelar</string>
     <string name="account_deleted_success">Tu cuenta ha sido eliminada.</string>
-    <string name="delete_account_confirm_message">Esta acción eliminará tu cuenta y todo tu progreso (puntos, niveles, medallas) de forma **permanente**. No podrás recuperarlos.</string>
+    <string name="delete_account_confirm_message">Esta acción eliminará tu cuenta y todo tu progreso (puntos, niveles, medallas)
+        de forma **permanente**. No podrás recuperarlos.</string>
     <string name="user_not_authenticated">Usuario no autenticado</string>
     <string name="account_deleted_error_firestore">No se pudo eliminar los datos en la nube. Intenta de nuevo.</string>
     <string name="account_deleted_error_auth">No se pudo eliminar la cuenta de autenticación. Intenta de nuevo.</string>
@@ -1561,5 +1568,16 @@
     <string name="account_delete_in_progress">Eliminando tu cuenta…</string>
 
     <string name="restore_error_no_progress">No existe ningún progreso guardado \nasociado a tu cuenta de Google.</string>
+
+    <string name="share_speed_ranking_message">¡Conseguí el puesto %2$d en el Ranking de Velocidad del juego %1$s en la app S
+        umaMente con un tiempo promedio de %3$.2f segundos! ¿Puedes ser más rápido que yo?</string>
+
+    <string name="share_global_ranking_message">Mi puntaje es %1$s puntos en el Ranking Global de la app SumaMente, estoy en el puesto %2$d.
+        ¿Puedes superarme? https://play.google.com/store/apps/details?id=com.example.sumamente</string>
+
+    <string name="share_integral_ranking_message">¡Conquisté el puesto %2$d en el Ranking INTEGRAL de SumaMente! Mi promedio
+        de %1$.1f me coloca entre los maestros que dominan los 9 desafíos. ¿Tienes lo necesario?
+        https://play.google.com/store/apps/details?id=com.example.sumamente</string>
+
 
 </resources>

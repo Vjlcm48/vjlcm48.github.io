@@ -24,12 +24,14 @@ import kotlin.math.max
 import kotlin.random.Random
 import com.example.sumamente.ui.utils.MusicManager
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.MotionEvent
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.edit
 import com.example.sumamente.ui.utils.DataSyncManager
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDialogListener {
@@ -51,6 +53,8 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
     private var isFinishingByBack = false
 
     private lateinit var floatingLinkButton: View
+
+    private lateinit var btnShareSpeedRanking: FloatingActionButton
     private var isDialogFromFloatingButton = false
     private var pulseAnimator: ValueAnimator? = null
     private var colorAnimator: ValueAnimator? = null
@@ -147,6 +151,8 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
 
         floatingLinkButton = findViewById(R.id.floating_link_button)
 
+        btnShareSpeedRanking = findViewById(R.id.btnShareSpeedRanking)
+
         recyclerView.layoutManager = LinearLayoutManager(this)
         rankingItems = mutableListOf()
         adapter = SpeedRankingAdapter(rankingItems)
@@ -160,6 +166,12 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
                 finish()
             }
         }
+
+        btnShareSpeedRanking.setOnClickListener {
+            compartirRankingVelocidad()
+        }
+
+        setupShareFabMovable()
     }
 
     private fun setupGameSpecificUI() {
@@ -249,6 +261,7 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
         emptyView.visibility = View.GONE
 
         floatingLinkButton.visibility = View.GONE
+        btnShareSpeedRanking.visibility = View.GONE
 
         val tvMsgSpeedRanking = findViewById<TextView>(R.id.tvMsgSpeedRanking)
         tvMsgSpeedRanking.visibility = View.GONE
@@ -468,20 +481,36 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
                 tvMsgSpeedRanking.visibility = View.GONE
             }
 
-            rankingItems.clear()
-            rankingItems.add(
-                SpeedRankingItem(
-                    position = 1,
-                    username = username,
-                    countryCode = countryCode,
-                    averageTime = avgTime,
-                    isCurrentUser = true
-                )
+            DataSyncManager.uploadSpeedRankingToFirebase(
+                userId = getUserId(),
+                userName = username,
+                country = countryCode,
+                gameType = gameType,
+                averageTime = avgTime.toDouble()
             )
-            adapter.notifyItemInserted(0)
-            recyclerView.visibility = View.VISIBLE
-            emptyView.visibility = View.GONE
-            loadingIndicator.visibility = View.GONE
+
+            DataSyncManager.getTopSpeedRanking(
+                userId = getUserId(),
+                userName = username,
+                country = countryCode,
+                gameType = gameType,
+                averageTime = avgTime.toDouble()
+            ) { rankingList, userPosition, userItem ->
+                rankingItems.clear()
+                rankingItems.addAll(rankingList)
+
+                if (userItem != null && userPosition > 200) {
+                    rankingItems.add(userItem.copy(position = userPosition))
+                }
+
+                @Suppress("NotifyDataSetChanged")
+                adapter.notifyDataSetChanged()
+                recyclerView.visibility = View.VISIBLE
+                btnShareSpeedRanking.visibility = View.VISIBLE
+                emptyView.visibility = View.GONE
+                loadingIndicator.visibility = View.GONE
+            }
+
         }, 700)
     }
 
@@ -654,6 +683,61 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
         })
     }
 
+    private fun setupShareFabMovable() {
+        @SuppressLint("ClickableViewAccessibility")
+        btnShareSpeedRanking.setOnTouchListener(object : View.OnTouchListener {
+            private var initialX = 0f
+            private var initialY = 0f
+            private var dX = 0f
+            private var dY = 0f
+            private var isDragging = false
+
+            override fun onTouch(view: View, event: MotionEvent): Boolean {
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        initialX = view.x
+                        initialY = view.y
+                        dX = view.x - event.rawX
+                        dY = view.y - event.rawY
+                        isDragging = false
+                        return true
+                    }
+                    MotionEvent.ACTION_MOVE -> {
+                        val newX = event.rawX + dX
+                        val newY = event.rawY + dY
+
+                        if (kotlin.math.abs(newX - initialX) > 10 || kotlin.math.abs(newY - initialY) > 10) {
+                            isDragging = true
+                        }
+
+                        val screenWidth = resources.displayMetrics.widthPixels
+                        val screenHeight = resources.displayMetrics.heightPixels
+                        val buttonWidth = view.width
+                        val buttonHeight = view.height
+
+                        val constrainedX = newX.coerceIn(0f, (screenWidth - buttonWidth).toFloat())
+                        val constrainedY = newY.coerceIn(0f, (screenHeight - buttonHeight).toFloat())
+
+                        view.animate()
+                            .x(constrainedX)
+                            .y(constrainedY)
+                            .setDuration(0)
+                            .start()
+                        return true
+                    }
+                    MotionEvent.ACTION_UP -> {
+                        if (!isDragging) {
+                            view.performClick()
+                        }
+                        isDragging = false
+                        return true
+                    }
+                }
+                return false
+            }
+        })
+    }
+
     override fun onAcceptLink() {
         FirebaseAuthManager.startGoogleSignIn(
             this,
@@ -738,6 +822,26 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
         }
     }
 
+    private fun compartirRankingVelocidad() {
+        val gameType = intent.getStringExtra(EXTRA_GAME_TYPE) ?: return
+        val gameName = getGameName(gameType)
+
+        val userItem = rankingItems.firstOrNull { it.isCurrentUser }
+
+        if (userItem != null) {
+            val posicion = userItem.position
+            val tiempoPromedio = userItem.averageTime.toDouble()
+
+            val mensaje = getString(R.string.share_speed_ranking_message, gameName, posicion, tiempoPromedio)
+            val intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, mensaje)
+                type = "text/plain"
+            }
+            startActivity(Intent.createChooser(intent, getString(R.string.share)))
+        }
+    }
+
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
         val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.9f).setDuration(50)
         val scaleDownY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 0.9f).setDuration(50)
@@ -794,6 +898,27 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
         val isLinked = sharedPreferences.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)
         if (!isLinked) { block(); return }
         DataSyncManager.syncDataFromCloud(this) { _, _ -> block() }
+    }
+
+    private fun getUserId(): String {
+        val user = try {
+            com.google.firebase.auth.FirebaseAuth.getInstance().currentUser
+        } catch (_: Exception) {
+            null
+        }
+        return user?.uid
+            ?: sharedPreferences.getString("anonymous_user_id", null)
+            ?: generateAnonymousUserId().also { saveAnonymousUserId(it) }
+    }
+
+    private fun generateAnonymousUserId(): String {
+        val id = java.util.UUID.randomUUID().toString()
+        saveAnonymousUserId(id)
+        return id
+    }
+
+    private fun saveAnonymousUserId(id: String) {
+        sharedPreferences.edit { putString("anonymous_user_id", id) }
     }
 
 }

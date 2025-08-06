@@ -96,15 +96,12 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
         initViews()
         setupRecyclerView()
         setupShareButton()
-
         setupShareFabMovable()
-
         setupBackButton()
         setupFloatingButtonInteractions()
 
         spinnerFiltro.visibility = View.GONE
         ensureFreshThen { loadIQPlusRankingData() }
-
 
         // Inicio del cambio flecha de regresar del celular
         val callback = object : OnBackPressedCallback(true) {
@@ -190,19 +187,32 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
                 tvMsgIQPlus.visibility = View.GONE
             }
 
-            val item = IQPlusRankingItem(
-                position = 1,
-                username = nombre,
-                countryCode = pais,
-                iqPlus = iqPlus,
-                isCurrentUser = true
+            DataSyncManager.uploadIQPlusToFirebase(
+                userId = getUserId(),
+                userName = nombre,
+                country = pais,
+                iqPlus = iqPlus
             )
-            rankingIQPlus.add(item)
-            rankingIQPlusFiltrado.add(item)
 
-            adapter.notifyItemInserted(0)
-            recyclerView.visibility = View.VISIBLE
-            btnShareRanking.visibility = View.VISIBLE
+            DataSyncManager.getTopIQPlusRanking(
+                userId = getUserId(),
+                userName = nombre,
+                country = pais,
+                iqPlus = iqPlus
+            ) { rankingList, userPosition, userItem ->
+                rankingIQPlus.clear()
+                rankingIQPlusFiltrado.clear()
+                rankingIQPlus.addAll(rankingList)
+                rankingIQPlusFiltrado.addAll(rankingList)
+
+                if (userItem != null && userPosition > 200) {
+                    rankingIQPlusFiltrado.add(userItem.copy(position = userPosition))
+                }
+                @Suppress("NotifyDataSetChanged")
+                adapter.notifyDataSetChanged()
+                recyclerView.visibility = View.VISIBLE
+                btnShareRanking.visibility = View.VISIBLE
+            }
         }, 800)
     }
 
@@ -738,6 +748,27 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
         val isLinked = sharedPreferences.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)
         if (!isLinked) { block(); return }
         DataSyncManager.syncDataFromCloud(this) { _, _ -> block() }
+    }
+
+    private fun getUserId(): String {
+        val user = try {
+            com.google.firebase.auth.FirebaseAuth.getInstance().currentUser
+        } catch (_: Exception) {
+            null
+        }
+        return user?.uid
+            ?: sharedPreferences.getString("anonymous_user_id", null)
+            ?: generateAnonymousUserId().also { saveAnonymousUserId(it) }
+    }
+
+    private fun generateAnonymousUserId(): String {
+        val id = java.util.UUID.randomUUID().toString()
+        saveAnonymousUserId(id)
+        return id
+    }
+
+    private fun saveAnonymousUserId(id: String) {
+        sharedPreferences.edit { putString("anonymous_user_id", id) }
     }
 
 }
