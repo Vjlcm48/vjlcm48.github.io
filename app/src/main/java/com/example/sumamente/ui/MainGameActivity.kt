@@ -21,25 +21,24 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.content.edit
-import com.example.sumamente.R
-import com.google.android.material.transition.platform.MaterialSharedAxis
-import java.util.Locale
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
+import com.example.sumamente.R
 import com.example.sumamente.ui.utils.DailyCondecoracionesWorker
-import java.util.concurrent.TimeUnit
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.example.sumamente.ui.utils.DataSyncManager
+import com.google.android.material.transition.platform.MaterialSharedAxis
 import com.google.firebase.FirebaseApp
-
+import com.google.firebase.analytics.FirebaseAnalytics
+import java.util.Locale
+import java.util.concurrent.TimeUnit
 
 
 class MainGameActivity : BaseActivity() {
@@ -193,6 +192,7 @@ class MainGameActivity : BaseActivity() {
     }
 
     private fun inicializarCondecoraciones() {
+        ScoreManager.init(this)
         CondecoracionTracker.init(this)
         scheduleDailyCondecoracionesWork()
     }

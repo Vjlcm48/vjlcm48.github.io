@@ -12,6 +12,8 @@ object ScoreManager {
 
     private val gson = Gson()
     private val mapType = object : TypeToken<MutableMap<String, Double>>() {}.type
+    private lateinit var appContext: Context
+
 
     lateinit var preferences: SharedPreferences
 
@@ -487,6 +489,70 @@ object ScoreManager {
     private val gameManagers = mutableMapOf<Triple<Game, Difficulty, String>, GameManager>()
 
     private fun getOrCreateManager(game: Game, difficulty: Difficulty, suffix: String = ""): GameManager {
+
+        val context = appContext
+
+        if (!::preferencesPrincipiante.isInitialized) {
+            preferencesPrincipiante = context.getSharedPreferences(PREFS_NAME_PRINCIPIANTE, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesPro.isInitialized) {
+            preferencesPro = context.getSharedPreferences(PREFS_NAME_PRO, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesDeciPlus.isInitialized) {
+            preferencesDeciPlus = context.getSharedPreferences(PREFS_NAME_DECI_PLUS, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesDeciPlusPrincipiante.isInitialized) {
+            preferencesDeciPlusPrincipiante = context.getSharedPreferences(PREFS_NAME_DECI_PLUS_PRINCIPIANTE, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesDeciPlusPro.isInitialized) {
+            preferencesDeciPlusPro = context.getSharedPreferences(PREFS_NAME_DECI_PLUS_PRO, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesRomas.isInitialized) {
+            preferencesRomas = context.getSharedPreferences(PREFS_NAME_ROMAS, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesRomasPrincipiante.isInitialized) {
+            preferencesRomasPrincipiante = context.getSharedPreferences(PREFS_NAME_ROMAS_PRINCIPIANTE, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesRomasPro.isInitialized) {
+            preferencesRomasPro = context.getSharedPreferences(PREFS_NAME_ROMAS_PRO, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesAlfaNumeros.isInitialized) {
+            preferencesAlfaNumeros = context.getSharedPreferences(PREFS_NAME_ALFANUMEROS, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesAlfaNumerosPrincipiante.isInitialized) {
+            preferencesAlfaNumerosPrincipiante = context.getSharedPreferences(PREFS_NAME_ALFANUMEROS_PRINCIPIANTE, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesAlfaNumerosPro.isInitialized) {
+            preferencesAlfaNumerosPro = context.getSharedPreferences(PREFS_NAME_ALFANUMEROS_PRO, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesSumaResta.isInitialized) {
+            preferencesSumaResta = context.getSharedPreferences(PREFS_NAME_SUMARESTA, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesSumaRestaPrincipiante.isInitialized) {
+            preferencesSumaRestaPrincipiante = context.getSharedPreferences(PREFS_NAME_SUMARESTA_PRINCIPIANTE, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesSumaRestaPro.isInitialized) {
+            preferencesSumaRestaPro = context.getSharedPreferences(PREFS_NAME_SUMARESTA_PRO, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesMasPlus.isInitialized) {
+            preferencesMasPlus = context.getSharedPreferences(PREFS_NAME_MAS_PLUS, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesMasPlusPrincipiante.isInitialized) {
+            preferencesMasPlusPrincipiante = context.getSharedPreferences(PREFS_NAME_MAS_PLUS_PRINCIPIANTE, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesMasPlusPro.isInitialized) {
+            preferencesMasPlusPro = context.getSharedPreferences(PREFS_NAME_MAS_PLUS_PRO, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesGenioPlus.isInitialized) {
+            preferencesGenioPlus = context.getSharedPreferences(PREFS_NAME_GENIO_PLUS, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesGenioPlusPrincipiante.isInitialized) {
+            preferencesGenioPlusPrincipiante = context.getSharedPreferences(PREFS_NAME_GENIO_PLUS_PRINCIPIANTE, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesGenioPlusPro.isInitialized) {
+            preferencesGenioPlusPro = context.getSharedPreferences(PREFS_NAME_GENIO_PLUS_PRO, Context.MODE_PRIVATE)
+        }
+
         val key = Triple(game, difficulty, suffix)
         return gameManagers.getOrPut(key) {
             when (game) {
@@ -657,6 +723,8 @@ object ScoreManager {
 
     fun init(context: Context) {
         ensurePreferencesInitialized(context)
+        appContext = context.applicationContext
+
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
         if (!::preferencesPrincipiante.isInitialized) {
