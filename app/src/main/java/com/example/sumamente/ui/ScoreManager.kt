@@ -1395,24 +1395,6 @@ object ScoreManager {
 
     fun isUserInRanking(rankingName: String): Boolean = getUserPositionInRanking(rankingName) > 0
 
-
-    fun getUserPositionInRankingIntegral(): Int {
-        val rankingsStatus = listOf(
-            isUserInRanking("GLOBAL"),
-            isUserInRanking("VEL_NUMEROS"),
-            isUserInRanking("VEL_DECI"),
-            isUserInRanking("VEL_ALFANUM"),
-            isUserInRanking("VEL_ROMAS"),
-            isUserInRanking("VEL_SUMARESTA"),
-            isUserInRanking("VEL_MAS"),
-            isUserInRanking("VEL_GENIOS"),
-            isUserInRanking("IQ_PLUS")
-        )
-        val rankingsCount = rankingsStatus.count { it }
-        return if (rankingsCount == 9) 1 else -1
-    }
-
-
     fun getTotalUniqueLevelsCompletedAllGames(): Int {
         return getUniqueLevelsPlayedNumerosPlusPrincipiante() +
                 getUniqueLevelsPlayedNumerosPlusAvanzado() +

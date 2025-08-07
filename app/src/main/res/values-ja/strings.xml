@@ -665,7 +665,8 @@
     <string name="ranking_sin_datos">ランキングデータがありません</string>
     <string name="bandera_pais">国旗</string>
     <string name="logro_pin_invictus">卓越性があなたを際立たせる、1日で50のチャレンジをクリアし、INVICTUSを獲得。</string>
-    <string name="logro_medalla_initium">100のユニークなゲームをクリアしました！あなたの献身により、コレクションの始まりであるINITIUMメダルが授与されました。</string>
+
+
     <string name="logro_trofeo_initia">数字をマスターしました！NÚMEROS⁺初心者レベル70をクリアし、INITIAトロフィーを獲得しました。</string>
     <string name="logro_trofeo_constantia">高度な数的習熟！NÚMEROS⁺上級レベル70をクリアし、CONSTANTIAトロフィーを征服しました。</string>
     <string name="logro_trofeo_confectus">数字の最高専門家！NÚMEROS⁺プロレベル70があなたの前に倒れ、CONFECTUSトロフィーが授与されました。</string>
@@ -1172,7 +1173,7 @@
     <string name="toast_cooldown_short">後ほどお知らせします。</string>
 
     <string name="action_unlink_account">アカウントの連携を解除</string>
-    <string name="account_unlinked_success">アカウントの連携が正常に解除されました。</string>
+
 
     <string name="unlink_account_confirm_message">進行状況はクラウドに保存されなくなり、他のデバイスで復元できません。続行しますか？</string>
 
@@ -1205,15 +1206,15 @@
     <string name="btn_restore_progress">進行状況を復元</string>
     <string name="dialog_restore_title">以前の進行状況を復元する</string>
     <string name="dialog_restore_message">Googleアカウントでサインインして、進行状況、実績、プロフィールを復元できます。</string>
-    <string name="dialog_restore_cancel">キャンセル</string>
+
     <string name="dialog_restore_login">Googleアカウントでサインイン</string>
     <string name="restore_success_title">進行状況が復元されました！</string>
-    <string name="restore_success_message">進行状況が正常に復元されました。</string>
+
     <string name="restore_error_title">進行状況の復元エラー</string>
     <string name="restore_error_message">Googleアカウントの保存された進行状況が見つかりませんでした。</string>
-    <string name="restore_error_network">接続に問題が発生しました。もう一度お試しください。</string>
+
     <string name="restore_error_login">Googleでサインインできませんでした。もう一度お試しください。</string>
-    <string name="restore_check_icon_desc">復元成功を示す緑のチェック</string>
+
 
     <string name="conflict_progress_title">どちらの進行状況を保持しますか？</string>
     <string name="conflict_progress_message">クラウドとこのデバイスに進行状況が保存されています。\n保存された進行状況を復元しますか、それとも現在の進行状況を保持しますか？</string>
@@ -1227,7 +1228,6 @@
     <string name="account_delete_error_auth_recent">セキュリティのため、もう一度サインインしてアカウントを削除してください。</string>
     <string name="account_delete_in_progress">アカウントを削除しています…</string>
 
-    <string name="restore_error_no_progress">あなたの Google アカウントには \n保存された進行状況がありません。</string>
 
     <string name="share_speed_ranking_message">SumaMenteアプリの%1$sゲームでスピードランキング%2$d位を獲得し、平均タイムは%3$.2f秒でした！あなたは私より速くなれますか？</string>
     <string name="share_global_ranking_message">SumaMenteアプリのグローバルランキングで私のスコアは%1$sポイント、順位は%2$d位です。あなたは私を超えられますか？ https://play.google.com/store/apps/details?id=com.example.sumamente</string>

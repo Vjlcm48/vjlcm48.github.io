@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import com.example.sumamente.R
+import com.example.sumamente.ui.utils.DataSyncManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.util.Calendar
@@ -470,34 +471,28 @@ object CondecoracionTracker {
     }
 
     private fun procesarCondecoracionesTop10DelDia(context: Context) {
-        val posicionUsuario = consultarPosicionRankingGlobal(context)
-        actualizarCondecoracionTop10DelUsuario(posicionUsuario, context)
+        consultarPosicionRankingGlobalAsync(context) { posicionUsuario ->
+            actualizarCondecoracionTop10DelUsuario(posicionUsuario, context)
+        }
     }
 
-    private fun consultarPosicionRankingGlobal(context: Context): Int {
-        ScoreManager.ensurePreferencesInitialized(context)
-        ScoreManager.init(context)
-        ScoreManager.initPrincipiante(context)
-        ScoreManager.initPro(context)
-        ScoreManager.initDeciPlus(context)
-        ScoreManager.initDeciPlusPrincipiante(context)
-        ScoreManager.initDeciPlusPro(context)
-        ScoreManager.initRomas(context)
-        ScoreManager.initRomasPrincipiante(context)
-        ScoreManager.initRomasPro(context)
-        ScoreManager.initAlfaNumeros(context)
-        ScoreManager.initAlfaNumerosPrincipiante(context)
-        ScoreManager.initAlfaNumerosPro(context)
-        ScoreManager.initSumaResta(context)
-        ScoreManager.initSumaRestaPrincipiante(context)
-        ScoreManager.initSumaRestaPro(context)
-        ScoreManager.initMasPlus(context)
-        ScoreManager.initMasPlusPrincipiante(context)
-        ScoreManager.initMasPlusPro(context)
-        ScoreManager.initGenioPlus(context)
-        ScoreManager.initGenioPlusPrincipiante(context)
-        ScoreManager.initGenioPlusPro(context)
-        return ScoreManager.getUserPositionInRanking("GLOBAL")
+    private fun consultarPosicionRankingGlobalAsync(
+        context: Context,
+        callback: (Int) -> Unit
+    ) {
+        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val username = sharedPreferences.getString("savedUserName", "Usuario") ?: "Usuario"
+        val countryCode = sharedPreferences.getString("savedCountryCode", "us") ?: "us"
+        val totalPoints = calculateTotalGlobalPoints()
+
+        DataSyncManager.getTopGlobalRanking(
+            userId = getUserId(context),
+            userName = username,
+            country = countryCode,
+            totalPoints = totalPoints
+        ) { _, userPosition, _ ->
+            callback(if (userPosition > 0) userPosition else -1)
+        }
     }
 
     private fun actualizarCondecoracionTop10DelUsuario(posicion: Int, context: Context) {
@@ -603,13 +598,28 @@ object CondecoracionTracker {
     }
 
     private fun procesarCondecoracionesIQ7DelDia(context: Context) {
-        val posicionUsuario = consultarPosicionRankingIQ7(context)
-        actualizarCondecoracionIQ7DelUsuario(posicionUsuario, context)
+        consultarPosicionRankingIQ7Async(context) { posicionUsuario ->
+            actualizarCondecoracionIQ7DelUsuario(posicionUsuario, context)
+        }
     }
 
-    private fun consultarPosicionRankingIQ7(context: Context): Int {
-        ScoreManager.ensurePreferencesInitialized(context)
-        return ScoreManager.getUserPositionInRanking("IQ_PLUS")
+    private fun consultarPosicionRankingIQ7Async(
+        context: Context,
+        callback: (Int) -> Unit
+    ) {
+        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val username = sharedPreferences.getString("savedUserName", "Usuario") ?: "Usuario"
+        val countryCode = sharedPreferences.getString("savedCountryCode", "us") ?: "us"
+        val iqPlus = ScoreManager.lastIqComponentByGame.values.sum()
+
+        DataSyncManager.getTopIQPlusRanking(
+            userId = getUserId(context),
+            userName = username,
+            country = countryCode,
+            iqPlus = iqPlus
+        ) { _, userPosition, _ ->
+            callback(if (userPosition > 0) userPosition else -1)
+        }
     }
 
     private fun actualizarCondecoracionIQ7DelUsuario(posicion: Int, context: Context) {
@@ -696,34 +706,28 @@ object CondecoracionTracker {
     }
 
     private fun procesarCondecoracionesTop5IntegralDelDia(context: Context) {
-        val posicionUsuario = consultarPosicionRankingIntegral(context)
-        actualizarCondecoracionTop5IntegralDelUsuario(posicionUsuario, context)
+        consultarPosicionRankingIntegralAsync(context) { posicionUsuario ->
+            actualizarCondecoracionTop5IntegralDelUsuario(posicionUsuario, context)
+        }
     }
 
-    private fun consultarPosicionRankingIntegral(context: Context): Int {
-        ScoreManager.ensurePreferencesInitialized(context)
-        ScoreManager.init(context)
-        ScoreManager.initPrincipiante(context)
-        ScoreManager.initPro(context)
-        ScoreManager.initDeciPlus(context)
-        ScoreManager.initDeciPlusPrincipiante(context)
-        ScoreManager.initDeciPlusPro(context)
-        ScoreManager.initRomas(context)
-        ScoreManager.initRomasPrincipiante(context)
-        ScoreManager.initRomasPro(context)
-        ScoreManager.initAlfaNumeros(context)
-        ScoreManager.initAlfaNumerosPrincipiante(context)
-        ScoreManager.initAlfaNumerosPro(context)
-        ScoreManager.initSumaResta(context)
-        ScoreManager.initSumaRestaPrincipiante(context)
-        ScoreManager.initSumaRestaPro(context)
-        ScoreManager.initMasPlus(context)
-        ScoreManager.initMasPlusPrincipiante(context)
-        ScoreManager.initMasPlusPro(context)
-        ScoreManager.initGenioPlus(context)
-        ScoreManager.initGenioPlusPrincipiante(context)
-        ScoreManager.initGenioPlusPro(context)
-        return ScoreManager.getUserPositionInRankingIntegral()
+    private fun consultarPosicionRankingIntegralAsync(
+        context: Context,
+        callback: (Int) -> Unit
+    ) {
+        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val username = sharedPreferences.getString("savedUserName", "Usuario") ?: "Usuario"
+        val countryCode = sharedPreferences.getString("savedCountryCode", "us") ?: "us"
+        val averagePosition = calculateUserAveragePosition()
+
+        DataSyncManager.getTopIntegralRanking(
+            userId = getUserId(context),
+            userName = username,
+            country = countryCode,
+            averagePosition = averagePosition
+        ) { _, userPosition, _ ->
+            callback(if (userPosition > 0) userPosition else -1)
+        }
     }
 
     private fun actualizarCondecoracionTop5IntegralDelUsuario(posicion: Int, context: Context) {
@@ -817,12 +821,14 @@ object CondecoracionTracker {
     }
 
     private fun procesarInsigniaRIPlusDelDia(context: Context) {
-        val posicionUsuario = consultarPosicionRankingIntegral(context)
-        actualizarInsigniaRIPlusDelUsuario(posicionUsuario)
+        consultarPosicionRankingIntegralAsync(context) { posicionUsuario ->
+            actualizarInsigniaRIPlusDelUsuario(posicionUsuario)
+        }
     }
 
     private fun actualizarInsigniaRIPlusDelUsuario(posicion: Int) {
-        if (posicion == 1) {
+
+        if (posicion > 0) {
             val yaObtenida = insigniaRIPlus != null
             if (!yaObtenida) {
                 val nuevaInsignia = InsigniaRIPlus(
@@ -835,6 +841,7 @@ object CondecoracionTracker {
                 updateRedDotsStatus()
             }
         }
+
     }
 
     fun getInsigniaRIPlus(): InsigniaRIPlus? = insigniaRIPlus
@@ -848,6 +855,7 @@ object CondecoracionTracker {
             }
         }
     }
+
 
     fun verificarYEntregarMedallas(callback: (MedallaObtenida?) -> Unit) {
         val nuevaMedalla = procesarMedallasDelUsuario()
@@ -1095,57 +1103,24 @@ object CondecoracionTracker {
             "NumerosPlus", "DeciPlus", "Romas",
             "AlfaNumeros", "SumaResta", "MasPlus", "GenioPlus"
         )
+
+        val latch = java.util.concurrent.CountDownLatch(juegos.size)
+
         juegos.forEach { juego ->
-            val top3Ranking = consultarRankingExistente(juego, context)
-            actualizarCoronasDelJuego(juego, top3Ranking, context)
+            consultarRankingVelocidadAsync(juego, context) { top3Users ->
+                actualizarCoronasDelJuego(juego, top3Users, context)
+                latch.countDown()
+            }
         }
+
+        latch.await(45, java.util.concurrent.TimeUnit.SECONDS)
     }
 
-    private fun consultarRankingExistente(juego: String, context: Context): List<String> {
-        when (juego) {
-            "NumerosPlus" -> {
-                ScoreManager.ensurePreferencesInitialized(context)
-                ScoreManager.initPrincipiante(context)
-                ScoreManager.init(context)
-                ScoreManager.initPro(context)
-            }
-            "DeciPlus" -> {
-                ScoreManager.ensurePreferencesInitialized(context)
-                ScoreManager.initDeciPlusPrincipiante(context)
-                ScoreManager.initDeciPlus(context)
-                ScoreManager.initDeciPlusPro(context)
-            }
-            "Romas" -> {
-                ScoreManager.ensurePreferencesInitialized(context)
-                ScoreManager.initRomasPrincipiante(context)
-                ScoreManager.initRomas(context)
-                ScoreManager.initRomasPro(context)
-            }
-            "AlfaNumeros" -> {
-                ScoreManager.ensurePreferencesInitialized(context)
-                ScoreManager.initAlfaNumerosPrincipiante(context)
-                ScoreManager.initAlfaNumeros(context)
-                ScoreManager.initAlfaNumerosPro(context)
-            }
-            "SumaResta" -> {
-                ScoreManager.ensurePreferencesInitialized(context)
-                ScoreManager.initSumaRestaPrincipiante(context)
-                ScoreManager.initSumaResta(context)
-                ScoreManager.initSumaRestaPro(context)
-            }
-            "MasPlus" -> {
-                ScoreManager.ensurePreferencesInitialized(context)
-                ScoreManager.initMasPlusPrincipiante(context)
-                ScoreManager.initMasPlus(context)
-                ScoreManager.initMasPlusPro(context)
-            }
-            "GenioPlus" -> {
-                ScoreManager.ensurePreferencesInitialized(context)
-                ScoreManager.initGenioPlusPrincipiante(context)
-                ScoreManager.initGenioPlus(context)
-                ScoreManager.initGenioPlusPro(context)
-            }
-        }
+    private fun consultarRankingVelocidadAsync(
+        juego: String,
+        context: Context,
+        callback: (List<String>) -> Unit
+    ) {
 
         val isEligible = when (juego) {
             "NumerosPlus" -> ScoreManager.isEligibleForSpeedRankingNumerosPlus()
@@ -1159,13 +1134,35 @@ object CondecoracionTracker {
         }
 
         if (!isEligible) {
-            return emptyList()
+            callback(emptyList())
+            return
         }
 
         val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val username = sharedPreferences.getString("savedUserName", "Usuario") ?: "Usuario"
+        val countryCode = sharedPreferences.getString("savedCountryCode", "us") ?: "us"
+        val averageTime = when (juego) {
+            "NumerosPlus" -> ScoreManager.getTiempoPromedioNumerosPlus()
+            "DeciPlus" -> ScoreManager.getTiempoPromedioDeciPlus()
+            "Romas" -> ScoreManager.getTiempoPromedioRomas()
+            "AlfaNumeros" -> ScoreManager.getTiempoPromedioAlfaNumeros()
+            "SumaResta" -> ScoreManager.getTiempoPromedioSumaResta()
+            "MasPlus" -> ScoreManager.getTiempoPromedioMasPlus()
+            "GenioPlus" -> ScoreManager.getTiempoPromedioGenioPlus()
+            else -> 999.0
+        }
 
-        return listOf(username)
+        DataSyncManager.getTopSpeedRanking(
+            userId = getUserId(context),
+            userName = username,
+            country = countryCode,
+            gameType = juego,
+            averageTime = averageTime
+        ) { rankingList, _, _ ->
+
+            val top3 = rankingList.take(3).map { it.username }
+            callback(top3)
+        }
     }
 
     private fun actualizarCoronasDelJuego(juego: String, top3Ranking: List<String>, context: Context) {
@@ -1432,7 +1429,100 @@ object CondecoracionTracker {
         updateRedDotsStatus()
     }
 
-// ====== FIN: SYNC CONDECORACIONES (EXPORT / IMPORT) ======
+    private fun calculateTotalGlobalPoints(): Long {
+        return (ScoreManager.currentScore + ScoreManager.currentScorePrincipiante +
+                ScoreManager.currentScorePro + ScoreManager.currentScoreDeciPlus +
+                ScoreManager.currentScoreDeciPlusPrincipiante + ScoreManager.currentScoreDeciPlusPro +
+                ScoreManager.currentScoreRomas + ScoreManager.currentScoreRomasPrincipiante +
+                ScoreManager.currentScoreRomasPro + ScoreManager.currentScoreAlfaNumeros +
+                ScoreManager.currentScoreAlfaNumerosPrincipiante + ScoreManager.currentScoreAlfaNumerosPro +
+                ScoreManager.currentScoreSumaResta + ScoreManager.currentScoreSumaRestaPrincipiante +
+                ScoreManager.currentScoreSumaRestaPro + ScoreManager.currentScoreMasPlus +
+                ScoreManager.currentScoreMasPlusPrincipiante + ScoreManager.currentScoreMasPlusPro +
+                ScoreManager.currentScoreGenioPlus + ScoreManager.currentScoreGenioPlusPrincipiante +
+                ScoreManager.currentScoreGenioPlusPro).toLong()
+    }
 
+    private fun calculateUserAveragePosition(): Double {
+        val positions = listOf(
+            ScoreManager.getUserPositionInRanking("GLOBAL"),
+            ScoreManager.getUserPositionInRanking("VEL_NUMEROS"),
+            ScoreManager.getUserPositionInRanking("VEL_DECI"),
+            ScoreManager.getUserPositionInRanking("VEL_ALFANUM"),
+            ScoreManager.getUserPositionInRanking("VEL_ROMAS"),
+            ScoreManager.getUserPositionInRanking("VEL_SUMARESTA"),
+            ScoreManager.getUserPositionInRanking("VEL_MAS"),
+            ScoreManager.getUserPositionInRanking("VEL_GENIOS"),
+            ScoreManager.getUserPositionInRanking("IQ_PLUS")
+        )
+        return positions.average()
+    }
+
+    private fun getUserId(context: Context): String {
+        val user = try {
+            com.google.firebase.auth.FirebaseAuth.getInstance().currentUser
+        } catch (_: Exception) {
+            null
+        }
+        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        return user?.uid
+            ?: sharedPreferences.getString("anonymous_user_id", null)
+            ?: generateAnonymousUserId(context)
+    }
+
+    private fun generateAnonymousUserId(context: Context): String {
+        val id = java.util.UUID.randomUUID().toString()
+        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedPreferences.edit { putString("anonymous_user_id", id) }
+        return id
+    }
+
+    fun verificarYActualizarCondecoracionesTop10Async(context: Context, onComplete: () -> Unit) {
+        verificarDiariamente(
+            lastCheckDateKey = KEY_LAST_TOP10_CHECK_DATE,
+            lastCheckDate = lastTop10CheckDate,
+            updateLastCheckDate = { lastTop10CheckDate = it },
+            procesarDia = {
+                procesarCondecoracionesTop10DelDia(context)
+                onComplete()
+            }
+        )
+    }
+
+    fun verificarYActualizarCondecoracionesIQ7Async(context: Context, onComplete: () -> Unit) {
+        verificarDiariamente(
+            lastCheckDateKey = KEY_LAST_IQ7_CHECK_DATE,
+            lastCheckDate = lastIQ7CheckDate,
+            updateLastCheckDate = { lastIQ7CheckDate = it },
+            procesarDia = {
+                procesarCondecoracionesIQ7DelDia(context)
+                onComplete()
+            }
+        )
+    }
+
+    fun verificarYActualizarCondecoracionesTop5IntegralAsync(context: Context, onComplete: () -> Unit) {
+        verificarDiariamente(
+            lastCheckDateKey = KEY_LAST_TOP5_INTEGRAL_CHECK_DATE,
+            lastCheckDate = lastTop5IntegralCheckDate,
+            updateLastCheckDate = { lastTop5IntegralCheckDate = it },
+            procesarDia = {
+                procesarCondecoracionesTop5IntegralDelDia(context)
+                onComplete()
+            }
+        )
+    }
+
+    fun verificarYActualizarCoronasDeVelocidadAsync(context: Context, onComplete: () -> Unit) {
+        verificarDiariamente(
+            lastCheckDateKey = KEY_LAST_CORONA_CHECK_DATE,
+            lastCheckDate = lastCoronaCheckDate,
+            updateLastCheckDate = { lastCoronaCheckDate = it },
+            procesarDia = {
+                procesarCoronasDelDia(context)
+                onComplete()
+            }
+        )
+    }
 
 }

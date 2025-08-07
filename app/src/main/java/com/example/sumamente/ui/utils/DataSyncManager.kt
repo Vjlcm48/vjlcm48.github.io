@@ -38,7 +38,6 @@ object DataSyncManager {
             return
         }
 
-
         val profileBox = buildProfilePreferencesBox(context)
         val scoreJson = ScoreManager.exportAllDataAsJson(context)
         val condecoJson = CondecoracionTracker.exportAllDataAsJson(context)
@@ -55,18 +54,15 @@ object DataSyncManager {
 
 
         val data = hashMapOf(
-
             "username" to userName,
             "countryCode" to countryCode,
             "lastUpdate" to FieldValue.serverTimestamp(),
-
             "iqPlus" to (ScoreManager.lastIqComponentByGame["IQ_PLUS_OVERALL"] ?: 0.0),
             "global_ranking_points" to ScoreManager.getTotalUniqueLevelsCompletedAllGames().toLong(),
-
             "private" to privateData,
-
             "score_schema_version" to SCHEMA_VERSION_SCORE,
-            "condecoracion_schema_version" to SCHEMA_VERSION_CONDECO
+            "condecoracion_schema_version" to SCHEMA_VERSION_CONDECO,
+            "hasInsigniaRIPlus" to (CondecoracionTracker.getInsigniaRIPlus() != null)
         )
 
 
@@ -359,7 +355,8 @@ object DataSyncManager {
                 "savedUserName" to userName,
                 "savedCountryCode" to country
             ),
-            "iqPlus" to iqPlus
+            "iqPlus" to iqPlus,
+            "hasInsigniaRIPlus" to (CondecoracionTracker.getInsigniaRIPlus() != null)
         )
         userDoc.set(data, SetOptions.merge())
     }
@@ -389,6 +386,7 @@ object DataSyncManager {
                     val value = (doc.get("iqPlus") ?: 0.0) as Double
                     val thisUserId = doc.id
                     val isCurrent = thisUserId == userId
+                    val hasInsignia = doc.getBoolean("hasInsigniaRIPlus") ?: false
 
                     if (previousIQPlus != null && value < previousIQPlus) {
                         currentPosition++
@@ -399,7 +397,8 @@ object DataSyncManager {
                         username = name,
                         countryCode = code,
                         iqPlus = value,
-                        isCurrentUser = isCurrent
+                        isCurrentUser = isCurrent,
+                        hasInsigniaRIPlus = hasInsignia
                     )
                     rankingList.add(item)
                     if (isCurrent) {
@@ -421,7 +420,8 @@ object DataSyncManager {
                                 username = userName,
                                 countryCode = country,
                                 iqPlus = iqPlus,
-                                isCurrentUser = true
+                                isCurrentUser = true,
+                                hasInsigniaRIPlus = (CondecoracionTracker.getInsigniaRIPlus() != null)
                             )
                             callback(rankingList, userPosition, userItem)
                         }
@@ -450,7 +450,8 @@ object DataSyncManager {
             "speed_ranking_$gameType" to hashMapOf(
                 "averageTime" to averageTime,
                 "updated_at" to FieldValue.serverTimestamp()
-            )
+            ),
+            "hasInsigniaRIPlus" to (CondecoracionTracker.getInsigniaRIPlus() != null)
         )
         userDoc.set(data, SetOptions.merge())
     }
@@ -483,6 +484,7 @@ object DataSyncManager {
                     val value = (timeData?.get("averageTime") ?: 0.0) as Double
                     val thisUserId = doc.id
                     val isCurrent = thisUserId == userId
+                    val hasInsignia = doc.getBoolean("hasInsigniaRIPlus") ?: false
 
                     if (previousTime != null && value > previousTime) {
                         currentPosition++
@@ -493,7 +495,8 @@ object DataSyncManager {
                         username = name,
                         countryCode = code,
                         averageTime = value.toFloat(),
-                        isCurrentUser = isCurrent
+                        isCurrentUser = isCurrent,
+                        hasInsigniaRIPlus = hasInsignia
                     )
                     rankingList.add(item)
                     if (isCurrent) {
@@ -515,7 +518,8 @@ object DataSyncManager {
                                 username = userName,
                                 countryCode = country,
                                 averageTime = averageTime.toFloat(),
-                                isCurrentUser = true
+                                isCurrentUser = true,
+                                hasInsigniaRIPlus = (CondecoracionTracker.getInsigniaRIPlus() != null)
                             )
                             callback(rankingList, userPosition, userItem)
                         }
@@ -543,7 +547,8 @@ object DataSyncManager {
             "global_ranking" to hashMapOf(
                 "totalPoints" to totalPoints,
                 "updated_at" to FieldValue.serverTimestamp()
-            )
+            ),
+            "hasInsigniaRIPlus" to (CondecoracionTracker.getInsigniaRIPlus() != null)
         )
         userDoc.set(data, SetOptions.merge())
     }
@@ -575,6 +580,7 @@ object DataSyncManager {
                     val value = ((pointsData?.get("totalPoints") ?: 0L) as Number).toLong()
                     val thisUserId = doc.id
                     val isCurrent = thisUserId == userId
+                    val hasInsignia = doc.getBoolean("hasInsigniaRIPlus") ?: false
 
                     if (previousPoints != null && value < previousPoints) {
                         currentPosition++
@@ -585,7 +591,8 @@ object DataSyncManager {
                         username = name,
                         countryCode = code,
                         totalPoints = value,
-                        isCurrentUser = isCurrent
+                        isCurrentUser = isCurrent,
+                        hasInsigniaRIPlus = hasInsignia
                     )
                     rankingList.add(item)
                     if (isCurrent) {
@@ -607,7 +614,8 @@ object DataSyncManager {
                                 username = userName,
                                 countryCode = country,
                                 totalPoints = totalPoints,
-                                isCurrentUser = true
+                                isCurrentUser = true,
+                                hasInsigniaRIPlus = (CondecoracionTracker.getInsigniaRIPlus() != null)
                             )
                             callback(rankingList, userPosition, userItem)
                         }
@@ -636,7 +644,8 @@ object DataSyncManager {
                 "averagePosition" to averagePosition,
                 "eligible" to true,
                 "updated_at" to FieldValue.serverTimestamp()
-            )
+            ),
+            "hasInsigniaRIPlus" to (CondecoracionTracker.getInsigniaRIPlus() != null)
         )
         userDoc.set(data, SetOptions.merge())
     }
@@ -668,6 +677,7 @@ object DataSyncManager {
                     val value = ((integralData?.get("averagePosition") ?: 0.0) as Number).toDouble()
                     val thisUserId = doc.id
                     val isCurrent = thisUserId == userId
+                    val hasInsignia = doc.getBoolean("hasInsigniaRIPlus") ?: false
 
                     if (previousAverage != null && value > previousAverage) {
                         currentPosition++
@@ -678,7 +688,8 @@ object DataSyncManager {
                         username = name,
                         countryCode = code,
                         integralScore = value,
-                        isCurrentUser = isCurrent
+                        isCurrentUser = isCurrent,
+                        hasInsigniaRIPlus = hasInsignia
                     )
                     rankingList.add(item)
                     if (isCurrent) {
@@ -700,7 +711,8 @@ object DataSyncManager {
                                 username = userName,
                                 countryCode = country,
                                 integralScore = averagePosition,
-                                isCurrentUser = true
+                                isCurrentUser = true,
+                                hasInsigniaRIPlus = (CondecoracionTracker.getInsigniaRIPlus() != null)
                             )
                             callback(rankingList, userPosition, userItem)
                         }

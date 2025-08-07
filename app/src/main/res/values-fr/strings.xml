@@ -730,7 +730,6 @@ et de t’amuser. 🚀
 
     <string name="logro_pin_invictus">L\'excellence vous distingue, 50 défis en un jour, obtenant INVICTUS.</string>
 
-    <string name="logro_medalla_initium">Vous avez terminé 100 parties uniques ! Votre dévouement vous a valu la médaille INITIUM, le début de votre collection.</string>
 
     <string name="logro_trofeo_initia">Vous avez maîtrisé les nombres ! Vous avez terminé les 70 niveaux de NOMBRES⁺ Débutant, obtenant le trophée INITIA.</string>
     <string name="logro_trofeo_constantia">Maîtrise numérique avancée ! Vous avez surmonté les 70 niveaux de NOMBRES⁺ Avancé, conquérant le trophée CONSTANTIA.</string>
@@ -1485,7 +1484,6 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
     <string name="toast_cooldown_short">Nous te le rappellerons plus tard.</string>
 
     <string name="action_unlink_account">Dissocier le compte</string>
-    <string name="account_unlinked_success">Compte dissocié avec succès.</string>
 
     <string name="unlink_account_confirm_message">Vos progrès ne seront plus enregistrés dans le cloud et vous ne pourrez pas les récupérer sur d\'autres appareils. Voulez-vous continuer ?</string>
 
@@ -1518,15 +1516,15 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
     <string name="btn_restore_progress">RESTAURER LE PROGRÈS</string>
     <string name="dialog_restore_title">Restaurer votre progression précédente</string>
     <string name="dialog_restore_message">Vous pouvez restaurer votre progression, vos succès et votre profil en vous connectant avec votre compte Google.</string>
-    <string name="dialog_restore_cancel">Annuler</string>
+
     <string name="dialog_restore_login">Se connecter avec votre compte Google</string>
     <string name="restore_success_title">PROGRESSION RESTAURÉE !</string>
-    <string name="restore_success_message">Votre progression a été restaurée avec succès.</string>
+
     <string name="restore_error_title">Erreur lors de la restauration</string>
     <string name="restore_error_message">Aucune progression sauvegardée n\'a été trouvée pour votre compte Google.</string>
-    <string name="restore_error_network">Il y a eu un problème de connexion. Veuillez réessayer.</string>
+
     <string name="restore_error_login">Impossible de se connecter avec Google. Veuillez réessayer.</string>
-    <string name="restore_check_icon_desc">Coche verte indiquant une récupération réussie</string>
+
 
     <string name="conflict_progress_title">Quelle progression souhaitez-vous conserver ?</string>
     <string name="conflict_progress_message">Vous avez une progression enregistrée dans le cloud et une autre sur cet appareil.\nPréférez-vous restaurer la progression enregistrée ou conserver l\'actuelle ?</string>
@@ -1540,7 +1538,6 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
     <string name="account_delete_error_auth_recent">Pour des raisons de sécurité, veuillez vous reconnecter pour supprimer votre compte.</string>
     <string name="account_delete_in_progress">Suppression de votre compte…</string>
 
-    <string name="restore_error_no_progress">Aucune progression sauvegardée n\'est \nassociée à votre compte Google.</string>
 
     <string name="share_speed_ranking_message">J\'ai obtenu la position %2$d dans le classement de vitesse du jeu %1$s dans l\'application SumaMente avec un temps moyen de %3$.2f secondes ! Peux-tu être plus rapide que moi ?</string>
     <string name="share_global_ranking_message">Mon score est de %1$s points dans le classement global de l\'application SumaMente, je suis à la position %2$d. Peux-tu me battre ? https://play.google.com/store/apps/details?id=com.example.sumamente</string>

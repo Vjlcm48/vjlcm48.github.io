@@ -679,7 +679,8 @@
     <string name="ranking_sin_datos">Não há dados de ranking disponíveis</string>
     <string name="bandera_pais">Bandeira do país</string>
     <string name="logro_pin_invictus">A excelência te distingue, 50 desafios em um dia, conseguindo INVICTUS.</string>
-    <string name="logro_medalla_initium">Você completou 100 jogos únicos! Sua dedicação lhe concedeu a medalha INITIUM, o começo de sua coleção.</string>
+
+
     <string name="logro_trofeo_initia">Você dominou os números! Completou os 70 níveis de NÚMEROS⁺ Iniciante, conseguindo o troféu INITIA.</string>
     <string name="logro_trofeo_constantia">Maestria numérica avançada! Você superou os 70 níveis de NÚMEROS⁺ Avançado, conquistando o troféu CONSTANTIA.</string>
     <string name="logro_trofeo_confectus">Expert supremo em números! Os 70 níveis de NÚMEROS⁺ Pro caíram diante de você, concedendo-lhe o troféu CONFECTUS.</string>
@@ -1332,7 +1333,6 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
     <string name="toast_cooldown_short">Lembraremos você mais tarde.</string>
 
     <string name="action_unlink_account">Desvincular Conta</string>
-    <string name="account_unlinked_success">Conta desvinculada com sucesso.</string>
 
     <string name="unlink_account_confirm_message">Seu progresso não será mais salvo na nuvem e você não poderá recuperá-lo em outros dispositivos. Deseja continuar?</string>
 
@@ -1365,15 +1365,15 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
     <string name="btn_restore_progress">RESTAURAR PROGRESSO</string>
     <string name="dialog_restore_title">Restaurar seu Progresso Anterior</string>
     <string name="dialog_restore_message">Você pode restaurar seu progresso, conquistas e perfil fazendo login com sua conta do Google.</string>
-    <string name="dialog_restore_cancel">Cancelar</string>
+
     <string name="dialog_restore_login">Fazer login com sua conta do Google</string>
     <string name="restore_success_title">PROGRESSO RESTAURADO!</string>
-    <string name="restore_success_message">Seu progresso foi restaurado com sucesso.</string>
+
     <string name="restore_error_title">Erro ao Restaurar Progresso</string>
     <string name="restore_error_message">Nenhum progresso salvo foi encontrado para sua conta do Google.</string>
-    <string name="restore_error_network">Houve um problema de conexão. Por favor, tente novamente.</string>
+
     <string name="restore_error_login">Não foi possível fazer login com o Google. Tente novamente.</string>
-    <string name="restore_check_icon_desc">Marca verde indicando recuperação bem-sucedida</string>
+
 
     <string name="conflict_progress_title">Qual progresso você deseja manter?</string>
     <string name="conflict_progress_message">Você tem um progresso salvo na nuvem e outro neste dispositivo.\nDeseja restaurar o progresso salvo ou manter o atual?</string>
@@ -1387,7 +1387,7 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
     <string name="account_delete_error_auth_recent">Por segurança, faça login novamente para excluir sua conta.</string>
     <string name="account_delete_in_progress">Excluindo sua conta…</string>
 
-    <string name="restore_error_no_progress">Não existe nenhum progresso salvo \nassociado à sua conta Google.</string>
+
 
     <string name="share_speed_ranking_message">Conquistei a posição %2$d no Ranking de Velocidade do jogo %1$s no app SumaMente com um tempo médio de %3$.2f segundos! Você consegue ser mais rápido do que eu?</string>
     <string name="share_global_ranking_message">Minha pontuação é %1$s pontos no Ranking Global do app SumaMente, estou na posição %2$d. Você consegue me superar? https://play.google.com/store/apps/details?id=com.example.sumamente</string>

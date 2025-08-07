@@ -727,7 +727,6 @@
 
     <string name="logro_pin_invictus">التميز يميزك، 50 تحديًا في يوم واحد، لتحصل على INVICTUS.</string>
 
-    <string name="logro_medalla_initium">لقد أكملت 100 لعبة فريدة! لقد منحك تفانيك ميدالية INITIUM، بداية مجموعتك.</string>
 
     <string name="logro_trofeo_initia">لقد أتقنت الأرقام! لقد أكملت 70 مستوى من NÚMEROS⁺ للمبتدئين، وحصلت على كأس INITIA.</string>
     <string name="logro_trofeo_constantia">إتقان عددي متقدم! لقد تجاوزت 70 مستوى من NÚMEROS⁺ المتقدم، وفزت بكأس CONSTANTIA.</string>
@@ -1535,7 +1534,7 @@
     <string name="toast_cooldown_short">سنذكرك لاحقًا.</string>
 
     <string name="action_unlink_account">إلغاء ربط الحساب</string>
-    <string name="account_unlinked_success">تم إلغاء ربط الحساب بنجاح.</string>
+
 
     <string name="unlink_account_confirm_message">لن يتم حفظ تقدمك في السحابة بعد الآن ولن تتمكن من استعادته على أجهزة أخرى. هل ترغب في المتابعة؟</string>
 
@@ -1568,15 +1567,15 @@
     <string name="btn_restore_progress">استعادة التقدم</string>
     <string name="dialog_restore_title">استعادة تقدمك السابق</string>
     <string name="dialog_restore_message">يمكنك استعادة تقدمك وإنجازاتك وملفك الشخصي عن طريق تسجيل الدخول بحساب Google الخاص بك.</string>
-    <string name="dialog_restore_cancel">إلغاء</string>
+
     <string name="dialog_restore_login">تسجيل الدخول بحساب Google</string>
     <string name="restore_success_title">تم استعادة التقدم!</string>
-    <string name="restore_success_message">تم استعادة تقدمك بنجاح.</string>
+
     <string name="restore_error_title">خطأ في استعادة التقدم</string>
     <string name="restore_error_message">لم يتم العثور على أي تقدم محفوظ لحساب Google الخاص بك.</string>
-    <string name="restore_error_network">حدثت مشكلة في الاتصال. يرجى المحاولة مرة أخرى.</string>
+
     <string name="restore_error_login">تعذر تسجيل الدخول باستخدام Google. حاول مرة أخرى.</string>
-    <string name="restore_check_icon_desc">علامة خضراء تشير إلى نجاح الاستعادة</string>
+
 
     <string name="conflict_progress_title">أي تقدم تريد الاحتفاظ به؟</string>
     <string name="conflict_progress_message">لديك تقدم محفوظ في السحابة وآخر على هذا الجهاز.\nهل تفضل استعادة التقدم المحفوظ أم الإبقاء على التقدم الحالي؟</string>
@@ -1590,7 +1589,7 @@
     <string name="account_delete_error_auth_recent">لأسباب أمنية، يرجى تسجيل الدخول مرة أخرى لحذف حسابك.</string>
     <string name="account_delete_in_progress">يتم حذف حسابك…</string>
 
-    <string name="restore_error_no_progress">لا يوجد أي تقدم محفوظ \nمرتبط بحسابك على Google.</string>
+
 
     <string name="share_speed_ranking_message">حصلت على المركز %2$d في تصنيف السرعة للعبة %1$s في تطبيق SumaMente بمتوسط وقت %3$.2f ثانية! هل يمكنك أن تكون أسرع مني؟</string>
     <string name="share_global_ranking_message">درجتي هي %1$s نقطة في التصنيف العالمي لتطبيق SumaMente، أنا في المركز %2$d. هل يمكنك التفوق عليّ؟ https://play.google.com/store/apps/details?id=com.example.sumamente</string>

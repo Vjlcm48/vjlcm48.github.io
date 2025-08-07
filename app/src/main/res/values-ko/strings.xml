@@ -664,7 +664,8 @@
     <string name="ranking_sin_datos">랭킹 데이터가 없습니다</string>
     <string name="bandera_pais">국기</string>
     <string name="logro_pin_invictus">탁월함이 당신을 구별합니다. 하루에 50개의 도전을 성공하고 INVICTUS를 획득하세요.</string>
-    <string name="logro_medalla_initium">100개의 독특한 게임을 완료했습니다! 당신의 헌신으로 컬렉션의 시작인 INITIUM 메달을 획득했습니다.</string>
+
+
     <string name="logro_trofeo_initia">숫자를 마스터했습니다! NÚMEROS⁺ 초급 70레벨을 완료하고 INITIA 트로피를 획득했습니다.</string>
     <string name="logro_trofeo_constantia">고급 숫자 숙련도! NÚMEROS⁺ 고급 70레벨을 돌파하고 CONSTANTIA 트로피를 정복했습니다.</string>
     <string name="logro_trofeo_confectus">최고의 숫자 전문가! NÚMEROS⁺ 프로 70레벨이 당신 앞에 무릎을 꿇고 CONFECTUS 트로피를 수여합니다.</string>
@@ -1171,7 +1172,6 @@
     <string name="toast_cooldown_short">나중에 다시 알려드리겠습니다.</string>
 
     <string name="action_unlink_account">계정 연결 해제</string>
-    <string name="account_unlinked_success">계정 연결이 성공적으로 해제되었습니다.</string>
 
     <string name="unlink_account_confirm_message">진행 상황이 더 이상 클라우드에 저장되지 않으며 다른 기기에서 복구할 수 없습니다. 계속하시겠습니까?</string>
 
@@ -1204,15 +1204,14 @@
     <string name="btn_restore_progress">진행 상황 복원</string>
     <string name="dialog_restore_title">이전 진행 상황 복원</string>
     <string name="dialog_restore_message">Google 계정으로 로그인하여 진행 상황, 성취도 및 프로필을 복원할 수 있습니다.</string>
-    <string name="dialog_restore_cancel">취소</string>
+
     <string name="dialog_restore_login">Google 계정으로 로그인</string>
     <string name="restore_success_title">진행 상황이 복원되었습니다!</string>
-    <string name="restore_success_message">진행 상황이 성공적으로 복원되었습니다.</string>
+
     <string name="restore_error_title">진행 상황 복원 오류</string>
     <string name="restore_error_message">Google 계정에 저장된 진행 상황을 찾을 수 없습니다.</string>
-    <string name="restore_error_network">연결에 문제가 발생했습니다. 다시 시도해 주세요.</string>
+
     <string name="restore_error_login">Google로 로그인할 수 없습니다. 다시 시도해 주세요.</string>
-    <string name="restore_check_icon_desc">성공적인 복원을 나타내는 녹색 체크</string>
 
     <string name="conflict_progress_title">어떤 진행 상황을 유지하시겠습니까?</string>
     <string name="conflict_progress_message">클라우드와 이 기기에 진행 상황이 저장되어 있습니다.\n저장된 진행 상황을 복원하시겠습니까, 아니면 현재 진행 상황을 유지하시겠습니까?</string>
@@ -1226,7 +1225,6 @@
     <string name="account_delete_error_auth_recent">보안을 위해 다시 로그인하여 계정을 삭제해 주세요.</string>
     <string name="account_delete_in_progress">계정을 삭제하는 중…</string>
 
-    <string name="restore_error_no_progress">Google 계정과 연관된 저장된 \n진행 상황이 없습니다.</string>
 
     <string name="share_speed_ranking_message">SumaMente 앱의 %1$s 게임 속도 랭킹에서 %2$d위를 기록했고, 평균 시간은 %3$.2f초였습니다! 당신은 저보다 더 빠를 수 있나요?</string>
     <string name="share_global_ranking_message">SumaMente 앱의 글로벌 랭킹에서 내 점수는 %1$s점이고, 나는 %2$d위에 있어요. 당신은 나를 이길 수 있나요? https://play.google.com/store/apps/details?id=com.example.sumamente</string>

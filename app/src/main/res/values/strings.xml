@@ -762,7 +762,6 @@
 
     <string name="logro_pin_invictus">La excelencia te distingue, 50 retos en un día, consiguiendo INVICTUS.</string>
 
-    <string name="logro_medalla_initium">¡Has completado 100 juegos únicos! Tu dedicación te ha otorgado la medalla INITIUM, el comienzo de tu colección.</string>
 
     <string name="logro_trofeo_initia">¡Dominaste los números! Has completado los 70 niveles de NÚMEROS⁺ Principiante, consiguiendo el trofeo INITIA.</string>
     <string name="logro_trofeo_constantia">¡Maestría numérica avanzada! Superaste los 70 niveles de NÚMEROS⁺ Avanzado, conquistando el trofeo CONSTANTIA.</string>
@@ -1505,7 +1504,6 @@
 
     <string name="action_unlink_account">Desvincular Cuenta</string>
 
-    <string name="account_unlinked_success">Cuenta desvinculada con éxito.</string>
 
     <string name="unlink_account_confirm_message">Tu progreso ya no se guardará en la nube y no podrás recuperarlo en otros dispositivos. ¿Deseas continuar?</string>
 
@@ -1538,15 +1536,19 @@
     <string name="btn_restore_progress">RECUPERAR PROGRESO</string>
     <string name="dialog_restore_title">Recuperar tu progreso anterior</string>
     <string name="dialog_restore_message">Puedes restaurar tu avance, logros y perfil iniciando sesión con tu cuenta de Google.</string>
-    <string name="dialog_restore_cancel">Cancelar</string>
+
+
+
     <string name="dialog_restore_login">Inicia sesión con tu cuenta de Google</string>
     <string name="restore_success_title">¡PROGRESO RECUPERADO!</string>
-    <string name="restore_success_message">Tu progreso se ha restaurado correctamente.</string>
+
+
     <string name="restore_error_title">Error al recuperar progreso</string>
+
     <string name="restore_error_message">No se encontró ningún progreso guardado para tu cuenta de Google.</string>
-    <string name="restore_error_network">Hubo un problema de conexión. Por favor, inténtalo de nuevo.</string>
+
     <string name="restore_error_login">No se pudo iniciar sesión con Google. Intenta nuevamente.</string>
-    <string name="restore_check_icon_desc">Check verde indicando éxito en recuperación</string>
+
 
     <string name="conflict_progress_title">¿Cuál progreso deseas conservar?</string>
     <string name="conflict_progress_message">Tienes un progreso guardado en la nube y otro en este dispositivo.\n¿Prefieres recuperar el progreso
@@ -1567,7 +1569,7 @@
     <string name="account_delete_error_auth_recent">Por seguridad, vuelve a iniciar sesión para poder eliminar tu cuenta.</string>
     <string name="account_delete_in_progress">Eliminando tu cuenta…</string>
 
-    <string name="restore_error_no_progress">No existe ningún progreso guardado \nasociado a tu cuenta de Google.</string>
+
 
     <string name="share_speed_ranking_message">¡Conseguí el puesto %2$d en el Ranking de Velocidad del juego %1$s en la app S
         umaMente con un tiempo promedio de %3$.2f segundos! ¿Puedes ser más rápido que yo?</string>

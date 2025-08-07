@@ -737,7 +737,6 @@
 
     <string name="logro_pin_invictus">Exzellenz zeichnet dich aus, 50 Herausforderungen an einem Tag, du hast INVICTUS erreicht.</string>
 
-    <string name="logro_medalla_initium">Du hast 100 einzigartige Spiele abgeschlossen! Deine Hingabe hat dir die INITIUM-Medaille eingebracht, der Anfang deiner Sammlung.</string>
 
     <string name="logro_trofeo_initia">Du hast die Zahlen gemeistert! Du hast die 70 Level von NÚMEROS⁺ Principiante abgeschlossen und die INITIA-Trophäe erhalten.</string>
     <string name="logro_trofeo_constantia">Fortgeschrittene numerische Meisterschaft! Du hast die 70 Level von NÚMEROS⁺ Avanzado gemeistert und die CONSTANTIA-Trophäe erobert.</string>
@@ -1424,7 +1423,7 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
     <string name="toast_cooldown_short">Wir erinnern dich später daran.</string>
 
     <string name="action_unlink_account">Konto trennen</string>
-    <string name="account_unlinked_success">Konto erfolgreich getrennt.</string>
+
 
     <string name="unlink_account_confirm_message">Dein Fortschritt wird nicht mehr in der Cloud gespeichert und du kannst ihn auf anderen Geräten nicht wiederherstellen. Möchtest du fortfahren?</string>
 
@@ -1457,15 +1456,15 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
     <string name="btn_restore_progress">FORTSCHRITT WIEDERHERSTELLEN</string>
     <string name="dialog_restore_title">Ihren vorherigen Fortschritt wiederherstellen</string>
     <string name="dialog_restore_message">Sie können Ihren Fortschritt, Erfolge und Ihr Profil wiederherstellen, indem Sie sich mit Ihrem Google-Konto anmelden.</string>
-    <string name="dialog_restore_cancel">Abbrechen</string>
+
     <string name="dialog_restore_login">Mit Google-Konto anmelden</string>
     <string name="restore_success_title">FORTSCHRITT WIEDERHERGESTELLT!</string>
-    <string name="restore_success_message">Ihr Fortschritt wurde erfolgreich wiederhergestellt.</string>
+
     <string name="restore_error_title">Fehler beim Wiederherstellen des Fortschritts</string>
     <string name="restore_error_message">Für Ihr Google-Konto wurde kein gespeicherter Fortschritt gefunden.</string>
-    <string name="restore_error_network">Es gab ein Verbindungsproblem. Bitte versuchen Sie es erneut.</string>
+
     <string name="restore_error_login">Anmeldung mit Google nicht möglich. Bitte versuchen Sie es erneut.</string>
-    <string name="restore_check_icon_desc">Grünes Häkchen für erfolgreiche Wiederherstellung</string>
+
 
     <string name="conflict_progress_title">Welchen Fortschritt möchtest du behalten?</string>
     <string name="conflict_progress_message">Du hast einen Fortschritt in der Cloud und auf diesem Gerät gespeichert.\nMöchtest du den gespeicherten Fortschritt wiederherstellen oder den aktuellen behalten?</string>
@@ -1479,7 +1478,7 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
     <string name="account_delete_error_auth_recent">Aus Sicherheitsgründen melde dich bitte erneut an, um dein Konto zu löschen.</string>
     <string name="account_delete_in_progress">Dein Konto wird gelöscht…</string>
 
-    <string name="restore_error_no_progress">Es gibt keinen gespeicherten Fortschritt, der \nmit deinem Google-Konto verbunden ist.</string>
+
 
     <string name="share_speed_ranking_message">Ich habe den Platz %2$d im Geschwindigkeitsranking des Spiels %1$s in der SumaMente-App mit einer Durchschnittszeit von %3$.2f Sekunden erreicht! Kannst du schneller sein als ich?</string>
     <string name="share_global_ranking_message">Mein Punktestand ist %1$s im globalen Ranking der SumaMente-App, ich bin auf Platz %2$d. Kannst du mich schlagen? https://play.google.com/store/apps/details?id=com.example.sumamente</string>

@@ -664,7 +664,7 @@
     <string name="ranking_sin_datos">কোনো র‍্যাঙ্কিং ডেটা উপলব্ধ নেই</string>
     <string name="bandera_pais">দেশের পতাকা</string>
     <string name="logro_pin_invictus">উৎকর্ষ আপনাকে আলাদা করে, একদিনে ৫০টি চ্যালেঞ্জ সম্পন্ন করে INVICTUS অর্জন করুন।</string>
-    <string name="logro_medalla_initium">আপনি ১০০টি অনন্য খেলা সম্পন্ন করেছেন! আপনার উৎসর্গ আপনাকে INITIUM পদক দিয়েছে, যা আপনার সংগ্রহের শুরু।</string>
+
     <string name="logro_trofeo_initia">আপনি সংখ্যা আয়ত্ত করেছেন! আপনি NÚMEROS⁺ সহজ স্তরের ৭০টি লেভেল সম্পন্ন করে INITIA ট্রফি অর্জন করেছেন।</string>
     <string name="logro_trofeo_constantia">উন্নত সংখ্যাগত দক্ষতা! আপনি NÚMEROS⁺ উন্নত স্তরের ৭০টি লেভেল অতিক্রম করে CONSTANTIA ট্রফি জয় করেছেন।</string>
     <string name="logro_trofeo_confectus">সংখ্যায় সর্বোচ্চ বিশেষজ্ঞ! NÚMEROS⁺ প্রো স্তরের ৭০টি লেভেল আপনার সামনে হার মেনেছে, আপনাকে CONFECTUS ট্রফি প্রদান করেছে।</string>
@@ -1204,7 +1204,7 @@
     <string name="toast_cooldown_short">আমরা আপনাকে পরে মনে করিয়ে দেব।</string>
 
     <string name="action_unlink_account">অ্যাকাউন্টের সংযোগ বিচ্ছিন্ন করুন</string>
-    <string name="account_unlinked_success">অ্যাকাউন্ট সফলভাবে সংযোগ বিচ্ছিন্ন হয়েছে।</string>
+
 
     <string name="unlink_account_confirm_message">আপনার অগ্রগতি আর ক্লাউডে সংরক্ষণ করা হবে না এবং আপনি এটি অন্য ডিভাইসে পুনরুদ্ধার করতে পারবেন না। আপনি কি চালিয়ে যেতে চান?</string>
 
@@ -1238,15 +1238,15 @@
     <string name="btn_restore_progress">অগ্রগতি পুনরুদ্ধার করুন</string>
     <string name="dialog_restore_title">আপনার পূর্ববর্তী অগ্রগতি পুনরুদ্ধার করুন</string>
     <string name="dialog_restore_message">আপনার Google অ্যাকাউন্ট দিয়ে সাইন ইন করে আপনার অগ্রগতি, অর্জন এবং প্রোফাইল পুনরুদ্ধার করতে পারেন।</string>
-    <string name="dialog_restore_cancel">বাতিল</string>
+
     <string name="dialog_restore_login">আপনার Google অ্যাকাউন্ট দিয়ে সাইন ইন করুন</string>
     <string name="restore_success_title">অগ্রগতি পুনরুদ্ধার হয়েছে!</string>
-    <string name="restore_success_message">আপনার অগ্রগতি সফলভাবে পুনরুদ্ধার হয়েছে।</string>
+
     <string name="restore_error_title">অগ্রগতি পুনরুদ্ধারে ত্রুটি</string>
     <string name="restore_error_message">আপনার Google অ্যাকাউন্টের জন্য কোনো সংরক্ষিত অগ্রগতি পাওয়া যায়নি।</string>
-    <string name="restore_error_network">সংযোগে সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন।</string>
+
     <string name="restore_error_login">Google দিয়ে সাইন ইন করা যায়নি। আবার চেষ্টা করুন।</string>
-    <string name="restore_check_icon_desc">সফল পুনরুদ্ধার নির্দেশকারী সবুজ চেক</string>
+
 
     <string name="conflict_progress_title">আপনি কোন অগ্রগতি রাখতে চান?</string>
     <string name="conflict_progress_message">আপনার অগ্রগতি ক্লাউডে এবং এই ডিভাইসে সেভ করা আছে।\nআপনি কি সেভ করা অগ্রগতি পুনরুদ্ধার করতে চান নাকি বর্তমানটি রাখতে চান?</string>
@@ -1260,7 +1260,7 @@
     <string name="account_delete_error_auth_recent">নিরাপত্তার জন্য, আপনার অ্যাকাউন্ট মুছে ফেলতে আবার সাইন ইন করুন।</string>
     <string name="account_delete_in_progress">আপনার অ্যাকাউন্ট মুছে ফেলা হচ্ছে…</string>
 
-    <string name="restore_error_no_progress">আপনার Google অ্যাকাউন্টের সাথে সম্পর্কিত \nকোনো সংরক্ষিত অগ্রগতি নেই।</string>
+
 
     <string name="share_speed_ranking_message">আমি SumaMente অ্যাপে %1$s গেমের স্পিড র‍্যাংকিংয়ে %2$d নম্বর স্থান পেয়েছি, গড় সময় %3$.2f সেকেন্ড! তুমি কি আমার চেয়ে দ্রুত হতে পারবে?</string>
     <string name="share_global_ranking_message">SumaMente অ্যাপের গ্লোবাল র‍্যাংকিংয়ে আমার স্কোর %1$s পয়েন্ট, আমি %2$d নম্বর স্থানে আছি। তুমি কি আমাকে হারাতে পারবে? https://play.google.com/store/apps/details?id=com.example.sumamente</string>

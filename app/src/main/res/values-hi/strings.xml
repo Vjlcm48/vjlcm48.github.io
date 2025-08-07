@@ -731,7 +731,6 @@
 
     <string name="logro_pin_invictus">उत्कृष्टता आपको अलग करती है, एक दिन में 50 चुनौतियां, INVICTUS प्राप्त करना।</string>
 
-    <string name="logro_medalla_initium">आपने 100 अनोखे गेम पूरे कर लिए हैं! आपके समर्पण ने आपको INITIUM पदक दिलाया है, जो आपके संग्रह की शुरुआत है।</string>
 
     <string name="logro_trofeo_initia">आपने संख्याओं पर महारत हासिल कर ली! आपने NÚMEROS⁺ शुरुआती के 70 स्तर पूरे कर लिए हैं, जिससे आपको INITIA ट्रॉफी मिली है।</string>
     <string name="logro_trofeo_constantia">उन्नत संख्यात्मक महारत! आपने NÚMEROS⁺ उन्नत के 70 स्तरों को पार कर लिया है, CONSTANTIA ट्रॉफी पर विजय प्राप्त की है।</string>
@@ -1420,7 +1419,6 @@
     <string name="toast_cooldown_short">हम आपको बाद में याद दिलाएंगे।</string>
 
     <string name="action_unlink_account">खाता अनलिंक करें</string>
-    <string name="account_unlinked_success">खाता सफलतापूर्वक अनलिंक किया गया।</string>
 
     <string name="unlink_account_confirm_message">आपकी प्रगति अब क्लाउड में सहेजी नहीं जाएगी और आप इसे अन्य डिवाइस पर पुनर्प्राप्त नहीं कर पाएंगे। क्या आप जारी रखना चाहते हैं?</string>
 
@@ -1453,15 +1451,14 @@
     <string name="btn_restore_progress">प्रगति पुनर्स्थापित करें</string>
     <string name="dialog_restore_title">अपनी पिछली प्रगति पुनर्स्थापित करें</string>
     <string name="dialog_restore_message">आप अपने Google खाते से साइन इन करके अपनी प्रगति, उपलब्धियां और प्रोफ़ाइल पुनर्स्थापित कर सकते हैं।</string>
-    <string name="dialog_restore_cancel">रद्द करें</string>
+
     <string name="dialog_restore_login">अपने Google खाते से साइन इन करें</string>
     <string name="restore_success_title">प्रगति पुनर्स्थापित!</string>
-    <string name="restore_success_message">आपकी प्रगति सफलतापूर्वक पुनर्स्थापित हो गई है।</string>
+
     <string name="restore_error_title">प्रगति पुनर्स्थापित करने में त्रुटि</string>
     <string name="restore_error_message">आपके Google खाते के लिए कोई सहेजी गई प्रगति नहीं मिली।</string>
-    <string name="restore_error_network">कनेक्शन की समस्या हुई। कृपया पुनः प्रयास करें।</string>
+
     <string name="restore_error_login">Google से साइन इन नहीं हो सका। पुनः प्रयास करें।</string>
-    <string name="restore_check_icon_desc">सफल पुनर्प्राप्ति को दर्शाने वाला हरा चेक</string>
 
     <string name="conflict_progress_title">आप कौन सी प्रगति रखना चाहते हैं?</string>
     <string name="conflict_progress_message">आपकी प्रगति क्लाउड और इस डिवाइस पर सहेजी गई है।\nक्या आप सहेजी गई प्रगति को पुनर्स्थापित करना चाहते हैं या वर्तमान प्रगति को रखना चाहते हैं?</string>
@@ -1475,7 +1472,6 @@
     <string name="account_delete_error_auth_recent">सुरक्षा के लिए, कृपया अपना खाता हटाने के लिए फिर से साइन इन करें।</string>
     <string name="account_delete_in_progress">आपका खाता हटाया जा रहा है…</string>
 
-    <string name="restore_error_no_progress">आपके Google खाते से जुड़ी कोई भी \nसहेजी गई प्रगति नहीं है।</string>
 
     <string name="share_speed_ranking_message">मैंने SumaMente ऐप में गेम %1$s की स्पीड रैंकिंग में %2$dवाँ स्थान %3$.2f सेकंड के औसत समय के साथ हासिल किया! क्या आप मुझसे तेज़ हो सकते हैं?</string>
     <string name="share_global_ranking_message">मेरा स्कोर SumaMente ऐप की ग्लोबल रैंकिंग में %1$s अंक है, मैं %2$dवें स्थान पर हूँ। क्या आप मुझे हरा सकते हैं? https://play.google.com/store/apps/details?id=com.example.sumamente</string>

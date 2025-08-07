@@ -13,25 +13,26 @@ class DailyCondecoracionesWorker(
 
     override suspend fun doWork(): Result {
         return try {
-
             CondecoracionTracker.init(applicationContext)
-
             initializeAllScoreManagers(applicationContext)
 
             CondecoracionTracker.verificarYEntregarPines()
-            CondecoracionTracker.verificarYActualizarCoronasDeVelocidad(applicationContext)
-            CondecoracionTracker.verificarYActualizarCondecoracionesTop10(applicationContext)
-            CondecoracionTracker.verificarYActualizarCondecoracionesIQ7(applicationContext)
-            CondecoracionTracker.verificarYActualizarCondecoracionesTop5Integral(applicationContext)
+
+            val latch = java.util.concurrent.CountDownLatch(4)
+
+            CondecoracionTracker.verificarYActualizarCoronasDeVelocidadAsync(applicationContext) { latch.countDown() }
+            CondecoracionTracker.verificarYActualizarCondecoracionesTop10Async(applicationContext) { latch.countDown() }
+            CondecoracionTracker.verificarYActualizarCondecoracionesIQ7Async(applicationContext) { latch.countDown() }
+            CondecoracionTracker.verificarYActualizarCondecoracionesTop5IntegralAsync(applicationContext) { latch.countDown() }
+
+            latch.await(45, java.util.concurrent.TimeUnit.SECONDS)
 
             Result.success()
         } catch (e: Exception) {
-
             android.util.Log.e("DailyCondecoracionesWorker", "Error en verificación diaria", e)
             Result.retry()
         }
     }
-
 
     private fun initializeAllScoreManagers(context: Context) {
 

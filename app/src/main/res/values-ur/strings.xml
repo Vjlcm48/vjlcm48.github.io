@@ -664,7 +664,8 @@
     <string name="ranking_sin_datos">درجہ بندی کا کوئی ڈیٹا دستیاب نہیں</string>
     <string name="bandera_pais">ملک کا جھنڈا</string>
     <string name="logro_pin_invictus">فضیلت آپ کو ممتاز کرتی ہے، ایک دن میں 50 چیلنجز، INVICTUS حاصل کرنا۔</string>
-    <string name="logro_medalla_initium">آپ نے 100 منفرد گیمز مکمل کر لیے ہیں! آپ کی لگن نے آپ کو INITIUM تمغہ عطا کیا ہے، جو آپ کے مجموعے کا آغاز ہے۔</string>
+
+
     <string name="logro_trofeo_initia">آپ نے نمبروں پر مہارت حاصل کر لی! آپ نے NÚMEROS⁺ ابتدائی کے 70 لیولز مکمل کر لیے ہیں، جس سے آپ کو INITIA ٹرافی ملی ہے۔</string>
     <string name="logro_trofeo_constantia">اعلیٰ عددی مہارت! آپ نے NÚMEROS⁺ ایڈوانسڈ کے 70 لیولز کو عبور کر لیا ہے، CONSTANTIA ٹرافی کو فتح کر لیا ہے۔</string>
     <string name="logro_trofeo_confectus">نمبروں میں اعلیٰ ماہر! NÚMEROS⁺ پرو کے 70 لیولز آپ کے سامنے گر گئے ہیں، جو آپ کو CONFECTUS ٹرافی عطا کرتے ہیں۔</string>
@@ -1218,7 +1219,6 @@
     <string name="toast_cooldown_short">ہم آپ کو بعد میں یاد دلائیں گے۔</string>
 
     <string name="action_unlink_account">اکاؤنٹ کو اَن لنک کریں</string>
-    <string name="account_unlinked_success">اکاؤنٹ کامیابی سے اَن لنک ہوگیا۔</string>
 
     <string name="unlink_account_confirm_message">آپ کی پیشرفت اب کلاؤڈ میں محفوظ نہیں ہوگی اور آپ اسے دیگر ڈیوائسز پر بحال نہیں کر سکیں گے۔ کیا آپ جاری رکھنا چاہتے ہیں؟</string>
 
@@ -1251,15 +1251,15 @@
     <string name="btn_restore_progress">پیش قدمی بحال کریں</string>
     <string name="dialog_restore_title">اپنی پچھلی پیش قدمی بحال کریں</string>
     <string name="dialog_restore_message">آپ اپنے Google اکاؤنٹ سے سائن ان کر کے اپنی پیش قدمی، کامیابیاں اور پروفائل بحال کر سکتے ہیں۔</string>
-    <string name="dialog_restore_cancel">منسوخ</string>
+
     <string name="dialog_restore_login">اپنے Google اکاؤنٹ سے سائن ان کریں</string>
     <string name="restore_success_title">پیش قدمی بحال ہو گئی!</string>
-    <string name="restore_success_message">آپ کی پیش قدمی کامیابی سے بحال ہو گئی ہے۔</string>
+
     <string name="restore_error_title">پیش قدمی بحالی میں خرابی</string>
     <string name="restore_error_message">آپ کے Google اکاؤنٹ کے لیے کوئی محفوظ شدہ پیش قدمی نہیں ملی۔</string>
-    <string name="restore_error_network">کنکشن میں مسئلہ ہوا۔ براہ کرم دوبارہ کوشش کریں۔</string>
+
     <string name="restore_error_login">Google سے سائن ان نہیں ہو سکا۔ دوبارہ کوشش کریں۔</string>
-    <string name="restore_check_icon_desc">کامیاب بحالی کو ظاہر کرنے والا سبز چیک</string>
+
 
     <string name="conflict_progress_title">آپ کون سی پیشرفت رکھنا چاہتے ہیں؟</string>
     <string name="conflict_progress_message">آپ کی پیشرفت کلاؤڈ میں اور اس ڈیوائس پر محفوظ ہے۔\nکیا آپ محفوظ شدہ پیشرفت کو بحال کرنا چاہتے ہیں یا موجودہ کو رکھنا چاہتے ہیں؟</string>
@@ -1273,7 +1273,6 @@
     <string name="account_delete_error_auth_recent">سیکورٹی کے لیے، براہ کرم اپنا اکاؤنٹ حذف کرنے کے لیے دوبارہ سائن ان کریں۔</string>
     <string name="account_delete_in_progress">آپ کا اکاؤنٹ حذف کیا جا رہا ہے…</string>
 
-    <string name="restore_error_no_progress">آپ کے Google اکاؤنٹ سے منسلک \nکوئی محفوظ پیش رفت نہیں ہے۔</string>
 
     <string name="share_speed_ranking_message">میں نے SumaMente ایپ میں کھیل %1$s کی اسپیڈ رینکنگ میں %2$d واں مقام حاصل کیا، اوسط وقت %3$.2f سیکنڈ! کیا آپ مجھ سے تیز ہو سکتے ہیں؟</string>
     <string name="share_global_ranking_message">میرا اسکور SumaMente ایپ کی عالمی رینکنگ میں %1$s پوائنٹس ہے، میں %2$d ویں پوزیشن پر ہوں۔ کیا آپ مجھے ہرا سکتے ہیں؟ https://play.google.com/store/apps/details?id=com.example.sumamente</string>

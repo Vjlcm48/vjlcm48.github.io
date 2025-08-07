@@ -760,15 +760,13 @@ class HelpTutorialActivityMasPlus : BaseActivity()  {
 
         val density = resources.displayMetrics.density
 
-        // Obtener tamaño real de la mano después de que se haya inflado
+
         lottieHandAnswer.post {
             val handWidth = lottieHandAnswer.width.toFloat()
             val handHeight = lottieHandAnswer.height.toFloat()
 
-            // El dedo índice está aproximadamente al 15% desde la parte superior de la imagen
             val fingerOffsetFromTop = handHeight * 0.15f
 
-            // Ajuste dinámico basado en el tamaño del targetView
             val dynamicAdjustX = when {
                 targetView.width < 100 * density -> -10f * density
                 targetView.width < 200 * density -> 0f
@@ -781,7 +779,6 @@ class HelpTutorialActivityMasPlus : BaseActivity()  {
             val xCenter = targetPos[0] - rootPos[0] + targetView.width / 2f
             val yCenter = targetPos[1] - rootPos[1] + targetView.height / 2f
 
-            // Posicionar para que el dedo índice toque el centro del botón
             lottieHandAnswer.x = xCenter - (handWidth / 2f) + finalAdjustX
             lottieHandAnswer.y = yCenter - fingerOffsetFromTop + finalAdjustY
             lottieHandAnswer.visibility = View.VISIBLE

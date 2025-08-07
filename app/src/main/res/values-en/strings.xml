@@ -750,7 +750,6 @@
 
     <string name="logro_pin_invictus">Excellence distinguishes you for solving 50 different challenges perfectly in one day, achieving the prestigious INVICTUS pin.</string>
 
-    <string name="logro_medalla_initium">You\'ve completed 100 unique games! Your dedication has earned you the INITIUM medal, the beginning of your collection.</string>
 
     <string name="logro_trofeo_initia">You mastered numbers! You\'ve completed all 70 levels of NÚMEROS⁺ Beginner, earning the INITIA trophy.</string>
     <string name="logro_trofeo_constantia">Advanced numerical mastery! You conquered all 70 levels of NÚMEROS⁺ Advanced, claiming the CONSTANTIA trophy.</string>
@@ -1483,7 +1482,6 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
     <string name="toast_cooldown_short">We\'ll remind you later.</string>
 
     <string name="action_unlink_account">Unlink Account</string>
-    <string name="account_unlinked_success">Account unlinked successfully.</string>
 
     <string name="unlink_account_confirm_message">Your progress will no longer be saved to the cloud and you won\'t be able to recover it on other devices. Do you wish to continue?</string>
 
@@ -1516,15 +1514,15 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
     <string name="btn_restore_progress">RESTORE PROGRESS</string>
     <string name="dialog_restore_title">Restore Your Previous Progress</string>
     <string name="dialog_restore_message">You can restore your progress, achievements and profile by signing in with your Google account.</string>
-    <string name="dialog_restore_cancel">Cancel</string>
+
     <string name="dialog_restore_login">Sign in with your Google account</string>
     <string name="restore_success_title">PROGRESS RESTORED!</string>
-    <string name="restore_success_message">Your progress has been restored successfully.</string>
+
     <string name="restore_error_title">Error Restoring Progress</string>
     <string name="restore_error_message">No saved progress was found for your Google account.</string>
-    <string name="restore_error_network">There was a connection problem. Please try again.</string>
+
     <string name="restore_error_login">Could not sign in with Google. Please try again.</string>
-    <string name="restore_check_icon_desc">Green check indicating successful recovery</string>
+
 
     <string name="conflict_progress_title">Which progress do you want to keep?</string>
     <string name="conflict_progress_message">You have progress saved in the cloud and on this device.\nDo you want to restore the saved progress or keep the current one?</string>
@@ -1538,7 +1536,6 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
     <string name="account_delete_error_auth_recent">For security, please sign in again to delete your account.</string>
     <string name="account_delete_in_progress">Deleting your account…</string>
 
-    <string name="restore_error_no_progress">There is no saved progress associated \nwith your Google account.</string>
 
     <string name="share_speed_ranking_message">I got position %2$d in the Speed Ranking of the game %1$s in the SumaMente app with an average time of %3$.2f seconds! Can you be faster than me?</string>
     <string name="share_global_ranking_message">My score is %1$s points in the Global Ranking of the SumaMente app, I am in position %2$d. Can you beat me? https://play.google.com/store/apps/details?id=com.example.sumamente</string>
