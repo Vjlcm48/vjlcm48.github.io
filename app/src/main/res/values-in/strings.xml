@@ -1455,8 +1455,8 @@ Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di 
 
 
     <string name="share_speed_ranking_message">Saya mendapatkan posisi %2$d di Peringkat Kecepatan game %1$s di aplikasi SumaMente dengan waktu rata-rata %3$.2f detik! Bisakah kamu lebih cepat dari saya?</string>
-    <string name="share_global_ranking_message">Skor saya adalah %1$s poin di Peringkat Global aplikasi SumaMente, saya berada di posisi %2$d. Bisakah kamu mengalahkan saya? https://play.google.com/store/apps/details?id=com.example.sumamente</string>
-    <string name="share_integral_ranking_message">Saya menaklukkan posisi %2$d di Peringkat INTEGRAL SumaMente! Rata-rata saya %1$.1f menempatkan saya di antara para master yang menguasai 9 tantangan. Apakah kamu punya kemampuan itu? https://play.google.com/store/apps/details?id=com.example.sumamente</string>
+    <string name="share_global_ranking_message">Skor saya adalah %1$s poin di Peringkat Global aplikasi SumaMente, saya berada di posisi %2$d. Bisakah kamu mengalahkan saya? https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
+    <string name="share_integral_ranking_message">Saya menaklukkan posisi %2$d di Peringkat INTEGRAL SumaMente! Rata-rata saya %1$.1f menempatkan saya di antara para master yang menguasai 9 tantangan. Apakah kamu punya kemampuan itu? https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
 
 
 </resources>

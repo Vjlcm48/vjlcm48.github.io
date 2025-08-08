@@ -1575,11 +1575,11 @@
         umaMente con un tiempo promedio de %3$.2f segundos! ¿Puedes ser más rápido que yo?</string>
 
     <string name="share_global_ranking_message">Mi puntaje es %1$s puntos en el Ranking Global de la app SumaMente, estoy en el puesto %2$d.
-        ¿Puedes superarme? https://play.google.com/store/apps/details?id=com.example.sumamente</string>
+        ¿Puedes superarme? https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
 
     <string name="share_integral_ranking_message">¡Conquisté el puesto %2$d en el Ranking INTEGRAL de SumaMente! Mi promedio
         de %1$.1f me coloca entre los maestros que dominan los 9 desafíos. ¿Tienes lo necesario?
-        https://play.google.com/store/apps/details?id=com.example.sumamente</string>
+        https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
 
 
 </resources>

@@ -39,7 +39,7 @@
         tools:scaleX="1"
         tools:scaleY="1" />
 
-    <com.example.sumamente.ui.LoadingView
+    <com.heptacreation.sumamente.ui.LoadingView
         android:id="@+id/loadingView"
         android:layout_width="177dp"
         android:layout_height="177dp"

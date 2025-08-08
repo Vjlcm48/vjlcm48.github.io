@@ -1481,8 +1481,8 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
 
 
     <string name="share_speed_ranking_message">Ich habe den Platz %2$d im Geschwindigkeitsranking des Spiels %1$s in der SumaMente-App mit einer Durchschnittszeit von %3$.2f Sekunden erreicht! Kannst du schneller sein als ich?</string>
-    <string name="share_global_ranking_message">Mein Punktestand ist %1$s im globalen Ranking der SumaMente-App, ich bin auf Platz %2$d. Kannst du mich schlagen? https://play.google.com/store/apps/details?id=com.example.sumamente</string>
-    <string name="share_integral_ranking_message">Ich habe Platz %2$d im INTEGRAL-Ranking von SumaMente erobert! Mein Durchschnitt von %1$.1f platziert mich unter den Meistern, die alle 9 Herausforderungen meistern. Hast du, was es braucht? https://play.google.com/store/apps/details?id=com.example.sumamente</string>
+    <string name="share_global_ranking_message">Mein Punktestand ist %1$s im globalen Ranking der SumaMente-App, ich bin auf Platz %2$d. Kannst du mich schlagen? https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
+    <string name="share_integral_ranking_message">Ich habe Platz %2$d im INTEGRAL-Ranking von SumaMente erobert! Mein Durchschnitt von %1$.1f platziert mich unter den Meistern, die alle 9 Herausforderungen meistern. Hast du, was es braucht? https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
 
 
 </resources>

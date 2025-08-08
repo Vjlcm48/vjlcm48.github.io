@@ -1275,8 +1275,8 @@
 
 
     <string name="share_speed_ranking_message">میں نے SumaMente ایپ میں کھیل %1$s کی اسپیڈ رینکنگ میں %2$d واں مقام حاصل کیا، اوسط وقت %3$.2f سیکنڈ! کیا آپ مجھ سے تیز ہو سکتے ہیں؟</string>
-    <string name="share_global_ranking_message">میرا اسکور SumaMente ایپ کی عالمی رینکنگ میں %1$s پوائنٹس ہے، میں %2$d ویں پوزیشن پر ہوں۔ کیا آپ مجھے ہرا سکتے ہیں؟ https://play.google.com/store/apps/details?id=com.example.sumamente</string>
-    <string name="share_integral_ranking_message">میں نے SumaMente کی INTEGRAL رینکنگ میں %2$d واں مقام فتح کیا! میرا اوسط %1$.1f مجھے ان ماہرین میں شامل کرتا ہے جو 9 چیلنجز پر عبور رکھتے ہیں۔ کیا آپ میں یہ صلاحیت ہے؟ https://play.google.com/store/apps/details?id=com.example.sumamente</string>
+    <string name="share_global_ranking_message">میرا اسکور SumaMente ایپ کی عالمی رینکنگ میں %1$s پوائنٹس ہے، میں %2$d ویں پوزیشن پر ہوں۔ کیا آپ مجھے ہرا سکتے ہیں؟ https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
+    <string name="share_integral_ranking_message">میں نے SumaMente کی INTEGRAL رینکنگ میں %2$d واں مقام فتح کیا! میرا اوسط %1$.1f مجھے ان ماہرین میں شامل کرتا ہے جو 9 چیلنجز پر عبور رکھتے ہیں۔ کیا آپ میں یہ صلاحیت ہے؟ https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
 
 
 </resources>

@@ -76,7 +76,7 @@
             android:background="@drawable/alfa_circle_drawable"
             android:layout_gravity="center" />
 
-        <com.example.sumamente.ui.ProgressRingView
+        <com.heptacreation.sumamente.ui.ProgressRingView
             android:id="@+id/progress_ring"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

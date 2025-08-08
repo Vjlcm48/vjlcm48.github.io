@@ -1538,8 +1538,8 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
 
 
     <string name="share_speed_ranking_message">I got position %2$d in the Speed Ranking of the game %1$s in the SumaMente app with an average time of %3$.2f seconds! Can you be faster than me?</string>
-    <string name="share_global_ranking_message">My score is %1$s points in the Global Ranking of the SumaMente app, I am in position %2$d. Can you beat me? https://play.google.com/store/apps/details?id=com.example.sumamente</string>
-    <string name="share_integral_ranking_message">I conquered position %2$d in the INTEGRAL Ranking of SumaMente! My average of %1$.1f places me among the masters who have mastered all 9 challenges. Do you have what it takes? https://play.google.com/store/apps/details?id=com.example.sumamente</string>
+    <string name="share_global_ranking_message">My score is %1$s points in the Global Ranking of the SumaMente app, I am in position %2$d. Can you beat me? https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
+    <string name="share_integral_ranking_message">I conquered position %2$d in the INTEGRAL Ranking of SumaMente! My average of %1$.1f places me among the masters who have mastered all 9 challenges. Do you have what it takes? https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
 
 
 </resources>

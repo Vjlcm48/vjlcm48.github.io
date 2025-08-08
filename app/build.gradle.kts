@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.sumamente"
+    namespace = "com.heptacreation.sumamente"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.sumamente"
+        applicationId = "com.heptacreation.sumamente"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

@@ -1474,8 +1474,8 @@
 
 
     <string name="share_speed_ranking_message">मैंने SumaMente ऐप में गेम %1$s की स्पीड रैंकिंग में %2$dवाँ स्थान %3$.2f सेकंड के औसत समय के साथ हासिल किया! क्या आप मुझसे तेज़ हो सकते हैं?</string>
-    <string name="share_global_ranking_message">मेरा स्कोर SumaMente ऐप की ग्लोबल रैंकिंग में %1$s अंक है, मैं %2$dवें स्थान पर हूँ। क्या आप मुझे हरा सकते हैं? https://play.google.com/store/apps/details?id=com.example.sumamente</string>
-    <string name="share_integral_ranking_message">मैंने SumaMente के INTEGRAL रैंकिंग में %2$dवाँ स्थान जीता! मेरा औसत %1$.1f मुझे उन मास्टरों में रखता है जो 9 चुनौतियों में निपुण हैं। क्या आपके पास भी वह काबिलियत है? https://play.google.com/store/apps/details?id=com.example.sumamente</string>
+    <string name="share_global_ranking_message">मेरा स्कोर SumaMente ऐप की ग्लोबल रैंकिंग में %1$s अंक है, मैं %2$dवें स्थान पर हूँ। क्या आप मुझे हरा सकते हैं? https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
+    <string name="share_integral_ranking_message">मैंने SumaMente के INTEGRAL रैंकिंग में %2$dवाँ स्थान जीता! मेरा औसत %1$.1f मुझे उन मास्टरों में रखता है जो 9 चुनौतियों में निपुण हैं। क्या आपके पास भी वह काबिलियत है? https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
 
 
 </resources>

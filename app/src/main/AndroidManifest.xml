@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sumamente">
+    package="com.heptacreation.sumamente">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -18,487 +18,487 @@
         android:hardwareAccelerated="true">
 
         <activity
-            android:name=".ui.SettingsActivity"
+            android:name="com.heptacreation.sumamente.ui.SettingsActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.ProfileEditActivity"
+            android:name="com.heptacreation.sumamente.ui.ProfileEditActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.FlagSelectionActivity"
+            android:name="com.heptacreation.sumamente.ui.FlagSelectionActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LevelsActivity"
+            android:name="com.heptacreation.sumamente.ui.LevelsActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LevelsActivityPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.LevelsActivityPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LevelsActivityPro"
+            android:name="com.heptacreation.sumamente.ui.LevelsActivityPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LevelsActivityDeciPlus"
+            android:name="com.heptacreation.sumamente.ui.LevelsActivityDeciPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LevelsActivityDeciPlusPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.LevelsActivityDeciPlusPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LevelsActivityDeciPlusPro"
+            android:name="com.heptacreation.sumamente.ui.LevelsActivityDeciPlusPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LevelsActivityRomas"
+            android:name="com.heptacreation.sumamente.ui.LevelsActivityRomas"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LevelsActivityRomasPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.LevelsActivityRomasPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LevelsActivityRomasPro"
+            android:name="com.heptacreation.sumamente.ui.LevelsActivityRomasPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LevelsActivityAlfaNumeros"
+            android:name="com.heptacreation.sumamente.ui.LevelsActivityAlfaNumeros"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LevelsActivityAlfaNumerosPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.LevelsActivityAlfaNumerosPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LevelsActivityAlfaNumerosPro"
+            android:name="com.heptacreation.sumamente.ui.LevelsActivityAlfaNumerosPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LevelsActivitySumaResta"
+            android:name="com.heptacreation.sumamente.ui.LevelsActivitySumaResta"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LevelsActivitySumaRestaPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.LevelsActivitySumaRestaPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LevelsActivitySumaRestaPro"
+            android:name="com.heptacreation.sumamente.ui.LevelsActivitySumaRestaPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LevelsActivityMasPlus"
+            android:name="com.heptacreation.sumamente.ui.LevelsActivityMasPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LevelsActivityMasPlusPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.LevelsActivityMasPlusPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LevelsActivityMasPlusPro"
+            android:name="com.heptacreation.sumamente.ui.LevelsActivityMasPlusPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LevelsActivityGenioPlus"
+            android:name="com.heptacreation.sumamente.ui.LevelsActivityGenioPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LevelsActivityGenioPlusPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.LevelsActivityGenioPlusPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LevelsActivityGenioPlusPro"
+            android:name="com.heptacreation.sumamente.ui.LevelsActivityGenioPlusPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.TutorialActivityNumeros"
+            android:name="com.heptacreation.sumamente.ui.TutorialActivityNumeros"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.TutorialActivityDeciPlus"
+            android:name="com.heptacreation.sumamente.ui.TutorialActivityDeciPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.TutorialActivityRomas"
+            android:name="com.heptacreation.sumamente.ui.TutorialActivityRomas"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.TutorialActivitySumaResta"
+            android:name="com.heptacreation.sumamente.ui.TutorialActivitySumaResta"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.TutorialActivityAlfaNumeros"
+            android:name="com.heptacreation.sumamente.ui.TutorialActivityAlfaNumeros"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.TutorialActivityMasPlus"
+            android:name="com.heptacreation.sumamente.ui.TutorialActivityMasPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.TutorialActivityGenioPlus"
+            android:name="com.heptacreation.sumamente.ui.TutorialActivityGenioPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.HelpTutorialActivityNumeros"
+            android:name="com.heptacreation.sumamente.ui.HelpTutorialActivityNumeros"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.HelpTutorialActivityDeciPlus"
+            android:name="com.heptacreation.sumamente.ui.HelpTutorialActivityDeciPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.HelpTutorialActivityRomas"
+            android:name="com.heptacreation.sumamente.ui.HelpTutorialActivityRomas"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.HelpTutorialActivitySumaResta"
+            android:name="com.heptacreation.sumamente.ui.HelpTutorialActivitySumaResta"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.HelpTutorialActivityAlfaNumeros"
+            android:name="com.heptacreation.sumamente.ui.HelpTutorialActivityAlfaNumeros"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.HelpTutorialActivityMasPlus"
+            android:name="com.heptacreation.sumamente.ui.HelpTutorialActivityMasPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.HelpTutorialActivityGenioPlus"
+            android:name="com.heptacreation.sumamente.ui.HelpTutorialActivityGenioPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.InstructionsActivity"
+            android:name="com.heptacreation.sumamente.ui.InstructionsActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.InstructionsActivityPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.InstructionsActivityPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.InstructionsActivityPro"
+            android:name="com.heptacreation.sumamente.ui.InstructionsActivityPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.InstructionsActivityDeciPlus"
+            android:name="com.heptacreation.sumamente.ui.InstructionsActivityDeciPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.InstructionsActivityDeciPlusPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.InstructionsActivityDeciPlusPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.InstructionsActivityDeciPlusPro"
+            android:name="com.heptacreation.sumamente.ui.InstructionsActivityDeciPlusPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.InstructionsActivityRomas"
+            android:name="com.heptacreation.sumamente.ui.InstructionsActivityRomas"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.InstructionsActivityRomasPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.InstructionsActivityRomasPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.InstructionsActivityRomasPro"
+            android:name="com.heptacreation.sumamente.ui.InstructionsActivityRomasPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.InstructionsActivityAlfaNumeros"
+            android:name="com.heptacreation.sumamente.ui.InstructionsActivityAlfaNumeros"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.InstructionsActivityAlfaNumerosPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.InstructionsActivityAlfaNumerosPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.InstructionsActivityAlfaNumerosPro"
+            android:name="com.heptacreation.sumamente.ui.InstructionsActivityAlfaNumerosPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.InstructionsActivitySumaResta"
+            android:name="com.heptacreation.sumamente.ui.InstructionsActivitySumaResta"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.InstructionsActivitySumaRestaPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.InstructionsActivitySumaRestaPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.InstructionsActivitySumaRestaPro"
+            android:name="com.heptacreation.sumamente.ui.InstructionsActivitySumaRestaPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.InstructionsActivityMasPlus"
+            android:name="com.heptacreation.sumamente.ui.InstructionsActivityMasPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.InstructionsActivityMasPlusPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.InstructionsActivityMasPlusPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.InstructionsActivityMasPlusPro"
+            android:name="com.heptacreation.sumamente.ui.InstructionsActivityMasPlusPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.InstructionsActivityGenioPlus"
+            android:name="com.heptacreation.sumamente.ui.InstructionsActivityGenioPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.InstructionsActivityGenioPlusPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.InstructionsActivityGenioPlusPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.InstructionsActivityGenioPlusPro"
+            android:name="com.heptacreation.sumamente.ui.InstructionsActivityGenioPlusPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.GameActivity"
+            android:name="com.heptacreation.sumamente.ui.GameActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.GameActivityPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.GameActivityPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.GameActivityPro"
+            android:name="com.heptacreation.sumamente.ui.GameActivityPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.GameActivityDeciPlus"
+            android:name="com.heptacreation.sumamente.ui.GameActivityDeciPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.GameActivityDeciPlusPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.GameActivityDeciPlusPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.GameActivityDeciPlusPro"
+            android:name="com.heptacreation.sumamente.ui.GameActivityDeciPlusPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.GameActivityRomas"
+            android:name="com.heptacreation.sumamente.ui.GameActivityRomas"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.GameActivityRomasPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.GameActivityRomasPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.GameActivityRomasPro"
+            android:name="com.heptacreation.sumamente.ui.GameActivityRomasPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.GameActivityAlfaNumeros"
+            android:name="com.heptacreation.sumamente.ui.GameActivityAlfaNumeros"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.GameActivityAlfaNumerosPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.GameActivityAlfaNumerosPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.GameActivityAlfaNumerosPro"
+            android:name="com.heptacreation.sumamente.ui.GameActivityAlfaNumerosPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.GameActivitySumaResta"
+            android:name="com.heptacreation.sumamente.ui.GameActivitySumaResta"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.GameActivitySumaRestaPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.GameActivitySumaRestaPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.GameActivitySumaRestaPro"
+            android:name="com.heptacreation.sumamente.ui.GameActivitySumaRestaPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.GameActivityMasPlus"
+            android:name="com.heptacreation.sumamente.ui.GameActivityMasPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.GameActivityMasPlusPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.GameActivityMasPlusPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.GameActivityMasPlusPro"
+            android:name="com.heptacreation.sumamente.ui.GameActivityMasPlusPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.GameActivityGenioPlus"
+            android:name="com.heptacreation.sumamente.ui.GameActivityGenioPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.GameActivityGenioPlusPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.GameActivityGenioPlusPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.GameActivityGenioPlusPro"
+            android:name="com.heptacreation.sumamente.ui.GameActivityGenioPlusPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.SplashScreenActivity"
+            android:name="com.heptacreation.sumamente.ui.SplashScreenActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="true"
@@ -510,167 +510,138 @@
         </activity>
 
         <activity
-            android:name=".ui.LanguageSelectionActivity"
+            android:name="com.heptacreation.sumamente.ui.LanguageSelectionActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.LanguageChangeActivity"
+            android:name="com.heptacreation.sumamente.ui.LanguageChangeActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.TransitionActivity"
+            android:name="com.heptacreation.sumamente.ui.TransitionActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.NotificationsActivity"
+            android:name="com.heptacreation.sumamente.ui.NotificationsActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.UsernameSelectionActivity"
+            android:name="com.heptacreation.sumamente.ui.UsernameSelectionActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.MainGameActivity"
+            android:name="com.heptacreation.sumamente.ui.MainGameActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.ClassificationActivity"
+            android:name="com.heptacreation.sumamente.ui.ClassificationActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.TrofeosActivity"
+            android:name="com.heptacreation.sumamente.ui.TrofeosActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.PinesActivity"
+            android:name="com.heptacreation.sumamente.ui.PinesActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.CoronasActivity"
+            android:name="com.heptacreation.sumamente.ui.CoronasActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.MedallasActivity"
+            android:name="com.heptacreation.sumamente.ui.MedallasActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.TrofeosDetailActivity"
+            android:name="com.heptacreation.sumamente.ui.TrofeosDetailActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.Top10Activity"
+            android:name="com.heptacreation.sumamente.ui.Top10Activity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.Los7MejoresActivity"
+            android:name="com.heptacreation.sumamente.ui.Los7MejoresActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.Los5MejoresActivity"
+            android:name="com.heptacreation.sumamente.ui.Los5MejoresActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.DesafiosActivity"
+            android:name="com.heptacreation.sumamente.ui.DesafiosActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.LevelResultActivity"
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.LevelResultActivityPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivityPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.LevelResultActivityPro"
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivityPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.ExerciseReviewActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:exported="false"
-            android:theme="@style/Theme.SumaMente" />
-
-
-        <activity
-            android:name=".ui.LevelResultActivityDeciPlus"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:exported="false"
-            android:theme="@style/Theme.SumaMente" />
-
-        <activity
-            android:name=".ui.LevelResultActivityDeciPlusPrincipiante"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:exported="false"
-            android:theme="@style/Theme.SumaMente" />
-
-        <activity
-            android:name=".ui.LevelResultActivityDeciPlusPro"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:exported="false"
-            android:theme="@style/Theme.SumaMente" />
-
-        <activity
-            android:name=".ui.ExerciseReviewActivityDeciPlus"
+            android:name="com.heptacreation.sumamente.ui.ExerciseReviewActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
@@ -678,222 +649,251 @@
 
 
         <activity
-            android:name=".ui.LevelResultActivityRomas"
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivityDeciPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.LevelResultActivityRomasPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivityDeciPlusPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.LevelResultActivityRomasPro"
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivityDeciPlusPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.ExerciseReviewActivityRomas"
+            android:name="com.heptacreation.sumamente.ui.ExerciseReviewActivityDeciPlus"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+
+        <activity
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivityRomas"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.LevelResultActivityAlfaNumeros"
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivityRomasPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.LevelResultActivityAlfaNumerosPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivityRomasPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.LevelResultActivityAlfaNumerosPro"
+            android:name="com.heptacreation.sumamente.ui.ExerciseReviewActivityRomas"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.ExerciseReviewActivityAlfaNumeros"
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivityAlfaNumeros"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.LevelResultActivitySumaResta"
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivityAlfaNumerosPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.LevelResultActivitySumaRestaPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivityAlfaNumerosPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.LevelResultActivitySumaRestaPro"
+            android:name="com.heptacreation.sumamente.ui.ExerciseReviewActivityAlfaNumeros"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.ExerciseReviewActivitySumaResta"
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivitySumaResta"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.LevelResultActivityMasPlus"
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivitySumaRestaPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.LevelResultActivityMasPlusPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivitySumaRestaPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.LevelResultActivityMasPlusPro"
+            android:name="com.heptacreation.sumamente.ui.ExerciseReviewActivitySumaResta"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.ExerciseReviewActivityMasPlus"
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivityMasPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.LevelResultActivityGenioPlus"
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivityMasPlusPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.LevelResultActivityGenioPlusPrincipiante"
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivityMasPlusPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.LevelResultActivityGenioPlusPro"
+            android:name="com.heptacreation.sumamente.ui.ExerciseReviewActivityMasPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.ExerciseReviewActivityGenioPlus"
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivityGenioPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.GameSelectionActivity"
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivityGenioPlusPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.ProgressSummaryActivity"
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivityGenioPlusPro"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name="com.heptacreation.sumamente.ui.ExerciseReviewActivityGenioPlus"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name="com.heptacreation.sumamente.ui.GameSelectionActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"
+            android:theme="@style/Theme.SumaMente" />
+
+        <activity
+            android:name="com.heptacreation.sumamente.ui.ProgressSummaryActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.DifficultySelectionActivity"
+            android:name="com.heptacreation.sumamente.ui.DifficultySelectionActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
 
         <activity
-            android:name=".ui.HelpGameSelectionActivity"
+            android:name="com.heptacreation.sumamente.ui.HelpGameSelectionActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.ResetProgressActivity"
+            android:name="com.heptacreation.sumamente.ui.ResetProgressActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.ApexSupremusActivity"
+            android:name="com.heptacreation.sumamente.ui.ApexSupremusActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.RankingActivity"
+            android:name="com.heptacreation.sumamente.ui.RankingActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.SpeedRankingActivity"
+            android:name="com.heptacreation.sumamente.ui.SpeedRankingActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.IQPlusRankingActivity"
+            android:name="com.heptacreation.sumamente.ui.IQPlusRankingActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.IntegralRankingActivity"
+            android:name="com.heptacreation.sumamente.ui.IntegralRankingActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.SpeedClassificationActivity"
+            android:name="com.heptacreation.sumamente.ui.SpeedClassificationActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
         <activity
-            android:name=".ui.MisCondecoracionesActivity"
+            android:name="com.heptacreation.sumamente.ui.MisCondecoracionesActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
