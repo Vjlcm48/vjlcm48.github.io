@@ -22,11 +22,11 @@
     <string name="instruction_text">Escribe tu nombre de usuario.\nUtiliza entre 4 y 12 caracteres</string>
     <string name="btn_accept">Aceptar</string>
     <string name="content_description_check_icon">Icono de verificación</string>
-    <string name="hint_username_input">Nombre usuario</string>
+    <string name="hint_username_input">Nombre de usuario</string>
     <string name="app_logo">Logo de la aplicación</string>
     <string name="trophy">Trofeo</string>
     <string name="settings">Configuraciones</string>
-    <string name="home">Casa</string>
+    <string name="home">Inicio</string>
     <string name="statistics">Estadísticas</string>
     <string name="statistics_text">Clasificación</string>
     <string name="username">Nombre usuario</string>
@@ -130,7 +130,7 @@
     <string name="back">Atrás</string>
     <string name="exit_confirmation">¿Deseas abandonar el juego?</string>
     <string name="progress_ring_description">Aro de progreso mostrando el tiempo restante</string>
-    <string name="prompt_choose_correct_answer">ESCOGE LA RESPUESTA\nCORRECTA</string>
+    <string name="prompt_choose_correct_answer">ELIGE LA RESPUESTA\nCORRECTA</string>
     <string name="respuesta_1">Respuesta 1</string>
     <string name="respuesta_2">Respuesta 2</string>
     <string name="respuesta_3">Respuesta 3</string>
@@ -154,7 +154,7 @@
     <string name="enter_answer_hint">Escribe tu respuesta</string>
     <string name="submit">Enviar</string>
     <string name="vamos_text">Vamos</string>
-    <string name="genial">Genial¡</string>
+    <string name="genial">¡Genial!</string>
     <string name="buen_trabajo">Buen trabajo</string>
     <string name="puntos_obtenidos">Puntos obtenidos: %1$d</string>
     <string name="clasificacion_cambiada">Nueva clasificación. Ver</string>
@@ -221,7 +221,7 @@
     <string name="game_alfa_numeros" translatable="false">ALFANÚMEROS</string>
 
     <string name="error_invalid_username_length">El nombre debe tener entre 4 y 12 caracteres.</string>
-    <string name="error_username_taken">Ops¡ parece que alguien ya está usando \nese nombre, trata con otro.</string>
+    <string name="error_username_taken">¡Ups! parece que alguien ya está usando \nese nombre, trata con otro.</string>
 
 
 
@@ -442,7 +442,7 @@
     <string name="country_tj">Tayikistán</string>
     <string name="country_tl">Timor Oriental</string>
     <string name="country_tm">Turkmenistán</string>
-    <string name="country_tn">Tunez</string>
+    <string name="country_tn">Túnez</string>
     <string name="country_tr">Turquía</string>
     <string name="country_tt">Trinidad y Tobago</string>
     <string name="country_tw">Taiwán</string>
@@ -509,7 +509,7 @@
     <string name="sum_and_subtract_instruction">Resuelve las operaciones considerando números positivos y negativos.</string>
     <string name="general_instructions">Suma los números enteros, decimales, romanos y las letras. Algunos pueden ser negativos¡</string>
 
-    <string name="escoge_tu_modo_de_respuesta">Escoge el modo \nde respuesta que \nmas te guste</string>
+    <string name="escoge_tu_modo_de_respuesta">Escoge el modo \nde respuesta que \nmás te guste</string>
     <string name="instructions_numeros_intro">
     Bienvenido al \ntutorial de:
 </string>

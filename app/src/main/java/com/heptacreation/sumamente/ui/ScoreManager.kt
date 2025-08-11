@@ -1438,7 +1438,7 @@ object ScoreManager {
     private fun isEligibleSpeedMasPlus() = isEligibleForSpeedRankingMasPlus()
     private fun isEligibleSpeedGenioPlus() = isEligibleForSpeedRankingGenioPlus()
 
-    private fun isEligibleIQPlusRanking(): Boolean = haJugadoAlMenosUnNivelEnCadaJuegoYGrado()
+    fun isEligibleIQPlusRanking(): Boolean = haJugadoAlMenosUnNivelEnCadaJuegoYGrado()
 
     fun getRankingList(rankingName: String): List<RankingEntry> {
         val me = preferences.getString("savedUserName", "User")!!

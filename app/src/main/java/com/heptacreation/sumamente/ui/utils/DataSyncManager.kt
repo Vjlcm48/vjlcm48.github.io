@@ -350,11 +350,23 @@ object DataSyncManager {
     ) {
         val db = FirebaseFirestore.getInstance()
         val userDoc = db.collection("usuarios").document(userId)
-        val data = hashMapOf(
-            "profile_preferences" to hashMapOf(
-                "savedUserName" to userName,
-                "savedCountryCode" to country
+
+        userDoc.set(
+            hashMapOf(
+                "profile_preferences" to hashMapOf(
+                    "savedUserName" to userName,
+                    "savedCountryCode" to country
+                )
             ),
+            SetOptions.merge()
+        )
+
+        if (!ScoreManager.isEligibleIQPlusRanking() || !iqPlus.isFinite()) {
+            userDoc.update(mapOf("iqPlus" to FieldValue.delete()))
+            return
+        }
+
+        val data = hashMapOf(
             "iqPlus" to iqPlus,
             "hasInsigniaRIPlus" to (CondecoracionTracker.getInsigniaRIPlus() != null)
         )
@@ -442,12 +454,37 @@ object DataSyncManager {
     ) {
         val db = FirebaseFirestore.getInstance()
         val userDoc = db.collection("usuarios").document(userId)
-        val data = hashMapOf(
-            "profile_preferences" to hashMapOf(
-                "savedUserName" to userName,
-                "savedCountryCode" to country
+
+        userDoc.set(
+            hashMapOf(
+                "profile_preferences" to hashMapOf(
+                    "savedUserName" to userName,
+                    "savedCountryCode" to country
+                )
             ),
-            "speed_ranking_$gameType" to hashMapOf(
+            SetOptions.merge()
+        )
+
+        val fieldName = "speed_ranking_$gameType"
+
+        val isEligible = when (gameType) {
+            "NumerosPlus"  -> ScoreManager.isEligibleForSpeedRankingNumerosPlus()
+            "DeciPlus"     -> ScoreManager.isEligibleForSpeedRankingDeciPlus()
+            "Romas"        -> ScoreManager.isEligibleForSpeedRankingRomas()
+            "AlfaNumeros"  -> ScoreManager.isEligibleForSpeedRankingAlfaNumeros()
+            "SumaResta"    -> ScoreManager.isEligibleForSpeedRankingSumaResta()
+            "MasPlus"      -> ScoreManager.isEligibleForSpeedRankingMasPlus()
+            "GenioPlus"    -> ScoreManager.isEligibleForSpeedRankingGenioPlus()
+            else -> false
+        }
+
+        if (!isEligible || !averageTime.isFinite()) {
+            userDoc.update(mapOf(fieldName to FieldValue.delete()))
+            return
+        }
+
+        val data = hashMapOf(
+            fieldName to hashMapOf(
                 "averageTime" to averageTime,
                 "updated_at" to FieldValue.serverTimestamp()
             ),
@@ -455,6 +492,7 @@ object DataSyncManager {
         )
         userDoc.set(data, SetOptions.merge())
     }
+
 
     fun getTopSpeedRanking(
         userId: String,
@@ -539,11 +577,23 @@ object DataSyncManager {
     ) {
         val db = FirebaseFirestore.getInstance()
         val userDoc = db.collection("usuarios").document(userId)
-        val data = hashMapOf(
-            "profile_preferences" to hashMapOf(
-                "savedUserName" to userName,
-                "savedCountryCode" to country
+
+        userDoc.set(
+            hashMapOf(
+                "profile_preferences" to hashMapOf(
+                    "savedUserName" to userName,
+                    "savedCountryCode" to country
+                )
             ),
+            SetOptions.merge()
+        )
+
+        if (!ScoreManager.isUserInRanking("GLOBAL")) {
+            userDoc.update(mapOf("global_ranking" to FieldValue.delete()))
+            return
+        }
+
+        val data = hashMapOf(
             "global_ranking" to hashMapOf(
                 "totalPoints" to totalPoints,
                 "updated_at" to FieldValue.serverTimestamp()
@@ -552,6 +602,7 @@ object DataSyncManager {
         )
         userDoc.set(data, SetOptions.merge())
     }
+
 
     fun getTopGlobalRanking(
         userId: String,
@@ -635,14 +686,31 @@ object DataSyncManager {
     ) {
         val db = FirebaseFirestore.getInstance()
         val userDoc = db.collection("usuarios").document(userId)
-        val data = hashMapOf(
-            "profile_preferences" to hashMapOf(
-                "savedUserName" to userName,
-                "savedCountryCode" to country
+
+        userDoc.set(
+            hashMapOf(
+                "profile_preferences" to hashMapOf(
+                    "savedUserName" to userName,
+                    "savedCountryCode" to country
+                )
             ),
+            SetOptions.merge()
+        )
+
+        val required = listOf(
+            "GLOBAL","VEL_NUMEROS","VEL_DECI","VEL_ALFANUM","VEL_ROMAS",
+            "VEL_SUMARESTA","VEL_MAS","VEL_GENIOS","IQ_PLUS"
+        )
+        val eligible = required.all { tag -> ScoreManager.isUserInRanking(tag) }
+
+        if (!eligible || !averagePosition.isFinite()) {
+            userDoc.update(mapOf("integral_ranking" to FieldValue.delete()))
+            return
+        }
+
+        val data = hashMapOf(
             "integral_ranking" to hashMapOf(
                 "averagePosition" to averagePosition,
-                "eligible" to true,
                 "updated_at" to FieldValue.serverTimestamp()
             ),
             "hasInsigniaRIPlus" to (CondecoracionTracker.getInsigniaRIPlus() != null)

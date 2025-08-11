@@ -480,6 +480,12 @@ object CondecoracionTracker {
         context: Context,
         callback: (Int) -> Unit
     ) {
+
+        if (!ScoreManager.isUserInRanking("GLOBAL")) {
+            callback(-1)
+            return
+        }
+
         val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val username = sharedPreferences.getString("savedUserName", "Usuario") ?: "Usuario"
         val countryCode = sharedPreferences.getString("savedCountryCode", "us") ?: "us"
@@ -607,6 +613,12 @@ object CondecoracionTracker {
         context: Context,
         callback: (Int) -> Unit
     ) {
+
+        if (!ScoreManager.isUserInRanking("IQ_PLUS")) {
+            callback(-1)
+            return
+        }
+
         val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val username = sharedPreferences.getString("savedUserName", "Usuario") ?: "Usuario"
         val countryCode = sharedPreferences.getString("savedCountryCode", "us") ?: "us"
@@ -715,6 +727,13 @@ object CondecoracionTracker {
         context: Context,
         callback: (Int) -> Unit
     ) {
+
+        val required = listOf("GLOBAL","VEL_NUMEROS","VEL_DECI","VEL_ALFANUM","VEL_ROMAS","VEL_SUMARESTA","VEL_MAS","VEL_GENIOS","IQ_PLUS")
+        if (!required.all { tag -> ScoreManager.isUserInRanking(tag) }) {
+            callback(-1)
+            return
+        }
+
         val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val username = sharedPreferences.getString("savedUserName", "Usuario") ?: "Usuario"
         val countryCode = sharedPreferences.getString("savedCountryCode", "us") ?: "us"
