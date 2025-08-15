@@ -1606,8 +1606,16 @@
     <string name="return_menu" translatable="false">Volver al menú</string>
     <string name="number_unavailable" translatable="false">Número no disponible</string>
     <string name="try_again" translatable="false">Inténtalo de nuevo</string>
-
-
-
+    <string name="new_game_button" translatable="false">Botón de nuevo juego</string>
+    <string name="difficulty_principiante_button" translatable="false">Botón Principiante</string>
+    <string name="difficulty_avanzado_button" translatable="false">Botón Avanzado</string>
+    <string name="difficulty_pro_button" translatable="false">Botón Pro</string>
+    <string name="difficulty_hyper_button" translatable="false">Botón Híper</string>
+    <string name="_1" translatable="false">1</string>
+    <string name="_2" translatable="false">2</string>
+    <string name="_3" translatable="false">3</string>
+    <string name="_4" translatable="false">4</string>
+    <string name="_5" translatable="false">5</string>
+    <string name="todo" translatable="false">TODO</string>
 
 </resources>

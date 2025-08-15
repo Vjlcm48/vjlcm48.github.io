@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/s5e_surface"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:src="@drawable/ic_arrowback"
+            android:backgroundTint="@color/s5e_primary"
+            android:contentDescription="@string/back"
+            android:padding="8dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:tint="@color/s5e_onPrimary" />
+
+        <TextView
+            android:id="@+id/tvTimer"
+            android:text="@string/timer_label"
+            android:textColor="@color/s5e_onSurface"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginStart="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/btnUndo"
+            android:src="@drawable/ic_undo"
+            android:backgroundTint="@color/s5e_primaryContainer"
+            android:contentDescription="@string/btn_undo"
+            android:padding="8dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:tint="@color/s5e_onPrimaryContainer" />
+
+        <ImageButton
+            android:id="@+id/btnGiveUp"
+            android:src="@drawable/ic_give_up"
+            android:backgroundTint="@color/s5e_primaryContainer"
+            android:contentDescription="@string/btn_give_up"
+            android:padding="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:tint="@color/s5e_onPrimaryContainer" />
+
+        <ImageButton
+            android:id="@+id/btnSolution"
+            android:src="@drawable/ic_solution"
+            android:backgroundTint="@color/s5e_primaryContainer"
+            android:contentDescription="@string/btn_show_solution"
+            android:padding="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:tint="@color/s5e_onPrimaryContainer" />
+
+        <ImageButton
+            android:id="@+id/btnCheck"
+            android:src="@drawable/ic_check_green"
+            android:backgroundTint="@color/s5e_primary"
+            android:contentDescription="@string/btn_check"
+            android:padding="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:tint="@color/s5e_onPrimary" />
+    </LinearLayout>
+
+    <GridLayout
+        android:id="@+id/boardGrid"
+        android:layout_marginTop="12dp"
+        android:alignmentMode="alignMargins"
+        android:useDefaultMargins="true"
+        android:columnCount="9"
+        android:rowCount="9"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tvMistakes"
+        android:text="@string/score_label_s5e"
+        android:textColor="@color/s5e_onSurface"
+        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:drawablePadding="8dp"
+        app:drawableStartCompat="@drawable/ic_trofeo"
+        app:drawableTint="@color/s5e_primary" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/key1"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:text="@string/_1"
+            android:textColor="@color/s5e_onPrimaryContainer"
+            android:gravity="center"
+            android:background="@color/s5e_primaryContainer"
+            android:layout_margin="6dp"
+            android:padding="10dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp" />
+
+        <TextView
+            android:id="@+id/key2"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:text="@string/_2"
+            android:textColor="@color/s5e_onPrimaryContainer"
+            android:gravity="center"
+            android:background="@color/s5e_primaryContainer"
+            android:layout_margin="6dp"
+            android:padding="10dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp" />
+
+        <TextView
+            android:id="@+id/key3"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:text="@string/_3"
+            android:textColor="@color/s5e_onPrimaryContainer"
+            android:gravity="center"
+            android:background="@color/s5e_primaryContainer"
+            android:layout_margin="6dp"
+            android:padding="10dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp" />
+
+        <TextView
+            android:id="@+id/key4"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:text="@string/_4"
+            android:textColor="@color/s5e_onPrimaryContainer"
+            android:gravity="center"
+            android:background="@color/s5e_primaryContainer"
+            android:layout_margin="6dp"
+            android:padding="10dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp" />
+
+        <TextView
+            android:id="@+id/key5"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:text="@string/_5"
+            android:textColor="@color/s5e_onPrimaryContainer"
+            android:gravity="center"
+            android:background="@color/s5e_primaryContainer"
+            android:layout_margin="6dp"
+            android:padding="10dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp" />
+    </LinearLayout>
+
+</LinearLayout>

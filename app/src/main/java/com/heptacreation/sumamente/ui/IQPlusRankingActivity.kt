@@ -34,6 +34,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.Locale
 import kotlin.random.Random
 import com.heptacreation.sumamente.ui.utils.DataSyncManager
+import androidx.activity.enableEdgeToEdge
 
 
 import com.heptacreation.sumamente.ui.utils.MusicManager
@@ -66,6 +67,7 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         ScoreManager.ensurePreferencesInitialized(this)
         setContentView(R.layout.activity_iqplus_ranking)

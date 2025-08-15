@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/s5e_surface"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:src="@drawable/ic_arrowback"
+            android:contentDescription="@string/back"
+            android:backgroundTint="@color/s5e_primaryContainer"
+            android:padding="8dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:tint="@color/s5e_onPrimaryContainer" />
+
+        <TextView
+            android:id="@+id/title"
+            android:textColor="@color/s5e_onSurface"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginStart="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+    <GridLayout
+        android:layout_marginTop="24dp"
+        android:alignmentMode="alignMargins"
+        android:columnCount="2"
+        android:rowCount="2"
+        android:useDefaultMargins="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp"
+            android:background="@color/s5e_primaryContainer"
+            android:layout_width="0dp"
+            android:layout_height="140dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1">
+
+            <ImageButton
+                android:id="@+id/btnBeginner"
+                android:src="@drawable/ic_level_select"
+                android:backgroundTint="@color/s5e_primary"
+                android:contentDescription="@string/difficulty_principiante_button"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                app:tint="@color/s5e_onPrimary" />
+
+            <TextView
+                android:text="@string/difficulty_principiante"
+                android:textColor="@color/s5e_onPrimaryContainer"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp"
+            android:background="@color/s5e_primaryContainer"
+            android:layout_width="0dp"
+            android:layout_height="140dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1">
+
+            <ImageButton
+                android:id="@+id/btnAdvanced"
+                android:src="@drawable/ic_level_select"
+                android:backgroundTint="@color/s5e_primary"
+                android:contentDescription="@string/difficulty_avanzado_button"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                app:tint="@color/s5e_onPrimary" />
+
+            <TextView
+                android:text="@string/difficulty_avanzado"
+                android:textColor="@color/s5e_onPrimaryContainer"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp"
+            android:background="@color/s5e_primaryContainer"
+            android:layout_width="0dp"
+            android:layout_height="140dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1">
+
+            <ImageButton
+                android:id="@+id/btnPro"
+                android:src="@drawable/ic_level_select"
+                android:backgroundTint="@color/s5e_primary"
+                android:contentDescription="@string/difficulty_pro_button"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                app:tint="@color/s5e_onPrimary" />
+
+            <TextView
+                android:text="@string/difficulty_pro"
+                android:textColor="@color/s5e_onPrimaryContainer"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp"
+            android:background="@color/s5e_primaryContainer"
+            android:layout_width="0dp"
+            android:layout_height="140dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1">
+
+            <ImageButton
+                android:id="@+id/btnHyper"
+                android:src="@drawable/ic_level_select"
+                android:backgroundTint="@color/s5e_primary"
+                android:contentDescription="@string/difficulty_hyper_button"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                app:tint="@color/s5e_onPrimary" />
+            <TextView
+                android:text="@string/difficulty_hyper"
+                android:textColor="@color/s5e_onPrimaryContainer"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </GridLayout>
+</LinearLayout>

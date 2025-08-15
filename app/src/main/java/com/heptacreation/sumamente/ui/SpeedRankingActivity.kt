@@ -32,6 +32,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.core.content.edit
 import com.heptacreation.sumamente.ui.utils.DataSyncManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import androidx.activity.enableEdgeToEdge
 
 
 class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDialogListener {
@@ -66,6 +67,7 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_speed_ranking)
 

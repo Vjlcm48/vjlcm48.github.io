@@ -26,6 +26,7 @@ import com.heptacreation.sumamente.ui.utils.DataSyncManager
 import com.heptacreation.sumamente.ui.utils.MusicManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlin.random.Random
+import androidx.activity.enableEdgeToEdge
 
 class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDialogListener {
     private lateinit var recyclerView: RecyclerView
@@ -48,6 +49,7 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         ScoreManager.ensurePreferencesInitialized(this)
         setContentView(R.layout.activity_ranking)

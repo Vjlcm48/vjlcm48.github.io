@@ -16,6 +16,7 @@ import com.heptacreation.sumamente.R
 import com.heptacreation.sumamente.ui.utils.MusicManager
 import java.lang.ref.WeakReference
 import androidx.core.view.isVisible
+import androidx.activity.enableEdgeToEdge
 
 class TrofeosActivity : BaseActivity() {
 
@@ -49,6 +50,7 @@ class TrofeosActivity : BaseActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trofeos)
 

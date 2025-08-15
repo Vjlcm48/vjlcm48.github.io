@@ -27,6 +27,7 @@ import com.heptacreation.sumamente.ui.utils.DataSyncManager
 import com.heptacreation.sumamente.ui.utils.MusicManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlin.random.Random
+import androidx.activity.enableEdgeToEdge
 
 
 class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDialogListener {
@@ -49,6 +50,7 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
     private var colorAnimator: ValueAnimator? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_integral_ranking)
 

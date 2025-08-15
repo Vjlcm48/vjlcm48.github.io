@@ -1,9 +1,10 @@
 package com.heptacreation.sumamente.s5e.ui
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import com.heptacreation.sumamente.s5e.ui.base.BaseActivityS5E
 
-class StatsActivityS5E : AppCompatActivity() {
+
+class StatsActivityS5E : BaseActivityS5E() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

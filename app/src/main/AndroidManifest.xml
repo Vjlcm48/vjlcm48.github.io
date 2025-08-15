@@ -899,13 +899,24 @@
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
+
+
+
         <activity
             android:name=".s5e.ui.GameActivityS5E"
             android:exported="false" />
-
         <activity
             android:name=".s5e.ui.StatsActivityS5E"
             android:exported="false" />
+        <activity
+            android:name=".s5e.ui.S5EHomeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".s5e.ui.S5ESelectDifficultyActivity"
+            android:exported="false" />
+
+
+
 
         <provider
             android:name="androidx.core.content.FileProvider"

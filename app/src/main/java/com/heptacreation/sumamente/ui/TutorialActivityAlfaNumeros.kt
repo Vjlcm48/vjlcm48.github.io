@@ -32,6 +32,7 @@ import androidx.core.content.edit
 import com.airbnb.lottie.LottieAnimationView
 import com.heptacreation.sumamente.R
 import java.util.Locale
+import androidx.activity.enableEdgeToEdge
 
 class TutorialActivityAlfaNumeros : BaseActivity()  {
 
@@ -79,6 +80,7 @@ class TutorialActivityAlfaNumeros : BaseActivity()  {
     private var currentNumberIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
         val prefs = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)

@@ -17,6 +17,7 @@ import com.heptacreation.sumamente.R
 import com.heptacreation.sumamente.ui.utils.DataSyncManager
 import android.app.Dialog
 import android.os.Handler
+import androidx.activity.enableEdgeToEdge
 
 
 
@@ -27,6 +28,7 @@ class ProfileEditActivity : BaseActivity(), LinkUnlinkAccountDialogFragment.List
     private var isLinking: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_edit)
 

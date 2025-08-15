@@ -35,7 +35,6 @@ class DesafiosActivity : BaseActivity() {
     private lateinit var btnEntendido: Button
     private lateinit var btnClose: ImageView
     private lateinit var btnBack: ImageView
-
     private lateinit var sharedPreferences: SharedPreferences
     private val handler = Handler(Looper.getMainLooper())
 

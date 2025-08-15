@@ -31,6 +31,7 @@ import androidx.core.content.edit
 import com.airbnb.lottie.LottieAnimationView
 import com.heptacreation.sumamente.R
 import java.util.Locale
+import androidx.activity.enableEdgeToEdge
 
 class TutorialActivityDeciPlus : BaseActivity()  {
 
@@ -80,6 +81,7 @@ class TutorialActivityDeciPlus : BaseActivity()  {
     private var currentNumberIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         val prefs = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)

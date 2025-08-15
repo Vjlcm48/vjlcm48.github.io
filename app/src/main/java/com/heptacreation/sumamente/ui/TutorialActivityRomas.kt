@@ -32,6 +32,7 @@ import androidx.core.content.edit
 import com.airbnb.lottie.LottieAnimationView
 import com.heptacreation.sumamente.R
 import java.util.Locale
+import androidx.activity.enableEdgeToEdge
 
 class TutorialActivityRomas : BaseActivity()  {
 
@@ -79,6 +80,7 @@ class TutorialActivityRomas : BaseActivity()  {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
         val prefs = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)

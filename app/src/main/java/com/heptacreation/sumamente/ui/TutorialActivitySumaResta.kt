@@ -31,6 +31,7 @@ import androidx.core.content.edit
 import com.airbnb.lottie.LottieAnimationView
 import com.heptacreation.sumamente.R
 import java.util.Locale
+import androidx.activity.enableEdgeToEdge
 
 class TutorialActivitySumaResta : BaseActivity()  {
 
@@ -78,9 +79,10 @@ class TutorialActivitySumaResta : BaseActivity()  {
     private var soundEffectPlayer: MediaPlayer? = null
 
     private var currentNumberIndex = 0
-    // private var selectedModeSumaResta = ResponseModeSumaResta.SIMPLE_SELECTION
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
         val prefs = getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)

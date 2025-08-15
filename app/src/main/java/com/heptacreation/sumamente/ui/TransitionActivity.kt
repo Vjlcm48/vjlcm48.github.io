@@ -15,6 +15,7 @@ import android.widget.TextView
 import androidx.core.animation.addListener
 import com.heptacreation.sumamente.R
 import kotlin.random.Random
+import androidx.activity.enableEdgeToEdge
 
 class TransitionActivity : BaseActivity() {
 
@@ -28,6 +29,7 @@ class TransitionActivity : BaseActivity() {
     private lateinit var transitionRunnable: Runnable
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_transition)
 

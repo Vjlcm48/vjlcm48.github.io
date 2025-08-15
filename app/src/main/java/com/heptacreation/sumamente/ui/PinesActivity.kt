@@ -12,6 +12,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.heptacreation.sumamente.R
 import kotlin.math.abs
 import com.heptacreation.sumamente.ui.utils.MusicManager
+import androidx.activity.enableEdgeToEdge
 
 class PinesActivity : BaseActivity()  {
 
@@ -24,6 +25,7 @@ class PinesActivity : BaseActivity()  {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pines)
 
