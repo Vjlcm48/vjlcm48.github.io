@@ -11,6 +11,7 @@ import android.widget.ImageView
 import androidx.activity.OnBackPressedCallback
 import com.heptacreation.sumamente.R
 import com.heptacreation.sumamente.ui.utils.MusicManager
+import androidx.activity.enableEdgeToEdge
 
 class ApexSupremusActivity : BaseActivity()  {
 
@@ -22,6 +23,7 @@ class ApexSupremusActivity : BaseActivity()  {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_apex_supremus)
 

@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import com.heptacreation.sumamente.R
+import androidx.activity.enableEdgeToEdge
 
 class LevelsActivitySumaResta : BaseActivity()  {
 
@@ -48,6 +49,7 @@ class LevelsActivitySumaResta : BaseActivity()  {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
         setContentView(R.layout.activity_levels_suma_resta)
@@ -160,21 +162,25 @@ class LevelsActivitySumaResta : BaseActivity()  {
             val button = Button(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
                     0,
-                    48.dpToPx(this@LevelsActivitySumaResta),
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
                     1f
                 ).apply {
                     setMargins(0, 0, 8.dpToPx(this@LevelsActivitySumaResta), 0)
                 }
+
                 text = getString(levelStrings[i])
-                textSize = 16f
+
                 setTypeface(null, Typeface.BOLD)
+
                 setTextColor(ContextCompat.getColor(this@LevelsActivitySumaResta, android.R.color.white))
                 gravity = Gravity.CENTER
+
+                minimumHeight = 56.dpToPx(this@LevelsActivitySumaResta)
                 setPadding(
                     16.dpToPx(this@LevelsActivitySumaResta),
-                    8.dpToPx(this@LevelsActivitySumaResta),
+                    12.dpToPx(this@LevelsActivitySumaResta),
                     16.dpToPx(this@LevelsActivitySumaResta),
-                    8.dpToPx(this@LevelsActivitySumaResta)
+                    12.dpToPx(this@LevelsActivitySumaResta)
                 )
 
                 if (i < ScoreManager.unlockedLevelsSumaResta && (!ScoreManager.isLevelBlockedByFailuresSumaResta(i + 1) || i == 0)) {
@@ -225,12 +231,15 @@ class LevelsActivitySumaResta : BaseActivity()  {
 
             val lockIcon = ImageView(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
-                    36.dpToPx(this@LevelsActivitySumaResta),
-                    36.dpToPx(this@LevelsActivitySumaResta)
-                ).apply {
-                    gravity = Gravity.CENTER_VERTICAL
-                }
-                setImageResource(if (i < ScoreManager.unlockedLevelsSumaResta && (!ScoreManager.isLevelBlockedByFailuresSumaResta(i + 1) || i == 0)) R.drawable.ic_unlock else R.drawable.ic_lock)
+                    24.dpToPx(this@LevelsActivitySumaResta),
+                    24.dpToPx(this@LevelsActivitySumaResta)
+                ).apply { gravity = Gravity.CENTER_VERTICAL }
+
+                setImageResource(
+                    if (i < ScoreManager.unlockedLevelsSumaResta &&
+                        (!ScoreManager.isLevelBlockedByFailuresSumaResta(i + 1) || i == 0)
+                    ) R.drawable.ic_unlock else R.drawable.ic_lock
+                )
                 scaleType = ImageView.ScaleType.CENTER_INSIDE
             }
 

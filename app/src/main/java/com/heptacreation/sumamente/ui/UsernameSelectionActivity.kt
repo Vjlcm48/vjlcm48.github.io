@@ -18,6 +18,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.edit
 import com.heptacreation.sumamente.R
 import com.google.android.material.textfield.TextInputLayout
+import androidx.activity.enableEdgeToEdge
 
 class UsernameSelectionActivity : BaseActivity() {
 
@@ -29,6 +30,7 @@ class UsernameSelectionActivity : BaseActivity() {
     private lateinit var btnAccept: AppCompatButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_username_selection)

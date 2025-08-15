@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import com.heptacreation.sumamente.R
+import androidx.activity.enableEdgeToEdge
 
 class LevelsActivitySumaRestaPrincipiante : BaseActivity()  {
 
@@ -48,6 +49,7 @@ class LevelsActivitySumaRestaPrincipiante : BaseActivity()  {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
         setContentView(R.layout.activity_levels_suma_resta)
@@ -157,21 +159,25 @@ class LevelsActivitySumaRestaPrincipiante : BaseActivity()  {
             val button = Button(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
                     0,
-                    48.dpToPx(this@LevelsActivitySumaRestaPrincipiante),
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
                     1f
                 ).apply {
                     setMargins(0, 0, 8.dpToPx(this@LevelsActivitySumaRestaPrincipiante), 0)
                 }
+
                 text = getString(levelStrings[i])
-                textSize = 16f
+
+
                 setTypeface(null, Typeface.BOLD)
                 setTextColor(ContextCompat.getColor(this@LevelsActivitySumaRestaPrincipiante, android.R.color.white))
                 gravity = Gravity.CENTER
+
+                minimumHeight = 56.dpToPx(this@LevelsActivitySumaRestaPrincipiante)
                 setPadding(
                     16.dpToPx(this@LevelsActivitySumaRestaPrincipiante),
-                    8.dpToPx(this@LevelsActivitySumaRestaPrincipiante),
+                    12.dpToPx(this@LevelsActivitySumaRestaPrincipiante),
                     16.dpToPx(this@LevelsActivitySumaRestaPrincipiante),
-                    8.dpToPx(this@LevelsActivitySumaRestaPrincipiante)
+                    12.dpToPx(this@LevelsActivitySumaRestaPrincipiante)
                 )
 
                 if (i < ScoreManager.unlockedLevelsSumaRestaPrincipiante && (!ScoreManager.isLevelBlockedByFailuresSumaRestaPrincipiante(i + 1) || i == 0)) {
@@ -221,14 +227,19 @@ class LevelsActivitySumaRestaPrincipiante : BaseActivity()  {
 
             val lockIcon = ImageView(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
-                    36.dpToPx(this@LevelsActivitySumaRestaPrincipiante),
-                    36.dpToPx(this@LevelsActivitySumaRestaPrincipiante)
+                    24.dpToPx(this@LevelsActivitySumaRestaPrincipiante),
+                    24.dpToPx(this@LevelsActivitySumaRestaPrincipiante)
                 ).apply {
                     gravity = Gravity.CENTER_VERTICAL
                 }
-                setImageResource(if (i < ScoreManager.unlockedLevelsSumaRestaPrincipiante && (!ScoreManager.isLevelBlockedByFailuresSumaRestaPrincipiante(i + 1) || i == 0)) R.drawable.ic_unlock else R.drawable.ic_lock)
+                setImageResource(
+                    if (i < ScoreManager.unlockedLevelsSumaRestaPrincipiante &&
+                        (!ScoreManager.isLevelBlockedByFailuresSumaRestaPrincipiante(i + 1) || i == 0)
+                    ) R.drawable.ic_unlock else R.drawable.ic_lock
+                )
                 scaleType = ImageView.ScaleType.CENTER_INSIDE
             }
+
 
             levelLayout.addView(button)
             levelLayout.addView(lockIcon)

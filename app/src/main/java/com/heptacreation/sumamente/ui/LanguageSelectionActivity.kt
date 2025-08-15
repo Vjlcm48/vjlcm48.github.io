@@ -25,6 +25,7 @@ import com.heptacreation.sumamente.ui.utils.DataSyncManager
 import com.google.android.material.card.MaterialCardView
 import java.util.Locale
 import com.google.android.material.button.MaterialButton
+import androidx.activity.enableEdgeToEdge
 
 class LanguageSelectionActivity : BaseActivity() {
 
@@ -41,6 +42,7 @@ class LanguageSelectionActivity : BaseActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         val suggestedLanguageCode = loadAndSetInitialLanguageState()

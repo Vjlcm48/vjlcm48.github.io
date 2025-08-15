@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import com.heptacreation.sumamente.R
+import androidx.activity.enableEdgeToEdge
 
 class LevelsActivityRomasPro : BaseActivity()  {
 
@@ -48,6 +49,7 @@ class LevelsActivityRomasPro : BaseActivity()  {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         ScoreManager.initRomasPro(this)
         sharedPreferences = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
@@ -159,21 +161,25 @@ class LevelsActivityRomasPro : BaseActivity()  {
             val button = Button(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
                     0,
-                    48.dpToPx(this@LevelsActivityRomasPro),
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
                     1f
                 ).apply {
                     setMargins(0, 0, 8.dpToPx(this@LevelsActivityRomasPro), 0)
                 }
+
                 text = getString(levelStrings[i])
-                textSize = 16f
+
+
                 setTypeface(null, Typeface.BOLD)
                 setTextColor(ContextCompat.getColor(this@LevelsActivityRomasPro, android.R.color.black))
                 gravity = Gravity.CENTER
+
+                minimumHeight = 56.dpToPx(this@LevelsActivityRomasPro)
                 setPadding(
                     16.dpToPx(this@LevelsActivityRomasPro),
-                    8.dpToPx(this@LevelsActivityRomasPro),
+                    12.dpToPx(this@LevelsActivityRomasPro),
                     16.dpToPx(this@LevelsActivityRomasPro),
-                    8.dpToPx(this@LevelsActivityRomasPro)
+                    12.dpToPx(this@LevelsActivityRomasPro)
                 )
 
                 if (i < ScoreManager.unlockedLevelsRomasPro && !ScoreManager.isLevelBlockedByFailuresRomasPro(i + 1)) {
@@ -221,12 +227,15 @@ class LevelsActivityRomasPro : BaseActivity()  {
 
             val lockIcon = ImageView(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
-                    36.dpToPx(this@LevelsActivityRomasPro),
-                    36.dpToPx(this@LevelsActivityRomasPro)
-                ).apply {
-                    gravity = Gravity.CENTER_VERTICAL
-                }
-                setImageResource(if (i < ScoreManager.unlockedLevelsRomasPro && !ScoreManager.isLevelBlockedByFailuresRomasPro(i + 1)) R.drawable.ic_unlock else R.drawable.ic_lock)
+                    24.dpToPx(this@LevelsActivityRomasPro),
+                    24.dpToPx(this@LevelsActivityRomasPro)
+                ).apply { gravity = Gravity.CENTER_VERTICAL }
+
+                setImageResource(
+                    if (i < ScoreManager.unlockedLevelsRomasPro &&
+                        !ScoreManager.isLevelBlockedByFailuresRomasPro(i + 1)
+                    ) R.drawable.ic_unlock else R.drawable.ic_lock
+                )
                 scaleType = ImageView.ScaleType.CENTER_INSIDE
             }
 

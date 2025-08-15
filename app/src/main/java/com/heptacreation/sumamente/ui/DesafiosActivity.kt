@@ -24,6 +24,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import java.util.TimeZone
+import androidx.activity.enableEdgeToEdge
 
 class DesafiosActivity : BaseActivity() {
 
@@ -39,6 +40,7 @@ class DesafiosActivity : BaseActivity() {
     private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_desafios)
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)

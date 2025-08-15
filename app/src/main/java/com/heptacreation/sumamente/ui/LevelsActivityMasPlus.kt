@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import com.heptacreation.sumamente.R
+import androidx.activity.enableEdgeToEdge
 
 class LevelsActivityMasPlus : BaseActivity()  {
 
@@ -48,6 +49,7 @@ class LevelsActivityMasPlus : BaseActivity()  {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsMasPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_levels_mas_plus)
@@ -153,21 +155,25 @@ class LevelsActivityMasPlus : BaseActivity()  {
             val button = Button(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
                     0,
-                    48.dpToPx(this@LevelsActivityMasPlus),
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
                     1f
                 ).apply {
                     setMargins(0, 0, 8.dpToPx(this@LevelsActivityMasPlus), 0)
                 }
+
                 text = getString(levelStrings[i])
-                textSize = 16f
+
+
                 setTypeface(null, Typeface.BOLD)
                 setTextColor(ContextCompat.getColor(this@LevelsActivityMasPlus, android.R.color.black))
                 gravity = Gravity.CENTER
+
+                minimumHeight = 56.dpToPx(this@LevelsActivityMasPlus)
                 setPadding(
                     16.dpToPx(this@LevelsActivityMasPlus),
-                    8.dpToPx(this@LevelsActivityMasPlus),
+                    12.dpToPx(this@LevelsActivityMasPlus),
                     16.dpToPx(this@LevelsActivityMasPlus),
-                    8.dpToPx(this@LevelsActivityMasPlus)
+                    12.dpToPx(this@LevelsActivityMasPlus)
                 )
 
                 if (i < ScoreManager.unlockedLevelsMasPlus && !ScoreManager.isLevelBlockedByFailuresMasPlus(i + 1)) {
@@ -215,13 +221,15 @@ class LevelsActivityMasPlus : BaseActivity()  {
 
             val lockIcon = ImageView(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
-                    36.dpToPx(this@LevelsActivityMasPlus),
-                    36.dpToPx(this@LevelsActivityMasPlus)
-                ).apply {
-                    gravity = Gravity.CENTER_VERTICAL
-                }
-                setImageResource(if (i < ScoreManager.unlockedLevelsMasPlus && !ScoreManager.isLevelBlockedByFailuresMasPlus(i + 1))
-                    R.drawable.ic_unlock else R.drawable.ic_lock)
+                    24.dpToPx(this@LevelsActivityMasPlus),
+                    24.dpToPx(this@LevelsActivityMasPlus)
+                ).apply { gravity = Gravity.CENTER_VERTICAL }
+
+                setImageResource(
+                    if (i < ScoreManager.unlockedLevelsMasPlus &&
+                        !ScoreManager.isLevelBlockedByFailuresMasPlus(i + 1)
+                    ) R.drawable.ic_unlock else R.drawable.ic_lock
+                )
                 scaleType = ImageView.ScaleType.CENTER_INSIDE
             }
 

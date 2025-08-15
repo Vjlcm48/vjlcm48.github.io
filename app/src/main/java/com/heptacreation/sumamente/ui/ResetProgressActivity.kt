@@ -1,7 +1,6 @@
 package com.heptacreation.sumamente.ui
 
 import android.animation.*
-import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
@@ -20,6 +19,7 @@ import androidx.core.content.edit
 import androidx.core.graphics.drawable.toDrawable
 import com.heptacreation.sumamente.R
 import java.util.Locale
+import androidx.activity.enableEdgeToEdge
 
 class ResetProgressActivity : BaseActivity() {
 
@@ -38,6 +38,7 @@ class ResetProgressActivity : BaseActivity() {
     private lateinit var btnGenioPlus: ConstraintLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         initializeScoreManagers()
         setContentView(R.layout.activity_reset_progress)
@@ -306,9 +307,7 @@ class ResetProgressActivity : BaseActivity() {
         val btnPrincipiante = dialogView.findViewById<RelativeLayout>(R.id.btn_principiante)
         val btnAvanzado = dialogView.findViewById<RelativeLayout>(R.id.btn_avanzado)
         val btnPro = dialogView.findViewById<RelativeLayout>(R.id.btn_pro)
-
-        val originalCloseButton = dialogView.findViewById<ImageView>(R.id.closeButton)
-        originalCloseButton?.visibility = View.GONE
+        val closeButton = dialogView.findViewById<ImageView>(R.id.closeButton)
 
         btnAvanzado.isEnabled = true
         btnPrincipiante.isEnabled = true
@@ -321,31 +320,13 @@ class ResetProgressActivity : BaseActivity() {
             .setCancelable(false)
             .create()
 
-        alertDialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
-
-        val container = dialogView.findViewById<RelativeLayout>(R.id.difficulty_selection_container)
-        val closeImageView = ImageView(this).apply {
-            layoutParams = RelativeLayout.LayoutParams(
-                24.dpToPx(this@ResetProgressActivity),
-                24.dpToPx(this@ResetProgressActivity)
-            ).apply {
-                addRule(RelativeLayout.ALIGN_PARENT_END)
-                addRule(RelativeLayout.ALIGN_PARENT_TOP)
-                setMargins(0, 8.dpToPx(this@ResetProgressActivity), 8.dpToPx(this@ResetProgressActivity), 0)
-            }
-            setImageResource(R.drawable.ic_close)
-            contentDescription = getString(R.string.cerrar)
-            isClickable = true
-            isFocusable = true
-
-            setOnClickListener { view ->
-                applyBounceEffect(view) {
-                    alertDialog.dismiss()
-                }
+        closeButton.setOnClickListener { view ->
+            applyBounceEffect(view) {
+                alertDialog.dismiss()
             }
         }
 
-        container.addView(closeImageView)
+        alertDialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
 
         btnPrincipiante.setOnClickListener {
             applyBounceEffect(it) {
@@ -360,6 +341,7 @@ class ResetProgressActivity : BaseActivity() {
                 showResetOptionsDialog()
             }
         }
+
         btnAvanzado.setOnClickListener {
             applyBounceEffect(it) {
                 selectedDifficulty = DifficultySelectionActivity.DIFFICULTY_AVANZADO
@@ -373,6 +355,7 @@ class ResetProgressActivity : BaseActivity() {
                 showResetOptionsDialog()
             }
         }
+
         btnPro.setOnClickListener {
             applyBounceEffect(it) {
                 selectedDifficulty = DifficultySelectionActivity.DIFFICULTY_PRO
@@ -395,12 +378,8 @@ class ResetProgressActivity : BaseActivity() {
                 setColor(Color.WHITE)
                 cornerRadius = 30f
             }
-            container.background = roundedDrawable
+            dialogView.findViewById<ConstraintLayout>(R.id.difficulty_selection_container).background = roundedDrawable
         }
-    }
-
-    private fun Int.dpToPx(context: Context): Int {
-        return (this * context.resources.displayMetrics.density).toInt()
     }
 
     private fun showResetOptionsDialog() {

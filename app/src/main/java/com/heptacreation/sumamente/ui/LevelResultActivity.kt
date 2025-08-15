@@ -23,6 +23,7 @@ import java.util.Locale
 import kotlin.math.max
 import kotlin.math.roundToInt
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.enableEdgeToEdge
 
 class LevelResultActivity : BaseActivity()  {
 
@@ -58,6 +59,7 @@ class LevelResultActivity : BaseActivity()  {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)

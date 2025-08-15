@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.core.view.isVisible
 import com.heptacreation.sumamente.R
+import androidx.activity.enableEdgeToEdge
 
 class InstructionsActivitySumaRestaPrincipiante : BaseActivity()  {
 
@@ -40,6 +41,7 @@ class InstructionsActivitySumaRestaPrincipiante : BaseActivity()  {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         sharedPreferencesSumaResta = getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
         setContentView(R.layout.activity_instructions_suma_resta)

@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import com.heptacreation.sumamente.R
+import androidx.activity.enableEdgeToEdge
 
 class LevelsActivityAlfaNumeros : BaseActivity()  {
 
@@ -48,6 +49,7 @@ class LevelsActivityAlfaNumeros : BaseActivity()  {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
         setContentView(R.layout.activity_levels_alfa_numeros)
@@ -167,21 +169,24 @@ class LevelsActivityAlfaNumeros : BaseActivity()  {
             val button = Button(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
                     0,
-                    48.dpToPx(this@LevelsActivityAlfaNumeros),
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
                     1f
                 ).apply {
                     setMargins(0, 0, 8.dpToPx(this@LevelsActivityAlfaNumeros), 0)
                 }
+
                 text = getString(levelStrings[i])
-                textSize = 16f
+
                 setTypeface(null, Typeface.BOLD)
                 setTextColor(ContextCompat.getColor(this@LevelsActivityAlfaNumeros, android.R.color.black))
                 gravity = Gravity.CENTER
+
+                minimumHeight = 56.dpToPx(this@LevelsActivityAlfaNumeros)
                 setPadding(
                     16.dpToPx(this@LevelsActivityAlfaNumeros),
-                    8.dpToPx(this@LevelsActivityAlfaNumeros),
+                    12.dpToPx(this@LevelsActivityAlfaNumeros),
                     16.dpToPx(this@LevelsActivityAlfaNumeros),
-                    8.dpToPx(this@LevelsActivityAlfaNumeros)
+                    12.dpToPx(this@LevelsActivityAlfaNumeros)
                 )
 
                 if (i < ScoreManager.unlockedLevelsAlfaNumeros && !ScoreManager.isLevelBlockedByFailuresAlfaNumeros(i + 1)) {
@@ -230,13 +235,15 @@ class LevelsActivityAlfaNumeros : BaseActivity()  {
 
             val lockIcon = ImageView(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
-                    36.dpToPx(this@LevelsActivityAlfaNumeros),
-                    36.dpToPx(this@LevelsActivityAlfaNumeros)
-                ).apply {
-                    gravity = Gravity.CENTER_VERTICAL
-                }
-                setImageResource(if (i < ScoreManager.unlockedLevelsAlfaNumeros && !ScoreManager.isLevelBlockedByFailuresAlfaNumeros(i + 1))
-                    R.drawable.ic_unlock else R.drawable.ic_lock)
+                    24.dpToPx(this@LevelsActivityAlfaNumeros),   // antes: 36.dpToPx(...)
+                    24.dpToPx(this@LevelsActivityAlfaNumeros)
+                ).apply { gravity = Gravity.CENTER_VERTICAL }
+
+                setImageResource(
+                    if (i < ScoreManager.unlockedLevelsAlfaNumeros &&
+                        !ScoreManager.isLevelBlockedByFailuresAlfaNumeros(i + 1)
+                    ) R.drawable.ic_unlock else R.drawable.ic_lock
+                )
                 scaleType = ImageView.ScaleType.CENTER_INSIDE
             }
 

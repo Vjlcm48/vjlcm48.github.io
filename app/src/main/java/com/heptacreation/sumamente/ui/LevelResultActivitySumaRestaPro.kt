@@ -20,6 +20,7 @@ import com.heptacreation.sumamente.R
 import java.util.Locale
 import kotlin.math.max
 import kotlin.math.roundToInt
+import androidx.activity.enableEdgeToEdge
 
 class LevelResultActivitySumaRestaPro : BaseActivity()  {
 
@@ -54,6 +55,7 @@ class LevelResultActivitySumaRestaPro : BaseActivity()  {
     private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
         setContentView(R.layout.activity_level_result_suma_resta)

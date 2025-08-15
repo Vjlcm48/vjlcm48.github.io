@@ -39,6 +39,8 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.analytics.FirebaseAnalytics
 import java.util.Locale
 import java.util.concurrent.TimeUnit
+import android.view.ViewTreeObserver
+import androidx.activity.enableEdgeToEdge
 
 
 class MainGameActivity : BaseActivity() {
@@ -71,10 +73,15 @@ class MainGameActivity : BaseActivity() {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var preferenceChangeListener: SharedPreferences.OnSharedPreferenceChangeListener
     private lateinit var tvSumaMenteTitle: TextView
+    private lateinit var settingsIcon: ImageView
+    private lateinit var homeButton: TextView
+    private lateinit var calendarButton: TextView
+    private lateinit var statisticsButton: TextView
 
     private var isActivityVisible = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         FirebaseApp.initializeApp(this)
         configurarTransiciones()
         super.onCreate(savedInstanceState)
@@ -83,6 +90,9 @@ class MainGameActivity : BaseActivity() {
         setContentView(R.layout.activity_main_game)
         inicializarComponentes()
         configurarListeners()
+
+        ajustarIconosNavegacion()
+
         configurarBackPressedCallback()
         inicializarCondecoraciones()
         inicializarMusica()
@@ -126,6 +136,12 @@ class MainGameActivity : BaseActivity() {
         trophyContainer = findViewById(R.id.trophy_container)
         trophyRedDot = findViewById(R.id.trophy_red_dot)
         tvSumaMenteTitle = findViewById(R.id.tv_sumamente_title)
+
+        settingsIcon = findViewById(R.id.settings_icon)
+        homeButton = findViewById(R.id.home_button)
+        calendarButton = findViewById(R.id.calendar_button)
+        statisticsButton = findViewById(R.id.statistics_button)
+
     }
 
     private fun configurarListeners() {
@@ -144,15 +160,6 @@ class MainGameActivity : BaseActivity() {
     }
 
     private fun configurarBotonesNavegacion() {
-        findViewById<ImageView>(R.id.home_icon).setOnClickListener {
-            aplicarEfectoBounce(it)
-        }
-
-        findViewById<ImageView>(R.id.statistics_icon).setOnClickListener {
-            aplicarEfectoConAccion(it) {
-                navegarA(ClassificationActivity::class.java)
-            }
-        }
 
         findViewById<ImageView>(R.id.settings_icon).setOnClickListener {
             aplicarEfectoConAccion(it) {
@@ -160,11 +167,22 @@ class MainGameActivity : BaseActivity() {
             }
         }
 
-        findViewById<ImageView>(R.id.calendar_icon).setOnClickListener {
+        findViewById<TextView>(R.id.home_button).setOnClickListener {
+            aplicarEfectoBounce(it)
+        }
+
+        findViewById<TextView>(R.id.statistics_button).setOnClickListener {
+            aplicarEfectoConAccion(it) {
+                navegarA(ClassificationActivity::class.java)
+            }
+        }
+
+        findViewById<TextView>(R.id.calendar_button).setOnClickListener {
             aplicarEfectoConAccion(it) {
                 navegarA(DesafiosActivity::class.java)
             }
         }
+
     }
 
     private fun configurarBotonPerfil() {
@@ -187,6 +205,38 @@ class MainGameActivity : BaseActivity() {
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
 
+            }
+        })
+    }
+
+
+    private fun ajustarIconosNavegacion() {
+
+        val iconoReferencia = settingsIcon
+
+        iconoReferencia.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+
+                iconoReferencia.viewTreeObserver.removeOnGlobalLayoutListener(this)
+
+                val anchoIcono = iconoReferencia.width
+                val altoIcono = iconoReferencia.height
+
+                val botonesNavegacion = listOf(homeButton, calendarButton, statisticsButton)
+
+
+                for (boton in botonesNavegacion) {
+                    val icono = boton.compoundDrawables[1]
+
+                    icono?.setBounds(0, 0, anchoIcono, altoIcono)
+
+                    boton.setCompoundDrawables(
+                        boton.compoundDrawables[0],
+                        icono,
+                        boton.compoundDrawables[2],
+                        boton.compoundDrawables[3]
+                    )
+                }
             }
         })
     }

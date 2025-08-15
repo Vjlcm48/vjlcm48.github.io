@@ -21,6 +21,7 @@ import androidx.core.view.isVisible
 import com.heptacreation.sumamente.R
 import java.util.Locale
 import android.content.res.Configuration
+import androidx.activity.enableEdgeToEdge
 
 
 class LanguageChangeActivity : BaseActivity() {
@@ -36,6 +37,7 @@ class LanguageChangeActivity : BaseActivity() {
     private val supportedLanguages by lazy { LanguageManager.getOrderedLanguages(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_language_change)
 

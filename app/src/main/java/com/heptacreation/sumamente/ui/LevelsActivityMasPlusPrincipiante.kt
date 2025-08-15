@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import com.heptacreation.sumamente.R
+import androidx.activity.enableEdgeToEdge
 
 class LevelsActivityMasPlusPrincipiante : BaseActivity()  {
 
@@ -49,6 +50,7 @@ class LevelsActivityMasPlusPrincipiante : BaseActivity()  {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsMasPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_levels_mas_plus)
@@ -154,21 +156,25 @@ class LevelsActivityMasPlusPrincipiante : BaseActivity()  {
             val button = Button(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
                     0,
-                    48.dpToPx(this@LevelsActivityMasPlusPrincipiante),
+                    LinearLayout.LayoutParams.WRAP_CONTENT,   // antes: 48.dpToPx(this@LevelsActivityMasPlusPrincipiante)
                     1f
                 ).apply {
                     setMargins(0, 0, 8.dpToPx(this@LevelsActivityMasPlusPrincipiante), 0)
                 }
+
                 text = getString(levelStrings[i])
-                textSize = 16f
+
+
                 setTypeface(null, Typeface.BOLD)
                 setTextColor(ContextCompat.getColor(this@LevelsActivityMasPlusPrincipiante, android.R.color.black))
                 gravity = Gravity.CENTER
+
+                minimumHeight = 56.dpToPx(this@LevelsActivityMasPlusPrincipiante)
                 setPadding(
                     16.dpToPx(this@LevelsActivityMasPlusPrincipiante),
-                    8.dpToPx(this@LevelsActivityMasPlusPrincipiante),
+                    12.dpToPx(this@LevelsActivityMasPlusPrincipiante),
                     16.dpToPx(this@LevelsActivityMasPlusPrincipiante),
-                    8.dpToPx(this@LevelsActivityMasPlusPrincipiante)
+                    12.dpToPx(this@LevelsActivityMasPlusPrincipiante)
                 )
 
                 if (i < ScoreManager.unlockedLevelsMasPlusPrincipiante && !ScoreManager.isLevelBlockedByFailuresMasPlusPrincipiante(i + 1)) {
@@ -216,17 +222,19 @@ class LevelsActivityMasPlusPrincipiante : BaseActivity()  {
 
             val lockIcon = ImageView(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
-                    36.dpToPx(this@LevelsActivityMasPlusPrincipiante),
-                    36.dpToPx(this@LevelsActivityMasPlusPrincipiante)
+                    24.dpToPx(this@LevelsActivityMasPlusPrincipiante),
+                    24.dpToPx(this@LevelsActivityMasPlusPrincipiante)
                 ).apply {
                     gravity = Gravity.CENTER_VERTICAL
                 }
                 setImageResource(
-                    if (i < ScoreManager.unlockedLevelsMasPlusPrincipiante && !ScoreManager.isLevelBlockedByFailuresMasPlusPrincipiante(i + 1))
-                        R.drawable.ic_unlock else R.drawable.ic_lock
+                    if (i < ScoreManager.unlockedLevelsMasPlusPrincipiante &&
+                        !ScoreManager.isLevelBlockedByFailuresMasPlusPrincipiante(i + 1)
+                    ) R.drawable.ic_unlock else R.drawable.ic_lock
                 )
                 scaleType = ImageView.ScaleType.CENTER_INSIDE
             }
+
 
             levelLayout.addView(button)
             levelLayout.addView(lockIcon)

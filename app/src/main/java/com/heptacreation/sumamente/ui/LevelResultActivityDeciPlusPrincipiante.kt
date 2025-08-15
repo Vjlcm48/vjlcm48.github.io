@@ -20,6 +20,7 @@ import com.heptacreation.sumamente.R
 import java.util.Locale
 import kotlin.math.max
 import kotlin.math.roundToInt
+import androidx.activity.enableEdgeToEdge
 
 class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
 
@@ -56,6 +57,7 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
     private lateinit var reviewExerciseTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
 

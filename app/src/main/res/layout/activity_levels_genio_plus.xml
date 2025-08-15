@@ -6,7 +6,7 @@
     android:background="@android:color/transparent">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="32dp"
         android:background="@android:color/white"
@@ -23,6 +23,7 @@
             android:layout_height="match_parent"
             android:padding="16dp">
 
+            <!-- Cerrar -->
             <ImageView
                 android:id="@+id/btn_close"
                 android:layout_width="32dp"
@@ -31,6 +32,7 @@
                 android:contentDescription="@string/close"
                 android:src="@drawable/ic_close" />
 
+            <!-- Barra de información -->
             <RelativeLayout
                 android:id="@+id/info_bar"
                 android:layout_width="match_parent"
@@ -41,22 +43,29 @@
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp">
 
+                <!-- Título: autosize + 2 líneas (color se setea en .kt) -->
                 <TextView
                     android:id="@+id/tv_game_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:textColor="@color/grey_light"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:maxLines="2"
+                    android:includeFontPadding="false"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="18sp"
+                    app:autoSizeMaxTextSize="28sp"
+                    app:autoSizeStepGranularity="1sp" />
 
+                <!-- Dificultad: elástica, no se pisa con Puntos -->
                 <TextView
                     android:id="@+id/tv_difficulty"
                     android:layout_width="wrap_content"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/tv_game_name"
                     android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@id/tv_score"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/clickable_background"
                     android:clickable="true"
@@ -67,14 +76,20 @@
                     android:minWidth="110dp"
                     android:padding="8dp"
                     android:textColor="@android:color/black"
-                    android:textSize="14sp"
-                    android:contentDescription="@string/change_difficulty"
-                    app:drawableEndCompat="@drawable/ic_edit" />
+                    android:maxLines="2"
+                    android:includeFontPadding="false"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="14sp"
+                    app:autoSizeMaxTextSize="18sp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:drawableEndCompat="@drawable/ic_edit"
+                    android:contentDescription="@string/change_difficulty" />
 
+                <!-- Puntos: elástico, puede usar 2 líneas -->
                 <TextView
                     android:id="@+id/tv_score"
                     android:layout_width="wrap_content"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/tv_game_name"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="8dp"
@@ -82,25 +97,31 @@
                     android:minHeight="48dp"
                     android:padding="8dp"
                     android:textColor="@android:color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:maxLines="2"
+                    android:includeFontPadding="false"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="14sp"
+                    app:autoSizeMaxTextSize="20sp"
+                    app:autoSizeStepGranularity="1sp" />
             </RelativeLayout>
 
+            <!-- Contenido con scroll seguro -->
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/info_bar"
                 android:paddingBottom="16dp"
+                android:fillViewport="true"
                 android:contentDescription="@string/scroll_view_description">
 
                 <LinearLayout
                     android:id="@+id/level_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                </LinearLayout>
-
+                    android:orientation="vertical" />
             </androidx.core.widget.NestedScrollView>
+
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

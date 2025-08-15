@@ -110,7 +110,7 @@
     <string name="ads">বিজ্ঞাপন</string>
     <string name="ads_subtitle">বিজ্ঞাপন সরান</string>
     <string name="switch_ads_desc">বিজ্ঞাপন সক্রিয়/নিষ্ক্রিয় করার অনুমতি দেয়</string>
-    <string name="level_title">লেভেল %1$d/70</string>
+    <string name="level_title">লেভেল\n%1$d/70</string>
     <string name="time_limit_text">সর্বোচ্চ সমাধানের সময়: %.2f সেকেন্ড</string>
     <string name="start_button_text">শুরু করুন</string>
     <string name="close_button_description">নির্দেশনা উইন্ডো বন্ধ করুন</string>
@@ -124,7 +124,7 @@
     <string name="respuesta_2">উত্তর ২</string>
     <string name="respuesta_3">উত্তর ৩</string>
     <string name="respuesta_4">উত্তর ৪</string>
-    <string name="score_label">স্কোর: %1$d</string>
+    <string name="score_label">স্কোর:\n%1$d</string>
     <string name="new_game">নতুন খেলা</string>
     <string name="dialog_title">উত্তর দেওয়ার ধরণ</string>
     <string name="seleccion_simple">সাধারণ নির্বাচন</string>
@@ -695,7 +695,9 @@
     <string name="ranking_player_header">খেলোয়াড়</string>
     <string name="ranking_time_header">সময়</string>
     <string name="empty_speed_ranking">কোনো গতির ডেটা উপলব্ধ নেই</string>
-    <string name="msg_need_more_games_speed">আপনার গতির র‍্যাঙ্কিং দেখতে %1$s-এর প্রতিটি কঠিনতার স্তরে ১২টি করে কমপক্ষে ৩৬টি লেভেল খেলুন।</string>
+
+    <string name="msg_need_more_games_speed">%1$s-এর অন্তত 36টি লেভেল খেলুন—প্রতি কঠিনতার স্তরে 12টি করে—আপনার স্পিড র‍্যাঙ্কিং দেখতে।</string>
+
     <string name="speed_avg_1">আপনার উত্তর দেওয়ার গড় গতি: &lt;b&gt;%s সেকেন্ড&lt;/b&gt;।</string>
     <string name="speed_avg_2">এখন পর্যন্ত, আপনার গড় সময় প্রতি উত্তরে &lt;b&gt;%s সেকেন্ড&lt;/b&gt;।</string>
     <string name="speed_avg_3">বর্তমান গড় উত্তর: &lt;b&gt;%s সেকেন্ড&lt;/b&gt;।</string>
@@ -1261,10 +1263,10 @@
     <string name="account_delete_in_progress">আপনার অ্যাকাউন্ট মুছে ফেলা হচ্ছে…</string>
 
 
-
     <string name="share_speed_ranking_message">আমি SumaMente অ্যাপে %1$s গেমের স্পিড র‍্যাংকিংয়ে %2$d নম্বর স্থান পেয়েছি, গড় সময় %3$.2f সেকেন্ড! তুমি কি আমার চেয়ে দ্রুত হতে পারবে?</string>
     <string name="share_global_ranking_message">SumaMente অ্যাপের গ্লোবাল র‍্যাংকিংয়ে আমার স্কোর %1$s পয়েন্ট, আমি %2$d নম্বর স্থানে আছি। তুমি কি আমাকে হারাতে পারবে? https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
     <string name="share_integral_ranking_message">আমি SumaMente-এর INTEGRAL র‍্যাংকিংয়ে %2$d নম্বর স্থান জিতেছি! আমার %1$.1f গড় আমাকে সেই মাস্টারদের মধ্যে রাখে যারা ৯টি চ্যালেঞ্জে পারদর্শী। তোমার কি আছে সেই দক্ষতা? https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
 
+    <string name="level_results_and_options">স্তরের ফলাফল এবং বিকল্পগুলি</string>
 
 </resources>

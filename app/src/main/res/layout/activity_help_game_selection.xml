@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_primary"
-    tools:context=".ui.HelpGameSelectionActivity">
+    tools:context=".ui.HelpGameSelectionActivity"
+    android:paddingTop="50dp"
+    android:paddingBottom="32dp">
 
     <ImageView
         android:id="@+id/closeButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="50dp"
         android:layout_marginEnd="24dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
@@ -26,15 +27,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="24dp"
         android:alpha="0"
         android:fontFamily="@font/roboto_bold"
         android:text="@string/descubre_como_jugar"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="26sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/closeButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:alpha="1" />
@@ -65,7 +64,7 @@
             android:paddingEnd="18dp"
             android:paddingBottom="32dp">
 
-            <!-- NUMEROS PLUS -->
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_numeros_plus"
                 android:layout_width="match_parent"
@@ -102,7 +101,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- DECI PLUS -->
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_deci_plus"
                 android:layout_width="match_parent"
@@ -180,7 +179,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_alfa_numeros"
                 android:layout_width="match_parent"
-                android:layout_height="59dp"
+                android:layout_height="wrap_content"
+                android:minHeight="59dp"
                 android:layout_marginBottom="16dp"
                 android:alpha="0"
                 android:background="@drawable/button_background_alfa_numeros"

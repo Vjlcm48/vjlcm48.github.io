@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import com.heptacreation.sumamente.R
+import androidx.activity.enableEdgeToEdge
 
 class LevelsActivityDeciPlusPro : BaseActivity()  {
 
@@ -49,6 +50,7 @@ class LevelsActivityDeciPlusPro : BaseActivity()  {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
         ScoreManager.initDeciPlusPro(this)
@@ -119,21 +121,25 @@ class LevelsActivityDeciPlusPro : BaseActivity()  {
             val button = Button(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
                     0,
-                    48.dpToPx(this@LevelsActivityDeciPlusPro),
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
                     1f
                 ).apply {
                     setMargins(0, 0, 8.dpToPx(this@LevelsActivityDeciPlusPro), 0)
                 }
+
                 text = getString(levelStrings[i])
-                textSize = 16f
+
+
                 setTypeface(null, Typeface.BOLD)
                 setTextColor(ContextCompat.getColor(this@LevelsActivityDeciPlusPro, android.R.color.black))
                 gravity = Gravity.CENTER
+
+                minimumHeight = 56.dpToPx(this@LevelsActivityDeciPlusPro)
                 setPadding(
                     16.dpToPx(this@LevelsActivityDeciPlusPro),
-                    8.dpToPx(this@LevelsActivityDeciPlusPro),
+                    12.dpToPx(this@LevelsActivityDeciPlusPro),
                     16.dpToPx(this@LevelsActivityDeciPlusPro),
-                    8.dpToPx(this@LevelsActivityDeciPlusPro)
+                    12.dpToPx(this@LevelsActivityDeciPlusPro)
                 )
 
                 if (i < ScoreManager.unlockedLevelsDeciPlusPro && !ScoreManager.isLevelBlockedByFailuresDeciPlusPro(i + 1)) {
@@ -182,12 +188,15 @@ class LevelsActivityDeciPlusPro : BaseActivity()  {
 
             val lockIcon = ImageView(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
-                    36.dpToPx(this@LevelsActivityDeciPlusPro),
-                    36.dpToPx(this@LevelsActivityDeciPlusPro)
-                ).apply {
-                    gravity = Gravity.CENTER_VERTICAL
-                }
-                setImageResource(if (i < ScoreManager.unlockedLevelsDeciPlusPro && !ScoreManager.isLevelBlockedByFailuresDeciPlusPro(i + 1)) R.drawable.ic_unlock else R.drawable.ic_lock)
+                    24.dpToPx(this@LevelsActivityDeciPlusPro),
+                    24.dpToPx(this@LevelsActivityDeciPlusPro)
+                ).apply { gravity = Gravity.CENTER_VERTICAL }
+
+                setImageResource(
+                    if (i < ScoreManager.unlockedLevelsDeciPlusPro &&
+                        !ScoreManager.isLevelBlockedByFailuresDeciPlusPro(i + 1)
+                    ) R.drawable.ic_unlock else R.drawable.ic_lock
+                )
                 scaleType = ImageView.ScaleType.CENTER_INSIDE
             }
 

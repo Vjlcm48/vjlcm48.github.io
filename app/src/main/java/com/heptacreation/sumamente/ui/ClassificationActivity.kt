@@ -16,6 +16,7 @@ import com.heptacreation.sumamente.R
 import com.heptacreation.sumamente.ui.utils.MusicManager
 import java.lang.ref.WeakReference
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.enableEdgeToEdge
 
 class ClassificationActivity : BaseActivity() {
 
@@ -35,6 +36,7 @@ class ClassificationActivity : BaseActivity() {
     private lateinit var preferenceChangeListener: SharedPreferences.OnSharedPreferenceChangeListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_classification)
 

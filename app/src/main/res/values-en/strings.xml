@@ -1,17 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-
     <string name="next_activity_text">Next Activity</string>
-
 
     <string name="btn_allow">Allow</string>
     <string name="btn_deny">Deny</string>
     <string name="notification_text">Do you want to allow SumaMente to send you notifications?</string>
     <string name="content_description_bell_icon">Bell Icon</string>
     <string name="content_description_icon">Official Icon of SumaMente</string>
-
-
-
     <string name="instruction_text">Enter your username.\nUse between 4 and 12 characters</string>
     <string name="btn_accept">Accept</string>
     <string name="content_description_check_icon">Check Icon</string>
@@ -114,7 +109,7 @@
     <string name="ads">Ads</string>
     <string name="ads_subtitle">Remove ads</string>
     <string name="switch_ads_desc">Switch to enable/disable ads</string>
-    <string name="level_title">LEVEL %1$d/70</string>
+    <string name="level_title">LEVEL\n%1$d/70</string>
     <string name="time_limit_text">Maximum resolution time: %.2f seconds</string>
     <string name="start_button_text">START</string>
     <string name="close_button_description">Close instructions window</string>
@@ -128,7 +123,7 @@
     <string name="respuesta_2">Answer 2</string>
     <string name="respuesta_3">Answer 3</string>
     <string name="respuesta_4">Answer 4</string>
-    <string name="score_label">SCORE: %1$d</string>
+    <string name="score_label">SCORE:\n%1$d</string>
     <string name="new_game">NEW GAME</string>
     <string name="dialog_title">Response Mode</string>
     <string name="seleccion_simple">Simple Selection</string>
@@ -798,7 +793,7 @@
 
     <!-- Informational messages -->
 
-    <string name="msg_need_more_games_speed">Play at least 10 games of %1$s in at least two difficulty levels to see your speed ranking.</string>
+    <string name="msg_need_more_games_speed">Play at least 36 levels of %1$s, 12 in each difficulty level, to see your speed ranking.</string>
 
 
     <string name="speed_avg_1">Your average response speed is: &lt;b&gt;%s sec&lt;/b&gt;.</string>
@@ -1523,7 +1518,6 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
 
     <string name="restore_error_login">Could not sign in with Google. Please try again.</string>
 
-
     <string name="conflict_progress_title">Which progress do you want to keep?</string>
     <string name="conflict_progress_message">You have progress saved in the cloud and on this device.\nDo you want to restore the saved progress or keep the current one?</string>
     <string name="btn_restore_cloud_progress">RESTORE SAVED PROGRESS</string>
@@ -1536,10 +1530,10 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
     <string name="account_delete_error_auth_recent">For security, please sign in again to delete your account.</string>
     <string name="account_delete_in_progress">Deleting your account…</string>
 
-
     <string name="share_speed_ranking_message">I got position %2$d in the Speed Ranking of the game %1$s in the SumaMente app with an average time of %3$.2f seconds! Can you be faster than me?</string>
     <string name="share_global_ranking_message">My score is %1$s points in the Global Ranking of the SumaMente app, I am in position %2$d. Can you beat me? https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
     <string name="share_integral_ranking_message">I conquered position %2$d in the INTEGRAL Ranking of SumaMente! My average of %1$.1f places me among the masters who have mastered all 9 challenges. Do you have what it takes? https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
 
+    <string name="level_results_and_options">Level results and options</string>
 
 </resources>

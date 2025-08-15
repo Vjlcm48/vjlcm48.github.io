@@ -31,6 +31,7 @@ import androidx.core.content.ContextCompat
 import com.airbnb.lottie.LottieAnimationView
 import com.heptacreation.sumamente.R
 import java.util.Locale
+import androidx.activity.enableEdgeToEdge
 
 class HelpTutorialActivityGenioPlus : BaseActivity()   {
 
@@ -77,6 +78,7 @@ class HelpTutorialActivityGenioPlus : BaseActivity()   {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_help_tutorial_genio_plus)

@@ -15,12 +15,14 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import com.heptacreation.sumamente.R
 import androidx.core.content.edit
+import androidx.activity.enableEdgeToEdge
 
 class NotificationsActivity : BaseActivity() {
 
     private lateinit var sharedPreferences: android.content.SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notifications)
 

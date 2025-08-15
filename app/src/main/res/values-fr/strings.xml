@@ -1,16 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-
     <string name="next_activity_text">Activité suivante</string>
-
 
     <string name="btn_allow">Autoriser</string>
     <string name="btn_deny">Ne pas autoriser</string>
     <string name="notification_text">Voulez-vous permettre à SumaMente de vous envoyer des notifications ?</string>
     <string name="content_description_bell_icon">Icône de cloche</string>
     <string name="content_description_icon">Icône officielle de SumaMente</string>
-
-
 
     <string name="instruction_text">Écris ton nom d’utilisateur.\nUtilise entre 4 et 12 caractères</string>
     <string name="btn_accept">Accepter</string>
@@ -114,7 +110,7 @@
     <string name="ads">Publicité</string>
     <string name="ads_subtitle">Supprimez les annonces</string>
     <string name="switch_ads_desc">Activer/désactiver la publicité</string>
-    <string name="level_title">NIVEAU %1$d/70</string>
+    <string name="level_title">NIVEAU\n%1$d/70</string>
     <string name="time_limit_text">Temps max de résolution : %.2f secondes</string>
     <string name="start_button_text">COMMENCER</string>
     <string name="close_button_description">Fermer la fenêtre d’instructions</string>
@@ -128,7 +124,7 @@
     <string name="respuesta_2">Réponse 2</string>
     <string name="respuesta_3">Réponse 3</string>
     <string name="respuesta_4">Réponse 4</string>
-    <string name="score_label">SCORE : %1$d</string>
+    <string name="score_label">SCORE :\n%1$d</string>
     <string name="new_game">NOUVELLE PARTIE</string>
     <string name="dialog_title">Mode de Réponse</string>
     <string name="seleccion_simple">Sélection simple</string>
@@ -1538,10 +1534,10 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
     <string name="account_delete_error_auth_recent">Pour des raisons de sécurité, veuillez vous reconnecter pour supprimer votre compte.</string>
     <string name="account_delete_in_progress">Suppression de votre compte…</string>
 
-
     <string name="share_speed_ranking_message">J\'ai obtenu la position %2$d dans le classement de vitesse du jeu %1$s dans l\'application SumaMente avec un temps moyen de %3$.2f secondes ! Peux-tu être plus rapide que moi ?</string>
     <string name="share_global_ranking_message">Mon score est de %1$s points dans le classement global de l\'application SumaMente, je suis à la position %2$d. Peux-tu me battre ? https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
     <string name="share_integral_ranking_message">J\'ai conquis la position %2$d dans le classement INTÉGRAL de SumaMente ! Ma moyenne de %1$.1f me place parmi les maîtres qui dominent les 9 défis. As-tu ce qu\'il faut ? https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
 
+    <string name="level_results_and_options">Résultats du niveau et options</string>
 
 </resources>

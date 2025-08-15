@@ -20,6 +20,7 @@ import com.heptacreation.sumamente.R
 import java.util.Locale
 import kotlin.math.max
 import kotlin.math.roundToInt
+import androidx.activity.enableEdgeToEdge
 
 class LevelResultActivityGenioPlusPrincipiante : BaseActivity()  {
 
@@ -50,6 +51,7 @@ class LevelResultActivityGenioPlusPrincipiante : BaseActivity()  {
     private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_level_result_genio_plus)

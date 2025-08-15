@@ -46,15 +46,21 @@
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
                     android:textColor="@color/red_primary"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:maxLines="2"
+                    android:includeFontPadding="false"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="18sp"
+                    app:autoSizeMaxTextSize="28sp"
+                    app:autoSizeStepGranularity="1sp" />
 
                 <TextView
                     android:id="@+id/tv_difficulty"
                     android:layout_width="wrap_content"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/tv_game_name"
                     android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@id/tv_score"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/clickable_background"
                     android:clickable="true"
@@ -65,14 +71,19 @@
                     android:minWidth="110dp"
                     android:padding="8dp"
                     android:textColor="@android:color/black"
-                    android:textSize="14sp"
-                    android:contentDescription="@string/change_difficulty"
-                    app:drawableEndCompat="@drawable/ic_edit" />
+                    android:maxLines="4"
+                    android:includeFontPadding="false"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="14sp"
+                    app:autoSizeMaxTextSize="18sp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:drawableEndCompat="@drawable/ic_edit"
+                    android:contentDescription="@string/change_difficulty" />
 
                 <TextView
                     android:id="@+id/tv_score"
                     android:layout_width="wrap_content"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/tv_game_name"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="8dp"
@@ -80,83 +91,104 @@
                     android:minHeight="48dp"
                     android:padding="8dp"
                     android:textColor="@android:color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:maxLines="2"
+                    android:includeFontPadding="false"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="14sp"
+                    app:autoSizeMaxTextSize="20sp"
+                    app:autoSizeStepGranularity="1sp" />
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/tv_level"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:gravity="center"
-                android:textColor="@android:color/black"
-                android:textSize="33sp"
-                android:textStyle="bold"
-                android:alpha="0" />
-
-            <TextView
-                android:id="@+id/tv_letter_conversion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:textColor="@color/blue_primary_darker"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:alpha="0"
-                android:gravity="center" />
-
-            <TextView
-                android:id="@+id/tv_instructions"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColor="@android:color/black"
-                android:textSize="24sp"
-                android:alpha="0" />
-
-            <TextView
-                android:id="@+id/tv_repeated_numbers"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColor="@android:color/black"
-                android:textSize="21sp"
-                android:alpha="0" />
-
-            <TextView
-                android:id="@+id/tv_negative_numbers"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColor="@android:color/black"
-                android:textSize="21sp"
-                android:alpha="0" />
-
-            <TextView
-                android:id="@+id/tv_time_limit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textColor="@android:color/black"
-                android:textSize="21sp"
-                android:alpha="0" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_start"
+            <ScrollView
+                android:id="@+id/instructions_scroll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/button_background_alfa_numeros"
-                android:text="@string/start_button_text"
-                android:textColor="@android:color/black"
-                android:textSize="24sp"
-                android:paddingStart="40dp"
-                android:paddingEnd="40dp"
-                android:alpha="0"
-                android:scaleX="0"
-                android:scaleY="0" />
+                android:fillViewport="false"
+                android:fadeScrollbars="false"
+                android:scrollbars="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_level"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="0dp"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="33sp"
+                        android:textStyle="bold"
+                        android:alpha="0" />
+
+                    <TextView
+                        android:id="@+id/tv_letter_conversion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:textColor="@color/blue_primary_darker"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:alpha="0"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/tv_instructions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp"
+                        android:alpha="0" />
+
+                    <TextView
+                        android:id="@+id/tv_repeated_numbers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="21sp"
+                        android:alpha="0" />
+
+                    <TextView
+                        android:id="@+id/tv_negative_numbers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="21sp"
+                        android:alpha="0" />
+
+                    <TextView
+                        android:id="@+id/tv_time_limit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="21sp"
+                        android:alpha="0" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_start"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/button_background_alfa_numeros"
+                        android:text="@string/start_button_text"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp"
+                        android:paddingStart="40dp"
+                        android:paddingEnd="40dp"
+                        android:alpha="0"
+                        android:scaleX="0"
+                        android:scaleY="0" />
+                </LinearLayout>
+            </ScrollView>
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

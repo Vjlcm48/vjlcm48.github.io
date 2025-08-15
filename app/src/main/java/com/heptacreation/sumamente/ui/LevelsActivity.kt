@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.heptacreation.sumamente.R
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.enableEdgeToEdge
 
 
 class LevelsActivity : BaseActivity()  {
@@ -30,8 +31,6 @@ class LevelsActivity : BaseActivity()  {
     private lateinit var tvGameName: TextView
     private lateinit var tvDifficulty: TextView
     private lateinit var tvScore: TextView
-
-
 
     private val levelStrings = arrayOf(
         R.string.level_1, R.string.level_2, R.string.level_3, R.string.level_4, R.string.level_5,
@@ -51,6 +50,7 @@ class LevelsActivity : BaseActivity()  {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_levels)
@@ -154,21 +154,24 @@ class LevelsActivity : BaseActivity()  {
             val button = Button(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
                     0,
-                    48.dpToPx(this@LevelsActivity),
+                    LinearLayout.LayoutParams.WRAP_CONTENT,   // antes: 48.dpToPx(...)
                     1f
                 ).apply {
                     setMargins(0, 0, 8.dpToPx(this@LevelsActivity), 0)
                 }
+
                 text = getString(levelStrings[i])
-                textSize = 16f
+
                 setTypeface(null, Typeface.BOLD)
                 setTextColor(ContextCompat.getColor(this@LevelsActivity, android.R.color.black))
                 gravity = Gravity.CENTER
+
+                minimumHeight = 56.dpToPx(this@LevelsActivity)
                 setPadding(
                     16.dpToPx(this@LevelsActivity),
-                    8.dpToPx(this@LevelsActivity),
+                    12.dpToPx(this@LevelsActivity),
                     16.dpToPx(this@LevelsActivity),
-                    8.dpToPx(this@LevelsActivity)
+                    12.dpToPx(this@LevelsActivity)
                 )
 
                 if (i < ScoreManager.unlockedLevels && !ScoreManager.isLevelBlockedByFailures(i + 1)) {
@@ -218,13 +221,13 @@ class LevelsActivity : BaseActivity()  {
 
             val lockIcon = ImageView(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
-                    36.dpToPx(this@LevelsActivity),
-                    36.dpToPx(this@LevelsActivity)
-                ).apply {
-                    gravity = Gravity.CENTER_VERTICAL
-                }
-                setImageResource(if (i < ScoreManager.unlockedLevels && !ScoreManager.isLevelBlockedByFailures(i + 1))
-                    R.drawable.ic_unlock else R.drawable.ic_lock)
+                    24.dpToPx(this@LevelsActivity),
+                    24.dpToPx(this@LevelsActivity)
+                ).apply { gravity = Gravity.CENTER_VERTICAL }
+                setImageResource(
+                    if (i < ScoreManager.unlockedLevels && !ScoreManager.isLevelBlockedByFailures(i + 1))
+                        R.drawable.ic_unlock else R.drawable.ic_lock
+                )
                 scaleType = ImageView.ScaleType.CENTER_INSIDE
             }
 

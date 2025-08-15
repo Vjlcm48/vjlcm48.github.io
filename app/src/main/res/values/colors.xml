@@ -42,5 +42,40 @@
     <color name="white_80_percent">#CCFFFFFF</color>
     <color name="blue_primary_darkest">#06225B</color>
 
+    <!-- ===== SuPERdoku / S5E — Verdes adicionales ===== -->
+    <color name="s5e_green_50">#E8F5E9</color>
+    <color name="s5e_green_100">#C8E6C9</color>
+    <color name="s5e_green_200">#A5D6A7</color>
+    <color name="s5e_green_400">#66BB6A</color>
+    <color name="s5e_green_600">#43A047</color>
+    <color name="s5e_green_800">#1B5E20</color>
+
+    <!-- ===== SuPERdoku / S5E — Roles de color (Material-like) ===== -->
+    <!-- Primario: usamos el verde oscuro que ya manejas (#2E7D32) -->
+    <color name="s5e_primary">#2E7D32</color>
+    <color name="s5e_onPrimary">#FFFFFF</color>
+
+    <!-- Contenedor primario para teclas y botones tonales -->
+    <color name="s5e_primaryContainer">#A5D6A7</color>
+    <color name="s5e_onPrimaryContainer">#0B2D13</color>
+
+    <!-- Secundario para acciones alternativas -->
+    <color name="s5e_secondary">#66BB6A</color>
+    <color name="s5e_onSecondary">#0B2D13</color>
+
+    <!-- Superficies -->
+    <color name="s5e_surface">#FFFFFF</color>
+    <color name="s5e_surfaceVariant">#F5F5F5</color>
+    <color name="s5e_onSurface">#455A64</color>
+
+    <!-- Bordes -->
+    <color name="s5e_outline">#BDBDBD</color>
+
+    <!-- Errores -->
+    <color name="s5e_error">#F44336</color>
+    <color name="s5e_errorContainer">#FFEBEE</color>
+    <color name="s5e_onErrorContainer">#B71C1C</color>
+
+
 
 </resources>

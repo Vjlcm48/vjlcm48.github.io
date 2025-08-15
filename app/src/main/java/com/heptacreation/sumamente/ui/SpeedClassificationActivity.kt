@@ -22,7 +22,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.heptacreation.sumamente.R
 import com.heptacreation.sumamente.ui.utils.MusicManager
-
+import androidx.activity.enableEdgeToEdge
 
 class SpeedClassificationActivity : BaseActivity() {
 
@@ -61,6 +61,7 @@ class SpeedClassificationActivity : BaseActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_speed_classification)
 

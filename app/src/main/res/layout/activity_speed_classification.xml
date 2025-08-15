@@ -5,14 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_primary"
-    tools:context=".ui.SpeedClassificationActivity">
+    tools:context=".ui.SpeedClassificationActivity"
+    android:paddingTop="50dp"
+    android:paddingBottom="32dp">
 
     <ImageView
         android:id="@+id/btn_back"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="50dp"
+
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         android:contentDescription="@string/back"
@@ -25,7 +27,7 @@
         android:id="@+id/closeButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="50dp"
+
         android:layout_marginEnd="24dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
@@ -39,7 +41,7 @@
         android:id="@+id/tv_speed_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+
         android:alpha="0"
         android:fontFamily="@font/roboto_bold"
         android:text="@string/speed_classification_title"
@@ -57,7 +59,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+
         android:fillViewport="true"
         android:scrollbarThumbVertical="@drawable/custom_scrollbar_thumb"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -201,7 +203,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_alfa_numeros"
                 android:layout_width="match_parent"
-                android:layout_height="59dp"
+                android:layout_height="wrap_content"
+                android:minHeight="59dp"
                 android:layout_marginBottom="16dp"
                 android:alpha="0"
                 android:background="@drawable/button_background_alfa_numeros"

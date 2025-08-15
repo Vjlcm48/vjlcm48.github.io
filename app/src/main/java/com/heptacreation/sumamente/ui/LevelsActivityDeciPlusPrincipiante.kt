@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import com.heptacreation.sumamente.R
+import androidx.activity.enableEdgeToEdge
 
 class LevelsActivityDeciPlusPrincipiante : BaseActivity()  {
 
@@ -49,6 +50,7 @@ class LevelsActivityDeciPlusPrincipiante : BaseActivity()  {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
         ScoreManager.initDeciPlusPrincipiante(this)
@@ -119,21 +121,25 @@ class LevelsActivityDeciPlusPrincipiante : BaseActivity()  {
             val button = Button(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
                     0,
-                    48.dpToPx(this@LevelsActivityDeciPlusPrincipiante),
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
                     1f
                 ).apply {
                     setMargins(0, 0, 8.dpToPx(this@LevelsActivityDeciPlusPrincipiante), 0)
                 }
+
                 text = getString(levelStrings[i])
-                textSize = 16f
+
+
                 setTypeface(null, Typeface.BOLD)
                 setTextColor(ContextCompat.getColor(this@LevelsActivityDeciPlusPrincipiante, android.R.color.black))
                 gravity = Gravity.CENTER
+
+                minimumHeight = 56.dpToPx(this@LevelsActivityDeciPlusPrincipiante)
                 setPadding(
                     16.dpToPx(this@LevelsActivityDeciPlusPrincipiante),
-                    8.dpToPx(this@LevelsActivityDeciPlusPrincipiante),
+                    12.dpToPx(this@LevelsActivityDeciPlusPrincipiante),
                     16.dpToPx(this@LevelsActivityDeciPlusPrincipiante),
-                    8.dpToPx(this@LevelsActivityDeciPlusPrincipiante)
+                    12.dpToPx(this@LevelsActivityDeciPlusPrincipiante)
                 )
 
                 if (i < ScoreManager.unlockedLevelsDeciPlusPrincipiante && !ScoreManager.isLevelBlockedByFailuresDeciPlusPrincipiante(i + 1)) {
@@ -182,14 +188,19 @@ class LevelsActivityDeciPlusPrincipiante : BaseActivity()  {
 
             val lockIcon = ImageView(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
-                    36.dpToPx(this@LevelsActivityDeciPlusPrincipiante),
-                    36.dpToPx(this@LevelsActivityDeciPlusPrincipiante)
+                    24.dpToPx(this@LevelsActivityDeciPlusPrincipiante),
+                    24.dpToPx(this@LevelsActivityDeciPlusPrincipiante)
                 ).apply {
                     gravity = Gravity.CENTER_VERTICAL
                 }
-                setImageResource(if (i < ScoreManager.unlockedLevelsDeciPlusPrincipiante && !ScoreManager.isLevelBlockedByFailuresDeciPlusPrincipiante(i + 1)) R.drawable.ic_unlock else R.drawable.ic_lock)
+                setImageResource(
+                    if (i < ScoreManager.unlockedLevelsDeciPlusPrincipiante &&
+                        !ScoreManager.isLevelBlockedByFailuresDeciPlusPrincipiante(i + 1)
+                    ) R.drawable.ic_unlock else R.drawable.ic_lock
+                )
                 scaleType = ImageView.ScaleType.CENTER_INSIDE
             }
+
 
             levelLayout.addView(button)
             levelLayout.addView(lockIcon)

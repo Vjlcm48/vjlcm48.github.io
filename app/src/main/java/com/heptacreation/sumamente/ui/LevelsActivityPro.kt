@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import com.heptacreation.sumamente.R
+import androidx.activity.enableEdgeToEdge
 
 class LevelsActivityPro : BaseActivity()  {
 
@@ -48,6 +49,7 @@ class LevelsActivityPro : BaseActivity()  {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_levels)
@@ -157,21 +159,24 @@ class LevelsActivityPro : BaseActivity()  {
             val button = Button(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
                     0,
-                    48.dpToPx(this@LevelsActivityPro),
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
                     1f
                 ).apply {
                     setMargins(0, 0, 8.dpToPx(this@LevelsActivityPro), 0)
                 }
+
                 text = getString(levelStrings[i])
-                textSize = 16f
+
                 setTypeface(null, Typeface.BOLD)
                 setTextColor(ContextCompat.getColor(this@LevelsActivityPro, android.R.color.black))
                 gravity = Gravity.CENTER
+
+                minimumHeight = 56.dpToPx(this@LevelsActivityPro)
                 setPadding(
                     16.dpToPx(this@LevelsActivityPro),
-                    8.dpToPx(this@LevelsActivityPro),
+                    12.dpToPx(this@LevelsActivityPro),
                     16.dpToPx(this@LevelsActivityPro),
-                    8.dpToPx(this@LevelsActivityPro)
+                    12.dpToPx(this@LevelsActivityPro)
                 )
 
                 if (i < ScoreManager.unlockedLevelsPro && !ScoreManager.isLevelBlockedByFailuresPro(i + 1)) {
@@ -221,13 +226,16 @@ class LevelsActivityPro : BaseActivity()  {
 
             val lockIcon = ImageView(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
-                    36.dpToPx(this@LevelsActivityPro),
-                    36.dpToPx(this@LevelsActivityPro)
-                ).apply {
-                    gravity = Gravity.CENTER_VERTICAL
-                }
-                setImageResource(if (i < ScoreManager.unlockedLevelsPro && !ScoreManager.isLevelBlockedByFailuresPro(i + 1))
-                    R.drawable.ic_unlock else R.drawable.ic_lock)
+                    24.dpToPx(this@LevelsActivityPro),
+                    24.dpToPx(this@LevelsActivityPro)
+                ).apply { gravity = Gravity.CENTER_VERTICAL }
+
+                setImageResource(
+                    if (i < ScoreManager.unlockedLevelsPro && !ScoreManager.isLevelBlockedByFailuresPro(i + 1))
+                        R.drawable.ic_unlock
+                    else
+                        R.drawable.ic_lock
+                )
                 scaleType = ImageView.ScaleType.CENTER_INSIDE
             }
 

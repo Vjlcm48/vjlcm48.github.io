@@ -109,7 +109,7 @@
     <string name="ads">اشتہارات</string>
     <string name="ads_subtitle">اشتہارات ہٹائیں</string>
     <string name="switch_ads_desc">اشتہارات کو فعال/غیر فعال کرنے کی اجازت دیتا ہے</string>
-    <string name="level_title">لیول %1$d/70</string>
+    <string name="level_title">لیول\n%1$d/70</string>
     <string name="time_limit_text">حل کرنے کا زیادہ سے زیادہ وقت: %.2f سیکنڈ</string>
     <string name="start_button_text">شروع کریں</string>
     <string name="close_button_description">ہدایات کی ونڈو بند کریں</string>
@@ -123,7 +123,7 @@
     <string name="respuesta_2">جواب 2</string>
     <string name="respuesta_3">جواب 3</string>
     <string name="respuesta_4">جواب 4</string>
-    <string name="score_label">اسکور: %1$d</string>
+    <string name="score_label">اسکور:\n%1$d</string>
     <string name="new_game">نیا گیم</string>
     <string name="dialog_title">جوابی موڈ</string>
     <string name="seleccion_simple">سادہ انتخاب</string>
@@ -1273,10 +1273,10 @@
     <string name="account_delete_error_auth_recent">سیکورٹی کے لیے، براہ کرم اپنا اکاؤنٹ حذف کرنے کے لیے دوبارہ سائن ان کریں۔</string>
     <string name="account_delete_in_progress">آپ کا اکاؤنٹ حذف کیا جا رہا ہے…</string>
 
-
     <string name="share_speed_ranking_message">میں نے SumaMente ایپ میں کھیل %1$s کی اسپیڈ رینکنگ میں %2$d واں مقام حاصل کیا، اوسط وقت %3$.2f سیکنڈ! کیا آپ مجھ سے تیز ہو سکتے ہیں؟</string>
     <string name="share_global_ranking_message">میرا اسکور SumaMente ایپ کی عالمی رینکنگ میں %1$s پوائنٹس ہے، میں %2$d ویں پوزیشن پر ہوں۔ کیا آپ مجھے ہرا سکتے ہیں؟ https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
     <string name="share_integral_ranking_message">میں نے SumaMente کی INTEGRAL رینکنگ میں %2$d واں مقام فتح کیا! میرا اوسط %1$.1f مجھے ان ماہرین میں شامل کرتا ہے جو 9 چیلنجز پر عبور رکھتے ہیں۔ کیا آپ میں یہ صلاحیت ہے؟ https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
 
+    <string name="level_results_and_options">سطح کے نتائج اور اختیارات</string>
 
 </resources>

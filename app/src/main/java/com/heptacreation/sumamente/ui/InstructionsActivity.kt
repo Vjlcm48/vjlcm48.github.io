@@ -18,7 +18,7 @@ import com.heptacreation.sumamente.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-
+import androidx.activity.enableEdgeToEdge
 
 class InstructionsActivity : BaseActivity()  {
 
@@ -45,6 +45,7 @@ class InstructionsActivity : BaseActivity()  {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_instructions)

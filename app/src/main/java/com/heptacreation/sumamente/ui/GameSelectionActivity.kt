@@ -23,6 +23,7 @@ import android.graphics.LinearGradient
 import android.graphics.Matrix
 import android.graphics.Shader
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.enableEdgeToEdge
 
 
 class GameSelectionActivity : BaseActivity() {
@@ -138,6 +139,7 @@ class GameSelectionActivity : BaseActivity() {
     private val gameButtons = mutableMapOf<Game, RelativeLayout>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_selection)
 
@@ -383,61 +385,60 @@ class GameSelectionActivity : BaseActivity() {
     private fun updateGameButton(game: Game, scores: GameScores) {
         val button = gameButtons[game] ?: return
 
-        val gameNameTextView = when (game) {
-            Game.NUMEROS_PLUS -> button.findViewById(R.id.tv_game_name_numeros_plus)
-            Game.DECI_PLUS -> button.findViewById(R.id.tv_game_name_deci_plus)
-            Game.ROMAS -> button.findViewById(R.id.tv_game_name_romas)
-            Game.ALFA_NUMEROS -> button.findViewById(R.id.tv_game_name_alfa_numeros)
-            Game.SUMA_RESTA -> button.findViewById(R.id.tv_game_name_sumaresta)
-            Game.MAS_PLUS -> button.findViewById(R.id.tv_game_name_mas_plus)
-            Game.GENIO_PLUS -> button.findViewById<TextView>(R.id.tv_game_name_genio_plus)
-        }
-
-        val pointsTextView = when (game) {
-            Game.NUMEROS_PLUS -> button.findViewById(R.id.tv_points_numeros_plus)
-            Game.DECI_PLUS -> button.findViewById(R.id.tv_points_deci_plus)
-            Game.ROMAS -> button.findViewById(R.id.tv_points_romas)
-            Game.ALFA_NUMEROS -> button.findViewById(R.id.tv_points_alfa_numeros)
-            Game.SUMA_RESTA -> button.findViewById(R.id.tv_points_sumaresta)
-            Game.MAS_PLUS -> button.findViewById(R.id.tv_points_mas_plus)
-            Game.GENIO_PLUS -> button.findViewById<TextView>(R.id.tv_points_genio_plus)
-        }
-
-        val starIcon = when (game) {
-            Game.NUMEROS_PLUS -> button.findViewById(R.id.icon_star_numeros_plus)
-            Game.DECI_PLUS -> button.findViewById(R.id.icon_star_deci_plus)
-            Game.ROMAS -> button.findViewById(R.id.icon_star_romas)
-            Game.ALFA_NUMEROS -> button.findViewById(R.id.icon_star_alfa_numeros)
-            Game.SUMA_RESTA -> button.findViewById(R.id.icon_star_sumaresta)
-            Game.MAS_PLUS -> button.findViewById(R.id.icon_star_mas_plus)
-            Game.GENIO_PLUS -> button.findViewById<ImageView>(R.id.icon_star_genio_plus)
-        }
-
+        val gameNameTextView: TextView
+        val pointsTextView: TextView
+        var titleRes: Int? = null
 
         when (game) {
-            Game.NUMEROS_PLUS -> gameNameTextView.text = getString(R.string.game_numeros_plus)
-            Game.DECI_PLUS -> gameNameTextView.text = getString(R.string.game_deci_plus)
-            Game.ROMAS -> gameNameTextView.text = getString(R.string.game_romas)
+            Game.NUMEROS_PLUS -> {
+                gameNameTextView = button.findViewById(R.id.tv_game_name_numeros_plus)
+                pointsTextView = button.findViewById(R.id.tv_points_numeros_plus)
+                titleRes = R.string.game_numeros_plus
+            }
+            Game.DECI_PLUS -> {
+                gameNameTextView = button.findViewById(R.id.tv_game_name_deci_plus)
+                pointsTextView = button.findViewById(R.id.tv_points_deci_plus)
+                titleRes = R.string.game_deci_plus
+            }
+            Game.ROMAS -> {
+                gameNameTextView = button.findViewById(R.id.tv_game_name_romas)
+                pointsTextView = button.findViewById(R.id.tv_points_romas)
+                titleRes = R.string.game_romas
+            }
             Game.ALFA_NUMEROS -> {
+                gameNameTextView = button.findViewById(R.id.tv_game_name_alfa_numeros)
+                pointsTextView = button.findViewById(R.id.tv_points_alfa_numeros)
 
             }
             Game.SUMA_RESTA -> {
+                gameNameTextView = button.findViewById(R.id.tv_game_name_sumaresta)
+                pointsTextView = button.findViewById(R.id.tv_points_sumaresta)
 
             }
-            Game.MAS_PLUS -> gameNameTextView.text = getString(R.string.game_mas_plus)
-            Game.GENIO_PLUS -> gameNameTextView.text = getString(R.string.game_genio_plus)
+            Game.MAS_PLUS -> {
+                gameNameTextView = button.findViewById(R.id.tv_game_name_mas_plus)
+                pointsTextView = button.findViewById(R.id.tv_points_mas_plus)
+                titleRes = R.string.game_mas_plus
+            }
+            Game.GENIO_PLUS -> {
+                gameNameTextView = button.findViewById(R.id.tv_game_name_genio_plus)
+                pointsTextView = button.findViewById(R.id.tv_points_genio_plus)
+                titleRes = R.string.game_genio_plus
+            }
         }
 
+        titleRes?.let { gameNameTextView.text = getString(it) }
 
         if (scores.total > 0) {
             pointsTextView.text = scores.total.toString()
             pointsTextView.visibility = View.VISIBLE
-            starIcon.visibility = View.VISIBLE
+
         } else {
             pointsTextView.visibility = View.GONE
-            starIcon.visibility = View.GONE
+
         }
     }
+
 
     private fun applySpecialColors() {
 

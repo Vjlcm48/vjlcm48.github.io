@@ -20,6 +20,7 @@ import com.heptacreation.sumamente.R
 import java.util.Locale
 import kotlin.math.max
 import kotlin.math.roundToInt
+import androidx.activity.enableEdgeToEdge
 
 class LevelResultActivityAlfaNumerosPro : BaseActivity()  {
 
@@ -54,6 +55,7 @@ class LevelResultActivityAlfaNumerosPro : BaseActivity()  {
     private lateinit var sharedPreferences: android.content.SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
         setContentView(R.layout.activity_level_result_alfanumeros)

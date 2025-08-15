@@ -110,7 +110,7 @@
     <string name="ads">広告</string>
     <string name="ads_subtitle">広告を削除</string>
     <string name="switch_ads_desc">広告のオン/オフを切り替える</string>
-    <string name="level_title">レベル %1$d/70</string>
+    <string name="level_title">レベル\n%1$d/70</string>
     <string name="time_limit_text">最大解答時間: %.2f 秒</string>
     <string name="start_button_text">開始</string>
     <string name="close_button_description">説明ウィンドウを閉じる</string>
@@ -124,7 +124,7 @@
     <string name="respuesta_2">答え 2</string>
     <string name="respuesta_3">答え 3</string>
     <string name="respuesta_4">答え 4</string>
-    <string name="score_label">スコア: %1$d</string>
+    <string name="score_label">スコア：\n%1$d</string>
     <string name="new_game">新しいゲーム</string>
     <string name="dialog_title">解答モード</string>
     <string name="seleccion_simple">選択式</string>
@@ -1228,10 +1228,10 @@
     <string name="account_delete_error_auth_recent">セキュリティのため、もう一度サインインしてアカウントを削除してください。</string>
     <string name="account_delete_in_progress">アカウントを削除しています…</string>
 
-
     <string name="share_speed_ranking_message">SumaMenteアプリの%1$sゲームでスピードランキング%2$d位を獲得し、平均タイムは%3$.2f秒でした！あなたは私より速くなれますか？</string>
     <string name="share_global_ranking_message">SumaMenteアプリのグローバルランキングで私のスコアは%1$sポイント、順位は%2$d位です。あなたは私を超えられますか？ https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
     <string name="share_integral_ranking_message">SumaMenteのINTEGRALランキングで%2$d位を獲得しました！私の平均%1$.1fは、9つのチャレンジを極めた達人の一人です。あなたにもその力がありますか？ https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
 
+    <string name="level_results_and_options">レベルの結果とオプション</string>
 
 </resources>

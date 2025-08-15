@@ -13,6 +13,7 @@ import androidx.core.content.res.ResourcesCompat
 import com.heptacreation.sumamente.R
 import java.util.Locale
 import kotlin.math.abs
+import androidx.activity.enableEdgeToEdge
 
 class ExerciseReviewActivityDeciPlus : BaseActivity()  {
 
@@ -23,6 +24,7 @@ class ExerciseReviewActivityDeciPlus : BaseActivity()  {
     private lateinit var understoodButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exercise_review_deci_plus)
 

@@ -32,6 +32,8 @@ import androidx.core.content.res.ResourcesCompat
 import com.heptacreation.sumamente.R
 import java.util.Locale
 import kotlin.random.Random
+import androidx.activity.enableEdgeToEdge
+import android.view.ViewTreeObserver
 
 class GameActivityAlfaNumerosPro : BaseActivity()  {
 
@@ -39,9 +41,9 @@ class GameActivityAlfaNumerosPro : BaseActivity()  {
 
     private lateinit var backArrow: ImageView
     private lateinit var levelTitle: TextView
-    private lateinit var bottomNavHome: ImageView
-    private lateinit var bottomNavChallenges: ImageView
-    private lateinit var bottomNavStatistics: ImageView
+    private lateinit var bottomNavHome: TextView
+    private lateinit var bottomNavChallenges: TextView
+    private lateinit var bottomNavStatistics: TextView
     private lateinit var progressRing: ProgressRingView
     private lateinit var elementTextView: TextView
     private lateinit var promptTextView: TextView
@@ -57,6 +59,8 @@ class GameActivityAlfaNumerosPro : BaseActivity()  {
     private lateinit var blueCircle: View
     private lateinit var vamosTextView: TextView
     private lateinit var chronometerTextView: TextView
+    private lateinit var progressRingContainer: View
+
 
     private var currentLevel = 1
     private var elementList = mutableListOf<GameElement>()
@@ -77,6 +81,7 @@ class GameActivityAlfaNumerosPro : BaseActivity()  {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
         setContentView(R.layout.activity_game_alfanumeros)
@@ -96,10 +101,11 @@ class GameActivityAlfaNumerosPro : BaseActivity()  {
         excludedIndex = intent.getIntExtra("EXCLUDED_INDEX", -1)
         backArrow = findViewById(R.id.back_arrow)
         levelTitle = findViewById(R.id.tv_level)
-        bottomNavHome = findViewById(R.id.home_icon)
-        bottomNavChallenges = findViewById(R.id.calendar_icon)
-        bottomNavStatistics = findViewById(R.id.statistics_icon)
+        bottomNavHome = findViewById(R.id.home_button)
+        bottomNavChallenges = findViewById(R.id.calendar_button)
+        bottomNavStatistics = findViewById(R.id.statistics_button)
         progressRing = findViewById(R.id.progress_ring)
+        progressRingContainer = findViewById(R.id.progress_ring_container)
         elementTextView = findViewById(R.id.tv_number)
         promptTextView = findViewById(R.id.tv_prompt)
         answerButtonsGrid = findViewById(R.id.answer_buttons_grid)
@@ -145,6 +151,7 @@ class GameActivityAlfaNumerosPro : BaseActivity()  {
         inputBlocked = false  // Cambio #2 bloqueo de mas de 2 intentos //
         generateElements()
         calculateTimePerElement()
+        ajustarIconosInferiores()
         startSequence()
     }
 
@@ -585,6 +592,7 @@ class GameActivityAlfaNumerosPro : BaseActivity()  {
         elementTextView.visibility = View.GONE
         progressRing.visibility = View.GONE
         blueCircle.visibility = View.GONE
+        progressRingContainer.visibility = View.GONE
         promptTextView.visibility = View.VISIBLE
         promptTextView.text = getString(R.string.prompt_choose_correct_answer)
 
@@ -1015,6 +1023,32 @@ class GameActivityAlfaNumerosPro : BaseActivity()  {
 
         startActivity(intent)
         finish()
+    }
+
+    private fun ajustarIconosInferiores() {
+        val iconoReferencia = backArrow
+        iconoReferencia.viewTreeObserver.addOnGlobalLayoutListener(
+            object : ViewTreeObserver.OnGlobalLayoutListener {
+                override fun onGlobalLayout() {
+                    iconoReferencia.viewTreeObserver.removeOnGlobalLayoutListener(this)
+
+                    val anchoIcono = iconoReferencia.width
+                    val altoIcono  = iconoReferencia.height
+
+                    val botones = listOf(bottomNavHome, bottomNavChallenges, bottomNavStatistics)
+                    for (boton in botones) {
+                        val iconoTop = boton.compoundDrawables[1]
+                        iconoTop?.setBounds(0, 0, anchoIcono, altoIcono)
+                        boton.setCompoundDrawables(
+                            boton.compoundDrawables[0],
+                            iconoTop,
+                            boton.compoundDrawables[2],
+                            boton.compoundDrawables[3]
+                        )
+                    }
+                }
+            }
+        )
     }
 
     private fun navigateToHome() {

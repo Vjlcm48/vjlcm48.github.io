@@ -15,6 +15,7 @@ import android.widget.TextView
 import androidx.core.content.edit
 import com.heptacreation.sumamente.R
 import java.util.Locale
+import androidx.activity.enableEdgeToEdge
 
 class DifficultySelectionActivity : BaseActivity()   {
 
@@ -43,6 +44,7 @@ class DifficultySelectionActivity : BaseActivity()   {
     private lateinit var prefsName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
 

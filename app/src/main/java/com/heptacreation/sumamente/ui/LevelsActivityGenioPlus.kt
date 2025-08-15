@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import com.heptacreation.sumamente.R
+import androidx.activity.enableEdgeToEdge
 
 class LevelsActivityGenioPlus : BaseActivity()  {
 
@@ -49,6 +50,7 @@ class LevelsActivityGenioPlus : BaseActivity()  {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_levels_genio_plus)
@@ -151,21 +153,25 @@ class LevelsActivityGenioPlus : BaseActivity()  {
             val button = Button(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
                     0,
-                    48.dpToPx(this@LevelsActivityGenioPlus),
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
                     1f
                 ).apply {
                     setMargins(0, 0, 8.dpToPx(this@LevelsActivityGenioPlus), 0)
                 }
+
                 text = getString(levelStrings[i])
-                textSize = 16f
+
+
                 setTypeface(null, Typeface.BOLD)
                 setTextColor(ContextCompat.getColor(this@LevelsActivityGenioPlus, android.R.color.black))
                 gravity = Gravity.CENTER
+
+                minimumHeight = 56.dpToPx(this@LevelsActivityGenioPlus)
                 setPadding(
                     16.dpToPx(this@LevelsActivityGenioPlus),
-                    8.dpToPx(this@LevelsActivityGenioPlus),
+                    12.dpToPx(this@LevelsActivityGenioPlus),
                     16.dpToPx(this@LevelsActivityGenioPlus),
-                    8.dpToPx(this@LevelsActivityGenioPlus)
+                    12.dpToPx(this@LevelsActivityGenioPlus)
                 )
 
                 if (i < ScoreManager.unlockedLevelsGenioPlus && !ScoreManager.isLevelBlockedByFailuresGenioPlus(i + 1)) {
@@ -212,12 +218,13 @@ class LevelsActivityGenioPlus : BaseActivity()  {
 
             val lockIcon = ImageView(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
-                    36.dpToPx(this@LevelsActivityGenioPlus),
-                    36.dpToPx(this@LevelsActivityGenioPlus)
-                ).apply {
-                    gravity = Gravity.CENTER_VERTICAL
-                }
-                setImageResource(if (i < ScoreManager.unlockedLevelsGenioPlus) R.drawable.ic_unlock else R.drawable.ic_lock)
+                    24.dpToPx(this@LevelsActivityGenioPlus),
+                    24.dpToPx(this@LevelsActivityGenioPlus)
+                ).apply { gravity = Gravity.CENTER_VERTICAL }
+
+                setImageResource(
+                    if (i < ScoreManager.unlockedLevelsGenioPlus) R.drawable.ic_unlock else R.drawable.ic_lock
+                )
                 scaleType = ImageView.ScaleType.CENTER_INSIDE
             }
 

@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.core.view.isVisible
 import com.heptacreation.sumamente.R
+import androidx.activity.enableEdgeToEdge
 
 class InstructionsActivityDeciPlusPrincipiante : BaseActivity()  {
 
@@ -42,6 +43,7 @@ class InstructionsActivityDeciPlusPrincipiante : BaseActivity()  {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_instructions_deci_plus)

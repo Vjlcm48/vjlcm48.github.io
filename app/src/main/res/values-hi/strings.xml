@@ -110,7 +110,7 @@
     <string name="ads">विज्ञापन</string>
     <string name="ads_subtitle">विज्ञापन हटाएं</string>
     <string name="switch_ads_desc">विज्ञापन चालू/बंद करने की अनुमति देता है</string>
-    <string name="level_title">स्तर %1$d/70</string>
+    <string name="level_title">स्तर\n%1$d/70</string>
     <string name="time_limit_text">हल करने का अधिकतम समय: %.2f सेकंड</string>
     <string name="start_button_text">शुरू करें</string>
     <string name="close_button_description">निर्देश विंडो बंद करें</string>
@@ -124,7 +124,7 @@
     <string name="respuesta_2">उत्तर 2</string>
     <string name="respuesta_3">उत्तर 3</string>
     <string name="respuesta_4">उत्तर 4</string>
-    <string name="score_label">स्कोर: %1$d</string>
+    <string name="score_label">अंक:\n%1$d</string>
     <string name="new_game">नया खेल</string>
     <string name="dialog_title">उत्तर मोड</string>
     <string name="seleccion_simple">सरल चयन</string>
@@ -774,7 +774,7 @@
 
     <string name="empty_speed_ranking">कोई गति डेटा उपलब्ध नहीं है</string>
 
-    <string name="msg_need_more_games_speed">%1$s के कम से कम 36 स्तर खेलें, अपनी गति रैंकिंग देखने के लिए प्रत्येक कठिनाई स्तर में 12।</string>
+    <string name="msg_need_more_games_speed">अपनी स्पीड रैंकिंग देखने के लिए %1$s के कम से कम 36 लेवल खेलें, प्रत्येक कठिनाई स्तर में 12–12।</string>
 
     <string name="speed_avg_1">आपकी प्रतिक्रिया की औसत गति है: &lt;b&gt;%s सेकंड&lt;/b&gt;।</string>
     <string name="speed_avg_2">अब तक, आपका औसत समय प्रति प्रतिक्रिया &lt;b&gt;%s सेकंड&lt;/b&gt; है।</string>
@@ -1472,10 +1472,10 @@
     <string name="account_delete_error_auth_recent">सुरक्षा के लिए, कृपया अपना खाता हटाने के लिए फिर से साइन इन करें।</string>
     <string name="account_delete_in_progress">आपका खाता हटाया जा रहा है…</string>
 
-
     <string name="share_speed_ranking_message">मैंने SumaMente ऐप में गेम %1$s की स्पीड रैंकिंग में %2$dवाँ स्थान %3$.2f सेकंड के औसत समय के साथ हासिल किया! क्या आप मुझसे तेज़ हो सकते हैं?</string>
     <string name="share_global_ranking_message">मेरा स्कोर SumaMente ऐप की ग्लोबल रैंकिंग में %1$s अंक है, मैं %2$dवें स्थान पर हूँ। क्या आप मुझे हरा सकते हैं? https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
     <string name="share_integral_ranking_message">मैंने SumaMente के INTEGRAL रैंकिंग में %2$dवाँ स्थान जीता! मेरा औसत %1$.1f मुझे उन मास्टरों में रखता है जो 9 चुनौतियों में निपुण हैं। क्या आपके पास भी वह काबिलियत है? https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
 
+    <string name="level_results_and_options">स्तर के परिणाम और विकल्प</string>
 
 </resources>

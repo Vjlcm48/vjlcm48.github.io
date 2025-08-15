@@ -18,7 +18,6 @@
     <string name="content_description_bell_icon">Icono de campana</string>
     <string name="content_description_icon">Icono oficial de SumaMente</string>
 
-
     <string name="instruction_text">Escribe tu nombre de usuario.\nUtiliza entre 4 y 12 caracteres</string>
     <string name="btn_accept">Aceptar</string>
     <string name="content_description_check_icon">Icono de verificación</string>
@@ -121,13 +120,13 @@
     <string name="ads">Publicidad</string>
     <string name="ads_subtitle">Elimina los anuncios</string>
     <string name="switch_ads_desc">Permite activar/desactivar la publicidad</string>
-    <string name="level_title">NIVEL %1$d/70</string>
+    <string name="level_title">NIVEL\n%1$d/70</string>
     <string name="time_limit_text">Tiempo max de resolución: %.2f segundos</string>
     <string name="start_button_text">COMENZAR</string>
     <string name="close_button_description">Cerrar ventana de instrucciones</string>
     <string name="btn_yes">SÍ</string>
     <string name="btn_no">NO</string>
-    <string name="back">Atrás</string>
+
     <string name="exit_confirmation">¿Deseas abandonar el juego?</string>
     <string name="progress_ring_description">Aro de progreso mostrando el tiempo restante</string>
     <string name="prompt_choose_correct_answer">ELIGE LA RESPUESTA\nCORRECTA</string>
@@ -135,8 +134,8 @@
     <string name="respuesta_2">Respuesta 2</string>
     <string name="respuesta_3">Respuesta 3</string>
     <string name="respuesta_4">Respuesta 4</string>
-    <string name="score_label">PUNTAJE: %1$d</string>
-    <string name="new_game">NUEVO JUEGO</string>
+    <string name="score_label">PUNTAJE:\n%1$d</string>
+
     <string name="dialog_title">Modo de Respuesta</string>
     <string name="seleccion_simple">Selección simple</string>
     <string name="escribe_tu_respuesta">Escribe tu respuesta</string>
@@ -163,7 +162,7 @@
     <string name="perfecto">¡Perfecto!</string>
     <string name="increible">¡Increíble!</string>
     <string name="asombroso">¡Asombroso!</string>
-    <string name="excelente">¡Excelente!</string>
+
     <string name="fantastico">¡Fantástico!</string>
     <string name="imparable">¡Imparable!</string>
     <string name="brillante">¡Brillante!</string>
@@ -581,17 +580,20 @@
 
     <string name="descubre_como_jugar">Descubre cómo jugar</string>
     <string name="jugar">JUGAR</string>
+
+
+
+
     <string name="repetir">REPETIR</string>
 
-    <string name="difficulty_selection_title">Selecciona la dificultad</string>
 
-    <string name="difficulty_principiante">Principiante</string>
+
     <string name="difficulty_subtitle_principiante">Básico, pan comido… 🍰</string>
 
-    <string name="difficulty_avanzado">Avanzado</string>
+
     <string name="difficulty_subtitle_avanzado">Interesante, sacudamos esas neuronas… 🧠</string>
 
-    <string name="difficulty_pro">Pro</string>
+
     <string name="difficulty_subtitle_pro">Solo para los elegidos… 👑</string>
 
     <string name="difficulty_exit_dialog_title">Confirmación</string>
@@ -1570,7 +1572,6 @@
     <string name="account_delete_in_progress">Eliminando tu cuenta…</string>
 
 
-
     <string name="share_speed_ranking_message">¡Conseguí el puesto %2$d en el Ranking de Velocidad del juego %1$s en la app S
         umaMente con un tiempo promedio de %3$.2f segundos! ¿Puedes ser más rápido que yo?</string>
 
@@ -1580,6 +1581,33 @@
     <string name="share_integral_ranking_message">¡Conquisté el puesto %2$d en el Ranking INTEGRAL de SumaMente! Mi promedio
         de %1$.1f me coloca entre los maestros que dominan los 9 desafíos. ¿Tienes lo necesario?
         https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
+
+    <string name="level_results_and_options">Resultados del nivel y opciones</string>
+
+    <string name="new_game">NUEVO JUEGO</string>
+    <string name="difficulty_selection_title">Selecciona la dificultad</string>
+    <string name="difficulty_principiante">Principiante</string>
+    <string name="difficulty_avanzado">Avanzado</string>
+    <string name="difficulty_pro">Pro</string>
+    <string name="back">Atrás</string>
+    <string name="excelente">¡Excelente!</string>
+
+    <string name="app_name_s5e" translatable="false">Sudoku 5 Evolution</string>
+    <string name="difficulty_hyper" translatable="false">Híper</string>
+    <string name="btn_undo" translatable="false">Deshacer</string>
+    <string name="btn_give_up" translatable="false">Rendirse</string>
+    <string name="btn_show_solution" translatable="false">Ver solución</string>
+    <string name="btn_check" translatable="false">Comprobar</string>
+    <string name="timer_label" translatable="false">Tiempo</string>
+    <string name="score_label_s5e" translatable="false">Puntaje</string>
+    <string name="game_completed" translatable="false">¡Juego completado!</string>
+    <string name="game_failed" translatable="false">Juego fallido</string>
+    <string name="play_again" translatable="false">Jugar de nuevo</string>
+    <string name="return_menu" translatable="false">Volver al menú</string>
+    <string name="number_unavailable" translatable="false">Número no disponible</string>
+    <string name="try_again" translatable="false">Inténtalo de nuevo</string>
+
+
 
 
 </resources>

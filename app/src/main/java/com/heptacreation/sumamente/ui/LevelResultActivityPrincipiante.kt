@@ -20,6 +20,7 @@ import com.heptacreation.sumamente.R
 import java.util.Locale
 import kotlin.math.max
 import kotlin.math.roundToInt
+import androidx.activity.enableEdgeToEdge
 
 class LevelResultActivityPrincipiante : BaseActivity()  {
 
@@ -55,6 +56,7 @@ class LevelResultActivityPrincipiante : BaseActivity()  {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
