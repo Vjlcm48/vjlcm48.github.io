@@ -11,7 +11,7 @@
     android:background="@drawable/dialog_background"
     android:elevation="6dp">
 
-    <!-- Botón cerrar (X) con target accesible 48dp -->
+
     <ImageView
         android:id="@+id/closeButton"
         android:layout_width="48dp"

@@ -43,7 +43,7 @@
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp">
 
-                <!-- Título: autosize + 2 líneas (color se setea en .kt) -->
+
                 <TextView
                     android:id="@+id/tv_game_name"
                     android:layout_width="match_parent"
@@ -85,7 +85,7 @@
                     app:drawableEndCompat="@drawable/ic_edit"
                     android:contentDescription="@string/change_difficulty" />
 
-                <!-- Puntos: elástico, puede usar 2 líneas -->
+
                 <TextView
                     android:id="@+id/tv_score"
                     android:layout_width="wrap_content"
