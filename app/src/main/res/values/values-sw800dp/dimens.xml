@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="screen_padding">24dp</dimen>
+    <dimen name="content_gap_large">20dp</dimen>
+    <dimen name="content_gap_small">12dp</dimen>
+
+    <dimen name="text_title_large">32sp</dimen>
+
+    <dimen name="text_title">28sp</dimen>
+    <dimen name="text_name">22sp</dimen>
+    <dimen name="text_meaning">18sp</dimen>
+
+    <dimen name="nav_icon">56dp</dimen>
+    <dimen name="badge_min">56dp</dimen>
+    <dimen name="badge_text">20sp</dimen>
+
+    <dimen name="top_margin_header">48dp</dimen>
+    <dimen name="text_name">24sp</dimen>
+    <dimen name="text_meaning">20sp</dimen>
+
+</resources>

@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/blue_primary">
 
-
     <ImageView
         android:id="@+id/app_logo"
         android:layout_width="110dp"
@@ -26,52 +25,52 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="50dp"
+        android:alpha="0"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
+        android:contentDescription="@string/back"
         android:focusable="true"
         android:scaleType="fitCenter"
-        android:contentDescription="@string/back"
         android:src="@drawable/ic_arrowback"
-        android:alpha="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/app_logo"
-        tools:alpha="1"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:alpha="1" />
 
     <ImageView
         android:id="@+id/btn_close"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="18dp"
+        android:alpha="0"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
+        android:contentDescription="@string/close"
         android:focusable="true"
         android:scaleType="fitCenter"
-        android:contentDescription="@string/close"
         android:src="@drawable/ic_close"
-        android:alpha="0"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/app_logo"
-        tools:alpha="1"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:alpha="1" />
 
     <TextView
         android:id="@+id/tv_titulo_clasificaciones"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="6dp"
         android:layout_marginEnd="24dp"
+        android:alpha="0"
         android:fontFamily="@font/roboto_bold"
         android:text="@string/clasificaciones_titulo"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="24sp"
-        android:alpha="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_back"
-        tools:alpha="1"/>
+        app:layout_constraintTop_toBottomOf="@id/app_logo"
+        tools:alpha="1" />
 
     <ScrollView
         android:id="@+id/classification_buttons_scroll_view"
@@ -80,7 +79,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="40dp"
         android:clipToPadding="false"
         android:fillViewport="true"
         android:scrollbarThumbVertical="@drawable/custom_scrollbar_thumb"

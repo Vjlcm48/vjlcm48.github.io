@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <!-- Guías para alineación consistente con el modelo -->
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_mid"
         android:layout_width="wrap_content"
@@ -21,7 +21,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.065" />
 
-    <!-- Back + títulos (sin tamaños rígidos innecesarios) -->
+
     <ImageView
         android:id="@+id/back_arrow"
         android:layout_width="48dp"
@@ -66,7 +66,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"/>
 
-    <!-- Contenido con scroll para pantallas pequeñas / letra grande -->
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/content_scroll"
         android:layout_width="0dp"
@@ -96,7 +96,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-            <!-- Contenedor 1:1 y ancho proporcional -->
+
             <FrameLayout
                 android:id="@+id/progress_ring_container"
                 android:layout_width="0dp"
@@ -129,7 +129,7 @@
                     app:trackColor="@android:color/darker_gray"
                     android:layout_gravity="center"/>
 
-                <!-- Número/elemento central autoajustable -->
+
                 <TextView
                     android:id="@+id/tv_number"
                     android:layout_width="match_parent"
@@ -144,7 +144,7 @@
                     android:includeFontPadding="false" />
             </FrameLayout>
 
-            <!-- “VAMOS” centrado y autoSize -->
+
             <TextView
                 android:id="@+id/tv_vamos"
                 android:layout_width="0dp"
@@ -162,7 +162,7 @@
                 app:layout_constraintStart_toStartOf="@id/progress_ring_container"
                 app:layout_constraintEnd_toEndOf="@id/progress_ring_container"/>
 
-            <!-- Prompt flexible -->
+
             <TextView
                 android:id="@+id/tv_prompt"
                 android:layout_width="0dp"
@@ -179,30 +179,28 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-            <!-- Cronómetro autoSize -->
             <TextView
                 android:id="@+id/chronometer_text_view"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:visibility="gone"
                 app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="16sp"
-                app:autoSizeMaxTextSize="30sp"
+                app:autoSizeMinTextSize="30sp"
+                app:autoSizeMaxTextSize="40sp"
                 app:layout_constraintTop_toBottomOf="@id/tv_prompt"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <!-- Respuesta manual (peso en EditText, minHeight razonable) -->
             <LinearLayout
                 android:id="@+id/manual_input_layout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/chronometer_text_view"
                 app:layout_constraintStart_toStartOf="parent"
@@ -237,12 +235,12 @@
                     android:textStyle="bold"/>
             </LinearLayout>
 
-            <!-- Botonera 2x2 con pesos y autoSize en texto -->
+
             <androidx.gridlayout.widget.GridLayout
                 android:id="@+id/answer_buttons_grid"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:visibility="gone"
                 app:columnCount="2"
                 app:rowCount="2"
@@ -322,7 +320,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Bottom nav con TextView + drawableTop (hit-area mayor y legibilidad) -->
+
     <TextView
         android:id="@+id/home_button"
         android:layout_width="0dp"
