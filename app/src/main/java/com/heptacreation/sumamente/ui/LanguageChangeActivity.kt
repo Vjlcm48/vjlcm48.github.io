@@ -5,6 +5,8 @@ import android.animation.AnimatorListenerAdapter
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -12,17 +14,12 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
-import android.os.Handler
-import android.os.Looper
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.core.view.isVisible
 import com.heptacreation.sumamente.R
-import java.util.Locale
-import android.content.res.Configuration
-import androidx.activity.enableEdgeToEdge
-
 
 class LanguageChangeActivity : BaseActivity() {
 
@@ -106,14 +103,7 @@ class LanguageChangeActivity : BaseActivity() {
         return resources.configuration.locales[0].language
     }
 
-    private fun setAppLanguage(languageCode: String) {
-        val locale = Locale.Builder().setLanguage(languageCode).build()
-        Locale.setDefault(locale)
-        val config = Configuration(resources.configuration)
-        config.setLocale(locale)
-        @Suppress("DEPRECATION")
-        resources.updateConfiguration(config, resources.displayMetrics)
-    }
+
 
     private fun highlightSelectedLanguage(onAnimationEnd: () -> Unit = {}) {
         checkMarks.forEach { it.visibility = View.GONE }
@@ -157,7 +147,7 @@ class LanguageChangeActivity : BaseActivity() {
             apply()
         }
 
-        setAppLanguage(languageCode)
+        // setAppLanguage(languageCode)
 
         checkMarks.forEach { it.visibility = View.GONE }
 

@@ -18,6 +18,7 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.util.TypedValue
 import android.view.View
+import android.view.ViewTreeObserver
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
@@ -27,6 +28,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -37,8 +39,6 @@ import kotlin.math.pow
 import kotlin.math.round
 import kotlin.math.sqrt
 import kotlin.random.Random
-import androidx.activity.enableEdgeToEdge
-import android.view.ViewTreeObserver
 
 
 class GameActivityGenioPlus : BaseActivity()  {
