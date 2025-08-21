@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="?android:attr/colorBackground">
 
 
     <ImageView
@@ -104,7 +104,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/sound"
-                            android:textColor="@color/black"
+                            android:textColor="?attr/colorOnBackground"
+
                             android:textStyle="bold"
                             android:textSize="16.5sp" />
                         <TextView
@@ -150,7 +151,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/notifications"
-                            android:textColor="@color/black"
+                            android:textColor="?attr/colorOnBackground"
+
                             android:textStyle="bold"
                             android:textSize="16.5sp" />
                         <TextView
@@ -196,7 +198,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/language"
-                            android:textColor="@color/black"
+                            android:textColor="?attr/colorOnBackground"
+
                             android:textStyle="bold"
                             android:textSize="16.5sp" />
                         <TextView
@@ -236,7 +239,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/profile"
-                            android:textColor="@color/black"
+                            android:textColor="?attr/colorOnBackground"
+
                             android:textStyle="bold"
                             android:textSize="16.5sp" />
                         <TextView
@@ -277,7 +281,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/share"
-                            android:textColor="@color/black"
+                            android:textColor="?attr/colorOnBackground"
+
                             android:textStyle="bold"
                             android:textSize="16.5sp" />
                         <TextView
@@ -316,7 +321,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/help"
-                            android:textColor="@color/black"
+                            android:textColor="?attr/colorOnBackground"
+
                             android:textStyle="bold"
                             android:textSize="16.5sp" />
                         <TextView
@@ -357,7 +363,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/ads"
-                            android:textColor="@color/black"
+                            android:textColor="?attr/colorOnBackground"
+
                             android:textStyle="bold"
                             android:textSize="16.5sp" />
                         <TextView
@@ -403,7 +410,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/reset_progress"
-                            android:textColor="@color/black"
+                            android:textColor="?attr/colorOnBackground"
+
                             android:textStyle="bold"
                             android:textSize="16.5sp" />
                         <TextView

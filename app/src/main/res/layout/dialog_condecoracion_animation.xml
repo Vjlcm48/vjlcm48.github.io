@@ -2,7 +2,7 @@
     android:layout_width="400dp"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="@drawable/dialog_background_rounded"
+    android:background="@drawable/dialog_background"
     android:orientation="vertical"
     android:padding="24dp">
 
@@ -68,7 +68,8 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorOnBackground"
+
             android:textSize="24sp"
             android:textStyle="bold"
             android:lineSpacingExtra="2dp" />
@@ -92,7 +93,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorOnBackground"
+
         android:textSize="18sp"
         android:textStyle="bold"
         android:lineSpacingExtra="2dp" />
@@ -113,7 +115,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorOnBackground"
+
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -135,7 +138,8 @@
             android:background="@drawable/button_background"
             android:elevation="2dp"
             android:text="@string/entendido"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="16sp"
             android:textStyle="bold" />
 

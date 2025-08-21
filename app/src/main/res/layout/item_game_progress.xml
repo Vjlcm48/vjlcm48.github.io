@@ -47,7 +47,9 @@
             android:layout_centerVertical="true"
             android:layout_toStartOf="@id/tv_progress_principiante"
             android:text="@string/difficulty_principiante"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/colorOnBackground"
+
+
             android:textSize="20sp" />
 
         <TextView
@@ -57,7 +59,9 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:text="@string/progress_placeholder_difficulty"
-            android:textColor="@android:color/black" />
+            android:textColor="?attr/colorOnBackground"
+
+ />
     </RelativeLayout>
 
     <RelativeLayout
@@ -74,7 +78,9 @@
             android:layout_centerVertical="true"
             android:layout_toStartOf="@id/tv_progress_avanzado"
             android:text="@string/difficulty_avanzado"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/colorOnBackground"
+
+
             android:textSize="20sp" />
 
         <TextView
@@ -84,7 +90,9 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:text="@string/progress_placeholder_difficulty"
-            android:textColor="@android:color/black" />
+            android:textColor="?attr/colorOnBackground"
+
+ />
     </RelativeLayout>
 
     <RelativeLayout
@@ -101,7 +109,9 @@
             android:layout_centerVertical="true"
             android:layout_toStartOf="@id/tv_progress_pro"
             android:text="@string/difficulty_pro"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/colorOnBackground"
+
+
             android:textSize="20sp" />
 
         <TextView
@@ -111,6 +121,8 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:text="@string/progress_placeholder_difficulty"
-            android:textColor="@android:color/black" />
+            android:textColor="?attr/colorOnBackground"
+
+ />
     </RelativeLayout>
 </LinearLayout>

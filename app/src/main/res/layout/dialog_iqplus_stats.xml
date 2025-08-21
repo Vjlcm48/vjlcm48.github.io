@@ -22,7 +22,9 @@
             android:text="@string/precision_global_title"
             android:textStyle="bold"
             android:textSize="16sp"
-            android:textColor="@android:color/black" />
+            android:textColor="?attr/colorOnBackground"
+
+ />
 
         <ImageButton
             android:id="@+id/info_precision"
@@ -42,7 +44,9 @@
         android:gravity="start|center_vertical"
         android:textStyle="bold"
         android:textSize="18sp"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/colorOnBackground"
+
+
         android:minHeight="48dp"
         app:drawableStartCompat="@drawable/ic_barchart" />
 
@@ -60,7 +64,9 @@
             android:text="@string/velocidad_promedio_title"
             android:textStyle="bold"
             android:textSize="16sp"
-            android:textColor="@android:color/black" />
+            android:textColor="?attr/colorOnBackground"
+
+ />
 
         <ImageButton
             android:id="@+id/info_velocidad"
@@ -79,7 +85,9 @@
         android:gravity="start|center_vertical"
         android:textStyle="bold"
         android:textSize="18sp"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/colorOnBackground"
+
+
         android:minHeight="48dp"
         app:drawableStartCompat="@drawable/ic_reloj" />
 
@@ -89,7 +97,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/btn_accept"
-        android:textColor="@android:color/white"
+        android:textColor="?attr/colorOnPrimary"
+
         android:background="@drawable/button_background"
         android:textAllCaps="false"
         android:textSize="18sp"

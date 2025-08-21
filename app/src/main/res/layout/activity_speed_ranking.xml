@@ -4,7 +4,7 @@
     android:id="@+id/root_speed_ranking"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="?android:attr/colorBackground">
 
     <ImageView
         android:id="@+id/btn_back"
@@ -37,7 +37,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/game_numeros_plus"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/colorOnBackground"
+
+
             android:textSize="20sp"
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"
@@ -59,7 +61,9 @@
         android:fontFamily="@font/roboto_bold"
         android:text="@string/speed_ranking_title"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/colorOnBackground"
+
+
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +90,8 @@
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:text="@string/ranking_position_header"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="14sp" />
 
         <TextView
@@ -96,7 +101,8 @@
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:text="@string/ranking_player_header"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="14sp" />
 
         <TextView
@@ -106,7 +112,8 @@
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:text="@string/pais"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="14sp" />
 
         <TextView
@@ -116,7 +123,8 @@
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:text="@string/ranking_time_header"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="14sp" />
     </LinearLayout>
 
@@ -160,7 +168,7 @@
                 android:fontFamily="@font/roboto_bold"
                 android:gravity="center"
                 android:text="@string/empty_speed_ranking"
-                android:textColor="@color/grey_dark"
+                android:textColor="?attr/colorOnBackground"
                 android:textSize="16sp"
                 android:visibility="gone" />
 
@@ -174,7 +182,7 @@
                 android:fontFamily="@font/roboto_bold"
                 android:gravity="center"
                 android:text="@string/msg_need_more_games_speed"
-                android:textColor="@color/grey_dark"
+                android:textColor="?attr/colorOnBackground"
                 android:textSize="24sp"
                 android:visibility="gone" />
 

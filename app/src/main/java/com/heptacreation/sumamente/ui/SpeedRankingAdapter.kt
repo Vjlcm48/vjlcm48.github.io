@@ -1,5 +1,6 @@
 package com.heptacreation.sumamente.ui
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,8 +62,12 @@ class SpeedRankingAdapter(
             val usernameView = TextView(context).apply {
                 text = item.username
                 textSize = 16f
-                val textColor = if (item.isCurrentUser) R.color.highlight_user_text else android.R.color.black
-                setTextColor(ContextCompat.getColor(context, textColor))
+
+                if (item.isCurrentUser) {
+                    setTextColor(ContextCompat.getColor(context, R.color.highlight_user_text))
+                } else {
+                    setTextColor(getColorFromAttr(context, R.attr.colorOnBackground))
+                }
                 setTypeface(null, android.graphics.Typeface.BOLD)
             }
             usernameContainer.addView(usernameView)
@@ -79,10 +84,13 @@ class SpeedRankingAdapter(
             usernameContainer.addView(insigniaImageView)
 
         } else {
-
             holder.usernameTextView.text = item.username
-            val textColor = if (item.isCurrentUser) R.color.highlight_user_text else android.R.color.black
-            holder.usernameTextView.setTextColor(ContextCompat.getColor(context, textColor))
+
+            if (item.isCurrentUser) {
+                holder.usernameTextView.setTextColor(ContextCompat.getColor(context, R.color.highlight_user_text))
+            } else {
+                holder.usernameTextView.setTextColor(getColorFromAttr(context, R.attr.colorOnBackground))
+            }
         }
 
         val countryCode = item.countryCode.lowercase(Locale.ROOT)
@@ -117,10 +125,10 @@ class SpeedRankingAdapter(
                 ContextCompat.getColor(context, backgroundColor)
             )
             holder.positionTextView.setTextColor(
-                ContextCompat.getColor(context, android.R.color.black)
+                getColorFromAttr(context, R.attr.colorOnBackground)
             )
             holder.timeTextView.setTextColor(
-                ContextCompat.getColor(context, android.R.color.black)
+                getColorFromAttr(context, R.attr.colorOnBackground)
             )
         }
 
@@ -150,6 +158,12 @@ class SpeedRankingAdapter(
                 )
             }
         }
+    }
+
+    private fun getColorFromAttr(context: Context, attrId: Int): Int {
+        val typedValue = android.util.TypedValue()
+        context.theme.resolveAttribute(attrId, typedValue, true)
+        return typedValue.data
     }
 
     override fun getItemCount() = items.size

@@ -21,14 +21,16 @@
             android:layout_height="48dp"
             android:scaleType="centerInside"
             android:contentDescription="@string/flag_image"
-            android:background="@android:color/transparent" />
+            android:background="?android:attr/colorBackground"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:textSize="16sp"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/colorOnBackground"
+
+
             android:visibility="gone" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

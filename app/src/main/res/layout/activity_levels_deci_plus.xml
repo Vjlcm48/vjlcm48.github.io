@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent">
+    android:background="?attr/colorBackgroundSpecial">
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
@@ -81,7 +81,9 @@
                     android:minHeight="48dp"
                     android:minWidth="110dp"
                     android:padding="8dp"
-                    android:textColor="@android:color/black"
+                    android:textColor="?attr/colorOnBackground"
+
+
                     android:maxLines="4"
                     android:includeFontPadding="false"
                     app:autoSizeTextType="uniform"
@@ -102,7 +104,9 @@
                     android:gravity="center_vertical|end"
                     android:minHeight="48dp"
                     android:padding="8dp"
-                    android:textColor="@android:color/black"
+                    android:textColor="?attr/colorOnBackground"
+
+
                     android:textStyle="bold"
                     android:maxLines="2"
                     android:includeFontPadding="false"

@@ -6,10 +6,12 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.TypedValue
 import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
@@ -290,7 +292,7 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
             visibility = View.VISIBLE
             text = combinedMsg
             textSize = 22f
-            setTextColor(ContextCompat.getColor(this@IntegralRankingActivity, android.R.color.black))
+            setTextColor(getColorFromAttr(this@IntegralRankingActivity, R.attr.colorOnBackground))
         }
     }
 
@@ -331,7 +333,7 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
             visibility = View.VISIBLE
             text = progressMsg
             textSize = 20f
-            setTextColor(ContextCompat.getColor(this@IntegralRankingActivity, android.R.color.black))
+            setTextColor(getColorFromAttr(this@IntegralRankingActivity, R.attr.colorOnBackground))
         }
 
         showRankingsList(rankingsStatus)
@@ -585,6 +587,12 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
                 return false
             }
         })
+    }
+
+    private fun getColorFromAttr(context: Context, attrId: Int): Int {
+        val typedValue = TypedValue()
+        context.theme.resolveAttribute(attrId, typedValue, true)
+        return typedValue.data
     }
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {

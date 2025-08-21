@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_primary"
+    android:background="?attr/colorBackgroundSpecial"
     android:paddingTop="50dp"
     android:paddingBottom="32dp">
 
@@ -32,7 +32,9 @@
         android:maxLines="3"
         android:text="@string/select_game_to_reset"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/colorOnBackground"
+
+
         android:textSize="26sp"
         app:layout_constraintEnd_toStartOf="@+id/closeButton"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +80,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/game_numeros_plus"
-                    android:textColor="@android:color/white"
+                    android:textColor="?attr/colorOnPrimary"
+
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -112,7 +115,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/game_deci_plus"
-                    android:textColor="@android:color/black"
+                    android:textColor="?attr/colorOnBackground"
+
+
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -146,7 +151,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/game_romas"
-                    android:textColor="@android:color/black"
+                    android:textColor="?attr/colorOnBackground"
+
+
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -183,7 +190,9 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="8dp"
                     android:text="@string/game_alfa_numeros"
-                    android:textColor="@android:color/black"
+                    android:textColor="?attr/colorOnBackground"
+
+
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
                     app:layout_constraintEnd_toStartOf="@+id/ic_reset_alfa_numeros"
@@ -217,7 +226,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/game_sumaresta"
-                    android:textColor="@android:color/black"
+                    android:textColor="?attr/colorOnBackground"
+
+
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
                     app:layout_constraintStart_toStartOf="parent"

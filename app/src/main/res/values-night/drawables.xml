@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <drawable name="premio_boton_background">@drawable/button_pro_bordered_dark</drawable>
+    <drawable name="button_background">@drawable/button_pro_bordered_dark</drawable>
+    <drawable name="button_background_alfa_numeros">@drawable/button_pro_bordered_dark</drawable>
+    <drawable name="button_background_avanzado">@drawable/button_pro_bordered_dark</drawable>
+    <drawable name="button_background_deci">@drawable/button_pro_bordered_dark</drawable>
+    <drawable name="button_background_genio">@drawable/button_pro_bordered_dark</drawable>
+    <drawable name="button_background_mas">@drawable/button_pro_bordered_dark</drawable>
+    <drawable name="button_background_principiante">@drawable/button_pro_bordered_dark</drawable>
+    <drawable name="button_background_pro">@drawable/button_pro_bordered_dark</drawable>
+    <drawable name="button_background_progreso">@drawable/button_pro_bordered_dark</drawable>
+    <drawable name="button_background_romas">@drawable/button_pro_bordered_dark</drawable>
+    <drawable name="button_background_sumalevels">@drawable/button_pro_bordered_dark</drawable>
+    <drawable name="button_background_sumaresta">@drawable/button_pro_bordered_dark</drawable>
+    <drawable name="button_normal">@drawable/button_pro_bordered_dark</drawable>
+    <drawable name="button_grey">@drawable/button_pro_bordered_dark</drawable>
+
+</resources>

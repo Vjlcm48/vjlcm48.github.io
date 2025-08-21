@@ -23,7 +23,8 @@
             android:breakStrategy="high_quality"
             android:hyphenationFrequency="full"
             android:text="@string/dialog_title"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorOnBackground"
+
             android:textSize="20sp"
             android:textStyle="bold" />
 

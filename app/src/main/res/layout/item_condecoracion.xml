@@ -47,7 +47,9 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/colorOnBackground"
+
+
             android:textSize="11sp"
             android:textStyle="bold"
             android:textAlignment="center"
@@ -76,7 +78,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
-                    android:textColor="@android:color/black"
+                    android:textColor="?attr/colorOnBackground"
+
+
                     android:textSize="18sp"
                     tools:text="@string/pin_invictus" />
 
@@ -97,7 +101,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/colorOnBackground"
+
+
                 android:textSize="14sp"
                 tools:text="@string/logro_pin_invictus" />
 

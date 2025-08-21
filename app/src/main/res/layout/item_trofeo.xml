@@ -7,7 +7,7 @@
     android:padding="24dp"
     android:clipChildren="true"
     android:clipToPadding="true"
-    android:background="@android:color/white">
+    android:background="?android:attr/colorBackground">
 
     <ImageView
         android:id="@+id/img_trofeo"
@@ -30,7 +30,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:gravity="center"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/colorOnBackground"
+
+
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

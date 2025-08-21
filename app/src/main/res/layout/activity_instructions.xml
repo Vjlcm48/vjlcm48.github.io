@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/blue_primary">
+    android:background="?attr/colorBackgroundSpecial">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/instructions_card"
@@ -88,7 +88,9 @@
                     android:minHeight="48dp"
                     android:minWidth="110dp"
                     android:padding="8dp"
-                    android:textColor="@android:color/black"
+                    android:textColor="?attr/colorOnBackground"
+
+
                     android:maxLines="4"
                     android:includeFontPadding="false"
                     app:autoSizeTextType="uniform"
@@ -108,7 +110,9 @@
                     android:gravity="center_vertical|end"
                     android:minHeight="48dp"
                     android:padding="8dp"
-                    android:textColor="@android:color/black"
+                    android:textColor="?attr/colorOnBackground"
+
+
                     android:textStyle="bold"
                     android:maxLines="2"
                     android:includeFontPadding="false"
@@ -137,7 +141,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="0dp"
                         android:gravity="center"
-                        android:textColor="@android:color/black"
+                        android:textColor="?attr/colorOnBackground"
+
+
                         android:textSize="33sp"
                         android:textStyle="bold"
                         android:alpha="0" />
@@ -147,7 +153,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:textColor="@android:color/black"
+                        android:textColor="?attr/colorOnBackground"
+
+
                         android:textSize="24sp"
                         android:alpha="0" />
 
@@ -156,7 +164,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:textColor="@android:color/black"
+                        android:textColor="?attr/colorOnBackground"
+
+
                         android:textSize="21sp"
                         android:alpha="0" />
 
@@ -165,7 +175,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:textColor="@android:color/black"
+                        android:textColor="?attr/colorOnBackground"
+
+
                         android:textSize="21sp"
                         android:alpha="0" />
 
@@ -174,7 +186,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:textColor="@android:color/black"
+                        android:textColor="?attr/colorOnBackground"
+
+
                         android:textSize="21sp"
                         android:alpha="0" />
 
@@ -186,7 +200,8 @@
                         android:layout_marginTop="20dp"
                         android:background="@drawable/button_background"
                         android:text="@string/start_button_text"
-                        android:textColor="@android:color/white"
+                        android:textColor="?attr/colorOnPrimary"
+
                         android:textSize="24sp"
                         android:paddingStart="40dp"
                         android:paddingEnd="40dp"

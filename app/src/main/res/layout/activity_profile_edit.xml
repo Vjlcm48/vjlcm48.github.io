@@ -3,9 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#1976D2">
+    android:background="?attr/colorBackgroundSpecial">
 
-    <!-- Contenedor central tipo diálogo -->
     <RelativeLayout
         android:id="@+id/profile_edit_container"
         android:layout_width="wrap_content"
@@ -24,7 +23,8 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:text="@string/title_profile_edit"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorOnBackground"
+
             android:textSize="22sp"
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"/>
@@ -38,7 +38,8 @@
             android:background="@drawable/button_background"
             android:fontFamily="@font/roboto_bold"
             android:text="@string/edit_username"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="16sp" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -50,7 +51,8 @@
             android:background="@drawable/button_background"
             android:fontFamily="@font/roboto_bold"
             android:text="@string/edit_flag"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="16sp" />
 
         <androidx.appcompat.widget.AppCompatButton

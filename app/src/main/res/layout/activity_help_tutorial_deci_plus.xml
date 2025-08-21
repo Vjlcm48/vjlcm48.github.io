@@ -5,7 +5,12 @@
     android:id="@+id/root_instructions_numeros"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+
+android:background="?android:attr/colorBackground">
+
+
+
+
 
     <TextView
         android:id="@+id/tv_welcome_text"
@@ -85,7 +90,9 @@
         android:text="@string/escoge_tu_modo_de_respuesta"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/colorOnBackground"
+
+
         android:gravity="center"
         android:layout_marginTop="150dp"
         android:visibility="gone"
@@ -166,7 +173,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/colorOnBackground"
+
+
             android:textSize="124sp"
             android:layout_gravity="center" />
     </FrameLayout>
@@ -230,7 +239,8 @@
             android:layout_height="100dp"
             android:layout_margin="12dp"
             android:background="@drawable/button_background_deci"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="30sp"
             android:textStyle="bold"
             android:text="@string/answer_deci_option_1"
@@ -242,7 +252,8 @@
             android:layout_height="100dp"
             android:layout_margin="12dp"
             android:background="@drawable/button_background_deci"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="30sp"
             android:textStyle="bold"
             android:text="@string/answer_deci_option_2"
@@ -254,7 +265,8 @@
             android:layout_height="100dp"
             android:layout_margin="12dp"
             android:background="@drawable/button_background_deci"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="30sp"
             android:textStyle="bold"
             android:text="@string/answer_deci_option_3"
@@ -266,7 +278,8 @@
             android:layout_height="100dp"
             android:layout_margin="12dp"
             android:background="@drawable/button_background_deci"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="30sp"
             android:textStyle="bold"
             android:text="@string/answer_deci_option_4"
@@ -356,7 +369,8 @@
         android:text="@string/jugar"
         android:textSize="24sp"
         android:background="@drawable/button_background_deci"
-        android:textColor="@android:color/white"
+        android:textColor="?attr/colorOnPrimary"
+
         android:visibility="gone"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@id/btn_repeat"
@@ -370,7 +384,8 @@
         android:text="@string/repetir"
         android:textSize="24sp"
         android:background="@drawable/button_background_deci"
-        android:textColor="@android:color/white"
+        android:textColor="?attr/colorOnPrimary"
+
         android:visibility="gone"
         android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="teal_200">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+    <color name="blue_primary">#1976D2</color>
+    <color name="blue_primary_dark">#0D47A1</color>
+    <color name="blue_secondary">#1565C0</color>
+    <color name="blue_primary_darker">#06225B</color>
+
+
+    <color name="red_primary">#D32F2F</color>
+    <color name="red_secondary">#B71C1C</color>
+
+
+    <color name="green_accent">#2E7D32</color>
+
+
+    <color name="grey_light">#FFFFFFFF</color>
+    <color name="grey_medium">#FFFFFFFF</color>
+    <color name="grey_dark">#757575</color>
+
+
+    <color name="cyan">#0097A7</color>
+    <color name="green_light">#558B2F</color>
+    <color name="green_medium">#2E7D32</color>
+    <color name="yellow">#FBC02D</color>
+    <color name="orange">#F57C00</color>
+    <color name="blue_light">#0288D1</color>
+    <color name="cyan_dark">#00838F</color>
+    <color name="green_dark">#1B5E20</color>
+    <color name="yellow_dark">#F9A825</color>
+    <color name="orange_dark">#E65100</color>
+    <color name="gray">#B0BEC5</color>
+    <color name="red">#C62828</color>
+
+
+    <color name="blue_pressed">#0D47A1</color>
+    <color name="blue_focused">#1565C0</color>
+    <color name="blue_hovered">#1976D2</color>
+    <color name="red_lighter">#EF9A9A</color>
+
+
+    <color name="dark_goldenrod">#5D4037</color>
+    <color name="gold">#BFA100</color>
+    <color name="silver">#9E9E9E</color>
+    <color name="bronze">#8D6E63</color>
+
+
+    <color name="highlight_user_background">#263238</color>
+    <color name="highlight_user_text">#90CAF9</color>
+    <color name="ranking_item_even">#212121</color>
+    <color name="ranking_item_odd">#2C2C2C</color>
+    <color name="progress_number_color">#42A5F5</color>
+    <color name="primary_button_color">#2196F3</color>
+    <color name="white_80_percent">#CCFFFFFF</color>
+    <color name="blue_primary_darkest">#041C3C</color>
+
+
+    <color name="s5e_green_50">#2E7D32</color>
+    <color name="s5e_green_100">#256D2B</color>
+    <color name="s5e_green_200">#1B5E20</color>
+    <color name="s5e_green_400">#145A16</color>
+    <color name="s5e_green_600">#0B3D0F</color>
+    <color name="s5e_green_800">#051F08</color>
+
+
+    <color name="s5e_primary">#2E7D32</color>
+    <color name="s5e_onPrimary">#FFFFFF</color>
+    <color name="s5e_primaryContainer">#1B5E20</color>
+    <color name="s5e_onPrimaryContainer">#C8E6C9</color>
+    <color name="s5e_secondary">#66BB6A</color>
+    <color name="s5e_onSecondary">#E8F5E9</color>
+
+
+    <color name="s5e_surface">#121212</color>
+    <color name="s5e_surfaceVariant">#2C2C2C</color>
+    <color name="s5e_onSurface">#E0E0E0</color>
+    <color name="s5e_outline">#616161</color>
+
+
+    <color name="s5e_error">#CF6679</color>
+    <color name="s5e_errorContainer">#8E2323</color>
+    <color name="s5e_onErrorContainer">#FFCDD2</color>
+</resources>

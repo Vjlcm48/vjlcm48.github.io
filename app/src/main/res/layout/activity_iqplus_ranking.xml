@@ -4,9 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="?android:attr/colorBackground">
 
-    <!-- Botón atrás -->
     <ImageView
         android:id="@+id/btnBack"
         android:layout_width="48dp"
@@ -32,7 +31,9 @@
         android:fontFamily="@font/roboto_bold"
         android:text="@string/iqplus_ranking_title"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/colorOnBackground"
+
+
         android:textSize="24sp"
         app:layout_constraintTop_toBottomOf="@id/btnBack"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +61,7 @@
             android:gravity="center"
             android:text="@string/ranking_position_header"
             android:textStyle="bold"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="16sp" />
 
         <TextView
@@ -70,7 +71,7 @@
             android:gravity="center"
             android:text="@string/ranking_player_header"
             android:textStyle="bold"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="16sp" />
 
         <TextView
@@ -79,7 +80,7 @@
             android:gravity="center"
             android:text="@string/pais"
             android:textStyle="bold"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="16sp" />
 
         <TextView
@@ -89,11 +90,10 @@
             android:gravity="center"
             android:text="@string/indice_iqplus"
             android:textStyle="bold"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="16sp" />
     </LinearLayout>
 
-    <!-- Spinner para filtro General/País -->
     <Spinner
         android:id="@+id/spinnerFiltro"
         android:layout_width="wrap_content"
@@ -102,7 +102,6 @@
         android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/headerLayout"/>
-
 
     <ScrollView
         android:id="@+id/content_container"
@@ -139,7 +138,7 @@
                 android:layout_marginTop="40dp"
                 android:fontFamily="@font/roboto_bold"
                 android:gravity="center"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/colorOnBackground"
                 android:textSize="24sp"
                 android:visibility="gone" />
 

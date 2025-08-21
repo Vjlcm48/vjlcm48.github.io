@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="?android:attr/colorBackground">
 
     <ImageView
         android:id="@+id/btn_back"
@@ -30,7 +30,9 @@
         android:fontFamily="@font/roboto_bold"
         android:text="@string/ranking_integral_s"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/colorOnBackground"
+
+
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +58,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/ranking_position_header"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -66,7 +69,8 @@
             android:layout_weight="3"
             android:gravity="center"
             android:text="@string/ranking_player_header"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -76,7 +80,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/pais"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -86,7 +91,8 @@
             android:layout_weight="2"
             android:gravity="center"
             android:text="@string/puntaje"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>

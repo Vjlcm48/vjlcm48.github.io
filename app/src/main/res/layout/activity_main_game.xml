@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="?android:attr/colorBackground"
     android:paddingTop="50dp"
     android:paddingBottom="32dp">
 
@@ -23,7 +23,9 @@
             android:minHeight="48dp"
             android:padding="8dp"
             android:text="@string/username"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/colorOnBackground"
+
+
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -92,7 +94,9 @@
             android:fontFamily="@font/roboto_bold"
             android:text="@string/notification_app_name"
             android:textAlignment="center"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/colorOnBackground"
+
+
             android:textSize="38sp"
             app:layout_constraintBottom_toTopOf="@+id/new_game_button"
             app:layout_constraintEnd_toEndOf="parent"
@@ -111,7 +115,8 @@
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
             android:text="@string/new_game"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/home_button"
             app:layout_constraintEnd_toEndOf="parent"
@@ -133,7 +138,9 @@
             android:gravity="center"
             android:padding="8dp"
             android:text="@string/home_text"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/colorOnBackground"
+
+
             android:textSize="12sp"
             app:drawableTopCompat="@drawable/ic_inicio"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -152,7 +159,9 @@
             android:gravity="center"
             android:padding="8dp"
             android:text="@string/calendar_text"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/colorOnBackground"
+
+
             android:textSize="12sp"
             app:drawableTopCompat="@drawable/ic_calendario"
             app:layout_constraintTop_toTopOf="@+id/home_button"
@@ -171,7 +180,9 @@
             android:gravity="center"
             android:padding="8dp"
             android:text="@string/statistics_text"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/colorOnBackground"
+
+
             android:textSize="12sp"
             app:drawableTopCompat="@drawable/ic_estadisticas"
             app:layout_constraintTop_toTopOf="@+id/home_button"

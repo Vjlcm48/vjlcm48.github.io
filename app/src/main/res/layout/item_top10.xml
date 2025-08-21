@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:paddingBottom="40dp"
-    android:background="@android:color/white">
+    android:background="?android:attr/colorBackground">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -41,7 +41,8 @@
                 android:gravity="center"
                 android:minWidth="@dimen/badge_min"
                 android:minHeight="@dimen/badge_min"
-                android:textColor="@android:color/white"
+                android:textColor="?attr/colorOnPrimary"
+
                 android:textSize="@dimen/badge_text" />
 
         </FrameLayout>
@@ -54,7 +55,9 @@
             android:layout_marginBottom="@dimen/content_gap_large"
             android:fontFamily="@font/roboto_bold"
             android:textAlignment="center"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/colorOnBackground"
+
+
             android:textSize="@dimen/text_name"
             android:ellipsize="end"
             android:scrollHorizontally="false"

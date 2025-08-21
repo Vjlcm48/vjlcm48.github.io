@@ -51,7 +51,9 @@
         android:maxLines="2"
         android:text="@string/difficulty_selection_title"
         android:textSize="20sp"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/colorOnBackground"
+
+
         android:fontFamily="@font/roboto_bold"
         app:layout_constraintTop_toBottomOf="@id/tv_game_name"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +102,9 @@
                     android:layout_marginStart="12dp"
                     android:text="@string/difficulty_principiante"
                     android:textSize="20sp"
-                    android:textColor="@android:color/black"
+                    android:textColor="?attr/colorOnBackground"
+
+
                     android:fontFamily="@font/roboto_bold"/>
 
                 <TextView
@@ -120,7 +124,9 @@
                     android:layout_marginTop="6dp"
                     android:text="@string/difficulty_subtitle_principiante"
                     android:textSize="14sp"
-                    android:textColor="@android:color/black"/>
+                    android:textColor="?attr/colorOnBackground"
+
+/>
             </RelativeLayout>
 
             <!-- AVANZADO -->
@@ -144,7 +150,9 @@
                     android:layout_marginStart="12dp"
                     android:text="@string/difficulty_avanzado"
                     android:textSize="20sp"
-                    android:textColor="@android:color/black"
+                    android:textColor="?attr/colorOnBackground"
+
+
                     android:fontFamily="@font/roboto_bold"/>
 
                 <TextView
@@ -164,7 +172,9 @@
                     android:layout_marginTop="6dp"
                     android:text="@string/difficulty_subtitle_avanzado"
                     android:textSize="14sp"
-                    android:textColor="@android:color/black"/>
+                    android:textColor="?attr/colorOnBackground"
+
+/>
             </RelativeLayout>
 
 
@@ -187,7 +197,9 @@
                     android:layout_marginStart="12dp"
                     android:text="@string/difficulty_pro"
                     android:textSize="20sp"
-                    android:textColor="@android:color/black"
+                    android:textColor="?attr/colorOnBackground"
+
+
                     android:fontFamily="@font/roboto_bold"/>
 
                 <TextView
@@ -207,7 +219,9 @@
                     android:layout_marginTop="6dp"
                     android:text="@string/difficulty_subtitle_pro"
                     android:textSize="14sp"
-                    android:textColor="@android:color/black"/>
+                    android:textColor="?attr/colorOnBackground"
+
+/>
             </RelativeLayout>
 
         </LinearLayout>

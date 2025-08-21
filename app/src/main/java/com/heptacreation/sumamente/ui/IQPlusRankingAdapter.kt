@@ -1,6 +1,8 @@
 package com.heptacreation.sumamente.ui
 
+import android.content.Context
 import android.graphics.Typeface
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,7 +59,7 @@ class IQPlusRankingAdapter(
             val usernameView = TextView(context).apply {
                 text = item.username
                 textSize = 16f
-                val textColor = if (item.isCurrentUser) R.color.highlight_user_text else android.R.color.black
+                val textColor = if (item.isCurrentUser) R.color.highlight_user_text else R.attr.colorOnBackground
                 setTextColor(ContextCompat.getColor(context, textColor))
                 setTypeface(null, Typeface.BOLD)
             }
@@ -78,7 +80,7 @@ class IQPlusRankingAdapter(
         } else {
 
             holder.tvPlayerName.text = item.username
-            val textColor = if (item.isCurrentUser) R.color.highlight_user_text else android.R.color.black
+            val textColor = if (item.isCurrentUser) R.color.highlight_user_text else R.attr.colorOnBackground
             holder.tvPlayerName.setTextColor(ContextCompat.getColor(context, textColor))
 
             holder.tvPlayerName.setTypeface(null, if (item.isCurrentUser) Typeface.BOLD else Typeface.NORMAL)
@@ -120,8 +122,8 @@ class IQPlusRankingAdapter(
             holder.container.setBackgroundColor(
                 ContextCompat.getColor(context, backgroundColor)
             )
-            holder.tvPos.setTextColor(ContextCompat.getColor(context, android.R.color.black))
-            holder.tvIQPlus.setTextColor(ContextCompat.getColor(context, android.R.color.black))
+            holder.tvPos.setTextColor(getColorFromAttr(context, R.attr.colorOnBackground))
+            holder.tvIQPlus.setTextColor(getColorFromAttr(context, R.attr.colorOnBackground))
         }
 
         when (item.position) {
@@ -158,6 +160,12 @@ class IQPlusRankingAdapter(
                     .start()
             }
         }
+    }
+
+    private fun getColorFromAttr(context: Context, attrId: Int): Int {
+        val typedValue = TypedValue()
+        context.theme.resolveAttribute(attrId, typedValue, true)
+        return typedValue.data
     }
 
     override fun getItemCount() = rankingList.size

@@ -25,6 +25,7 @@ import kotlin.random.Random
 import com.heptacreation.sumamente.ui.utils.MusicManager
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.view.MotionEvent
 import android.widget.Toast
@@ -179,82 +180,100 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
     private fun setupGameSpecificUI() {
         val gameType = intent.getStringExtra(EXTRA_GAME_TYPE) ?: return
 
-        rootLayout.setBackgroundColor(ContextCompat.getColor(this, android.R.color.white))
+        rootLayout.setBackgroundColor(getColorFromAttr(this, android.R.attr.colorBackground))
 
 
         when (gameType) {
             SpeedClassificationActivity.GAME_NUMEROS_PLUS -> {
                 headerGameButton.setBackgroundResource(R.drawable.button_background)
                 tvHeaderGameName.text = getString(R.string.game_numeros_plus)
-                tvHeaderGameName.setTextColor(ContextCompat.getColor(this, android.R.color.black))
+                tvHeaderGameName.setTextColor(getColorFromAttr(this, R.attr.colorOnBackground))
             }
             SpeedClassificationActivity.GAME_DECI_PLUS -> {
                 headerGameButton.setBackgroundResource(R.drawable.button_background_deci)
                 tvHeaderGameName.text = getString(R.string.game_deci_plus)
-                tvHeaderGameName.setTextColor(ContextCompat.getColor(this, android.R.color.black))
+                tvHeaderGameName.setTextColor(getColorFromAttr(this, R.attr.colorOnBackground))
             }
             SpeedClassificationActivity.GAME_ROMAS -> {
                 headerGameButton.setBackgroundResource(R.drawable.button_background_romas)
                 tvHeaderGameName.text = getString(R.string.game_romas)
-                tvHeaderGameName.setTextColor(ContextCompat.getColor(this, android.R.color.black))
+                tvHeaderGameName.setTextColor(getColorFromAttr(this, R.attr.colorOnBackground))
             }
             SpeedClassificationActivity.GAME_ALFA_NUMEROS -> {
                 headerGameButton.setBackgroundResource(R.drawable.button_background_alfa_numeros)
 
-                val alfaText = getString(R.string.text_alfa)
-                val numerosText = getString(R.string.text_numeros)
-                val alfaNumerosText = "$alfaText$numerosText"
-                val spannableAlfaNumeros = SpannableString(alfaNumerosText)
-
-                spannableAlfaNumeros.setSpan(
-                    ForegroundColorSpan(ContextCompat.getColor(this, R.color.red_primary)),
-                    0, alfaText.length,
-                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
-                spannableAlfaNumeros.setSpan(
-                    ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_primary_darker)),
-                    alfaText.length, alfaNumerosText.length,
-                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
-                tvHeaderGameName.text = spannableAlfaNumeros
+                if (isNightMode()) {
+                    tvHeaderGameName.text = getString(R.string.game_alfa_numeros)
+                    tvHeaderGameName.setTextColor(getColorFromAttr(this, R.attr.colorOnBackground))
+                } else {
+                    val alfaText = getString(R.string.text_alfa)
+                    val numerosText = getString(R.string.text_numeros)
+                    val alfaNumerosText = "$alfaText$numerosText"
+                    val spannableAlfaNumeros = SpannableString(alfaNumerosText)
+                    spannableAlfaNumeros.setSpan(
+                        ForegroundColorSpan(ContextCompat.getColor(this, R.color.red_primary)),
+                        0, alfaText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    spannableAlfaNumeros.setSpan(
+                        ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_primary_darker)),
+                        alfaText.length, alfaNumerosText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    tvHeaderGameName.text = spannableAlfaNumeros
+                }
             }
             SpeedClassificationActivity.GAME_SUMA_RESTA -> {
                 headerGameButton.setBackgroundResource(R.drawable.button_background_sumaresta)
 
-                val sumaText = getString(R.string.text_suma)
-                val restaText = getString(R.string.text_resta)
-                val sumarestaText = "$sumaText$restaText"
-                val spannableSumaresta = SpannableString(sumarestaText)
-
-                spannableSumaresta.setSpan(
-                    ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_pressed)),
-                    0, sumaText.length,
-                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
-                spannableSumaresta.setSpan(
-                    ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)),
-                    sumaText.length, sumarestaText.length,
-                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
-                tvHeaderGameName.text = spannableSumaresta
+                if (isNightMode()) {
+                    tvHeaderGameName.text = getString(R.string.game_sumaresta)
+                    tvHeaderGameName.setTextColor(getColorFromAttr(this, R.attr.colorOnBackground))
+                } else {
+                    val sumaText = getString(R.string.text_suma)
+                    val restaText = getString(R.string.text_resta)
+                    val sumarestaText = "$sumaText$restaText"
+                    val spannableSumaresta = SpannableString(sumarestaText)
+                    spannableSumaresta.setSpan(
+                        ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_pressed)),
+                        0, sumaText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    spannableSumaresta.setSpan(
+                        ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)),
+                        sumaText.length, sumarestaText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    tvHeaderGameName.text = spannableSumaresta
+                }
             }
             SpeedClassificationActivity.GAME_MAS_PLUS -> {
                 headerGameButton.setBackgroundResource(R.drawable.button_background_mas)
                 tvHeaderGameName.text = getString(R.string.game_mas_plus)
-                tvHeaderGameName.setTextColor(ContextCompat.getColor(this, R.color.grey_light))
+
+                if (isNightMode()) {
+                    tvHeaderGameName.setTextColor(getColorFromAttr(this, R.attr.colorOnBackground))
+                } else {
+                    tvHeaderGameName.setTextColor(ContextCompat.getColor(this, R.color.grey_light))
+                }
             }
             SpeedClassificationActivity.GAME_GENIO_PLUS -> {
                 headerGameButton.setBackgroundResource(R.drawable.button_background_genio)
                 tvHeaderGameName.text = getString(R.string.game_genio_plus)
-                tvHeaderGameName.setTextColor(ContextCompat.getColor(this, R.color.blue_pressed))
-            }
-            else -> {
-                headerGameButton.setBackgroundResource(R.drawable.button_background)
-                tvHeaderGameName.text = ""
+
+                if (isNightMode()) {
+                    tvHeaderGameName.setTextColor(getColorFromAttr(this, R.attr.colorOnBackground))
+                } else {
+                    tvHeaderGameName.setTextColor(ContextCompat.getColor(this, R.color.blue_pressed))
+                }
             }
         }
 
         tvTitle.text = getString(R.string.speed_ranking_title)
+    }
+
+    private fun isNightMode(): Boolean {
+        return (resources.configuration.uiMode and
+                android.content.res.Configuration.UI_MODE_NIGHT_MASK) ==
+                android.content.res.Configuration.UI_MODE_NIGHT_YES
+    }
+
+    private fun getColorFromAttr(context: Context, attrId: Int): Int {
+        val typedValue = android.util.TypedValue()
+        context.theme.resolveAttribute(attrId, typedValue, true)
+        return typedValue.data
     }
 
     private fun loadSpeedRankingData() {
@@ -369,7 +388,7 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
                     text = getString(R.string.msg_need_more_games_speed, getGameName(gameType))
                     textSize = 24f // 50% más grande que 16sp
                     gravity = android.view.Gravity.CENTER
-                    setTextColor(ContextCompat.getColor(this@SpeedRankingActivity, android.R.color.black))
+                    setTextColor(getColorFromAttr(this@SpeedRankingActivity, R.attr.colorOnBackground))
                 }
                 recyclerView.visibility = View.GONE
                 emptyView.visibility = View.GONE
@@ -472,7 +491,7 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
                         "$avgMsg<br/><br/>$infoMsg<br/><br/>$motivMsg",
                         android.text.Html.FROM_HTML_MODE_LEGACY
                     )
-                    setTextColor(ContextCompat.getColor(this@SpeedRankingActivity, android.R.color.black))
+                    setTextColor(getColorFromAttr(this@SpeedRankingActivity, R.attr.colorOnBackground))
                 }
 
                 recyclerView.visibility = View.GONE

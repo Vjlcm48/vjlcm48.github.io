@@ -4,7 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+
+android:background="?android:attr/colorBackground">
+
+
+
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_mid"
@@ -128,7 +133,9 @@
                     android:id="@+id/tv_number"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColor="@android:color/black"
+                    android:textColor="?attr/colorOnBackground"
+
+
                     android:gravity="center"
                     android:layout_gravity="center"
                     app:autoSizeTextType="uniform"
@@ -144,7 +151,9 @@
                 android:layout_height="0dp"
                 android:text="@string/vamos_text"
                 android:gravity="center"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/colorOnBackground"
+
+
                 android:visibility="gone"
                 android:padding="16dp"
                 app:autoSizeTextType="uniform"
@@ -222,7 +231,8 @@
                     android:minHeight="48dp"
                     android:background="@drawable/button_background_deci"
                     android:text="@string/submit"
-                    android:textColor="@android:color/white"
+                    android:textColor="?attr/colorOnPrimary"
+
                     android:textSize="18sp"
                     android:textStyle="bold"/>
             </LinearLayout>
@@ -248,7 +258,8 @@
                     app:layout_columnWeight="1"
                     app:layout_rowWeight="1"
                     android:background="@drawable/button_background_deci"
-                    android:textColor="@android:color/white"
+                    android:textColor="?attr/colorOnPrimary"
+
                     android:textStyle="bold"
                     app:autoSizeTextType="uniform"
                     app:autoSizeMinTextSize="14sp"
@@ -265,7 +276,8 @@
                     app:layout_columnWeight="1"
                     app:layout_rowWeight="1"
                     android:background="@drawable/button_background_deci"
-                    android:textColor="@android:color/white"
+                    android:textColor="?attr/colorOnPrimary"
+
                     android:textStyle="bold"
                     app:autoSizeTextType="uniform"
                     app:autoSizeMinTextSize="14sp"
@@ -282,7 +294,8 @@
                     app:layout_columnWeight="1"
                     app:layout_rowWeight="1"
                     android:background="@drawable/button_background_deci"
-                    android:textColor="@android:color/white"
+                    android:textColor="?attr/colorOnPrimary"
+
                     android:textStyle="bold"
                     app:autoSizeTextType="uniform"
                     app:autoSizeMinTextSize="14sp"
@@ -299,7 +312,8 @@
                     app:layout_columnWeight="1"
                     app:layout_rowWeight="1"
                     android:background="@drawable/button_background_deci"
-                    android:textColor="@android:color/white"
+                    android:textColor="?attr/colorOnPrimary"
+
                     android:textStyle="bold"
                     app:autoSizeTextType="uniform"
                     app:autoSizeMinTextSize="14sp"
@@ -325,7 +339,9 @@
         android:gravity="center"
         android:padding="12dp"
         android:text="@string/home_text"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/colorOnBackground"
+
+
         android:textSize="14sp"
         app:drawableTopCompat="@drawable/ic_inicio"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -345,7 +361,9 @@
         android:gravity="center"
         android:padding="12dp"
         android:text="@string/calendar_text"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/colorOnBackground"
+
+
         android:textSize="14sp"
         app:drawableTopCompat="@drawable/ic_calendario"
         app:layout_constraintTop_toTopOf="@+id/home_button"
@@ -365,7 +383,9 @@
         android:gravity="center"
         android:padding="12dp"
         android:text="@string/statistics_text"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/colorOnBackground"
+
+
         android:textSize="14sp"
         app:drawableTopCompat="@drawable/ic_estadisticas"
         app:layout_constraintTop_toTopOf="@+id/home_button"

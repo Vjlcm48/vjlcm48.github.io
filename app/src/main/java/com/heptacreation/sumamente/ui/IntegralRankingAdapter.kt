@@ -1,5 +1,7 @@
 package com.heptacreation.sumamente.ui
 
+import android.content.Context
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,11 +60,10 @@ class IntegralRankingAdapter(
                 addView(usernameContainer, index, holder.usernameTextView.layoutParams)
             }
 
-
             val usernameView = TextView(holder.itemView.context).apply {
                 text = item.username
                 textSize = 16f
-                val textColor = if (item.isCurrentUser) R.color.highlight_user_text else android.R.color.black
+                val textColor = if (item.isCurrentUser) R.color.highlight_user_text else R.attr.colorOnBackground
                 setTextColor(ContextCompat.getColor(holder.itemView.context, textColor))
                 setTypeface(null, android.graphics.Typeface.BOLD)
             }
@@ -122,10 +123,10 @@ class IntegralRankingAdapter(
                 ContextCompat.getColor(holder.itemView.context, backgroundColor)
             )
             holder.positionTextView.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, android.R.color.black)
+                getColorFromAttr(holder.itemView.context, R.attr.colorOnBackground)
             )
             holder.integralScoreTextView.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, android.R.color.black)
+                getColorFromAttr(holder.itemView.context, R.attr.colorOnBackground)
             )
         }
 
@@ -157,6 +158,12 @@ class IntegralRankingAdapter(
     }
 
     override fun getItemCount() = items.size
+
+    private fun getColorFromAttr(context: Context, attrId: Int): Int {
+        val typedValue = TypedValue()
+        context.theme.resolveAttribute(attrId, typedValue, true)
+        return typedValue.data
+    }
 
     private fun showInsigniaTooltip(view: View) {
         android.widget.Toast.makeText(view.context, "SUPREMUS INTEGRALIS", android.widget.Toast.LENGTH_SHORT).show()

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_marginBottom="40dp"
     android:fillViewport="true"
-    android:background="@android:color/white">
+    android:background="?android:attr/colorBackground">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
         android:fontFamily="@font/roboto_bold"
         android:text="@string/instruction_text"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/colorOnBackground"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,9 +49,9 @@
         android:layout_marginTop="24dp"
         android:alpha="0"
         android:hint="@string/hint_username_input"
-        app:boxStrokeColor="@color/blue_primary"
+        app:boxStrokeColor="@color/username_box_stroke_color"
         app:errorEnabled="true"
-        app:hintTextColor="@color/blue_primary"
+        app:hintTextColor="@color/username_hint_til_color"
         app:endIconMode="none"
         app:endIconTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:maxLength="12"
-            android:textColor="@android:color/black" />
+            android:textColor="?attr/colorOnBackground"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,7 +78,7 @@
         android:background="@drawable/button_background"
         android:fontFamily="@font/roboto_bold"
         android:text="@string/btn_accept"
-        android:textColor="@android:color/white"
+        android:textColor="?attr/colorOnPrimary"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@id/username_input_layout"
         app:layout_constraintStart_toStartOf="@id/username_input_layout"

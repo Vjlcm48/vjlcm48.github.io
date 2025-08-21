@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="?android:attr/colorBackground"
     tools:context=".ui.ProgressSummaryActivity">
 
     <RelativeLayout
@@ -57,7 +57,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/levels_completed"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/colorOnBackground"
+
+
             android:fontFamily="@font/roboto_bold"
             android:textSize="16sp"
             android:layout_toStartOf="@id/tv_global_progress"
@@ -68,7 +70,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/progress"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/colorOnBackground"
+
+
             android:fontFamily="@font/roboto_bold"
             android:textSize="16sp"
             android:layout_alignParentEnd="true"/>

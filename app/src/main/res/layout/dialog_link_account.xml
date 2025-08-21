@@ -36,7 +36,9 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/dialog_link_title"
         android:textSize="22sp"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/colorOnBackground"
+
+
         android:fontFamily="@font/roboto_bold"
         android:layout_marginBottom="8dp"/>
 
@@ -48,7 +50,9 @@
         android:text="@string/link_account_prompt_popup"
         android:textAlignment="center"
         android:textSize="16sp"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/colorOnBackground"
+
+
         android:layout_marginBottom="24dp"/>
 
     <com.google.android.material.button.MaterialButton
@@ -60,7 +64,8 @@
         android:maxWidth="288dp"
         android:layout_gravity="center_horizontal"
         android:text="@string/dialog_link_accept"
-        android:textColor="@android:color/white"
+        android:textColor="?attr/colorOnPrimary"
+
         app:cornerRadius="16dp"
         app:backgroundTint="@color/primary_button_color"/>
 
@@ -74,7 +79,8 @@
         android:layout_gravity="center_horizontal"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:text="@string/dialog_link_not_now"
-        android:textColor="@color/black"/>
+        android:textColor="?attr/colorOnBackground"
+/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnRemindLater"
@@ -86,6 +92,7 @@
         android:layout_gravity="center_horizontal"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:text="@string/dialog_link_remind_later"
-        android:textColor="@color/black"/>
+        android:textColor="?attr/colorOnBackground"
+/>
 
 </LinearLayout>

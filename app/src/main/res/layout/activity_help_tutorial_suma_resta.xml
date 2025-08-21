@@ -56,7 +56,8 @@
         android:text="@string/tutorial_step_intro_part_b"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:textColor="@android:color/white"
+        android:textColor="?attr/colorOnPrimary"
+
         android:gravity="center"
         android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/tv_step_intro_part_a"
@@ -85,7 +86,9 @@
         android:text="@string/escoge_tu_modo_de_respuesta"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/colorOnBackground"
+
+
         android:gravity="center"
         android:layout_marginTop="150dp"
         android:visibility="gone"
@@ -167,7 +170,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/colorOnBackground"
+
+
             android:textSize="124sp"
             android:layout_gravity="center" />
     </FrameLayout>
@@ -231,7 +236,8 @@
             android:layout_height="100dp"
             android:layout_margin="12dp"
             android:background="@drawable/button_background"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="30sp"
             android:textStyle="bold"
             android:text="@string/answer_sumaresta_option_1"
@@ -243,7 +249,8 @@
             android:layout_height="100dp"
             android:layout_margin="12dp"
             android:background="@drawable/button_background"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="30sp"
             android:textStyle="bold"
             android:text="@string/answer_sumaresta_option_2"
@@ -255,7 +262,8 @@
             android:layout_height="100dp"
             android:layout_margin="12dp"
             android:background="@drawable/button_background"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="30sp"
             android:textStyle="bold"
             android:text="@string/answer_sumaresta_option_3"
@@ -267,7 +275,8 @@
             android:layout_height="100dp"
             android:layout_margin="12dp"
             android:background="@drawable/button_background"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="30sp"
             android:textStyle="bold"
             android:text="@string/answer_sumaresta_option_4"
@@ -356,7 +365,8 @@
         android:text="@string/jugar"
         android:textSize="24sp"
         android:background="@drawable/button_background"
-        android:textColor="@android:color/white"
+        android:textColor="?attr/colorOnPrimary"
+
         android:visibility="gone"
         android:layout_marginTop="500dp"
         app:layout_constraintTop_toBottomOf="@id/tv_final_points"
@@ -370,7 +380,8 @@
         android:text="@string/repetir"
         android:textSize="24sp"
         android:background="@drawable/button_background"
-        android:textColor="@android:color/white"
+        android:textColor="?attr/colorOnPrimary"
+
         android:visibility="gone"
         android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@id/btn_understood"

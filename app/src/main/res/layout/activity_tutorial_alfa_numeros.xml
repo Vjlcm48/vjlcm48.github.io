@@ -5,7 +5,12 @@
     android:id="@+id/root_instructions_numeros"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+
+android:background="?android:attr/colorBackground">
+
+
+
+
 
     <TextView
         android:id="@+id/tv_welcome_text"
@@ -85,7 +90,9 @@
         android:text="@string/escoge_tu_modo_de_respuesta"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/colorOnBackground"
+
+
         android:gravity="center"
         android:layout_marginTop="150dp"
         android:visibility="gone"
@@ -166,7 +173,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/colorOnBackground"
+
+
             android:textSize="124sp"
             android:layout_gravity="center" />
     </FrameLayout>
@@ -246,7 +255,8 @@
             android:gravity="center"
             android:visibility="gone"
             android:background="@drawable/button_background_alfa_numeros"
-            android:textColor="@android:color/white" />
+            android:textColor="?attr/colorOnPrimary"
+ />
     </LinearLayout>
 
     <!-- Aquí eliminé el check verde -->
@@ -342,7 +352,8 @@
         android:text="@string/entendido"
         android:textSize="24sp"
         android:background="@drawable/button_background_alfa_numeros"
-        android:textColor="@android:color/white"
+        android:textColor="?attr/colorOnPrimary"
+
         android:visibility="gone"
         android:layout_marginTop="600dp"
         app:layout_constraintTop_toBottomOf="@id/tv_final_points"

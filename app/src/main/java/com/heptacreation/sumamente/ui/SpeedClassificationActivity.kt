@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.content.Context
 import android.content.Intent
 import android.graphics.LinearGradient
 import android.graphics.Matrix
@@ -18,11 +19,11 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.enableEdgeToEdge
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.heptacreation.sumamente.R
 import com.heptacreation.sumamente.ui.utils.MusicManager
-import androidx.activity.enableEdgeToEdge
 
 class SpeedClassificationActivity : BaseActivity() {
 
@@ -240,33 +241,43 @@ class SpeedClassificationActivity : BaseActivity() {
     private fun applyAlfaNumerosColor(button: ConstraintLayout?) {
         button ?: return
         val textView = button.findViewById<TextView>(R.id.tv_game_name_alfa_numeros)
-        val alfaText = getString(R.string.text_alfa)
-        val numerosText = getString(R.string.text_numeros)
-        val alfaNumerosText = "$alfaText$numerosText"
-        val spannableAlfaNumeros = SpannableString(alfaNumerosText)
-        spannableAlfaNumeros.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(this, R.color.red_primary)),
-            0, alfaText.length, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
-        spannableAlfaNumeros.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_primary_darker)),
-            alfaText.length, alfaNumerosText.length, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
-        textView.text = spannableAlfaNumeros
+
+        if (isNightMode()) {
+            textView.setTextColor(getColorFromAttr(this, R.attr.colorOnBackground))
+        } else {
+            val alfaText = getString(R.string.text_alfa)
+            val numerosText = getString(R.string.text_numeros)
+            val alfaNumerosText = "$alfaText$numerosText"
+            val spannableAlfaNumeros = SpannableString(alfaNumerosText)
+            spannableAlfaNumeros.setSpan(
+                ForegroundColorSpan(ContextCompat.getColor(this, R.color.red_primary)),
+                0, alfaText.length, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannableAlfaNumeros.setSpan(
+                ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_primary_darker)),
+                alfaText.length, alfaNumerosText.length, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
+            textView.text = spannableAlfaNumeros
+        }
     }
 
     private fun applySumarestaColor(button: ConstraintLayout?) {
         button ?: return
         val textView = button.findViewById<TextView>(R.id.tv_game_name_sumaresta)
-        val sumaText = getString(R.string.text_suma)
-        val restaText = getString(R.string.text_resta)
-        val sumarestaText = "$sumaText$restaText"
-        val spannableSumaresta = SpannableString(sumarestaText)
-        spannableSumaresta.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_pressed)),
-            0, sumaText.length, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
-        spannableSumaresta.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)),
-            sumaText.length, sumarestaText.length, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
-        textView.text = spannableSumaresta
+
+        if (isNightMode()) {
+            textView.setTextColor(getColorFromAttr(this, R.attr.colorOnBackground))
+        } else {
+            val sumaText = getString(R.string.text_suma)
+            val restaText = getString(R.string.text_resta)
+            val sumarestaText = "$sumaText$restaText"
+            val spannableSumaresta = SpannableString(sumarestaText)
+            spannableSumaresta.setSpan(
+                ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_pressed)),
+                0, sumaText.length, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannableSumaresta.setSpan(
+                ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)),
+                sumaText.length, sumarestaText.length, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
+            textView.text = spannableSumaresta
+        }
     }
 
     private fun applyMasPlusColor(button: ConstraintLayout?) {
@@ -278,7 +289,24 @@ class SpeedClassificationActivity : BaseActivity() {
     private fun applyGenioPlusColor(button: ConstraintLayout?) {
         button ?: return
         val textView = button.findViewById<TextView>(R.id.tv_game_name_genio_plus)
-        textView.setTextColor(ContextCompat.getColor(this, R.color.blue_pressed))
+
+        if (isNightMode()) {
+            textView.setTextColor(getColorFromAttr(this, R.attr.colorOnBackground))
+        } else {
+            textView.setTextColor(ContextCompat.getColor(this, R.color.blue_pressed))
+        }
+    }
+
+    private fun isNightMode(): Boolean {
+        return (resources.configuration.uiMode and
+                android.content.res.Configuration.UI_MODE_NIGHT_MASK) ==
+                android.content.res.Configuration.UI_MODE_NIGHT_YES
+    }
+
+    private fun getColorFromAttr(context: Context, attrId: Int): Int {
+        val typedValue = android.util.TypedValue()
+        context.theme.resolveAttribute(attrId, typedValue, true)
+        return typedValue.data
     }
 
     override fun onStart() {

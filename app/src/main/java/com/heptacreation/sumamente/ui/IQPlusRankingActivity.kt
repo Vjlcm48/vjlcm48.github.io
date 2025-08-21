@@ -6,6 +6,7 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -16,6 +17,7 @@ import android.text.Spanned
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import android.util.TypedValue
 import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
@@ -465,7 +467,7 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
             visibility = View.VISIBLE
             text = startMsg
             textSize = 24f
-            setTextColor(ContextCompat.getColor(this@IQPlusRankingActivity, android.R.color.black))
+            setTextColor(getColorFromAttr(this@IQPlusRankingActivity, R.attr.colorOnBackground))
         }
     }
 
@@ -532,7 +534,7 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
             visibility = View.VISIBLE
             text = spannableText
             textSize = 22f
-            setTextColor(ContextCompat.getColor(this@IQPlusRankingActivity, android.R.color.black))
+            setTextColor(getColorFromAttr(this@IQPlusRankingActivity, R.attr.colorOnBackground))
             movementMethod = LinkMovementMethod.getInstance()
             gravity = Gravity.CENTER
         }
@@ -628,6 +630,12 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
             type = "text/plain"
         }
         startActivity(Intent.createChooser(intent, getString(R.string.share)))
+    }
+
+    private fun getColorFromAttr(context: Context, attrId: Int): Int {
+        val typedValue = TypedValue()
+        context.theme.resolveAttribute(attrId, typedValue, true)
+        return typedValue.data
     }
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {

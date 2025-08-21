@@ -29,7 +29,9 @@
             android:layout_height="wrap_content"
             android:text="@string/select_data_to_reset"
             android:textSize="20sp"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/colorOnBackground"
+
+
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:layout_marginBottom="16dp" />
@@ -46,7 +48,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/reset_score"
                 android:textSize="16sp"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/colorOnBackground"
+
+
                 android:layout_weight="1" />
 
             <CheckBox
@@ -70,7 +74,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/reset_response_mode"
                 android:textSize="16sp"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/colorOnBackground"
+
+
                 android:layout_weight="1" />
 
             <CheckBox
@@ -88,7 +94,8 @@
             android:layout_height="wrap_content"
             android:text="@string/accept"
             android:background="@drawable/button_background"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="16sp"
             android:fontFamily="@font/roboto_bold"
             android:paddingHorizontal="32dp"

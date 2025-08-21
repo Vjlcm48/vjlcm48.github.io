@@ -4,7 +4,7 @@
     android:id="@+id/apex_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_light">
+    android:background="?android:attr/colorBackground">
 
     <ImageView
         android:id="@+id/btn_back"
@@ -46,7 +46,9 @@
         android:fontFamily="@font/roboto_bold"
         android:text="@string/condecoracion_suprema"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/colorOnBackground"
+
+
         android:textSize="26sp"
         android:ellipsize="end"
         android:singleLine="false"
@@ -102,7 +104,9 @@
                 android:fontFamily="@font/roboto_bold"
                 android:text="@string/apex_supremus_descripcion"
                 android:textAlignment="center"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/colorOnBackground"
+
+
                 android:textSize="22sp"
                 android:ellipsize="end"
                 android:singleLine="false"
@@ -121,7 +125,9 @@
                 android:fontFamily="@font/roboto_bold"
                 android:text="@string/apex_supremus_info"
                 android:textAlignment="center"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/colorOnBackground"
+
+
                 android:textSize="18sp"
                 android:ellipsize="end"
                 android:singleLine="false"

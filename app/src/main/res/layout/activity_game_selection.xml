@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_primary"
+    android:background="?attr/colorBackgroundSpecial"
     android:paddingTop="50dp"
     android:paddingBottom="32dp">
 
@@ -31,7 +31,9 @@
         android:fontFamily="@font/roboto_bold"
         android:text="@string/select_a_game"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/colorOnBackground"
+
+
         android:textSize="26sp"
         app:layout_constraintEnd_toStartOf="@+id/closeButton"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +85,8 @@
                 android:layout_toStartOf="@id/icon_graph_progreso"
                 android:fontFamily="@font/roboto_bold"
                 android:text="@string/my_progress"
-                android:textColor="@color/black"
+                android:textColor="?attr/colorOnBackground"
+
                 android:textSize="20sp" />
 
             <ImageView
@@ -130,7 +133,8 @@
                     android:text="@string/game_numeros_plus"
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
-                    android:textColor="@android:color/white"
+                    android:textColor="?attr/colorOnPrimary"
+
                     android:includeFontPadding="false"
                     android:maxLines="3"
                     android:breakStrategy="simple"
@@ -149,7 +153,8 @@
                     android:text="@string/default_score"
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
-                    android:textColor="@android:color/white"
+                    android:textColor="?attr/colorOnPrimary"
+
                     android:drawablePadding="4dp"
                     android:includeFontPadding="false"
                     android:visibility="gone"
@@ -181,7 +186,9 @@
                     android:text="@string/game_deci_plus"
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
-                    android:textColor="@android:color/black"
+                    android:textColor="?attr/colorOnBackground"
+
+
                     android:includeFontPadding="false"
                     android:maxLines="3"
                     android:breakStrategy="simple"
@@ -199,7 +206,8 @@
                     android:text="@string/default_score"
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
-                    android:textColor="@android:color/white"
+                    android:textColor="?attr/colorOnPrimary"
+
                     android:drawablePadding="4dp"
                     android:includeFontPadding="false"
                     android:visibility="gone"
@@ -231,7 +239,9 @@
                     android:text="@string/game_romas"
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
-                    android:textColor="@android:color/black"
+                    android:textColor="?attr/colorOnBackground"
+
+
                     android:includeFontPadding="false"
                     android:maxLines="3"
                     android:breakStrategy="simple"
@@ -249,7 +259,8 @@
                     android:text="@string/default_score"
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
-                    android:textColor="@android:color/white"
+                    android:textColor="?attr/colorOnPrimary"
+
                     android:drawablePadding="4dp"
                     android:includeFontPadding="false"
                     android:visibility="gone"
@@ -281,7 +292,9 @@
                     android:text="@string/game_alfa_numeros"
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
-                    android:textColor="@android:color/black"
+                    android:textColor="?attr/colorOnBackground"
+
+
                     android:includeFontPadding="false"
                     android:maxLines="3"
                     android:breakStrategy="simple"
@@ -299,7 +312,8 @@
                     android:text="@string/default_score"
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
-                    android:textColor="@android:color/white"
+                    android:textColor="?attr/colorOnPrimary"
+
                     android:drawablePadding="4dp"
                     android:includeFontPadding="false"
                     android:visibility="gone"
@@ -331,7 +345,9 @@
                     android:text="@string/game_sumaresta"
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
-                    android:textColor="@android:color/black"
+                    android:textColor="?attr/colorOnBackground"
+
+
                     android:includeFontPadding="false"
                     android:maxLines="3"
                     android:breakStrategy="simple"
@@ -349,7 +365,9 @@
                     android:text="@string/default_score"
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
-                    android:textColor="@android:color/black"
+                    android:textColor="?attr/colorOnBackground"
+
+
                     android:drawablePadding="4dp"
                     android:includeFontPadding="false"
                     android:visibility="gone"
@@ -398,7 +416,8 @@
                     android:text="@string/default_score"
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
-                    android:textColor="@android:color/white"
+                    android:textColor="?attr/colorOnPrimary"
+
                     android:drawablePadding="4dp"
                     android:includeFontPadding="false"
                     android:visibility="gone"
@@ -448,7 +467,9 @@
                     android:text="@string/default_score"
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
-                    android:textColor="@android:color/black"
+                    android:textColor="?attr/colorOnBackground"
+
+
                     android:drawablePadding="4dp"
                     android:includeFontPadding="false"
                     android:visibility="gone"

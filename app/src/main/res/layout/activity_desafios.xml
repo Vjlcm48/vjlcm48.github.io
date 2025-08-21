@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="?android:attr/colorBackground"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -82,7 +82,9 @@
             android:fontFamily="@font/roboto_bold"
             android:text="@string/desafios_mensaje"
             android:textAlignment="center"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/colorOnBackground"
+
+
             android:textSize="18sp"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
@@ -120,7 +122,8 @@
                     android:paddingBottom="12dp"
                     android:text="@string/calendar_text"
                     android:textAlignment="center"
-                    android:textColor="@android:color/white"
+                    android:textColor="?attr/colorOnPrimary"
+
                     android:textSize="22sp" />
 
                 <TextView
@@ -132,7 +135,9 @@
                     android:paddingBottom="8dp"
                     android:text=""
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="?attr/colorOnBackground"
+
+
                     android:textSize="18sp"
                     android:alpha="1"/>
 
@@ -150,7 +155,9 @@
                         android:fontFamily="@font/roboto_bold"
                         android:text="@string/monday_short"
                         android:textAlignment="center"
-                        android:textColor="@android:color/black"
+                        android:textColor="?attr/colorOnBackground"
+
+
                         android:textSize="14sp" />
 
                     <TextView
@@ -160,7 +167,9 @@
                         android:fontFamily="@font/roboto_bold"
                         android:text="@string/tuesday_short"
                         android:textAlignment="center"
-                        android:textColor="@android:color/black"
+                        android:textColor="?attr/colorOnBackground"
+
+
                         android:textSize="14sp" />
 
                     <TextView
@@ -170,7 +179,9 @@
                         android:fontFamily="@font/roboto_bold"
                         android:text="@string/wednesday_short"
                         android:textAlignment="center"
-                        android:textColor="@android:color/black"
+                        android:textColor="?attr/colorOnBackground"
+
+
                         android:textSize="14sp" />
 
                     <TextView
@@ -180,7 +191,9 @@
                         android:fontFamily="@font/roboto_bold"
                         android:text="@string/thursday_short"
                         android:textAlignment="center"
-                        android:textColor="@android:color/black"
+                        android:textColor="?attr/colorOnBackground"
+
+
                         android:textSize="14sp" />
 
                     <TextView
@@ -190,7 +203,9 @@
                         android:fontFamily="@font/roboto_bold"
                         android:text="@string/friday_short"
                         android:textAlignment="center"
-                        android:textColor="@android:color/black"
+                        android:textColor="?attr/colorOnBackground"
+
+
                         android:textSize="14sp" />
 
                     <TextView
@@ -238,7 +253,8 @@
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
             android:text="@string/entendido"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnPrimary"
+
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
