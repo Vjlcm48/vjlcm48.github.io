@@ -1269,4 +1269,13 @@
 
     <string name="level_results_and_options">স্তরের ফলাফল এবং বিকল্পগুলি</string>
 
+    <string name="game_subtitle_numeros_plus">পূর্ণ সংখ্যা যোগ করুন</string>
+    <string name="game_subtitle_deci_plus">দশমিক সংখ্যা যোগ করুন</string>
+    <string name="game_subtitle_romas">রোমান সংখ্যা যোগ করুন</string>
+    <string name="game_subtitle_alfanumeros">অক্ষর ও সংখ্যা যোগ করুন</string>
+    <string name="game_subtitle_sumaresta">ধনাত্মক ও ঋণাত্মক সংখ্যা নিয়ে হিসাব</string>
+    <string name="game_subtitle_mas_plus">পূর্ণসংখ্যা, দশমিক, রোমান ও অক্ষর মিলিয়ে নিন</string>
+    <string name="game_subtitle_genio_plus">ভগ্নাংশ, মূল ও সংখ্যা সমাধান করুন</string>
+
+
 </resources>

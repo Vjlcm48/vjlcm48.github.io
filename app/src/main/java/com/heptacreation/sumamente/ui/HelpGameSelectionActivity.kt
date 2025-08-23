@@ -32,6 +32,7 @@ class HelpGameSelectionActivity : BaseActivity() {
         setupClickListeners()
         setupGameNameColors()
         setupAnimations()
+        setupSubtitles()
     }
 
     private fun setupClickListeners() {
@@ -92,6 +93,30 @@ class HelpGameSelectionActivity : BaseActivity() {
                 it.postDelayed({
                     startActivity(Intent(this, HelpTutorialActivityGenioPlus::class.java))
                 }, 700)
+            }
+        }
+    }
+
+    private fun setupSubtitles() {
+        if (java.util.Locale.getDefault().language == "es") return
+
+        val gameMap = mapOf(
+            R.id.btn_numeros_plus to (R.id.tv_game_subtitle_numeros_plus to R.string.game_subtitle_numeros_plus),
+            R.id.btn_deci_plus to (R.id.tv_game_subtitle_deci_plus to R.string.game_subtitle_deci_plus),
+            R.id.btn_romas to (R.id.tv_game_subtitle_romas to R.string.game_subtitle_romas),
+            R.id.btn_alfa_numeros to (R.id.tv_game_subtitle_alfa_numeros to R.string.game_subtitle_alfanumeros),
+            R.id.btn_sumaresta to (R.id.tv_game_subtitle_sumaresta to R.string.game_subtitle_sumaresta),
+            R.id.btn_mas_plus to (R.id.tv_game_subtitle_mas_plus to R.string.game_subtitle_mas_plus),
+            R.id.btn_genio_plus to (R.id.tv_game_subtitle_genio_plus to R.string.game_subtitle_genio_plus)
+        )
+
+        for ((buttonId, pair) in gameMap) {
+            val (subtitleId, stringId) = pair
+            findViewById<ConstraintLayout>(buttonId)?.let { button ->
+                button.findViewById<TextView>(subtitleId)?.apply {
+                    text = getString(stringId)
+                    visibility = View.VISIBLE
+                }
             }
         }
     }

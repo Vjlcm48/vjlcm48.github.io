@@ -1234,4 +1234,13 @@
 
     <string name="level_results_and_options">レベルの結果とオプション</string>
 
+    <string name="game_subtitle_numeros_plus">整数を足そう</string>
+    <string name="game_subtitle_deci_plus">小数を足そう</string>
+    <string name="game_subtitle_romas">ローマ数字を足そう</string>
+    <string name="game_subtitle_alfanumeros">文字と数字を足そう</string>
+    <string name="game_subtitle_sumaresta">正の数と負の数を計算しよう</string>
+    <string name="game_subtitle_mas_plus">整数・小数・ローマ数字・文字を組み合わせよう</string>
+    <string name="game_subtitle_genio_plus">分数・根号・数を解こう</string>
+
+
 </resources>

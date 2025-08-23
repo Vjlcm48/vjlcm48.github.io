@@ -1536,4 +1536,13 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
 
     <string name="level_results_and_options">Level results and options</string>
 
+    <string name="game_subtitle_numeros_plus">Add whole numbers</string>
+    <string name="game_subtitle_deci_plus">Add decimal numbers</string>
+    <string name="game_subtitle_romas">Add Roman numerals</string>
+    <string name="game_subtitle_alfanumeros">Add letters and numbers</string>
+    <string name="game_subtitle_sumaresta">Work with positive and negative numbers</string>
+    <string name="game_subtitle_mas_plus">Mix integers, decimals, Romans and letters</string>
+    <string name="game_subtitle_genio_plus">Solve fractions, roots and numbers</string>
+
+
 </resources>

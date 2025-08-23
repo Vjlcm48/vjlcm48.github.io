@@ -1618,4 +1618,12 @@
     <string name="_5" translatable="false">5</string>
     <string name="todo" translatable="false">TODO</string>
 
+    <string name="game_subtitle_numeros_plus">Suma de números enteros</string>
+    <string name="game_subtitle_deci_plus">Suma de números decimales</string>
+    <string name="game_subtitle_romas">Suma de números Romanos</string>
+    <string name="game_subtitle_alfanumeros">Suma de letras y números</string>
+    <string name="game_subtitle_sumaresta">Cálculo con números positivos y negativos</string>
+    <string name="game_subtitle_mas_plus">Combina enteros, decimales, Romanos y letras</string>
+    <string name="game_subtitle_genio_plus">Resuelve fracciones, raíces y números</string>
+
 </resources>

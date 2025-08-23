@@ -1596,4 +1596,13 @@
 
     <string name="level_results_and_options">نتائج المستوى والخيارات</string>
 
+    <string name="game_subtitle_numeros_plus">اجمع الأعداد الصحيحة</string>
+    <string name="game_subtitle_deci_plus">اجمع الأعداد العشرية</string>
+    <string name="game_subtitle_romas">اجمع الأرقام الرومانية</string>
+    <string name="game_subtitle_alfanumeros">اجمع الحروف والأرقام</string>
+    <string name="game_subtitle_sumaresta">احسب بالأعداد الموجبة والسالبة</string>
+    <string name="game_subtitle_mas_plus">ادمج الأعداد الصحيحة والعشرية والرومانية والحروف</string>
+    <string name="game_subtitle_genio_plus">حل الكسور والجذور والأعداد</string>
+
+
 </resources>

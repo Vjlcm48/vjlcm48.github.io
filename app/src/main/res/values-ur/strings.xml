@@ -1279,4 +1279,13 @@
 
     <string name="level_results_and_options">سطح کے نتائج اور اختیارات</string>
 
+    <string name="game_subtitle_numeros_plus">اعداد صحیح کو جمع کریں</string>
+    <string name="game_subtitle_deci_plus">اعشاری اعداد کو جمع کریں</string>
+    <string name="game_subtitle_romas">رومن اعداد کو جمع کریں</string>
+    <string name="game_subtitle_alfanumeros">حروف اور اعداد کو جمع کریں</string>
+    <string name="game_subtitle_sumaresta">مثبت اور منفی اعداد کے ساتھ حساب لگائیں</string>
+    <string name="game_subtitle_mas_plus">صحیح اعداد، اعشاریہ، رومن اور حروف کو ملائیں</string>
+    <string name="game_subtitle_genio_plus">کسر، جذر اور اعداد حل کریں</string>
+
+
 </resources>

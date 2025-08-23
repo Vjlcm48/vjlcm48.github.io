@@ -126,20 +126,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/tv_points_numeros_plus"
+                    android:layout_alignParentTop="true"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="12dp"
-                    android:text="@string/game_numeros_plus"
-                    android:textSize="20sp"
+                    android:layout_toStartOf="@id/tv_points_numeros_plus"
                     android:fontFamily="@font/roboto_bold"
+                    android:text="@string/game_numeros_plus"
                     android:textColor="?attr/colorOnPrimary"
+                    android:textSize="20sp" />
 
-                    android:includeFontPadding="false"
-                    android:maxLines="3"
-                    android:breakStrategy="simple"
-                    android:hyphenationFrequency="none"
-                    android:ellipsize="end" />
+                <TextView
+                    android:id="@+id/tv_game_subtitle_numeros_plus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_game_name_numeros_plus"
+                    android:layout_alignStart="@id/tv_game_name_numeros_plus"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toStartOf="@id/tv_points_numeros_plus"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
 
 
                 <TextView
@@ -154,7 +163,6 @@
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
                     android:textColor="?attr/colorOnPrimary"
-
                     android:drawablePadding="4dp"
                     android:includeFontPadding="false"
                     android:visibility="gone"
@@ -179,21 +187,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/tv_points_deci_plus"
+                    android:layout_alignParentTop="true"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="12dp"
-                    android:text="@string/game_deci_plus"
-                    android:textSize="20sp"
+                    android:layout_toStartOf="@id/tv_points_deci_plus"
                     android:fontFamily="@font/roboto_bold"
+                    android:text="@string/game_deci_plus"
                     android:textColor="?attr/colorOnBackground"
+                    android:textSize="20sp" />
 
-
-                    android:includeFontPadding="false"
-                    android:maxLines="3"
-                    android:breakStrategy="simple"
-                    android:hyphenationFrequency="none"
-                    android:ellipsize="end" />
+                <TextView
+                    android:id="@+id/tv_game_subtitle_deci_plus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_game_name_deci_plus"
+                    android:layout_alignStart="@id/tv_game_name_deci_plus"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toStartOf="@id/tv_points_deci_plus"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tv_points_deci_plus"
@@ -207,7 +223,6 @@
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
                     android:textColor="?attr/colorOnPrimary"
-
                     android:drawablePadding="4dp"
                     android:includeFontPadding="false"
                     android:visibility="gone"
@@ -232,21 +247,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/tv_points_romas"
+                    android:layout_alignParentTop="true"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="12dp"
-                    android:text="@string/game_romas"
-                    android:textSize="20sp"
+                    android:layout_toStartOf="@id/tv_points_romas"
                     android:fontFamily="@font/roboto_bold"
+                    android:text="@string/game_romas"
                     android:textColor="?attr/colorOnBackground"
+                    android:textSize="20sp" />
 
-
-                    android:includeFontPadding="false"
-                    android:maxLines="3"
-                    android:breakStrategy="simple"
-                    android:hyphenationFrequency="none"
-                    android:ellipsize="end" />
+                <TextView
+                    android:id="@+id/tv_game_subtitle_romas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_game_name_romas"
+                    android:layout_alignStart="@id/tv_game_name_romas"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toStartOf="@id/tv_points_romas"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tv_points_romas"
@@ -260,7 +283,6 @@
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
                     android:textColor="?attr/colorOnPrimary"
-
                     android:drawablePadding="4dp"
                     android:includeFontPadding="false"
                     android:visibility="gone"
@@ -285,21 +307,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/tv_points_alfa_numeros"
+                    android:layout_alignParentTop="true"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="12dp"
-                    android:text="@string/game_alfa_numeros"
-                    android:textSize="20sp"
+                    android:layout_toStartOf="@id/tv_points_alfa_numeros"
                     android:fontFamily="@font/roboto_bold"
+                    android:text="@string/game_alfa_numeros"
                     android:textColor="?attr/colorOnBackground"
+                    android:textSize="20sp" />
 
-
-                    android:includeFontPadding="false"
-                    android:maxLines="3"
-                    android:breakStrategy="simple"
-                    android:hyphenationFrequency="none"
-                    android:ellipsize="end" />
+                <TextView
+                    android:id="@+id/tv_game_subtitle_alfa_numeros"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_game_name_alfa_numeros"
+                    android:layout_alignStart="@id/tv_game_name_alfa_numeros"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toStartOf="@id/tv_points_alfa_numeros"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tv_points_alfa_numeros"
@@ -313,7 +343,6 @@
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
                     android:textColor="?attr/colorOnPrimary"
-
                     android:drawablePadding="4dp"
                     android:includeFontPadding="false"
                     android:visibility="gone"
@@ -338,21 +367,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/tv_points_sumaresta"
+                    android:layout_alignParentTop="true"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="12dp"
-                    android:text="@string/game_sumaresta"
-                    android:textSize="20sp"
+                    android:layout_toStartOf="@id/tv_points_sumaresta"
                     android:fontFamily="@font/roboto_bold"
+                    android:text="@string/game_sumaresta"
                     android:textColor="?attr/colorOnBackground"
+                    android:textSize="20sp" />
 
-
-                    android:includeFontPadding="false"
-                    android:maxLines="3"
-                    android:breakStrategy="simple"
-                    android:hyphenationFrequency="none"
-                    android:ellipsize="end" />
+                <TextView
+                    android:id="@+id/tv_game_subtitle_sumaresta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_game_name_sumaresta"
+                    android:layout_alignStart="@id/tv_game_name_sumaresta"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toStartOf="@id/tv_points_sumaresta"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tv_points_sumaresta"
@@ -366,8 +403,6 @@
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:drawablePadding="4dp"
                     android:includeFontPadding="false"
                     android:visibility="gone"
@@ -391,19 +426,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/tv_points_mas_plus"
+                    android:layout_alignParentTop="true"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="12dp"
-                    android:text="@string/game_mas_plus"
-                    android:textSize="20sp"
+                    android:layout_toStartOf="@id/tv_points_mas_plus"
                     android:fontFamily="@font/roboto_bold"
+                    android:text="@string/game_mas_plus"
                     android:textColor="?attr/colorOnBackground"
-                    android:includeFontPadding="false"
-                    android:maxLines="3"
-                    android:breakStrategy="simple"
-                    android:hyphenationFrequency="none"
-                    android:ellipsize="end" />
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_game_subtitle_mas_plus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_game_name_mas_plus"
+                    android:layout_alignStart="@id/tv_game_name_mas_plus"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toStartOf="@id/tv_points_mas_plus"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tv_points_mas_plus"
@@ -417,7 +462,6 @@
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
                     android:textColor="?attr/colorOnPrimary"
-
                     android:drawablePadding="4dp"
                     android:includeFontPadding="false"
                     android:visibility="gone"
@@ -442,19 +486,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/tv_points_genio_plus"
+                    android:layout_alignParentTop="true"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="12dp"
-                    android:text="@string/game_genio_plus"
-                    android:textSize="20sp"
+                    android:layout_toStartOf="@id/tv_points_genio_plus"
                     android:fontFamily="@font/roboto_bold"
+                    android:text="@string/game_genio_plus"
                     android:textColor="?attr/colorOnBackground"
-                    android:includeFontPadding="false"
-                    android:maxLines="3"
-                    android:breakStrategy="simple"
-                    android:hyphenationFrequency="none"
-                    android:ellipsize="end" />
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_game_subtitle_genio_plus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_game_name_genio_plus"
+                    android:layout_alignStart="@id/tv_game_name_genio_plus"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toStartOf="@id/tv_points_genio_plus"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tv_points_genio_plus"
@@ -468,8 +522,6 @@
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:drawablePadding="4dp"
                     android:includeFontPadding="false"
                     android:visibility="gone"

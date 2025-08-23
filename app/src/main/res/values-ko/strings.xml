@@ -1231,4 +1231,13 @@
 
     <string name="level_results_and_options">레벨 결과 및 옵션</string>
 
+    <string name="game_subtitle_numeros_plus">정수를 더하기</string>
+    <string name="game_subtitle_deci_plus">소수를 더하기</string>
+    <string name="game_subtitle_romas">로마 숫자 더하기</string>
+    <string name="game_subtitle_alfanumeros">문자와 숫자 더하기</string>
+    <string name="game_subtitle_sumaresta">양수와 음수 계산하기</string>
+    <string name="game_subtitle_mas_plus">정수, 소수, 로마 숫자, 문자를 조합하기</string>
+    <string name="game_subtitle_genio_plus">분수, 제곱근, 숫자 풀기</string>
+
+
 </resources>

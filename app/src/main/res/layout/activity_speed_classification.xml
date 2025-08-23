@@ -14,7 +14,6 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
-
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         android:contentDescription="@string/back"
@@ -27,7 +26,6 @@
         android:id="@+id/closeButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
-
         android:layout_marginEnd="24dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
@@ -41,14 +39,11 @@
         android:id="@+id/tv_speed_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-
         android:alpha="0"
         android:fontFamily="@font/roboto_bold"
         android:text="@string/speed_classification_title"
         android:textAlignment="center"
         android:textColor="?attr/colorOnBackground"
-
-
         android:textSize="26sp"
         app:layout_constraintEnd_toStartOf="@+id/closeButton"
         app:layout_constraintStart_toEndOf="@+id/btn_back"
@@ -89,14 +84,14 @@
                 android:gravity="center"
                 android:text="@string/select_game_speed"
                 android:textColor="?attr/colorOnBackground"
-
                 android:textSize="14sp"
                 tools:alpha="1" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_numeros_plus"
                 android:layout_width="match_parent"
-                android:layout_height="59dp"
+                android:layout_height="wrap_content"
+                android:minHeight="59dp"
                 android:layout_marginBottom="16dp"
                 android:alpha="0"
                 android:background="@drawable/button_background"
@@ -109,15 +104,29 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="8dp"
                     android:fontFamily="@font/roboto_bold"
-                    android:gravity="center_vertical"
                     android:text="@string/game_numeros_plus"
                     android:textColor="?attr/colorOnPrimary"
-
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_game_subtitle_numeros_plus"
                     app:layout_constraintEnd_toStartOf="@+id/ic_reloj_numeros_plus"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintVertical_chainStyle="packed"/>
+
+                <TextView
+                    android:id="@+id/tv_game_subtitle_numeros_plus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/tv_game_name_numeros_plus"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_game_name_numeros_plus"
+                    app:layout_constraintEnd_toEndOf="@id/tv_game_name_numeros_plus"
+                    tools:text="Suma de números enteros"/>
 
                 <ImageView
                     android:id="@+id/ic_reloj_numeros_plus"
@@ -134,7 +143,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_deci_plus"
                 android:layout_width="match_parent"
-                android:layout_height="59dp"
+                android:layout_height="wrap_content"
+                android:minHeight="59dp"
                 android:layout_marginBottom="16dp"
                 android:alpha="0"
                 android:background="@drawable/button_background_deci"
@@ -149,13 +159,27 @@
                     android:fontFamily="@font/roboto_bold"
                     android:text="@string/game_deci_plus"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_game_subtitle_deci_plus"
                     app:layout_constraintEnd_toStartOf="@+id/ic_reloj_deci_plus"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintVertical_chainStyle="packed"/>
+
+                <TextView
+                    android:id="@+id/tv_game_subtitle_deci_plus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/tv_game_name_deci_plus"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_game_name_deci_plus"
+                    app:layout_constraintEnd_toEndOf="@id/tv_game_name_deci_plus"
+                    tools:text="Suma de números decimales"/>
 
                 <ImageView
                     android:id="@+id/ic_reloj_deci_plus"
@@ -172,7 +196,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_romas"
                 android:layout_width="match_parent"
-                android:layout_height="59dp"
+                android:layout_height="wrap_content"
+                android:minHeight="59dp"
                 android:layout_marginBottom="16dp"
                 android:alpha="0"
                 android:background="@drawable/button_background_romas"
@@ -187,13 +212,27 @@
                     android:fontFamily="@font/roboto_bold"
                     android:text="@string/game_romas"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_game_subtitle_romas"
                     app:layout_constraintEnd_toStartOf="@+id/ic_reloj_romas"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintVertical_chainStyle="packed"/>
+
+                <TextView
+                    android:id="@+id/tv_game_subtitle_romas"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/tv_game_name_romas"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_game_name_romas"
+                    app:layout_constraintEnd_toEndOf="@id/tv_game_name_romas"
+                    tools:text="Suma de números Romanos"/>
 
                 <ImageView
                     android:id="@+id/ic_reloj_romas"
@@ -226,13 +265,27 @@
                     android:fontFamily="@font/roboto_bold"
                     android:text="@string/game_alfa_numeros"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_game_subtitle_alfa_numeros"
                     app:layout_constraintEnd_toStartOf="@+id/ic_reloj_alfa_numeros"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintVertical_chainStyle="packed"/>
+
+                <TextView
+                    android:id="@+id/tv_game_subtitle_alfa_numeros"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/tv_game_name_alfa_numeros"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_game_name_alfa_numeros"
+                    app:layout_constraintEnd_toEndOf="@id/tv_game_name_alfa_numeros"
+                    tools:text="Suma de letras y números"/>
 
                 <ImageView
                     android:id="@+id/ic_reloj_alfa_numeros"
@@ -249,7 +302,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_sumaresta"
                 android:layout_width="match_parent"
-                android:layout_height="59dp"
+                android:layout_height="wrap_content"
+                android:minHeight="59dp"
                 android:layout_marginBottom="16dp"
                 android:alpha="0"
                 android:background="@drawable/button_background_sumaresta"
@@ -264,13 +318,27 @@
                     android:fontFamily="@font/roboto_bold"
                     android:text="@string/game_sumaresta"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_game_subtitle_sumaresta"
                     app:layout_constraintEnd_toStartOf="@+id/ic_reloj_sumaresta"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintVertical_chainStyle="packed"/>
+
+                <TextView
+                    android:id="@+id/tv_game_subtitle_sumaresta"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/tv_game_name_sumaresta"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_game_name_sumaresta"
+                    app:layout_constraintEnd_toEndOf="@id/tv_game_name_sumaresta"
+                    tools:text="Cálculo con números positivos y negativos"/>
 
                 <ImageView
                     android:id="@+id/ic_reloj_sumaresta"
@@ -287,7 +355,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_mas_plus"
                 android:layout_width="match_parent"
-                android:layout_height="59dp"
+                android:layout_height="wrap_content"
+                android:minHeight="59dp"
                 android:layout_marginBottom="16dp"
                 android:alpha="0"
                 android:background="@drawable/button_background_mas"
@@ -303,10 +372,26 @@
                     android:text="@string/game_mas_plus"
                     android:textColor="@color/grey_light"
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_game_subtitle_mas_plus"
                     app:layout_constraintEnd_toStartOf="@+id/ic_reloj_mas_plus"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintVertical_chainStyle="packed"/>
+
+                <TextView
+                    android:id="@+id/tv_game_subtitle_mas_plus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/tv_game_name_mas_plus"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_game_name_mas_plus"
+                    app:layout_constraintEnd_toEndOf="@id/tv_game_name_mas_plus"
+                    tools:text="Combina enteros, decimales, Romanos y letras"/>
 
                 <ImageView
                     android:id="@+id/ic_reloj_mas_plus"
@@ -323,7 +408,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_genio_plus"
                 android:layout_width="match_parent"
-                android:layout_height="59dp"
+                android:layout_height="wrap_content"
+                android:minHeight="59dp"
                 android:layout_marginBottom="16dp"
                 android:alpha="0"
                 android:background="@drawable/button_background_genio"
@@ -339,10 +425,26 @@
                     android:text="@string/game_genio_plus"
                     android:textColor="@color/blue_pressed"
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_game_subtitle_genio_plus"
                     app:layout_constraintEnd_toStartOf="@+id/ic_reloj_genio_plus"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintVertical_chainStyle="packed"/>
+
+                <TextView
+                    android:id="@+id/tv_game_subtitle_genio_plus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/tv_game_name_genio_plus"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_game_name_genio_plus"
+                    app:layout_constraintEnd_toEndOf="@id/tv_game_name_genio_plus"
+                    tools:text="Resuelve fracciones, raíces y números"/>
 
                 <ImageView
                     android:id="@+id/ic_reloj_genio_plus"

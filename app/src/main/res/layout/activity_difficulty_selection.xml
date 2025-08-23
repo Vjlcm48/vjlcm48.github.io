@@ -46,10 +46,24 @@
             android:fontFamily="@font/roboto_bold"/>
 
         <TextView
-            android:id="@+id/tv_game_title"
+            android:id="@+id/tv_game_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_game_name"
+            android:layout_alignStart="@id/tv_game_name"
+            android:layout_toStartOf="@id/closeButton"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_medium"
+            android:maxLines="2"
+            android:textColor="?attr/colorOnBackground"
+            android:textSize="15sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_game_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_game_subtitle"
             android:layout_toStartOf="@id/closeButton"
             android:layout_marginTop="4dp"
             android:ellipsize="end"
@@ -57,8 +71,6 @@
             android:text="@string/difficulty_selection_title"
             android:textSize="20sp"
             android:textColor="?attr/colorOnBackground"
-
-
             android:fontFamily="@font/roboto_bold"/>
 
         <ScrollView

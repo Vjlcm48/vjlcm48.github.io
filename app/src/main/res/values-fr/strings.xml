@@ -1540,4 +1540,13 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
 
     <string name="level_results_and_options">Résultats du niveau et options</string>
 
+    <string name="game_subtitle_numeros_plus">Addition de nombres entiers</string>
+    <string name="game_subtitle_deci_plus">Addition de nombres décimaux</string>
+    <string name="game_subtitle_romas">Addition de chiffres romains</string>
+    <string name="game_subtitle_alfanumeros">Addition de lettres et de nombres</string>
+    <string name="game_subtitle_sumaresta">Calcul avec nombres positifs et négatifs</string>
+    <string name="game_subtitle_mas_plus">Mélange d’entiers, décimaux, romains et lettres</string>
+    <string name="game_subtitle_genio_plus">Résous fractions, racines et nombres</string>
+
+
 </resources>

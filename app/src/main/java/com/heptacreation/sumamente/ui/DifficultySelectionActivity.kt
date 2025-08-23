@@ -47,10 +47,7 @@ class DifficultySelectionActivity : BaseActivity()   {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
-
         gameType = intent.getStringExtra(EXTRA_GAME_TYPE) ?: "NumerosPlus"
-
-
         difficultyKey = "difficulty_${gameType.lowercase(Locale.getDefault())}"
         prefsName = when (gameType) {
             "NumerosPlus" -> "MyPrefs"
@@ -81,6 +78,27 @@ class DifficultySelectionActivity : BaseActivity()   {
         }
 
         tvGameName.text = gameName
+
+        val tvGameSubtitle = findViewById<TextView>(R.id.tv_game_subtitle)
+
+        if (Locale.getDefault().language != "es") {
+            val subtitleResId = when (gameType) {
+                "NumerosPlus" -> R.string.game_subtitle_numeros_plus
+                "DeciPlus" -> R.string.game_subtitle_deci_plus
+                "Romas" -> R.string.game_subtitle_romas
+                "AlfaNumeros" -> R.string.game_subtitle_alfanumeros
+                "Sumaresta" -> R.string.game_subtitle_sumaresta
+                "MasPlus" -> R.string.game_subtitle_mas_plus
+                "GenioPlus" -> R.string.game_subtitle_genio_plus
+                else -> null
+            }
+
+            subtitleResId?.let {
+                tvGameSubtitle.text = getString(it)
+                tvGameSubtitle.visibility = View.VISIBLE
+            }
+        }
+
         tvGameTitle.text = getString(R.string.difficulty_selection_title)
 
         val closeButton = findViewById<ImageView>(R.id.closeButton)

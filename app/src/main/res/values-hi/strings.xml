@@ -1478,4 +1478,13 @@
 
     <string name="level_results_and_options">स्तर के परिणाम और विकल्प</string>
 
+    <string name="game_subtitle_numeros_plus">पूर्णांकों को जोड़ें</string>
+    <string name="game_subtitle_deci_plus">दशमलव संख्याएँ जोड़ें</string>
+    <string name="game_subtitle_romas">रोमन संख्याएँ जोड़ें</string>
+    <string name="game_subtitle_alfanumeros">अक्षर और संख्याएँ जोड़ें</string>
+    <string name="game_subtitle_sumaresta">धनात्मक और ऋणात्मक संख्याओं के साथ गणना</string>
+    <string name="game_subtitle_mas_plus">पूर्णांक, दशमलव, रोमन और अक्षर मिलाएँ</string>
+    <string name="game_subtitle_genio_plus">भिन्न, मूल और संख्याएँ हल करें</string>
+
+
 </resources>

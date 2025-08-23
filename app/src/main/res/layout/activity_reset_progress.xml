@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorBackgroundSpecial"
@@ -33,12 +34,11 @@
         android:text="@string/select_game_to_reset"
         android:textAlignment="center"
         android:textColor="?attr/colorOnBackground"
-
-
         android:textSize="26sp"
         app:layout_constraintEnd_toStartOf="@+id/closeButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:alpha="1" />
 
     <ScrollView
         android:id="@+id/reset_scroll"
@@ -66,28 +66,46 @@
             android:paddingEnd="18dp"
             android:elevation="6dp">
 
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_numeros_plus"
                 android:layout_width="match_parent"
-                android:layout_height="59dp"
+                android:layout_height="wrap_content"
+                android:minHeight="59dp"
                 android:layout_marginBottom="16dp"
                 android:alpha="0"
-                android:background="@drawable/button_background">
+                android:background="@drawable/button_background"
+                tools:alpha="1">
 
                 <TextView
                     android:id="@+id/tv_game_name_numeros_plus"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/game_numeros_plus"
                     android:textColor="?attr/colorOnPrimary"
-
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_game_subtitle_numeros_plus"
+                    app:layout_constraintEnd_toStartOf="@id/ic_reset_numeros_plus"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <TextView
+                    android:id="@+id/tv_game_subtitle_numeros_plus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/tv_game_name_numeros_plus"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginStart="16dp" />
+                    app:layout_constraintStart_toStartOf="@id/tv_game_name_numeros_plus"
+                    app:layout_constraintEnd_toEndOf="@id/tv_game_name_numeros_plus"/>
+
                 <ImageView
                     android:id="@+id/ic_reset_numeros_plus"
                     android:layout_width="24dp"
@@ -98,32 +116,47 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent" />
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_deci_plus"
                 android:layout_width="match_parent"
-                android:layout_height="59dp"
+                android:layout_height="wrap_content"
+                android:minHeight="59dp"
                 android:layout_marginBottom="16dp"
                 android:alpha="0"
-                android:background="@drawable/button_background_deci">
+                android:background="@drawable/button_background_deci"
+                tools:alpha="1">
 
                 <TextView
                     android:id="@+id/tv_game_name_deci_plus"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/game_deci_plus"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_game_subtitle_deci_plus"
+                    app:layout_constraintEnd_toStartOf="@id/ic_reset_deci_plus"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <TextView
+                    android:id="@+id/tv_game_subtitle_deci_plus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/tv_game_name_deci_plus"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginStart="16dp" />
+                    app:layout_constraintStart_toStartOf="@id/tv_game_name_deci_plus"
+                    app:layout_constraintEnd_toEndOf="@id/tv_game_name_deci_plus"/>
 
                 <ImageView
                     android:id="@+id/ic_reset_deci_plus"
@@ -135,31 +168,47 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_romas"
                 android:layout_width="match_parent"
-                android:layout_height="59dp"
+                android:layout_height="wrap_content"
+                android:minHeight="59dp"
                 android:layout_marginBottom="16dp"
                 android:alpha="0"
-                android:background="@drawable/button_background_romas">
+                android:background="@drawable/button_background_romas"
+                tools:alpha="1">
 
                 <TextView
                     android:id="@+id/tv_game_name_romas"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/game_romas"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_game_subtitle_romas"
+                    app:layout_constraintEnd_toStartOf="@id/ic_reset_romas"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <TextView
+                    android:id="@+id/tv_game_subtitle_romas"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/tv_game_name_romas"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginStart="16dp" />
+                    app:layout_constraintStart_toStartOf="@id/tv_game_name_romas"
+                    app:layout_constraintEnd_toEndOf="@id/tv_game_name_romas"/>
 
                 <ImageView
                     android:id="@+id/ic_reset_romas"
@@ -171,7 +220,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -181,24 +229,38 @@
                 android:minHeight="59dp"
                 android:layout_marginBottom="16dp"
                 android:alpha="0"
-                android:background="@drawable/button_background_alfa_numeros">
+                android:background="@drawable/button_background_alfa_numeros"
+                tools:alpha="1">
 
                 <TextView
                     android:id="@+id/tv_game_name_alfa_numeros"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="8dp"
                     android:text="@string/game_alfa_numeros"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
-                    app:layout_constraintEnd_toStartOf="@+id/ic_reset_alfa_numeros"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintBottom_toTopOf="@id/tv_game_subtitle_alfa_numeros"
+                    app:layout_constraintEnd_toStartOf="@id/ic_reset_alfa_numeros"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <TextView
+                    android:id="@+id/tv_game_subtitle_alfa_numeros"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/tv_game_name_alfa_numeros"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_game_name_alfa_numeros"
+                    app:layout_constraintEnd_toEndOf="@id/tv_game_name_alfa_numeros"/>
 
                 <ImageView
                     android:id="@+id/ic_reset_alfa_numeros"
@@ -210,31 +272,47 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_sumaresta"
                 android:layout_width="match_parent"
-                android:layout_height="59dp"
+                android:layout_height="wrap_content"
+                android:minHeight="59dp"
                 android:layout_marginBottom="16dp"
                 android:alpha="0"
-                android:background="@drawable/button_background_sumaresta">
+                android:background="@drawable/button_background_sumaresta"
+                tools:alpha="1">
 
                 <TextView
                     android:id="@+id/tv_game_name_sumaresta"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/game_sumaresta"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:textSize="20sp"
                     android:fontFamily="@font/roboto_bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_game_subtitle_sumaresta"
+                    app:layout_constraintEnd_toStartOf="@id/ic_reset_sumaresta"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <TextView
+                    android:id="@+id/tv_game_subtitle_sumaresta"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/tv_game_name_sumaresta"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginStart="16dp" />
+                    app:layout_constraintStart_toStartOf="@id/tv_game_name_sumaresta"
+                    app:layout_constraintEnd_toEndOf="@id/tv_game_name_sumaresta"/>
 
                 <ImageView
                     android:id="@+id/ic_reset_sumaresta"
@@ -246,20 +324,21 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_mas_plus"
                 android:layout_width="match_parent"
-                android:layout_height="59dp"
+                android:layout_height="wrap_content"
+                android:minHeight="59dp"
                 android:layout_marginBottom="16dp"
                 android:alpha="0"
-                android:background="@drawable/button_background_mas">
+                android:background="@drawable/button_background_mas"
+                tools:alpha="1">
 
                 <TextView
                     android:id="@+id/tv_game_name_mas_plus"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/game_mas_plus"
                     android:textColor="@color/grey_light"
@@ -267,8 +346,25 @@
                     android:fontFamily="@font/roboto_bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_game_subtitle_mas_plus"
+                    app:layout_constraintEnd_toStartOf="@id/ic_reset_mas_plus"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <TextView
+                    android:id="@+id/tv_game_subtitle_mas_plus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/tv_game_name_mas_plus"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginStart="16dp" />
+                    app:layout_constraintStart_toStartOf="@id/tv_game_name_mas_plus"
+                    app:layout_constraintEnd_toEndOf="@id/tv_game_name_mas_plus"/>
 
                 <ImageView
                     android:id="@+id/ic_reset_mas_plus"
@@ -280,19 +376,20 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_genio_plus"
                 android:layout_width="match_parent"
-                android:layout_height="59dp"
+                android:layout_height="wrap_content"
+                android:minHeight="59dp"
                 android:alpha="0"
-                android:background="@drawable/button_background_genio">
+                android:background="@drawable/button_background_genio"
+                tools:alpha="1">
 
                 <TextView
                     android:id="@+id/tv_game_name_genio_plus"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/game_genio_plus"
                     android:textColor="@color/blue_pressed"
@@ -300,8 +397,25 @@
                     android:fontFamily="@font/roboto_bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_game_subtitle_genio_plus"
+                    app:layout_constraintEnd_toStartOf="@id/ic_reset_genio_plus"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <TextView
+                    android:id="@+id/tv_game_subtitle_genio_plus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/tv_game_name_genio_plus"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginStart="16dp" />
+                    app:layout_constraintStart_toStartOf="@id/tv_game_name_genio_plus"
+                    app:layout_constraintEnd_toEndOf="@id/tv_game_name_genio_plus"/>
 
                 <ImageView
                     android:id="@+id/ic_reset_genio_plus"
@@ -313,7 +427,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

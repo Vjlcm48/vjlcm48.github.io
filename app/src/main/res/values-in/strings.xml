@@ -1459,4 +1459,13 @@ Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di 
 
     <string name="level_results_and_options">Hasil level dan opsi</string>
 
+    <string name="game_subtitle_numeros_plus">Jumlahkan bilangan bulat</string>
+    <string name="game_subtitle_deci_plus">Jumlahkan bilangan desimal</string>
+    <string name="game_subtitle_romas">Jumlahkan angka Romawi</string>
+    <string name="game_subtitle_alfanumeros">Jumlahkan huruf dan angka</string>
+    <string name="game_subtitle_sumaresta">Hitung dengan bilangan positif dan negatif</string>
+    <string name="game_subtitle_mas_plus">Gabungkan bilangan bulat, desimal, Romawi, dan huruf</string>
+    <string name="game_subtitle_genio_plus">Selesaikan pecahan, akar, dan angka</string>
+
+
 </resources>

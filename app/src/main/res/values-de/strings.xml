@@ -1481,4 +1481,13 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
 
     <string name="level_results_and_options">Levelergebnisse und Optionen</string>
 
+    <string name="game_subtitle_numeros_plus">Addiere ganze Zahlen</string>
+    <string name="game_subtitle_deci_plus">Addiere Dezimalzahlen</string>
+    <string name="game_subtitle_romas">Addiere römische Zahlen</string>
+    <string name="game_subtitle_alfanumeros">Addiere Buchstaben und Zahlen</string>
+    <string name="game_subtitle_sumaresta">Rechnen mit positiven und negativen Zahlen</string>
+    <string name="game_subtitle_mas_plus">Kombiniere Ganzzahlen, Dezimalzahlen, Römer und Buchstaben</string>
+    <string name="game_subtitle_genio_plus">Löse Brüche, Wurzeln und Zahlen</string>
+
+
 </resources>

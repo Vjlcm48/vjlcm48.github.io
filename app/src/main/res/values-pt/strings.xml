@@ -1394,4 +1394,13 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
 
     <string name="level_results_and_options">Resultados do nível e opções</string>
 
+    <string name="game_subtitle_numeros_plus">Somar números inteiros</string>
+    <string name="game_subtitle_deci_plus">Somar números decimais</string>
+    <string name="game_subtitle_romas">Somar números romanos</string>
+    <string name="game_subtitle_alfanumeros">Somar letras e números</string>
+    <string name="game_subtitle_sumaresta">Cálculo com números positivos e negativos</string>
+    <string name="game_subtitle_mas_plus">Combina inteiros, decimais, romanos e letras</string>
+    <string name="game_subtitle_genio_plus">Resolva frações, raízes e números</string>
+
+
 </resources>

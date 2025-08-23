@@ -68,6 +68,7 @@ class SpeedClassificationActivity : BaseActivity() {
 
         initViews()
         setupGameNameColors()
+        setupSubtitles()
         setupClickListeners()
         setupBackNavigation()
         setupEntranceAnimations()
@@ -170,6 +171,29 @@ class SpeedClassificationActivity : BaseActivity() {
                 }
             })
             animator.start()
+        }
+    }
+
+    private fun setupSubtitles() {
+        if (java.util.Locale.getDefault().language == "es") return
+
+        val subtitleMap = mapOf(
+            GAME_NUMEROS_PLUS to (R.id.tv_game_subtitle_numeros_plus to R.string.game_subtitle_numeros_plus),
+            GAME_DECI_PLUS to (R.id.tv_game_subtitle_deci_plus to R.string.game_subtitle_deci_plus),
+            GAME_ROMAS to (R.id.tv_game_subtitle_romas to R.string.game_subtitle_romas),
+            GAME_ALFA_NUMEROS to (R.id.tv_game_subtitle_alfa_numeros to R.string.game_subtitle_alfanumeros),
+            GAME_SUMA_RESTA to (R.id.tv_game_subtitle_sumaresta to R.string.game_subtitle_sumaresta),
+            GAME_MAS_PLUS to (R.id.tv_game_subtitle_mas_plus to R.string.game_subtitle_mas_plus),
+            GAME_GENIO_PLUS to (R.id.tv_game_subtitle_genio_plus to R.string.game_subtitle_genio_plus)
+        )
+
+        gameButtons.forEach { game ->
+            subtitleMap[game.name]?.let { (subtitleId, stringId) ->
+                game.button?.findViewById<TextView>(subtitleId)?.apply {
+                    text = getString(stringId)
+                    visibility = View.VISIBLE
+                }
+            }
         }
     }
 

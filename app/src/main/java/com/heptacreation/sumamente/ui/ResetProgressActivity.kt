@@ -46,6 +46,7 @@ class ResetProgressActivity : BaseActivity() {
         styleColoredButtons()
         setupClickListeners()
         setupEntranceAnimations()
+        setupSubtitles()
     }
 
     private fun initializeScoreManagers() {
@@ -222,6 +223,28 @@ class ResetProgressActivity : BaseActivity() {
         }
 
         btnClose.setOnClickListener { applyBounceEffect(it) { finish() } }
+    }
+
+    private fun setupSubtitles() {
+        if (Locale.getDefault().language == "es") return
+
+        val gameMap = mapOf(
+            btnNumerosPlus to (R.id.tv_game_subtitle_numeros_plus to R.string.game_subtitle_numeros_plus),
+            btnDeciPlus to (R.id.tv_game_subtitle_deci_plus to R.string.game_subtitle_deci_plus),
+            btnRomas to (R.id.tv_game_subtitle_romas to R.string.game_subtitle_romas),
+            btnAlfaNumeros to (R.id.tv_game_subtitle_alfa_numeros to R.string.game_subtitle_alfanumeros),
+            btnSumaresta to (R.id.tv_game_subtitle_sumaresta to R.string.game_subtitle_sumaresta),
+            btnMasPlus to (R.id.tv_game_subtitle_mas_plus to R.string.game_subtitle_mas_plus),
+            btnGenioPlus to (R.id.tv_game_subtitle_genio_plus to R.string.game_subtitle_genio_plus)
+        )
+
+        for ((button, pair) in gameMap) {
+            val (subtitleId, stringId) = pair
+            button.findViewById<TextView>(subtitleId)?.apply {
+                text = getString(stringId)
+                visibility = View.VISIBLE
+            }
+        }
     }
 
 
