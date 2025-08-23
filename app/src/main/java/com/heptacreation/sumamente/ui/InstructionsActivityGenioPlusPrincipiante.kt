@@ -208,7 +208,7 @@ class InstructionsActivityGenioPlusPrincipiante : BaseActivity()  {
 
     private fun setupInfoBar() {
         tvGameName.text = getString(R.string.game_genio_plus)
-        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.blue_primary_darker))
+        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.game_name_genio_color))
 
         val difficultyKey = "difficulty_genioplus"
         val difficultyValue = sharedPreferences.getString(

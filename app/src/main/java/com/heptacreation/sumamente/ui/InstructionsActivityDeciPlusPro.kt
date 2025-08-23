@@ -267,7 +267,7 @@ class InstructionsActivityDeciPlusPro : BaseActivity()  {
 
     private fun setupInfoBar() {
         tvGameName.text = getString(R.string.game_deci_plus)
-        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.orange_dark))
+        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.game_name_deci_color))
 
         val difficultyKey = "difficulty_deciplus"
 

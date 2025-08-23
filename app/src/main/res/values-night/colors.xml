@@ -84,4 +84,20 @@
     <color name="s5e_error">#CF6679</color>
     <color name="s5e_errorContainer">#8E2323</color>
     <color name="s5e_onErrorContainer">#FFCDD2</color>
+
+    <color name="game_name_color">@color/white</color>
+    <color name="level_text_unlocked">@color/white</color>
+    <color name="result_main_message">@color/white</color>
+    <color name="result_current_score">@color/white</color>
+    <color name="result_action">@color/white</color>
+    <color name="result_current_score_romas">@color/white</color>
+    <color name="result_current_score_deci">@color/white</color>
+    <color name="letter_conversion_color">@color/white</color>
+    <color name="game_name_mas_color">@color/white</color>
+    <color name="card_bg_dialog">#1E1E1E</color>
+    <color name="game_name_deci_color">@color/white</color>
+    <color name="game_name_romas_color">@color/white</color>
+    <color name="game_name_genio_color">@color/white</color>
+
+
 </resources>

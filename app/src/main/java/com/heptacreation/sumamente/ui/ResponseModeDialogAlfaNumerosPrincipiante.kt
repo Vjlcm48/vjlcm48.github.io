@@ -149,7 +149,7 @@ class ResponseModeDialogAlfaNumerosPrincipiante(context: Context) : AppCompatDia
     private fun adjustElements() {
         findViewById<TextView>(R.id.dialog_title)?.apply {
             textSize = 20f
-            setTextColor(ContextCompat.getColor(context, R.color.black))
+
         }
     }
 

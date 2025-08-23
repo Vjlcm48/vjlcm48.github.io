@@ -174,28 +174,74 @@ class HelpGameSelectionActivity : BaseActivity() {
     private fun setupGameNameColors() {
         applyAlfaNumerosColor()
         applySumarestaColor()
+        applyMasPlusColor()
+        applyGenioPlusColor()
     }
 
     private fun applyAlfaNumerosColor() {
         val textView = findViewById<TextView>(R.id.tv_game_name_alfa_numeros)
-        val alfaText = getString(R.string.text_alfa)
-        val numerosText = getString(R.string.text_numeros)
-        val alfaNumerosText = "$alfaText$numerosText"
-        val spannable = SpannableString(alfaNumerosText)
-        spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.red_primary)), 0, alfaText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_primary_darker)), alfaText.length, alfaNumerosText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        textView.text = spannable
+
+        if (isNightMode()) {
+            textView.text = getString(R.string.game_alfa_numeros)
+            textView.setTextColor(getColorFromAttr(this, R.attr.colorOnBackground))
+        } else {
+            val alfaText = getString(R.string.text_alfa)
+            val numerosText = getString(R.string.text_numeros)
+            val alfaNumerosText = "$alfaText$numerosText"
+            val spannable = SpannableString(alfaNumerosText)
+            spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.red_primary)), 0, alfaText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_primary_darker)), alfaText.length, alfaNumerosText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            textView.text = spannable
+        }
     }
 
     private fun applySumarestaColor() {
         val textView = findViewById<TextView>(R.id.tv_game_name_sumaresta)
-        val sumaText = getString(R.string.text_suma)
-        val restaText = getString(R.string.text_resta)
-        val sumarestaText = "$sumaText$restaText"
-        val spannable = SpannableString(sumarestaText)
-        spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_pressed)), 0, sumaText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)), sumaText.length, sumarestaText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        textView.text = spannable
+
+        if (isNightMode()) {
+            textView.text = getString(R.string.game_sumaresta)
+            textView.setTextColor(getColorFromAttr(this, R.attr.colorOnBackground))
+        } else {
+            val sumaText = getString(R.string.text_suma)
+            val restaText = getString(R.string.text_resta)
+            val sumarestaText = "$sumaText$restaText"
+            val spannable = SpannableString(sumarestaText)
+            spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_pressed)), 0, sumaText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)), sumaText.length, sumarestaText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            textView.text = spannable
+        }
+    }
+
+    private fun applyMasPlusColor() {
+        val textView = findViewById<TextView>(R.id.tv_game_name_mas_plus)
+
+        if (isNightMode()) {
+            textView.setTextColor(getColorFromAttr(this, R.attr.colorOnBackground))
+        } else {
+            textView.setTextColor(ContextCompat.getColor(this, R.color.grey_light))
+        }
+    }
+
+    private fun applyGenioPlusColor() {
+        val textView = findViewById<TextView>(R.id.tv_game_name_genio_plus)
+
+        if (isNightMode()) {
+            textView.setTextColor(getColorFromAttr(this, R.attr.colorOnBackground))
+        } else {
+            textView.setTextColor(ContextCompat.getColor(this, R.color.blue_pressed))
+        }
+    }
+
+    private fun isNightMode(): Boolean {
+        return (resources.configuration.uiMode and
+                android.content.res.Configuration.UI_MODE_NIGHT_MASK) ==
+                android.content.res.Configuration.UI_MODE_NIGHT_YES
+    }
+
+    private fun getColorFromAttr(context: android.content.Context, attrId: Int): Int {
+        val typedValue = android.util.TypedValue()
+        context.theme.resolveAttribute(attrId, typedValue, true)
+        return typedValue.data
     }
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {

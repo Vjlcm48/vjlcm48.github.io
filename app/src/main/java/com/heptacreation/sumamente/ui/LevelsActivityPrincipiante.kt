@@ -102,7 +102,7 @@ class LevelsActivityPrincipiante : BaseActivity()  {
 
     private fun setupInfoBar() {
         tvGameName.text = getString(R.string.game_numeros_plus)
-        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.blue_pressed))
+        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.game_name_color))
 
         val difficultyKey = "difficulty_numerosplus"
 
@@ -166,11 +166,8 @@ class LevelsActivityPrincipiante : BaseActivity()  {
                 }
 
                 text = getString(levelStrings[i])
-
                 setTypeface(null, Typeface.BOLD)
-                setTextColor(ContextCompat.getColor(this@LevelsActivityPrincipiante, android.R.color.black))
                 gravity = Gravity.CENTER
-
                 minimumHeight = 56.dpToPx(this@LevelsActivityPrincipiante)
                 setPadding(
                     16.dpToPx(this@LevelsActivityPrincipiante),
@@ -181,6 +178,13 @@ class LevelsActivityPrincipiante : BaseActivity()  {
 
                 if (i < ScoreManager.unlockedLevelsPrincipiante && !ScoreManager.isLevelBlockedByFailuresPrincipiante(i + 1)) {
                     setBackgroundResource(R.drawable.level_button_background)
+
+                    setTextColor(
+                        ContextCompat.getColor(
+                            this@LevelsActivityPrincipiante,
+                            R.color.level_text_unlocked
+                        )
+                    )
 
                     setOnClickListener {
                         applyBounceEffect(this) {
@@ -201,6 +205,14 @@ class LevelsActivityPrincipiante : BaseActivity()  {
                     }
                 } else {
                     setBackgroundResource(R.drawable.button_background_locked)
+
+                    setTextColor(
+                        ContextCompat.getColor(
+                            this@LevelsActivityPrincipiante,
+                            android.R.color.black
+                        )
+                    )
+
                     setOnClickListener {
 
                         if (i < ScoreManager.unlockedLevelsPrincipiante && ScoreManager.isLevelBlockedByFailuresPrincipiante(i + 1)) {

@@ -45,16 +45,25 @@ class GameProgressAdapter(
         )
         holder.totalRow.setBackgroundResource(item.totalRowBackgroundRes)
 
-        holder.gameNameTextView.setTextColor(ContextCompat.getColor(context, item.gameNameTextColorRes))
+        holder.gameNameTextView.setTextColor(
+            if (item.gameNameTextColorRes == R.attr.colorOnBackground) {
+                getColorFromAttr(R.attr.colorOnBackground)
+            } else {
+                ContextCompat.getColor(context, item.gameNameTextColorRes)
+            }
+        )
 
         if (item.gameNameRes == R.string.game_numeros_plus || item.gameNameRes == R.string.game_mas_plus) {
-
-            holder.tvProgressTotal.setTextColor(ContextCompat.getColor(context, android.R.color.white))
+            holder.tvProgressTotal.setTextColor(
+                if (isNightMode()) getColorFromAttr(R.attr.colorOnBackground)
+                else ContextCompat.getColor(context, android.R.color.white)
+            )
         } else {
-
-            holder.tvProgressTotal.setTextColor(ContextCompat.getColor(context, android.R.color.black))
+            holder.tvProgressTotal.setTextColor(
+                if (isNightMode()) getColorFromAttr(R.attr.colorOnBackground)
+                else ContextCompat.getColor(context, android.R.color.black)
+            )
         }
-
         holder.tvProgressTotal.setTypeface(null, Typeface.BOLD)
 
         if (item.gameNameSpannable != null) {
@@ -79,5 +88,17 @@ class GameProgressAdapter(
         holder.tvProgressPrincipiante.text = context.getString(R.string.game_progress_format, completedPrincipiante, 70, String.format(locale, "%.2f", percPrincipiante))
         holder.tvProgressAvanzado.text = context.getString(R.string.game_progress_format, completedAvanzado, 70, String.format(locale, "%.2f", percAvanzado))
         holder.tvProgressPro.text = context.getString(R.string.game_progress_format, completedPro, 70, String.format(locale, "%.2f", percPro))
+    }
+
+    private fun isNightMode(): Boolean {
+        return (context.resources.configuration.uiMode and
+                android.content.res.Configuration.UI_MODE_NIGHT_MASK) ==
+                android.content.res.Configuration.UI_MODE_NIGHT_YES
+    }
+
+    private fun getColorFromAttr(attrId: Int): Int {
+        val typedValue = android.util.TypedValue()
+        context.theme.resolveAttribute(attrId, typedValue, true)
+        return typedValue.data
     }
 }

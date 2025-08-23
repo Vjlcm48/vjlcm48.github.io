@@ -207,7 +207,7 @@ class InstructionsActivityRomasPro : BaseActivity()  {
 
     private fun setupInfoBar() {
         tvGameName.text = getString(R.string.game_romas)
-        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.green_medium))
+        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.game_name_romas_color))
 
         val difficultyKey = "difficulty_romas"
 

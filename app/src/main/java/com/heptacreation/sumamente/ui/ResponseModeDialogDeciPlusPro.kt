@@ -159,7 +159,7 @@ class ResponseModeDialogDeciPlusPro(context: Context) : AppCompatDialog(context)
     private fun adjustElements() {
         val dialogTitle = findViewById<TextView>(R.id.dialog_title)
         dialogTitle?.textSize = 20f
-        dialogTitle?.setTextColor(ContextCompat.getColor(context, R.color.black))
+
     }
 
     fun setOnResponseModeSelectedListener(listener: OnResponseModeSelectedListenerDeciPlusPro) {

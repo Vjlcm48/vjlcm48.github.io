@@ -32,7 +32,6 @@
         android:text="@string/descubre_como_jugar"
         android:textAlignment="center"
         android:textColor="?attr/colorOnBackground"
-
         android:textSize="26sp"
         app:layout_constraintEnd_toStartOf="@+id/closeButton"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +81,6 @@
                     android:fontFamily="@font/roboto_bold"
                     android:text="@string/game_numeros_plus"
                     android:textColor="?attr/colorOnPrimary"
-
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -120,8 +118,6 @@
                     android:fontFamily="@font/roboto_bold"
                     android:text="@string/game_deci_plus"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -159,8 +155,6 @@
                     android:fontFamily="@font/roboto_bold"
                     android:text="@string/game_romas"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -199,8 +193,6 @@
                     android:fontFamily="@font/roboto_bold"
                     android:text="@string/game_alfa_numeros"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -239,7 +231,6 @@
                     android:text="@string/game_sumaresta"
                     android:textColor="?attr/colorOnBackground"
 
-
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -257,8 +248,7 @@
                     android:src="@drawable/ic_help_circle"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/blue_pressed" />
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- MAS PLUS -->

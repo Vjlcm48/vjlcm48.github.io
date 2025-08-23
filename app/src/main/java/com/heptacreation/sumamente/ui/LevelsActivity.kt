@@ -102,7 +102,7 @@ class LevelsActivity : BaseActivity()  {
 
     private fun setupInfoBar() {
         tvGameName.text = getString(R.string.game_numeros_plus)
-        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.blue_pressed))
+        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.game_name_color))
 
         val difficultyKey = "difficulty_numerosplus"
 
@@ -154,18 +154,15 @@ class LevelsActivity : BaseActivity()  {
             val button = Button(this).apply {
                 layoutParams = LinearLayout.LayoutParams(
                     0,
-                    LinearLayout.LayoutParams.WRAP_CONTENT,   // antes: 48.dpToPx(...)
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
                     1f
                 ).apply {
                     setMargins(0, 0, 8.dpToPx(this@LevelsActivity), 0)
                 }
 
                 text = getString(levelStrings[i])
-
                 setTypeface(null, Typeface.BOLD)
-                setTextColor(ContextCompat.getColor(this@LevelsActivity, android.R.color.black))
                 gravity = Gravity.CENTER
-
                 minimumHeight = 56.dpToPx(this@LevelsActivity)
                 setPadding(
                     16.dpToPx(this@LevelsActivity),
@@ -174,12 +171,23 @@ class LevelsActivity : BaseActivity()  {
                     12.dpToPx(this@LevelsActivity)
                 )
 
+                // ❌ ELIMINADO: setTextColor(...) global en negro
+                // Ahora el color depende del estado (desbloqueado/bloqueado)
+
                 if (i < ScoreManager.unlockedLevels && !ScoreManager.isLevelBlockedByFailures(i + 1)) {
+                    // ✅ NIVEL DESBLOQUEADO
                     setBackgroundResource(R.drawable.level_button_background)
+
+                    // Color dinámico: negro en día, blanco en noche
+                    setTextColor(
+                        ContextCompat.getColor(
+                            this@LevelsActivity,
+                            R.color.level_text_unlocked
+                        )
+                    )
 
                     setOnClickListener {
                         applyBounceEffect(this) {
-
                             if (sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)) {
                                 mediaPlayer.start()
                             }
@@ -195,9 +203,18 @@ class LevelsActivity : BaseActivity()  {
                         }
                     }
                 } else {
+                    // ❌ NIVEL BLOQUEADO
                     setBackgroundResource(R.drawable.button_background_locked)
-                    setOnClickListener {
 
+                    // Se mantiene negro SIEMPRE (como pediste, no cambia en noche)
+                    setTextColor(
+                        ContextCompat.getColor(
+                            this@LevelsActivity,
+                            android.R.color.black
+                        )
+                    )
+
+                    setOnClickListener {
                         if (i < ScoreManager.unlockedLevels && ScoreManager.isLevelBlockedByFailures(i + 1)) {
                             Toast.makeText(
                                 this@LevelsActivity,
@@ -212,9 +229,7 @@ class LevelsActivity : BaseActivity()  {
                             ).show()
                         }
 
-                        applyBounceEffect(this) {
-
-                        }
+                        applyBounceEffect(this) { }
                     }
                 }
             }

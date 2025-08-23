@@ -131,7 +131,7 @@ class LevelsActivityDeciPlus : BaseActivity()  {
 
 
                 setTypeface(null, Typeface.BOLD)
-                setTextColor(ContextCompat.getColor(this@LevelsActivityDeciPlus, android.R.color.black))
+
                 gravity = Gravity.CENTER
 
                 minimumHeight = 56.dpToPx(this@LevelsActivityDeciPlus)
@@ -144,6 +144,7 @@ class LevelsActivityDeciPlus : BaseActivity()  {
 
                 if (i < ScoreManager.unlockedLevelsDeciPlus && !ScoreManager.isLevelBlockedByFailuresDeciPlus(i + 1)) {
                     setBackgroundResource(R.drawable.button_background_deci)
+                    setTextColor(ContextCompat.getColor(this@LevelsActivityDeciPlus, R.color.level_text_unlocked))
 
                     setOnClickListener {
                         applyBounceEffect(this) {
@@ -165,6 +166,7 @@ class LevelsActivityDeciPlus : BaseActivity()  {
                     }
                 } else {
                     setBackgroundResource(R.drawable.button_background_locked)
+                    setTextColor(ContextCompat.getColor(this@LevelsActivityDeciPlus, android.R.color.black))
 
                     setOnClickListener {
                         applyBounceEffect(this) {
@@ -262,7 +264,7 @@ class LevelsActivityDeciPlus : BaseActivity()  {
 
     private fun setupInfoBar() {
         tvGameName.text = getString(R.string.game_deci_plus)
-        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.orange_dark))
+        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.game_name_deci_color))
 
         val difficultyKey = "difficulty_deciplus"
 

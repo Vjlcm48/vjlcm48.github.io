@@ -141,7 +141,7 @@ class TutorialActivityNumeros : BaseActivity()  {
 
         tvWelcomeText.text = getString(R.string.instructions_numeros_intro)
         tvGameName.text = getString(R.string.game_numeros_plus)
-        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.blue_pressed))
+        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.game_name_color))
 
         btnSkipTutorial.setOnClickListener {
             applyBounceEffect(it) { markTutorialAsSeenAndNavigate() }

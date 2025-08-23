@@ -101,7 +101,7 @@ class LevelsActivityMasPlus : BaseActivity()  {
 
     private fun setupInfoBar() {
         tvGameName.text = getString(R.string.game_mas_plus)
-        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.red))
+        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.game_name_mas_color))
 
         val difficultyKey = "difficulty_masplus"
 
@@ -165,7 +165,7 @@ class LevelsActivityMasPlus : BaseActivity()  {
 
 
                 setTypeface(null, Typeface.BOLD)
-                setTextColor(ContextCompat.getColor(this@LevelsActivityMasPlus, android.R.color.black))
+
                 gravity = Gravity.CENTER
 
                 minimumHeight = 56.dpToPx(this@LevelsActivityMasPlus)
@@ -178,6 +178,7 @@ class LevelsActivityMasPlus : BaseActivity()  {
 
                 if (i < ScoreManager.unlockedLevelsMasPlus && !ScoreManager.isLevelBlockedByFailuresMasPlus(i + 1)) {
                     setBackgroundResource(R.drawable.button_background_mas)
+                    setTextColor(ContextCompat.getColor(this@LevelsActivityMasPlus, R.color.level_text_unlocked))
 
                     setOnClickListener {
                         applyBounceEffect(this) {
@@ -199,6 +200,8 @@ class LevelsActivityMasPlus : BaseActivity()  {
                     }
                 } else {
                     setBackgroundResource(R.drawable.button_background_locked)
+                    setTextColor(ContextCompat.getColor(this@LevelsActivityMasPlus, android.R.color.black))
+
                     setOnClickListener {
                         if (i < ScoreManager.unlockedLevelsMasPlus && ScoreManager.isLevelBlockedByFailuresMasPlus(i + 1)) {
                             Toast.makeText(

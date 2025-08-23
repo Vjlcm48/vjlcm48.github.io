@@ -102,7 +102,7 @@ class LevelsActivityGenioPlusPrincipiante : BaseActivity()  {
 
     private fun setupInfoBar() {
         tvGameName.text = getString(R.string.game_genio_plus)
-        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.blue_primary_darker))
+        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.game_name_genio_color))
 
         val difficultyKey = "difficulty_genioplus"
         val difficultyValue = sharedPreferences.getString(
@@ -162,7 +162,7 @@ class LevelsActivityGenioPlusPrincipiante : BaseActivity()  {
                 text = getString(levelStrings[i])
 
                 setTypeface(null, Typeface.BOLD)
-                setTextColor(ContextCompat.getColor(this@LevelsActivityGenioPlusPrincipiante, android.R.color.black))
+
                 gravity = Gravity.CENTER
 
                 minimumHeight = 56.dpToPx(this@LevelsActivityGenioPlusPrincipiante)
@@ -175,6 +175,7 @@ class LevelsActivityGenioPlusPrincipiante : BaseActivity()  {
 
                 if (i < ScoreManager.unlockedLevelsGenioPlusPrincipiante && !ScoreManager.isLevelBlockedByFailuresGenioPlusPrincipiante(i + 1)) {
                     setBackgroundResource(R.drawable.button_background_genio)
+                    setTextColor(ContextCompat.getColor(this@LevelsActivityGenioPlusPrincipiante, R.color.level_text_unlocked))
                     setOnClickListener {
                         applyBounceEffect(this) {
 
@@ -195,6 +196,7 @@ class LevelsActivityGenioPlusPrincipiante : BaseActivity()  {
                     }
                 } else {
                     setBackgroundResource(R.drawable.button_background_locked)
+                    setTextColor(ContextCompat.getColor(this@LevelsActivityGenioPlusPrincipiante, android.R.color.black))
                     setOnClickListener {
                         if (i < ScoreManager.unlockedLevelsGenioPlusPrincipiante && ScoreManager.isLevelBlockedByFailuresGenioPlusPrincipiante(i + 1)) {
                             Toast.makeText(

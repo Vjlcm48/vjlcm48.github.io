@@ -765,7 +765,7 @@ class GameActivitySumaRestaPrincipiante : BaseActivity()  {
 
         for (i in buttons.indices) {
             buttons[i].text = String.format(Locale.getDefault(), "%d", allAnswers[i])
-            buttons[i].setTextColor(ResourcesCompat.getColor(resources, android.R.color.black, null))
+            
         }
     }
 

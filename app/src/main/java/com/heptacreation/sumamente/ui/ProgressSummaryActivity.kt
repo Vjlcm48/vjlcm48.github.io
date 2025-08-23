@@ -94,7 +94,10 @@ class ProgressSummaryActivity : BaseActivity() {
         val completedString = totalCompleted.toString()
         val blueSpannable = SpannableString(completedString)
         blueSpannable.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(this, R.color.progress_number_color)),
+            ForegroundColorSpan(
+                if (isNightMode()) getColorFromAttr(this, R.attr.colorOnBackground)
+                else ContextCompat.getColor(this, R.color.progress_number_color)
+            ),
             0,
             completedString.length,
             SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -114,7 +117,7 @@ class ProgressSummaryActivity : BaseActivity() {
                 borderColorRes = R.color.blue_primary_dark,
                 totalRowBackgroundRes = R.drawable.button_background,
                 gameNameRes = R.string.game_numeros_plus,
-                gameNameTextColorRes = android.R.color.white,
+                gameNameTextColorRes = if (isNightMode()) R.attr.colorOnBackground else android.R.color.white,
                 getPrincipianteData = { ScoreManager.getUniqueLevelsPlayedNumerosPlusPrincipiante() },
                 getAvanzadoData = { ScoreManager.getUniqueLevelsPlayedNumerosPlusAvanzado() },
                 getProData = { ScoreManager.getUniqueLevelsPlayedNumerosPlusPro() }
@@ -123,7 +126,7 @@ class ProgressSummaryActivity : BaseActivity() {
                 borderColorRes = R.color.orange_dark,
                 totalRowBackgroundRes = R.drawable.button_background_deci,
                 gameNameRes = R.string.game_deci_plus,
-                gameNameTextColorRes = android.R.color.black,
+                gameNameTextColorRes = if (isNightMode()) R.attr.colorOnBackground else android.R.color.black,
                 getPrincipianteData = { ScoreManager.getUniqueLevelsPlayedDeciPlusPrincipiante() },
                 getAvanzadoData = { ScoreManager.getUniqueLevelsPlayedDeciPlusAvanzado() },
                 getProData = { ScoreManager.getUniqueLevelsPlayedDeciPlusPro() }
@@ -132,7 +135,7 @@ class ProgressSummaryActivity : BaseActivity() {
                 borderColorRes = R.color.green_medium,
                 totalRowBackgroundRes = R.drawable.button_background_romas,
                 gameNameRes = R.string.game_romas,
-                gameNameTextColorRes = android.R.color.black,
+                gameNameTextColorRes = if (isNightMode()) R.attr.colorOnBackground else android.R.color.black,
                 getPrincipianteData = { ScoreManager.getUniqueLevelsPlayedRomasPrincipiante() },
                 getAvanzadoData = { ScoreManager.getUniqueLevelsPlayedRomasAvanzado() },
                 getProData = { ScoreManager.getUniqueLevelsPlayedRomasPro() }
@@ -141,7 +144,7 @@ class ProgressSummaryActivity : BaseActivity() {
                 borderColorRes = R.color.blue_primary_dark,
                 totalRowBackgroundRes = R.drawable.button_background_alfa_numeros,
                 gameNameSpannable = getAlfaNumerosSpannable(),
-                gameNameTextColorRes = android.R.color.black,
+                gameNameTextColorRes = if (isNightMode()) R.attr.colorOnBackground else android.R.color.black,
                 getPrincipianteData = { ScoreManager.getUniqueLevelsPlayedAlfaNumerosPrincipiante() },
                 getAvanzadoData = { ScoreManager.getUniqueLevelsPlayedAlfaNumerosAvanzado() },
                 getProData = { ScoreManager.getUniqueLevelsPlayedAlfaNumerosPro() }
@@ -150,7 +153,7 @@ class ProgressSummaryActivity : BaseActivity() {
                 borderColorRes = R.color.gray,
                 totalRowBackgroundRes = R.drawable.button_background_sumaresta,
                 gameNameSpannable = getSumaRestaSpannable(),
-                gameNameTextColorRes = android.R.color.black,
+                gameNameTextColorRes = if (isNightMode()) R.attr.colorOnBackground else android.R.color.black,
                 getPrincipianteData = { ScoreManager.getUniqueLevelsPlayedSumaRestaPrincipiante() },
                 getAvanzadoData = { ScoreManager.getUniqueLevelsPlayedSumaRestaAvanzado() },
                 getProData = { ScoreManager.getUniqueLevelsPlayedSumaRestaPro() }
@@ -159,7 +162,7 @@ class ProgressSummaryActivity : BaseActivity() {
                 borderColorRes = R.color.red,
                 totalRowBackgroundRes = R.drawable.button_background_mas,
                 gameNameRes = R.string.game_mas_plus,
-                gameNameTextColorRes = android.R.color.white,
+                gameNameTextColorRes = if (isNightMode()) R.attr.colorOnBackground else android.R.color.white,
                 getPrincipianteData = { ScoreManager.getUniqueLevelsPlayedMasPlusPrincipiante() },
                 getAvanzadoData = { ScoreManager.getUniqueLevelsPlayedMasPlusAvanzado() },
                 getProData = { ScoreManager.getUniqueLevelsPlayedMasPlusPro() }
@@ -168,7 +171,7 @@ class ProgressSummaryActivity : BaseActivity() {
                 borderColorRes = R.color.blue_pressed,
                 totalRowBackgroundRes = R.drawable.button_background_genio,
                 gameNameRes = R.string.game_genio_plus,
-                gameNameTextColorRes = R.color.blue_pressed,
+                gameNameTextColorRes = if (isNightMode()) R.attr.colorOnBackground else R.color.blue_pressed,
                 getPrincipianteData = { ScoreManager.getUniqueLevelsPlayedGenioPlusPrincipiante() },
                 getAvanzadoData = { ScoreManager.getUniqueLevelsPlayedGenioPlusAvanzado() },
                 getProData = { ScoreManager.getUniqueLevelsPlayedGenioPlusPro() }
@@ -177,6 +180,10 @@ class ProgressSummaryActivity : BaseActivity() {
     }
 
     private fun getAlfaNumerosSpannable(): SpannableString {
+        if (isNightMode()) {
+            return SpannableString(getString(R.string.game_alfa_numeros))
+        }
+
         val alfaText = getString(R.string.text_alfa)
         val numerosText = getString(R.string.text_numeros)
         val spannable = SpannableString("$alfaText$numerosText")
@@ -196,6 +203,10 @@ class ProgressSummaryActivity : BaseActivity() {
     }
 
     private fun getSumaRestaSpannable(): SpannableString {
+        if (isNightMode()) {
+            return SpannableString(getString(R.string.game_sumaresta))
+        }
+
         val sumaText = getString(R.string.text_suma)
         val restaText = getString(R.string.text_resta)
         val spannable = SpannableString("$sumaText$restaText")
@@ -212,5 +223,17 @@ class ProgressSummaryActivity : BaseActivity() {
             SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         return spannable
+    }
+
+    private fun isNightMode(): Boolean {
+        return (resources.configuration.uiMode and
+                android.content.res.Configuration.UI_MODE_NIGHT_MASK) ==
+                android.content.res.Configuration.UI_MODE_NIGHT_YES
+    }
+
+    private fun getColorFromAttr(context: android.content.Context, attrId: Int): Int {
+        val typedValue = android.util.TypedValue()
+        context.theme.resolveAttribute(attrId, typedValue, true)
+        return typedValue.data
     }
 }

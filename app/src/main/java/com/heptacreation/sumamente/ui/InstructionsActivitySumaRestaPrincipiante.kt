@@ -15,6 +15,7 @@ import androidx.core.content.edit
 import androidx.core.view.isVisible
 import com.heptacreation.sumamente.R
 import androidx.activity.enableEdgeToEdge
+import android.content.res.Configuration
 
 class InstructionsActivitySumaRestaPrincipiante : BaseActivity()  {
 
@@ -211,19 +212,25 @@ class InstructionsActivitySumaRestaPrincipiante : BaseActivity()  {
         val sumaText = getString(R.string.text_suma)
         val restaText = getString(R.string.text_resta)
         val sumarestaText = "$sumaText$restaText"
-        val spannableSumaresta = SpannableString(sumarestaText)
 
-        spannableSumaresta.setSpan(
-            android.text.style.ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_pressed)),
-            0, sumaText.length,
-            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        spannableSumaresta.setSpan(
-            android.text.style.ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)),
-            sumaText.length, sumarestaText.length,
-            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        tvGameName.text = spannableSumaresta
+        val isNight = (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+        if (isNight) {
+            tvGameName.setTextColor(ContextCompat.getColor(this, R.color.white))
+            tvGameName.text = sumarestaText
+        } else {
+            val spannableSumaresta = SpannableString(sumarestaText)
+            spannableSumaresta.setSpan(
+                android.text.style.ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_pressed)),
+                0, sumaText.length,
+                android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            spannableSumaresta.setSpan(
+                android.text.style.ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)),
+                sumaText.length, sumarestaText.length,
+                android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            tvGameName.text = spannableSumaresta
+        }
 
         val difficultyKey = "difficulty_sumaresta"
 

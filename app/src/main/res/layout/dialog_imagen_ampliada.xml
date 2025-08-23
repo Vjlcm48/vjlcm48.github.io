@@ -14,7 +14,7 @@
         android:minHeight="300dp"
         android:layout_gravity="center"
         android:padding="16dp"
-        android:background="@android:color/white"
+        android:background="?android:attr/colorBackground"
         tools:ignore="MissingConstraints"
         app:cardCornerRadius="16dp"
         app:cardElevation="8dp">

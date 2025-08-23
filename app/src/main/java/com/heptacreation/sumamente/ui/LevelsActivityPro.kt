@@ -103,7 +103,7 @@ class LevelsActivityPro : BaseActivity()  {
 
     private fun setupInfoBar() {
         tvGameName.text = getString(R.string.game_numeros_plus)
-        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.blue_pressed))
+        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.game_name_color))
 
         val difficultyKey = "difficulty_numerosplus"
 
@@ -168,7 +168,7 @@ class LevelsActivityPro : BaseActivity()  {
                 text = getString(levelStrings[i])
 
                 setTypeface(null, Typeface.BOLD)
-                setTextColor(ContextCompat.getColor(this@LevelsActivityPro, android.R.color.black))
+
                 gravity = Gravity.CENTER
 
                 minimumHeight = 56.dpToPx(this@LevelsActivityPro)
@@ -181,6 +181,13 @@ class LevelsActivityPro : BaseActivity()  {
 
                 if (i < ScoreManager.unlockedLevelsPro && !ScoreManager.isLevelBlockedByFailuresPro(i + 1)) {
                     setBackgroundResource(R.drawable.level_button_background)
+
+                    setTextColor(
+                        ContextCompat.getColor(
+                            this@LevelsActivityPro,
+                            R.color.level_text_unlocked
+                        )
+                    )
 
                     setOnClickListener {
                         applyBounceEffect(this) {
@@ -201,6 +208,14 @@ class LevelsActivityPro : BaseActivity()  {
                     }
                 } else {
                     setBackgroundResource(R.drawable.button_background_locked)
+
+                    setTextColor(
+                        ContextCompat.getColor(
+                            this@LevelsActivityPro,
+                            android.R.color.black
+                        )
+                    )
+
                     setOnClickListener {
 
                         if (i < ScoreManager.unlockedLevelsPro && ScoreManager.isLevelBlockedByFailuresPro(i + 1)) {

@@ -243,7 +243,7 @@ class InstructionsActivity : BaseActivity()  {
 
     private fun setupInfoBar() {
         tvGameName.text = getString(R.string.game_numeros_plus)
-        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.blue_pressed))
+        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.game_name_color))
 
         val difficultyKey = "difficulty_numerosplus"
 

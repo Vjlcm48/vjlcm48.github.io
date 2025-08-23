@@ -12,7 +12,7 @@
         android:id="@+id/instructions_card"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
+        android:background="?android:attr/colorBackground"
         app:cardCornerRadius="12dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintTop_toTopOf="parent"

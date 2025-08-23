@@ -33,8 +33,7 @@
         android:layout_marginTop="24dp"
         android:padding="16dp"
         android:layout_width="72dp"
-        android:layout_height="72dp"
-        app:tint="@color/s5e_onPrimary" />
+        android:layout_height="72dp"/>
 
     <TextView
         android:text="@string/new_game"

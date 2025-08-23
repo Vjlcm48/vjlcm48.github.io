@@ -15,6 +15,7 @@ import androidx.core.content.edit
 import androidx.core.view.isVisible
 import com.heptacreation.sumamente.R
 import androidx.activity.enableEdgeToEdge
+import android.content.res.Configuration
 
 class InstructionsActivityAlfaNumerosPro : BaseActivity()  {
 
@@ -191,20 +192,28 @@ class InstructionsActivityAlfaNumerosPro : BaseActivity()  {
 
     private fun setupInfoBar() {
 
-        val alfa  = getString(R.string.text_alfa)
-        val nums  = getString(R.string.text_numeros)
-        val blend = "$alfa$nums"
-        val span  = SpannableString(blend).apply {
-            setSpan(
-                android.text.style.ForegroundColorSpan(ContextCompat.getColor(this@InstructionsActivityAlfaNumerosPro, R.color.red_primary)),
-                0, alfa.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-            )
-            setSpan(
-                android.text.style.ForegroundColorSpan(ContextCompat.getColor(this@InstructionsActivityAlfaNumerosPro, R.color.blue_primary_darker)),
-                alfa.length, blend.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-            )
+        val alfaText = getString(R.string.text_alfa)
+        val numerosText = getString(R.string.text_numeros)
+        val alfaNumerosText = "$alfaText$numerosText"
+        val spannableAlfaNumeros = SpannableString(alfaNumerosText)
+
+        spannableAlfaNumeros.setSpan(
+            android.text.style.ForegroundColorSpan(ContextCompat.getColor(this, R.color.red_primary)),
+            0, alfaText.length,
+            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        spannableAlfaNumeros.setSpan(
+            android.text.style.ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_primary_darker)),
+            alfaText.length, alfaNumerosText.length,
+            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        val isNight = (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+        if (isNight) {
+            tvGameName.setTextColor(ContextCompat.getColor(this, R.color.white))
+            tvGameName.text = alfaNumerosText
+        } else {
+            tvGameName.text = spannableAlfaNumeros
         }
-        tvGameName.text = span
 
 
         val difficultyKey = "difficulty_alfanumeros"

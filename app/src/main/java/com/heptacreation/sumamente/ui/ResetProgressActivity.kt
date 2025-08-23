@@ -96,35 +96,71 @@ class ResetProgressActivity : BaseActivity() {
 
     private fun styleColoredButtons() {
 
-        val alfaText = getString(R.string.text_alfa)
-        val numerosText = getString(R.string.text_numeros)
-        val spannableAlfaNumeros = SpannableString("$alfaText$numerosText").apply {
-            setSpan(
-                ForegroundColorSpan(ContextCompat.getColor(this@ResetProgressActivity, R.color.red_primary)),
-                0, alfaText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-            )
-            setSpan(
-                ForegroundColorSpan(ContextCompat.getColor(this@ResetProgressActivity, R.color.blue_primary_darker)),
-                alfaText.length, alfaText.length + numerosText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-            )
-        }
         val tvAlfaNumeros = btnAlfaNumeros.findViewById<TextView>(R.id.tv_game_name_alfa_numeros)
-        tvAlfaNumeros.text = spannableAlfaNumeros
-
-        val sumaText = getString(R.string.text_suma)
-        val restaText = getString(R.string.text_resta)
-        val spannableSumaresta = SpannableString("$sumaText$restaText").apply {
-            setSpan(
-                ForegroundColorSpan(ContextCompat.getColor(this@ResetProgressActivity, R.color.blue_pressed)),
-                0, sumaText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-            )
-            setSpan(
-                ForegroundColorSpan(ContextCompat.getColor(this@ResetProgressActivity, R.color.red)),
-                sumaText.length, sumaText.length + restaText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-            )
+        if (isNightMode()) {
+            tvAlfaNumeros.text = getString(R.string.game_alfa_numeros)
+            tvAlfaNumeros.setTextColor(getColorFromAttr(this, R.attr.colorOnBackground))
+        } else {
+            val alfaText = getString(R.string.text_alfa)
+            val numerosText = getString(R.string.text_numeros)
+            val spannableAlfaNumeros = SpannableString("$alfaText$numerosText").apply {
+                setSpan(
+                    ForegroundColorSpan(ContextCompat.getColor(this@ResetProgressActivity, R.color.red_primary)),
+                    0, alfaText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                setSpan(
+                    ForegroundColorSpan(ContextCompat.getColor(this@ResetProgressActivity, R.color.blue_primary_darker)),
+                    alfaText.length, alfaText.length + numerosText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+            tvAlfaNumeros.text = spannableAlfaNumeros
         }
+
         val tvSumaresta = btnSumaresta.findViewById<TextView>(R.id.tv_game_name_sumaresta)
-        tvSumaresta.text = spannableSumaresta
+        if (isNightMode()) {
+            tvSumaresta.text = getString(R.string.game_sumaresta)
+            tvSumaresta.setTextColor(getColorFromAttr(this, R.attr.colorOnBackground))
+        } else {
+            val sumaText = getString(R.string.text_suma)
+            val restaText = getString(R.string.text_resta)
+            val spannableSumaresta = SpannableString("$sumaText$restaText").apply {
+                setSpan(
+                    ForegroundColorSpan(ContextCompat.getColor(this@ResetProgressActivity, R.color.blue_pressed)),
+                    0, sumaText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                setSpan(
+                    ForegroundColorSpan(ContextCompat.getColor(this@ResetProgressActivity, R.color.red)),
+                    sumaText.length, sumaText.length + restaText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+            tvSumaresta.text = spannableSumaresta
+        }
+
+        val tvMasPlus = btnMasPlus.findViewById<TextView>(R.id.tv_game_name_mas_plus)
+        if (isNightMode()) {
+            tvMasPlus.setTextColor(getColorFromAttr(this, R.attr.colorOnBackground))
+        } else {
+            tvMasPlus.setTextColor(ContextCompat.getColor(this, R.color.grey_light))
+        }
+
+        val tvGenioPlus = btnGenioPlus.findViewById<TextView>(R.id.tv_game_name_genio_plus)
+        if (isNightMode()) {
+            tvGenioPlus.setTextColor(getColorFromAttr(this, R.attr.colorOnBackground))
+        } else {
+            tvGenioPlus.setTextColor(ContextCompat.getColor(this, R.color.blue_pressed))
+        }
+    }
+
+    private fun isNightMode(): Boolean {
+        return (resources.configuration.uiMode and
+                android.content.res.Configuration.UI_MODE_NIGHT_MASK) ==
+                android.content.res.Configuration.UI_MODE_NIGHT_YES
+    }
+
+    private fun getColorFromAttr(context: android.content.Context, attrId: Int): Int {
+        val typedValue = android.util.TypedValue()
+        context.theme.resolveAttribute(attrId, typedValue, true)
+        return typedValue.data
     }
 
     private fun setupClickListeners() {
@@ -375,10 +411,10 @@ class ResetProgressActivity : BaseActivity() {
         alertDialog.window?.let { window ->
             window.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
             val roundedDrawable = GradientDrawable().apply {
-                setColor(Color.WHITE)
+                setColor(getColorFromAttr(this@ResetProgressActivity, android.R.attr.colorBackground))
                 cornerRadius = 30f
             }
-            dialogView.findViewById<ConstraintLayout>(R.id.difficulty_selection_container).background = roundedDrawable
+            dialogView.findViewById<RelativeLayout>(R.id.difficulty_selection_container).background = roundedDrawable
         }
     }
 

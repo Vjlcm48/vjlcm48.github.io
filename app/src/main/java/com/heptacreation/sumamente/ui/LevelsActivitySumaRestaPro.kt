@@ -21,6 +21,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import com.heptacreation.sumamente.R
 import androidx.activity.enableEdgeToEdge
+import android.content.res.Configuration
 
 class LevelsActivitySumaRestaPro : BaseActivity()  {
 
@@ -103,19 +104,25 @@ class LevelsActivitySumaRestaPro : BaseActivity()  {
         val sumaText = getString(R.string.text_suma)
         val restaText = getString(R.string.text_resta)
         val sumarestaText = "$sumaText$restaText"
-        val spannableSumaresta = android.text.SpannableString(sumarestaText)
 
-        spannableSumaresta.setSpan(
-            android.text.style.ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_pressed)),
-            0, sumaText.length,
-            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        spannableSumaresta.setSpan(
-            android.text.style.ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)),
-            sumaText.length, sumarestaText.length,
-            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        tvGameName.text = spannableSumaresta
+        val isNight = (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+        if (isNight) {
+            tvGameName.setTextColor(ContextCompat.getColor(this, R.color.white))
+            tvGameName.text = sumarestaText
+        } else {
+            val spannableSumaresta = android.text.SpannableString(sumarestaText)
+            spannableSumaresta.setSpan(
+                android.text.style.ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_pressed)),
+                0, sumaText.length,
+                android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            spannableSumaresta.setSpan(
+                android.text.style.ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)),
+                sumaText.length, sumarestaText.length,
+                android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            tvGameName.text = spannableSumaresta
+        }
 
         val difficultyKey = "difficulty_sumaresta"
         val difficultyValue = sharedPreferences.getString(difficultyKey, DifficultySelectionActivity.DIFFICULTY_PRO)
@@ -182,6 +189,8 @@ class LevelsActivitySumaRestaPro : BaseActivity()  {
                 if (i < ScoreManager.unlockedLevelsSumaRestaPro && (!ScoreManager.isLevelBlockedByFailuresSumaRestaPro(i + 1) || i == 0)) {
                     setBackgroundResource(R.drawable.button_background_sumalevels)
 
+                    setTextColor(ContextCompat.getColor(this@LevelsActivitySumaRestaPro, R.color.level_text_unlocked))
+
                     setOnClickListener {
                         applyBounceEffect(this) {
 
@@ -203,7 +212,10 @@ class LevelsActivitySumaRestaPro : BaseActivity()  {
                         }
                     }
                 } else {
-                    setBackgroundResource(R.drawable.button_grey)
+                    setBackgroundResource(R.drawable.button_background_locked)
+
+                    setTextColor(ContextCompat.getColor(this@LevelsActivitySumaRestaPro, android.R.color.black))
+
                     setOnClickListener {
                         if (i < ScoreManager.unlockedLevelsSumaRestaPro && ScoreManager.isLevelBlockedByFailuresSumaRestaPro(i + 1)) {
                             Toast.makeText(

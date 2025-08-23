@@ -42,7 +42,7 @@
             android:maxLines="1"
             android:text="@string/game_numeros_plus"
             android:textSize="22sp"
-            android:textColor="@color/blue_pressed"
+            android:textColor="@color/game_name_color"
             android:fontFamily="@font/roboto_bold"/>
 
         <TextView
@@ -118,9 +118,7 @@
                         android:layout_marginTop="6dp"
                         android:text="@string/difficulty_subtitle_principiante"
                         android:textSize="14sp"
-                        android:textColor="?attr/colorOnBackground"
-
-/>
+                        android:textColor="?attr/colorOnBackground"/>
                 </RelativeLayout>
 
 
@@ -144,8 +142,6 @@
                         android:text="@string/difficulty_avanzado"
                         android:textSize="20sp"
                         android:textColor="?attr/colorOnBackground"
-
-
                         android:fontFamily="@font/roboto_bold"/>
 
                     <TextView
@@ -165,9 +161,7 @@
                         android:layout_marginTop="6dp"
                         android:text="@string/difficulty_subtitle_avanzado"
                         android:textSize="14sp"
-                        android:textColor="?attr/colorOnBackground"
-
-/>
+                        android:textColor="?attr/colorOnBackground"/>
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -189,8 +183,6 @@
                         android:text="@string/difficulty_pro"
                         android:textSize="20sp"
                         android:textColor="?attr/colorOnBackground"
-
-
                         android:fontFamily="@font/roboto_bold"/>
 
                     <TextView

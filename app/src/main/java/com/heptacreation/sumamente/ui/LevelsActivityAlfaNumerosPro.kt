@@ -21,6 +21,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import com.heptacreation.sumamente.R
 import androidx.activity.enableEdgeToEdge
+import android.content.res.Configuration
 
 class LevelsActivityAlfaNumerosPro : BaseActivity()  {
 
@@ -105,19 +106,28 @@ class LevelsActivityAlfaNumerosPro : BaseActivity()  {
 
     private fun setupInfoBar() {
 
-        val alfaText       = getString(R.string.text_alfa)
-        val numerosText    = getString(R.string.text_numeros)
-        val alfaNumerosTxt = alfaText + numerosText
-        val spannable      = android.text.SpannableString(alfaNumerosTxt)
-        spannable.setSpan(
+        val alfaText = getString(R.string.text_alfa)
+        val numerosText = getString(R.string.text_numeros)
+        val alfaNumerosText = "$alfaText$numerosText"
+        val spannableAlfaNumeros = android.text.SpannableString(alfaNumerosText)
+
+        spannableAlfaNumeros.setSpan(
             android.text.style.ForegroundColorSpan(ContextCompat.getColor(this, R.color.red_primary)),
-            0, alfaText.length, android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            0, alfaText.length,
+            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-        spannable.setSpan(
+        spannableAlfaNumeros.setSpan(
             android.text.style.ForegroundColorSpan(ContextCompat.getColor(this, R.color.blue_primary_darker)),
-            alfaText.length, alfaNumerosTxt.length, android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            alfaText.length, alfaNumerosText.length,
+            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-        tvGameName.text = spannable
+        val isNight = (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+        if (isNight) {
+            tvGameName.setTextColor(ContextCompat.getColor(this, R.color.white))
+            tvGameName.text = alfaNumerosText
+        } else {
+            tvGameName.text = spannableAlfaNumeros
+        }
 
 
         val difficultyKey   = "difficulty_alfanumeros"
@@ -163,7 +173,7 @@ class LevelsActivityAlfaNumerosPro : BaseActivity()  {
 
 
                 setTypeface(null, Typeface.BOLD)
-                setTextColor(ContextCompat.getColor(this@LevelsActivityAlfaNumerosPro, android.R.color.black))
+
                 gravity = Gravity.CENTER
 
                 minimumHeight = 56.dpToPx(this@LevelsActivityAlfaNumerosPro)
@@ -178,6 +188,7 @@ class LevelsActivityAlfaNumerosPro : BaseActivity()  {
                     !ScoreManager.isLevelBlockedByFailuresAlfaNumerosPro(i + 1)) {
 
                     setBackgroundResource(R.drawable.button_background_alfa_numeros)
+                    setTextColor(ContextCompat.getColor(this@LevelsActivityAlfaNumerosPro, R.color.level_text_unlocked))
                     setOnClickListener {
                         applyBounceEffect(this) {
 
@@ -199,6 +210,7 @@ class LevelsActivityAlfaNumerosPro : BaseActivity()  {
                     }
                 } else {
                     setBackgroundResource(R.drawable.button_background_locked)
+                    setTextColor(ContextCompat.getColor(this@LevelsActivityAlfaNumerosPro, android.R.color.black))
                     setOnClickListener {
                         applyBounceEffect(this) {
                             val locked = if (i < ScoreManager.unlockedLevelsAlfaNumerosPro &&

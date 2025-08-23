@@ -99,7 +99,7 @@ class LevelsActivityRomasPro : BaseActivity()  {
 
     private fun setupInfoBar() {
         tvGameName.text = getString(R.string.game_romas)
-        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.green_medium))
+        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.game_name_romas_color))
 
         val difficultyKey = "difficulty_romas"
 
@@ -171,7 +171,7 @@ class LevelsActivityRomasPro : BaseActivity()  {
 
 
                 setTypeface(null, Typeface.BOLD)
-                setTextColor(ContextCompat.getColor(this@LevelsActivityRomasPro, android.R.color.black))
+
                 gravity = Gravity.CENTER
 
                 minimumHeight = 56.dpToPx(this@LevelsActivityRomasPro)
@@ -184,7 +184,7 @@ class LevelsActivityRomasPro : BaseActivity()  {
 
                 if (i < ScoreManager.unlockedLevelsRomasPro && !ScoreManager.isLevelBlockedByFailuresRomasPro(i + 1)) {
                     setBackgroundResource(R.drawable.button_background_romas)
-
+                    setTextColor(ContextCompat.getColor(this@LevelsActivityRomasPro, R.color.level_text_unlocked))
                     setOnClickListener {
                         applyBounceEffect(this) {
 
@@ -204,7 +204,7 @@ class LevelsActivityRomasPro : BaseActivity()  {
                     }
                 } else {
                     setBackgroundResource(R.drawable.button_background_locked)
-
+                    setTextColor(ContextCompat.getColor(this@LevelsActivityRomasPro, android.R.color.black))
                     setOnClickListener {
                         applyBounceEffect(this) {
                             if (i < ScoreManager.unlockedLevelsRomasPro && ScoreManager.isLevelBlockedByFailuresRomasPro(i + 1)) {

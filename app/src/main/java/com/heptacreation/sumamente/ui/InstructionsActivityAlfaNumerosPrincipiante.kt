@@ -15,6 +15,7 @@ import androidx.core.content.edit
 import androidx.core.view.isVisible
 import com.heptacreation.sumamente.R
 import androidx.activity.enableEdgeToEdge
+import android.content.res.Configuration
 
 class InstructionsActivityAlfaNumerosPrincipiante : BaseActivity()  {
 
@@ -235,7 +236,13 @@ class InstructionsActivityAlfaNumerosPrincipiante : BaseActivity()  {
             alfaText.length, alfaNumerosText.length,
             android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-        tvGameName.text = spannableAlfaNumeros
+        val isNight = (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+        if (isNight) {
+            tvGameName.setTextColor(ContextCompat.getColor(this, R.color.white))
+            tvGameName.text = alfaNumerosText
+        } else {
+            tvGameName.text = spannableAlfaNumeros
+        }
 
         val difficultyKey = "difficulty_alfanumeros"
 

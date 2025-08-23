@@ -14,6 +14,7 @@ import androidx.core.content.edit
 import androidx.core.view.isVisible
 import com.heptacreation.sumamente.R
 import androidx.activity.enableEdgeToEdge
+import android.content.res.Configuration
 
 class InstructionsActivityMasPlusPro : BaseActivity()  {
 
@@ -173,7 +174,8 @@ class InstructionsActivityMasPlusPro : BaseActivity()  {
 
     private fun setupInfoBar() {
         tvGameName.text = getString(R.string.game_mas_plus)
-        tvGameName.setTextColor(ContextCompat.getColor(this, R.color.red))
+        val isNight = (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+        tvGameName.setTextColor(ContextCompat.getColor(this, if (isNight) R.color.white else R.color.red))
 
         val difficultyKey = "difficulty_masplus"
 

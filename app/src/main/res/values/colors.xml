@@ -76,6 +76,25 @@
     <color name="s5e_errorContainer">#FFEBEE</color>
     <color name="s5e_onErrorContainer">#B71C1C</color>
 
+    <color name="game_name_color">@color/blue_pressed</color>
+    <color name="level_text_unlocked">@android:color/black</color>
+
+    <color name="result_main_message">#003366</color>
+    <color name="result_current_score">#0000FF</color>
+    <color name="result_action">#0000FF</color>
+
+    <color name="result_current_score_romas">#388E3C</color>
+
+    <color name="result_current_score_deci">#FB8C00</color>
+
+    <color name="letter_conversion_color">@color/blue_primary_darker</color>
+
+    <color name="game_name_mas_color">@color/red</color>
+    <color name="card_bg_dialog">@color/white</color>
+    <color name="game_name_deci_color">@color/orange_dark</color>
+    <color name="game_name_romas_color">@color/green_medium</color>
+    <color name="game_name_genio_color">@color/blue_primary_darker</color>
+
 
 
 </resources>
