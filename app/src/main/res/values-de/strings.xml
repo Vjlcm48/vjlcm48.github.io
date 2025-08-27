@@ -1489,5 +1489,18 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
     <string name="game_subtitle_mas_plus">Kombiniere Ganzzahlen, Dezimalzahlen, Römer und Buchstaben</string>
     <string name="game_subtitle_genio_plus">Löse Brüche, Wurzeln und Zahlen</string>
 
+    <string name="theme">Design</string>
+    <string name="theme_subtitle">Design ändern</string>
+    <string name="theme_dialog_title">Design auswählen</string>
+    <string name="theme_light">Hell</string>
+    <string name="theme_dark">Dunkel</string>
+    <string name="theme_device">Systemdesign</string>
+    <string name="theme_option_desc">Designoption</string>
+
+    <string name="theme_light_desc">Helles Design auswählen</string>
+    <string name="theme_dark_desc">Dunkles Design auswählen</string>
+    <string name="theme_device_desc">Systemdesign auswählen</string>
+
+
 
 </resources>

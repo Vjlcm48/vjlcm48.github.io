@@ -1287,5 +1287,17 @@
     <string name="game_subtitle_mas_plus">صحیح اعداد، اعشاریہ، رومن اور حروف کو ملائیں</string>
     <string name="game_subtitle_genio_plus">کسر، جذر اور اعداد حل کریں</string>
 
+    <string name="theme">تھیم</string>
+    <string name="theme_subtitle">تھیم تبدیل کریں</string>
+    <string name="theme_dialog_title">تھیم منتخب کریں</string>
+    <string name="theme_light">ہلکا</string>
+    <string name="theme_dark">گہرا</string>
+    <string name="theme_device">ڈیوائس تھیم</string>
+    <string name="theme_option_desc">تھیم کا انتخاب</string>
+
+    <string name="theme_light_desc">ہلکا تھیم منتخب کریں</string>
+    <string name="theme_dark_desc">گہرا تھیم منتخب کریں</string>
+    <string name="theme_device_desc">ڈیوائس تھیم منتخب کریں</string>
+
 
 </resources>

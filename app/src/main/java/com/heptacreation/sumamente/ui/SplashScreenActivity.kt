@@ -11,33 +11,35 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.animation.AnimationUtils
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.heptacreation.sumamente.R
 import com.heptacreation.sumamente.databinding.ActivitySplashScreenBinding
-import androidx.activity.enableEdgeToEdge
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashScreenBinding
+    private lateinit var sharedPreferences: SharedPreferences
     private var mediaPlayer: MediaPlayer? = null
+    private var playerReleased = false
     private var hasNavigated = false
-
-    private lateinit var handler: Handler
+    private val handler = Handler(Looper.getMainLooper())
     private lateinit var showCompanyNameRunnable: Runnable
     private lateinit var hideCompanyNameRunnable: Runnable
     private lateinit var showTextSumamenteRunnable: Runnable
     private lateinit var showAttributionRunnable: Runnable
     private lateinit var showTaglineRunnable: Runnable
     private lateinit var goNextScreenRunnable: Runnable
-    private lateinit var sharedPreferences: SharedPreferences
+    private var fadeOutRunnable: Runnable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
+
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setTheme(R.style.Theme_SumaMente)
         setContentView(binding.root)
@@ -45,49 +47,56 @@ class SplashScreenActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         val controller = WindowCompat.getInsetsController(window, window.decorView)
         controller.hide(WindowInsetsCompat.Type.systemBars())
-        controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        controller.systemBarsBehavior =
+        WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
 
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
 
         startAnimationSequence()
 
-        binding.root.setOnClickListener {
-            navigateToNextScreen()
-        }
+        binding.root.setOnClickListener { navigateToNextScreen() }
     }
 
     private fun startAnimationSequence() {
-        handler = Handler(Looper.getMainLooper())
 
         val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
         if (soundEnabled) {
             mediaPlayer = MediaPlayer.create(this, R.raw.presentacion)
-            mediaPlayer?.start()
+            try {
+                mediaPlayer?.start()
+            } catch (_: Throwable) {
+                safeReleasePlayer()
+            }
         } else {
             mediaPlayer = null
         }
 
+
         showCompanyNameRunnable = Runnable {
             binding.companyNameInitial.animate().alpha(1f).setDuration(2000).start()
         }
+
         hideCompanyNameRunnable = Runnable {
             binding.companyNameInitial.animate().alpha(0f).setDuration(1500).start()
             binding.logoSumamente.animate().alpha(1f).setDuration(1500).start()
         }
+
         showTextSumamenteRunnable = Runnable {
             binding.textSumamente.animate().alpha(1f).setDuration(1000).start()
         }
+
         showAttributionRunnable = Runnable {
             binding.attributionLayout.animate().alpha(1f).setDuration(1000).start()
         }
+
         showTaglineRunnable = Runnable {
             val pulseAnimation = AnimationUtils.loadAnimation(this, R.anim.pulse_progress_button)
             binding.logoSumamente.startAnimation(pulseAnimation)
             binding.techTagline.animate().alpha(1f).setDuration(1000).start()
         }
-        goNextScreenRunnable = Runnable {
-            navigateToNextScreen()
-        }
+
+        goNextScreenRunnable = Runnable { navigateToNextScreen() }
+
 
         handler.postDelayed(showCompanyNameRunnable, 500)
         handler.postDelayed(hideCompanyNameRunnable, 2500)
@@ -97,66 +106,102 @@ class SplashScreenActivity : AppCompatActivity() {
         handler.postDelayed(goNextScreenRunnable, 7000)
     }
 
+
     private fun cancelAllSplashRunnables() {
-        if (::handler.isInitialized) {
-            handler.removeCallbacks(showCompanyNameRunnable)
-            handler.removeCallbacks(hideCompanyNameRunnable)
-            handler.removeCallbacks(showTextSumamenteRunnable)
-            handler.removeCallbacks(showAttributionRunnable)
-            handler.removeCallbacks(showTaglineRunnable)
-            handler.removeCallbacks(goNextScreenRunnable)
-        }
+        fun remove(r: Runnable?) { if (r != null) handler.removeCallbacks(r) }
+
+        if (::showCompanyNameRunnable.isInitialized) remove(showCompanyNameRunnable)
+        if (::hideCompanyNameRunnable.isInitialized) remove(hideCompanyNameRunnable)
+        if (::showTextSumamenteRunnable.isInitialized) remove(showTextSumamenteRunnable)
+        if (::showAttributionRunnable.isInitialized) remove(showAttributionRunnable)
+        if (::showTaglineRunnable.isInitialized) remove(showTaglineRunnable)
+        if (::goNextScreenRunnable.isInitialized) remove(goNextScreenRunnable)
+        remove(fadeOutRunnable)
     }
+
+
+    private fun safeReleasePlayer() {
+        val mp = mediaPlayer ?: run {
+            playerReleased = true
+            return
+        }
+        try { mp.stop() } catch (_: IllegalStateException) {  } catch (_: Throwable) {}
+        try { mp.release() } catch (_: Throwable) {}
+        mediaPlayer = null
+        playerReleased = true
+    }
+
 
     private fun navigateToNextScreen() {
         if (hasNavigated) return
 
+
         cancelAllSplashRunnables()
 
-        mediaPlayer?.let { player ->
-            if (player.isPlaying) {
-                val handler = Handler(Looper.getMainLooper())
-                val fadeOutDuration = 1000
-                val steps = 20
-                val stepDuration = fadeOutDuration / steps
-                val volumeStep = 1.0f / steps
 
-                var currentStep = 0
-                val fadeOutRunnable = object : Runnable {
-                    override fun run() {
-                        if (currentStep < steps && player.isPlaying) {
-                            val newVolume = 1.0f - (volumeStep * currentStep)
-                            player.setVolume(newVolume, newVolume)
-                            currentStep++
-                            handler.postDelayed(this, stepDuration.toLong())
-                        } else {
-                            player.stop()
-                        }
-                    }
-                }
-                fadeOutRunnable.run()
-            }
+        val mp = mediaPlayer
+        if (mp == null || playerReleased) {
+            proceedToNextScreen()
+            return
         }
 
-        binding.root.animate().alpha(0f).setDuration(1000)
+        val totalDuration = 1000
+        val steps = 20
+        val stepDuration = (totalDuration / steps).toLong()
+        var currentStep = 0
+
+        fadeOutRunnable = object : Runnable {
+            override fun run() {
+                if (playerReleased) {
+                    proceedToNextScreen()
+                    return
+                }
+                val now = mediaPlayer
+                if (now == null) {
+                    proceedToNextScreen()
+                    return
+                }
+                try {
+                    if (currentStep < steps) {
+                        val newVol = 1f - (currentStep / steps.toFloat())
+                        now.setVolume(newVol, newVol)
+                        currentStep++
+                        handler.postDelayed(this, stepDuration)
+                    } else {
+                        safeReleasePlayer()
+                        proceedToNextScreen()
+                    }
+                } catch (_: IllegalStateException) {
+                    safeReleasePlayer()
+                    proceedToNextScreen()
+                } catch (_: Throwable) {
+                    safeReleasePlayer()
+                    proceedToNextScreen()
+                }
+            }
+        }
+        handler.post(fadeOutRunnable!!)
+    }
+
+    private fun proceedToNextScreen() {
+
+        if (hasNavigated) return
+
+        binding.root.animate()
+            .alpha(0f)
+            .setDuration(1000)
             .setListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
                     if (hasNavigated) return
                     hasNavigated = true
 
                     val username = sharedPreferences.getString("savedUserName", null)
-                    val intent: Intent
-
-                    if (username == null) {
-
-                        intent = Intent(this@SplashScreenActivity, LanguageSelectionActivity::class.java)
+                    val intent = if (username == null) {
+                        Intent(this@SplashScreenActivity, LanguageSelectionActivity::class.java)
                     } else {
-
-                        intent = Intent(this@SplashScreenActivity, TransitionActivity::class.java)
-
-                        intent.putExtra("SOURCE", "SplashScreen")
+                        Intent(this@SplashScreenActivity, TransitionActivity::class.java)
+                            .putExtra("SOURCE", "SplashScreen")
                     }
-
 
                     val options = ActivityOptions.makeCustomAnimation(
                         this@SplashScreenActivity,
@@ -166,13 +211,22 @@ class SplashScreenActivity : AppCompatActivity() {
                     startActivity(intent, options.toBundle())
                     finish()
                 }
-            }).start()
+            })
+            .start()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        if (isFinishing) {
+            cancelAllSplashRunnables()
+            safeReleasePlayer()
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         cancelAllSplashRunnables()
-        mediaPlayer?.release()
-        mediaPlayer = null
+        safeReleasePlayer()
     }
 }

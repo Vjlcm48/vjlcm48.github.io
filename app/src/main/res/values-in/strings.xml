@@ -1467,5 +1467,18 @@ Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di 
     <string name="game_subtitle_mas_plus">Gabungkan bilangan bulat, desimal, Romawi, dan huruf</string>
     <string name="game_subtitle_genio_plus">Selesaikan pecahan, akar, dan angka</string>
 
+    <string name="theme">Tema</string>
+    <string name="theme_subtitle">Ubah tema</string>
+    <string name="theme_dialog_title">Pilih tema</string>
+    <string name="theme_light">Terang</string>
+    <string name="theme_dark">Gelap</string>
+    <string name="theme_device">Tema perangkat</string>
+    <string name="theme_option_desc">Opsi tema</string>
+
+    <string name="theme_light_desc">Pilih tema terang</string>
+    <string name="theme_dark_desc">Pilih tema gelap</string>
+    <string name="theme_device_desc">Pilih tema perangkat</string>
+
+
 
 </resources>

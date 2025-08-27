@@ -86,7 +86,8 @@ class GameActivityRomas : BaseActivity()  {
         ScoreManager.initRomas(this)
 
         val prefs = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
-        val responseMode = intent.getStringExtra("RESPONSE_MODE_ROMAS") ?: prefs.getString("selectedResponseModeRomas", null)
+        val responseMode = intent.getStringExtra("RESPONSE_MODE_ROMAS")
+            ?: prefs.getString("selectedResponseModeRomas", null)
 
         if (responseMode != null) {
             useManualAnswer = responseMode == ResponseModeRomas.TYPE_ANSWER_ROMAS.name
@@ -122,21 +123,10 @@ class GameActivityRomas : BaseActivity()  {
         levelTitle.text = getString(R.string.level_title, currentLevel)
         scoreTextView.text = getString(R.string.score_label, ScoreManager.currentScoreRomas)
 
-        backArrow.setOnClickListener {
-            showExitConfirmation { finish() }
-        }
-
-        bottomNavHome.setOnClickListener {
-            showExitConfirmation { navigateToHome() }
-        }
-
-        bottomNavChallenges.setOnClickListener {
-            showExitConfirmation { navigateToChallenges() }
-        }
-
-        bottomNavStatistics.setOnClickListener {
-            showExitConfirmation { navigateToStatistics() }
-        }
+        backArrow.setOnClickListener { showExitConfirmation { finish() } }
+        bottomNavHome.setOnClickListener { showExitConfirmation { navigateToHome() } }
+        bottomNavChallenges.setOnClickListener { showExitConfirmation { navigateToChallenges() } }
+        bottomNavStatistics.setOnClickListener { showExitConfirmation { navigateToStatistics() } }
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -145,12 +135,19 @@ class GameActivityRomas : BaseActivity()  {
         })
 
         attempts = 0
-        inputBlocked = false  // Cambio #2 bloqueo de mas de 2 intentos //
-        generateNumbers()
-        calculateTimePerNumber()
-        ajustarIconosInferiores()
-        startSequence()
+        inputBlocked = false
+
+        Thread {
+            generateNumbers()
+            calculateTimePerNumber()
+
+            runOnUiThread {
+                ajustarIconosInferiores()
+                startSequence()
+            }
+        }.start()
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

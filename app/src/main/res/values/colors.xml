@@ -41,6 +41,7 @@
     <color name="primary_button_color">#1976D2</color>
     <color name="white_80_percent">#CCFFFFFF</color>
     <color name="blue_primary_darkest">#06225B</color>
+    <color name="grey_medium_dark">#A6A6A6</color>
 
     <!-- ===== SuPERdoku / S5E — Verdes adicionales ===== -->
     <color name="s5e_green_50">#E8F5E9</color>

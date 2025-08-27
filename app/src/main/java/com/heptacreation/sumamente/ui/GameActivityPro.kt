@@ -82,7 +82,10 @@ class GameActivityPro : BaseActivity()  {
         ScoreManager.initPro(this)
 
         val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
-        val responseMode = prefs.getString("selectedResponseModePro", intent.getStringExtra("RESPONSE_MODE"))
+        val responseMode = prefs.getString(
+            "selectedResponseModePro",
+            intent.getStringExtra("RESPONSE_MODE")
+        )
 
         if (responseMode != null) {
             useManualAnswer = responseMode == ResponseMode.TYPE_ANSWER.name
@@ -114,25 +117,15 @@ class GameActivityPro : BaseActivity()  {
         vamosTextView = findViewById(R.id.tv_vamos)
         chronometerTextView = findViewById(R.id.chronometer_text_view)
         chronometerTextView.typeface = Typeface.MONOSPACE
+
         currentLevel = intent.getIntExtra("LEVEL", 1)
         levelTitle.text = getString(R.string.level_title, currentLevel)
         scoreTextView.text = getString(R.string.score_label, ScoreManager.currentScorePro)
 
-        backArrow.setOnClickListener {
-            showExitConfirmation { finish() }
-        }
-
-        bottomNavHome.setOnClickListener {
-            showExitConfirmation { navigateToHome() }
-        }
-
-        bottomNavChallenges.setOnClickListener {
-            showExitConfirmation { navigateToChallenges() }
-        }
-
-        bottomNavStatistics.setOnClickListener {
-            showExitConfirmation { navigateToStatistics() }
-        }
+        backArrow.setOnClickListener { showExitConfirmation { finish() } }
+        bottomNavHome.setOnClickListener { showExitConfirmation { navigateToHome() } }
+        bottomNavChallenges.setOnClickListener { showExitConfirmation { navigateToChallenges() } }
+        bottomNavStatistics.setOnClickListener { showExitConfirmation { navigateToStatistics() } }
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -141,12 +134,19 @@ class GameActivityPro : BaseActivity()  {
         })
 
         attempts = 0
-        inputBlocked = false  // Cambio #2 bloqueo de mas de 2 intentos //
-        generateNumbers()
-        calculateTimePerNumber()
-        ajustarIconosInferiores()
-        startSequence()
+        inputBlocked = false
+
+        Thread {
+            generateNumbers()
+            calculateTimePerNumber()
+
+            runOnUiThread {
+                ajustarIconosInferiores()
+                startSequence()
+            }
+        }.start()
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

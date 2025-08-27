@@ -78,7 +78,7 @@ class GameActivityMasPlus : BaseActivity()  {
     private var heartbeatAnimator: ObjectAnimator? = null
     private var soundPlayed = false
     private var timeSpentInSeconds: Double = 0.0
-    private var inputBlocked = false // Cambio #1 bloqueo de mas de 2 intentos //
+    private var inputBlocked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
@@ -89,7 +89,10 @@ class GameActivityMasPlus : BaseActivity()  {
         ScoreManager.initMasPlus(this)
 
         val prefs = getSharedPreferences("MyPrefsMasPlus", MODE_PRIVATE)
-        val responseMode = prefs.getString("selectedResponseModeMasPlus", intent.getStringExtra("RESPONSE_MODE_MASPLUS"))
+        val responseMode = prefs.getString(
+            "selectedResponseModeMasPlus",
+            intent.getStringExtra("RESPONSE_MODE_MASPLUS")
+        )
 
         if (responseMode != null) {
             useManualAnswer = responseMode == ResponseMode.TYPE_ANSWER.name
@@ -99,6 +102,7 @@ class GameActivityMasPlus : BaseActivity()  {
         }
 
         excludedIndex = intent.getIntExtra("EXCLUDED_INDEX", -1)
+
         backArrow = findViewById(R.id.back_arrow)
         levelTitle = findViewById(R.id.tv_level)
         bottomNavHome = findViewById(R.id.home_button)
@@ -121,40 +125,32 @@ class GameActivityMasPlus : BaseActivity()  {
         vamosTextView = findViewById(R.id.tv_vamos)
         chronometerTextView = findViewById(R.id.chronometer_text_view)
         chronometerTextView.typeface = Typeface.MONOSPACE
+
         currentLevel = intent.getIntExtra("LEVEL", 1)
         levelTitle.text = getString(R.string.level_title, currentLevel)
         scoreTextView.text = getString(R.string.score_label, ScoreManager.currentScoreMasPlus)
 
-        chronometerTextView.typeface = Typeface.MONOSPACE
-
-        backArrow.setOnClickListener {
-            showExitConfirmation { finish() }
-        }
-
-        bottomNavHome.setOnClickListener {
-            showExitConfirmation { navigateToHome() }
-        }
-
-        bottomNavChallenges.setOnClickListener {
-            showExitConfirmation { navigateToChallenges() }
-        }
-
-        bottomNavStatistics.setOnClickListener {
-            showExitConfirmation { navigateToStatistics() }
-        }
+        backArrow.setOnClickListener { showExitConfirmation { finish() } }
+        bottomNavHome.setOnClickListener { showExitConfirmation { navigateToHome() } }
+        bottomNavChallenges.setOnClickListener { showExitConfirmation { navigateToChallenges() } }
+        bottomNavStatistics.setOnClickListener { showExitConfirmation { navigateToStatistics() } }
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                showExitConfirmation { finish() }
-            }
+            override fun handleOnBackPressed() { showExitConfirmation { finish() } }
         })
 
         attempts = 0
-        inputBlocked = false  // Cambio #2 bloqueo de mas de 2 intentos //
-        generateElementsForLevel(currentLevel)
-        calculateTimePerElement()
-        ajustarIconosInferiores()
-        startSequence()
+        inputBlocked = false
+
+        Thread {
+            generateElementsForLevel(currentLevel)
+            calculateTimePerElement()
+
+            runOnUiThread {
+                ajustarIconosInferiores()
+                startSequence()
+            }
+        }.start()
     }
 
     override fun onDestroy() {
@@ -452,16 +448,21 @@ class GameActivityMasPlus : BaseActivity()  {
     }
 
     private fun ensureNoConsecutiveDuplicates(list: MutableList<MASPlusElement>) {
+        if (list.size < 3) return
+
         var index = 0
         while (index < list.size - 2) {
-            val currentVal = list[index].value
-            val nextVal = list[index + 1].value
-            val nextNextVal = list[index + 2].value
-            if (currentVal == nextVal && nextVal == nextNextVal) {
+            val a = list[index].value
+            val b = list[index + 1].value
+            val c = list[index + 2].value
+
+            if (a == b && b == c) {
+
                 val swapIndex = (index + 3) % list.size
                 val temp = list[index + 2]
                 list[index + 2] = list[swapIndex]
                 list[swapIndex] = temp
+
                 index = 0
             } else {
                 index++

@@ -1548,5 +1548,18 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
     <string name="game_subtitle_mas_plus">Mélange d’entiers, décimaux, romains et lettres</string>
     <string name="game_subtitle_genio_plus">Résous fractions, racines et nombres</string>
 
+    <string name="theme">Thème</string>
+    <string name="theme_subtitle">Changer le thème</string>
+    <string name="theme_dialog_title">Sélectionner un thème</string>
+    <string name="theme_light">Clair</string>
+    <string name="theme_dark">Sombre</string>
+    <string name="theme_device">Thème de l’appareil</string>
+    <string name="theme_option_desc">Option de thème</string>
+
+    <string name="theme_light_desc">Sélectionner le thème clair</string>
+    <string name="theme_dark_desc">Sélectionner le thème sombre</string>
+    <string name="theme_device_desc">Sélectionner le thème de l’appareil</string>
+
+
 
 </resources>

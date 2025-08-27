@@ -113,7 +113,10 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
         ScoreManager.initGenioPlusPrincipiante(this)
 
         val prefs = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
-        val responseMode = prefs.getString("selectedResponseModeGenioPlusPrincipiante", intent.getStringExtra("RESPONSE_MODE"))
+        val responseMode = prefs.getString(
+            "selectedResponseModeGenioPlusPrincipiante",
+            intent.getStringExtra("RESPONSE_MODE")
+        )
 
         if (responseMode != null) {
             useManualAnswer = responseMode == ResponseModeGenioPlusPrincipiante.TYPE_ANSWER.name
@@ -126,7 +129,7 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
 
         backArrow = findViewById(R.id.back_arrow)
         levelTitle = findViewById(R.id.tv_level)
-        bottomNavHome = findViewById(R.id.home_button)          // ID nuevo (TextView)
+        bottomNavHome = findViewById(R.id.home_button)
         bottomNavChallenges = findViewById(R.id.calendar_button)
         bottomNavStatistics = findViewById(R.id.statistics_button)
         progressRing = findViewById(R.id.progress_ring)
@@ -146,39 +149,32 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
         vamosTextView = findViewById(R.id.tv_vamos)
         chronometerTextView = findViewById(R.id.chronometer_text_view)
         chronometerTextView.typeface = Typeface.MONOSPACE
+
         currentLevel = intent.getIntExtra("LEVEL", 1)
         levelTitle.text = getString(R.string.level_title, currentLevel)
         scoreTextView.text = getString(R.string.score_label, ScoreManager.currentScoreGenioPlusPrincipiante)
 
-
-        backArrow.setOnClickListener {
-            showExitConfirmation { finish() }
-        }
-
-        bottomNavHome.setOnClickListener {
-            showExitConfirmation { navigateToHome() }
-        }
-
-        bottomNavChallenges.setOnClickListener {
-            showExitConfirmation { navigateToChallenges() }
-        }
-
-        bottomNavStatistics.setOnClickListener {
-            showExitConfirmation { navigateToStatistics() }
-        }
+        backArrow.setOnClickListener { showExitConfirmation { finish() } }
+        bottomNavHome.setOnClickListener { showExitConfirmation { navigateToHome() } }
+        bottomNavChallenges.setOnClickListener { showExitConfirmation { navigateToChallenges() } }
+        bottomNavStatistics.setOnClickListener { showExitConfirmation { navigateToStatistics() } }
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                showExitConfirmation { finish() }
-            }
+            override fun handleOnBackPressed() { showExitConfirmation { finish() } }
         })
 
         attempts = 0
-        inputBlocked = false  // Cambio #2 bloqueo de mas de 2 intentos //
-        generateElements()
-        calculateTimePerElement()
-        ajustarIconosInferiores()
-        startSequence()
+        inputBlocked = false
+
+        Thread {
+            generateElements()
+            calculateTimePerElement()
+
+            runOnUiThread {
+                ajustarIconosInferiores()
+                startSequence()
+            }
+        }.start()
     }
 
     override fun onDestroy() {
@@ -935,7 +931,7 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
 
         for (i in buttons.indices) {
             buttons[i].text = String.format(Locale.getDefault(), "%d", allAnswers[i])
-            
+
         }
     }
 

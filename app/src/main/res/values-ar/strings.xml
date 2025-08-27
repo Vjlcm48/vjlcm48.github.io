@@ -1604,5 +1604,18 @@
     <string name="game_subtitle_mas_plus">ادمج الأعداد الصحيحة والعشرية والرومانية والحروف</string>
     <string name="game_subtitle_genio_plus">حل الكسور والجذور والأعداد</string>
 
+    <string name="theme">السمة</string>
+    <string name="theme_subtitle">تغيير السمة</string>
+    <string name="theme_dialog_title">اختر السمة</string>
+    <string name="theme_light">فاتح</string>
+    <string name="theme_dark">داكن</string>
+    <string name="theme_device">سمة الجهاز</string>
+    <string name="theme_option_desc">خيار السمة</string>
+
+    <string name="theme_light_desc">اختر السمة الفاتحة</string>
+    <string name="theme_dark_desc">اختر السمة الداكنة</string>
+    <string name="theme_device_desc">اختر سمة الجهاز</string>
+
+
 
 </resources>

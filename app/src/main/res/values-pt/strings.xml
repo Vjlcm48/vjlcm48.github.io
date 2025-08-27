@@ -1402,5 +1402,17 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
     <string name="game_subtitle_mas_plus">Combina inteiros, decimais, romanos e letras</string>
     <string name="game_subtitle_genio_plus">Resolva frações, raízes e números</string>
 
+    <string name="theme">Tema</string>
+    <string name="theme_subtitle">Alterar tema</string>
+    <string name="theme_dialog_title">Selecionar tema</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_dark">Escuro</string>
+    <string name="theme_device">Tema do dispositivo</string>
+    <string name="theme_option_desc">Opção de tema</string>
+
+    <string name="theme_light_desc">Selecionar tema claro</string>
+    <string name="theme_dark_desc">Selecionar tema escuro</string>
+    <string name="theme_device_desc">Selecionar tema do dispositivo</string>
+
 
 </resources>

@@ -15,6 +15,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.edit
 import com.heptacreation.sumamente.R
@@ -36,6 +37,7 @@ class SettingsActivity : BaseActivity() {
     private lateinit var linearHelp: LinearLayout
     private lateinit var linearResetProgress: LinearLayout
     private lateinit var linearLanguage: LinearLayout
+    private lateinit var linearTheme: LinearLayout
     private lateinit var appLogo: ImageView
     private var progressDialog: AlertDialog? = null
     private var isReauthenticatingForDelete = false
@@ -94,6 +96,7 @@ class SettingsActivity : BaseActivity() {
         linearHelp           = findViewById(R.id.linear_help)
         linearResetProgress  = findViewById(R.id.linear_reset_progress)
         linearLanguage       = findViewById(R.id.linear_language)
+        linearTheme          = findViewById(R.id.linear_theme)
     }
 
     private fun startEntranceSequence() {
@@ -195,6 +198,9 @@ class SettingsActivity : BaseActivity() {
         }
         linearDeleteAccount.setOnClickListener { view ->
             applyBounceEffect(view) { showConfirmDeleteDialog() }
+        }
+        linearTheme.setOnClickListener { view ->
+            applyBounceEffect(view) { showThemeSelectionDialog() }
         }
     }
 
@@ -313,6 +319,63 @@ class SettingsActivity : BaseActivity() {
                 window?.setBackgroundDrawable(ContextCompat.getDrawable(this.context, R.drawable.dialog_background_with_border))
                 show()
             }
+    }
+
+    private fun showThemeSelectionDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_theme_selection, null)
+        val radioLight = dialogView.findViewById<androidx.appcompat.widget.AppCompatRadioButton>(R.id.radio_theme_light)
+        val radioDevice = dialogView.findViewById<androidx.appcompat.widget.AppCompatRadioButton>(R.id.radio_theme_device)
+        val radioDark = dialogView.findViewById<androidx.appcompat.widget.AppCompatRadioButton>(R.id.radio_theme_dark)
+        val btnClose = dialogView.findViewById<ImageView>(R.id.btn_close_dialog)
+
+        val currentTheme = sharedPreferences.getString("selected_theme", "device")
+        when (currentTheme) {
+            "light" -> radioLight.isChecked = true
+            "dark" -> radioDark.isChecked = true
+            else -> radioDevice.isChecked = true
+        }
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        btnClose.setOnClickListener { dialog.dismiss() }
+
+        radioLight.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                applyTheme("light")
+                dialog.dismiss()
+            }
+        }
+
+        radioDark.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                applyTheme("dark")
+                dialog.dismiss()
+            }
+        }
+
+        radioDevice.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                applyTheme("device")
+                dialog.dismiss()
+            }
+        }
+
+        dialog.show()
+    }
+
+    private fun applyTheme(theme: String) {
+        sharedPreferences.edit { putString("selected_theme", theme) }
+        when (theme) {
+            "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            "device" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

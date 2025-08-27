@@ -88,7 +88,10 @@ class GameActivityAlfaNumerosPrincipiante : BaseActivity()  {
         ScoreManager.initAlfaNumerosPrincipiante(this)
 
         val prefs = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
-        val responseMode = prefs.getString("selectedResponseModeAlfaNumerosPrincipiante", intent.getStringExtra("RESPONSE_MODE"))
+        val responseMode = prefs.getString(
+            "selectedResponseModeAlfaNumerosPrincipiante",
+            intent.getStringExtra("RESPONSE_MODE")
+        )
 
         if (responseMode != null) {
             useManualAnswer = responseMode == ResponseModeAlfaNumeros.TYPE_ANSWER.name
@@ -120,39 +123,38 @@ class GameActivityAlfaNumerosPrincipiante : BaseActivity()  {
         vamosTextView = findViewById(R.id.tv_vamos)
         chronometerTextView = findViewById(R.id.chronometer_text_view)
         chronometerTextView.typeface = Typeface.MONOSPACE
+
         currentLevel = intent.getIntExtra("LEVEL", 1)
         levelTitle.text = getString(R.string.level_title, currentLevel)
-        scoreTextView.text = getString(R.string.score_label, ScoreManager.currentScoreAlfaNumerosPrincipiante)
+        scoreTextView.text = getString(
+            R.string.score_label,
+            ScoreManager.currentScoreAlfaNumerosPrincipiante
+        )
 
-        backArrow.setOnClickListener {
-            showExitConfirmation { finish() }
-        }
-
-        bottomNavHome.setOnClickListener {
-            showExitConfirmation { navigateToHome() }
-        }
-
-        bottomNavChallenges.setOnClickListener {
-            showExitConfirmation { navigateToChallenges() }
-        }
-
-        bottomNavStatistics.setOnClickListener {
-            showExitConfirmation { navigateToStatistics() }
-        }
+        backArrow.setOnClickListener { showExitConfirmation { finish() } }
+        bottomNavHome.setOnClickListener { showExitConfirmation { navigateToHome() } }
+        bottomNavChallenges.setOnClickListener { showExitConfirmation { navigateToChallenges() } }
+        bottomNavStatistics.setOnClickListener { showExitConfirmation { navigateToStatistics() } }
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                showExitConfirmation { finish() }
-            }
+            override fun handleOnBackPressed() { showExitConfirmation { finish() } }
         })
 
         attempts = 0
-        inputBlocked = false  // Cambio #2 bloqueo de mas de 2 intentos //
-        generateElements()
-        calculateTimePerElement()
-        ajustarIconosInferiores()
-        startSequence()
+        inputBlocked = false
+
+
+        Thread {
+            generateElements()
+            calculateTimePerElement()
+
+            runOnUiThread {
+                ajustarIconosInferiores()
+                startSequence()
+            }
+        }.start()
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
@@ -435,21 +437,35 @@ class GameActivityAlfaNumerosPrincipiante : BaseActivity()  {
     }
 
     private fun ensureNoConsecutiveDuplicates() {
-        var index = 0
-        while (index < elementList.size - 2) {
-            val currentVal = elementList[index].value
-            val nextVal = elementList[index + 1].value
-            val nextNextVal = elementList[index + 2].value
-            if (currentVal == nextVal && nextVal == nextNextVal) {
-                val swapIndex = (index + 3) % elementList.size
-                val temp = elementList[index + 2]
-                elementList[index + 2] = elementList[swapIndex]
-                elementList[swapIndex] = temp
-                index = 0
-            } else {
-                index++
+        val n = elementList.size
+        if (n < 3) return
+        if (elementList.map { it.value }.toSet().size == 1) return
+
+        repeat(8) {
+            var ok = true
+            var i = 0
+            while (i <= n - 3) {
+                val a = elementList[i].value
+                if (a == elementList[i + 1].value && a == elementList[i + 2].value) {
+
+                    var j = i + 3
+                    while (j < n && elementList[j].value == a) j++
+                    if (j < n) {
+                        val tmp = elementList[i + 2]
+                        elementList[i + 2] = elementList[j]
+                        elementList[j] = tmp
+                    } else {
+
+                        elementList.shuffle()
+                    }
+                    ok = false
+                    break
+                }
+                i++
             }
+            if (ok) return
         }
+
     }
 
     private fun calculateSum(): Int {

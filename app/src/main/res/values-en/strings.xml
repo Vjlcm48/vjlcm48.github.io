@@ -1544,5 +1544,18 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
     <string name="game_subtitle_mas_plus">Mix integers, decimals, Romans and letters</string>
     <string name="game_subtitle_genio_plus">Solve fractions, roots and numbers</string>
 
+    <string name="theme">Theme</string>
+    <string name="theme_subtitle">Change theme</string>
+    <string name="theme_dialog_title">Select theme</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_device">Device theme</string>
+    <string name="theme_option_desc">Theme option</string>
+
+    <string name="theme_light_desc">Select light theme</string>
+    <string name="theme_dark_desc">Select dark theme</string>
+    <string name="theme_device_desc">Select device theme</string>
+
+
 
 </resources>

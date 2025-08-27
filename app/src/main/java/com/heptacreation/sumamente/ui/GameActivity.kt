@@ -92,7 +92,6 @@ class GameActivity : BaseActivity()  {
         if (responseMode != null) {
             useManualAnswer = responseMode == ResponseMode.TYPE_ANSWER.name
             if (!useManualAnswer) {
-
                 window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
             }
         }
@@ -124,21 +123,10 @@ class GameActivity : BaseActivity()  {
         levelTitle.text = getString(R.string.level_title, currentLevel)
         scoreTextView.text = getString(R.string.score_label, ScoreManager.currentScore)
 
-        backArrow.setOnClickListener {
-            showExitConfirmation { finish() }
-        }
-
-        bottomNavHome.setOnClickListener {
-            showExitConfirmation { navigateToHome() }
-        }
-
-        bottomNavChallenges.setOnClickListener {
-            showExitConfirmation { navigateToChallenges() }
-        }
-
-        bottomNavStatistics.setOnClickListener {
-            showExitConfirmation { navigateToStatistics() }
-        }
+        backArrow.setOnClickListener { showExitConfirmation { finish() } }
+        bottomNavHome.setOnClickListener { showExitConfirmation { navigateToHome() } }
+        bottomNavChallenges.setOnClickListener { showExitConfirmation { navigateToChallenges() } }
+        bottomNavStatistics.setOnClickListener { showExitConfirmation { navigateToStatistics() } }
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -147,12 +135,19 @@ class GameActivity : BaseActivity()  {
         })
 
         attempts = 0
-        inputBlocked = false  // Cambio #2 bloqueo de mas de 2 intentos //
-        generateNumbers()
-        calculateTimePerNumber()
-        ajustarIconosInferiores()
-        startSequence()
+        inputBlocked = false
+
+        Thread {
+            generateNumbers()
+            calculateTimePerNumber()
+
+            runOnUiThread {
+                ajustarIconosInferiores()
+                startSequence()
+            }
+        }.start()
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
@@ -318,17 +313,33 @@ class GameActivity : BaseActivity()  {
     }
 
     private fun ensureNoConsecutiveDuplicates() {
-        var index = 0
-        while (index < numberList.size - 2) {
-            if (numberList[index] == numberList[index + 1] && numberList[index + 1] == numberList[index + 2]) {
-                val swapIndex = (index + 3) % numberList.size
-                val temp = numberList[index + 2]
-                numberList[index + 2] = numberList[swapIndex]
-                numberList[swapIndex] = temp
-                index = 0
-            } else {
-                index++
+        val n = numberList.size
+        if (n < 3) return
+        if (numberList.toHashSet().size == 1) return
+
+        repeat(8) {
+            var ok = true
+            var i = 0
+            while (i <= n - 3) {
+                val a = numberList[i]
+                if (a == numberList[i + 1] && a == numberList[i + 2]) {
+
+                    var j = i + 3
+                    while (j < n && numberList[j] == a) j++
+                    if (j < n) {
+                        val tmp = numberList[i + 2]
+                        numberList[i + 2] = numberList[j]
+                        numberList[j] = tmp
+                    } else {
+
+                        numberList.shuffle()
+                    }
+                    ok = false
+                    break
+                }
+                i++
             }
+            if (ok) return
         }
     }
 

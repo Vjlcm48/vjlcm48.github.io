@@ -1239,5 +1239,18 @@
     <string name="game_subtitle_mas_plus">정수, 소수, 로마 숫자, 문자를 조합하기</string>
     <string name="game_subtitle_genio_plus">분수, 제곱근, 숫자 풀기</string>
 
+    <string name="theme">테마</string>
+    <string name="theme_subtitle">테마 변경</string>
+    <string name="theme_dialog_title">테마 선택</string>
+    <string name="theme_light">라이트</string>
+    <string name="theme_dark">다크</string>
+    <string name="theme_device">기기 테마</string>
+    <string name="theme_option_desc">테마 옵션</string>
+
+    <string name="theme_light_desc">라이트 테마 선택</string>
+    <string name="theme_dark_desc">다크 테마 선택</string>
+    <string name="theme_device_desc">기기 테마 선택</string>
+
+
 
 </resources>

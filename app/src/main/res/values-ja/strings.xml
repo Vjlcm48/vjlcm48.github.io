@@ -1242,5 +1242,18 @@
     <string name="game_subtitle_mas_plus">整数・小数・ローマ数字・文字を組み合わせよう</string>
     <string name="game_subtitle_genio_plus">分数・根号・数を解こう</string>
 
+    <string name="theme">テーマ</string>
+    <string name="theme_subtitle">テーマを変更</string>
+    <string name="theme_dialog_title">テーマを選択</string>
+    <string name="theme_light">ライト</string>
+    <string name="theme_dark">ダーク</string>
+    <string name="theme_device">デバイステーマ</string>
+    <string name="theme_option_desc">テーマのオプション</string>
+
+    <string name="theme_light_desc">ライトテーマを選択</string>
+    <string name="theme_dark_desc">ダークテーマを選択</string>
+    <string name="theme_device_desc">デバイステーマを選択</string>
+
+
 
 </resources>

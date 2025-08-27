@@ -1277,5 +1277,18 @@
     <string name="game_subtitle_mas_plus">পূর্ণসংখ্যা, দশমিক, রোমান ও অক্ষর মিলিয়ে নিন</string>
     <string name="game_subtitle_genio_plus">ভগ্নাংশ, মূল ও সংখ্যা সমাধান করুন</string>
 
+    <string name="theme">থিম</string>
+    <string name="theme_subtitle">থিম পরিবর্তন করুন</string>
+    <string name="theme_dialog_title">থিম নির্বাচন করুন</string>
+    <string name="theme_light">হালকা</string>
+    <string name="theme_dark">গাঢ়</string>
+    <string name="theme_device">ডিভাইস থিম</string>
+    <string name="theme_option_desc">থিম বিকল্প</string>
+
+    <string name="theme_light_desc">হালকা থিম নির্বাচন করুন</string>
+    <string name="theme_dark_desc">গাঢ় থিম নির্বাচন করুন</string>
+    <string name="theme_device_desc">ডিভাইস থিম নির্বাচন করুন</string>
+
+
 
 </resources>

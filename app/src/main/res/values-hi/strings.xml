@@ -1486,5 +1486,17 @@
     <string name="game_subtitle_mas_plus">पूर्णांक, दशमलव, रोमन और अक्षर मिलाएँ</string>
     <string name="game_subtitle_genio_plus">भिन्न, मूल और संख्याएँ हल करें</string>
 
+    <string name="theme">थीम</string>
+    <string name="theme_subtitle">थीम बदलें</string>
+    <string name="theme_dialog_title">थीम चुनें</string>
+    <string name="theme_light">हल्का</string>
+    <string name="theme_dark">गहरा</string>
+    <string name="theme_device">डिवाइस थीम</string>
+    <string name="theme_option_desc">थीम विकल्प</string>
+
+    <string name="theme_light_desc">हल्का थीम चुनें</string>
+    <string name="theme_dark_desc">गहरा थीम चुनें</string>
+    <string name="theme_device_desc">डिवाइस थीम चुनें</string>
+
 
 </resources>

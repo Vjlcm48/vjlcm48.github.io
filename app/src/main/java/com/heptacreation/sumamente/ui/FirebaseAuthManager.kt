@@ -16,12 +16,11 @@ object FirebaseAuthManager {
     private const val RC_SIGN_IN = 9001
     private const val RC_CHECK_PROGRESS = 9002
 
-    private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var firebaseAuth: FirebaseAuth
+    private var webClientId: String? = null
 
     private var callback: ((success: Boolean, message: String?) -> Unit)? = null
     private var checkProgressCallback: ((hasProgress: Boolean, account: GoogleSignInAccount?) -> Unit)? = null
-
 
     fun checkProgressOnly(
         activity: Activity,
@@ -29,13 +28,9 @@ object FirebaseAuthManager {
         callback: (hasProgress: Boolean, account: GoogleSignInAccount?) -> Unit
     ) {
         this.checkProgressCallback = callback
+        this.webClientId = webClientId
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(webClientId)
-            .requestEmail()
-            .build()
-
-        googleSignInClient = GoogleSignIn.getClient(activity, gso)
+        val googleSignInClient = getGoogleSignInClient(activity, webClientId)
         firebaseAuth = FirebaseAuth.getInstance()
 
         val signInIntent = googleSignInClient.signInIntent
@@ -48,13 +43,9 @@ object FirebaseAuthManager {
         callback: (success: Boolean, message: String?) -> Unit
     ) {
         this.callback = callback
+        this.webClientId = webClientId
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(webClientId)
-            .requestEmail()
-            .build()
-
-        googleSignInClient = GoogleSignIn.getClient(activity, gso)
+        val googleSignInClient = getGoogleSignInClient(activity, webClientId)
         firebaseAuth = FirebaseAuth.getInstance()
 
         val signInIntent = googleSignInClient.signInIntent
@@ -80,7 +71,6 @@ object FirebaseAuthManager {
                 val task = GoogleSignIn.getSignedInAccountFromIntent(data)
                 try {
                     val account = task.getResult(ApiException::class.java)
-
                     checkProgressInFirestore(activity, account)
                 } catch (_: ApiException) {
                     checkProgressCallback?.invoke(false, null)
@@ -99,7 +89,6 @@ object FirebaseAuthManager {
         }
 
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
-
         val tempAuth = FirebaseAuth.getInstance()
 
         tempAuth.signInWithCredential(credential)
@@ -107,7 +96,6 @@ object FirebaseAuthManager {
                 if (task.isSuccessful) {
                     val user = tempAuth.currentUser
                     if (user != null) {
-
                         FirebaseFirestore.getInstance()
                             .collection("usuarios")
                             .document(user.uid)
@@ -118,13 +106,18 @@ object FirebaseAuthManager {
                                                 document.get("profile_preferences") != null)
 
                                 tempAuth.signOut()
-                                googleSignInClient.signOut()
+
+                                webClientId?.let {
+                                    getGoogleSignInClient(activity, it).signOut()
+                                }
 
                                 checkProgressCallback?.invoke(hasData, if (hasData) acct else null)
                             }
                             .addOnFailureListener {
                                 tempAuth.signOut()
-                                googleSignInClient.signOut()
+                                webClientId?.let {
+                                    getGoogleSignInClient(activity, it).signOut()
+                                }
                                 checkProgressCallback?.invoke(false, null)
                             }
                     } else {
@@ -153,5 +146,14 @@ object FirebaseAuthManager {
                     callback?.invoke(false, activity.getString(R.string.firebase_link_failed))
                 }
             }
+    }
+
+
+    private fun getGoogleSignInClient(activity: Activity, webClientId: String): GoogleSignInClient {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(webClientId)
+            .requestEmail()
+            .build()
+        return GoogleSignIn.getClient(activity, gso)
     }
 }
