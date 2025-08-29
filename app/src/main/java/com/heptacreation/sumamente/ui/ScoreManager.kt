@@ -477,7 +477,7 @@ object ScoreManager {
 
         fun loadConsecutiveFailures() {
             for (i in 1..70) {
-                val failures = preferences.getInt("$consecutiveFailuresKey:$i", 0)
+                val failures = preferences.getIntCompat("$consecutiveFailuresKey:$i", 0)
                 if (failures > 0) {
                     consecutiveFailuresMap[i] = failures
                 }
@@ -720,6 +720,14 @@ object ScoreManager {
         }
     }
 
+    private fun SharedPreferences.getIntCompat(key: String, defaultValue: Int): Int {
+        return try {
+            getInt(key, defaultValue)
+        } catch (_: ClassCastException) {
+            getLong(key, defaultValue.toLong()).toInt()
+        }
+    }
+
     fun init(context: Context) {
         appContext = context.applicationContext
         ensurePreferencesInitialized(context)
@@ -733,19 +741,19 @@ object ScoreManager {
             preferencesPro = context.getSharedPreferences(PREFS_NAME_PRO, Context.MODE_PRIVATE)
         }
 
-        currentScore = preferences.getInt(KEY_CURRENT_SCORE, 0)
-        unlockedLevels = preferences.getInt(KEY_UNLOCKED_LEVELS, 2)
+        currentScore = preferences.getIntCompat(KEY_CURRENT_SCORE, 0)
+        unlockedLevels = preferences.getIntCompat(KEY_UNLOCKED_LEVELS, 2)
 
         getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.AVANZADO).loadConsecutiveFailures()
 
-        totalGamesNumerosPlusAvanzado = preferences.getInt("total_games_numeros_plus_avanzado", 0)
-        totalGamesNumerosPlusPrincipiante = preferences.getInt("total_games_numeros_plus_principiante", 0)
-        totalGamesNumerosPlusPro = preferences.getInt("total_games_numeros_plus_pro", 0)
-        totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
-        correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
-        totalGamesNumerosPlus = preferences.getInt(KEY_TOTAL_GAMES_NUMEROS_PLUS, 0)
+        totalGamesNumerosPlusAvanzado = preferences.getIntCompat("total_games_numeros_plus_avanzado", 0)
+        totalGamesNumerosPlusPrincipiante = preferences.getIntCompat("total_games_numeros_plus_principiante", 0)
+        totalGamesNumerosPlusPro = preferences.getIntCompat("total_games_numeros_plus_pro", 0)
+        totalGamesGlobal = preferences.getIntCompat(KEY_TOTAL_GAMES_GLOBAL, 0)
+        correctGamesGlobal = preferences.getIntCompat(KEY_CORRECT_GAMES_GLOBAL, 0)
+        totalGamesNumerosPlus = preferences.getIntCompat(KEY_TOTAL_GAMES_NUMEROS_PLUS, 0)
         totalTimeNumerosPlus = preferences.getFloat(KEY_TOTAL_TIME_NUMEROS_PLUS, 0f).toDouble()
-        totalGamesNumerosPlusExitos = preferences.getInt(KEY_TOTAL_GAMES_NUMEROS_PLUS_EXITOS, 0)
+        totalGamesNumerosPlusExitos = preferences.getIntCompat(KEY_TOTAL_GAMES_NUMEROS_PLUS_EXITOS, 0)
         totalTimeNumerosPlusExitos = preferences.getFloat(KEY_TOTAL_TIME_NUMEROS_PLUS_EXITOS, 0f).toDouble()
 
         val storedMap = preferences.getString(KEY_LAST_IQ_COMPONENTS, null)
@@ -757,22 +765,22 @@ object ScoreManager {
         ensurePreferencesInitialized(context)
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
-        currentScore = preferences.getInt(KEY_CURRENT_SCORE, 0)
-        unlockedLevels = preferences.getInt(KEY_UNLOCKED_LEVELS, 2)
-        totalGamesNumerosPlus = preferences.getInt(KEY_TOTAL_GAMES_NUMEROS_PLUS, 0)
+        currentScore = preferences.getIntCompat(KEY_CURRENT_SCORE, 0)
+        unlockedLevels = preferences.getIntCompat(KEY_UNLOCKED_LEVELS, 2)
+        totalGamesNumerosPlus = preferences.getIntCompat(KEY_TOTAL_GAMES_NUMEROS_PLUS, 0)
         totalTimeNumerosPlus = preferences.getFloat(KEY_TOTAL_TIME_NUMEROS_PLUS, 0f).toDouble()
-        totalGamesNumerosPlusExitos = preferences.getInt(KEY_TOTAL_GAMES_NUMEROS_PLUS_EXITOS, 0)
+        totalGamesNumerosPlusExitos = preferences.getIntCompat(KEY_TOTAL_GAMES_NUMEROS_PLUS_EXITOS, 0)
         totalTimeNumerosPlusExitos = preferences.getFloat(KEY_TOTAL_TIME_NUMEROS_PLUS_EXITOS, 0f).toDouble()
-        totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
-        correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
+        totalGamesGlobal = preferences.getIntCompat(KEY_TOTAL_GAMES_GLOBAL, 0)
+        correctGamesGlobal = preferences.getIntCompat(KEY_CORRECT_GAMES_GLOBAL, 0)
     }
 
     fun initPrincipiante(context: Context) {
         init(context)
         ensurePreferencesInitialized(context)
         preferencesPrincipiante = context.getSharedPreferences(PREFS_NAME_PRINCIPIANTE, Context.MODE_PRIVATE)
-        currentScorePrincipiante = preferencesPrincipiante.getInt(KEY_CURRENT_SCORE_PRINCIPIANTE, 0)
-        unlockedLevelsPrincipiante = preferencesPrincipiante.getInt(KEY_UNLOCKED_LEVELS_PRINCIPIANTE, 2)
+        currentScorePrincipiante = preferencesPrincipiante.getIntCompat(KEY_CURRENT_SCORE_PRINCIPIANTE, 0)
+        unlockedLevelsPrincipiante = preferencesPrincipiante.getIntCompat(KEY_UNLOCKED_LEVELS_PRINCIPIANTE, 2)
         getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRINCIPIANTE).loadConsecutiveFailures()
     }
 
@@ -780,8 +788,8 @@ object ScoreManager {
         init(context)
         ensurePreferencesInitialized(context)
         preferencesPro = context.getSharedPreferences(PREFS_NAME_PRO, Context.MODE_PRIVATE)
-        currentScorePro = preferencesPro.getInt(KEY_CURRENT_SCORE_PRO, 0)
-        unlockedLevelsPro = preferencesPro.getInt(KEY_UNLOCKED_LEVELS_PRO, 2)
+        currentScorePro = preferencesPro.getIntCompat(KEY_CURRENT_SCORE_PRO, 0)
+        unlockedLevelsPro = preferencesPro.getIntCompat(KEY_UNLOCKED_LEVELS_PRO, 2)
         getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRO).loadConsecutiveFailures()
     }
 
@@ -789,19 +797,19 @@ object ScoreManager {
         init(context)
         ensurePreferencesInitialized(context)
         preferencesDeciPlus = context.getSharedPreferences(PREFS_NAME_DECI_PLUS, Context.MODE_PRIVATE)
-        currentScoreDeciPlus = preferencesDeciPlus.getInt(KEY_CURRENT_SCORE_DECI_PLUS, 0)
-        unlockedLevelsDeciPlus = preferencesDeciPlus.getInt(KEY_UNLOCKED_LEVELS_DECI_PLUS, 2)
+        currentScoreDeciPlus = preferencesDeciPlus.getIntCompat(KEY_CURRENT_SCORE_DECI_PLUS, 0)
+        unlockedLevelsDeciPlus = preferencesDeciPlus.getIntCompat(KEY_UNLOCKED_LEVELS_DECI_PLUS, 2)
         getOrCreateManager(Game.DECI_PLUS, Difficulty.AVANZADO).loadConsecutiveFailures()
 
-        totalGamesDeciPlusAvanzado = preferences.getInt("total_games_deci_plus_avanzado", 0)
-        totalGamesDeciPlusPrincipiante = preferences.getInt("total_games_deci_plus_principiante", 0)
-        totalGamesDeciPlusPro = preferences.getInt("total_games_deci_plus_pro", 0)
+        totalGamesDeciPlusAvanzado = preferences.getIntCompat("total_games_deci_plus_avanzado", 0)
+        totalGamesDeciPlusPrincipiante = preferences.getIntCompat("total_games_deci_plus_principiante", 0)
+        totalGamesDeciPlusPro = preferences.getIntCompat("total_games_deci_plus_pro", 0)
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
-        correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
-        totalGamesDeciPlus = preferencesDeciPlus.getInt(KEY_TOTAL_GAMES_DECI_PLUS, 0)
+        totalGamesGlobal = preferences.getIntCompat(KEY_TOTAL_GAMES_GLOBAL, 0)
+        correctGamesGlobal = preferences.getIntCompat(KEY_CORRECT_GAMES_GLOBAL, 0)
+        totalGamesDeciPlus = preferencesDeciPlus.getIntCompat(KEY_TOTAL_GAMES_DECI_PLUS, 0)
         totalTimeDeciPlus = preferencesDeciPlus.getFloat(KEY_TOTAL_TIME_DECI_PLUS, 0f).toDouble()
-        totalGamesDeciPlusExitos = preferences.getInt(KEY_TOTAL_GAMES_DECI_PLUS_EXITOS, 0)
+        totalGamesDeciPlusExitos = preferences.getIntCompat(KEY_TOTAL_GAMES_DECI_PLUS_EXITOS, 0)
         totalTimeDeciPlusExitos = preferences.getFloat(KEY_TOTAL_TIME_DECI_PLUS_EXITOS, 0f).toDouble()
 
         val storedMap = preferences.getString(KEY_LAST_IQ_COMPONENTS, null)
@@ -812,11 +820,11 @@ object ScoreManager {
         init(context)
         ensurePreferencesInitialized(context)
         preferencesDeciPlusPrincipiante = context.getSharedPreferences(PREFS_NAME_DECI_PLUS_PRINCIPIANTE, Context.MODE_PRIVATE)
-        currentScoreDeciPlusPrincipiante = preferencesDeciPlusPrincipiante.getInt(KEY_CURRENT_SCORE_DECI_PLUS_PRINCIPIANTE, 0)
-        unlockedLevelsDeciPlusPrincipiante = preferencesDeciPlusPrincipiante.getInt(KEY_UNLOCKED_LEVELS_DECI_PLUS_PRINCIPIANTE, 2)
+        currentScoreDeciPlusPrincipiante = preferencesDeciPlusPrincipiante.getIntCompat(KEY_CURRENT_SCORE_DECI_PLUS_PRINCIPIANTE, 0)
+        unlockedLevelsDeciPlusPrincipiante = preferencesDeciPlusPrincipiante.getIntCompat(KEY_UNLOCKED_LEVELS_DECI_PLUS_PRINCIPIANTE, 2)
 
         for (i in 1..70) {
-            val failures = preferencesDeciPlusPrincipiante.getInt("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS_PRINCIPIANTE:$i-principiante", 0)
+            val failures = preferencesDeciPlusPrincipiante.getIntCompat("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS_PRINCIPIANTE:$i-principiante", 0)
             if (failures > 0) {
                 consecutiveFailuresDeciPlusPrincipiante[i] = failures
             }
@@ -827,11 +835,11 @@ object ScoreManager {
         init(context)
         ensurePreferencesInitialized(context)
         preferencesDeciPlusPro = context.getSharedPreferences(PREFS_NAME_DECI_PLUS_PRO, Context.MODE_PRIVATE)
-        currentScoreDeciPlusPro = preferencesDeciPlusPro.getInt(KEY_CURRENT_SCORE_DECI_PLUS_PRO, 0)
-        unlockedLevelsDeciPlusPro = preferencesDeciPlusPro.getInt(KEY_UNLOCKED_LEVELS_DECI_PLUS_PRO, 2)
+        currentScoreDeciPlusPro = preferencesDeciPlusPro.getIntCompat(KEY_CURRENT_SCORE_DECI_PLUS_PRO, 0)
+        unlockedLevelsDeciPlusPro = preferencesDeciPlusPro.getIntCompat(KEY_UNLOCKED_LEVELS_DECI_PLUS_PRO, 2)
 
         for (i in 1..70) {
-            val failures = preferencesDeciPlusPro.getInt("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS_PRO:$i-pro", 0)
+            val failures = preferencesDeciPlusPro.getIntCompat("$KEY_CONSECUTIVE_FAILURES_DECI_PLUS_PRO:$i-pro", 0)
             if (failures > 0) {
                 consecutiveFailuresDeciPlusPro[i] = failures
             }
@@ -842,19 +850,19 @@ object ScoreManager {
         init(context)
         ensurePreferencesInitialized(context)
         preferencesRomas = context.getSharedPreferences(PREFS_NAME_ROMAS, Context.MODE_PRIVATE)
-        currentScoreRomas = preferencesRomas.getInt(KEY_CURRENT_SCORE_ROMAS, 0)
-        unlockedLevelsRomas = preferencesRomas.getInt(KEY_UNLOCKED_LEVELS_ROMAS, 2)
+        currentScoreRomas = preferencesRomas.getIntCompat(KEY_CURRENT_SCORE_ROMAS, 0)
+        unlockedLevelsRomas = preferencesRomas.getIntCompat(KEY_UNLOCKED_LEVELS_ROMAS, 2)
         getOrCreateManager(Game.ROMAS, Difficulty.AVANZADO).loadConsecutiveFailures()
 
-        totalGamesRomasAvanzado = preferences.getInt("total_games_romas_avanzado", 0)
-        totalGamesRomasPrincipiante = preferences.getInt("total_games_romas_principiante", 0)
-        totalGamesRomasPro = preferences.getInt("total_games_romas_pro", 0)
+        totalGamesRomasAvanzado = preferences.getIntCompat("total_games_romas_avanzado", 0)
+        totalGamesRomasPrincipiante = preferences.getIntCompat("total_games_romas_principiante", 0)
+        totalGamesRomasPro = preferences.getIntCompat("total_games_romas_pro", 0)
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
-        correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
-        totalGamesRomas = preferencesRomas.getInt(KEY_TOTAL_GAMES_ROMAS, 0)
+        totalGamesGlobal = preferences.getIntCompat(KEY_TOTAL_GAMES_GLOBAL, 0)
+        correctGamesGlobal = preferences.getIntCompat(KEY_CORRECT_GAMES_GLOBAL, 0)
+        totalGamesRomas = preferencesRomas.getIntCompat(KEY_TOTAL_GAMES_ROMAS, 0)
         totalTimeRomas = preferencesRomas.getFloat(KEY_TOTAL_TIME_ROMAS, 0f).toDouble()
-        totalGamesRomasExitos = preferences.getInt(KEY_TOTAL_GAMES_ROMAS_EXITOS, 0)
+        totalGamesRomasExitos = preferences.getIntCompat(KEY_TOTAL_GAMES_ROMAS_EXITOS, 0)
         totalTimeRomasExitos = preferences.getFloat(KEY_TOTAL_TIME_ROMAS_EXITOS, 0f).toDouble()
 
         val storedMap = preferences.getString(KEY_LAST_IQ_COMPONENTS, null)
@@ -865,8 +873,8 @@ object ScoreManager {
         init(context)
         ensurePreferencesInitialized(context)
         preferencesRomasPrincipiante = context.getSharedPreferences(PREFS_NAME_ROMAS_PRINCIPIANTE, Context.MODE_PRIVATE)
-        currentScoreRomasPrincipiante = preferencesRomasPrincipiante.getInt(KEY_CURRENT_SCORE_ROMAS_PRINCIPIANTE, 0)
-        unlockedLevelsRomasPrincipiante = preferencesRomasPrincipiante.getInt(KEY_UNLOCKED_LEVELS_ROMAS_PRINCIPIANTE, 2)
+        currentScoreRomasPrincipiante = preferencesRomasPrincipiante.getIntCompat(KEY_CURRENT_SCORE_ROMAS_PRINCIPIANTE, 0)
+        unlockedLevelsRomasPrincipiante = preferencesRomasPrincipiante.getIntCompat(KEY_UNLOCKED_LEVELS_ROMAS_PRINCIPIANTE, 2)
         getOrCreateManager(Game.ROMAS, Difficulty.PRINCIPIANTE).loadConsecutiveFailures()
     }
 
@@ -874,8 +882,8 @@ object ScoreManager {
         init(context)
         ensurePreferencesInitialized(context)
         preferencesRomasPro = context.getSharedPreferences(PREFS_NAME_ROMAS_PRO, Context.MODE_PRIVATE)
-        currentScoreRomasPro = preferencesRomasPro.getInt(KEY_CURRENT_SCORE_ROMAS_PRO, 0)
-        unlockedLevelsRomasPro = preferencesRomasPro.getInt(KEY_UNLOCKED_LEVELS_ROMAS_PRO, 2)
+        currentScoreRomasPro = preferencesRomasPro.getIntCompat(KEY_CURRENT_SCORE_ROMAS_PRO, 0)
+        unlockedLevelsRomasPro = preferencesRomasPro.getIntCompat(KEY_UNLOCKED_LEVELS_ROMAS_PRO, 2)
         getOrCreateManager(Game.ROMAS, Difficulty.PRO).loadConsecutiveFailures()
     }
 
@@ -883,19 +891,19 @@ object ScoreManager {
         init(context)
         ensurePreferencesInitialized(context)
         preferencesAlfaNumeros = context.getSharedPreferences(PREFS_NAME_ALFANUMEROS, Context.MODE_PRIVATE)
-        currentScoreAlfaNumeros = preferencesAlfaNumeros.getInt(KEY_CURRENT_SCORE_ALFANUMEROS, 0)
-        unlockedLevelsAlfaNumeros = preferencesAlfaNumeros.getInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS, 2)
+        currentScoreAlfaNumeros = preferencesAlfaNumeros.getIntCompat(KEY_CURRENT_SCORE_ALFANUMEROS, 0)
+        unlockedLevelsAlfaNumeros = preferencesAlfaNumeros.getIntCompat(KEY_UNLOCKED_LEVELS_ALFANUMEROS, 2)
         getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.AVANZADO).loadConsecutiveFailures()
 
-        totalGamesAlfaNumerosAvanzado = preferences.getInt("total_games_alfanumeros_avanzado", 0)
-        totalGamesAlfaNumerosPrincipiante = preferences.getInt("total_games_alfanumeros_principiante", 0)
-        totalGamesAlfaNumerosPro = preferences.getInt("total_games_alfanumeros_pro", 0)
+        totalGamesAlfaNumerosAvanzado = preferences.getIntCompat("total_games_alfanumeros_avanzado", 0)
+        totalGamesAlfaNumerosPrincipiante = preferences.getIntCompat("total_games_alfanumeros_principiante", 0)
+        totalGamesAlfaNumerosPro = preferences.getIntCompat("total_games_alfanumeros_pro", 0)
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
-        correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
-        totalGamesAlfaNumeros = preferencesAlfaNumeros.getInt(KEY_TOTAL_GAMES_ALFANUMEROS, 0)
+        totalGamesGlobal = preferences.getIntCompat(KEY_TOTAL_GAMES_GLOBAL, 0)
+        correctGamesGlobal = preferences.getIntCompat(KEY_CORRECT_GAMES_GLOBAL, 0)
+        totalGamesAlfaNumeros = preferencesAlfaNumeros.getIntCompat(KEY_TOTAL_GAMES_ALFANUMEROS, 0)
         totalTimeAlfaNumeros = preferencesAlfaNumeros.getFloat(KEY_TOTAL_TIME_ALFANUMEROS, 0f).toDouble()
-        totalGamesAlfaNumerosExitos = preferences.getInt(KEY_TOTAL_GAMES_ALFANUMEROS_EXITOS, 0)
+        totalGamesAlfaNumerosExitos = preferences.getIntCompat(KEY_TOTAL_GAMES_ALFANUMEROS_EXITOS, 0)
         totalTimeAlfaNumerosExitos = preferences.getFloat(KEY_TOTAL_TIME_ALFANUMEROS_EXITOS, 0f).toDouble()
 
         val storedMap = preferences.getString(KEY_LAST_IQ_COMPONENTS, null)
@@ -906,8 +914,8 @@ object ScoreManager {
         init(context)
         ensurePreferencesInitialized(context)
         preferencesAlfaNumerosPrincipiante = context.getSharedPreferences(PREFS_NAME_ALFANUMEROS_PRINCIPIANTE, Context.MODE_PRIVATE)
-        currentScoreAlfaNumerosPrincipiante = preferencesAlfaNumerosPrincipiante.getInt(KEY_CURRENT_SCORE_ALFANUMEROS_PRINCIPIANTE, 0)
-        unlockedLevelsAlfaNumerosPrincipiante = preferencesAlfaNumerosPrincipiante.getInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRINCIPIANTE, 2)
+        currentScoreAlfaNumerosPrincipiante = preferencesAlfaNumerosPrincipiante.getIntCompat(KEY_CURRENT_SCORE_ALFANUMEROS_PRINCIPIANTE, 0)
+        unlockedLevelsAlfaNumerosPrincipiante = preferencesAlfaNumerosPrincipiante.getIntCompat(KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRINCIPIANTE, 2)
         getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRINCIPIANTE).loadConsecutiveFailures()
     }
 
@@ -915,8 +923,8 @@ object ScoreManager {
         init(context)
         ensurePreferencesInitialized(context)
         preferencesAlfaNumerosPro = context.getSharedPreferences(PREFS_NAME_ALFANUMEROS_PRO, Context.MODE_PRIVATE)
-        currentScoreAlfaNumerosPro = preferencesAlfaNumerosPro.getInt(KEY_CURRENT_SCORE_ALFANUMEROS_PRO, 0)
-        unlockedLevelsAlfaNumerosPro = preferencesAlfaNumerosPro.getInt(KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRO, 2)
+        currentScoreAlfaNumerosPro = preferencesAlfaNumerosPro.getIntCompat(KEY_CURRENT_SCORE_ALFANUMEROS_PRO, 0)
+        unlockedLevelsAlfaNumerosPro = preferencesAlfaNumerosPro.getIntCompat(KEY_UNLOCKED_LEVELS_ALFANUMEROS_PRO, 2)
         getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRO).loadConsecutiveFailures()
     }
 
@@ -924,19 +932,19 @@ object ScoreManager {
         init(context)
         ensurePreferencesInitialized(context)
         preferencesSumaResta = context.getSharedPreferences(PREFS_NAME_SUMARESTA, Context.MODE_PRIVATE)
-        currentScoreSumaResta = preferencesSumaResta.getInt(KEY_CURRENT_SCORE_SUMARESTA, 0)
-        unlockedLevelsSumaResta = preferencesSumaResta.getInt(KEY_UNLOCKED_LEVELS_SUMARESTA, 2)
+        currentScoreSumaResta = preferencesSumaResta.getIntCompat(KEY_CURRENT_SCORE_SUMARESTA, 0)
+        unlockedLevelsSumaResta = preferencesSumaResta.getIntCompat(KEY_UNLOCKED_LEVELS_SUMARESTA, 2)
         getOrCreateManager(Game.SUMA_RESTA, Difficulty.AVANZADO).loadConsecutiveFailures()
 
-        totalGamesSumaRestaAvanzado = preferences.getInt("total_games_sumaresta_avanzado", 0)
-        totalGamesSumaRestaPrincipiante = preferences.getInt("total_games_sumaresta_principiante", 0)
-        totalGamesSumaRestaPro = preferences.getInt("total_games_sumaresta_pro", 0)
+        totalGamesSumaRestaAvanzado = preferences.getIntCompat("total_games_sumaresta_avanzado", 0)
+        totalGamesSumaRestaPrincipiante = preferences.getIntCompat("total_games_sumaresta_principiante", 0)
+        totalGamesSumaRestaPro = preferences.getIntCompat("total_games_sumaresta_pro", 0)
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
-        correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
-        totalGamesSumaResta = preferencesSumaResta.getInt(KEY_TOTAL_GAMES_SUMARESTA, 0)
+        totalGamesGlobal = preferences.getIntCompat(KEY_TOTAL_GAMES_GLOBAL, 0)
+        correctGamesGlobal = preferences.getIntCompat(KEY_CORRECT_GAMES_GLOBAL, 0)
+        totalGamesSumaResta = preferencesSumaResta.getIntCompat(KEY_TOTAL_GAMES_SUMARESTA, 0)
         totalTimeSumaResta = preferencesSumaResta.getFloat(KEY_TOTAL_TIME_SUMARESTA, 0f).toDouble()
-        totalGamesSumaRestaExitos = preferences.getInt(KEY_TOTAL_GAMES_SUMARESTA_EXITOS, 0)
+        totalGamesSumaRestaExitos = preferences.getIntCompat(KEY_TOTAL_GAMES_SUMARESTA_EXITOS, 0)
         totalTimeSumaRestaExitos = preferences.getFloat(KEY_TOTAL_TIME_SUMARESTA_EXITOS, 0f).toDouble()
 
         val storedMap = preferences.getString(KEY_LAST_IQ_COMPONENTS, null)
@@ -947,8 +955,8 @@ object ScoreManager {
         init(context)
         ensurePreferencesInitialized(context)
         preferencesSumaRestaPrincipiante = context.getSharedPreferences(PREFS_NAME_SUMARESTA_PRINCIPIANTE, Context.MODE_PRIVATE)
-        currentScoreSumaRestaPrincipiante = preferencesSumaRestaPrincipiante.getInt(KEY_CURRENT_SCORE_SUMARESTA_PRINCIPIANTE, 0)
-        unlockedLevelsSumaRestaPrincipiante = preferencesSumaRestaPrincipiante.getInt(KEY_UNLOCKED_LEVELS_SUMARESTA_PRINCIPIANTE, 2)
+        currentScoreSumaRestaPrincipiante = preferencesSumaRestaPrincipiante.getIntCompat(KEY_CURRENT_SCORE_SUMARESTA_PRINCIPIANTE, 0)
+        unlockedLevelsSumaRestaPrincipiante = preferencesSumaRestaPrincipiante.getIntCompat(KEY_UNLOCKED_LEVELS_SUMARESTA_PRINCIPIANTE, 2)
         getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRINCIPIANTE).loadConsecutiveFailures()
     }
 
@@ -956,8 +964,8 @@ object ScoreManager {
         init(context)
         ensurePreferencesInitialized(context)
         preferencesSumaRestaPro = context.getSharedPreferences(PREFS_NAME_SUMARESTA_PRO, Context.MODE_PRIVATE)
-        currentScoreSumaRestaPro = preferencesSumaRestaPro.getInt(KEY_CURRENT_SCORE_SUMARESTA_PRO, 0)
-        unlockedLevelsSumaRestaPro = preferencesSumaRestaPro.getInt(KEY_UNLOCKED_LEVELS_SUMARESTA_PRO, 2)
+        currentScoreSumaRestaPro = preferencesSumaRestaPro.getIntCompat(KEY_CURRENT_SCORE_SUMARESTA_PRO, 0)
+        unlockedLevelsSumaRestaPro = preferencesSumaRestaPro.getIntCompat(KEY_UNLOCKED_LEVELS_SUMARESTA_PRO, 2)
         getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRO).loadConsecutiveFailures()
     }
 
@@ -965,19 +973,19 @@ object ScoreManager {
         init(context)
         ensurePreferencesInitialized(context)
         preferencesMasPlus = context.getSharedPreferences(PREFS_NAME_MAS_PLUS, Context.MODE_PRIVATE)
-        currentScoreMasPlus = preferencesMasPlus.getInt(KEY_CURRENT_SCORE_MAS_PLUS, 0)
-        unlockedLevelsMasPlus = preferencesMasPlus.getInt(KEY_UNLOCKED_LEVELS_MAS_PLUS, 2)
+        currentScoreMasPlus = preferencesMasPlus.getIntCompat(KEY_CURRENT_SCORE_MAS_PLUS, 0)
+        unlockedLevelsMasPlus = preferencesMasPlus.getIntCompat(KEY_UNLOCKED_LEVELS_MAS_PLUS, 2)
         getOrCreateManager(Game.MAS_PLUS, Difficulty.AVANZADO).loadConsecutiveFailures()
 
-        totalGamesMasPlusAvanzado = preferences.getInt("total_games_masplus_avanzado", 0)
-        totalGamesMasPlusPrincipiante = preferences.getInt("total_games_masplus_principiante", 0)
-        totalGamesMasPlusPro = preferences.getInt("total_games_masplus_pro", 0)
+        totalGamesMasPlusAvanzado = preferences.getIntCompat("total_games_masplus_avanzado", 0)
+        totalGamesMasPlusPrincipiante = preferences.getIntCompat("total_games_masplus_principiante", 0)
+        totalGamesMasPlusPro = preferences.getIntCompat("total_games_masplus_pro", 0)
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
-        correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
-        totalGamesMasPlus = preferencesMasPlus.getInt(KEY_TOTAL_GAMES_MAS_PLUS, 0)
+        totalGamesGlobal = preferences.getIntCompat(KEY_TOTAL_GAMES_GLOBAL, 0)
+        correctGamesGlobal = preferences.getIntCompat(KEY_CORRECT_GAMES_GLOBAL, 0)
+        totalGamesMasPlus = preferencesMasPlus.getIntCompat(KEY_TOTAL_GAMES_MAS_PLUS, 0)
         totalTimeMasPlus = preferencesMasPlus.getFloat(KEY_TOTAL_TIME_MAS_PLUS, 0f).toDouble()
-        totalGamesMasPlusExitos = preferences.getInt(KEY_TOTAL_GAMES_MAS_PLUS_EXITOS, 0)
+        totalGamesMasPlusExitos = preferences.getIntCompat(KEY_TOTAL_GAMES_MAS_PLUS_EXITOS, 0)
         totalTimeMasPlusExitos = preferences.getFloat(KEY_TOTAL_TIME_MAS_PLUS_EXITOS, 0f).toDouble()
 
         val storedMap = preferences.getString(KEY_LAST_IQ_COMPONENTS, null)
@@ -988,8 +996,8 @@ object ScoreManager {
         init(context)
         ensurePreferencesInitialized(context)
         preferencesMasPlusPrincipiante = context.getSharedPreferences(PREFS_NAME_MAS_PLUS_PRINCIPIANTE, Context.MODE_PRIVATE)
-        currentScoreMasPlusPrincipiante = preferencesMasPlusPrincipiante.getInt(KEY_CURRENT_SCORE_MAS_PLUS_PRINCIPIANTE, 0)
-        unlockedLevelsMasPlusPrincipiante = preferencesMasPlusPrincipiante.getInt(KEY_UNLOCKED_LEVELS_MAS_PLUS_PRINCIPIANTE, 2)
+        currentScoreMasPlusPrincipiante = preferencesMasPlusPrincipiante.getIntCompat(KEY_CURRENT_SCORE_MAS_PLUS_PRINCIPIANTE, 0)
+        unlockedLevelsMasPlusPrincipiante = preferencesMasPlusPrincipiante.getIntCompat(KEY_UNLOCKED_LEVELS_MAS_PLUS_PRINCIPIANTE, 2)
         getOrCreateManager(Game.MAS_PLUS, Difficulty.PRINCIPIANTE).loadConsecutiveFailures()
     }
 
@@ -997,8 +1005,8 @@ object ScoreManager {
         init(context)
         ensurePreferencesInitialized(context)
         preferencesMasPlusPro = context.getSharedPreferences(PREFS_NAME_MAS_PLUS_PRO, Context.MODE_PRIVATE)
-        currentScoreMasPlusPro = preferencesMasPlusPro.getInt(KEY_CURRENT_SCORE_MAS_PLUS_PRO, 0)
-        unlockedLevelsMasPlusPro = preferencesMasPlusPro.getInt(KEY_UNLOCKED_LEVELS_MAS_PLUS_PRO, 2)
+        currentScoreMasPlusPro = preferencesMasPlusPro.getIntCompat(KEY_CURRENT_SCORE_MAS_PLUS_PRO, 0)
+        unlockedLevelsMasPlusPro = preferencesMasPlusPro.getIntCompat(KEY_UNLOCKED_LEVELS_MAS_PLUS_PRO, 2)
         getOrCreateManager(Game.MAS_PLUS, Difficulty.PRO).loadConsecutiveFailures()
     }
 
@@ -1006,19 +1014,19 @@ object ScoreManager {
         init(context)
         ensurePreferencesInitialized(context)
         preferencesGenioPlus = context.getSharedPreferences(PREFS_NAME_GENIO_PLUS, Context.MODE_PRIVATE)
-        currentScoreGenioPlus = preferencesGenioPlus.getInt(KEY_CURRENT_SCORE_GENIO_PLUS, 0)
-        unlockedLevelsGenioPlus = preferencesGenioPlus.getInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS, 2)
+        currentScoreGenioPlus = preferencesGenioPlus.getIntCompat(KEY_CURRENT_SCORE_GENIO_PLUS, 0)
+        unlockedLevelsGenioPlus = preferencesGenioPlus.getIntCompat(KEY_UNLOCKED_LEVELS_GENIO_PLUS, 2)
         getOrCreateManager(Game.GENIO_PLUS, Difficulty.AVANZADO).loadConsecutiveFailures()
 
-        totalGamesGenioPlusAvanzado = preferences.getInt("total_games_genioplus_avanzado", 0)
-        totalGamesGenioPlusPrincipiante = preferences.getInt("total_games_genioplus_principiante", 0)
-        totalGamesGenioPlusPro = preferences.getInt("total_games_genioplus_pro", 0)
+        totalGamesGenioPlusAvanzado = preferences.getIntCompat("total_games_genioplus_avanzado", 0)
+        totalGamesGenioPlusPrincipiante = preferences.getIntCompat("total_games_genioplus_principiante", 0)
+        totalGamesGenioPlusPro = preferences.getIntCompat("total_games_genioplus_pro", 0)
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        totalGamesGlobal = preferences.getInt(KEY_TOTAL_GAMES_GLOBAL, 0)
-        correctGamesGlobal = preferences.getInt(KEY_CORRECT_GAMES_GLOBAL, 0)
-        totalGamesGenioPlus = preferencesGenioPlus.getInt(KEY_TOTAL_GAMES_GENIO_PLUS, 0)
+        totalGamesGlobal = preferences.getIntCompat(KEY_TOTAL_GAMES_GLOBAL, 0)
+        correctGamesGlobal = preferences.getIntCompat(KEY_CORRECT_GAMES_GLOBAL, 0)
+        totalGamesGenioPlus = preferencesGenioPlus.getIntCompat(KEY_TOTAL_GAMES_GENIO_PLUS, 0)
         totalTimeGenioPlus = preferencesGenioPlus.getFloat(KEY_TOTAL_TIME_GENIO_PLUS, 0f).toDouble()
-        totalGamesGenioPlusExitos = preferences.getInt(KEY_TOTAL_GAMES_GENIO_PLUS_EXITOS, 0)
+        totalGamesGenioPlusExitos = preferences.getIntCompat(KEY_TOTAL_GAMES_GENIO_PLUS_EXITOS, 0)
         totalTimeGenioPlusExitos = preferences.getFloat(KEY_TOTAL_TIME_GENIO_PLUS_EXITOS, 0f).toDouble()
 
         val storedMap = preferences.getString(KEY_LAST_IQ_COMPONENTS, null)
@@ -1029,8 +1037,8 @@ object ScoreManager {
         init(context)
         ensurePreferencesInitialized(context)
         preferencesGenioPlusPrincipiante = context.getSharedPreferences(PREFS_NAME_GENIO_PLUS_PRINCIPIANTE, Context.MODE_PRIVATE)
-        currentScoreGenioPlusPrincipiante = preferencesGenioPlusPrincipiante.getInt(KEY_CURRENT_SCORE_GENIO_PLUS_PRINCIPIANTE, 0)
-        unlockedLevelsGenioPlusPrincipiante = preferencesGenioPlusPrincipiante.getInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRINCIPIANTE, 2)
+        currentScoreGenioPlusPrincipiante = preferencesGenioPlusPrincipiante.getIntCompat(KEY_CURRENT_SCORE_GENIO_PLUS_PRINCIPIANTE, 0)
+        unlockedLevelsGenioPlusPrincipiante = preferencesGenioPlusPrincipiante.getIntCompat(KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRINCIPIANTE, 2)
         getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRINCIPIANTE).loadConsecutiveFailures()
     }
 
@@ -1038,8 +1046,8 @@ object ScoreManager {
         init(context)
         ensurePreferencesInitialized(context)
         preferencesGenioPlusPro = context.getSharedPreferences(PREFS_NAME_GENIO_PLUS_PRO, Context.MODE_PRIVATE)
-        currentScoreGenioPlusPro = preferencesGenioPlusPro.getInt(KEY_CURRENT_SCORE_GENIO_PLUS_PRO, 0)
-        unlockedLevelsGenioPlusPro = preferencesGenioPlusPro.getInt(KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRO, 2)
+        currentScoreGenioPlusPro = preferencesGenioPlusPro.getIntCompat(KEY_CURRENT_SCORE_GENIO_PLUS_PRO, 0)
+        unlockedLevelsGenioPlusPro = preferencesGenioPlusPro.getIntCompat(KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRO, 2)
         getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRO).loadConsecutiveFailures()
     }
 

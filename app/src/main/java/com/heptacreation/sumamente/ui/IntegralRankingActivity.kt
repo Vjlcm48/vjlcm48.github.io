@@ -326,7 +326,7 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
 
             text = getString(R.string.ranking_progress_indicator, rankingsCount)
             textSize = 18f
-            setTextColor(ContextCompat.getColor(this@IntegralRankingActivity, R.color.blue_primary_darker))
+            setTextColor(ContextCompat.getColor(this@IntegralRankingActivity, R.color.ranking_status_success))
         }
 
         tvMsgIntegralRanking.apply {
@@ -369,12 +369,12 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
                 val statusMsgIndex = Random.nextInt(statusApareceMessages.size)
                 val statusMsg = statusApareceMessages[statusMsgIndex]
                 tvRankingStatus.text = statusMsg
-                tvRankingStatus.setTextColor(ContextCompat.getColor(this, R.color.blue_primary_darker))
+                tvRankingStatus.setTextColor(ContextCompat.getColor(this, R.color.ranking_status_success))
             } else {
                 val statusMsgIndex = Random.nextInt(statusNoApareceMessages.size)
                 val statusMsg = statusNoApareceMessages[statusMsgIndex]
                 tvRankingStatus.text = statusMsg
-                tvRankingStatus.setTextColor(ContextCompat.getColor(this, R.color.red))
+                tvRankingStatus.setTextColor(ContextCompat.getColor(this, R.color.ranking_status_error))
             }
 
             rankingListContainer.addView(itemView)

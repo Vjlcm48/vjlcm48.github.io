@@ -1,8 +1,9 @@
 plugins {
-    id("com.google.gms.google-services")
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("org.jetbrains.kotlin.plugin.compose") version "2.2.10"
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.firebase.crashlytics)
 }
 
 android {
@@ -13,8 +14,8 @@ android {
         applicationId = "com.heptacreation.sumamente"
         minSdk = 24
         targetSdk = 36
-        versionCode = 10
-        versionName = "1.0.9"
+        versionCode = 12
+        versionName = "1.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -102,5 +103,7 @@ dependencies {
     implementation(libs.play.services.auth)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore.ktx)
+
+    implementation(libs.firebase.crashlytics)
 
 }

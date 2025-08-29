@@ -59,8 +59,11 @@ class IQPlusRankingAdapter(
             val usernameView = TextView(context).apply {
                 text = item.username
                 textSize = 16f
-                val textColor = if (item.isCurrentUser) R.color.highlight_user_text else R.attr.colorOnBackground
-                setTextColor(ContextCompat.getColor(context, textColor))
+                if (item.isCurrentUser) {
+                    setTextColor(ContextCompat.getColor(context, R.color.highlight_user_text))
+                } else {
+                    setTextColor(getColorFromAttr(context, R.attr.colorOnBackground))
+                }
                 setTypeface(null, Typeface.BOLD)
             }
             usernameContainer.addView(usernameView)
@@ -80,8 +83,11 @@ class IQPlusRankingAdapter(
         } else {
 
             holder.tvPlayerName.text = item.username
-            val textColor = if (item.isCurrentUser) R.color.highlight_user_text else R.attr.colorOnBackground
-            holder.tvPlayerName.setTextColor(ContextCompat.getColor(context, textColor))
+            if (item.isCurrentUser) {
+                holder.tvPlayerName.setTextColor(ContextCompat.getColor(context, R.color.highlight_user_text))
+            } else {
+                holder.tvPlayerName.setTextColor(getColorFromAttr(context, R.attr.colorOnBackground))
+            }
 
             holder.tvPlayerName.setTypeface(null, if (item.isCurrentUser) Typeface.BOLD else Typeface.NORMAL)
         }

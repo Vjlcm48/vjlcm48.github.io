@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="?android:attr/colorBackground">
 
+
     <ImageView
         android:id="@+id/btn_back"
         android:layout_width="48dp"
@@ -20,6 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/tv_integral_ranking_title"
         android:layout_width="0dp"
@@ -31,12 +33,11 @@
         android:text="@string/ranking_integral_s"
         android:textAlignment="center"
         android:textColor="?attr/colorOnBackground"
-
-
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_back" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
     <LinearLayout
         android:id="@+id/header_layout"
@@ -48,9 +49,9 @@
         android:background="@drawable/ranking_header_background"
         android:orientation="horizontal"
         android:padding="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_integral_ranking_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_integral_ranking_title">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
             android:layout_width="0dp"
@@ -59,7 +60,6 @@
             android:gravity="center"
             android:text="@string/ranking_position_header"
             android:textColor="?attr/colorOnPrimary"
-
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -70,7 +70,6 @@
             android:gravity="center"
             android:text="@string/ranking_player_header"
             android:textColor="?attr/colorOnPrimary"
-
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -81,7 +80,6 @@
             android:gravity="center"
             android:text="@string/pais"
             android:textColor="?attr/colorOnPrimary"
-
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -92,79 +90,72 @@
             android:gravity="center"
             android:text="@string/puntaje"
             android:textColor="?attr/colorOnPrimary"
-
             android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>
 
 
-    <ScrollView
-        android:id="@+id/content_container"
+    <TextView
+        android:id="@+id/tvProgressIndicator"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/header_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tvMsgIntegralRanking"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/tvProgressIndicator"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/rankingListContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="12dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/tvMsgIntegralRanking"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/integral_ranking_recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="50dp"
-        android:fillViewport="true"
-        android:contentDescription="@string/integral_ranking_scroll_description"
-        app:layout_constraintBottom_toTopOf="@id/floating_link_button"
-        app:layout_constraintEnd_toEndOf="@id/header_layout"
-        app:layout_constraintStart_toStartOf="@id/header_layout"
-        app:layout_constraintTop_toBottomOf="@id/header_layout">
+        android:clipToPadding="false"
+        android:paddingBottom="80dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/rankingListContainer"
+        app:layout_constraintBottom_toTopOf="@id/btnShareIntegralRanking"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tvProgressIndicator"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                android:visibility="gone" />
-
-            <ProgressBar
-                android:id="@+id/loading_indicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:visibility="visible" />
-
-            <TextView
-                android:id="@+id/tvMsgIntegralRanking"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="24dp"
-                android:gravity="center"
-                android:visibility="gone" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:id="@+id/rankingListContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/integral_ranking_recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
-
-            </LinearLayout>
-
-        </FrameLayout>
-    </ScrollView>
+    <ProgressBar
+        android:id="@+id/loading_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <include
         android:id="@+id/floating_link_button"
@@ -173,8 +164,8 @@
         android:layout_height="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginBottom="80dp" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnShareIntegralRanking"
@@ -183,10 +174,10 @@
         android:src="@drawable/ic_share"
         android:contentDescription="@string/share"
         app:backgroundTint="@color/blue_primary"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="120dp"
-        android:visibility="gone" />
+        android:layout_marginBottom="120dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

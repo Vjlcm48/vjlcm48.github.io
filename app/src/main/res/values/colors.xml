@@ -96,6 +96,9 @@
     <color name="game_name_romas_color">@color/green_medium</color>
     <color name="game_name_genio_color">@color/blue_primary_darker</color>
 
+    <color name="ranking_status_success">@color/blue_primary_darker</color>
+    <color name="ranking_status_error">@color/red</color>
+
 
 
 </resources>

@@ -52,19 +52,19 @@ object DataSyncManager {
         val userName = prefs.getString("savedUserName", "") ?: ""
         val countryCode = prefs.getString("savedCountryCode", "sumamente") ?: "sumamente"
 
-
         val data = hashMapOf(
             "username" to userName,
             "countryCode" to countryCode,
             "lastUpdate" to FieldValue.serverTimestamp(),
-            "iqPlus" to (ScoreManager.lastIqComponentByGame["IQ_PLUS_OVERALL"] ?: 0.0),
+
+            "iqPlus" to ScoreManager.lastIqComponentByGame.values.sum(),
+
             "global_ranking_points" to ScoreManager.getTotalUniqueLevelsCompletedAllGames().toLong(),
             "private" to privateData,
             "score_schema_version" to SCHEMA_VERSION_SCORE,
             "condecoracion_schema_version" to SCHEMA_VERSION_CONDECO,
             "hasInsigniaRIPlus" to (CondecoracionTracker.getInsigniaRIPlus() != null)
         )
-
 
         firestore.collection("usuarios")
             .document(user.uid)
@@ -199,13 +199,24 @@ object DataSyncManager {
             putBoolean(SettingsActivity.ACCOUNT_LINKED, linked)
         }
 
+        fun shouldBeIntKey(key: String): Boolean =
+            key.startsWith("current_score") ||
+                    key.contains("unlocked_levels") ||
+                    key.startsWith("total_games") ||
+                    key.startsWith("consecutive_failures") ||
+                    key.contains("consecutive_failures:")
+
+        fun shouldBeFloatKey(key: String): Boolean =
+            key.startsWith("total_time")
+
+        fun shouldBeStringSetKey(key: String): Boolean =
+            key.contains("completed_levels")
 
         val allGamePrefs = raw["game_preferences"] as? Map<*, *>
         allGamePrefs?.forEach { (prefsName, prefsData) ->
             val gamePrefs = context.getSharedPreferences(prefsName as String, Context.MODE_PRIVATE)
 
             gamePrefs.edit {
-
                 clear()
 
                 (prefsData as? Map<*, *>)?.forEach { (key, value) ->
@@ -214,22 +225,31 @@ object DataSyncManager {
                     when (value) {
                         is Boolean -> putBoolean(keyStr, value)
                         is Float -> putFloat(keyStr, value)
-                        is Double -> putFloat(keyStr, value.toFloat())
+                        is Double -> {
+                            if (shouldBeFloatKey(keyStr)) {
+                                putFloat(keyStr, value.toFloat())
+                            } else {
+                                putString(keyStr, value.toString())
+                            }
+                        }
+                        is Long -> {
+                            if (shouldBeIntKey(keyStr)) {
+                                putInt(keyStr, value.toInt())
+                            } else {
+                                putLong(keyStr, value)
+                            }
+                        }
                         is Int -> putInt(keyStr, value)
-                        is Long -> putLong(keyStr, value)
                         is String -> putString(keyStr, value)
                         is List<*> -> {
-
-                            if (keyStr.contains("completed_levels") || keyStr.contains("unlocked_levels")) {
+                            if (shouldBeStringSetKey(keyStr)) {
                                 val stringSet = value.filterIsInstance<String>().toSet()
                                 putStringSet(keyStr, stringSet)
                             } else {
-
                                 putString(keyStr, value.toString())
                             }
                         }
                         else -> {
-
                             putString(keyStr, value?.toString() ?: "")
                         }
                     }
@@ -368,7 +388,9 @@ object DataSyncManager {
 
         val data = hashMapOf(
             "iqPlus" to iqPlus,
-            "hasInsigniaRIPlus" to (CondecoracionTracker.getInsigniaRIPlus() != null)
+            "hasInsigniaRIPlus" to (CondecoracionTracker.getInsigniaRIPlus() != null),
+            "username" to userName,
+            "countryCode" to country
         )
         userDoc.set(data, SetOptions.merge())
     }
@@ -493,7 +515,6 @@ object DataSyncManager {
         userDoc.set(data, SetOptions.merge())
     }
 
-
     fun getTopSpeedRanking(
         userId: String,
         userName: String,
@@ -503,9 +524,11 @@ object DataSyncManager {
         callback: (List<SpeedRankingItem>, Int, SpeedRankingItem?) -> Unit
     ) {
         val db = FirebaseFirestore.getInstance()
+        val fieldBase = "speed_ranking_$gameType"
+        val fieldAvg = "$fieldBase.averageTime"
+
         db.collection("usuarios")
-            .whereNotEqualTo("speed_ranking_$gameType", null)
-            .orderBy("speed_ranking_$gameType.averageTime")
+            .orderBy(fieldAvg)
             .limit(200)
             .get()
             .addOnSuccessListener { result ->
@@ -516,10 +539,13 @@ object DataSyncManager {
                 var previousTime: Double? = null
 
                 for (doc in result) {
+                    val timeData = doc.get(fieldBase) as? Map<*, *>
+                    val value = (timeData?.get("averageTime") as? Number)?.toDouble() ?: Double.POSITIVE_INFINITY
+
+                    if (!value.isFinite() || value <= 0.0) continue
+
                     val name = doc.getString("username") ?: ""
                     val code = doc.getString("countryCode") ?: "us"
-                    val timeData = doc.get("speed_ranking_$gameType") as? Map<*, *>
-                    val value = (timeData?.get("averageTime") ?: 0.0) as Double
                     val thisUserId = doc.id
                     val isCurrent = thisUserId == userId
                     val hasInsignia = doc.getBoolean("hasInsigniaRIPlus") ?: false
@@ -537,17 +563,19 @@ object DataSyncManager {
                         hasInsigniaRIPlus = hasInsignia
                     )
                     rankingList.add(item)
+
                     if (isCurrent) {
                         userPosition = currentPosition
                         userItem = item
                     }
+
                     previousTime = value
                 }
 
                 if (userPosition == -1) {
+
                     db.collection("usuarios")
-                        .whereNotEqualTo("speed_ranking_$gameType", null)
-                        .whereLessThan("speed_ranking_$gameType.averageTime", averageTime)
+                        .whereLessThan(fieldAvg, averageTime)
                         .get()
                         .addOnSuccessListener { betterUsers ->
                             userPosition = betterUsers.size() + 1
@@ -561,12 +589,16 @@ object DataSyncManager {
                             )
                             callback(rankingList, userPosition, userItem)
                         }
-                        .addOnFailureListener { callback(rankingList, -1, null) }
+                        .addOnFailureListener {
+                            callback(rankingList, -1, null)
+                        }
                 } else {
                     callback(rankingList, userPosition, userItem)
                 }
             }
-            .addOnFailureListener { callback(emptyList(), -1, null) }
+            .addOnFailureListener {
+                callback(emptyList(), -1, null)
+            }
     }
 
     fun uploadGlobalRankingToFirebase(
@@ -603,7 +635,6 @@ object DataSyncManager {
         userDoc.set(data, SetOptions.merge())
     }
 
-
     fun getTopGlobalRanking(
         userId: String,
         userName: String,
@@ -612,8 +643,8 @@ object DataSyncManager {
         callback: (List<GlobalRankingItem>, Int, GlobalRankingItem?) -> Unit
     ) {
         val db = FirebaseFirestore.getInstance()
+
         db.collection("usuarios")
-            .whereNotEqualTo("global_ranking", null)
             .orderBy("global_ranking.totalPoints", com.google.firebase.firestore.Query.Direction.DESCENDING)
             .limit(200)
             .get()
@@ -625,10 +656,13 @@ object DataSyncManager {
                 var previousPoints: Long? = null
 
                 for (doc in result) {
-                    val name = doc.getString("username") ?: ""
-                    val code = doc.getString("countryCode") ?: "us"
                     val pointsData = doc.get("global_ranking") as? Map<*, *>
                     val value = ((pointsData?.get("totalPoints") ?: 0L) as Number).toLong()
+
+                    if (value <= 0L) continue
+
+                    val name = doc.getString("username") ?: ""
+                    val code = doc.getString("countryCode") ?: "us"
                     val thisUserId = doc.id
                     val isCurrent = thisUserId == userId
                     val hasInsignia = doc.getBoolean("hasInsigniaRIPlus") ?: false
@@ -646,16 +680,18 @@ object DataSyncManager {
                         hasInsigniaRIPlus = hasInsignia
                     )
                     rankingList.add(item)
+
                     if (isCurrent) {
                         userPosition = currentPosition
                         userItem = item
                     }
+
                     previousPoints = value
                 }
 
                 if (userPosition == -1) {
+
                     db.collection("usuarios")
-                        .whereNotEqualTo("global_ranking", null)
                         .whereGreaterThan("global_ranking.totalPoints", totalPoints)
                         .get()
                         .addOnSuccessListener { betterUsers ->
@@ -670,12 +706,16 @@ object DataSyncManager {
                             )
                             callback(rankingList, userPosition, userItem)
                         }
-                        .addOnFailureListener { callback(rankingList, -1, null) }
+                        .addOnFailureListener {
+                            callback(rankingList, -1, null)
+                        }
                 } else {
                     callback(rankingList, userPosition, userItem)
                 }
             }
-            .addOnFailureListener { callback(emptyList(), -1, null) }
+            .addOnFailureListener {
+                callback(emptyList(), -1, null)
+            }
     }
 
     fun uploadIntegralRankingToFirebase(
@@ -703,14 +743,19 @@ object DataSyncManager {
         )
         val eligible = required.all { tag -> ScoreManager.isUserInRanking(tag) }
 
-        if (!eligible || !averagePosition.isFinite()) {
+        val validAvg = averagePosition.isFinite() && averagePosition >= 1.0 && averagePosition <= 1_000_000.0
+
+        if (!eligible || !validAvg) {
+
             userDoc.update(mapOf("integral_ranking" to FieldValue.delete()))
             return
         }
 
+        val rounded = kotlin.math.round(averagePosition * 1000.0) / 1000.0
+
         val data = hashMapOf(
             "integral_ranking" to hashMapOf(
-                "averagePosition" to averagePosition,
+                "averagePosition" to rounded,
                 "updated_at" to FieldValue.serverTimestamp()
             ),
             "hasInsigniaRIPlus" to (CondecoracionTracker.getInsigniaRIPlus() != null)
@@ -726,9 +771,11 @@ object DataSyncManager {
         callback: (List<IntegralRankingItem>, Int, IntegralRankingItem?) -> Unit
     ) {
         val db = FirebaseFirestore.getInstance()
+        val fieldBase = "integral_ranking"
+        val fieldAvg = "$fieldBase.averagePosition"
+
         db.collection("usuarios")
-            .whereNotEqualTo("integral_ranking", null)
-            .orderBy("integral_ranking.averagePosition")
+            .orderBy(fieldAvg)
             .limit(200)
             .get()
             .addOnSuccessListener { result ->
@@ -739,13 +786,18 @@ object DataSyncManager {
                 var previousAverage: Double? = null
 
                 for (doc in result) {
+                    val integralData = doc.get(fieldBase) as? Map<*, *>
+                    val value = (integralData?.get("averagePosition") as? Number)?.toDouble() ?: Double.POSITIVE_INFINITY
+
+
+                    if (!value.isFinite() || value <= 0.0) continue
+
                     val name = doc.getString("username") ?: ""
                     val code = doc.getString("countryCode") ?: "us"
-                    val integralData = doc.get("integral_ranking") as? Map<*, *>
-                    val value = ((integralData?.get("averagePosition") ?: 0.0) as Number).toDouble()
                     val thisUserId = doc.id
                     val isCurrent = thisUserId == userId
                     val hasInsignia = doc.getBoolean("hasInsigniaRIPlus") ?: false
+
 
                     if (previousAverage != null && value > previousAverage) {
                         currentPosition++
@@ -760,17 +812,19 @@ object DataSyncManager {
                         hasInsigniaRIPlus = hasInsignia
                     )
                     rankingList.add(item)
+
                     if (isCurrent) {
                         userPosition = currentPosition
                         userItem = item
                     }
+
                     previousAverage = value
                 }
 
                 if (userPosition == -1) {
+
                     db.collection("usuarios")
-                        .whereNotEqualTo("integral_ranking", null)
-                        .whereLessThan("integral_ranking.averagePosition", averagePosition)
+                        .whereLessThan(fieldAvg, averagePosition)
                         .get()
                         .addOnSuccessListener { betterUsers ->
                             userPosition = betterUsers.size() + 1
@@ -791,6 +845,7 @@ object DataSyncManager {
             }
             .addOnFailureListener { callback(emptyList(), -1, null) }
     }
+
 
 
 }

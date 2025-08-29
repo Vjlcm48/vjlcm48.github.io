@@ -27,6 +27,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.enableEdgeToEdge
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.heptacreation.sumamente.R
@@ -75,6 +76,7 @@ class GameActivityPro : BaseActivity()  {
     private var inputBlocked = false // Cambio #1 bloqueo de mas de 2 intentos //
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_game)
@@ -146,7 +148,6 @@ class GameActivityPro : BaseActivity()  {
             }
         }.start()
     }
-
 
     override fun onDestroy() {
         super.onDestroy()
