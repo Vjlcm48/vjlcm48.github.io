@@ -17,6 +17,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
+import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
@@ -45,6 +46,8 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
     private lateinit var btnShareIntegralRanking: FloatingActionButton
 
     private lateinit var sharedPreferences: android.content.SharedPreferences
+    private lateinit var scrollViewContainer: ScrollView
+    private lateinit var progressContainer: LinearLayout
     private var isFinishingByBack = false
     private lateinit var floatingLinkButton: View
     private var isDialogFromFloatingButton = false
@@ -107,6 +110,9 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
         tvProgressIndicator = findViewById(R.id.tvProgressIndicator)
         btnBack = findViewById(R.id.btn_back)
         rankingListContainer = findViewById(R.id.rankingListContainer)
+
+        scrollViewContainer = findViewById(R.id.scroll_view_container)
+        progressContainer = findViewById(R.id.progress_container)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         rankingItems = mutableListOf()
@@ -230,12 +236,9 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
     private fun loadIntegralRankingData() {
 
         loadingIndicator.visibility = View.VISIBLE
-        recyclerView.visibility = View.GONE
-        tvMsgIntegralRanking.visibility = View.GONE
-        tvProgressIndicator.visibility = View.GONE
-        rankingListContainer.visibility = View.GONE
-        floatingLinkButton.visibility = View.GONE
+        scrollViewContainer.visibility = View.GONE
         btnShareIntegralRanking.visibility = View.GONE
+        floatingLinkButton.visibility = View.GONE
 
         Handler(Looper.getMainLooper()).postDelayed({
             val rankingsStatus = checkUserRankingsStatus()
@@ -245,14 +248,16 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
             handleLinkAccountInvitation()
 
             when (rankingsCount) {
-                0      -> showNoRankingsMessage()
+                0       -> showNoRankingsMessage()
                 in 1..8 -> showProgressMessage(rankingsCount, rankingsStatus)
-                9      -> {
-
+                9       -> {
                     calculateAveragePosition()
                     showIntegralRanking()
                 }
             }
+
+            scrollViewContainer.visibility = View.VISIBLE
+
         }, 800)
     }
 
@@ -288,6 +293,9 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
 
         val combinedMsg = getString(R.string.ranking_integral_combined_message, infoMsg, motivMsg)
 
+        recyclerView.visibility = View.GONE
+        progressContainer.visibility = View.VISIBLE
+
         tvMsgIntegralRanking.apply {
             visibility = View.VISIBLE
             text = combinedMsg
@@ -320,6 +328,9 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
         val idDePluralAleatorio = mensajesDeProgreso.random()
 
         val progressMsg = resources.getQuantityString(idDePluralAleatorio, rankingsCount, username, rankingsCount, remaining)
+
+        recyclerView.visibility = View.GONE
+        progressContainer.visibility = View.VISIBLE
 
         tvProgressIndicator.apply {
             visibility = View.VISIBLE
@@ -382,22 +393,24 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
     }
 
     private fun showIntegralRanking() {
+
+        progressContainer.visibility = View.GONE
+        recyclerView.visibility = View.VISIBLE
+
         tvProgressIndicator.visibility = View.GONE
         tvMsgIntegralRanking.visibility = View.GONE
         rankingListContainer.visibility = View.GONE
 
-        val username    = sharedPreferences.getString("savedUserName", getString(R.string.default_username))
+        val username = sharedPreferences.getString("savedUserName", getString(R.string.default_username))
             ?: getString(R.string.default_username)
         val countryCode = sharedPreferences.getString("savedCountryCode", "us") ?: "us"
 
         if (!isUserEligibleForIntegralRanking()) {
-
             return
         }
 
         val averagePosition = calculateAveragePosition()
 
-        // Subir datos a Firebase y obtener ranking real
         DataSyncManager.uploadIntegralRankingToFirebase(
             userId = getUserId(),
             userName = username,
@@ -414,18 +427,13 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
             rankingItems.clear()
             rankingItems.addAll(rankingList)
 
-
             if (userItem != null && userPosition > 200) {
                 rankingItems.add(userItem.copy(position = userPosition))
             }
             @Suppress("NotifyDataSetChanged")
             adapter.notifyDataSetChanged()
-            recyclerView.visibility = View.VISIBLE
             btnShareIntegralRanking.visibility = View.VISIBLE
         }
-
-
-
         btnShareIntegralRanking.visibility = View.VISIBLE
     }
 
