@@ -547,7 +547,7 @@
     <string name="review_exercise">আমার উত্তর পর্যালোচনা করুন</string>
     <string name="exercise_title">অনুশীলনটি ছিল:</string>
     <string name="correct_answer_format">সঠিক উত্তর হল: %d</string>
-    <string name="user_responses_format">আপনার উত্তরগুলি ছিল: %d %d</string>
+    <string name="user_responses_format">আপনার উত্তরগুলি ছিল: %1$d %2$d</string>
     <string name="level_locked_by_failures">এই লেভেলটি আবার আনলক করতে আপনাকে পূর্ববর্তী লেভেলটি সম্পন্ন করতে হবে</string>
     <string name="desafios_mensaje">SumaMente চ্যালেঞ্জ! সারা বিশ্বের খেলোয়াড়দের সাথে প্রতিযোগিতা করুন এবং পুরস্কার জিতুন। পরবর্তী ইভেন্ট কখন হবে তা আমরা আপনাকে জানাব। উজ্জ্বল হওয়ার জন্য প্রস্তুত হন!</string>
     <string name="monday_short">সোম</string>
@@ -1288,6 +1288,12 @@
     <string name="theme_light_desc">হালকা থিম নির্বাচন করুন</string>
     <string name="theme_dark_desc">গাঢ় থিম নির্বাচন করুন</string>
     <string name="theme_device_desc">ডিভাইস থিম নির্বাচন করুন</string>
+
+    <string name="welcome_message">SumaMente-এ স্বাগতম! 👋\nএখানে গণিত খেলা হয়ে যায়, আর আপনার মন আরও তীক্ষ্ণ।\nশুরু করার জন্য প্রস্তুত? 🎉</string>
+    <string name="ambassador_invite_message">আপনি দারুণ করছেন! 🚀\nকোনো খরচ ছাড়াই বিজ্ঞাপন বাদ দিন: SumaMente অ্যাম্বাসেডর হোন।\nবন্ধু এবং পরিবারকে আমন্ত্রণ জানান এবং বিনামূল্যে প্রিমিয়াম পান। 🙌</string>
+    <string name="rate_app_message">১২টি লেভেল পার করেছেন! 👏\nআপনার মতামত আমাদের কাছে গুরুত্বপূর্ণ। Google Play-তে SumaMente রেট করুন এবং আমাদের বেড়ে উঠতে সাহায্য করুন। 🌟</string>
+    <string name="error_authentication_failed">সংযোগ ত্রুটি। অনুগ্রহ করে আবার চেষ্টা করুন।</string>
+    <string name="error_save_username_failed">নাম সংরক্ষণ করা যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন।</string>
 
 
 

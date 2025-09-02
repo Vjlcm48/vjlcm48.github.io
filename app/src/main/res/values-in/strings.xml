@@ -589,7 +589,7 @@
     <string name="review_exercise">Tinjau jawaban saya</string>
     <string name="exercise_title">Latihannya adalah:</string>
     <string name="correct_answer_format">Jawaban yang benar adalah: %d</string>
-    <string name="user_responses_format">Jawaban Anda adalah: %d %d</string>
+    <string name="user_responses_format">Jawaban Anda adalah: %1$d %2$d</string>
     <string name="level_locked_by_failures">Anda harus menyelesaikan level sebelumnya untuk membuka level ini lagi</string>
 
     <string name="desafios_mensaje">Tantangan SumaMente! Bersaing dan menangkan hadiah dengan pemain dari seluruh dunia. Kami akan memberi tahu Anda kapan acara berikutnya. Bersiaplah untuk bersinar!</string>
@@ -1478,6 +1478,12 @@ Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di 
     <string name="theme_light_desc">Pilih tema terang</string>
     <string name="theme_dark_desc">Pilih tema gelap</string>
     <string name="theme_device_desc">Pilih tema perangkat</string>
+
+    <string name="welcome_message">Selamat datang di SumaMente! 👋\nDi sini, matematika menjadi permainan dan pikiranmu jadi lebih tajam.\nSiap untuk memulai? 🎉</string>
+    <string name="ambassador_invite_message">Kamu hebat! 🚀\nHilangkan iklan tanpa bayar: jadilah Duta SumaMente.\nUndang teman dan keluarga dan dapatkan Premium gratis. 🙌</string>
+    <string name="rate_app_message">12 level terlampaui! 👏\nKami ingin mendengar pendapatmu. Beri rating SumaMente di Google Play dan bantu kami berkembang. 🌟</string>
+    <string name="error_authentication_failed">Kesalahan koneksi. Silakan coba lagi.</string>
+    <string name="error_save_username_failed">Gagal menyimpan nama. Silakan coba lagi.</string>
 
 
 

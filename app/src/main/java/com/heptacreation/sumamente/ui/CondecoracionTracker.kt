@@ -9,6 +9,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.util.Calendar
 import java.util.TimeZone
+import com.google.firebase.auth.FirebaseAuth
 
 object CondecoracionTracker {
 
@@ -1478,21 +1479,42 @@ object CondecoracionTracker {
     }
 
     private fun getUserId(context: Context): String {
-        val user = try {
-            com.google.firebase.auth.FirebaseAuth.getInstance().currentUser
-        } catch (_: Exception) {
-            null
+        val auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
+
+        return if (user != null) {
+
+            user.uid
+        } else {
+
+            val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+            sharedPreferences.getString("anonymous_user_id", null)
+                ?: generateAnonymousUserId(context)
         }
-        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        return user?.uid
-            ?: sharedPreferences.getString("anonymous_user_id", null)
-            ?: generateAnonymousUserId(context)
     }
 
     private fun generateAnonymousUserId(context: Context): String {
+        val auth = FirebaseAuth.getInstance()
+
+        auth.currentUser?.let { user ->
+            val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+            sharedPreferences.edit { putString("anonymous_user_id", user.uid) }
+            return user.uid
+        }
+
         val id = java.util.UUID.randomUUID().toString()
-        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        sharedPreferences.edit { putString("anonymous_user_id", id) }
+        auth.signInAnonymously()
+            .addOnSuccessListener { result ->
+                val firebaseUid = result.user?.uid ?: id
+                val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                sharedPreferences.edit { putString("anonymous_user_id", firebaseUid) }
+            }
+            .addOnFailureListener {
+
+                val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                sharedPreferences.edit { putString("anonymous_user_id", id) }
+            }
+
         return id
     }
 

@@ -547,7 +547,7 @@
     <string name="review_exercise">내 답변 검토하기</string>
     <string name="exercise_title">연습 문제는 다음과 같았습니다:</string>
     <string name="correct_answer_format">정답은 %d입니다</string>
-    <string name="user_responses_format">당신의 답변은 %d %d였습니다</string>
+    <string name="user_responses_format">당신의 답변은 %1$d %2$d였습니다</string>
     <string name="level_locked_by_failures">이 레벨을 다시 잠금 해제하려면 이전 레벨을 완료해야 합니다</string>
     <string name="desafios_mensaje">SumaMente 도전! 전 세계 플레이어들과 경쟁하고 상품을 받으세요. 다음 이벤트가 언제인지 알려드리겠습니다. 빛날 준비를 하세요!</string>
     <string name="monday_short">월</string>
@@ -1250,6 +1250,12 @@
     <string name="theme_light_desc">라이트 테마 선택</string>
     <string name="theme_dark_desc">다크 테마 선택</string>
     <string name="theme_device_desc">기기 테마 선택</string>
+
+    <string name="welcome_message">SumaMente에 오신 것을 환영합니다! 👋\n여기서는 수학이 게임이 되고 당신의 두뇌는 더 날카로워집니다.\n시작할 준비가 되셨나요? 🎉</string>
+    <string name="ambassador_invite_message">정말 잘하고 있어요! 🚀\n돈을 내지 않고 광고를 제거하세요: SumaMente 앰배서더가 되세요.\n친구와 가족을 초대하고 무료로 프리미엄을 받으세요. 🙌</string>
+    <string name="rate_app_message">12개 레벨 돌파! 👏\n여러분의 의견을 듣고 싶어요. Google Play에 SumaMente를 평가하여 저희가 성장하도록 도와주세요. 🌟</string>
+    <string name="error_authentication_failed">연결 오류. 다시 시도해 주세요.</string>
+    <string name="error_save_username_failed">이름을 저장할 수 없습니다. 다시 시도해 주세요.</string>
 
 
 

@@ -591,7 +591,7 @@
     <string name="review_exercise">Review my answer</string>
     <string name="exercise_title">The exercise was:</string>
     <string name="correct_answer_format">The correct answer is: %d</string>
-    <string name="user_responses_format">Your answers were: %d %d</string>
+    <string name="user_responses_format">Your answers were: %1$d %2$d</string>
     <string name="level_locked_by_failures">You must complete the previous level to unlock this level again</string>
 
     <string name="desafios_mensaje">SumaMente CHALLENGES! Compete and win prizes with players from around the world. We will notify you when the next event takes place. Get ready to shine!</string>
@@ -1556,6 +1556,11 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
     <string name="theme_dark_desc">Select dark theme</string>
     <string name="theme_device_desc">Select device theme</string>
 
+    <string name="welcome_message">Welcome to SumaMente! 👋\nHere, math becomes a game and your mind gets sharper.\nReady to begin? 🎉</string>
+    <string name="ambassador_invite_message">You\'re on a roll! 🚀\nEliminate ads for free: become a SumaMente Ambassador.\nInvite friends and family and get free Premium. 🙌</string>
+    <string name="rate_app_message">12 levels conquered! 👏\nWe\'d love to hear from you. Rate SumaMente on Google Play and help us grow. 🌟</string>
+    <string name="error_authentication_failed">Connection error. Please try again.</string>
+    <string name="error_save_username_failed">Could not save username. Please try again.</string>
 
 
 </resources>

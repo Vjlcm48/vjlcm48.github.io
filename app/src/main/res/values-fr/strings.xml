@@ -582,7 +582,7 @@ et de t’amuser. 🚀
     <string name="review_exercise">Vérifier ma réponse</string>
     <string name="exercise_title">L’exercice était :</string>
     <string name="correct_answer_format">La bonne réponse est : %d</string>
-    <string name="user_responses_format">Tes réponses étaient : %d %d</string>
+    <string name="user_responses_format">Tes réponses étaient : %1$d %2$d</string>
     <string name="level_locked_by_failures">Tu dois terminer le niveau précédent pour débloquer ce niveau à nouveau</string>
 
     <string name="desafios_mensaje">Défis SumaMente ! Affronte des joueurs du monde entier et gagne des prix. Nous t’avertirons du prochain événement. Prépare-toi à briller !</string>
@@ -1560,6 +1560,11 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
     <string name="theme_dark_desc">Sélectionner le thème sombre</string>
     <string name="theme_device_desc">Sélectionner le thème de l’appareil</string>
 
+    <string name="welcome_message">Bienvenue sur SumaMente! 👋\nIci, les maths deviennent un jeu et votre esprit s\'aiguise.\nPrêt à commencer? 🎉</string>
+    <string name="ambassador_invite_message">Vous êtes lancé! 🚀\nÉliminez la publicité sans payer: devenez un Ambassadeur SumaMente.\nInvitez vos amis et votre famille et obtenez l\'accès Premium gratuit. 🙌</string>
+    <string name="rate_app_message">12 niveaux réussis! 👏\nNous aimerions avoir votre avis. Évaluez SumaMente sur Google Play et aidez-nous à grandir. 🌟</string>
+    <string name="error_authentication_failed">Erreur de connexion. Veuillez réessayer.</string>
+    <string name="error_save_username_failed">Impossible d\'enregistrer le nom. Veuillez réessayer.</string>
 
 
 </resources>

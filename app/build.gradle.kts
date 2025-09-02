@@ -104,6 +104,8 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore.ktx)
 
+    implementation(libs.androidx.credentials)
+
     implementation(libs.firebase.crashlytics)
 
 }

@@ -587,7 +587,7 @@
     <string name="review_exercise">मेरे उत्तर की समीक्षा करें</string>
     <string name="exercise_title">अभ्यास था:</string>
     <string name="correct_answer_format">सही उत्तर है: %d</string>
-    <string name="user_responses_format">आपके उत्तर थे: %d %d</string>
+    <string name="user_responses_format">आपके उत्तर थे: %1$d %2$d</string>
     <string name="level_locked_by_failures">इस स्तर को फिर से अनलॉक करने के लिए आपको पिछला स्तर पूरा करना होगा</string>
 
     <string name="desafios_mensaje">SumaMente चुनौतियां! दुनिया भर के खिलाड़ियों के साथ प्रतिस्पर्धा करें और पुरस्कार जीतें। अगला कार्यक्रम कब होगा, हम आपको सूचित करेंगे। चमकने के लिए तैयार हो जाइए!</string>
@@ -1497,6 +1497,14 @@
     <string name="theme_light_desc">हल्का थीम चुनें</string>
     <string name="theme_dark_desc">गहरा थीम चुनें</string>
     <string name="theme_device_desc">डिवाइस थीम चुनें</string>
+
+    <string name="welcome_message">SumaMente में आपका स्वागत है! 👋\nयहाँ गणित एक खेल बन जाता है और आपका दिमाग तेज़ होता है।\nशुरू करने के लिए तैयार हैं? 🎉</string>
+    <string name="ambassador_invite_message">आप कमाल कर रहे हैं! 🚀\nबिना भुगतान के विज्ञापन हटाएँ: SumaMente एंबेसडर बनें।\nदोस्तों और परिवार को आमंत्रित करें और मुफ्त में प्रीमियम पाएं। 🙌</string>
+    <string name="rate_app_message">12 स्तर पार! 👏\nहम आपकी राय जानना चाहते हैं। Google Play पर SumaMente को रेट करें और हमें आगे बढ़ने में मदद करें। 🌟</string>
+    <string name="error_authentication_failed">कनेक्शन त्रुटि। कृपया पुनः प्रयास करें।</string>
+    <string name="error_save_username_failed">नाम सहेजा नहीं जा सका। कृपया पुनः प्रयास करें।</string>
+
+
 
 
 </resources>

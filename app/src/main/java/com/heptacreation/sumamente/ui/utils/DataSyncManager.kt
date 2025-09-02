@@ -56,9 +56,7 @@ object DataSyncManager {
             "username" to userName,
             "countryCode" to countryCode,
             "lastUpdate" to FieldValue.serverTimestamp(),
-
             "iqPlus" to ScoreManager.lastIqComponentByGame.values.sum(),
-
             "global_ranking_points" to ScoreManager.getTotalUniqueLevelsCompletedAllGames().toLong(),
             "private" to privateData,
             "score_schema_version" to SCHEMA_VERSION_SCORE,
@@ -285,34 +283,39 @@ object DataSyncManager {
     }
 
     fun deleteAccountData(context: Context, onResult: (success: Boolean, error: String?) -> Unit) {
-
         val user = auth.currentUser
-        val isLinked = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-            .getBoolean(SettingsActivity.ACCOUNT_LINKED, false)
 
-        Log.d("DataSync", "deleteAccountData - isLinked: $isLinked, user: ${user?.email}")
-
-
-        if (user == null || !isLinked) {
+        if (user == null) {
             clearAllLocalData(context)
             onResult(true, null)
             return
         }
 
-
         val firestore = FirebaseFirestore.getInstance()
+        val sharedPrefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val username = sharedPrefs.getString("savedUserName", null)
+        val batch = firestore.batch()
 
-        firestore.collection("usuarios").document(user.uid).delete()
+        if (username != null) {
+            batch.delete(firestore.collection("usernames").document(username))
+        }
+
+        batch.delete(firestore.collection("usuarios").document(user.uid))
+
+        batch.commit()
             .addOnSuccessListener {
 
                 user.delete()
                     .addOnSuccessListener {
-
                         clearAllLocalData(context)
-                        signOutFromGoogle(context)
+
+                        if (!user.isAnonymous) {
+                            signOutFromGoogle(context)
+                        }
                         onResult(true, null)
                     }
                     .addOnFailureListener { authException ->
+
                         val errorMessage = if (authException is com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException) {
                             context.getString(R.string.account_delete_error_auth_recent)
                         } else {
@@ -322,6 +325,7 @@ object DataSyncManager {
                     }
             }
             .addOnFailureListener { firestoreException ->
+
                 onResult(false, context.getString(R.string.account_deleted_error_firestore))
             }
     }

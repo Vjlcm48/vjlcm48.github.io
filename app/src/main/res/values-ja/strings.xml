@@ -548,7 +548,7 @@
     <string name="review_exercise">答えを確認する</string>
     <string name="exercise_title">問題は：</string>
     <string name="correct_answer_format">正解は：%d</string>
-    <string name="user_responses_format">あなたの答え：%d %d</string>
+    <string name="user_responses_format">あなたの答え：%1$d %2$d</string>
     <string name="level_locked_by_failures">このレベルを再度アンロックするには、前のレベルをクリアする必要があります</string>
     <string name="desafios_mensaje">SumaMenteチャレンジ！世界中のプレイヤーと競い、賞品を獲得しましょう。次回のイベントは通知します。輝く準備をしてください！</string>
     <string name="monday_short">月</string>
@@ -1253,6 +1253,12 @@
     <string name="theme_light_desc">ライトテーマを選択</string>
     <string name="theme_dark_desc">ダークテーマを選択</string>
     <string name="theme_device_desc">デバイステーマを選択</string>
+
+    <string name="welcome_message">SumaMenteへようこそ！ 👋\nここでは、算数がゲームになり、あなたの頭脳がより鋭くなります。\n始める準備はできましたか？🎉</string>
+    <string name="ambassador_invite_message">いい調子ですね！ 🚀\n無料で広告をなくそう：SumaMenteアンバサダーになりませんか？\n友達や家族を招待して、無料でプレミアムを手に入れよう。 🙌</string>
+    <string name="rate_app_message">12レベルをクリアしました！ 👏\nあなたの声を聞かせてください。Google PlayでSumaMenteを評価して、私たちの成長を助けてください。🌟</string>
+    <string name="error_authentication_failed">接続エラー。もう一度お試しください。</string>
+    <string name="error_save_username_failed">名前を保存できませんでした。もう一度お試しください。</string>
 
 
 

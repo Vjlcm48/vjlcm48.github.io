@@ -103,7 +103,8 @@ object FirebaseAuthManager {
                             .addOnSuccessListener { document ->
                                 val hasData = document.exists() &&
                                         (document.getString("score_data") != null ||
-                                                document.get("profile_preferences") != null)
+                                                document.get("profile_preferences") != null ||
+                                                document.getString("username") != null)
 
                                 tempAuth.signOut()
 
@@ -147,7 +148,6 @@ object FirebaseAuthManager {
                 }
             }
     }
-
 
     private fun getGoogleSignInClient(activity: Activity, webClientId: String): GoogleSignInClient {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

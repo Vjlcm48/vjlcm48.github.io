@@ -610,7 +610,7 @@
     <string name="review_exercise">Revisar mi respuesta</string>
     <string name="exercise_title">El ejercicio fue:</string>
     <string name="correct_answer_format">La respuesta correcta es: %d</string>
-    <string name="user_responses_format">Tus respuestas fueron: %d %d</string>
+    <string name="user_responses_format">Tus respuestas fueron: %1$d %2$d</string>
     <string name="level_locked_by_failures">Debes completar el nivel anterior para desbloquear este nivel nuevamente</string>
 
     <string name="desafios_mensaje">¡DESAFÍOS SumaMente! Compite y gana premios con jugadores de todo el mundo. Te notificaremos cuándo será el próximo evento. ¡Prepárate para brillar!</string>
@@ -1637,5 +1637,13 @@
     <string name="theme_light_desc">Seleccionar tema claro</string>
     <string name="theme_dark_desc">Seleccionar tema oscuro</string>
     <string name="theme_device_desc">Seleccionar tema del dispositivo</string>
+
+    <string name="welcome_message">¡Hola! 👋 Bienvenido a SumaMente.\nAquí las matemáticas son un juego y tu mente se hace más ágil.\n¿Listo para empezar? 🎉</string>
+    <string name="ambassador_invite_message">¡Vas con todo! 🚀\nElimina la publicidad sin pagar: sé Embajador SumaMente.\nInvita amigos y familiares y obtén Premium gratis. 🙌</string>
+    <string name="rate_app_message">¡12 niveles superados! 👏\nQueremos escucharte. Califica SumaMente en Google Play y ayúdanos a crecer. 🌟</string>
+    <string name="error_authentication_failed">Error de conexión. Inténtalo de nuevo.</string>
+    <string name="error_save_username_failed">No se pudo guardar el nombre. Inténtalo de nuevo.</string>
+
+
 
 </resources>

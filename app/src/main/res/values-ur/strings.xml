@@ -547,7 +547,7 @@
     <string name="review_exercise">میرا جواب چیک کریں</string>
     <string name="exercise_title">مشق تھی:</string>
     <string name="correct_answer_format">صحیح جواب ہے: %d</string>
-    <string name="user_responses_format">آپ کے جوابات تھے: %d %d</string>
+    <string name="user_responses_format">آپ کے جوابات تھے: %1$d %2$d</string>
     <string name="level_locked_by_failures">اس لیول کو دوبارہ کھولنے کے لیے آپ کو پچھلا لیول مکمل کرنا ہوگا۔</string>
     <string name="desafios_mensaje">SumaMente چیلنجز! دنیا بھر کے کھلاڑیوں سے مقابلہ کریں اور انعامات جیتیں۔ ہم آپ کو اگلے ایونٹ کے بارے میں مطلع کریں گے۔ چمکنے کے لیے تیار ہو جائیں!</string>
     <string name="monday_short">پیر</string>
@@ -1298,6 +1298,13 @@
     <string name="theme_light_desc">ہلکا تھیم منتخب کریں</string>
     <string name="theme_dark_desc">گہرا تھیم منتخب کریں</string>
     <string name="theme_device_desc">ڈیوائس تھیم منتخب کریں</string>
+
+    <string name="welcome_message">ہیلو! 👋 SumaMente میں خوش آمدید۔\nیہاں، ریاضی ایک کھیل بن جاتی ہے اور آپ کا دماغ تیز ہوتا ہے۔\nشروع کرنے کے لیے تیار ہیں؟ 🎉</string>
+    <string name="ambassador_invite_message">آپ بہت اچھا کر رہے ہیں! 🚀\nبغیر ادائیگی کے اشتہارات ختم کریں: SumaMente سفیر بنیں۔\nدوستوں اور خاندان کو مدعو کریں اور مفت میں پریمیم حاصل کریں۔ 🙌</string>
+    <string name="rate_app_message">12 لیولز مکمل! 👏\nہم آپ کی رائے جاننا چاہتے ہیں۔ Google Play پر SumaMente کو ریٹ کریں اور ہماری ترقی میں مدد کریں۔ 🌟</string>
+    <string name="error_authentication_failed">رابطہ میں خرابی۔ براہ کرم دوبارہ کوشش کریں۔</string>
+    <string name="error_save_username_failed">نام محفوظ نہیں کیا جاسکا۔ براہ کرم دوبارہ کوشش کریں۔</string>
+
 
 
 </resources>

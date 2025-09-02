@@ -583,7 +583,7 @@
     <string name="review_exercise">مراجعة إجابتي</string>
     <string name="exercise_title">التمرين كان:</string>
     <string name="correct_answer_format">الإجابة الصحيحة هي: %d</string>
-    <string name="user_responses_format">إجاباتك كانت: %d %d</string>
+    <string name="user_responses_format">إجاباتك كانت: %1$d %2$d</string>
     <string name="level_locked_by_failures">يجب عليك إكمال المستوى السابق لفتح هذا المستوى مرة أخرى</string>
 
     <string name="desafios_mensaje">تحديات SumaMente! تنافس واربح جوائز مع لاعبين من جميع أنحاء العالم. سنخطرك بموعد الحدث التالي. استعد للتألق!</string>
@@ -1615,6 +1615,12 @@
     <string name="theme_light_desc">اختر السمة الفاتحة</string>
     <string name="theme_dark_desc">اختر السمة الداكنة</string>
     <string name="theme_device_desc">اختر سمة الجهاز</string>
+
+    <string name="welcome_message">أهلاً بك في SumaMente! 👋\nهنا الرياضيات تتحول إلى لعبة وعقلك يصبح أكثر نشاطًا.\nهل أنت جاهز للبدء؟ 🎉</string>
+    <string name="ambassador_invite_message">أنت في القمة! 🚀\nتخلص من الإعلانات دون دفع: كن سفيرًا لـ SumaMente.\nادعُ أصدقاءك وعائلتك واحصل على النسخة المميزة مجانًا. 🙌</string>
+    <string name="rate_app_message">لقد تجاوزت 12 مستوى! 👏\nنريد أن نسمع رأيك. قيم SumaMente على Google Play وساعدنا على النمو. 🌟</string>
+    <string name="error_authentication_failed">خطأ في الاتصال. حاول مرة أخرى.</string>
+    <string name="error_save_username_failed">تعذر حفظ الاسم. حاول مرة أخرى.</string>
 
 
 
