@@ -1507,6 +1507,38 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
     <string name="error_authentication_failed">Verbindungsfehler. Bitte versuche es erneut.</string>
     <string name="error_save_username_failed">Der Name konnte nicht gespeichert werden. Bitte versuche es erneut.</string>
 
+    <string name="messages_title">Nachrichten</string>
+    <string name="messages_subtitle">Interne Nachrichten</string>
+    <string name="messages_empty">Keine neuen Nachrichten</string>
+    <string name="dialog_btn_not_now">Nicht jetzt</string>
+    <string name="dialog_btn_go">Los</string>
+    <string name="dialog_under_construction">Wir sind im Aufbau</string>
+    <string name="rate_title">Wir möchten von Ihnen hören</string>
+    <string name="rate_body">Bewerte SumaMente bei Google Play und hilf uns zu wachsen.</string>
+    <string name="ambassador_title">Herzlichen Glückwunsch</string>
+    <string name="ambassador_body">Werbung ohne Bezahlung entfernen: Werde ein SumaMente-Botschafter. Lade Freunde ein und erhalte kostenlosen Premium-Zugang.</string>
+    <string name="messages_red_dot_content_desc">Du hast neue Nachrichten</string>
+    <string name="messages_item_unread">Neu</string>
 
+    <string name="embajador_regla_1">Teile die App mit Familie und Freunden, indem du deinen einzigartigen Code verwendest.</string>
+    <string name="embajador_regla_2">Jede Person, die mindestens 12 Level spielt, wird zu einem validierten Referent.</string>
+    <string name="embajador_canje_4">4 Referenten = 1 Woche PREMIUM</string>
+    <string name="embajador_canje_7">7 Referenten = 2 Wochen PREMIUM</string>
+    <string name="embajador_canje_12">12 Referenten = 4 Wochen PREMIUM</string>
+    <string name="embajador_regla_control">Du hast die Kontrolle: Tausche ein, wann und für wie lange du möchtest.</string>
+    <string name="embajador_regla_notificacion">Wir benachrichtigen dich, wenn du neue validierte Referenten hast.</string>
+    <string name="embajador_regla_beneficio">Mehr Referenten = mehr Zeit ohne Werbung!</string>
+    <string name="embajador_sumamente">SumaMente \nBotschafter</string>
+
+    <string name="reglas">Regeln</string>
+    <string name="compartir_codigo_referido">Empfehlungscode teilen</string>
+    <string name="mensaje_compartir">Tritt SumaMente mit meinem Code %1$s bei und verbessere spielerisch deine geistige Beweglichkeit!</string>
+    <string name="canjear_premium_gratis">Für kostenloses \nPREMIUM einlösen</string>
+    <string name="referidos_activos_validados">Validierte Referenten: %1$d</string>
+    <string name="saldo_referidos">Referenten-Guthaben: %1$d</string>
+    <string name="mensaje_canje_exitoso">Du hast %1$d Referenten für %2$s eingelöst. Genieße die App ohne Werbung von: %3$s bis %4$s.</string>
+    <string name="notificacion_nuevo_referido">Gute Nachrichten, du hast einen weiteren validierten Referenten gewonnen. Mach weiter so, je mehr Referenten du hast, desto mehr Gratiszeit kannst du einlösen.</string>
+
+    <string name="referidos_insuficientes">❌ Deine Empfehlungen sind nicht ausreichend. \n🚀 Teile SumaMente mit Familie und Freunden, \nerhöhe dein Guthaben und erhalte \nkostenlose PREMIUM-Zeit 🎁</string>
 
 </resources>

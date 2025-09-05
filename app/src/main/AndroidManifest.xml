@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.heptacreation.sumamente">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -16,7 +17,9 @@
         android:supportsRtl="true"
         android:configChanges="locale|layoutDirection"
         android:theme="@style/Theme.SumaMente"
-        android:hardwareAccelerated="true">
+        android:hardwareAccelerated="true"
+        android:enableOnBackInvokedCallback="true"
+        tools:targetApi="33">
 
         <activity
             android:name="com.heptacreation.sumamente.ui.SettingsActivity"
@@ -25,7 +28,25 @@
             android:exported="false" />
 
         <activity
+            android:name="com.heptacreation.sumamente.ui.MessagesActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false" />
+
+        <activity
             android:name="com.heptacreation.sumamente.ui.ProfileEditActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false" />
+
+        <activity
+            android:name="com.heptacreation.sumamente.ui.EmbajadorActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false" />
+
+        <activity
+            android:name="com.heptacreation.sumamente.ui.CanjeActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />

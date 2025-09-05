@@ -268,13 +268,13 @@ class GameActivityAlfaNumerosPro : BaseActivity()  {
         }
 
         val numberRange = when (level) {
-            in 1..7 -> 1..10
-            in 8..14 -> 1..11
-            in 15..21 -> 1..12
-            in 22..28 -> 1..13
-            in 29..35 -> 1..14
-            in 36..42 -> 1..15
-            else -> 1..16
+            in 1..7 -> 1..15
+            in 8..14 -> 1..17
+            in 15..21 -> 1..19
+            in 22..28 -> 1..21
+            in 29..35 -> 1..23
+            in 36..42 -> 1..25
+            else -> 1..30
         }
 
         val extraLargeNumberRange = when (level) {
@@ -286,20 +286,20 @@ class GameActivityAlfaNumerosPro : BaseActivity()  {
         }
 
         val letterRange = when (level) {
-            in 1..5 -> 'A'..'C'
-            in 6..10 -> 'A'..'D'
-            in 11..15 -> 'A'..'E'
-            in 16..20 -> 'A'..'F'
-            in 21..25 -> 'A'..'G'
+            in 1..5 -> 'A'..'E'
+            in 6..10 -> 'A'..'F'
+            in 11..15 -> 'A'..'G'
+            in 16..20 -> 'A'..'H'
+            in 21..25 -> 'A'..'H'
             else -> 'A'..'H'
         }
 
 
         val combinationLetterRange = when (level) {
-            in 31..35 -> 'A'..'D'
-            in 36..40 -> 'A'..'E'
-            in 41..50 -> 'A'..'F'
-            in 51..60 -> 'A'..'G'
+            in 31..35 -> 'A'..'E'
+            in 36..40 -> 'A'..'F'
+            in 41..50 -> 'A'..'G'
+            in 51..60 -> 'A'..'H'
             else -> 'A'..'H'
         }
 

@@ -1305,6 +1305,38 @@
     <string name="error_authentication_failed">رابطہ میں خرابی۔ براہ کرم دوبارہ کوشش کریں۔</string>
     <string name="error_save_username_failed">نام محفوظ نہیں کیا جاسکا۔ براہ کرم دوبارہ کوشش کریں۔</string>
 
+    <string name="messages_title">پیغامات</string>
+    <string name="messages_subtitle">اندرونی پیغامات</string>
+    <string name="messages_empty">کوئی نئے پیغامات نہیں ہیں</string>
+    <string name="dialog_btn_not_now">ابھی نہیں</string>
+    <string name="dialog_btn_go">جائیں</string>
+    <string name="dialog_under_construction">ہم زیرِ تعمیر ہیں</string>
+    <string name="rate_title">ہم آپ کی رائے سننا چاہتے ہیں</string>
+    <string name="rate_body">Google Play پر SumaMente کی درجہ بندی کریں اور ہماری ترقی میں مدد کریں۔</string>
+    <string name="ambassador_title">مبارک ہو</string>
+    <string name="ambassador_body">بغیر ادائیگی کے اشتہارات ہٹائیں: SumaMente سفیر بنیں۔ دوستوں کو مدعو کریں اور مفت پریمیم رسائی حاصل کریں۔</string>
+    <string name="messages_red_dot_content_desc">آپ کے پاس نئے پیغامات ہیں</string>
+    <string name="messages_item_unread">نئے</string>
 
+    <string name="embajador_regla_1">اپنے منفرد کوڈ کا استعمال کرتے ہوئے خاندان اور دوستوں کے ساتھ ایپ کا اشتراک کریں۔</string>
+    <string name="embajador_regla_2">ہر وہ شخص جو کم از کم 12 درجے کھیلتا ہے ایک تصدیق شدہ حوالہ بن جاتا ہے۔</string>
+    <string name="embajador_canje_4">4 حوالہ جات = 1 ہفتہ PREMIUM</string>
+    <string name="embajador_canje_7">7 حوالہ جات = 2 ہفتے PREMIUM</string>
+    <string name="embajador_canje_12">12 حوالہ جات = 4 ہفتے PREMIUM</string>
+    <string name="embajador_regla_control">آپ کا کنٹرول ہے: جب چاہیں اور جتنی مدت کے لیے چاہیں اسے بھنائیں۔</string>
+    <string name="embajador_regla_notificacion">جب آپ کے پاس نئے تصدیق شدہ حوالہ جات ہوں گے تو ہم آپ کو بتائیں گے۔</string>
+    <string name="embajador_regla_beneficio">زیادہ حوالہ جات = اشتہار کے بغیر زیادہ وقت!</string>
+    <string name="embajador_sumamente">سفير \nSumaMente</string>
+
+    <string name="reglas">قواعد</string>
+    <string name="compartir_codigo_referido">حوالہ کوڈ کا اشتراک کریں</string>
+    <string name="mensaje_compartir">میرے کوڈ %1$s کے ساتھ سما مینتے میں شامل ہوں اور کھیل کر اپنی ذہنی چستی کو بہتر بنائیں!</string>
+    <string name="canjear_premium_gratis">مفت \nPREMIUM کے لیے بھنائیں۔</string>
+    <string name="referidos_activos_validados">توثیق شدہ ریفرل: %1$d</string>
+    <string name="saldo_referidos">ریفرل بیلنس: %1$d</string>
+    <string name="mensaje_canje_exitoso">آپ نے %1$d حوالہ جات کو %2$s کے لیے بھنایا ہے، %3$s سے %4$s تک اشتہار کے بغیر ایپ کا لطف اٹھائیں۔</string>
+    <string name="notificacion_nuevo_referido">اچھی خبر ہے، آپ نے ایک اور تصدیق شدہ حوالہ حاصل کیا ہے، اسی طرح جاری رکھیں، آپ کے پاس جتنے زیادہ حوالہ جات ہوں گے، اتنا ہی زیادہ مفت وقت آپ بھنا سکتے ہیں۔</string>
+
+    <string name="referidos_insuficientes">❌ آپ کے ریفرل کافی نہیں ہیں۔ \n🚀 سوما مینٹ کو فیملی اور دوستوں کے ساتھ شیئر کریں، \nاپنا بیلنس بڑھائیں اور مفت پریمیئم \nوقت حاصل کریں 🎁</string>
 
 </resources>

@@ -41,6 +41,8 @@ import java.util.Locale
 import java.util.concurrent.TimeUnit
 import android.view.ViewTreeObserver
 import androidx.activity.enableEdgeToEdge
+import androidx.core.view.isVisible
+import com.heptacreation.sumamente.ui.utils.MessagesStateManager
 
 
 class MainGameActivity : BaseActivity() {
@@ -62,22 +64,21 @@ class MainGameActivity : BaseActivity() {
     private var fadeRunnable: Runnable? = null
     private var didCloudRestore = false
     private var lastSyncUpMs = 0L
-
-
     private lateinit var locationManager: LocationManager
     private val locationListener = createLocationListener()
-
     private lateinit var profileText: TextView
     private lateinit var trophyContainer: FrameLayout
     private lateinit var trophyRedDot: View
+    private lateinit var messagesRedDot: View
+
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var preferenceChangeListener: SharedPreferences.OnSharedPreferenceChangeListener
     private lateinit var tvSumaMenteTitle: TextView
-    private lateinit var settingsIcon: ImageView
+    private lateinit var settingsIcon: FrameLayout
     private lateinit var homeButton: TextView
     private lateinit var calendarButton: TextView
     private lateinit var statisticsButton: TextView
-
+    private lateinit var welcomeOverlay: FrameLayout
     private var isActivityVisible = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,7 +90,11 @@ class MainGameActivity : BaseActivity() {
         inicializarPreferencias()
         setContentView(R.layout.activity_main_game)
         inicializarComponentes()
+
+        //welcomeOverlay.bringToFront()
+
         configurarListeners()
+        mostrarBienvenidaSiCorresponde()
 
         ajustarIconosNavegacion()
 
@@ -136,11 +141,12 @@ class MainGameActivity : BaseActivity() {
         trophyContainer = findViewById(R.id.trophy_container)
         trophyRedDot = findViewById(R.id.trophy_red_dot)
         tvSumaMenteTitle = findViewById(R.id.tv_sumamente_title)
-
         settingsIcon = findViewById(R.id.settings_icon)
+        messagesRedDot = findViewById(R.id.messages_red_dot)
         homeButton = findViewById(R.id.home_button)
         calendarButton = findViewById(R.id.calendar_button)
         statisticsButton = findViewById(R.id.statistics_button)
+        welcomeOverlay = findViewById(R.id.welcome_overlay)
 
     }
 
@@ -161,7 +167,7 @@ class MainGameActivity : BaseActivity() {
 
     private fun configurarBotonesNavegacion() {
 
-        findViewById<ImageView>(R.id.settings_icon).setOnClickListener {
+        findViewById<FrameLayout>(R.id.settings_icon).setOnClickListener {
             aplicarEfectoConAccion(it) {
                 navegarA(SettingsActivity::class.java)
             }
@@ -204,6 +210,10 @@ class MainGameActivity : BaseActivity() {
     private fun configurarBackPressedCallback() {
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
+                if (::welcomeOverlay.isInitialized && welcomeOverlay.isVisible) {
+                    ocultarBienvenida()
+                    return
+                }
 
             }
         })
@@ -485,6 +495,14 @@ class MainGameActivity : BaseActivity() {
         }
     }
 
+    private fun updateMessagesRedDot() {
+        MessagesStateManager.ensureActivationByThresholds(this)
+        val visible = MessagesStateManager.hasGlobalRedDot(this)
+        messagesRedDot.visibility = if (visible) View.VISIBLE else View.GONE
+    }
+
+
+
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
         val animatorSet = crearAnimacionBounce(view)
 
@@ -595,6 +613,7 @@ class MainGameActivity : BaseActivity() {
         updateTrophyRedDot()
         actualizarEstadoMusica()
         actualizarPerfil()
+        updateMessagesRedDot()
 
         if (sharedPreferences.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)) {
             val now = System.currentTimeMillis()
@@ -681,6 +700,34 @@ class MainGameActivity : BaseActivity() {
         sharedPreferences.edit {
             putString("savedCountryCode", "sumamente")
         }
+    }
+
+    private fun mostrarBienvenidaSiCorresponde() {
+        val yaMostrado = sharedPreferences.getBoolean("welcome_shown", false)
+        if (yaMostrado) return
+
+        sharedPreferences.edit { putBoolean("welcome_shown", true) }
+
+        welcomeOverlay.bringToFront()
+        welcomeOverlay.elevation = 32f
+        welcomeOverlay.requestLayout()
+
+        welcomeOverlay.visibility = View.VISIBLE
+
+        findViewById<View>(R.id.welcome_scrim)?.setOnClickListener {
+            ocultarBienvenida()
+        }
+
+        findViewById<ImageView>(R.id.welcome_close)?.setOnClickListener {
+            ocultarBienvenida()
+        }
+
+        findViewById<View>(R.id.welcome_modal_container)?.setOnClickListener { /* consume */ }
+    }
+
+    private fun ocultarBienvenida() {
+
+        welcomeOverlay.visibility = View.GONE
     }
 
     override fun onDestroy() {

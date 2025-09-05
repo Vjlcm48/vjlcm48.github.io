@@ -23,8 +23,6 @@
                 android:text="@string/clasificaciones_titulo_dialog"
                 android:textAlignment="center"
                 android:textColor="?attr/colorOnBackground"
-
-
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="16dp"/>
@@ -34,8 +32,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/clasificaciones_puntos_correctas"
                 android:textColor="?attr/colorOnBackground"
-
-
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_marginTop="12dp"/>
@@ -45,44 +41,33 @@
                 android:layout_height="wrap_content"
                 android:text="@string/clasificaciones_puntos_correctas_1"
                 android:textColor="?attr/colorOnBackground"
-
-
                 android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:drawablePadding="8dp"
-                />
+                android:drawablePadding="8dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/clasificaciones_puntos_correctas_2"
                 android:textColor="?attr/colorOnBackground"
-
-
                 android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:drawablePadding="8dp"
-                />
+                android:drawablePadding="8dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/clasificaciones_puntos_correctas_3"
                 android:textColor="?attr/colorOnBackground"
-
-
                 android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:drawablePadding="8dp"
-                />
+                android:drawablePadding="8dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/clasificaciones_puntos_velocidad"
                 android:textColor="?attr/colorOnBackground"
-
-
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_marginTop="16dp"/>
@@ -92,56 +77,42 @@
                 android:layout_height="wrap_content"
                 android:text="@string/clasificaciones_puntos_velocidad_1"
                 android:textColor="?attr/colorOnBackground"
-
-
                 android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:drawablePadding="8dp"
-                />
+                android:drawablePadding="8dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/clasificaciones_puntos_velocidad_2"
                 android:textColor="?attr/colorOnBackground"
-
-
                 android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:drawablePadding="8dp"
-                />
+                android:drawablePadding="8dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/clasificaciones_puntos_velocidad_3"
                 android:textColor="?attr/colorOnBackground"
-
-
                 android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:drawablePadding="8dp"
-                 />
+                android:drawablePadding="8dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/clasificaciones_puntos_velocidad_4"
                 android:textColor="?attr/colorOnBackground"
-
-
                 android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:drawablePadding="8dp"
-                 />
+                android:drawablePadding="8dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/clasificaciones_juegos_niveles"
                 android:textColor="?attr/colorOnBackground"
-
-
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_marginTop="16dp"/>
@@ -151,83 +122,62 @@
                 android:layout_height="wrap_content"
                 android:text="@string/clasificaciones_juegos_niveles_1"
                 android:textColor="?attr/colorOnBackground"
-
-
                 android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:drawablePadding="8dp"
-                 />
+                android:drawablePadding="8dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/clasificaciones_juegos_niveles_2"
                 android:textColor="?attr/colorOnBackground"
-
-
                 android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:drawablePadding="8dp"
-                />
+                android:drawablePadding="8dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/clasificaciones_juegos_niveles_3"
                 android:textColor="?attr/colorOnBackground"
-
-
                 android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:drawablePadding="8dp"
-                />
+                android:drawablePadding="8dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/clasificaciones_practica"
                 android:textColor="?attr/colorOnBackground"
-
-
                 android:textSize="16sp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/clasificaciones_practica_1"
                 android:textColor="?attr/colorOnBackground"
-
-
                 android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:drawablePadding="8dp"
-                />
+                android:drawablePadding="8dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/clasificaciones_practica_2"
                 android:textColor="?attr/colorOnBackground"
-
-
                 android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:drawablePadding="8dp"
-                 />
+                android:drawablePadding="8dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/clasificaciones_practica_3"
                 android:textColor="?attr/colorOnBackground"
-
-
                 android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:drawablePadding="8dp"
-                 />
+                android:drawablePadding="8dp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_entendido"
@@ -237,9 +187,8 @@
                 android:background="@drawable/button_background"
                 android:text="@string/entendido"
                 android:textAllCaps="false"
-                android:textColor="?attr/colorOnPrimary"
-
-                android:textSize="24sp" />
+                android:textColor="@android:color/white"
+                android:textSize="24sp"/>
 
         </LinearLayout>
     </ScrollView>

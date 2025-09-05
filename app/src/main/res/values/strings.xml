@@ -1572,8 +1572,8 @@
     <string name="account_delete_in_progress">Eliminando tu cuenta…</string>
 
 
-    <string name="share_speed_ranking_message">¡Conseguí el puesto %2$d en el Ranking de Velocidad del juego %1$s en la app S
-        umaMente con un tiempo promedio de %3$.2f segundos! ¿Puedes ser más rápido que yo?</string>
+    <string name="share_speed_ranking_message">¡Conseguí el puesto %2$d en el Ranking de Velocidad del juego %1$s en la app
+        SumaMente con un tiempo promedio de %3$.2f segundos! ¿Puedes ser más rápido que yo?</string>
 
     <string name="share_global_ranking_message">Mi puntaje es %1$s puntos en el Ranking Global de la app SumaMente, estoy en el puesto %2$d.
         ¿Puedes superarme? https://play.google.com/store/apps/details?id=com.heptacreation.sumamente</string>
@@ -1644,6 +1644,39 @@
     <string name="error_authentication_failed">Error de conexión. Inténtalo de nuevo.</string>
     <string name="error_save_username_failed">No se pudo guardar el nombre. Inténtalo de nuevo.</string>
 
+    <string name="messages_title">Mensajes</string>
+    <string name="messages_subtitle">Mensajería interna</string>
+    <string name="messages_empty">No hay mensajes nuevos</string>
+    <string name="dialog_btn_not_now">Ahora no</string>
+    <string name="dialog_btn_go">Ir</string>
+    <string name="dialog_under_construction">Estamos en construcción</string>
+    <string name="rate_title">Queremos escucharte</string>
+    <string name="rate_body">Califica SumaMente en Google Play y ayúdanos a crecer.</string>
+    <string name="ambassador_title">Felicitaciones</string>
+    <string name="ambassador_body">Elimina la publicidad sin pagar: sé Embajador SumaMente. Invita amigos y obtén Premium gratis.</string>
+    <string name="messages_red_dot_content_desc">Tienes mensajes nuevos</string>
+    <string name="messages_item_unread">Nuevo</string>
 
+    <string name="embajador_regla_1">Comparte la app con familiares y amigos usando tu código único.</string>
+    <string name="embajador_regla_2">Cada persona que juegue al menos 12 niveles se convierte en referido validado.</string>
+    <string name="embajador_canje_4">4 referidos = 1 semana PREMIUM</string>
+    <string name="embajador_canje_7">7 referidos = 2 semanas PREMIUM</string>
+    <string name="embajador_canje_12">12 referidos = 4 semanas PREMIUM</string>
+    <string name="embajador_regla_control">Tú tienes el control: canjea cuando quieras por el tiempo que prefieras.</string>
+    <string name="embajador_regla_notificacion">Te avisaremos cuando tengas nuevos referidos validados.</string>
+    <string name="embajador_regla_beneficio">¡Más referidos = más tiempo sin anuncios!</string>
+    <string name="embajador_sumamente">Embajador \nSumaMente</string>
+
+    <string name="reglas">Reglas</string>
+    <string name="compartir_codigo_referido">Compartir código de referido</string>
+    <string name="mensaje_compartir">¡Únete a SumaMente con mi código %1$s y mejora tu agilidad mental jugando!</string>
+    <string name="canjear_premium_gratis">Canjear por \nPREMIUM gratis</string>
+    <string name="saldo_referidos">Saldo de referidos: %1$d</string>
+    <string name="referidos_activos_validados">Referidos validados: %1$d</string>
+    <string name="mensaje_canje_exitoso">Has canjeado %1$d referidos por %2$s, disfruta de la app sin anuncios desde: %3$s hasta %4$s.</string>
+    <string name="notificacion_nuevo_referido">Buenas noticias, has sumado otro referido validado, continúa así, mientras más referidos tengas, más tiempo gratis podrás canjear</string>
+
+    <string name="referidos_insuficientes">❌ Tus referidos no son suficientes. \n🚀 Comparte SumaMente con familia y amigos,
+        \nincrementa tu saldo y obten tiempo \nPREMIUM gratis 🎁</string>
 
 </resources>

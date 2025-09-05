@@ -19,8 +19,6 @@ import android.app.Dialog
 import android.os.Handler
 import androidx.activity.enableEdgeToEdge
 
-
-
 class ProfileEditActivity : BaseActivity(), LinkUnlinkAccountDialogFragment.Listener, ProgressConflictDialogFragment.Listener {
 
     private lateinit var sharedPreferences: SharedPreferences
@@ -38,11 +36,12 @@ class ProfileEditActivity : BaseActivity(), LinkUnlinkAccountDialogFragment.List
         val btnEditUsername = findViewById<AppCompatButton>(R.id.btn_edit_username)
         val btnEditFlag = findViewById<AppCompatButton>(R.id.btn_edit_flag)
         btnLinkUnlink = findViewById(R.id.btn_link_unlink)
+        val btnEmbajador = findViewById<AppCompatButton>(R.id.btn_embajador)
         val title = findViewById<View>(R.id.title_profile_edit)
 
         updateLinkButtonState()
 
-        startEntranceAnimation(title, btnEditUsername, btnEditFlag, btnLinkUnlink, closeButton)
+        startEntranceAnimation(title, btnEditUsername, btnEditFlag, btnEmbajador, btnLinkUnlink, closeButton)
 
         closeButton.setOnClickListener {
             applyBounceEffect(it) {
@@ -69,6 +68,13 @@ class ProfileEditActivity : BaseActivity(), LinkUnlinkAccountDialogFragment.List
                 val isLinked = sharedPreferences.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)
                 isLinking = !isLinked
                 showLinkUnlinkDialog(isLinking)
+            }
+        }
+
+        btnEmbajador.setOnClickListener {
+            applyBounceEffect(it) {
+                val intent = Intent(this, EmbajadorActivity::class.java)
+                startActivity(intent)
             }
         }
     }

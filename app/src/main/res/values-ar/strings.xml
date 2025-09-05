@@ -1622,6 +1622,38 @@
     <string name="error_authentication_failed">خطأ في الاتصال. حاول مرة أخرى.</string>
     <string name="error_save_username_failed">تعذر حفظ الاسم. حاول مرة أخرى.</string>
 
+    <string name="messages_title">الرسائل</string>
+    <string name="messages_subtitle">الرسائل الداخلية</string>
+    <string name="messages_empty">لا توجد رسائل جديدة</string>
+    <string name="dialog_btn_not_now">ليس الآن</string>
+    <string name="dialog_btn_go">اذهب</string>
+    <string name="dialog_under_construction">نحن في طور الإنشاء</string>
+    <string name="rate_title">نريد أن نسمع منك</string>
+    <string name="rate_body">قيّم SumaMente على Google Play وساعدنا على النمو.</string>
+    <string name="ambassador_title">تهانينا</string>
+    <string name="ambassador_body">تخلص من الإعلانات دون دفع: كن سفير SumaMente. ادعُ الأصدقاء واحصل على Premium مجانًا.</string>
+    <string name="messages_red_dot_content_desc">لديك رسائل جديدة</string>
+    <string name="messages_item_unread">جديد</string>
 
+    <string name="embajador_regla_1">شارك التطبيق مع العائلة والأصدقاء باستخدام رمزك الفريد.</string>
+    <string name="embajador_regla_2">كل شخص يلعب 12 مستوى على الأقل يصبح إحالة صالحة.</string>
+    <string name="embajador_canje_4">4 إحالات = أسبوع واحد من PREMIUM</string>
+    <string name="embajador_canje_7">7 إحالات = أسبوعان من PREMIUM</string>
+    <string name="embajador_canje_12">12 إحالة = 4 أسابيع من PREMIUM</string>
+    <string name="embajador_regla_control">التحكم بين يديك: استبدل متى شئت وللمدة التي تفضلها.</string>
+    <string name="embajador_regla_notificacion">سنخبرك عندما يكون لديك إحالات جديدة صالحة.</string>
+    <string name="embajador_regla_beneficio">المزيد من الإحالات = المزيد من الوقت بدون إعلانات!</string>
+    <string name="embajador_sumamente">سفير \nSumaMente</string>
+
+    <string name="reglas">القواعد</string>
+    <string name="compartir_codigo_referido">مشاركة رمز الإحالة</string>
+    <string name="mensaje_compartir">انضم إلى SumaMente برمزي %1$s وحسّن خفة ذهنك باللعب!</string>
+    <string name="canjear_premium_gratis">استبدال بـ \nPREMIUM مجاني</string>
+    <string name="referidos_activos_validados">إحالات مؤكدة: %1$d</string>
+    <string name="saldo_referidos">رصيد الإحالات: %1$d</string>
+    <string name="mensaje_canje_exitoso">لقد استبدلت %1$d إحالة بـ %2$s، استمتع بالتطبيق بدون إعلانات من: %3$s حتى %4$s.</string>
+    <string name="notificacion_nuevo_referido">أخبار جيدة، لقد حصلت على إحالة صالحة أخرى، استمر على هذا المنوال، كلما زاد عدد الإحالات لديك، زاد الوقت المجاني الذي يمكنك استبداله.</string>
+
+    <string name="referidos_insuficientes">❌ رصيدك من الإحالات غير كافٍ. \n🚀 شارك سومامينتي مع العائلة والأصدقاء، \nزد رصيدك واحصل على وقت \nبريميوم مجاني 🎁</string>
 
 </resources>

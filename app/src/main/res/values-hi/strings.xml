@@ -1504,7 +1504,38 @@
     <string name="error_authentication_failed">कनेक्शन त्रुटि। कृपया पुनः प्रयास करें।</string>
     <string name="error_save_username_failed">नाम सहेजा नहीं जा सका। कृपया पुनः प्रयास करें।</string>
 
+    <string name="messages_title">संदेश</string>
+    <string name="messages_subtitle">आंतरिक संदेशन</string>
+    <string name="messages_empty">कोई नया संदेश नहीं है</string>
+    <string name="dialog_btn_not_now">अभी नहीं</string>
+    <string name="dialog_btn_go">जाओ</string>
+    <string name="dialog_under_construction">हम निर्माण के अधीन हैं</string>
+    <string name="rate_title">हम आपसे सुनना चाहते हैं</string>
+    <string name="rate_body">Google Play पर SumaMente को रेट करें और हमें बढ़ने में मदद करें।</string>
+    <string name="ambassador_title">बधाई हो</string>
+    <string name="ambassador_body">बिना भुगतान किए विज्ञापन हटाएं: SumaMente एंबेसडर बनें। दोस्तों को आमंत्रित करें और मुफ्त प्रीमियम एक्सेस पाएं।</string>
+    <string name="messages_red_dot_content_desc">आपके पास नए संदेश हैं</string>
+    <string name="messages_item_unread">नया</string>
 
+    <string name="embajador_regla_1">अपने अद्वितीय कोड का उपयोग करके परिवार और दोस्तों के साथ ऐप साझा करें।</string>
+    <string name="embajador_regla_2">जो भी व्यक्ति कम से कम 12 स्तर खेलता है वह एक सत्यापित रेफ़रल बन जाता है।</string>
+    <string name="embajador_canje_4">4 रेफ़रल = 1 सप्ताह PREMIUM</string>
+    <string name="embajador_canje_7">7 रेफ़रल = 2 सप्ताह PREMIUM</string>
+    <string name="embajador_canje_12">12 रेफ़रल = 4 सप्ताह PREMIUM</string>
+    <string name="embajador_regla_control">आप नियंत्रण में हैं: जब चाहें और जितनी अवधि के लिए चाहें, भुनाएं।</string>
+    <string name="embajador_regla_notificacion">जब आपके पास नए सत्यापित रेफ़रल होंगे तो हम आपको सूचित करेंगे।</string>
+    <string name="embajador_regla_beneficio">अधिक रेफ़रल = अधिक विज्ञापन-मुक्त समय!</string>
+    <string name="embajador_sumamente">SumaMente \nएंबेसडर</string>
 
+    <string name="reglas">नियम</string>
+    <string name="compartir_codigo_referido">रेफ़रल कोड साझा करें</string>
+    <string name="mensaje_compartir">मेरे कोड %1$s के साथ SumaMente से जुड़ें और खेलकर अपनी मानसिक चपलता में सुधार करें!</string>
+    <string name="canjear_premium_gratis">मुफ्त PREMIUM \nके लिए भुनाएं</string>
+    <string name="referidos_activos_validados">सत्यापित रेफ़रल: %1$d</string>
+    <string name="saldo_referidos">रेफ़रल बैलेंस: %1$d</string>
+    <string name="mensaje_canje_exitoso">आपने %1$d रेफ़रल को %2$s के लिए भुनाया है, %3$s से %4$s तक विज्ञापन-मुक्त ऐप का आनंद लें।</string>
+    <string name="notificacion_nuevo_referido">शुभकामनाएं, आपको एक और सत्यापित रेफ़रल मिला है, ऐसे ही जारी रखें, आपके जितने ज़्यादा रेफ़रल होंगे, उतना ही ज़्यादा मुफ्त समय आप भुना सकते हैं।</string>
+
+    <string name="referidos_insuficientes">❌ आपके रेफरल पर्याप्त नहीं हैं। \n🚀 सुमामन्ते को परिवार और दोस्तों के साथ साझा करें, \nअपना बैलेंस बढ़ाएं और मुफ्त \nप्रीमियम समय पाएं 🎁</string>
 
 </resources>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="?attr/colorBackgroundSpecial">
 
-    <!-- LOGO -->
+
     <ImageView
         android:id="@+id/app_logo"
         android:layout_width="110dp"
@@ -21,8 +21,7 @@
         tools:alpha="1"
         tools:ignore="ImageContrastCheck" />
 
-    <!-- BOTÓN BACK -->
-    <!-- BOTÓN BACK -->
+
     <ImageView
         android:id="@+id/btn_back"
         android:layout_width="48dp"
@@ -40,7 +39,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:alpha="1" />
 
-    <!-- BOTÓN CLOSE -->
+
     <ImageView
         android:id="@+id/btn_close"
         android:layout_width="48dp"
@@ -71,8 +70,6 @@
         android:text="@string/premio_titulo"
         android:textAlignment="center"
         android:textColor="?attr/colorOnBackground"
-
-
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -123,8 +120,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/mis_condecoraciones"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -157,8 +152,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/pin_reconocimiento"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -183,8 +176,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/corona_laureles"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -210,8 +201,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/medalla"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -236,8 +225,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/trofeo"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -262,8 +249,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/top_10"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -288,8 +273,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/los_7_mejores"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -314,8 +297,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/top5_ranking_integral"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -340,8 +321,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/condecoracion_suprema"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -359,7 +338,6 @@
         app:layout_constraintEnd_toEndOf="@id/scrollView"
         app:layout_constraintStart_toStartOf="@id/scrollView"
         android:alpha="0" />
-
 
 
     <ImageView

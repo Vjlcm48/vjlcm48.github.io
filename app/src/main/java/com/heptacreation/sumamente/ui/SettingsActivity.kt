@@ -20,6 +20,8 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.edit
 import com.heptacreation.sumamente.R
 import androidx.core.content.ContextCompat
+import com.heptacreation.sumamente.ui.utils.MessagesStateManager
+
 
 class SettingsActivity : BaseActivity() {
 
@@ -38,6 +40,10 @@ class SettingsActivity : BaseActivity() {
     private lateinit var linearResetProgress: LinearLayout
     private lateinit var linearLanguage: LinearLayout
     private lateinit var linearTheme: LinearLayout
+    private lateinit var messagesRedDotSettings: View
+    private lateinit var linearMessages: LinearLayout
+
+
     private lateinit var appLogo: ImageView
     private var progressDialog: AlertDialog? = null
     private var isReauthenticatingForDelete = false
@@ -91,6 +97,8 @@ class SettingsActivity : BaseActivity() {
         itemsContainer       = findViewById(R.id.layout_settings_items)
         profileSubtitleText  = findViewById(R.id.profile_subtitle_text)
         linearDeleteAccount  = findViewById(R.id.linear_delete_account)
+        messagesRedDotSettings = findViewById(R.id.messages_red_dot_settings)
+        linearMessages = findViewById(R.id.linear_messages)
         linearProfile        = findViewById(R.id.linear_profile)
         linearShare          = findViewById(R.id.linear_share)
         linearHelp           = findViewById(R.id.linear_help)
@@ -193,6 +201,9 @@ class SettingsActivity : BaseActivity() {
         linearLanguage.setOnClickListener { view ->
             applyBounceEffect(view) { startActivity(Intent(this, LanguageChangeActivity::class.java)) }
         }
+        linearMessages.setOnClickListener { view ->
+            applyBounceEffect(view) { startActivity(Intent(this, MessagesActivity::class.java)) }
+        }
         linearProfile.setOnClickListener { view ->
             applyBounceEffect(view) { openProfileEdit() }
         }
@@ -202,6 +213,7 @@ class SettingsActivity : BaseActivity() {
         linearTheme.setOnClickListener { view ->
             applyBounceEffect(view) { showThemeSelectionDialog() }
         }
+
     }
 
     private fun setupColorAnimationForAds() {
@@ -377,6 +389,17 @@ class SettingsActivity : BaseActivity() {
         }
 
     }
+
+    override fun onResume() {
+        super.onResume()
+        updateMessagesRedDotSettings()
+    }
+
+    private fun updateMessagesRedDotSettings() {
+        val visible = MessagesStateManager.hasGlobalRedDot(this)
+        messagesRedDotSettings.visibility = if (visible) View.VISIBLE else View.GONE
+    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

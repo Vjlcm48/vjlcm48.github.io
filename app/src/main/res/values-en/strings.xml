@@ -1562,5 +1562,39 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
     <string name="error_authentication_failed">Connection error. Please try again.</string>
     <string name="error_save_username_failed">Could not save username. Please try again.</string>
 
+    <string name="messages_title">Messages</string>
+    <string name="messages_subtitle">Internal messaging</string>
+    <string name="messages_empty">No new messages</string>
+    <string name="dialog_btn_not_now">Not now</string>
+    <string name="dialog_btn_go">Go</string>
+    <string name="dialog_under_construction">We\'re under construction</string>
+    <string name="rate_title">We want to hear from you</string>
+    <string name="rate_body">Rate SumaMente on Google Play and help us grow.</string>
+    <string name="ambassador_title">Congratulations</string>
+    <string name="ambassador_body">Remove ads without paying: become a SumaMente Ambassador. Invite friends and get free Premium access.</string>
+    <string name="messages_red_dot_content_desc">You have new messages</string>
+    <string name="messages_item_unread">New</string>
+
+    <string name="embajador_regla_1">Share the app with family and friends using your unique code.</string>
+    <string name="embajador_regla_2">Each person who plays at least 12 levels becomes a validated referral.</string>
+    <string name="embajador_canje_4">4 referrals = 1 week PREMIUM</string>
+    <string name="embajador_canje_7">7 referrals = 2 weeks PREMIUM</string>
+    <string name="embajador_canje_12">12 referrals = 4 weeks PREMIUM</string>
+    <string name="embajador_regla_control">You\'re in control: redeem whenever you want for as long as you prefer.</string>
+    <string name="embajador_regla_notificacion">We\'ll let you know when you have new validated referrals.</string>
+    <string name="embajador_regla_beneficio">More referrals = more ad-free time!</string>
+    <string name="embajador_sumamente">SumaMente \nAmbassador</string>
+
+    <string name="reglas">Rules</string>
+    <string name="compartir_codigo_referido">Share referral code</string>
+    <string name="mensaje_compartir">Join SumaMente with my code %1$s and improve your mental agility by playing!</string>
+    <string name="canjear_premium_gratis">Redeem for \nfree PREMIUM</string>
+    <string name="referidos_activos_validados">Validated referrals: %1$d</string>
+    <string name="saldo_referidos">Referral balance: %1$d</string>
+    <string name="mensaje_canje_exitoso">You have redeemed %1$d referrals for %2$s. Enjoy the ad-free app from: %3$s until %4$s.</string>
+    <string name="notificacion_nuevo_referido">Good news, you have gained another validated referral, keep it up, the more referrals you have, the more free time you can redeem.</string>
+
+    <string name="referidos_insuficientes">❌ Your referrals are not enough. \n🚀 Share SumaMente with family and friends, \nincrease your balance and get free \nPREMIUM time 🎁</string>
+
 
 </resources>

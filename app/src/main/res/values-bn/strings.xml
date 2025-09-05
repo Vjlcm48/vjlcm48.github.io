@@ -1295,6 +1295,38 @@
     <string name="error_authentication_failed">সংযোগ ত্রুটি। অনুগ্রহ করে আবার চেষ্টা করুন।</string>
     <string name="error_save_username_failed">নাম সংরক্ষণ করা যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন।</string>
 
+    <string name="messages_title">বার্তা</string>
+    <string name="messages_subtitle">অভ্যন্তরীণ বার্তা</string>
+    <string name="messages_empty">কোনো নতুন বার্তা নেই</string>
+    <string name="dialog_btn_not_now">এখন না</string>
+    <string name="dialog_btn_go">যাও</string>
+    <string name="dialog_under_construction">আমরা নির্মাণাধীন</string>
+    <string name="rate_title">আমরা আপনার কথা শুনতে চাই</string>
+    <string name="rate_body">Google Play-তে SumaMente-কে রেট দিন এবং আমাদের বাড়তে সাহায্য করুন।</string>
+    <string name="ambassador_title">অভিনন্দন</string>
+    <string name="ambassador_body">অর্থ প্রদান না করে বিজ্ঞাপন দূর করুন: SumaMente অ্যাম্বাসেডর হোন। বন্ধুদের আমন্ত্রণ জানান এবং বিনামূল্যে প্রিমিয়াম অ্যাক্সেস পান।</string>
+    <string name="messages_red_dot_content_desc">আপনার নতুন বার্তা আছে</string>
+    <string name="messages_item_unread">নতুন</string>
 
+    <string name="embajador_regla_1">আপনার অনন্য কোড ব্যবহার করে পরিবার এবং বন্ধুদের সাথে অ্যাপটি শেয়ার করুন।</string>
+    <string name="embajador_regla_2">যে কেউ কমপক্ষে 12টি স্তর খেলবে সে একটি বৈধ রেফারেল হয়ে যাবে।</string>
+    <string name="embajador_canje_4">4 রেফারেল = 1 সপ্তাহ PREMIUM</string>
+    <string name="embajador_canje_7">7 রেফারেল = 2 সপ্তাহ PREMIUM</string>
+    <string name="embajador_canje_12">12 রেফারেল = 4 সপ্তাহ PREMIUM</string>
+    <string name="embajador_regla_control">নিয়ন্ত্রণ আপনার হাতে: যখন ইচ্ছা এবং যত সময়ের জন্য ইচ্ছা রিডিম করুন।</string>
+    <string name="embajador_regla_notificacion">আপনার নতুন বৈধ রেফারেল থাকলে আমরা আপনাকে জানাব।</string>
+    <string name="embajador_regla_beneficio">বেশি রেফারেল = বিজ্ঞাপন ছাড়া বেশি সময়!</string>
+    <string name="embajador_sumamente">SumaMente \nঅ্যাম্বাসেডর</string>
+
+    <string name="reglas">নিয়মাবলী</string>
+    <string name="compartir_codigo_referido">রেফারেল কোড শেয়ার করুন</string>
+    <string name="mensaje_compartir">আমার কোড %1$s ব্যবহার করে SumaMente-এ যোগ দিন এবং খেলার মাধ্যমে আপনার মানসিক ক্ষিপ্রতা উন্নত করুন!</string>
+    <string name="canjear_premium_gratis">বিনামূল্যে \nPREMIUM-এর জন্য রিডিম করুন</string>
+    <string name="referidos_activos_validados">বৈধ রেফারেল: %1$d</string>
+    <string name="saldo_referidos">রেফারেল ব্যালেন্স: %1$d</string>
+    <string name="mensaje_canje_exitoso">আপনি %1$d টি রেফারেলকে %2$s এর জন্য রিডিম করেছেন, %3$s থেকে %4$s পর্যন্ত বিজ্ঞাপন ছাড়া অ্যাপটি উপভোগ করুন।</string>
+    <string name="notificacion_nuevo_referido">সুখবর, আপনি আরেকটি বৈধ রেফারেল পেয়েছেন, এভাবে চালিয়ে যান, আপনার যত বেশি রেফারেল থাকবে, তত বেশি বিনামূল্যে সময় আপনি রিডিম করতে পারবেন।</string>
+
+    <string name="referidos_insuficientes">❌ আপনার রেফারেল যথেষ্ট নয়। \n🚀 পরিবার এবং বন্ধুদের সাথে সুমামেন্টে শেয়ার করুন, \nআপনার ব্যালেন্স বাড়ান এবং বিনামূল্যে \nপ্রিমিয়াম সময় পান 🎁</string>
 
 </resources>

@@ -269,38 +269,38 @@ class GameActivityAlfaNumerosPrincipiante : BaseActivity()  {
         }
 
         val numberRange = when (level) {
-            in 1..7 -> 1..6
-            in 8..14 -> 1..7
-            in 15..21 -> 1..8
-            in 22..28 -> 1..9
-            in 29..35 -> 1..10
-            in 36..42 -> 1..11
-            else -> 1..12
+            in 1..7 -> 1..10
+            in 8..14 -> 1..12
+            in 15..21 -> 1..15
+            in 22..28 -> 1..17
+            in 29..35 -> 1..19
+            in 36..42 -> 1..21
+            else -> 1..23
         }
 
         val extraLargeNumberRange = when (level) {
             in 1..7 -> 7..10
-            in 8..14 -> 7..11
-            in 15..21 -> 7..12
-            in 22..28 -> 7..13
+            in 8..14 -> 7..12
+            in 15..21 -> 7..15
+            in 22..28 -> 7..17
             else -> null
         }
 
         val letterRange = when (level) {
-            in 1..5 -> 'A'..'B'
-            in 6..10 -> 'A'..'C'
-            in 11..15 -> 'A'..'D'
-            in 16..20 -> 'A'..'E'
-            in 21..25 -> 'A'..'F'
-            else -> 'A'..'G'
+            in 1..5 -> 'A'..'D'
+            in 6..10 -> 'A'..'E'
+            in 11..15 -> 'A'..'F'
+            in 16..20 -> 'A'..'G'
+            in 21..25 -> 'A'..'H'
+            else -> 'A'..'H'
         }
 
         val combinationLetterRange = when (level) {
-            in 31..35 -> 'A'..'C'
-            in 36..40 -> 'A'..'D'
-            in 41..50 -> 'A'..'E'
-            in 51..60 -> 'A'..'F'
-            else -> 'A'..'G'
+            in 31..35 -> 'A'..'D'
+            in 36..40 -> 'A'..'E'
+            in 41..50 -> 'A'..'F'
+            in 51..60 -> 'A'..'G'
+            else -> 'A'..'H'
         }
 
         val letterCount = when {
@@ -420,7 +420,7 @@ class GameActivityAlfaNumerosPrincipiante : BaseActivity()  {
     }
 
     private fun String.isLetter(): Boolean {
-        return this.matches(Regex("^-?[A-G]$"))
+        return this.matches(Regex("^-?[A-H]$"))
     }
 
     private fun GameElement.isPositiveElement(): Boolean {
@@ -428,7 +428,7 @@ class GameActivityAlfaNumerosPrincipiante : BaseActivity()  {
         return if (num != null) {
             num > 0
         } else {
-            this.value.matches(Regex("^[A-G]$"))
+            this.value.matches(Regex("^[A-H]$"))
         }
     }
 
@@ -490,12 +490,12 @@ class GameActivityAlfaNumerosPrincipiante : BaseActivity()  {
                     val letter2Value = parts.component2()[0] - 'A' + 1
                     if (elem.isNegative) -(letter1Value + letter2Value) else (letter1Value + letter2Value)
                 }
-                elem.value.matches(Regex("^-[A-G]$")) -> {
+                elem.value.matches(Regex("^-[A-H]$")) -> {
                     val letterChar = elem.value[1]
                     val letterValue = letterChar - 'A' + 1
                     -letterValue
                 }
-                elem.value.matches(Regex("^[A-G]$")) -> {
+                elem.value.matches(Regex("^[A-H]$")) -> {
                     val letterChar = elem.value[0]
                     val letterValue = letterChar - 'A' + 1
                     if (elem.isNegative) -letterValue else letterValue

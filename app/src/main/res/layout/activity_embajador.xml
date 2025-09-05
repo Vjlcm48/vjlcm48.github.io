@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground">
+
+
+    <ScrollView
+        android:id="@+id/scroll_root"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:layout_gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="24dp">
+
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/back"
+                android:padding="8dp"
+                android:src="@drawable/ic_arrowback"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="55dp"/>
+
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/roboto_bold"
+                android:maxWidth="320dp"
+                android:text="@string/embajador_sumamente"
+                android:textAlignment="center"
+                android:textColor="?attr/colorOnBackground"
+                android:textSize="24sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+            <TextView
+                android:id="@+id/tv_referidos_contador"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/button_background_avanzado"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:text="@string/referidos_activos_validados"
+                android:textColor="@color/blue_primary"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_max="320dp" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_reglas"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/button_background"
+                android:fontFamily="@font/roboto_bold"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:minHeight="48dp"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:text="@string/reglas"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/tv_referidos_contador"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_max="320dp" />
+
+            <!-- Botón Compartir código -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_compartir_codigo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/button_background"
+                android:drawableEnd="@drawable/ic_share"
+                android:drawablePadding="12dp"
+                android:fontFamily="@font/roboto_bold"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:minHeight="48dp"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:text="@string/compartir_codigo_referido"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/btn_reglas"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_max="320dp" />
+
+            <!-- Botón Canjear Premium -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_canjear_premium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/button_background"
+                android:fontFamily="@font/roboto_bold"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:minHeight="48dp"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:text="@string/canjear_premium_gratis"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/btn_compartir_codigo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_max="320dp" />
+
+            <View
+                android:id="@+id/bottom_spacer"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                app:layout_constraintTop_toBottomOf="@id/btn_canjear_premium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

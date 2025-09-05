@@ -1257,6 +1257,38 @@
     <string name="error_authentication_failed">연결 오류. 다시 시도해 주세요.</string>
     <string name="error_save_username_failed">이름을 저장할 수 없습니다. 다시 시도해 주세요.</string>
 
+    <string name="messages_title">메시지</string>
+    <string name="messages_subtitle">내부 메시징</string>
+    <string name="messages_empty">새 메시지가 없습니다</string>
+    <string name="dialog_btn_not_now">지금은 아니요</string>
+    <string name="dialog_btn_go">이동</string>
+    <string name="dialog_under_construction">우리는 공사 중입니다</string>
+    <string name="rate_title">여러분의 의견을 듣고 싶습니다</string>
+    <string name="rate_body">Google Play에서 SumaMente를 평가하고 저희가 성장하도록 도와주세요.</string>
+    <string name="ambassador_title">축하합니다</string>
+    <string name="ambassador_body">결제 없이 광고를 제거하세요: SumaMente 앰배서더가 되세요. 친구를 초대하고 무료 프리미엄 액세스를 받으세요.</string>
+    <string name="messages_red_dot_content_desc">새 메시지가 있습니다</string>
+    <string name="messages_item_unread">새로운</string>
 
+    <string name="embajador_regla_1">고유 코드를 사용하여 가족 및 친구와 앱을 공유하세요.</string>
+    <string name="embajador_regla_2">최소 12개 레벨을 플레이하는 각 사람은 유효한 추천인이 됩니다.</string>
+    <string name="embajador_canje_4">추천인 4명 = 1주 PREMIUM</string>
+    <string name="embajador_canje_7">추천인 7명 = 2주 PREMIUM</string>
+    <string name="embajador_canje_12">추천인 12명 = 4주 PREMIUM</string>
+    <string name="embajador_regla_control">당신이 제어합니다: 원할 때마다 원하는 기간 동안 교환하세요.</string>
+    <string name="embajador_regla_notificacion">새로운 유효한 추천인이 생기면 알려드립니다.</string>
+    <string name="embajador_regla_beneficio">더 많은 추천인 = 광고 없는 더 많은 시간!</string>
+    <string name="embajador_sumamente">SumaMente \n앰배서더</string>
+
+    <string name="reglas">규칙</string>
+    <string name="compartir_codigo_referido">추천인 코드 공유</string>
+    <string name="mensaje_compartir">제 코드 %1$s 로 SumaMente에 가입하고 게임을 통해 정신적 민첩성을 향상시키세요!</string>
+    <string name="canjear_premium_gratis">무료 \nPREMIUM으로 교환</string>
+    <string name="referidos_activos_validados">유효 추천인: %1$d</string>
+    <string name="saldo_referidos">추천인 잔액: %1$d</string>
+    <string name="mensaje_canje_exitoso">추천인 %1$d명을 %2$s로 교환했습니다. %3$s부터 %4$s까지 광고 없는 앱을 즐기세요.</string>
+    <string name="notificacion_nuevo_referido">좋은 소식입니다, 또 다른 유효한 추천인이 생겼습니다. 계속해서 더 많은 추천인을 확보하면 더 많은 무료 시간을 교환할 수 있습니다.</string>
+
+    <string name="referidos_insuficientes">❌ 추천이 충분하지 않습니다. \n🚀 가족 및 친구와 SumaMente를 공유하여, \n잔액을 늘리고 무료 \n프리미엄 시간을 받으세요 🎁</string>
 
 </resources>

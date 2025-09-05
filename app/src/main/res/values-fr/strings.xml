@@ -1566,5 +1566,38 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
     <string name="error_authentication_failed">Erreur de connexion. Veuillez réessayer.</string>
     <string name="error_save_username_failed">Impossible d\'enregistrer le nom. Veuillez réessayer.</string>
 
+    <string name="messages_title">Messages</string>
+    <string name="messages_subtitle">Messagerie interne</string>
+    <string name="messages_empty">Aucun nouveau message</string>
+    <string name="dialog_btn_not_now">Pas maintenant</string>
+    <string name="dialog_btn_go">Aller</string>
+    <string name="dialog_under_construction">Nous sommes en construction</string>
+    <string name="rate_title">Nous voulons votre avis</string>
+    <string name="rate_body">Notez SumaMente sur Google Play et aidez-nous à grandir.</string>
+    <string name="ambassador_title">Félicitations</string>
+    <string name="ambassador_body">Supprimez les publicités sans payer: devenez un Ambassadeur SumaMente. Invitez des amis et obtenez l\'accès Premium gratuit.</string>
+    <string name="messages_red_dot_content_desc">Vous avez de nouveaux messages</string>
+    <string name="messages_item_unread">Nouveau</string>
+
+    <string name="embajador_regla_1">Partagez l\'application avec votre famille et vos amis en utilisant votre code unique.</string>
+    <string name="embajador_regla_2">Chaque personne qui joue au moins 12 niveaux devient un parrainage validé.</string>
+    <string name="embajador_canje_4">4 parrainages = 1 semaine PREMIUM</string>
+    <string name="embajador_canje_7">7 parrainages = 2 semaines PREMIUM</string>
+    <string name="embajador_canje_12">12 parrainages = 4 semaines PREMIUM</string>
+    <string name="embajador_regla_control">Vous avez le contrôle: échangez quand vous le souhaitez et pour la durée de votre choix.</string>
+    <string name="embajador_regla_notificacion">Nous vous informerons lorsque vous aurez de nouveaux parrainages validés.</string>
+    <string name="embajador_regla_beneficio">Plus de parrainages = plus de temps sans publicité !</string>
+    <string name="embajador_sumamente">Ambassadeur \nSumaMente</string>
+
+    <string name="reglas">Règles</string>
+    <string name="compartir_codigo_referido">Partager le code de parrainage</string>
+    <string name="mensaje_compartir">Rejoignez SumaMente avec mon code %1$s et améliorez votre agilité mentale en jouant !</string>
+    <string name="canjear_premium_gratis">Échanger contre \nPREMIUM gratuit</string>
+    <string name="referidos_activos_validados">Parrainages validés: %1$d</string>
+    <string name="saldo_referidos">Solde de parrainages: %1$d</string>
+    <string name="mensaje_canje_exitoso">Vous avez échangé %1$d parrainages contre %2$s. Profitez de l\'application sans publicité du: %3$s au %4$s.</string>
+    <string name="notificacion_nuevo_referido">Bonne nouvelle, vous avez un nouveau parrainage validé, continuez ainsi, plus vous avez de parrainages, plus vous pourrez échanger de temps gratuit.</string>
+
+    <string name="referidos_insuficientes">❌ Vos parrainages ne sont pas suffisants. \n🚀 Partagez SumaMente avec votre famille et vos amis, \naugmentez votre solde et obtenez \ndu temps PREMIUM gratuit 🎁</string>
 
 </resources>

@@ -1260,6 +1260,38 @@
     <string name="error_authentication_failed">接続エラー。もう一度お試しください。</string>
     <string name="error_save_username_failed">名前を保存できませんでした。もう一度お試しください。</string>
 
+    <string name="messages_title">メッセージ</string>
+    <string name="messages_subtitle">内部メッセージング</string>
+    <string name="messages_empty">新しいメッセージはありません</string>
+    <string name="dialog_btn_not_now">今はいいえ</string>
+    <string name="dialog_btn_go">行く</string>
+    <string name="dialog_under_construction">現在建設中です</string>
+    <string name="rate_title">ご意見をお聞かせください</string>
+    <string name="rate_body">Google PlayでSumaMenteを評価して、私たちの成長を助けてください。</string>
+    <string name="ambassador_title">おめでとうございます</string>
+    <string name="ambassador_body">支払うことなく広告を削除：SumaMenteアンバサダーになりましょう。友達を招待して、無料のプレミアムアクセスを手に入れよう。</string>
+    <string name="messages_red_dot_content_desc">新しいメッセージがあります</string>
+    <string name="messages_item_unread">新しい</string>
 
+    <string name="embajador_regla_1">あなたのユニークなコードを使って家族や友人とアプリを共有しましょう。</string>
+    <string name="embajador_regla_2">12レベル以上プレイした人は、有効な紹介者となります。</string>
+    <string name="embajador_canje_4">紹介者4人 = PREMIUM 1週間</string>
+    <string name="embajador_canje_7">紹介者7人 = PREMIUM 2週間</string>
+    <string name="embajador_canje_12">紹介者12人 = PREMIUM 4週間</string>
+    <string name="embajador_regla_control">コントロールはあなたにあります：好きな時に好きな期間だけ交換してください。</string>
+    <string name="embajador_regla_notificacion">新しい有効な紹介者がいる場合にお知らせします。</string>
+    <string name="embajador_regla_beneficio">紹介者が増えるほど、広告なしの時間が長くなります！</string>
+    <string name="embajador_sumamente">SumaMente \nアンバサダー</string>
+
+    <string name="reglas">ルール</string>
+    <string name="compartir_codigo_referido">紹介コードを共有</string>
+    <string name="mensaje_compartir">私のコード %1$s でSumaMenteに参加して、遊びながら頭の体操をしましょう！</string>
+    <string name="canjear_premium_gratis">無料 \nPREMIUMと交換</string>
+    <string name="referidos_activos_validados">有効な紹介者: %1$d</string>
+    <string name="saldo_referidos">紹介者残高: %1$d</string>
+    <string name="mensaje_canje_exitoso">紹介者%1$d人を%2$sと交換しました。%3$sから%4$sまで広告なしでアプリをお楽しみください。</string>
+    <string name="notificacion_nuevo_referido">朗報です、別の有効な紹介者が増えました。この調子で続けてください。紹介者が多ければ多いほど、無料で交換できる時間が増えます。</string>
+
+    <string name="referidos_insuficientes">❌ 紹介が足りません。 \n🚀 SumaMenteを家族や友人とシェアして、 \n残高を増やし、無料の \nプレミアム時間を手に入れましょう 🎁</string>
 
 </resources>

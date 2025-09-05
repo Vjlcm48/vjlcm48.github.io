@@ -24,7 +24,6 @@
             android:layout_centerHorizontal="true"
             android:text="@string/title_profile_edit"
             android:textColor="?attr/colorOnBackground"
-
             android:textSize="22sp"
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"/>
@@ -38,8 +37,7 @@
             android:background="@drawable/button_background"
             android:fontFamily="@font/roboto_bold"
             android:text="@string/edit_username"
-            android:textColor="?attr/colorOnPrimary"
-
+            android:textColor="@android:color/white"
             android:textSize="16sp" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -51,15 +49,26 @@
             android:background="@drawable/button_background"
             android:fontFamily="@font/roboto_bold"
             android:text="@string/edit_flag"
-            android:textColor="?attr/colorOnPrimary"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_embajador"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_edit_flag"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/embajador_sumamente"
+            android:textColor="@android:color/white"
             android:textSize="16sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_link_unlink"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/btn_edit_flag"
+            android:layout_below="@id/btn_embajador"
             android:layout_marginTop="18dp"
             android:background="@drawable/button_background_avanzado"
             android:fontFamily="@font/roboto_bold"
