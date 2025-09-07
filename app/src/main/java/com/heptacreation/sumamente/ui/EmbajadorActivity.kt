@@ -1,8 +1,8 @@
 package com.heptacreation.sumamente.ui
 
 import android.animation.Animator
-import android.animation.AnimatorSet
 import android.animation.AnimatorListenerAdapter
+import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.content.SharedPreferences
@@ -13,9 +13,11 @@ import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.content.edit
 import com.heptacreation.sumamente.R
-import java.util.*
+import com.heptacreation.sumamente.ui.utils.ReferralManager
+import kotlinx.coroutines.runBlocking
+import com.heptacreation.sumamente.ui.utils.PlayStoreReferrerReceiver
+import androidx.core.content.edit
 
 class EmbajadorActivity : BaseActivity() {
 
@@ -27,6 +29,12 @@ class EmbajadorActivity : BaseActivity() {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_embajador)
+
+        val prefsReferral = getSharedPreferences("ReferralPrefs", MODE_PRIVATE)
+        if (!prefsReferral.getBoolean("install_referrer_captured", false)) {
+            PlayStoreReferrerReceiver.captureInstallReferrer(applicationContext)
+            prefsReferral.edit { putBoolean("install_referrer_captured", true) }
+        }
 
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
 
@@ -80,8 +88,13 @@ class EmbajadorActivity : BaseActivity() {
     }
 
     private fun compartirCodigoReferido() {
-        val codigoReferido = obtenerOGenerarCodigoReferido()
-        val mensaje = getString(R.string.mensaje_compartir, codigoReferido)
+        val codigoReferido = runBlocking {
+            ReferralManager.getOrGenerateReferralCode(this@EmbajadorActivity) ?: ""
+        }
+
+        val deepLink = ReferralManager.createInvitationLink(codigoReferido)
+
+        val mensaje = getString(R.string.mensaje_compartir, codigoReferido) + "\n\n" + deepLink
 
         val intent = Intent(Intent.ACTION_SEND).apply {
             type = "text/plain"
@@ -89,25 +102,6 @@ class EmbajadorActivity : BaseActivity() {
         }
 
         startActivity(Intent.createChooser(intent, getString(R.string.compartir_codigo_referido)))
-    }
-
-    private fun obtenerOGenerarCodigoReferido(): String {
-        var codigo = sharedPreferences.getString("codigo_referido", null)
-
-        if (codigo == null) {
-            codigo = generarCodigoUnico()
-            sharedPreferences.edit {
-                putString("codigo_referido", codigo)
-            }
-        }
-
-        return codigo
-    }
-
-    private fun generarCodigoUnico(): String {
-        val random = Random()
-        val numero = random.nextInt(900000) + 100000
-        return "SM$numero"
     }
 
     private fun abrirPantallaCanje() {
@@ -159,6 +153,10 @@ class EmbajadorActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
+
+        val count = runBlocking { ReferralManager.getReferralsCount() }
+        sharedPreferences.edit { putInt("referidos_validados", count) }
+        referidosValidados = count
 
         referidosValidados = sharedPreferences.getInt("referidos_validados", 0)
         actualizarContadorReferidos()

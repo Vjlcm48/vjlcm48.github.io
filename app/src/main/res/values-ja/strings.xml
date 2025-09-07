@@ -1294,4 +1294,8 @@
 
     <string name="referidos_insuficientes">❌ 紹介が足りません。 \n🚀 SumaMenteを家族や友人とシェアして、 \n残高を増やし、無料の \nプレミアム時間を手に入れましょう 🎁</string>
 
+    <string name="referral_validation_error">リファラルを検証中にエラーが発生しました: %1$s</string>
+
+    <string name="canje_no_disponible_temporalmente">紹介を貯め続けてください。まもなく \nこの機能を有効にし、紹介を \nプレミアム時間と交換できるようになります。 \n準備ができ次第お知らせします。</string>
+
 </resources>

@@ -1291,4 +1291,7 @@
 
     <string name="referidos_insuficientes">❌ 추천이 충분하지 않습니다. \n🚀 가족 및 친구와 SumaMente를 공유하여, \n잔액을 늘리고 무료 \n프리미엄 시간을 받으세요 🎁</string>
 
+    <string name="referral_validation_error">추천을 확인하는 중 오류가 발생했습니다: %1$s</string>
+
+    <string name="canje_no_disponible_temporalmente">추천을 계속 모으세요. 곧 \n이 기능을 활성화하여 추천을 \n프리미엄 시간으로 교환할 수 있습니다. \n준비되면 알려드리겠습니다!</string>
 </resources>

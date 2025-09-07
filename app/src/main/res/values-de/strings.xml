@@ -1541,4 +1541,8 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
 
     <string name="referidos_insuficientes">❌ Deine Empfehlungen sind nicht ausreichend. \n🚀 Teile SumaMente mit Familie und Freunden, \nerhöhe dein Guthaben und erhalte \nkostenlose PREMIUM-Zeit 🎁</string>
 
+    <string name="referral_validation_error">Beim Validieren der Empfehlung ist ein Fehler aufgetreten: %1$s</string>
+
+    <string name="canje_no_disponible_temporalmente">Sammle weiter Empfehlungen, wir werden \ndiese Funktion bald aktivieren und du kannst \ndeine Empfehlungen gegen Premium-Zeit einlösen. \nWir informieren dich, sobald sie bereit ist!</string>
+
 </resources>

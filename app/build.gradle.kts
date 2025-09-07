@@ -86,6 +86,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.testing)
     implementation(libs.androidx.work.runtime.ktx)
+    implementation(libs.firebase.functions.ktx)
+    implementation(libs.firebase.messaging.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -103,9 +105,9 @@ dependencies {
     implementation(libs.play.services.auth)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore.ktx)
-
     implementation(libs.androidx.credentials)
-
     implementation(libs.firebase.crashlytics)
+
+    implementation(libs.installreferrer)
 
 }

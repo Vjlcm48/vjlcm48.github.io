@@ -14,10 +14,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.edit
+import com.google.firebase.functions.FirebaseFunctions
 import com.heptacreation.sumamente.R
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
+import com.heptacreation.sumamente.ui.utils.DataSyncManager
+import kotlinx.coroutines.runBlocking
+import com.heptacreation.sumamente.ui.utils.ReferralManager
+
 
 class CanjeActivity : BaseActivity() {
 
@@ -45,7 +47,6 @@ class CanjeActivity : BaseActivity() {
     }
 
     private fun configurarListeners() {
-
         findViewById<ImageView>(R.id.btn_back).setOnClickListener {
             finish()
         }
@@ -72,48 +73,83 @@ class CanjeActivity : BaseActivity() {
     }
 
     private fun actualizarSaldoReferidos() {
+
+        val latest = runBlocking { ReferralManager.getReferralsCount() }
+        sharedPreferences.edit { putInt("referidos_validados", latest) }
+
         referidosDisponibles = sharedPreferences.getInt("referidos_validados", 0)
         tvSaldoReferidos.text = getString(R.string.saldo_referidos, referidosDisponibles)
     }
 
     private fun procesarCanje(referidosRequeridos: Int, tiempoPremium: String) {
-        if (referidosDisponibles < referidosRequeridos) {
+        if (!sharedPreferences.getBoolean("canje_enabled", false)) {
+            mostrarDialogoGenerico(getString(R.string.canje_no_disponible_temporalmente))
+            return
+        }
 
+        if (referidosDisponibles < referidosRequeridos) {
             mostrarDialogoGenerico(getString(R.string.referidos_insuficientes))
             return
         }
 
-        val fechaInicio = Calendar.getInstance()
-        val fechaFin = Calendar.getInstance()
-        val semanasAPremium = when (referidosRequeridos) {
-            4 -> 1
-            7 -> 2
-            12 -> 4
-            else -> 1
-        }
+        val functions = FirebaseFunctions.getInstance()
+        val data = hashMapOf(
+            "referidosRequeridos" to referidosRequeridos,
+            "tiempoPremium" to tiempoPremium
+        )
 
-        fechaFin.add(Calendar.WEEK_OF_YEAR, semanasAPremium)
+        functions.getHttpsCallable("redeemReferrals").call(data)
+            .addOnSuccessListener {
+                val resultado = it.data as? Map<*, *> ?: return@addOnSuccessListener
+                val nuevoSaldo = (resultado["nuevoSaldo"] as? Number)?.toInt()
+                val premiumHasta = (resultado["premiumHasta"] as? Number)?.toLong()
+                val mensaje = resultado["message"] as? String
 
-        val nuevoSaldo = referidosDisponibles - referidosRequeridos
-        sharedPreferences.edit {
-            putInt("referidos_validados", nuevoSaldo)
+                if (nuevoSaldo != null) {
+                    sharedPreferences.edit {
+                        putInt("referidos_validados", nuevoSaldo)
+                    }
+                }
+                if (premiumHasta != null) {
+                    sharedPreferences.edit {
+                        putLong("premium_hasta", premiumHasta)
+                    }
+                }
 
-            putLong("premium_hasta", fechaFin.timeInMillis)
-        }
+                if (mensaje != null) {
+                    mostrarMensajeCanje(mensaje)
+                } else {
+                    mostrarDialogoGenerico(getString(R.string.error_canje))
+                }
 
-        mostrarMensajeCanje(referidosRequeridos, tiempoPremium, fechaInicio, fechaFin)
-
-
-        actualizarSaldoReferidos()
+                actualizarSaldoReferidos()
+                DataSyncManager.updateCanjeStatus(true)
+            }
+            .addOnFailureListener { e ->
+                mostrarDialogoGenerico(e.message ?: getString(R.string.error_canje))
+            }
     }
 
-    private fun mostrarMensajeCanje(referidos: Int, tiempo: String, inicio: Calendar, fin: Calendar) {
-        val formato = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
-        val fechaInicio = formato.format(inicio.time)
-        val fechaFin = formato.format(fin.time)
+    private fun mostrarMensajeCanje(mensaje: String) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_canje_exitoso_custom, null)
+        val tvMensaje = dialogView.findViewById<TextView>(R.id.tv_mensaje_canje)
+        val btnEntendido = dialogView.findViewById<AppCompatButton>(R.id.btn_entendido)
+        val btnCerrar = dialogView.findViewById<ImageView>(R.id.btn_cerrar_dialog)
 
-        val mensaje = getString(R.string.mensaje_canje_exitoso, referidos, tiempo, fechaInicio, fechaFin)
-        mostrarDialogoGenerico(mensaje)
+        tvMensaje.text = mensaje
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        btnEntendido.setOnClickListener { dialog.dismiss() }
+        btnCerrar.setOnClickListener { dialog.dismiss() }
+        dialogView.setOnClickListener { dialog.dismiss() }
+
+        dialog.show()
     }
 
     private fun mostrarDialogoGenerico(mensaje: String) {

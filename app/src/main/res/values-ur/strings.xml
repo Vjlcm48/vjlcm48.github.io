@@ -1339,4 +1339,8 @@
 
     <string name="referidos_insuficientes">❌ آپ کے ریفرل کافی نہیں ہیں۔ \n🚀 سوما مینٹ کو فیملی اور دوستوں کے ساتھ شیئر کریں، \nاپنا بیلنس بڑھائیں اور مفت پریمیئم \nوقت حاصل کریں 🎁</string>
 
+    <string name="referral_validation_error">ریفرل کی توثیق کرتے وقت ایک خرابی پیش آگئی: %1$s</string>
+
+    <string name="canje_no_disponible_temporalmente">ریفرلز جمع کرتے رہیں؛ ہم جلد \nیہ فیچر فعال کریں گے اور آپ اپنے ریفرلز کو \nپریمیم وقت کے لیے ریڈیم کر سکیں گے۔ \nجب یہ تیار ہو جائے گا تو ہم آپ کو اطلاع دیں گے!</string>
+
 </resources>

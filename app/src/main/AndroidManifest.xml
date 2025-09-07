@@ -21,6 +21,14 @@
         android:enableOnBackInvokedCallback="true"
         tools:targetApi="33">
 
+        <service
+            android:name=".ui.utils.SumamenteFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name="com.heptacreation.sumamente.ui.SettingsActivity"
             android:screenOrientation="portrait"

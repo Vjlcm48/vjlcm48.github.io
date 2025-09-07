@@ -1596,5 +1596,8 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
 
     <string name="referidos_insuficientes">❌ Your referrals are not enough. \n🚀 Share SumaMente with family and friends, \nincrease your balance and get free \nPREMIUM time 🎁</string>
 
+    <string name="referral_validation_error">An error occurred while validating the referral: %1$s</string>
+
+    <string name="canje_no_disponible_temporalmente">Keep accumulating referrals; we will \nsoon enable this feature and you will be able to \nredeem your referrals for premium time. \nWe will let you know when it is ready!</string>
 
 </resources>

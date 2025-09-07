@@ -3,6 +3,7 @@ package com.heptacreation.sumamente.ui
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
@@ -1049,6 +1050,22 @@ object ScoreManager {
         currentScoreGenioPlusPro = preferencesGenioPlusPro.getIntCompat(KEY_CURRENT_SCORE_GENIO_PLUS_PRO, 0)
         unlockedLevelsGenioPlusPro = preferencesGenioPlusPro.getIntCompat(KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRO, 2)
         getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRO).loadConsecutiveFailures()
+    }
+
+    fun getOrCreateDeviceReferralFingerprint(context: Context): String {
+        val prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val key = "referral_fingerprint"
+        var fingerprint = prefs.getString(key, null)
+
+        if (fingerprint == null) {
+            val uid = FirebaseAuth.getInstance().currentUser?.uid
+            val randomUUID = java.util.UUID.randomUUID().toString()
+            fingerprint = uid ?: randomUUID
+            prefs.edit {
+                putString(key, fingerprint)
+            }
+        }
+        return fingerprint
     }
 
     fun saveScore() = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.AVANZADO).saveScore()

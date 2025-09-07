@@ -5,6 +5,7 @@ credentials = "1.5.0"
 firebaseBom = "34.2.0"
 firebaseBomVersion = "34.0.0"
 gson = "2.13.1"
+installreferrer = "2.2"
 kotlin = "2.2.10"
 coreKtx = "1.17.0"
 junit = "4.13.2"
@@ -24,6 +25,8 @@ testing = "1.0.0"
 composeCompiler = "1.5.15"
 photoview = "2.3.0"
 workRuntimeKtx = "2.10.3"
+firebaseFunctionsKtx = "21.2.1"
+firebaseMessagingKtx = "24.1.2"
 
 
 [libraries]
@@ -39,7 +42,9 @@ firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics-ktx"
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-auth = { module = "com.google.firebase:firebase-auth", version = "24.0.1" }
 google-firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
+google-firebase-functions-ktx = { module = "com.google.firebase:firebase-functions-ktx" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+installreferrer = { module = "com.android.installreferrer:installreferrer", version.ref = "installreferrer" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -64,6 +69,9 @@ testing = { group = "com.google.assistant.appactions", name = "testing", version
 compose-compiler = { group = "androidx.compose.compiler", name = "compiler", version.ref = "composeCompiler" }
 photoview = { module = "com.github.chrisbanes:PhotoView", version.ref = "photoview" }
 androidx-work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workRuntimeKtx" }
+firebase-functions-ktx = { group = "com.google.firebase", name = "firebase-functions-ktx", version.ref = "firebaseFunctionsKtx" }
+firebase-messaging-ktx = { group = "com.google.firebase", name = "firebase-messaging-ktx", version.ref = "firebaseMessagingKtx" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

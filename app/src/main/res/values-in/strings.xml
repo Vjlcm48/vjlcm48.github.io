@@ -1519,4 +1519,9 @@ Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di 
 
     <string name="referidos_insuficientes">❌ Referal kamu tidak cukup. \n🚀 Bagikan SumaMente dengan keluarga dan teman, \ntingkatkan saldo kamu dan dapatkan waktu \nPREMIUM gratis 🎁</string>
 
+    <string name="referral_validation_error">Terjadi kesalahan saat memvalidasi referral: %1$s</string>
+
+
+    <string name="canje_no_disponible_temporalmente">Terus kumpulkan referral; kami \nsegera mengaktifkan fitur ini dan kamu akan bisa \nmenukar referral-mu dengan waktu premium. \nKami akan memberi tahu kamu saat sudah siap!</string>
+
 </resources>

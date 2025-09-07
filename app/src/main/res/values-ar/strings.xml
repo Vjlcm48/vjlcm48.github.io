@@ -1656,4 +1656,8 @@
 
     <string name="referidos_insuficientes">❌ رصيدك من الإحالات غير كافٍ. \n🚀 شارك سومامينتي مع العائلة والأصدقاء، \nزد رصيدك واحصل على وقت \nبريميوم مجاني 🎁</string>
 
+    <string name="referral_validation_error">حدث خطأ أثناء التحقق من الإحالة: %1$s</string>
+
+    <string name="canje_no_disponible_temporalmente">استمر في جمع الإحالات، سنقوم قريبًا \nبتفعيل هذه الميزة وستتمكن من استبدال \nإحالاتك بوقت بريميوم. \nسنعلمك عندما تكون جاهزة!</string>
+
 </resources>

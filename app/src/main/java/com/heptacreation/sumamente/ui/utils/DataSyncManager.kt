@@ -3,20 +3,20 @@ package com.heptacreation.sumamente.ui.utils
 import android.content.Context
 import android.util.Log
 import androidx.core.content.edit
-import com.heptacreation.sumamente.R
-import com.heptacreation.sumamente.ui.CondecoracionTracker
-import com.heptacreation.sumamente.ui.IQPlusRankingItem
-import com.heptacreation.sumamente.ui.ScoreManager
-import com.heptacreation.sumamente.ui.SettingsActivity
-import com.heptacreation.sumamente.ui.SpeedRankingItem
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.heptacreation.sumamente.R
+import com.heptacreation.sumamente.ui.CondecoracionTracker
 import com.heptacreation.sumamente.ui.GlobalRankingItem
+import com.heptacreation.sumamente.ui.IQPlusRankingItem
 import com.heptacreation.sumamente.ui.IntegralRankingItem
+import com.heptacreation.sumamente.ui.ScoreManager
+import com.heptacreation.sumamente.ui.SettingsActivity
+import com.heptacreation.sumamente.ui.SpeedRankingItem
 
 object DataSyncManager {
 
@@ -38,19 +38,42 @@ object DataSyncManager {
             return
         }
 
+        val prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+
+        val isFirstTimeUser = prefs.getBoolean("is_first_run", true)
+        if (isFirstTimeUser || ScoreManager.hasCompleted12LevelsInAnyGame()) {
+            try {
+                val validated = kotlinx.coroutines.runBlocking { ReferralManager.checkAndValidateReferral(context) }
+
+                if (validated) {
+                    prefs.edit { putBoolean("is_first_run", false) }
+                }
+            } catch (e: Exception) {
+                Log.e(
+                    "DataSyncManager",
+                    "Error al validar referido: ${context.getString(R.string.referral_validation_error, e.message)}"
+                )
+            }
+        }
+
         val profileBox = buildProfilePreferencesBox(context)
         val scoreJson = ScoreManager.exportAllDataAsJson(context)
         val condecoJson = CondecoracionTracker.exportAllDataAsJson(context)
+        val referralFingerprint = ScoreManager.getOrCreateDeviceReferralFingerprint(context)
+        val userName = prefs.getString("savedUserName", "") ?: ""
+        val countryCode = prefs.getString("savedCountryCode", "sumamente") ?: "sumamente"
+
+        // CAMBIAR A 'true' PARA ACTIVAR EL CANJE DE REFERIDOS //
+        val activateCanjeNow = false
+        if (activateCanjeNow) {
+            updateCanjeStatus(true)
+        }
 
         val privateData = hashMapOf(
             "profile_preferences" to profileBox,
             "score_data" to scoreJson,
             "condecoracion_data" to condecoJson
         )
-
-        val prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val userName = prefs.getString("savedUserName", "") ?: ""
-        val countryCode = prefs.getString("savedCountryCode", "sumamente") ?: "sumamente"
 
         val data = hashMapOf(
             "username" to userName,
@@ -61,7 +84,10 @@ object DataSyncManager {
             "private" to privateData,
             "score_schema_version" to SCHEMA_VERSION_SCORE,
             "condecoracion_schema_version" to SCHEMA_VERSION_CONDECO,
-            "hasInsigniaRIPlus" to (CondecoracionTracker.getInsigniaRIPlus() != null)
+            "referral_fingerprint" to referralFingerprint,
+            "hasInsigniaRIPlus" to (CondecoracionTracker.getInsigniaRIPlus() != null),
+            "account_linked" to prefs.getBoolean(SettingsActivity.ACCOUNT_LINKED, false),
+            "lastActive" to FieldValue.serverTimestamp(),
         )
 
         firestore.collection("usuarios")
@@ -71,12 +97,14 @@ object DataSyncManager {
             .addOnFailureListener { e -> onResult(false, e.localizedMessage) }
     }
 
+
     fun syncDataFromCloud(
         context: Context,
         onResult: (success: Boolean, error: String?) -> Unit
     ) {
         val firestore = FirebaseFirestore.getInstance()
         val user = auth.currentUser
+        val prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         if (user == null) {
             onResult(false, context.getString(R.string.user_not_authenticated))
             return
@@ -92,6 +120,11 @@ object DataSyncManager {
                 }
 
                 val privateData = doc.get("private") as? Map<*, *>
+
+                val canjeEnabled = doc.getBoolean("canje_enabled") ?: false
+                if (canjeEnabled) {
+                    prefs.edit { putBoolean("canje_enabled", true) }
+                }
 
                 if (privateData != null) {
                     // 1) Perfil
@@ -850,6 +883,23 @@ object DataSyncManager {
             .addOnFailureListener { callback(emptyList(), -1, null) }
     }
 
+    fun updateCanjeStatus(status: Boolean) {
+        val firestore = FirebaseFirestore.getInstance()
+        val user = auth.currentUser
+
+        if (user == null) {
+            return
+        }
+
+        firestore.collection("usuarios")
+            .document(user.uid)
+            .set(
+                hashMapOf(
+                    "canje_enabled" to status
+                ),
+                SetOptions.merge()
+            )
+    }
 
 
 }

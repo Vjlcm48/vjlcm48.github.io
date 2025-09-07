@@ -1454,4 +1454,8 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
 
     <string name="referidos_insuficientes">❌ Os seus referidos não são suficientes. \n🚀 Partilhe SumaMente com a família e amigos, \naumente o seu saldo e obtenha \ntempo PREMIUM gratuito 🎁</string>
 
+    <string name="referral_validation_error">Ocorreu um erro ao validar a indicação: %1$s</string>
+
+    <string name="canje_no_disponible_temporalmente">Continue acumulando indicações; em breve \nativaremos este recurso e você poderá \ntrocar suas indicações por tempo premium. \nAvisaremos quando estiver pronto!</string>
+
 </resources>

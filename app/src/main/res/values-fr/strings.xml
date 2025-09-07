@@ -1600,4 +1600,9 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
 
     <string name="referidos_insuficientes">❌ Vos parrainages ne sont pas suffisants. \n🚀 Partagez SumaMente avec votre famille et vos amis, \naugmentez votre solde et obtenez \ndu temps PREMIUM gratuit 🎁</string>
 
+    <string name="referral_validation_error">Une erreur s\'est produite lors de la validation du parrainage : %1$s</string>
+
+
+    <string name="canje_no_disponible_temporalmente">Continuez à accumuler des parrainages; \nnous activerons bientôt cette fonctionnalité et vous pourrez \néchanger vos parrainages contre du temps Premium. \nNous vous informerons quand ce sera prêt !</string>
+
 </resources>

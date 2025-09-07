@@ -1679,4 +1679,12 @@
     <string name="referidos_insuficientes">❌ Tus referidos no son suficientes. \n🚀 Comparte SumaMente con familia y amigos,
         \nincrementa tu saldo y obten tiempo \nPREMIUM gratis 🎁</string>
 
+    <string name="referral_validation_error">Ocurrió un error al validar el referido: %1$s</string>
+
+    <string name="canje_no_disponible_temporalmente">Sigue acumulando referidos, pronto
+        \nhabilitaremos esta función y podrás canjear \ntus referidos por tiempo premium.
+        \n¡Te avisaremos cuando esté listo!</string>
+
+    <string name="error_canje" translatable="false">Ocurrió un error al procesar el canje. Inténtalo de nuevo.</string>
+
 </resources>
