@@ -218,6 +218,7 @@
     <string name="game_genio_plus" translatable="false">GENIO⁺</string>
     <string name="game_romas" translatable="false">ROMAS</string>
     <string name="game_alfa_numeros" translatable="false">ALFANÚMEROS</string>
+    <string name="game_foco_plus" translatable="false">FOCO⁺</string>
 
     <string name="error_invalid_username_length">El nombre debe tener entre 4 y 12 caracteres.</string>
     <string name="error_username_taken">¡Ups! parece que alguien ya está usando \nese nombre, trata con otro.</string>
@@ -1686,5 +1687,10 @@
         \n¡Te avisaremos cuando esté listo!</string>
 
     <string name="error_canje" translatable="false">Ocurrió un error al procesar el canje. Inténtalo de nuevo.</string>
+
+    <string name="proximamente">✨ Próximamente…</string>
+    <string name="mensaje_foco_plus_dialogo">🔎 Estamos desarrollando Foco⁺.
+🔥 Será emocionante…
+⏳ Espéralo muy pronto.</string>
 
 </resources>

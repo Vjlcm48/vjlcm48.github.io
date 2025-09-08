@@ -4,29 +4,30 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
+import android.graphics.LinearGradient
+import android.graphics.Matrix
+import android.graphics.Shader
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.util.TypedValue
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import com.heptacreation.sumamente.R
 import java.util.Locale
-import android.animation.ValueAnimator
-import android.content.Context
-import android.content.res.Configuration
-import android.graphics.LinearGradient
-import android.graphics.Matrix
-import android.graphics.Shader
-import android.util.TypedValue
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.enableEdgeToEdge
 
 
 class GameSelectionActivity : BaseActivity() {
@@ -138,6 +139,10 @@ class GameSelectionActivity : BaseActivity() {
     private lateinit var btnProgreso: RelativeLayout
     private lateinit var closeButton: ImageView
     private lateinit var tvPercentageProgreso: TextView
+    private lateinit var btnFocoPlus: RelativeLayout
+    private lateinit var tvGameNameFocoPlus: TextView
+    private lateinit var tvPillProximamenteFoco: TextView
+
 
     private val gameButtons = mutableMapOf<Game, RelativeLayout>()
 
@@ -165,7 +170,18 @@ class GameSelectionActivity : BaseActivity() {
         initializeScoreManager()
         updateUI()
         updateProgressButton()
+        startShineLoop(tvPillProximamenteFoco)
+
     }
+
+    override fun onPause() {
+        super.onPause()
+        // limpiar shader del brillo cuando la activity no está visible
+        if (::tvPillProximamenteFoco.isInitialized) {
+            tvPillProximamenteFoco.paint.shader = null
+        }
+    }
+
 
     private fun initializeScoreManager() {
         with(ScoreManager) {
@@ -199,6 +215,11 @@ class GameSelectionActivity : BaseActivity() {
         btnProgreso = findViewById(R.id.btn_progreso)
         closeButton = findViewById(R.id.closeButton)
         tvPercentageProgreso = btnProgreso.findViewById(R.id.tv_percentage_progreso)
+
+        btnFocoPlus = findViewById(R.id.btn_foco_plus)
+        tvGameNameFocoPlus = btnFocoPlus.findViewById(R.id.tv_game_name_foco_plus)
+        tvPillProximamenteFoco = btnFocoPlus.findViewById(R.id.tv_pill_proximamente_foco)
+
 
         Game.entries.forEach { game ->
             gameButtons[game] = findViewById(game.buttonId)
@@ -296,6 +317,26 @@ class GameSelectionActivity : BaseActivity() {
             applyBounceEffect(it) {
                 startActivity(Intent(this, MainGameActivity::class.java))
             }
+        }
+
+        btnFocoPlus.setOnClickListener {
+            applyBounceEffect(it) {
+                val dialogView = layoutInflater.inflate(R.layout.dialog_foco_plus_info, null)
+
+                val dialog = androidx.appcompat.app.AlertDialog.Builder(this)
+                    .setView(dialogView)
+                    .setCancelable(true)
+                    .create()
+
+                dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+                dialogView.findViewById<ImageView>(R.id.btn_cerrar_dialog).setOnClickListener { dialog.dismiss() }
+                dialogView.findViewById<AppCompatButton>(R.id.btn_entendido).setOnClickListener { dialog.dismiss() }
+                dialogView.setOnClickListener { dialog.dismiss() }
+
+                dialog.show()
+            }
+
         }
 
         Game.entries.forEach { game ->
@@ -561,6 +602,38 @@ class GameSelectionActivity : BaseActivity() {
         context.theme.resolveAttribute(attrId, typedValue, true)
         return typedValue.data
     }
+
+    private fun startShineLoop(textView: TextView) {
+        textView.post {
+            val text = textView.text?.toString() ?: return@post
+            val textWidth = textView.paint.measureText(text)
+            val baseColor = textView.currentTextColor
+            val shineColor = ContextCompat.getColor(this, R.color.white)
+
+            val shader = LinearGradient(
+                -textWidth, 0f, 0f, 0f,
+                intArrayOf(baseColor, shineColor, baseColor),
+                floatArrayOf(0f, 0.5f, 1f),
+                Shader.TileMode.CLAMP
+            )
+            textView.paint.shader = shader
+            val matrix = Matrix()
+
+            ValueAnimator.ofFloat(0f, 2 * textWidth).apply {
+                duration = 1400
+                repeatCount = ValueAnimator.INFINITE
+                repeatMode = ValueAnimator.RESTART
+                addUpdateListener {
+                    val translate = it.animatedValue as Float
+                    matrix.setTranslate(translate, 0f)
+                    shader.setLocalMatrix(matrix)
+                    textView.invalidate()
+                }
+                start()
+            }
+        }
+    }
+
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
         val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, BOUNCE_SCALE_DOWN).setDuration(BOUNCE_DURATION)

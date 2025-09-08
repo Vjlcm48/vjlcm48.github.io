@@ -10,6 +10,7 @@
     <drawable name="button_background_mas">@drawable/button_pro_bordered_dark</drawable>
     <drawable name="button_background_principiante">@drawable/button_pro_bordered_dark</drawable>
     <drawable name="button_background_pro">@drawable/button_pro_bordered_dark</drawable>
+    <drawable name="button_background_foco">@drawable/button_pro_bordered_dark</drawable>
     <drawable name="button_background_progreso">@drawable/button_pro_bordered_dark</drawable>
     <drawable name="button_background_romas">@drawable/button_pro_bordered_dark</drawable>
     <drawable name="button_background_sumalevels">@drawable/button_pro_bordered_dark</drawable>

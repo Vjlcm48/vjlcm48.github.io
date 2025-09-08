@@ -532,6 +532,54 @@
                     app:autoSizeStepGranularity="1sp" />
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/btn_foco_plus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="59dp"
+                android:background="@drawable/button_background_foco"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:id="@+id/tv_game_name_foco_plus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_toStartOf="@+id/tv_pill_proximamente_foco"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/game_foco_plus"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:ellipsize="end"
+                    android:maxLines="1" />
+
+                <TextView
+                    android:id="@+id/tv_pill_proximamente_foco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:maxWidth="120dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="8dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:background="@drawable/pill_proximamente"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/proximamente"
+                    android:textColor="@color/blue_primary_darker"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
 
         </LinearLayout>
     </ScrollView>

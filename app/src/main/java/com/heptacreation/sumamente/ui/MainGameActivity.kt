@@ -615,12 +615,10 @@ class MainGameActivity : BaseActivity() {
         actualizarPerfil()
         updateMessagesRedDot()
 
-        if (sharedPreferences.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)) {
-            val now = System.currentTimeMillis()
-            if (now - lastSyncUpMs > 60_000) {
-                DataSyncManager.syncDataToCloud(this) { _, _ -> /* no-op */ }
-                lastSyncUpMs = now
-            }
+        val now = System.currentTimeMillis()
+        if (now - lastSyncUpMs > 60_000) {
+            DataSyncManager.syncDataToCloud(this) { _, _ -> /* no-op */ }
+            lastSyncUpMs = now
         }
 
     }

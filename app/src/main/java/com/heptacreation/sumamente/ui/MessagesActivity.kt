@@ -58,6 +58,9 @@ class MessagesActivity : BaseActivity() {
                     if (item.id == MessagesStateManager.MSG_AMBASSADOR) {
                         startActivity(Intent(this, EmbajadorActivity::class.java))
                         finish()
+                    } else if (item.id.startsWith(MessagesStateManager.MSG_REFERRAL_VALIDATED)) {
+                        startActivity(Intent(this, EmbajadorActivity::class.java))
+                        finish()
                     } else {
                         InternalMessageDialog.showUnderConstruction(this)
                     }

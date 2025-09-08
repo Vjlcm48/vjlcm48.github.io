@@ -17,6 +17,7 @@ import com.heptacreation.sumamente.ui.IntegralRankingItem
 import com.heptacreation.sumamente.ui.ScoreManager
 import com.heptacreation.sumamente.ui.SettingsActivity
 import com.heptacreation.sumamente.ui.SpeedRankingItem
+import kotlinx.coroutines.launch
 
 object DataSyncManager {
 
@@ -31,40 +32,55 @@ object DataSyncManager {
         context: Context,
         onResult: (success: Boolean, error: String?) -> Unit
     ) {
+        Log.d("DataSyncManager", "=== INICIO syncDataToCloud ===")
+
         val firestore = FirebaseFirestore.getInstance()
         val user = auth.currentUser
+
         if (user == null) {
+            Log.d("DataSyncManager", "Usuario no autenticado")
             onResult(false, context.getString(R.string.user_not_authenticated))
             return
         }
 
         val prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-
         val isFirstTimeUser = prefs.getBoolean("is_first_run", true)
-        if (isFirstTimeUser || ScoreManager.hasCompleted12LevelsInAnyGame()) {
-            try {
-                val validated = kotlinx.coroutines.runBlocking { ReferralManager.checkAndValidateReferral(context) }
+        val hasCompleted12Levels = ScoreManager.hasCompleted12LevelsInAnyGame()
+        val totalLevels = ScoreManager.getTotalUniqueLevelsCompletedAllGames()
 
-                if (validated) {
-                    prefs.edit { putBoolean("is_first_run", false) }
+        Log.d("DataSyncManager", "isFirstTimeUser: $isFirstTimeUser")
+        Log.d("DataSyncManager", "hasCompleted12Levels: $hasCompleted12Levels")
+        Log.d("DataSyncManager", "totalLevels: $totalLevels")
+
+        if (isFirstTimeUser || hasCompleted12Levels) {
+            Log.d("DataSyncManager", "Condición cumplida - ejecutando validación de referidos")
+
+            kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.IO).launch {
+                try {
+                    Log.d("DataSyncManager", "Iniciando corrutina de validación")
+                    val validated = ReferralManager.checkAndValidateReferral(context)
+                    Log.d("DataSyncManager", "Resultado validación: $validated")
+
+                    if (validated) {
+                        prefs.edit {
+                            putBoolean("is_first_run", false)
+                        }
+                    }
+                } catch (e: Exception) {
+                    Log.e("DataSyncManager", "Error al validar referido: ${e.message}")
                 }
-            } catch (e: Exception) {
-                Log.e(
-                    "DataSyncManager",
-                    "Error al validar referido: ${context.getString(R.string.referral_validation_error, e.message)}"
-                )
             }
+        } else {
+            Log.d("DataSyncManager", "Condición NO cumplida - saltando validación de referidos")
         }
 
         val profileBox = buildProfilePreferencesBox(context)
         val scoreJson = ScoreManager.exportAllDataAsJson(context)
         val condecoJson = CondecoracionTracker.exportAllDataAsJson(context)
-        val referralFingerprint = ScoreManager.getOrCreateDeviceReferralFingerprint(context)
         val userName = prefs.getString("savedUserName", "") ?: ""
         val countryCode = prefs.getString("savedCountryCode", "sumamente") ?: "sumamente"
-
-        // CAMBIAR A 'true' PARA ACTIVAR EL CANJE DE REFERIDOS //
         val activateCanjeNow = false
+
         if (activateCanjeNow) {
             updateCanjeStatus(true)
         }
@@ -84,18 +100,26 @@ object DataSyncManager {
             "private" to privateData,
             "score_schema_version" to SCHEMA_VERSION_SCORE,
             "condecoracion_schema_version" to SCHEMA_VERSION_CONDECO,
-            "referral_fingerprint" to referralFingerprint,
             "hasInsigniaRIPlus" to (CondecoracionTracker.getInsigniaRIPlus() != null),
             "account_linked" to prefs.getBoolean(SettingsActivity.ACCOUNT_LINKED, false),
-            "lastActive" to FieldValue.serverTimestamp(),
+            "lastActive" to FieldValue.serverTimestamp()
         )
+
+        Log.d("DataSyncManager", "Sincronizando datos con Firebase")
 
         firestore.collection("usuarios")
             .document(user.uid)
             .set(data, SetOptions.merge())
-            .addOnSuccessListener { onResult(true, null) }
-            .addOnFailureListener { e -> onResult(false, e.localizedMessage) }
+            .addOnSuccessListener {
+                Log.d("DataSyncManager", "Sincronización exitosa")
+                onResult(true, null)
+            }
+            .addOnFailureListener { e ->
+                Log.e("DataSyncManager", "Error en sincronización: ${e.localizedMessage}")
+                onResult(false, e.localizedMessage)
+            }
     }
+
 
 
     fun syncDataFromCloud(
