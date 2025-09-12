@@ -1605,5 +1605,10 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
 🔥 It\'s going to be exciting…
 ⏳ Stay tuned, coming very soon.</string>
 
+    <string name="game_subtitle_math_plus">Solve equations with numbers, letters, and Roman numerals</string>
+
+    <string name="game_coming_soon">🚧 We\'re developing this difficulty level 🔨\n⚡ Coming soon, you\'re going to love it! 🎯🚀</string>
+
+    <string name="game_subtitle_foco_plus">Pay close attention, numbers, letters and more await you</string>
 
 </resources>

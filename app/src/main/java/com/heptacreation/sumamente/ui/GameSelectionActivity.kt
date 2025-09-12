@@ -141,7 +141,12 @@ class GameSelectionActivity : BaseActivity() {
     private lateinit var tvPercentageProgreso: TextView
     private lateinit var btnFocoPlus: RelativeLayout
     private lateinit var tvGameNameFocoPlus: TextView
+    private lateinit var tvGameSubtitleFocoPlus: TextView
     private lateinit var tvPillProximamenteFoco: TextView
+    private lateinit var btnMathPlus: RelativeLayout
+    private lateinit var tvGameNameMathPlus: TextView
+    private lateinit var tvPillNuevoMath: TextView
+    private lateinit var tvGameSubtitleMathPlus: TextView
 
 
     private val gameButtons = mutableMapOf<Game, RelativeLayout>()
@@ -171,6 +176,7 @@ class GameSelectionActivity : BaseActivity() {
         updateUI()
         updateProgressButton()
         startShineLoop(tvPillProximamenteFoco)
+        startShineLoop(tvPillNuevoMath)
 
     }
 
@@ -180,8 +186,10 @@ class GameSelectionActivity : BaseActivity() {
         if (::tvPillProximamenteFoco.isInitialized) {
             tvPillProximamenteFoco.paint.shader = null
         }
+        if (::tvPillNuevoMath.isInitialized) {
+            tvPillNuevoMath.paint.shader = null
+        }
     }
-
 
     private fun initializeScoreManager() {
         with(ScoreManager) {
@@ -218,8 +226,13 @@ class GameSelectionActivity : BaseActivity() {
 
         btnFocoPlus = findViewById(R.id.btn_foco_plus)
         tvGameNameFocoPlus = btnFocoPlus.findViewById(R.id.tv_game_name_foco_plus)
+        tvGameSubtitleFocoPlus = btnFocoPlus.findViewById(R.id.tv_game_subtitle_foco_plus)
         tvPillProximamenteFoco = btnFocoPlus.findViewById(R.id.tv_pill_proximamente_foco)
 
+        btnMathPlus = findViewById(R.id.btn_math_plus)
+        tvGameNameMathPlus = btnMathPlus.findViewById(R.id.tv_game_name_math_plus)
+        tvGameSubtitleMathPlus = btnMathPlus.findViewById(R.id.tv_game_subtitle_math_plus)
+        tvPillNuevoMath = btnMathPlus.findViewById(R.id.tv_pill_nuevo_math)
 
         Game.entries.forEach { game ->
             gameButtons[game] = findViewById(game.buttonId)
@@ -339,6 +352,12 @@ class GameSelectionActivity : BaseActivity() {
 
         }
 
+        btnMathPlus.setOnClickListener {
+            applyBounceEffect(it) {
+                startActivity(DifficultySelectionActivity.createIntent(this, "MathPlus"))
+            }
+        }
+
         Game.entries.forEach { game ->
             gameButtons[game]?.setOnClickListener {
                 applyBounceEffect(it) {
@@ -359,7 +378,17 @@ class GameSelectionActivity : BaseActivity() {
 
         val hasDifficulty = prefs.contains(game.difficultyKey)
         if (!hasDifficulty) {
-            startActivity(DifficultySelectionActivity.createIntent(this, game.name))
+            // Mapear el enum al string correcto que espera DifficultySelectionActivity
+            val gameTypeString = when(game) {
+                Game.NUMEROS_PLUS -> "NumerosPlus"
+                Game.DECI_PLUS -> "DeciPlus"
+                Game.ROMAS -> "Romas"
+                Game.ALFA_NUMEROS -> "AlfaNumeros"
+                Game.SUMA_RESTA -> "Sumaresta"
+                Game.MAS_PLUS -> "MasPlus"
+                Game.GENIO_PLUS -> "GenioPlus"
+            }
+            startActivity(DifficultySelectionActivity.createIntent(this, gameTypeString))
             return
         }
 

@@ -429,7 +429,6 @@
                     </LinearLayout>
                 </LinearLayout>
 
-
                 <LinearLayout
                     android:id="@+id/linear_ads"
                     android:layout_width="match_parent"
@@ -437,7 +436,8 @@
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
                     android:padding="11dp"
-                    android:alpha="0">
+                    android:alpha="0"
+                    android:background="?attr/selectableItemBackground">
 
                     <ImageView
                         android:layout_width="30dp"
@@ -459,7 +459,6 @@
                             android:layout_height="wrap_content"
                             android:text="@string/ads"
                             android:textColor="?attr/colorOnBackground"
-
                             android:textStyle="bold"
                             android:textSize="16.5sp" />
                         <TextView
@@ -469,12 +468,6 @@
                             android:textColor="@color/gray"
                             android:textSize="13.2sp" />
                     </LinearLayout>
-
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/switch_ads"
-                        android:layout_width="53dp"
-                        android:layout_height="53dp"
-                        android:contentDescription="@string/switch_ads_desc" />
                 </LinearLayout>
 
 

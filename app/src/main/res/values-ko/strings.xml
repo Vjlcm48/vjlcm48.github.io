@@ -1299,5 +1299,10 @@
 🔥 아주 흥미로울 거예요…
 ⏳ 곧 만나보실 수 있습니다.</string>
 
+    <string name="game_subtitle_math_plus">숫자, 문자, 로마 숫자로 방정식을 해결하세요</string>
+
+    <string name="game_coming_soon">🚧 이 난이도를 개발 중입니다 🔨\n⚡ 곧 출시됩니다, 분명 마음에 드실 거예요! 🎯🚀</string>
+
+    <string name="game_subtitle_foco_plus">최대한 집중하세요. 숫자, 문자 등이 여러분을 기다립니다</string>
 
 </resources>

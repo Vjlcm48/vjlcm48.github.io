@@ -73,7 +73,7 @@ class PlayStoreReferrerReceiver : BroadcastReceiver() {
 
                     ReferralManager.saveReferrerCode(context, referralCode)
 
-                    val prefs = context.getSharedPreferences("ReferralPrefs", Context.MODE_PRIVATE)
+                    val prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
                     prefs.edit { putString("last_captured_referrer", referralCode) }
 
                     Log.d(TAG, "Código de referido capturado: $referralCode")

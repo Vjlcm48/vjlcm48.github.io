@@ -1303,5 +1303,11 @@
 🔥 とてもワクワクしますよ…
 ⏳ まもなく登場します。</string>
 
+    <string name="game_subtitle_math_plus">数字、文字、ローマ数字で方程式を解く</string>
+
+    <string name="game_coming_soon">🚧 この難易度を開発中です 🔨\n⚡ もうすぐ登場します、きっと気に入っていただけます！ 🎯🚀</string>
+
+    <string name="game_subtitle_foco_plus">最大限の注意を払ってください、数字、文字、その他多くのものがあなたを待っています</string>
+
 
 </resources>

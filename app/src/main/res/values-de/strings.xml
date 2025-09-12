@@ -1550,5 +1550,10 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
 🔥 Es wird spannend…
 ⏳ Warte schon sehr bald darauf.</string>
 
+    <string name="game_subtitle_math_plus">Löse Gleichungen mit Zahlen, Buchstaben und römischen Ziffern</string>
+
+    <string name="game_coming_soon">🚧 Wir entwickeln diesen Schwierigkeitsgrad 🔨\n⚡ Bald verfügbar, du wirst es lieben! 🎯🚀</string>
+
+    <string name="game_subtitle_foco_plus">Sei maximal aufmerksam, Zahlen, Buchstaben und mehr warten auf dich</string>
 
 </resources>

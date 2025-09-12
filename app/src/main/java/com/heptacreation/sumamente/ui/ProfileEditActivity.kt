@@ -25,6 +25,11 @@ class ProfileEditActivity : BaseActivity(), LinkUnlinkAccountDialogFragment.List
     private lateinit var btnLinkUnlink: AppCompatButton
     private var isLinking: Boolean = true
 
+    // TODO PREMIUM FLAG: cambia aquí la fuente de verdad cuando conectes Firestore o pasarela de pago
+    private val isPremium: Boolean
+        get() = sharedPreferences.getBoolean("isPremium", true)
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
@@ -37,6 +42,13 @@ class ProfileEditActivity : BaseActivity(), LinkUnlinkAccountDialogFragment.List
         val btnEditFlag = findViewById<AppCompatButton>(R.id.btn_edit_flag)
         btnLinkUnlink = findViewById(R.id.btn_link_unlink)
         val btnEmbajador = findViewById<AppCompatButton>(R.id.btn_embajador)
+
+        if (isPremium) {
+            btnEmbajador.visibility = View.GONE
+        } else {
+            btnEmbajador.visibility = View.VISIBLE
+        }
+
         val title = findViewById<View>(R.id.title_profile_edit)
 
         updateLinkButtonState()

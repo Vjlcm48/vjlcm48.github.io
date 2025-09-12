@@ -21,6 +21,7 @@ import androidx.core.content.edit
 import com.heptacreation.sumamente.R
 import androidx.core.content.ContextCompat
 import com.heptacreation.sumamente.ui.utils.MessagesStateManager
+import androidx.appcompat.widget.AppCompatButton
 
 
 class SettingsActivity : BaseActivity() {
@@ -31,8 +32,8 @@ class SettingsActivity : BaseActivity() {
     private lateinit var btnCloseSettings: ImageView
     private lateinit var switchSound: SwitchCompat
     private lateinit var switchNotifications: SwitchCompat
-    private lateinit var switchAds: SwitchCompat
     private lateinit var adsText: TextView
+
     private lateinit var itemsContainer: LinearLayout
     private lateinit var linearProfile: LinearLayout
     private lateinit var linearShare: LinearLayout
@@ -56,13 +57,11 @@ class SettingsActivity : BaseActivity() {
         const val ACCOUNT_LINKED = "isAccountLinked"
         const val LAST_PROMPT_DISMISSAL_TIMESTAMP = "lastPromptDismissalTimestamp"
         const val LINK_PROMPT_INTERACTED = "linkPromptInteracted"
-
         const val COOLDOWN_REMIND_LATER = 4 * 24 * 60 * 60 * 1000L // 4 días
         const val COOLDOWN_NOT_NOW = 7 * 24 * 60 * 60 * 1000L // 7 días
         const val COOLDOWN_FLOAT_DISMISS = 2 * 24 * 60 * 60 * 1000L // 2 días (descartar botón)
         const val COOLDOWN_FLOAT_DIALOG_DISMISS = 3 * 24 * 60 * 60 * 1000L // 3 días (más tarde desde el flotante)
         const val COOLDOWN_FLOAT_DIALOG_NOT_NOW = 5 * 24 * 60 * 60 * 1000L // 5 días (no por ahora desde el flotante)
-
 
     }
 
@@ -87,15 +86,18 @@ class SettingsActivity : BaseActivity() {
         startEntranceSequence()
     }
 
+    // TODO PREMIUM FLAG: cambia aquí la fuente de verdad cuando añadas pasarela de pago o backend
+    private val isPremium: Boolean
+        get() = sharedPreferences.getBoolean("isPremium", true)
+
     private fun bindViews() {
         appLogo              = findViewById(R.id.app_logo)
         btnCloseSettings     = findViewById(R.id.btn_close_settings)
         switchSound          = findViewById(R.id.switch_sound)
         switchNotifications  = findViewById(R.id.switch_notifications)
-        switchAds            = findViewById(R.id.switch_ads)
-        adsText              = findViewById(R.id.ads_text)
         itemsContainer       = findViewById(R.id.layout_settings_items)
         profileSubtitleText  = findViewById(R.id.profile_subtitle_text)
+        adsText              = findViewById(R.id.ads_text)
         linearDeleteAccount  = findViewById(R.id.linear_delete_account)
         messagesRedDotSettings = findViewById(R.id.messages_red_dot_settings)
         linearMessages = findViewById(R.id.linear_messages)
@@ -156,7 +158,7 @@ class SettingsActivity : BaseActivity() {
     private fun setupSwitchStates() {
         switchSound.isChecked         = sharedPreferences.getBoolean(SOUND_ENABLED, true)
         switchNotifications.isChecked = sharedPreferences.getBoolean(NOTIFICATIONS_ENABLED, false)
-        switchAds.isChecked           = sharedPreferences.getBoolean(ADS_ENABLED, true)
+
     }
 
     private fun setupSwitchListeners() {
@@ -178,19 +180,29 @@ class SettingsActivity : BaseActivity() {
             sharedPreferences.edit { putBoolean(NOTIFICATIONS_ENABLED, isChecked) }
         }
 
-        switchAds.setOnCheckedChangeListener { _, isChecked ->
-            Toast.makeText(
-                this,
-                getString(if (isChecked) R.string.ads_enabled else R.string.ads_disabled),
-                Toast.LENGTH_SHORT
-            ).show()
-            sharedPreferences.edit { putBoolean(ADS_ENABLED, isChecked) }
-        }
     }
 
     private fun setupOptionListeners() {
+
         linearShare.setOnClickListener { view ->
-            applyBounceEffect(view) { shareApp() }
+            applyBounceEffect(view) {
+                if (isPremium) {
+                    shareApp()
+                } else {
+
+                    startActivity(Intent(this, EmbajadorActivity::class.java))
+                }
+            }
+        }
+        val linearAds = findViewById<LinearLayout>(R.id.linear_ads)
+        linearAds.setOnClickListener { view ->
+            applyBounceEffect(view) {
+                if (isPremium) {
+                    showPremiumAdsInfoDialog()
+                } else {
+                    startActivity(Intent(this, EmbajadorActivity::class.java))
+                }
+            }
         }
         linearHelp.setOnClickListener { view ->
             applyBounceEffect(view) { startActivity(Intent(this, HelpGameSelectionActivity::class.java)) }
@@ -215,6 +227,30 @@ class SettingsActivity : BaseActivity() {
         }
 
     }
+
+    private fun showPremiumAdsInfoDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_canje_exitoso_custom, null)
+
+        val tvMensaje = dialogView.findViewById<TextView>(R.id.tv_mensaje_canje)
+
+        tvMensaje.setText(R.string.mensaje_premium_ads)
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        dialogView.findViewById<ImageView>(R.id.btn_cerrar_dialog)?.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialogView.findViewById<AppCompatButton>(R.id.btn_entendido)?.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
 
     private fun setupColorAnimationForAds() {
         ValueAnimator.ofArgb(
