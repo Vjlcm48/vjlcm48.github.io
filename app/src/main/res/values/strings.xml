@@ -1690,7 +1690,6 @@
 
     <string name="mensaje_premium_ads" translatable="false">Actualmente no se te muestra publicidad dentro \nde la app, sigue disfrutando de SumaMente</string>
 
-
     <string name="proximamente">✨ Próximamente…</string>
     <string name="mensaje_foco_plus_dialogo">🔎 Estamos desarrollando Foco⁺.
 🔥 Será emocionante…
@@ -1701,5 +1700,12 @@
     <string name="game_coming_soon">🚧 Estamos desarrollando este grado de dificultad 🔨\n⚡ ¡Espéralo pronto, te va a encantar! 🎯🚀</string>
 
     <string name="game_subtitle_foco_plus">Presta máxima atención, números, letras y más te esperan</string>
+
+    <string name="notif_mind_miss">¡Tu mente te extraña! 💡 Continúa en el nivel %1$d de %2$s (%3$s) y mantén tu racha.</string>
+    <string name="notif_level_unlocked">¡Felicitaciones! 🎉 Has desbloqueado el nivel %1$d en %2$s (%3$s). ¿Listo para el siguiente reto?</string>
+    <string name="notif_inactive_21days">¡21 días fuera del reto! ⚡ Demuestra que no te rindes y vuelve hoy a la acción.</string>
+    <string name="notif_inactive_7days">Han pasado 7 días ⏳. ¿Aceptas el reto de sumar puntos hoy y recuperar tu lugar en la clasificación?</string>
+    <string name="notif_ranking_position">🔥 Estás en el puesto %1$d del Ranking Global. Defiende tu lugar antes de que acabe el día.</string>
+    <string name="notif_first_days_welcome">¡Bienvenido de nuevo! ¡Tu próximo reto te espera! ¿Tienes lo necesario?🚀</string>
 
 </resources>

@@ -193,13 +193,6 @@ class DifficultySelectionActivity : BaseActivity()   {
         responseMode: String?
     ) {
 
-        /* Comentado - verificación bloqueante removida
-        val storedDifficulty = sharedPreferences.getString(difficultyKey, null)
-        if (storedDifficulty.isNullOrEmpty()) {
-            return
-        }
-        */
-
 
         if (gameType == "MathPlus") {
             when (difficulty) {

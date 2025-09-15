@@ -204,7 +204,15 @@ object CondecoracionTracker {
     private inline fun <reified T> loadList(key: String): MutableList<T> {
         val jsonString = preferences.getString(key, null)
         return if (jsonString != null) {
-            gson.fromJson(jsonString, object : TypeToken<MutableList<T>>() {}.type)
+            try {
+                val type = object : TypeToken<MutableList<T>>() {}.type
+                val list: MutableList<T> = gson.fromJson(jsonString, type)
+
+                list.filterIsInstance<T>().toMutableList()
+            } catch (e: Exception) {
+                android.util.Log.e("CondecoracionTracker", "Error deserializando $key: ${e.message}")
+                mutableListOf()
+            }
         } else {
             mutableListOf()
         }
@@ -1263,10 +1271,28 @@ object CondecoracionTracker {
 
     private fun hasNewPins(): Boolean = pinesObtenidos.any { !it.visto }
     private fun hasNewCrowns(): Boolean = coronasActivas.any { it.esNueva }
-    private fun hasNewTop10(): Boolean = condecoracionesTop10.any { it.esNueva }
+    private fun hasNewTop10(): Boolean = runCatching {
+        condecoracionesTop10.any { it.esNueva }
+    }.getOrElse {
+        normalizeCollectionsIfNeeded()
+        saveCondecoracionesTop10()
+        false
+    }
     private fun hasNewMedals(): Boolean = medallasObtenidas.any { !it.vista }
-    private fun hasNewIQ7(): Boolean = condecoracionesIQ7.any { it.esNueva }
-    private fun hasNewTop5Integral(): Boolean = condecoracionesTop5Integral.any { it.esNueva }
+    private fun hasNewIQ7(): Boolean = runCatching {
+        condecoracionesIQ7.any { it.esNueva }
+    }.getOrElse {
+        normalizeCollectionsIfNeeded()
+        saveCondecoracionesIQ7()
+        false
+    }
+    private fun hasNewTop5Integral(): Boolean = runCatching {
+        condecoracionesTop5Integral.any { it.esNueva }
+    }.getOrElse {
+        normalizeCollectionsIfNeeded()
+        saveCondecoracionesTop5Integral()
+        false
+    }
     private fun hasNewInsigniaRIPlus(): Boolean = insigniaRIPlus?.vista == false
 
     private fun hasNewTrophies(): Boolean {
@@ -1275,7 +1301,17 @@ object CondecoracionTracker {
         return hasNewRegularTrophies || hasNewApex
     }
 
+    private fun normalizeCollectionsIfNeeded() {
+        condecoracionesTop10 = condecoracionesTop10.toList().toMutableList()
+        condecoracionesIQ7 = condecoracionesIQ7.toList().toMutableList()
+        condecoracionesTop5Integral = condecoracionesTop5Integral.toList().toMutableList()
+        coronasActivas = coronasActivas.toList().toMutableList()
+        medallasObtenidas = medallasObtenidas.toList().toMutableList()
+        trofeosObtenidos = trofeosObtenidos.toList().toMutableList()
+        pinesObtenidos = pinesObtenidos.toList().toMutableList()
+    }
     private fun updateRedDotsStatus() {
+        normalizeCollectionsIfNeeded()
         val hasAnyNew = hasNewPins() ||
                 hasNewCrowns() ||
                 hasNewTop10() ||
@@ -1331,7 +1367,7 @@ object CondecoracionTracker {
     fun shouldShowTrophyRedDot(): Boolean = trophyRedDotVisible
     fun shouldShowMisCondecoracionesRedDot(): Boolean = misCondecoracionesRedDotVisible
 
-    // ====== INICIO: SYNC CONDECORACIONES (EXPORT / IMPORT) ======
+
 
     private data class CondecoracionData(
         val schemaVersion: Int = 2,
@@ -1390,6 +1426,7 @@ object CondecoracionTracker {
         return gson.toJson(box)
     }
 
+
     fun importAllDataFromJson(context: Context, json: String) {
         if (!::preferences.isInitialized) {
             init(context)
@@ -1402,17 +1439,47 @@ object CondecoracionTracker {
             return
         }
 
-        completedLevelsUnified = restored.completedLevelsUnified.toMutableList()
-        pinesObtenidos = restored.pinesObtenidos.toMutableList()
-        carryOverLevels = restored.carryOverLevels.toMutableList()
+        try {
+            completedLevelsUnified = restored.completedLevelsUnified
+                .filterIsInstance<CompletedLevel>()
+                .toMutableList()
 
-        coronasActivas = restored.coronasActivas.toMutableList()
-        condecoracionesTop10 = restored.condecoracionesTop10.toMutableList()
-        condecoracionesIQ7 = restored.condecoracionesIQ7.toMutableList()
-        condecoracionesTop5Integral = restored.condecoracionesTop5Integral.toMutableList()
+            pinesObtenidos = restored.pinesObtenidos
+                .filterIsInstance<PinObtained>()
+                .toMutableList()
 
-        medallasObtenidas = restored.medallasObtenidas.toMutableList()
-        trofeosObtenidos = restored.trofeosObtenidos.toMutableList()
+            carryOverLevels = restored.carryOverLevels
+                .filterIsInstance<CompletedLevel>()
+                .toMutableList()
+
+            coronasActivas = restored.coronasActivas
+                .filterIsInstance<CoronaActiva>()
+                .toMutableList()
+
+            condecoracionesTop10 = restored.condecoracionesTop10
+                .filterIsInstance<CondecoracionTop10>()
+                .toMutableList()
+
+            condecoracionesIQ7 = restored.condecoracionesIQ7
+                .filterIsInstance<CondecoracionIQ7>()
+                .toMutableList()
+
+            condecoracionesTop5Integral = restored.condecoracionesTop5Integral
+                .filterIsInstance<CondecoracionTop5Integral>()
+                .toMutableList()
+
+            medallasObtenidas = restored.medallasObtenidas
+                .filterIsInstance<MedallaObtenida>()
+                .toMutableList()
+
+            trofeosObtenidos = restored.trofeosObtenidos
+                .filterIsInstance<TrofeoObtenido>()
+                .toMutableList()
+        } catch (e: Exception) {
+            android.util.Log.e("CondecoracionTracker", "Error importando datos: ${e.message}")
+            return
+        }
+
         apexSupremusObtenida = restored.apexSupremusObtenida
         insigniaRIPlus = restored.insigniaRIPlus
 

@@ -1671,4 +1671,10 @@
 
     <string name="game_subtitle_foco_plus">انتبه جيدًا، الأرقام والحروف والمزيد في انتظارك</string>
 
+    <string name="notif_mind_miss">عقلك يشتاق إليك! 💡 استمر في المستوى %1$d من %2$s (%3$s) وحافظ على تقدمك.</string>
+    <string name="notif_level_unlocked">تهانينا! 🎉 لقد فتحت المستوى %1$d في %2$s (%3$s). هل أنت مستعد للتحدي التالي؟</string>
+    <string name="notif_inactive_21days">21 يومًا خارج التحدي! ⚡ أظهر أنك لا تستسلم وعد إلى العمل اليوم.</string>
+    <string name="notif_inactive_7days">لقد مرت 7 أيام ⏳. هل تقبل التحدي وتجمع النقاط اليوم لتستعيد مكانك في التصنيف؟</string>
+    <string name="notif_ranking_position">🔥 أنت في المركز %1$d في التصنيف العالمي. دافع عن مكانك قبل نهاية اليوم.</string>
+    <string name="notif_first_days_welcome">مرحبًا بعودتك! تحديك القادم في انتظارك! هل لديك ما يلزم؟🚀</string>
 </resources>

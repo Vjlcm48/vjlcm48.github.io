@@ -1354,4 +1354,11 @@
 
     <string name="game_subtitle_foco_plus">زیادہ سے زیادہ توجہ دیں، اعداد، حروف اور بہت کچھ آپ کے منتظر ہیں</string>
 
+    <string name="notif_mind_miss">آپ کا دماغ آپ کو یاد کر رہا ہے! 💡 %2$s (%3$s) کے لیول %1$d پر جاری رکھیں اور اپنی کامیابی برقرار رکھیں۔</string>
+    <string name="notif_level_unlocked">مبارک ہو! 🎉 آپ نے %2$s (%3$s) میں لیول %1$d کھول لیا ہے۔ اگلے چیلنج کے لیے تیار ہیں؟</string>
+    <string name="notif_inactive_21days">چیلنج سے 21 دن باہر! ⚡ ثابت کریں کہ آپ ہار نہیں مانتے اور آج ہی ایکشن میں واپس آئیں۔</string>
+    <string name="notif_inactive_7days">7 دن گزر چکے ہیں ⏳۔ کیا آپ آج پوائنٹس حاصل کرنے اور درجہ بندی میں اپنی جگہ دوبارہ حاصل کرنے کا چیلنج قبول کرتے ہیں؟</string>
+    <string name="notif_ranking_position">🔥 آپ گلوبل رینکنگ میں %1$d پوزیشن پر ہیں۔ دن ختم ہونے سے پہلے اپنی جگہ کا دفاع کریں۔</string>
+    <string name="notif_first_days_welcome">خوش آمدید! آپ کا اگلا چیلنج منتظر ہے! کیا آپ میں وہ ہے جو ضروری ہے؟🚀</string>
+
 </resources>

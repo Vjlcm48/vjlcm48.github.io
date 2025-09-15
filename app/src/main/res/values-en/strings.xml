@@ -1611,4 +1611,11 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
 
     <string name="game_subtitle_foco_plus">Pay close attention, numbers, letters and more await you</string>
 
+    <string name="notif_mind_miss">Your mind misses you! 💡 Continue on level %1$d of %2$s (%3$s) and keep your streak going.</string>
+    <string name="notif_level_unlocked">Congratulations! 🎉 You\'ve unlocked level %1$d in %2$s (%3$s). Ready for the next challenge?</string>
+    <string name="notif_inactive_21days">21 days out of the challenge! ⚡ Show that you don\'t give up and get back to the action today.</string>
+    <string name="notif_inactive_7days">7 days have passed ⏳. Do you accept the challenge to score points today and reclaim your spot in the ranking?</string>
+    <string name="notif_ranking_position">🔥 You\'re in position %1$d in the Global Ranking. Defend your spot before the day ends.</string>
+    <string name="notif_first_days_welcome">Welcome back! Your next challenge awaits! Have you got what it takes?🚀</string>
+
 </resources>

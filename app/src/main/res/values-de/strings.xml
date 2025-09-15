@@ -1556,4 +1556,11 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
 
     <string name="game_subtitle_foco_plus">Sei maximal aufmerksam, Zahlen, Buchstaben und mehr warten auf dich</string>
 
+    <string name="notif_mind_miss">Dein Verstand vermisst dich! 💡 Mach in Level %1$d von %2$s (%3$s) weiter und behalte deine Serie bei.</string>
+    <string name="notif_level_unlocked">Glückwunsch! 🎉 Du hast Level %1$d in %2$s (%3$s) freigeschaltet. Bereit für die nächste Herausforderung?</string>
+    <string name="notif_inactive_21days">21 Tage aus der Challenge! ⚡ Zeig, dass du nicht aufgibst, und komm heute wieder in die Action.</string>
+    <string name="notif_inactive_7days">7 Tage sind vergangen ⏳. Nimmst du die Herausforderung an, heute Punkte zu sammeln und deinen Platz in der Rangliste zurückzuerobern?</string>
+    <string name="notif_ranking_position">🔥 Du bist auf Platz %1$d der globalen Rangliste. Verteidige deinen Platz, bevor der Tag endet.</string>
+    <string name="notif_first_days_welcome">Willkommen zurück! Deine nächste Herausforderung wartet auf dich! Hast du das Zeug dazu?🚀</string>
+
 </resources>

@@ -1535,4 +1535,11 @@ Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di 
 
     <string name="game_subtitle_foco_plus">Perhatikan baik-baik, angka, huruf, dan lainnya menanti Anda</string>
 
+    <string name="notif_mind_miss">Pikiran Anda merindukan Anda! 💡 Lanjutkan di level %1$d dari %2$s (%3$s) dan pertahankan rentetan Anda.</string>
+    <string name="notif_level_unlocked">Selamat! 🎉 Anda telah membuka level %1$d di %2$s (%3$s). Siap untuk tantangan berikutnya?</string>
+    <string name="notif_inactive_21days">21 hari tidak ada di tantangan! ⚡ Tunjukkan bahwa Anda tidak menyerah dan kembali beraksi hari ini.</string>
+    <string name="notif_inactive_7days">7 hari telah berlalu ⏳. Apakah Anda menerima tantangan untuk mengumpulkan poin hari ini dan mendapatkan kembali tempat Anda di peringkat?</string>
+    <string name="notif_ranking_position">🔥 Anda berada di posisi %1$d di Peringkat Global. Pertahankan tempat Anda sebelum hari berakhir.</string>
+    <string name="notif_first_days_welcome">Selamat datang kembali! Tantangan Anda berikutnya menanti! Apakah Anda memiliki apa yang diperlukan?🚀</string>
+
 </resources>

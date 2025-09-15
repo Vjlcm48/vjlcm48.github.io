@@ -18,6 +18,8 @@ import com.heptacreation.sumamente.ui.ScoreManager
 import com.heptacreation.sumamente.ui.SettingsActivity
 import com.heptacreation.sumamente.ui.SpeedRankingItem
 import kotlinx.coroutines.launch
+import com.google.firebase.messaging.FirebaseMessaging
+
 
 object DataSyncManager {
 
@@ -112,6 +114,21 @@ object DataSyncManager {
             .set(data, SetOptions.merge())
             .addOnSuccessListener {
                 Log.d("DataSyncManager", "Sincronización exitosa")
+
+                val uid = FirebaseAuth.getInstance().currentUser?.uid
+                if (uid != null) {
+                    FirebaseMessaging.getInstance().token
+                        .addOnSuccessListener { tk ->
+                            FirebaseFirestore.getInstance()
+                                .collection("usuarios")
+                                .document(uid)
+                                .set(mapOf("fcmToken" to tk), SetOptions.merge())
+                                .addOnSuccessListener { Log.d("DataSyncManager", "fcmToken (post-sync) guardado con merge") }
+                                .addOnFailureListener { e -> Log.e("DataSyncManager", "Error guardando fcmToken post-sync", e) }
+                        }
+                        .addOnFailureListener { e -> Log.e("DataSyncManager", "No se pudo obtener token FCM post-sync", e) }
+                }
+
                 onResult(true, null)
             }
             .addOnFailureListener { e ->
@@ -119,8 +136,6 @@ object DataSyncManager {
                 onResult(false, e.localizedMessage)
             }
     }
-
-
 
     fun syncDataFromCloud(
         context: Context,
@@ -161,10 +176,11 @@ object DataSyncManager {
                     }
                     // 3) Condecoraciones
                     (privateData["condecoracion_data"] as? String)?.let { json ->
+                        CondecoracionTracker.init(context)
                         CondecoracionTracker.importAllDataFromJson(context, json)
                     }
                 }
-                // --- Fin del Cambio ---
+
 
                 onResult(true, null)
             }
@@ -478,7 +494,7 @@ object DataSyncManager {
                 for (doc in result) {
                     val name = doc.getString("username") ?: ""
                     val code = doc.getString("countryCode") ?: "us"
-                    val value = (doc.get("iqPlus") ?: 0.0) as Double
+                    val value = (doc.get("iqPlus") as? Number)?.toDouble() ?: 0.0
                     val thisUserId = doc.id
                     val isCurrent = thisUserId == userId
                     val hasInsignia = doc.getBoolean("hasInsigniaRIPlus") ?: false

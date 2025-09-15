@@ -1469,4 +1469,11 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
 
     <string name="game_subtitle_foco_plus">Presta atenção máxima, números, letras e mais te esperam</string>
 
+    <string name="notif_mind_miss">Sua mente sente sua falta! 💡 Continue no nível %1$d de %2$s (%3$s) e mantenha sua sequência.</string>
+    <string name="notif_level_unlocked">Parabéns! 🎉 Você desbloqueou o nível %1$d em %2$s (%3$s). Pronto para o próximo desafio?</string>
+    <string name="notif_inactive_21days">21 dias fora do desafio! ⚡ Mostre que você não desiste e volte à ação hoje.</string>
+    <string name="notif_inactive_7days">Já se passaram 7 dias ⏳. Você aceita o desafio de somar pontos hoje e recuperar seu lugar na classificação?</string>
+    <string name="notif_ranking_position">🔥 Você está na posição %1$d no Ranking Global. Defenda seu lugar antes que o dia termine.</string>
+    <string name="notif_first_days_welcome">Bem-vindo de volta! Seu próximo desafio espera por você! Você tem o que é preciso?🚀</string>
+
 </resources>

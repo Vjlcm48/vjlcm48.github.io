@@ -1553,4 +1553,11 @@
 
     <string name="game_subtitle_foco_plus">अधिकतम ध्यान दें, संख्याएँ, अक्षर और बहुत कुछ आपका इंतजार कर रहे हैं</string>
 
+    <string name="notif_mind_miss">आपका दिमाग आपको याद कर रहा है! 💡 %2$s (%3$s) के लेवल %1$d में जारी रखें और अपनी स्ट्रीक बनाए रखें।</string>
+    <string name="notif_level_unlocked">बधाई हो! 🎉 आपने %2$s (%3$s) में लेवल %1$d अनलॉक कर लिया है। अगले चैलेंज के लिए तैयार हैं?</string>
+    <string name="notif_inactive_21days">चुनौती से 21 दिन बाहर! ⚡ दिखाओ कि तुम हार नहीं मानते और आज ही वापस एक्शन में आओ।</string>
+    <string name="notif_inactive_7days">7 दिन बीत चुके हैं ⏳। क्या आप आज अंक अर्जित करके रैंकिंग में अपनी जगह वापस पाने की चुनौती स्वीकार करते हैं?</string>
+    <string name="notif_ranking_position">🔥 आप ग्लोबल रैंकिंग में %1$dवें स्थान पर हैं। दिन खत्म होने से पहले अपनी जगह की रक्षा करें।</string>
+    <string name="notif_first_days_welcome">वापस स्वागत है! आपकी अगली चुनौती इंतजार कर रही है! क्या आप में वह है जो जरूरी है?🚀</string>
+
 </resources>

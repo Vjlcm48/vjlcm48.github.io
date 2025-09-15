@@ -1309,5 +1309,11 @@
 
     <string name="game_subtitle_foco_plus">最大限の注意を払ってください、数字、文字、その他多くのものがあなたを待っています</string>
 
+    <string name="notif_mind_miss">あなたの心があなたを恋しがっています！ 💡 %2$s (%3$s) のレベル %1$d を続けて、あなたの連勝を維持しましょう。</string>
+    <string name="notif_level_unlocked">おめでとうございます！ 🎉 %2$s (%3$s)でレベル%1$dをアンロックしました。次の挑戦の準備はできていますか？</string>
+    <string name="notif_inactive_21days">チャレンジから21日経過！ ⚡ あきらめないことを証明して、今日からまた行動に戻ろう。</string>
+    <string name="notif_inactive_7days">7日が過ぎました ⏳。今日ポイントを獲得して、ランキングでのあなたの場所を取り戻す挑戦を受け入れますか？</string>
+    <string name="notif_ranking_position">🔥 グローバルランキングで%1$d位です。今日が終わる前にあなたの場所を守りましょう。</string>
+    <string name="notif_first_days_welcome">おかえりなさい！ あなたの次の挑戦が待っています！ あなたは必要なものを持っていますか？🚀</string>
 
 </resources>

@@ -1305,4 +1305,11 @@
 
     <string name="game_subtitle_foco_plus">최대한 집중하세요. 숫자, 문자 등이 여러분을 기다립니다</string>
 
+    <string name="notif_mind_miss">당신의 마음이 당신을 그리워합니다! 💡 %2$s (%3$s)의 레벨 %1$d에서 계속하고 연속 기록을 유지하세요.</string>
+    <string name="notif_level_unlocked">축하합니다! 🎉 %2$s (%3$s)에서 레벨 %1$d를 잠금 해제했습니다. 다음 챌린지를 위한 준비가 되셨나요?</string>
+    <string name="notif_inactive_21days">챌린지에서 21일 이탈! ⚡ 포기하지 않는다는 것을 보여주고 오늘 다시 행동으로 돌아오세요.</string>
+    <string name="notif_inactive_7days">7일이 지났습니다 ⏳. 오늘 포인트를 획득하여 순위에서 당신의 자리를 되찾는 도전을 받아들이시겠습니까?</string>
+    <string name="notif_ranking_position">🔥 당신은 글로벌 랭킹 %1$d위에 있습니다. 오늘이 끝나기 전에 당신의 자리를 지키세요.</string>
+    <string name="notif_first_days_welcome">다시 오신 것을 환영합니다! 다음 도전이 당신을 기다리고 있습니다! 당신에게 필요한 것이 있나요?🚀</string>
+
 </resources>

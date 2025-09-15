@@ -33,12 +33,17 @@ object MessagesStateManager {
 
     fun ensureActivationByThresholds(context: Context) {
         val total = ScoreManager.getTotalUniqueLevelsCompletedAllGames()
+
+        val prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val isPremium = prefs.getBoolean("isPremium", true)
+
         if (total >= 2) maybeActivate(context, MSG_RATE)
-        if (total >= 3) maybeActivate(context, MSG_AMBASSADOR)
+        if (total >= 3 && !isPremium) maybeActivate(context, MSG_AMBASSADOR)
 
         checkReferralUpdates(context)
         cleanupExpiredReferralMessages(context)
     }
+
 
     private fun maybeActivate(context: Context, id: String) {
         val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
@@ -122,6 +127,8 @@ object MessagesStateManager {
         val result = mutableListOf<MessageItem>()
         val now = System.currentTimeMillis()
 
+        val isPremium = prefs.getBoolean("isPremium", true)
+
         fun addIfActive(id: String, titleRes: Int, bodyRes: Int) {
             val hasAction = prefs.getLong(kLastAction(id), 0L) > 0L
             if (hasAction) return
@@ -137,7 +144,9 @@ object MessagesStateManager {
         }
 
         addIfActive(MSG_RATE, R.string.rate_title, R.string.rate_body)
-        addIfActive(MSG_AMBASSADOR, R.string.ambassador_title, R.string.ambassador_body)
+        if (!isPremium) {
+            addIfActive(MSG_AMBASSADOR, R.string.ambassador_title, R.string.ambassador_body)
+        }
 
         addReferralMessagesIfActive(result, prefs, now)
 
@@ -171,7 +180,9 @@ object MessagesStateManager {
     fun hasGlobalRedDot(context: Context): Boolean {
         val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
         val now = System.currentTimeMillis()
-        val ids = listOf(MSG_RATE, MSG_AMBASSADOR)
+        val isPremium = prefs.getBoolean("isPremium", true)
+        val ids = if (isPremium) listOf(MSG_RATE) else listOf(MSG_RATE, MSG_AMBASSADOR)
+
 
         var anyUnread = false
         var anyNeverOpenedIgnored = false
