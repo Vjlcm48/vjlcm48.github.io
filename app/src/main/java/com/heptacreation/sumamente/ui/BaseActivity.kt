@@ -68,7 +68,6 @@ abstract class BaseActivity : AppCompatActivity()  {
 
         data class Combo(val smJuego: String, val smGrado: String, val fsGame: String, val fsDiff: String)
 
-
         val combos: List<Combo> = listOf(
             Combo("NumerosPlus","Principiante","NUMEROS_PLUS","PRINCIPIANTE"),
             Combo("NumerosPlus","Avanzado","NUMEROS_PLUS","AVANZADO"),
@@ -100,7 +99,7 @@ abstract class BaseActivity : AppCompatActivity()  {
         for (c in combos) {
             val maxCompleted = ScoreManager.getMaxLevelForCombo(c.smJuego, c.smGrado)
             if (maxCompleted <= 0) continue
-            val unlocked = maxCompleted + 1  // +1: nivel recién desbloqueado (tu regla)
+            val unlocked = maxCompleted + 1
 
             if (unlocked > bestUnlocked) {
                 bestUnlocked = unlocked
