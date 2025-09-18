@@ -65,12 +65,15 @@ class SumamenteFirebaseMessagingService : FirebaseMessagingService() {
             "notif_first_days_welcome" -> getString(R.string.notif_first_days_welcome)
 
             "notif_mind_miss" -> {
+                Log.d("FCM_DEBUG", "Raw data: ${remoteMessage.data}")
                 val levelNum = remoteMessage.data["level"]?.toIntOrNull() ?: 1
                 val game = remoteMessage.data["game"] ?: ""
                 val difficulty = remoteMessage.data["difficulty"] ?: ""
-                getString(R.string.notif_mind_miss, levelNum, game, difficulty)
+                Log.d("FCM_DEBUG", "Parsed: level=$levelNum, game='$game', difficulty='$difficulty'")
+                val finalMessage = getString(R.string.notif_mind_miss, levelNum, game, difficulty)
+                Log.d("FCM_DEBUG", "Final message: '$finalMessage'")
+                finalMessage
             }
-
             "notif_level_unlocked" -> {
                 val levelNum = remoteMessage.data["level"]?.toIntOrNull() ?: 1
                 val game = remoteMessage.data["game"] ?: ""

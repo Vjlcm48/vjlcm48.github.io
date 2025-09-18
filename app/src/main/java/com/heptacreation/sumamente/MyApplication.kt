@@ -1,22 +1,43 @@
 package com.heptacreation.sumamente
 
 import android.app.Application
+import androidx.core.content.edit
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ProcessLifecycleOwner
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.messaging.FirebaseMessaging
 import com.heptacreation.sumamente.ui.ScoreManager
 import com.heptacreation.sumamente.ui.utils.PlayStoreReferrerReceiver
-import androidx.core.content.edit
-import com.google.firebase.firestore.SetOptions
 
 class MyApplication : Application() {
+
+
     override fun onCreate() {
         super.onCreate()
-        com.google.firebase.FirebaseApp.initializeApp(this)
 
+        FirebaseApp.initializeApp(this)
         ScoreManager.init(this)
 
+        ProcessLifecycleOwner.get().lifecycle.addObserver(object : DefaultLifecycleObserver {
+            override fun onStart(owner: LifecycleOwner) {
+
+                setAppState("abierta")
+                updateLastActive()
+            }
+
+            override fun onStop(owner: LifecycleOwner) {
+
+                setAppState("cerrada")
+            }
+        })
+
         inicializarUsuarioUnico()
+
 
         val prefsReferral = getSharedPreferences("ReferralPrefs", MODE_PRIVATE)
         if (!prefsReferral.getBoolean("install_referrer_captured", false)) {
@@ -25,18 +46,35 @@ class MyApplication : Application() {
         }
     }
 
+    private fun setAppState(state: String) {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        FirebaseFirestore.getInstance()
+            .collection("usuarios")
+            .document(uid)
+            .set(mapOf("appState" to state), SetOptions.merge())
+            .addOnSuccessListener { android.util.Log.d("AppState", "appState=$state") }
+            .addOnFailureListener { e -> android.util.Log.e("AppState", "Error appState", e) }
+    }
+
+    private fun updateLastActive() {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        FirebaseFirestore.getInstance()
+            .collection("usuarios")
+            .document(uid)
+            .set(mapOf("lastActive" to FieldValue.serverTimestamp()), SetOptions.merge())
+            .addOnSuccessListener { android.util.Log.d("AppState", "lastActive actualizado") }
+            .addOnFailureListener { e -> android.util.Log.e("AppState", "Error lastActive", e) }
+    }
+
     private fun inicializarUsuarioUnico() {
         val auth = FirebaseAuth.getInstance()
 
-        if (auth.currentUser == null) {
-
+        if (auth.currentUser == null && !verificarUsuarioPersistente()) {
             auth.signInAnonymously()
                 .addOnSuccessListener { authResult ->
                     val userId = authResult.user?.uid
                     android.util.Log.d("AuthInit", "Usuario anónimo creado: $userId")
-
                     if (userId != null) {
-
                         crearDocumentoUsuarioCompleto(userId)
                     } else {
                         android.util.Log.e("AuthInit", "Usuario creado pero UID es nulo")
@@ -55,14 +93,13 @@ class MyApplication : Application() {
     }
 
     private fun crearDocumentoUsuarioCompleto(userId: String) {
-
         FirebaseMessaging.getInstance().token
             .addOnSuccessListener { token ->
-
                 val datosCompletos = mapOf(
-                    "lastActive" to com.google.firebase.firestore.FieldValue.serverTimestamp(),
+                    "createdAt" to FieldValue.serverTimestamp(),
+                    "lastActive" to FieldValue.serverTimestamp(),
                     "fcmToken" to token,
-                    "createdAt" to com.google.firebase.firestore.FieldValue.serverTimestamp()
+                    "appState" to "abierta"
                 )
 
                 FirebaseFirestore.getInstance()
@@ -70,7 +107,8 @@ class MyApplication : Application() {
                     .document(userId)
                     .set(datosCompletos, SetOptions.merge())
                     .addOnSuccessListener {
-                        android.util.Log.d("AuthInit", "Usuario completo creado con token: $userId")
+                        android.util.Log.d("AuthInit", "Usuario completo creado: $userId")
+                        guardarUsuarioPersistente(userId)
                     }
                     .addOnFailureListener { e ->
                         android.util.Log.e("AuthInit", "Error creando usuario completo", e)
@@ -78,7 +116,7 @@ class MyApplication : Application() {
             }
             .addOnFailureListener { e ->
                 android.util.Log.e("AuthInit", "Error obteniendo token FCM para nuevo usuario", e)
-                // Crear usuario sin token por ahora
+
                 actualizarDatosUsuarioExistente(userId)
             }
     }
@@ -88,16 +126,19 @@ class MyApplication : Application() {
             .collection("usuarios")
             .document(userId)
             .set(
-                mapOf("lastActive" to com.google.firebase.firestore.FieldValue.serverTimestamp()),
+                mapOf(
+                    "lastActive" to FieldValue.serverTimestamp(),
+                    "appState" to "abierta"
+                ),
                 SetOptions.merge()
             )
             .addOnSuccessListener {
-                android.util.Log.d("AuthInit", "lastActive actualizado para: $userId")
-                // Solo después de actualizar datos, obtener/actualizar token
+                android.util.Log.d("AuthInit", "lastActive/appState actualizados: $userId")
+                guardarUsuarioPersistente(userId)
                 obtenerYActualizarToken(userId)
             }
             .addOnFailureListener { e ->
-                android.util.Log.e("AuthInit", "Error actualizando lastActive", e)
+                android.util.Log.e("AuthInit", "Error actualizando lastActive/appState", e)
             }
     }
 
@@ -109,14 +150,24 @@ class MyApplication : Application() {
                     .document(userId)
                     .set(mapOf("fcmToken" to token), SetOptions.merge())
                     .addOnSuccessListener {
-                        android.util.Log.d("AuthInit", "Token actualizado para usuario existente: $userId")
+                        android.util.Log.d("AuthInit", "Token FCM actualizado: $userId")
                     }
                     .addOnFailureListener { e ->
-                        android.util.Log.e("AuthInit", "Error actualizando token", e)
+                        android.util.Log.e("AuthInit", "Error actualizando token FCM", e)
                     }
             }
             .addOnFailureListener { e ->
                 android.util.Log.e("AuthInit", "Error obteniendo token FCM", e)
             }
+    }
+
+    private fun verificarUsuarioPersistente(): Boolean {
+        val prefs = getSharedPreferences("AuthPrefs", MODE_PRIVATE)
+        return prefs.getString("saved_uid", null) != null
+    }
+
+    private fun guardarUsuarioPersistente(uid: String) {
+        val prefs = getSharedPreferences("AuthPrefs", MODE_PRIVATE)
+        prefs.edit { putString("saved_uid", uid) }
     }
 }

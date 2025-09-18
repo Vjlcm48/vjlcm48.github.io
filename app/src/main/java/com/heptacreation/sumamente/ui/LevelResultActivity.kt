@@ -182,6 +182,9 @@ class LevelResultActivity : BaseActivity()  {
 
         ScoreManager.saveScore()
 
+        // Actualizar mejor juego si corresponde
+        checkAndUpdateBestGame()
+
         verificarMedallasAntesDeMostrarExito()
 
         val factor = obtenerFactorCorreccion(currentLevel)

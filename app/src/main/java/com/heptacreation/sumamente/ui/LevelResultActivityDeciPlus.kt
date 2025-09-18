@@ -169,6 +169,8 @@ class LevelResultActivityDeciPlus : BaseActivity()  {
 
         ScoreManager.saveScoreDeciPlus()
 
+        checkAndUpdateBestGame()
+
         verificarMedallasAntesDeMostrarExito()
 
         val factor = obtenerFactorCorreccion(currentLevel)

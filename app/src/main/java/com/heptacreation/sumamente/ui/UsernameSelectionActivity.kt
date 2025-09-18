@@ -103,19 +103,12 @@ class UsernameSelectionActivity : BaseActivity() {
                 val auth = FirebaseAuth.getInstance()
                 val user = auth.currentUser
 
-                if (user == null || user.isAnonymous) {
-
-                    if (user != null) {
-                        user.delete().addOnCompleteListener {
-
-                            createUsernameAndUserData(username)
-                        }
-                    } else {
-                        createUsernameAndUserData(username)
-                    }
-                } else {
+                if (user != null) {
 
                     saveUsernameAndUserData(username, user.uid)
+                } else {
+
+                    handleAuthenticationError()
                 }
             }, 1500)
 
@@ -159,26 +152,6 @@ class UsernameSelectionActivity : BaseActivity() {
         endIconView?.let { animateError(it) }
     }
 
-    private fun createUsernameAndUserData(username: String) {
-        val auth = FirebaseAuth.getInstance()
-        Log.d("USERNAME_DEBUG", "Iniciando autenticación anónima...")
-
-        auth.signInAnonymously()
-            .addOnSuccessListener { authResult ->
-                val uid = authResult.user?.uid
-                Log.d("USERNAME_DEBUG", "Autenticación anónima exitosa. UID: $uid")
-                if (uid != null) {
-                    saveUsernameAndUserData(username, uid)
-                } else {
-                    handleAuthenticationError()
-                }
-            }
-            .addOnFailureListener {
-                Log.e("USERNAME_DEBUG", "Error en autenticación anónima")
-                handleAuthenticationError()
-            }
-    }
-
     private fun saveUsernameAndUserData(username: String, uid: String) {
         Log.d("USERNAME_DEBUG", "Guardando username '$username' con UID '$uid' en ambas colecciones")
         val firestore = FirebaseFirestore.getInstance()
@@ -189,7 +162,7 @@ class UsernameSelectionActivity : BaseActivity() {
         )
         val userData = hashMapOf(
             "username" to username,
-            "createdAt" to com.google.firebase.firestore.FieldValue.serverTimestamp()
+            "lastUpdate" to com.google.firebase.firestore.FieldValue.serverTimestamp()
         )
 
         val batch = firestore.batch()
