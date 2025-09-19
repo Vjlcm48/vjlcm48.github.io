@@ -27,6 +27,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.enableEdgeToEdge
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.heptacreation.sumamente.R
@@ -76,6 +77,7 @@ class GameActivityPrincipiante : BaseActivity()  {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_game)

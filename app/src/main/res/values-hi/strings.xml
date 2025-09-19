@@ -1554,6 +1554,14 @@
     <string name="game_subtitle_foco_plus">अधिकतम ध्यान दें, संख्याएँ, अक्षर और बहुत कुछ आपका इंतजार कर रहे हैं</string>
 
     <string name="notif_mind_miss">आपका दिमाग आपको याद कर रहा है! 💡 %2$s (%3$s) के लेवल %1$d में जारी रखें और अपनी स्ट्रीक बनाए रखें।</string>
+    <string name="notif_mind_miss_alt_1">चलिए लेवल %1$d को पार करते हैं 💡। क्या आपका दिमाग %2$s (%3$s) को संभाल सकता है 🤔?</string>
+    <string name="notif_mind_miss_alt_2">मजेदार लेवल %1$d आपका इंतजार कर रहा है 🎮। %2$s (%3$s) के लिए तैयार हैं? 😉।</string>
+    <string name="notif_mind_miss_alt_3">लक्ष्य लेवल %1$d है 🏆। %2$s (%3$s) में अपना कौशल दिखाएं ✨।</string>
+    <string name="notif_mind_miss_alt_4">लेवल %1$d के लिए आगे बढ़ें 🧠। %2$s (%3$s) की चुनौती आपका इंतजार कर रही है 💪।</string>
+    <string name="notif_mind_miss_alt_5">%2$s (%3$s) आपके लिए तैयार है 🚀। लेवल %1$d पर जारी रखें 🌟।</string>
+    <string name="notif_mind_miss_alt_6">%2$s (%3$s) में अपनी जीत का सिलसिला न तोड़ें! 🔥। अगला लेवल %1$d है 🎯।</string>
+    <string name="notif_mind_miss_alt_7">%2$s (%3$s) का मज़ा आपको बुला रहा है 🔔। चलिए लेवल %1$d खेलते हैं! 🎉।</string>
+
     <string name="notif_level_unlocked">बधाई हो! 🎉 आपने %2$s (%3$s) में लेवल %1$d अनलॉक कर लिया है। अगले चैलेंज के लिए तैयार हैं?</string>
     <string name="notif_inactive_21days">चुनौती से 21 दिन बाहर! ⚡ दिखाओ कि तुम हार नहीं मानते और आज ही वापस एक्शन में आओ।</string>
     <string name="notif_inactive_7days">7 दिन बीत चुके हैं ⏳। क्या आप आज अंक अर्जित करके रैंकिंग में अपनी जगह वापस पाने की चुनौती स्वीकार करते हैं?</string>

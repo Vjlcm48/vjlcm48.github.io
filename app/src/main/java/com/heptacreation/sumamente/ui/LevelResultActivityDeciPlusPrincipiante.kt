@@ -169,7 +169,7 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
 
         ScoreManager.saveScoreDeciPlusPrincipiante()
 
-        checkAndUpdateBestGame()
+        checkAndUpdateBestGame("DeciPlus", "Principiante", currentLevel)
 
         verificarMedallasAntesDeMostrarExito()
 

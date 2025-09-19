@@ -170,7 +170,7 @@ class LevelResultActivityPrincipiante : BaseActivity()  {
         ScoreManager.saveScorePrincipiante()
 
         // Actualizar mejor juego si corresponde
-        checkAndUpdateBestGame()
+        checkAndUpdateBestGame("NumerosPlus", "Principiante", currentLevel)
 
         verificarMedallasAntesDeMostrarExito()
 

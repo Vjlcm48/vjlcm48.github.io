@@ -169,7 +169,7 @@ class LevelResultActivityDeciPlus : BaseActivity()  {
 
         ScoreManager.saveScoreDeciPlus()
 
-        checkAndUpdateBestGame()  ///  esta es al funcion que se llama en BaseActivity
+        checkAndUpdateBestGame("DeciPlus", "Avanzado", currentLevel)
 
         verificarMedallasAntesDeMostrarExito()
 

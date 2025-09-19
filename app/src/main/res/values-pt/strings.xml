@@ -1470,6 +1470,14 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
     <string name="game_subtitle_foco_plus">Presta atenção máxima, números, letras e mais te esperam</string>
 
     <string name="notif_mind_miss">Sua mente sente sua falta! 💡 Continue no nível %1$d de %2$s (%3$s) e mantenha sua sequência.</string>
+    <string name="notif_mind_miss_alt_1">Vamos vencer o nível %1$d 💡. Sua mente consegue lidar com %2$s (%3$s) 🤔?</string>
+    <string name="notif_mind_miss_alt_2">O nível divertido %1$d espera por você 🎮. Pronto para %2$s (%3$s)? 😉.</string>
+    <string name="notif_mind_miss_alt_3">O objetivo é o nível %1$d 🏆. Mostre sua habilidade em %2$s (%3$s) ✨.</string>
+    <string name="notif_mind_miss_alt_4">Vá para o nível %1$d 🧠. O desafio de %2$s (%3$s) espera por você 💪.</string>
+    <string name="notif_mind_miss_alt_5">%2$s (%3$s) está pronto para você 🚀. Continue no nível %1$d 🌟.</string>
+    <string name="notif_mind_miss_alt_6">Não perca sua sequência em %2$s (%3$s)! 🔥. O próximo é o nível %1$d 🎯.</string>
+    <string name="notif_mind_miss_alt_7">A diversão de %2$s (%3$s) está te chamando 🔔. Vamos jogar o nível %1$d! 🎉.</string>
+
     <string name="notif_level_unlocked">Parabéns! 🎉 Você desbloqueou o nível %1$d em %2$s (%3$s). Pronto para o próximo desafio?</string>
     <string name="notif_inactive_21days">21 dias fora do desafio! ⚡ Mostre que você não desiste e volte à ação hoje.</string>
     <string name="notif_inactive_7days">Já se passaram 7 dias ⏳. Você aceita o desafio de somar pontos hoje e recuperar seu lugar na classificação?</string>

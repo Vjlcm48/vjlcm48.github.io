@@ -172,7 +172,7 @@ class LevelResultActivityPro : BaseActivity()  {
         ScoreManager.saveScorePro()
 
         // Actualizar mejor juego si corresponde
-        checkAndUpdateBestGame()
+        checkAndUpdateBestGame("NumerosPlus", "Pro", currentLevel)
 
         verificarMedallasAntesDeMostrarExito()
 

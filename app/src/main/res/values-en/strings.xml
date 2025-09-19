@@ -1612,6 +1612,14 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
     <string name="game_subtitle_foco_plus">Pay close attention, numbers, letters and more await you</string>
 
     <string name="notif_mind_miss">Your mind misses you! 💡 Continue on level %1$d of %2$s (%3$s) and keep your streak going.</string>
+    <string name="notif_mind_miss_alt_1">Let\'s beat level %1$d 💡. Can your mind handle %2$s (%3$s) 🤔?</string>
+    <string name="notif_mind_miss_alt_2">Fun level %1$d awaits you 🎮. Ready for %2$s (%3$s)? 😉.</string>
+    <string name="notif_mind_miss_alt_3">The goal is level %1$d 🏆. Show your skill in %2$s (%3$s) ✨.</string>
+    <string name="notif_mind_miss_alt_4">Go for level %1$d 🧠. The challenge of %2$s (%3$s) awaits you 💪.</string>
+    <string name="notif_mind_miss_alt_5">%2$s (%3$s) is ready for you 🚀. Continue at level %1$d 🌟.</string>
+    <string name="notif_mind_miss_alt_6">Don\'t lose your streak in %2$s (%3$s)! 🔥. Next up is level %1$d 🎯.</string>
+    <string name="notif_mind_miss_alt_7">The fun of %2$s (%3$s) is calling you 🔔. Let\'s play level %1$d! 🎉.</string>
+
     <string name="notif_level_unlocked">Congratulations! 🎉 You\'ve unlocked level %1$d in %2$s (%3$s). Ready for the next challenge?</string>
     <string name="notif_inactive_21days">21 days out of the challenge! ⚡ Show that you don\'t give up and get back to the action today.</string>
     <string name="notif_inactive_7days">7 days have passed ⏳. Do you accept the challenge to score points today and reclaim your spot in the ranking?</string>

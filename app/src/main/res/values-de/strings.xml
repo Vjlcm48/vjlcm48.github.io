@@ -1557,6 +1557,14 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
     <string name="game_subtitle_foco_plus">Sei maximal aufmerksam, Zahlen, Buchstaben und mehr warten auf dich</string>
 
     <string name="notif_mind_miss">Dein Verstand vermisst dich! 💡 Mach in Level %1$d von %2$s (%3$s) weiter und behalte deine Serie bei.</string>
+    <string name="notif_mind_miss_alt_1">Lass uns Level %1$d schaffen 💡. Kann dein Verstand %2$s (%3$s) bewältigen 🤔?</string>
+    <string name="notif_mind_miss_alt_2">Das unterhaltsame Level %1$d erwartet dich 🎮. Bereit für %2$s (%3$s)? 😉.</string>
+    <string name="notif_mind_miss_alt_3">Das Ziel ist Level %1$d 🏆. Zeig dein Können in %2$s (%3$s) ✨.</string>
+    <string name="notif_mind_miss_alt_4">Auf zu Level %1$d 🧠. Die Herausforderung von %2$s (%3$s) wartet auf dich 💪.</string>
+    <string name="notif_mind_miss_alt_5">%2$s (%3$s) ist bereit für dich 🚀. Mach weiter in Level %1$d 🌟.</string>
+    <string name="notif_mind_miss_alt_6">Verliere deine Serie in %2$s (%3$s) nicht! 🔥. Das nächste ist Level %1$d 🎯.</string>
+    <string name="notif_mind_miss_alt_7">Der Spaß von %2$s (%3$s) ruft dich 🔔. Lass uns Level %1$d spielen! 🎉.</string>
+
     <string name="notif_level_unlocked">Glückwunsch! 🎉 Du hast Level %1$d in %2$s (%3$s) freigeschaltet. Bereit für die nächste Herausforderung?</string>
     <string name="notif_inactive_21days">21 Tage aus der Challenge! ⚡ Zeig, dass du nicht aufgibst, und komm heute wieder in die Action.</string>
     <string name="notif_inactive_7days">7 Tage sind vergangen ⏳. Nimmst du die Herausforderung an, heute Punkte zu sammeln und deinen Platz in der Rangliste zurückzuerobern?</string>

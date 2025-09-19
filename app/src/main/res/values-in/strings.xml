@@ -1536,6 +1536,14 @@ Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di 
     <string name="game_subtitle_foco_plus">Perhatikan baik-baik, angka, huruf, dan lainnya menanti Anda</string>
 
     <string name="notif_mind_miss">Pikiran Anda merindukan Anda! 💡 Lanjutkan di level %1$d dari %2$s (%3$s) dan pertahankan rentetan Anda.</string>
+    <string name="notif_mind_miss_alt_1">Ayo kalahkan level %1$d 💡. Bisakah pikiranmu menangani %2$s (%3$s) 🤔?</string>
+    <string name="notif_mind_miss_alt_2">Level seru %1$d menantimu 🎮. Siap untuk %2$s (%3$s)? 😉.</string>
+    <string name="notif_mind_miss_alt_3">Tujuannya adalah level %1$d 🏆. Tunjukkan keahlianmu di %2$s (%3$s) ✨.</string>
+    <string name="notif_mind_miss_alt_4">Lanjutkan ke level %1$d 🧠. Tantangan %2$s (%3$s) menantimu 💪.</string>
+    <string name="notif_mind_miss_alt_5">%2$s (%3$s) siap untukmu 🚀. Lanjutkan di level %1$d 🌟.</string>
+    <string name="notif_mind_miss_alt_6">Jangan putus rentetan kemenanganmu di %2$s (%3$s)! 🔥. Berikutnya adalah level %1$d 🎯.</string>
+    <string name="notif_mind_miss_alt_7">Keseruan %2$s (%3$s) memanggilmu 🔔. Ayo mainkan level %1$d! 🎉.</string>
+
     <string name="notif_level_unlocked">Selamat! 🎉 Anda telah membuka level %1$d di %2$s (%3$s). Siap untuk tantangan berikutnya?</string>
     <string name="notif_inactive_21days">21 hari tidak ada di tantangan! ⚡ Tunjukkan bahwa Anda tidak menyerah dan kembali beraksi hari ini.</string>
     <string name="notif_inactive_7days">7 hari telah berlalu ⏳. Apakah Anda menerima tantangan untuk mengumpulkan poin hari ini dan mendapatkan kembali tempat Anda di peringkat?</string>

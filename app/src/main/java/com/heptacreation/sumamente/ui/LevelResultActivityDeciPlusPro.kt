@@ -168,7 +168,7 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
 
         ScoreManager.saveScoreDeciPlusPro()
 
-        checkAndUpdateBestGame()
+        checkAndUpdateBestGame("DeciPlus", "Pro", currentLevel)
 
         verificarMedallasAntesDeMostrarExito()
 

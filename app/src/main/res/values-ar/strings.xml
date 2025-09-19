@@ -1672,6 +1672,14 @@
     <string name="game_subtitle_foco_plus">انتبه جيدًا، الأرقام والحروف والمزيد في انتظارك</string>
 
     <string name="notif_mind_miss">عقلك يشتاق إليك! 💡 استمر في المستوى %1$d من %2$s (%3$s) وحافظ على تقدمك.</string>
+    <string name="notif_mind_miss_alt_1">دعنا نتجاوز المستوى %1$d 💡. هل يمكن لعقلك التعامل مع %2$s (%3$s) 🤔؟</string>
+    <string name="notif_mind_miss_alt_2">المستوى الممتع %1$d في انتظارك 🎮. هل أنت مستعد لـ %2$s (%3$s)؟ 😉.</string>
+    <string name="notif_mind_miss_alt_3">الهدف هو المستوى %1$d 🏆. أظهر مهارتك في %2$s (%3$s) ✨.</string>
+    <string name="notif_mind_miss_alt_4">اذهب إلى المستوى %1$d 🧠. تحدي %2$s (%3$s) في انتظارك 💪.</string>
+    <string name="notif_mind_miss_alt_5">%2$s (%3$s) جاهز لك 🚀. استمر في المستوى %1$d 🌟.</string>
+    <string name="notif_mind_miss_alt_6">لا تفقد سلسلة انتصاراتك في %2$s (%3$s)! 🔥. التالي هو المستوى %1$d 🎯.</string>
+    <string name="notif_mind_miss_alt_7">متعة %2$s (%3$s) تناديك 🔔. هيا نلعب المستوى %1$d! 🎉.</string>
+
     <string name="notif_level_unlocked">تهانينا! 🎉 لقد فتحت المستوى %1$d في %2$s (%3$s). هل أنت مستعد للتحدي التالي؟</string>
     <string name="notif_inactive_21days">21 يومًا خارج التحدي! ⚡ أظهر أنك لا تستسلم وعد إلى العمل اليوم.</string>
     <string name="notif_inactive_7days">لقد مرت 7 أيام ⏳. هل تقبل التحدي وتجمع النقاط اليوم لتستعيد مكانك في التصنيف؟</string>

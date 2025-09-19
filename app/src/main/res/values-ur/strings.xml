@@ -1355,6 +1355,14 @@
     <string name="game_subtitle_foco_plus">زیادہ سے زیادہ توجہ دیں، اعداد، حروف اور بہت کچھ آپ کے منتظر ہیں</string>
 
     <string name="notif_mind_miss">آپ کا دماغ آپ کو یاد کر رہا ہے! 💡 %2$s (%3$s) کے لیول %1$d پر جاری رکھیں اور اپنی کامیابی برقرار رکھیں۔</string>
+    <string name="notif_mind_miss_alt_1">آئیے لیول %1$d کو شکست دیں 💡. کیا آپ کا دماغ %2$s (%3$s) کو سنبھال سکتا ہے 🤔؟</string>
+    <string name="notif_mind_miss_alt_2">مزیدار لیول %1$d آپ کا منتظر ہے 🎮. %2$s (%3$s) کے لیے تیار ہیں؟ 😉.</string>
+    <string name="notif_mind_miss_alt_3">ہدف لیول %1$d ہے 🏆. %2$s (%3$s) میں اپنی مہارت دکھائیں ✨.</string>
+    <string name="notif_mind_miss_alt_4">لیول %1$d کے لیے جائیں 🧠. %2$s (%3$s) کا چیلنج آپ کا منتظر ہے 💪.</string>
+    <string name="notif_mind_miss_alt_5">%2$s (%3$s) آپ کے لیے تیار ہے 🚀. لیول %1$d پر جاری رکھیں 🌟.</string>
+    <string name="notif_mind_miss_alt_6">%2$s (%3$s) میں اپنی جیت کا سلسلہ نہ توڑیں! 🔥. اگلا لیول %1$d ہے 🎯.</string>
+    <string name="notif_mind_miss_alt_7">%2$s (%3$s) کا مزہ آپ کو بلا رہا ہے 🔔. آئیے لیول %1$d کھیلیں! 🎉.</string>
+
     <string name="notif_level_unlocked">مبارک ہو! 🎉 آپ نے %2$s (%3$s) میں لیول %1$d کھول لیا ہے۔ اگلے چیلنج کے لیے تیار ہیں؟</string>
     <string name="notif_inactive_21days">چیلنج سے 21 دن باہر! ⚡ ثابت کریں کہ آپ ہار نہیں مانتے اور آج ہی ایکشن میں واپس آئیں۔</string>
     <string name="notif_inactive_7days">7 دن گزر چکے ہیں ⏳۔ کیا آپ آج پوائنٹس حاصل کرنے اور درجہ بندی میں اپنی جگہ دوبارہ حاصل کرنے کا چیلنج قبول کرتے ہیں؟</string>

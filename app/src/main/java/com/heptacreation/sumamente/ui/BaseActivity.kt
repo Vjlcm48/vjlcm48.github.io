@@ -58,73 +58,106 @@ abstract class BaseActivity : AppCompatActivity()  {
         }
     }
 
-    protected fun checkAndUpdateBestGame() {
-
+    protected fun checkAndUpdateBestGame(juego: String, grado: String, nivelCompletado: Int) {
         val totalLevels = ScoreManager.getTotalUniqueLevelsCompletedAllGames()
         if (totalLevels < 5) return
 
         val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
-        val currentMaxLevel = prefs.getInt("cached_best_level", 0)
 
-        data class Combo(val smJuego: String, val smGrado: String, val fsGame: String, val fsDiff: String)
+        val currentBestGame = prefs.getString("cached_best_game", "")
+        val currentBestLevel = prefs.getInt("cached_best_level", 0)
 
-        val combos: List<Combo> = listOf(
-            Combo("NumerosPlus","Principiante","NUMEROS_PLUS","PRINCIPIANTE"),
-            Combo("NumerosPlus","Avanzado","NUMEROS_PLUS","AVANZADO"),
-            Combo("NumerosPlus","Pro","NUMEROS_PLUS","PRO"),
-            Combo("DeciPlus","Principiante","DECI_PLUS","PRINCIPIANTE"),
-            Combo("DeciPlus","Avanzado","DECI_PLUS","AVANZADO"),
-            Combo("DeciPlus","Pro","DECI_PLUS","PRO"),
-            Combo("Romas","Principiante","ROMAS","PRINCIPIANTE"),
-            Combo("Romas","Avanzado","ROMAS","AVANZADO"),
-            Combo("Romas","Pro","ROMAS","PRO"),
-            Combo("AlfaNumeros","Principiante","ALFA_NUMEROS","PRINCIPIANTE"),
-            Combo("AlfaNumeros","Avanzado","ALFA_NUMEROS","AVANZADO"),
-            Combo("AlfaNumeros","Pro","ALFA_NUMEROS","PRO"),
-            Combo("SumaResta","Principiante","SUMA_RESTA","PRINCIPIANTE"),
-            Combo("SumaResta","Avanzado","SUMA_RESTA","AVANZADO"),
-            Combo("SumaResta","Pro","SUMA_RESTA","PRO"),
-            Combo("MasPlus","Principiante","MAS_PLUS","PRINCIPIANTE"),
-            Combo("MasPlus","Avanzado","MAS_PLUS","AVANZADO"),
-            Combo("MasPlus","Pro","MAS_PLUS","PRO"),
-            Combo("GenioPlus","Principiante","GENIO_PLUS","PRINCIPIANTE"),
-            Combo("GenioPlus","Avanzado","GENIO_PLUS","AVANZADO"),
-            Combo("GenioPlus","Pro","GENIO_PLUS","PRO")
-        )
 
-        var bestFsGame = ""
-        var bestFsDiff = ""
-        var bestUnlocked = 0
-
-        for (c in combos) {
-            val maxCompleted = ScoreManager.getMaxLevelForCombo(c.smJuego, c.smGrado)
-            if (maxCompleted <= 0) continue
-            val unlocked = maxCompleted + 1
-
-            if (unlocked > bestUnlocked) {
-                bestUnlocked = unlocked
-                bestFsGame = c.fsGame
-                bestFsDiff = c.fsDiff
-            } else if (unlocked == bestUnlocked) {
-
-                val currKey = "$bestFsGame#$bestFsDiff"
-                val newKey = "${c.fsGame}#${c.fsDiff}"
-                if (newKey > currKey) {
-                    bestFsGame = c.fsGame
-                    bestFsDiff = c.fsDiff
-                }
-            }
+        val fsGame = when (juego) {
+            "NumerosPlus" -> "NUMEROS_PLUS"
+            "DeciPlus" -> "DECI_PLUS"
+            "Romas" -> "ROMAS"
+            "AlfaNumeros" -> "ALFA_NUMEROS"
+            "SumaResta" -> "SUMA_RESTA"
+            "MasPlus" -> "MAS_PLUS"
+            "GenioPlus" -> "GENIO_PLUS"
+            else -> return
         }
 
-        if (bestUnlocked == 0) return
+        val fsDiff = when (grado) {
+            "Avanzado" -> "AVANZADO"
+            "Principiante" -> "PRINCIPIANTE"
+            "Pro" -> "PRO"
+            else -> return
+        }
 
-        if (bestUnlocked >= currentMaxLevel) {
-            prefs.edit {
-                putString("cached_best_game", bestFsGame)
-                    .putString("cached_best_difficulty", bestFsDiff)
-                    .putInt("cached_best_level", bestUnlocked)
+        val siguienteNivel = nivelCompletado + 1
+
+
+        if (currentBestGame?.isEmpty() == true || currentBestLevel == 0) {
+            data class Combo(val smJuego: String, val smGrado: String, val fsGame: String, val fsDiff: String)
+
+            val combos: List<Combo> = listOf(
+                Combo("AlfaNumeros","Avanzado","ALFA_NUMEROS","AVANZADO"),
+                Combo("AlfaNumeros","Principiante","ALFA_NUMEROS","PRINCIPIANTE"),
+                Combo("AlfaNumeros","Pro","ALFA_NUMEROS","PRO"),
+                Combo("DeciPlus","Avanzado","DECI_PLUS","AVANZADO"),
+                Combo("DeciPlus","Principiante","DECI_PLUS","PRINCIPIANTE"),
+                Combo("DeciPlus","Pro","DECI_PLUS","PRO"),
+                Combo("GenioPlus","Avanzado","GENIO_PLUS","AVANZADO"),
+                Combo("GenioPlus","Principiante","GENIO_PLUS","PRINCIPIANTE"),
+                Combo("GenioPlus","Pro","GENIO_PLUS","PRO"),
+                Combo("MasPlus","Avanzado","MAS_PLUS","AVANZADO"),
+                Combo("MasPlus","Principiante","MAS_PLUS","PRINCIPIANTE"),
+                Combo("MasPlus","Pro","MAS_PLUS","PRO"),
+                Combo("NumerosPlus","Avanzado","NUMEROS_PLUS","AVANZADO"),
+                Combo("NumerosPlus","Principiante","NUMEROS_PLUS","PRINCIPIANTE"),
+                Combo("NumerosPlus","Pro","NUMEROS_PLUS","PRO"),
+                Combo("Romas","Avanzado","ROMAS","AVANZADO"),
+                Combo("Romas","Principiante","ROMAS","PRINCIPIANTE"),
+                Combo("Romas","Pro","ROMAS","PRO"),
+                Combo("SumaResta","Avanzado","SUMA_RESTA","AVANZADO"),
+                Combo("SumaResta","Principiante","SUMA_RESTA","PRINCIPIANTE"),
+                Combo("SumaResta","Pro","SUMA_RESTA","PRO")
+            )
+
+            var bestFsGame = ""
+            var bestFsDiff = ""
+            var bestUnlocked = 0
+
+            for (c in combos) {
+                val maxCompleted = ScoreManager.getMaxLevelForCombo(c.smJuego, c.smGrado)
+                if (maxCompleted <= 0) continue
+                val unlocked = maxCompleted + 1
+
+                if (unlocked > bestUnlocked) {
+                    bestUnlocked = unlocked
+                    bestFsGame = c.fsGame
+                    bestFsDiff = c.fsDiff
+                } else if (unlocked == bestUnlocked) {
+
+                    val currentKey = "${bestFsGame}_${bestFsDiff}"
+                    val newKey = "${c.fsGame}_${c.fsDiff}"
+                    if (newKey < currentKey) {
+                        bestFsGame = c.fsGame
+                        bestFsDiff = c.fsDiff
+                    }
+                }
             }
-            uploadBestGameToFirebase(bestFsGame, bestFsDiff, bestUnlocked)
+
+            if (bestUnlocked > 0) {
+                prefs.edit {
+                    putString("cached_best_game", bestFsGame)
+                    putString("cached_best_difficulty", bestFsDiff)
+                    putInt("cached_best_level", bestUnlocked)
+                }
+                uploadBestGameToFirebase(bestFsGame, bestFsDiff, bestUnlocked)
+            }
+            return
+        }
+
+        if (siguienteNivel >= currentBestLevel) {
+            prefs.edit {
+                putString("cached_best_game", fsGame)
+                putString("cached_best_difficulty", fsDiff)
+                putInt("cached_best_level", siguienteNivel)
+            }
+            uploadBestGameToFirebase(fsGame, fsDiff, siguienteNivel)
         }
     }
 

@@ -1310,6 +1310,14 @@
     <string name="game_subtitle_foco_plus">最大限の注意を払ってください、数字、文字、その他多くのものがあなたを待っています</string>
 
     <string name="notif_mind_miss">あなたの心があなたを恋しがっています！ 💡 %2$s (%3$s) のレベル %1$d を続けて、あなたの連勝を維持しましょう。</string>
+    <string name="notif_mind_miss_alt_1">レベル%1$dをクリアしましょう💡。あなたの頭脳は%2$s (%3$s)に挑戦できますか🤔？</string>
+    <string name="notif_mind_miss_alt_2">楽しいレベル%1$dが待っています🎮。%2$s (%3$s)の準備はいいですか？😉。</string>
+    <string name="notif_mind_miss_alt_3">目標はレベル%1$dです🏆。%2$s (%3$s)で腕前を見せましょう✨。</string>
+    <string name="notif_mind_miss_alt_4">レベル%1$dに挑戦しましょう🧠。%2$s (%3$s)のチャレンジが待っています💪。</string>
+    <string name="notif_mind_miss_alt_5">%2$s (%3$s)が準備完了です🚀。レベル%1$dを続けましょう🌟。</string>
+    <string name="notif_mind_miss_alt_6">%2$s (%3$s)での連勝を止めないでください！🔥。次はレベル%1$dです🎯。</string>
+    <string name="notif_mind_miss_alt_7">%2$s (%3$s)の楽しさがあなたを呼んでいます🔔。レベル%1$dをプレイしましょう！🎉。</string>
+
     <string name="notif_level_unlocked">おめでとうございます！ 🎉 %2$s (%3$s)でレベル%1$dをアンロックしました。次の挑戦の準備はできていますか？</string>
     <string name="notif_inactive_21days">チャレンジから21日経過！ ⚡ あきらめないことを証明して、今日からまた行動に戻ろう。</string>
     <string name="notif_inactive_7days">7日が過ぎました ⏳。今日ポイントを獲得して、ランキングでのあなたの場所を取り戻す挑戦を受け入れますか？</string>

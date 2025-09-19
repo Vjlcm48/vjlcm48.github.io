@@ -1702,6 +1702,14 @@
     <string name="game_subtitle_foco_plus">Presta máxima atención, números, letras y más te esperan</string>
 
     <string name="notif_mind_miss">¡Tu mente te extraña! 💡 Continúa en el nivel %1$d de %2$s (%3$s) y mantén tu racha.</string>
+    <string name="notif_mind_miss_alt_1">Vamos a superar el nivel %1$d 💡. ¿Tu mente puede con %2$s (%3$s) 🤔?</string>
+    <string name="notif_mind_miss_alt_2">Te espera el divertido nivel %1$d 🎮. ¿Listo para %2$s (%3$s)? 😉.</string>
+    <string name="notif_mind_miss_alt_3">El objetivo es el nivel %1$d 🏆. Demuestra tu habilidad en %2$s (%3$s) ✨.</string>
+    <string name="notif_mind_miss_alt_4">Ve por el nivel %1$d 🧠. El desafío de %2$s (%3$s) te espera 💪.</string>
+    <string name="notif_mind_miss_alt_5">%2$s (%3$s) está listo para ti 🚀. Continúa en el nivel %1$d 🌟.</string>
+    <string name="notif_mind_miss_alt_6">¡No pierdas la racha en %2$s (%3$s)! 🔥. El siguiente es el nivel %1$d 🎯.</string>
+    <string name="notif_mind_miss_alt_7">La diversión de %2$s (%3$s) te llama 🔔. ¡A jugar el nivel %1$d! 🎉.</string>
+
     <string name="notif_level_unlocked">¡Felicitaciones! 🎉 Has desbloqueado el nivel %1$d en %2$s (%3$s). ¿Listo para el siguiente reto?</string>
     <string name="notif_inactive_21days">¡21 días fuera del reto! ⚡ Demuestra que no te rindes y vuelve hoy a la acción.</string>
     <string name="notif_inactive_7days">Han pasado 7 días ⏳. ¿Aceptas el reto de sumar puntos hoy y recuperar tu lugar en la clasificación?</string>

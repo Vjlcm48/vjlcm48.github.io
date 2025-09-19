@@ -1306,6 +1306,14 @@
     <string name="game_subtitle_foco_plus">최대한 집중하세요. 숫자, 문자 등이 여러분을 기다립니다</string>
 
     <string name="notif_mind_miss">당신의 마음이 당신을 그리워합니다! 💡 %2$s (%3$s)의 레벨 %1$d에서 계속하고 연속 기록을 유지하세요.</string>
+    <string name="notif_mind_miss_alt_1">레벨 %1$d을 깨봅시다 💡. 당신의 두뇌는 %2$s (%3$s)을 감당할 수 있나요 🤔?</string>
+    <string name="notif_mind_miss_alt_2">재미있는 레벨 %1$d이 당신을 기다립니다 🎮. %2$s (%3$s) 준비됐나요? 😉.</string>
+    <string name="notif_mind_miss_alt_3">목표는 레벨 %1$d입니다 🏆. %2$s (%3$s)에서 실력을 보여주세요 ✨.</string>
+    <string name="notif_mind_miss_alt_4">레벨 %1$d에 도전하세요 🧠. %2$s (%3$s)의 도전이 당신을 기다립니다 💪.</string>
+    <string name="notif_mind_miss_alt_5">%2$s (%3$s)이 준비되었습니다 🚀. 레벨 %1$d에서 계속하세요 🌟.</string>
+    <string name="notif_mind_miss_alt_6">%2$s (%3$s)에서 연승을 놓치지 마세요! 🔥. 다음은 레벨 %1$d입니다 🎯.</string>
+    <string name="notif_mind_miss_alt_7">%2$s (%3$s)의 재미가 당신을 부릅니다 🔔. 레벨 %1$d을 플레이합시다! 🎉.</string>
+
     <string name="notif_level_unlocked">축하합니다! 🎉 %2$s (%3$s)에서 레벨 %1$d를 잠금 해제했습니다. 다음 챌린지를 위한 준비가 되셨나요?</string>
     <string name="notif_inactive_21days">챌린지에서 21일 이탈! ⚡ 포기하지 않는다는 것을 보여주고 오늘 다시 행동으로 돌아오세요.</string>
     <string name="notif_inactive_7days">7일이 지났습니다 ⏳. 오늘 포인트를 획득하여 순위에서 당신의 자리를 되찾는 도전을 받아들이시겠습니까?</string>

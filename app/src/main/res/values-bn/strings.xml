@@ -1345,6 +1345,14 @@
     <string name="game_subtitle_foco_plus">সর্বোচ্চ মনোযোগ দিন, সংখ্যা, অক্ষর এবং আরও অনেক কিছু আপনার জন্য অপেক্ষা করছে</string>
 
     <string name="notif_mind_miss">আপনার মন আপনাকে মিস করছে! 💡 %2$s (%3$s)-এর লেভেল %1$d-এ চালিয়ে যান এবং আপনার ধারাবাহিকতা বজায় রাখুন।</string>
+    <string name="notif_mind_miss_alt_1">চলুন লেভেল %1$d পার করি 💡। আপনার মন কি %2$s (%3$s) সামলাতে পারবে 🤔?</string>
+    <string name="notif_mind_miss_alt_2">মজার লেভেল %1$d আপনার জন্য অপেক্ষা করছে 🎮। %2$s (%3$s)-এর জন্য প্রস্তুত? 😉।</string>
+    <string name="notif_mind_miss_alt_3">লক্ষ্য হল লেভেল %1$d 🏆। %2$s (%3$s)-এ আপনার দক্ষতা দেখান ✨।</string>
+    <string name="notif_mind_miss_alt_4">লেভেল %1$d-এর জন্য যান 🧠। %2$s (%3$s)-এর চ্যালেঞ্জ আপনার জন্য অপেক্ষা করছে 💪।</string>
+    <string name="notif_mind_miss_alt_5">%2$s (%3$s) আপনার জন্য প্রস্তুত 🚀। লেভেল %1$d-এ চালিয়ে যান 🌟।</string>
+    <string name="notif_mind_miss_alt_6">%2$s (%3$s)-এ আপনার জয়ের ধারা হারাবেন না! 🔥। পরবর্তী লেভেল %1$d 🎯।</string>
+    <string name="notif_mind_miss_alt_7">%2$s (%3$s)-এর মজা আপনাকে ডাকছে 🔔। চলুন লেভেল %1$d খেলি! 🎉।</string>
+
     <string name="notif_level_unlocked">অভিনন্দন! 🎉 আপনি %2$s (%3$s)-এ লেভেল %1$d আনলক করেছেন। পরের চ্যালেঞ্জের জন্য প্রস্তুত?</string>
     <string name="notif_inactive_21days">চ্যালেঞ্জ থেকে ২১ দিন দূরে! ⚡ প্রমাণ করুন যে আপনি হাল ছাড়েননি এবং আজই ফিরে আসুন।</string>
     <string name="notif_inactive_7days">৭ দিন হয়ে গেছে ⏳। আপনি কি আজ পয়েন্ট সংগ্রহ করে র‌্যাঙ্কিংয়ে আপনার স্থান ফিরে পাওয়ার চ্যালেঞ্জ গ্রহণ করছেন?</string>

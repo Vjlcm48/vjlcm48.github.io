@@ -1617,6 +1617,14 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
     <string name="game_subtitle_foco_plus">Sois extrêmement attentif, des chiffres, des lettres et bien plus t\'attendent</string>
 
     <string name="notif_mind_miss">Votre esprit vous manque ! 💡 Continuez au niveau %1$d de %2$s (%3$s) et maintenez votre série.</string>
+    <string name="notif_mind_miss_alt_1">Allons battre le niveau %1$d 💡. Votre esprit peut-il gérer %2$s (%3$s) 🤔 ?</string>
+    <string name="notif_mind_miss_alt_2">Le niveau amusant %1$d vous attend 🎮. Prêt pour %2$s (%3$s) ? 😉.</string>
+    <string name="notif_mind_miss_alt_3">L\'objectif est le niveau %1$d 🏆. Montrez votre talent dans %2$s (%3$s) ✨.</string>
+    <string name="notif_mind_miss_alt_4">Visez le niveau %1$d 🧠. Le défi de %2$s (%3$s) vous attend 💪.</string>
+    <string name="notif_mind_miss_alt_5">%2$s (%3$s) est prêt pour vous 🚀. Continuez au niveau %1$d 🌟.</string>
+    <string name="notif_mind_miss_alt_6">Ne perdez pas votre série dans %2$s (%3$s) ! 🔥. Le prochain est le niveau %1$d 🎯.</string>
+    <string name="notif_mind_miss_alt_7">Le plaisir de %2$s (%3$s) vous appelle 🔔. Jouons au niveau %1$d ! 🎉.</string>
+
     <string name="notif_level_unlocked">Félicitations ! 🎉 Vous avez débloqué le niveau %1$d en %2$s (%3$s). Prêt pour le prochain défi ?</string>
     <string name="notif_inactive_21days">21 jours hors du défi ! ⚡ Montrez que vous n\'abandonnez pas et revenez à l\'action aujourd\'hui.</string>
     <string name="notif_inactive_7days">7 jours se sont écoulés ⏳. Acceptez-vous le défi de marquer des points aujourd\'hui pour retrouver votre place dans le classement ?</string>
