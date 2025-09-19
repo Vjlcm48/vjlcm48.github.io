@@ -161,13 +161,12 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
         CondecoracionTracker.marcarNivelConTimestamp("MasPlus", "Principiante", currentLevel)
         CondecoracionTracker.verificarYEntregarPines()
 
-        //if (currentLevel >= ScoreManager.unlockedLevelsMasPlusPrincipiante) {
-        //    ScoreManager.unlockedLevelsMasPlusPrincipiante = currentLevel + 1
-        //}
 
         ScoreManager.resetConsecutiveFailuresMasPlusPrincipiante(currentLevel)
 
         ScoreManager.saveScoreMasPlusPrincipiante()
+
+        checkAndUpdateBestGame("MasPlus", "Principiante", currentLevel)
 
         verificarMedallasAntesDeMostrarExito()
 

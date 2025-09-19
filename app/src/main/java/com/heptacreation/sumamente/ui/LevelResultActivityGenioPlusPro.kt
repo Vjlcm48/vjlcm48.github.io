@@ -148,11 +148,10 @@ class LevelResultActivityGenioPlusPro : BaseActivity()  {
         CondecoracionTracker.marcarNivelConTimestamp("GenioPlus", "Pro", currentLevel)
         CondecoracionTracker.verificarYEntregarPines()
 
-        //if (currentLevel >= ScoreManager.unlockedLevelsGenioPlusPro) {
-        //    ScoreManager.unlockedLevelsGenioPlusPro = currentLevel + 1
-        //}
 
         ScoreManager.saveScoreGenioPlusPro()
+
+        checkAndUpdateBestGame("GenioPlus", "Pro", currentLevel)
 
         verificarMedallasAntesDeMostrarExito()
 

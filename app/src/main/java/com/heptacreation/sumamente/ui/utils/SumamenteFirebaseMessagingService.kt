@@ -83,12 +83,7 @@ class SumamenteFirebaseMessagingService : FirebaseMessagingService() {
 
                 Log.d("FCM_DEBUG", "Parsed: level=$levelNum, game='$game', difficulty='$difficulty'")
 
-                val finalMessage = updatedContext.resources.getString(
-                    R.string.notif_mind_miss,
-                    levelNum,
-                    game,
-                    difficultyLabel
-                )
+                val finalMessage = getRandomMindMissMessage(updatedContext, levelNum, game, difficultyLabel)
 
                 Log.d("FCM_DEBUG", "Final message: '$finalMessage'")
                 finalMessage
@@ -124,6 +119,22 @@ class SumamenteFirebaseMessagingService : FirebaseMessagingService() {
             "PRO"          -> context.resources.getString(R.string.difficulty_pro)
             else           -> code
         }
+    }
+
+    private fun getRandomMindMissMessage(context: Context, levelNum: Int, game: String, difficultyLabel: String): String {
+        val messages = arrayOf(
+            R.string.notif_mind_miss,
+            R.string.notif_mind_miss_alt_1,
+            R.string.notif_mind_miss_alt_2,
+            R.string.notif_mind_miss_alt_3,
+            R.string.notif_mind_miss_alt_4,
+            R.string.notif_mind_miss_alt_5,
+            R.string.notif_mind_miss_alt_6,
+            R.string.notif_mind_miss_alt_7
+        )
+
+        val randomIndex = kotlin.random.Random.nextInt(messages.size)
+        return context.resources.getString(messages[randomIndex], levelNum, game, difficultyLabel)
     }
 
 

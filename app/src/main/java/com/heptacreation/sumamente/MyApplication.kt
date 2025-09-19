@@ -26,8 +26,10 @@ class MyApplication : Application() {
         ProcessLifecycleOwner.get().lifecycle.addObserver(object : DefaultLifecycleObserver {
             override fun onStart(owner: LifecycleOwner) {
 
-                setAppState("abierta")
-                updateLastActive()
+                android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+                    setAppState("abierta")
+                    updateLastActive()
+                }, 1000)
             }
 
             override fun onStop(owner: LifecycleOwner) {
@@ -127,8 +129,7 @@ class MyApplication : Application() {
             .document(userId)
             .set(
                 mapOf(
-                    "lastActive" to FieldValue.serverTimestamp(),
-                    "appState" to "abierta"
+                    "lastActive" to FieldValue.serverTimestamp()
                 ),
                 SetOptions.merge()
             )

@@ -160,11 +160,11 @@ class LevelResultActivityRomasPrincipiante : BaseActivity()  {
         CondecoracionTracker.marcarNivelConTimestamp("Romas", "Principiante", currentLevel)
         CondecoracionTracker.verificarYEntregarPines()
 
-        //if (currentLevel >= ScoreManager.unlockedLevelsRomasPrincipiante) {
-         //   ScoreManager.unlockedLevelsRomasPrincipiante = currentLevel + 1
-        //}
+
 
         ScoreManager.saveScoreRomasPrincipiante()
+
+        checkAndUpdateBestGame("Romas", "Principiante", currentLevel)
 
         verificarMedallasAntesDeMostrarExito()
 

@@ -60,13 +60,33 @@ abstract class BaseActivity : AppCompatActivity()  {
 
     protected fun checkAndUpdateBestGame(juego: String, grado: String, nivelCompletado: Int) {
         val totalLevels = ScoreManager.getTotalUniqueLevelsCompletedAllGames()
-        if (totalLevels < 5) return
+
+        val userId = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid
+        if (userId != null) {
+            if (totalLevels >= 13) {
+                // Cancelar notificaciones
+                com.google.firebase.firestore.FirebaseFirestore.getInstance()
+                    .collection("usuarios")
+                    .document(userId)
+                    .update(mapOf(
+                        "mindMissCounter" to 0,
+                        "cancelMindMissNotifications" to true
+                    ))
+            } else if (totalLevels >= 5) {
+                // Resetear contador si regresó
+                com.google.firebase.firestore.FirebaseFirestore.getInstance()
+                    .collection("usuarios")
+                    .document(userId)
+                    .update("mindMissCounter", 0)
+            }
+        }
+
+        if (totalLevels < 5 || totalLevels >= 13) return
 
         val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
 
         val currentBestGame = prefs.getString("cached_best_game", "")
         val currentBestLevel = prefs.getInt("cached_best_level", 0)
-
 
         val fsGame = when (juego) {
             "NumerosPlus" -> "NUMEROS_PLUS"
