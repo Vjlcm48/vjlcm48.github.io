@@ -1478,10 +1478,42 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
     <string name="notif_mind_miss_alt_6">Não perca sua sequência em %2$s (%3$s)! 🔥. O próximo é o nível %1$d 🎯.</string>
     <string name="notif_mind_miss_alt_7">A diversão de %2$s (%3$s) está te chamando 🔔. Vamos jogar o nível %1$d! 🎉.</string>
 
-    <string name="notif_level_unlocked">Parabéns! 🎉 Você desbloqueou o nível %1$d em %2$s (%3$s). Pronto para o próximo desafio?</string>
-    <string name="notif_inactive_21days">21 dias fora do desafio! ⚡ Mostre que você não desiste e volte à ação hoje.</string>
-    <string name="notif_inactive_7days">Já se passaram 7 dias ⏳. Você aceita o desafio de somar pontos hoje e recuperar seu lugar na classificação?</string>
-    <string name="notif_ranking_position">🔥 Você está na posição %1$d no Ranking Global. Defenda seu lugar antes que o dia termine.</string>
-    <string name="notif_first_days_welcome">Bem-vindo de volta! Seu próximo desafio espera por você! Você tem o que é preciso?🚀</string>
+
+    <string name="notif_first_days_welcome">Bem-vindo(a) de volta! %1$s, você tem o que é 🔥 preciso? 🚀</string>
+    <string name="notif_first_days_welcome_alt_1">Olá, %1$s! Pronto para um novo 💪 desafio? 🤔</string>
+    <string name="notif_first_days_welcome_alt_2">Que bom te ver, %1$s! Sua 🧠 mente estava esperando. ✨</string>
+    <string name="notif_first_days_welcome_alt_3">%1$s, vamos treinar 🚀 essa mente! Começamos? 🎯</string>
+    <string name="notif_first_days_welcome_alt_4">Vamos continuar, %1$s! Seu próximo 🌟 desafio te espera. 🏆</string>
+    <string name="notif_first_days_welcome_alt_5">Olá de novo, %1$s! Mostre 😉 seu grande potencial. 💡</string>
+    <string name="notif_first_days_welcome_alt_6">Sua mente está 🔥 pronta, %1$s. Vamos para a próxima? 🧠</string>
+    <string name="notif_first_days_welcome_alt_7">%1$s, é hora de 🎮 jogar! Você aceita o desafio? 🤓</string>
+
+    <string name="remove_ads_title">Remover anúncios</string>
+    <string name="remove_ads_subtitle">Escolha uma opção</string>
+    <string name="remove_ads_buy_premium">Comprar PREMIUM</string>
+    <string name="remove_ads_remove_free">Remover anúncios grátis</string>
+    <string name="important">IMPORTANTE:</string>
+    <string name="notification_permission_reminder">Ative as notificações do SumaMente \nnas configurações do seu dispositivo \npara receber lembretes.</string>
+
+    <string name="premium_plan_monthly_price">%1$s/mês</string>
+    <string name="premium_plan_quarterly_price">%1$s/a cada 3 meses</string>
+    <string name="premium_plan_semi_price">%1$s/a cada 6 meses</string>
+    <string name="premium_plan_lifetime_price">%1$s/pagamento único</string>
+    <string name="premium_subtitle">Desfrute do SumaMente sem anúncios</string>
+    <string name="premium_benefits_title">Benefícios PREMIUM</string>
+    <string name="premium_benefit_no_ads">Sem anúncios</string>
+    <string name="premium_benefit_support">Suporte prioritário</string>
+    <string name="premium_benefit_early_access">Acesso antecipado a funcionalidades</string>
+    <string name="premium_plan_monthly_title">Mensal</string>
+    <string name="premium_plan_quarterly_title">Trimestral</string>
+    <string name="premium_plan_semi_title">Semestral</string>
+    <string name="premium_plan_lifetime_title">Vitalício</string>
+    <string name="premium_badge_popular">Mais popular</string>
+    <string name="premium_cta_continue">Continuar</string>
+    <string name="premium_cta_restore">Restaurar compras</string>
+    <string name="premium_legal_autorenew">Renova-se automaticamente. Cancele quando quiser no Google Play.</string>
+    <string name="premium_legal_region">O preço pode variar por região e impostos.</string>
+    <string name="premium_terms_privacy">Termos e Privacidade</string>
+    <string name="premium_already_active">A sua conta já é PREMIUM.</string>
 
 </resources>

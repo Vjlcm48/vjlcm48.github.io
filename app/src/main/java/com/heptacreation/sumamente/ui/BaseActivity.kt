@@ -63,25 +63,35 @@ abstract class BaseActivity : AppCompatActivity()  {
 
         val userId = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid
         if (userId != null) {
-            if (totalLevels >= 13) {
-                // Cancelar notificaciones
+            if (totalLevels >= 91) {
+
+                com.google.firebase.firestore.FirebaseFirestore.getInstance()
+                    .collection("usuarios")
+                    .document(userId)
+                    .update(mapOf(
+                        "mindMissCounter" to com.google.firebase.firestore.FieldValue.delete(),
+                        "lastMindMissNotificationSent" to com.google.firebase.firestore.FieldValue.delete(),
+                        "cancelMindMissNotifications" to true
+                    ))
+                    .addOnSuccessListener {
+                        android.util.Log.d("MindMissCleanup", "Campos Mind Miss eliminados definitivamente para $userId (niveles: $totalLevels)")
+                    }
+                    .addOnFailureListener { e ->
+                        android.util.Log.e("MindMissCleanup", "Error eliminando campos Mind Miss", e)
+                    }
+            } else if (totalLevels >= 30) {
+
                 com.google.firebase.firestore.FirebaseFirestore.getInstance()
                     .collection("usuarios")
                     .document(userId)
                     .update(mapOf(
                         "mindMissCounter" to 0,
-                        "cancelMindMissNotifications" to true
+                        "lastMindMissNotificationSent" to com.google.firebase.firestore.FieldValue.delete()
                     ))
-            } else if (totalLevels >= 5) {
-                // Resetear contador si regresó
-                com.google.firebase.firestore.FirebaseFirestore.getInstance()
-                    .collection("usuarios")
-                    .document(userId)
-                    .update("mindMissCounter", 0)
             }
         }
 
-        if (totalLevels < 5 || totalLevels >= 13) return
+        if (totalLevels < 30 || totalLevels >= 91) return
 
         val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
 
@@ -205,6 +215,5 @@ abstract class BaseActivity : AppCompatActivity()  {
                 android.util.Log.e("BestGame", "Error actualizando mejor juego", e)
             }
     }
-
 
 }

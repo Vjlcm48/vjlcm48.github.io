@@ -29,6 +29,9 @@ class MyApplication : Application() {
                 android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
                     setAppState("abierta")
                     updateLastActive()
+
+                    resetWelcomeCounterIfNeeded()
+
                 }, 1000)
             }
 
@@ -170,5 +173,41 @@ class MyApplication : Application() {
     private fun guardarUsuarioPersistente(uid: String) {
         val prefs = getSharedPreferences("AuthPrefs", MODE_PRIVATE)
         prefs.edit { putString("saved_uid", uid) }
+    }
+
+    private fun resetWelcomeCounterIfNeeded() {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
+
+        val totalLevels = ScoreManager.getTotalUniqueLevelsCompletedAllGames()
+        if (totalLevels < 25) {
+            FirebaseFirestore.getInstance()
+                .collection("usuarios")
+                .document(userId)
+                .update(mapOf(
+                    "welcomeMissCounter" to 0,
+                    "lastWelcomeNotificationSent" to FieldValue.delete()
+                ))
+                .addOnSuccessListener {
+                    android.util.Log.d("WelcomeReset", "welcomeMissCounter y lastWelcomeNotificationSent reseteados para $userId (niveles: $totalLevels)")
+                }
+                .addOnFailureListener { e ->
+                    android.util.Log.e("WelcomeReset", "Error reseteando campos welcome", e)
+                }
+        } else {
+
+            FirebaseFirestore.getInstance()
+                .collection("usuarios")
+                .document(userId)
+                .update(mapOf(
+                    "welcomeMissCounter" to FieldValue.delete(),
+                    "lastWelcomeNotificationSent" to FieldValue.delete()
+                ))
+                .addOnSuccessListener {
+                    android.util.Log.d("WelcomeReset", "Campos welcome eliminados definitivamente para $userId (niveles: $totalLevels)")
+                }
+                .addOnFailureListener { e ->
+                    android.util.Log.e("WelcomeReset", "Error eliminando campos welcome", e)
+                }
+        }
     }
 }

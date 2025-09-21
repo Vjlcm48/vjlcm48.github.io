@@ -7,21 +7,27 @@ import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import com.heptacreation.sumamente.R
-import androidx.core.content.ContextCompat
 import com.heptacreation.sumamente.ui.utils.MessagesStateManager
-import androidx.appcompat.widget.AppCompatButton
 
 
 class SettingsActivity : BaseActivity() {
@@ -43,11 +49,13 @@ class SettingsActivity : BaseActivity() {
     private lateinit var linearTheme: LinearLayout
     private lateinit var messagesRedDotSettings: View
     private lateinit var linearMessages: LinearLayout
-
-
+    private lateinit var notificationReminderOverlay: FrameLayout
     private lateinit var appLogo: ImageView
     private var progressDialog: AlertDialog? = null
     private var isReauthenticatingForDelete = false
+    private var hasShownNotificationReminder = false
+    private var initialNotificationState = false
+
 
     companion object {
         const val SOUND_ENABLED = "sound_enabled"
@@ -84,11 +92,12 @@ class SettingsActivity : BaseActivity() {
         itemsContainer.alpha = 0f
 
         startEntranceSequence()
+        setupNotificationReminderLogic()
     }
 
     // TODO PREMIUM FLAG: cambia aquí la fuente de verdad cuando añadas pasarela de pago o backend
     private val isPremium: Boolean
-        get() = sharedPreferences.getBoolean("isPremium", true)
+        get() = sharedPreferences.getBoolean("isPremium", false)
 
     private fun bindViews() {
         appLogo              = findViewById(R.id.app_logo)
@@ -107,6 +116,39 @@ class SettingsActivity : BaseActivity() {
         linearResetProgress  = findViewById(R.id.linear_reset_progress)
         linearLanguage       = findViewById(R.id.linear_language)
         linearTheme          = findViewById(R.id.linear_theme)
+        notificationReminderOverlay = findViewById(R.id.notification_reminder_overlay)
+    }
+
+    private fun areSystemNotificationsEnabled(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+
+            ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.POST_NOTIFICATIONS
+            ) == PackageManager.PERMISSION_GRANTED
+        } else {
+
+            NotificationManagerCompat.from(this).areNotificationsEnabled()
+        }
+    }
+
+    private fun shouldShowNotificationReminder(): Boolean {
+        val userAcceptedNotifications = sharedPreferences.getBoolean(NOTIFICATIONS_ENABLED, false)
+        val systemNotificationsEnabled = areSystemNotificationsEnabled()
+
+        return userAcceptedNotifications && !systemNotificationsEnabled
+    }
+
+    private fun incrementSettingsVisitCounter() {
+        val currentCount = sharedPreferences.getInt("settings_visit_count", 0)
+        val newCount = currentCount + 1
+        sharedPreferences.edit { putInt("settings_visit_count", newCount) }
+    }
+
+    private fun shouldShowReminderForCurrentVisit(): Boolean {
+        val visitCount = sharedPreferences.getInt("settings_visit_count", 0)
+
+        return visitCount <= 19 && visitCount % 2 == 1
     }
 
     private fun startEntranceSequence() {
@@ -177,9 +219,18 @@ class SettingsActivity : BaseActivity() {
                 getString(if (isChecked) R.string.notifications_enabled else R.string.notifications_disabled),
                 Toast.LENGTH_SHORT
             ).show()
-            sharedPreferences.edit { putBoolean(NOTIFICATIONS_ENABLED, isChecked) }
-        }
+            sharedPreferences.edit {
+                putBoolean(NOTIFICATIONS_ENABLED, isChecked)
 
+                if (!isChecked) {
+                    putInt("settings_visit_count", 0)
+                }
+
+                if (isChecked && !initialNotificationState) {
+                    hasShownNotificationReminder = true
+                }
+            }
+        }
     }
 
     private fun setupOptionListeners() {
@@ -200,10 +251,11 @@ class SettingsActivity : BaseActivity() {
                 if (isPremium) {
                     showPremiumAdsInfoDialog()
                 } else {
-                    startActivity(Intent(this, EmbajadorActivity::class.java))
+                    showRemoveAdsDecisionDialog()
                 }
             }
         }
+
         linearHelp.setOnClickListener { view ->
             applyBounceEffect(view) { startActivity(Intent(this, HelpGameSelectionActivity::class.java)) }
         }
@@ -251,6 +303,38 @@ class SettingsActivity : BaseActivity() {
         dialog.show()
     }
 
+    private fun showRemoveAdsDecisionDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_link_unlink_account, null)
+
+        val tvTitle   = dialogView.findViewById<TextView>(R.id.tvDialogTitle)
+        val tvMessage = dialogView.findViewById<TextView>(R.id.tvDialogMessage)
+        val btnLeft   = dialogView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnCancel)
+        val btnRight  = dialogView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnAction)
+
+        tvTitle.setText(R.string.remove_ads_title)
+        tvMessage.setText(R.string.remove_ads_subtitle)
+        btnLeft.setText(R.string.remove_ads_buy_premium)
+        btnRight.setText(R.string.remove_ads_remove_free)
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        btnLeft.setOnClickListener {
+            dialog.dismiss()
+            startActivity(Intent(this, PremiumPlansActivity::class.java))
+        }
+
+        btnRight.setOnClickListener {
+            dialog.dismiss()
+            startActivity(Intent(this, EmbajadorActivity::class.java))
+        }
+        dialog.show()
+    }
+
 
     private fun setupColorAnimationForAds() {
         ValueAnimator.ofArgb(
@@ -277,6 +361,44 @@ class SettingsActivity : BaseActivity() {
         btnCloseSettings.setOnClickListener { view ->
             applyBounceEffect(view) { finish() }
         }
+    }
+
+    private fun setupNotificationReminderLogic() {
+
+        initialNotificationState = sharedPreferences.getBoolean(NOTIFICATIONS_ENABLED, false)
+
+        incrementSettingsVisitCounter()
+
+        if (initialNotificationState && shouldShowNotificationReminder() && shouldShowReminderForCurrentVisit() && !hasShownNotificationReminder) {
+            Handler(Looper.getMainLooper()).postDelayed({
+                showNotificationReminder()
+            }, 2000)
+        }
+    }
+
+    private fun showNotificationReminder() {
+        if (hasShownNotificationReminder) return
+
+        hasShownNotificationReminder = true
+
+        notificationReminderOverlay.bringToFront()
+        notificationReminderOverlay.elevation = 32f
+        notificationReminderOverlay.requestLayout()
+        notificationReminderOverlay.visibility = View.VISIBLE
+
+        findViewById<View>(R.id.notification_reminder_scrim)?.setOnClickListener {
+            hideNotificationReminder()
+        }
+
+        findViewById<ImageView>(R.id.notification_reminder_close)?.setOnClickListener {
+            hideNotificationReminder()
+        }
+
+        findViewById<View>(R.id.notification_reminder_modal_container)?.setOnClickListener { /* consume */ }
+    }
+
+    private fun hideNotificationReminder() {
+        notificationReminderOverlay.visibility = View.GONE
     }
 
     private fun shareApp() {
@@ -436,7 +558,6 @@ class SettingsActivity : BaseActivity() {
         messagesRedDotSettings.visibility = if (visible) View.VISIBLE else View.GONE
     }
 
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (isReauthenticatingForDelete) {
@@ -445,7 +566,7 @@ class SettingsActivity : BaseActivity() {
 
             if (resultCode == RESULT_OK) {
 
-                android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+                Handler(Looper.getMainLooper()).postDelayed({
                     performAccountDeletion()
                 }, 1000)
             }

@@ -27,7 +27,7 @@ class ProfileEditActivity : BaseActivity(), LinkUnlinkAccountDialogFragment.List
 
     // TODO PREMIUM FLAG: cambia aquí la fuente de verdad cuando conectes Firestore o pasarela de pago
     private val isPremium: Boolean
-        get() = sharedPreferences.getBoolean("isPremium", true)
+        get() = sharedPreferences.getBoolean("isPremium", false)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,11 +43,8 @@ class ProfileEditActivity : BaseActivity(), LinkUnlinkAccountDialogFragment.List
         btnLinkUnlink = findViewById(R.id.btn_link_unlink)
         val btnEmbajador = findViewById<AppCompatButton>(R.id.btn_embajador)
 
-        if (isPremium) {
-            btnEmbajador.visibility = View.GONE
-        } else {
-            btnEmbajador.visibility = View.VISIBLE
-        }
+        btnEmbajador.text = getString(R.string.remove_ads_title)
+        btnEmbajador.visibility = View.VISIBLE
 
         val title = findViewById<View>(R.id.title_profile_edit)
 
@@ -85,10 +82,14 @@ class ProfileEditActivity : BaseActivity(), LinkUnlinkAccountDialogFragment.List
 
         btnEmbajador.setOnClickListener {
             applyBounceEffect(it) {
-                val intent = Intent(this, EmbajadorActivity::class.java)
-                startActivity(intent)
+                if (isPremium) {
+                    showPremiumAdsInfoDialog()
+                } else {
+                    showRemoveAdsDecisionDialog()
+                }
             }
         }
+
     }
 
     private fun updateLinkButtonState() {
@@ -131,6 +132,55 @@ class ProfileEditActivity : BaseActivity(), LinkUnlinkAccountDialogFragment.List
                 .start()
         }
     }
+
+    private fun showPremiumAdsInfoDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_canje_exitoso_custom, null)
+        val tvMensaje  = dialogView.findViewById<TextView>(R.id.tv_mensaje_canje)
+        tvMensaje.setText(R.string.mensaje_premium_ads)
+
+        val dialog = androidx.appcompat.app.AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialogView.findViewById<ImageView>(R.id.btn_cerrar_dialog)?.setOnClickListener { dialog.dismiss() }
+        dialogView.findViewById<AppCompatButton>(R.id.btn_entendido)?.setOnClickListener { dialog.dismiss() }
+        dialog.show()
+    }
+
+    private fun showRemoveAdsDecisionDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_link_unlink_account, null)
+
+        val tvTitle   = dialogView.findViewById<TextView>(R.id.tvDialogTitle)
+        val tvMessage = dialogView.findViewById<TextView>(R.id.tvDialogMessage)
+        val btnLeft   = dialogView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnCancel)
+        val btnRight  = dialogView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnAction)
+
+        tvTitle.setText(R.string.remove_ads_title)
+        tvMessage.setText(R.string.remove_ads_subtitle)
+        btnLeft.setText(R.string.remove_ads_buy_premium)
+        btnRight.setText(R.string.remove_ads_remove_free)
+
+        val dialog = androidx.appcompat.app.AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        btnLeft.setOnClickListener {
+            dialog.dismiss()
+            startActivity(Intent(this, PremiumPlansActivity::class.java))
+        }
+
+        btnRight.setOnClickListener {
+            dialog.dismiss()
+            startActivity(Intent(this, EmbajadorActivity::class.java))
+        }
+        dialog.show()
+    }
+
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
         val scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.9f).setDuration(50)

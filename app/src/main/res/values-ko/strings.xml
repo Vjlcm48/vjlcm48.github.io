@@ -1314,10 +1314,42 @@
     <string name="notif_mind_miss_alt_6">%2$s (%3$s)에서 연승을 놓치지 마세요! 🔥. 다음은 레벨 %1$d입니다 🎯.</string>
     <string name="notif_mind_miss_alt_7">%2$s (%3$s)의 재미가 당신을 부릅니다 🔔. 레벨 %1$d을 플레이합시다! 🎉.</string>
 
-    <string name="notif_level_unlocked">축하합니다! 🎉 %2$s (%3$s)에서 레벨 %1$d를 잠금 해제했습니다. 다음 챌린지를 위한 준비가 되셨나요?</string>
-    <string name="notif_inactive_21days">챌린지에서 21일 이탈! ⚡ 포기하지 않는다는 것을 보여주고 오늘 다시 행동으로 돌아오세요.</string>
-    <string name="notif_inactive_7days">7일이 지났습니다 ⏳. 오늘 포인트를 획득하여 순위에서 당신의 자리를 되찾는 도전을 받아들이시겠습니까?</string>
-    <string name="notif_ranking_position">🔥 당신은 글로벌 랭킹 %1$d위에 있습니다. 오늘이 끝나기 전에 당신의 자리를 지키세요.</string>
-    <string name="notif_first_days_welcome">다시 오신 것을 환영합니다! 다음 도전이 당신을 기다리고 있습니다! 당신에게 필요한 것이 있나요?🚀</string>
+
+    <string name="notif_first_days_welcome">다시 오신 것을 환영합니다! %1$s님, 🔥 자질이 있으신가요? 🚀</string>
+    <string name="notif_first_days_welcome_alt_1">안녕하세요, %1$s님! 새로운 💪 도전에 준비되셨나요? 🤔</string>
+    <string name="notif_first_days_welcome_alt_2">만나서 반가워요, %1$s님! 당신의 🧠 두뇌가 기다리고 있었어요. ✨</string>
+    <string name="notif_first_days_welcome_alt_3">%1$s님, 🚀 두뇌를 훈련시켜 봅시다! 시작할까요? 🎯</string>
+    <string name="notif_first_days_welcome_alt_4">계속 나아가요, %1$s님! 당신의 다음 🌟 도전이 기다리고 있어요. 🏆</string>
+    <string name="notif_first_days_welcome_alt_5">다시 안녕하세요, %1$s님! 당신의 😉 엄청난 잠재력을 보여주세요. 💡</string>
+    <string name="notif_first_days_welcome_alt_6">당신의 두뇌는 🔥 준비됐어요, %1$s님. 더 도전해볼까요? 🧠</string>
+    <string name="notif_first_days_welcome_alt_7">%1$s님, 🎮 게임 시간입니다! 도전을 받아들이시겠어요? 🤓</string>
+
+    <string name="remove_ads_title">광고 제거</string>
+    <string name="remove_ads_subtitle">옵션을 선택하세요</string>
+    <string name="remove_ads_buy_premium">프리미엄 구매</string>
+    <string name="remove_ads_remove_free">무료로 광고 제거</string>
+    <string name="important">중요:</string>
+    <string name="notification_permission_reminder">알림을 받으려면 \n기기 설정에서 \nSumaMente 알림을 활성화하세요.</string>
+
+    <string name="premium_plan_monthly_price">₩%1$s/월</string>
+    <string name="premium_plan_quarterly_price">₩%1$s/3개월</string>
+    <string name="premium_plan_semi_price">₩%1$s/6개월</string>
+    <string name="premium_plan_lifetime_price">₩%1$s/평생</string>
+    <string name="premium_subtitle">광고 없이 SumaMente를 즐기세요</string>
+    <string name="premium_benefits_title">PREMIUM 혜택</string>
+    <string name="premium_benefit_no_ads">광고 없음</string>
+    <string name="premium_benefit_support">우선 지원</string>
+    <string name="premium_benefit_early_access">기능 사전 이용</string>
+    <string name="premium_plan_monthly_title">월간</string>
+    <string name="premium_plan_quarterly_title">분기별</string>
+    <string name="premium_plan_semi_title">반기별</string>
+    <string name="premium_plan_lifetime_title">평생</string>
+    <string name="premium_badge_popular">가장 인기 있음</string>
+    <string name="premium_cta_continue">계속하기</string>
+    <string name="premium_cta_restore">구매 복원</string>
+    <string name="premium_legal_autorenew">자동으로 갱신됩니다. Google Play에서 언제든지 취소할 수 있습니다.</string>
+    <string name="premium_legal_region">가격은 지역 및 세금에 따라 다를 수 있습니다.</string>
+    <string name="premium_terms_privacy">약관 및 개인정보 보호</string>
+    <string name="premium_already_active">귀하의 계정은 이미 PREMIUM입니다.</string>
 
 </resources>

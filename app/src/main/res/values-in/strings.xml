@@ -1544,10 +1544,42 @@ Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di 
     <string name="notif_mind_miss_alt_6">Jangan putus rentetan kemenanganmu di %2$s (%3$s)! 🔥. Berikutnya adalah level %1$d 🎯.</string>
     <string name="notif_mind_miss_alt_7">Keseruan %2$s (%3$s) memanggilmu 🔔. Ayo mainkan level %1$d! 🎉.</string>
 
-    <string name="notif_level_unlocked">Selamat! 🎉 Anda telah membuka level %1$d di %2$s (%3$s). Siap untuk tantangan berikutnya?</string>
-    <string name="notif_inactive_21days">21 hari tidak ada di tantangan! ⚡ Tunjukkan bahwa Anda tidak menyerah dan kembali beraksi hari ini.</string>
-    <string name="notif_inactive_7days">7 hari telah berlalu ⏳. Apakah Anda menerima tantangan untuk mengumpulkan poin hari ini dan mendapatkan kembali tempat Anda di peringkat?</string>
-    <string name="notif_ranking_position">🔥 Anda berada di posisi %1$d di Peringkat Global. Pertahankan tempat Anda sebelum hari berakhir.</string>
-    <string name="notif_first_days_welcome">Selamat datang kembali! Tantangan Anda berikutnya menanti! Apakah Anda memiliki apa yang diperlukan?🚀</string>
+
+    <string name="notif_first_days_welcome">Selamat datang kembali! %1$s, apakah kamu punya 🔥 apa yang diperlukan? 🚀</string>
+    <string name="notif_first_days_welcome_alt_1">Halo, %1$s! Siap untuk 💪 tantangan baru? 🤔</string>
+    <string name="notif_first_days_welcome_alt_2">Senang bertemu denganmu, %1$s! Pikiran 🧠 milikmu telah menunggu. ✨</string>
+    <string name="notif_first_days_welcome_alt_3">%1$s, ayo latih 🚀 pikiran itu! Mulai sekarang? 🎯</string>
+    <string name="notif_first_days_welcome_alt_4">Ayo terus maju, %1$s! Tantangan 🌟 berikutnya menantimu. 🏆</string>
+    <string name="notif_first_days_welcome_alt_5">Halo lagi, %1$s! Tunjukkan 😉 potensi besarmu. 💡</string>
+    <string name="notif_first_days_welcome_alt_6">Pikiranmu sudah 🔥 siap, %1$s. Mau lebih lagi? 🧠</string>
+    <string name="notif_first_days_welcome_alt_7">%1$s, saatnya 🎮 bermain! Apakah kamu menerima tantangan? 🤓</string>
+
+    <string name="remove_ads_title">Hapus Iklan</string>
+    <string name="remove_ads_subtitle">Pilih opsi</string>
+    <string name="remove_ads_buy_premium">Beli PREMIUM</string>
+    <string name="remove_ads_remove_free">Hapus iklan gratis</string>
+    <string name="important">PENTING:</string>
+    <string name="notification_permission_reminder">Aktifkan notifikasi SumaMente \ndi pengaturan perangkat Anda \nuntuk menerima pengingat.</string>
+
+    <string name="premium_plan_monthly_price">%1$s/bulan</string>
+    <string name="premium_plan_quarterly_price">%1$s/3 bulan</string>
+    <string name="premium_plan_semi_price">%1$s/6 bulan</string>
+    <string name="premium_plan_lifetime_price">%1$s/sekali bayar</string>
+    <string name="premium_subtitle">Nikmati SumaMente bebas iklan</string>
+    <string name="premium_benefits_title">Keuntungan PREMIUM</string>
+    <string name="premium_benefit_no_ads">Tanpa iklan</string>
+    <string name="premium_benefit_support">Dukungan prioritas</string>
+    <string name="premium_benefit_early_access">Akses awal ke fitur</string>
+    <string name="premium_plan_monthly_title">Bulanan</string>
+    <string name="premium_plan_quarterly_title">Triwulanan</string>
+    <string name="premium_plan_semi_title">Semesteran</string>
+    <string name="premium_plan_lifetime_title">Seumur Hidup</string>
+    <string name="premium_badge_popular">Paling populer</string>
+    <string name="premium_cta_continue">Lanjutkan</string>
+    <string name="premium_cta_restore">Pulihkan pembelian</string>
+    <string name="premium_legal_autorenew">Diperpanjang secara otomatis. Batalkan kapan saja di Google Play.</string>
+    <string name="premium_legal_region">Harga dapat bervariasi berdasarkan wilayah dan pajak.</string>
+    <string name="premium_terms_privacy">Syarat dan Privasi</string>
+    <string name="premium_already_active">Akun Anda sudah PREMIUM.</string>
 
 </resources>

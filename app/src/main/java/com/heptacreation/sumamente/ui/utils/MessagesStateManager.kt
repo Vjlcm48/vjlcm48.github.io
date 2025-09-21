@@ -7,8 +7,8 @@ import com.heptacreation.sumamente.ui.ScoreManager
 
 object MessagesStateManager {
 
-    const val MSG_RATE = "msg_rate"          // 12 niveles
-    const val MSG_AMBASSADOR = "msg_amb"     // 24 niveles
+    const val MSG_RATE = "msg_rate"          // 20 niveles
+    const val MSG_AMBASSADOR = "msg_amb"     // 30 niveles
     const val MSG_REFERRAL_VALIDATED = "msg_referral"
 
     private const val PREFS = "MyPrefs"
@@ -35,10 +35,10 @@ object MessagesStateManager {
         val total = ScoreManager.getTotalUniqueLevelsCompletedAllGames()
 
         val prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val isPremium = prefs.getBoolean("isPremium", true)
+        val isPremium = prefs.getBoolean("isPremium", false)
 
-        if (total >= 2) maybeActivate(context, MSG_RATE)
-        if (total >= 3 && !isPremium) maybeActivate(context, MSG_AMBASSADOR)
+        if (total >= 20) maybeActivate(context, MSG_RATE)
+        if (total >= 30 && !isPremium) maybeActivate(context, MSG_AMBASSADOR)
 
         checkReferralUpdates(context)
         cleanupExpiredReferralMessages(context)
@@ -127,7 +127,7 @@ object MessagesStateManager {
         val result = mutableListOf<MessageItem>()
         val now = System.currentTimeMillis()
 
-        val isPremium = prefs.getBoolean("isPremium", true)
+        val isPremium = prefs.getBoolean("isPremium", false)
 
         fun addIfActive(id: String, titleRes: Int, bodyRes: Int) {
             val hasAction = prefs.getLong(kLastAction(id), 0L) > 0L
@@ -180,7 +180,7 @@ object MessagesStateManager {
     fun hasGlobalRedDot(context: Context): Boolean {
         val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
         val now = System.currentTimeMillis()
-        val isPremium = prefs.getBoolean("isPremium", true)
+        val isPremium = prefs.getBoolean("isPremium", false)
         val ids = if (isPremium) listOf(MSG_RATE) else listOf(MSG_RATE, MSG_AMBASSADOR)
 
 

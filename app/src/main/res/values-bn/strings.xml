@@ -1353,10 +1353,42 @@
     <string name="notif_mind_miss_alt_6">%2$s (%3$s)-এ আপনার জয়ের ধারা হারাবেন না! 🔥। পরবর্তী লেভেল %1$d 🎯।</string>
     <string name="notif_mind_miss_alt_7">%2$s (%3$s)-এর মজা আপনাকে ডাকছে 🔔। চলুন লেভেল %1$d খেলি! 🎉।</string>
 
-    <string name="notif_level_unlocked">অভিনন্দন! 🎉 আপনি %2$s (%3$s)-এ লেভেল %1$d আনলক করেছেন। পরের চ্যালেঞ্জের জন্য প্রস্তুত?</string>
-    <string name="notif_inactive_21days">চ্যালেঞ্জ থেকে ২১ দিন দূরে! ⚡ প্রমাণ করুন যে আপনি হাল ছাড়েননি এবং আজই ফিরে আসুন।</string>
-    <string name="notif_inactive_7days">৭ দিন হয়ে গেছে ⏳। আপনি কি আজ পয়েন্ট সংগ্রহ করে র‌্যাঙ্কিংয়ে আপনার স্থান ফিরে পাওয়ার চ্যালেঞ্জ গ্রহণ করছেন?</string>
-    <string name="notif_ranking_position">🔥 আপনি গ্লোবাল র‌্যাঙ্কিংয়ে %1$dতম অবস্থানে আছেন। দিনের শেষে আগে আপনার স্থান রক্ষা করুন।</string>
-    <string name="notif_first_days_welcome">আবার স্বাগতম! আপনার পরবর্তী চ্যালেঞ্জ আপনার জন্য অপেক্ষা করছে! আপনার কি তা আছে?🚀</string>
+
+    <string name="notif_first_days_welcome">আবার স্বাগতম! %1$s, আপনার কি 🔥 যা প্রয়োজন তা আছে? 🚀</string>
+    <string name="notif_first_days_welcome_alt_1">হ্যালো, %1$s! একটি নতুন 💪 চ্যালেঞ্জের জন্য প্রস্তুত? 🤔</string>
+    <string name="notif_first_days_welcome_alt_2">আপনাকে দেখে ভালো লাগলো, %1$s! আপনার 🧠 মন অপেক্ষা করছিল। ✨</string>
+    <string name="notif_first_days_welcome_alt_3">%1$s, চলুন 🚀 সেই মনকে প্রশিক্ষণ দেওয়া যাক! শুরু করবো? 🎯</string>
+    <string name="notif_first_days_welcome_alt_4">চলুন এগিয়ে যাই, %1$s! আপনার পরবর্তী 🌟 চ্যালেঞ্জ অপেক্ষা করছে। 🏆</string>
+    <string name="notif_first_days_welcome_alt_5">আবারও হ্যালো, %1$s! আপনার 😉 엄청난 সম্ভাবনা দেখান। 💡</string>
+    <string name="notif_first_days_welcome_alt_6">আপনার মন 🔥 প্রস্তুত, %1$s। আরও কিছুর জন্য যাবো? 🧠</string>
+    <string name="notif_first_days_welcome_alt_7">%1$s, এখন 🎮 খেলার সময়! আপনি কি চ্যালেঞ্জ গ্রহণ করেন? 🤓</string>
+
+    <string name="remove_ads_title">বিজ্ঞাপন সরান</string>
+    <string name="remove_ads_subtitle">একটি বিকল্প চয়ন করুন</string>
+    <string name="remove_ads_buy_premium">PREMIUM কিনুন</string>
+    <string name="remove_ads_remove_free">বিনামূল্যে বিজ্ঞাপন সরান</string>
+    <string name="important">গুরুত্বপূর্ণ:</string>
+    <string name="notification_permission_reminder">অনুস্মারক পেতে \nআপনার ডিভাইসের সেটিংসে \nSumaMente বিজ্ঞপ্তি সক্রিয় করুন।</string>
+
+    <string name="premium_plan_monthly_price">%1$s/মাস</string>
+    <string name="premium_plan_quarterly_price">%1$s/৩ মাস অন্তর</string>
+    <string name="premium_plan_semi_price">%1$s/৬ মাস অন্তর</string>
+    <string name="premium_plan_lifetime_price">%1$s/এককালীন</string>
+    <string name="premium_subtitle">বিজ্ঞাপন ছাড়া SumaMente উপভোগ করুন</string>
+    <string name="premium_benefits_title">PREMIUM সুবিধা</string>
+    <string name="premium_benefit_no_ads">কোনো বিজ্ঞাপন নেই</string>
+    <string name="premium_benefit_support">অগ্রাধিকার সাপোর্ট</string>
+    <string name="premium_benefit_early_access">ফিচারে আগাম অ্যাক্সেস</string>
+    <string name="premium_plan_monthly_title">মাসিক</string>
+    <string name="premium_plan_quarterly_title">ত্রৈমাসিক</string>
+    <string name="premium_plan_semi_title">ষাণ্মাসিক</string>
+    <string name="premium_plan_lifetime_title">আজীবন</string>
+    <string name="premium_badge_popular">সবচেয়ে জনপ্রিয়</string>
+    <string name="premium_cta_continue">চালিয়ে যান</string>
+    <string name="premium_cta_restore">কেনাকাটা পুনরুদ্ধার করুন</string>
+    <string name="premium_legal_autorenew">স্বয়ংক্রিয়ভাবে পুনর্নবীকরণ হয়। Google Play-তে যেকোনো সময় বাতিল করুন।</string>
+    <string name="premium_legal_region">অঞ্চল এবং কর অনুযায়ী দাম ভিন্ন হতে পারে।</string>
+    <string name="premium_terms_privacy">শর্তাবলী এবং গোপনীয়তা</string>
+    <string name="premium_already_active">আপনার অ্যাকাউন্টটি ইতিমধ্যেই PREMIUM।</string>
 
 </resources>

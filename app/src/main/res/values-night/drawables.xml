@@ -16,6 +16,7 @@
     <drawable name="button_background_romas">@drawable/button_pro_bordered_dark</drawable>
     <drawable name="button_background_sumalevels">@drawable/button_pro_bordered_dark</drawable>
     <drawable name="button_background_sumaresta">@drawable/button_pro_bordered_dark</drawable>
+    <drawable name="button_background_lifetime">@drawable/button_pro_bordered_dark</drawable>
     <drawable name="button_normal">@drawable/button_pro_bordered_dark</drawable>
     <drawable name="button_grey">@drawable/button_pro_bordered_dark</drawable>
 

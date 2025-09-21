@@ -1710,10 +1710,48 @@
     <string name="notif_mind_miss_alt_6">¡No pierdas la racha en %2$s (%3$s)! 🔥. El siguiente es el nivel %1$d 🎯.</string>
     <string name="notif_mind_miss_alt_7">La diversión de %2$s (%3$s) te llama 🔔. ¡A jugar el nivel %1$d! 🎉.</string>
 
-    <string name="notif_level_unlocked">¡Felicitaciones! 🎉 Has desbloqueado el nivel %1$d en %2$s (%3$s). ¿Listo para el siguiente reto?</string>
-    <string name="notif_inactive_21days">¡21 días fuera del reto! ⚡ Demuestra que no te rindes y vuelve hoy a la acción.</string>
-    <string name="notif_inactive_7days">Han pasado 7 días ⏳. ¿Aceptas el reto de sumar puntos hoy y recuperar tu lugar en la clasificación?</string>
-    <string name="notif_ranking_position">🔥 Estás en el puesto %1$d del Ranking Global. Defiende tu lugar antes de que acabe el día.</string>
-    <string name="notif_first_days_welcome">¡Bienvenido de nuevo! ¡Tu próximo reto te espera! ¿Tienes lo necesario?🚀</string>
+    <string name="notif_first_days_welcome">¡Bienvenido de nuevo! %1$s, ¿tienes 🔥 lo necesario? 🚀</string>
+    <string name="notif_first_days_welcome_alt_1">¡Hola, %1$s! ¿Listo para un nuevo 💪 desafío? 🤔</string>
+    <string name="notif_first_days_welcome_alt_2">¡Qué bueno verte, %1$s! Tu 🧠 mente te esperaba. ✨</string>
+    <string name="notif_first_days_welcome_alt_3">%1$s, ¡a entrenar 🚀 esa mente! ¿Empezamos? 🎯</string>
+    <string name="notif_first_days_welcome_alt_4">¡Sigamos adelante, %1$s! Tu próximo 🌟 reto te espera. 🏆</string>
+    <string name="notif_first_days_welcome_alt_5">¡Hola de nuevo, %1$s! Demuestra 😉 tu gran potencial. 💡</string>
+    <string name="notif_first_days_welcome_alt_6">Tu mente está 🔥 lista, %1$s. ¿Vamos por más? 🧠</string>
+    <string name="notif_first_days_welcome_alt_7">%1$s, ¡es hora de 🎮 jugar! ¿Aceptas el reto? 🤓</string>
+
+    <string name="remove_ads_title">Quitar publicidad</string>
+    <string name="remove_ads_subtitle">Elige una opción</string>
+    <string name="remove_ads_buy_premium">Comprar PREMIUM</string>
+    <string name="remove_ads_remove_free">Eliminar publicidad gratis</string>
+    <string name="important">IMPORTANTE:</string>
+    <string name="notification_permission_reminder">Activa las notificaciones de SumaMente \nen la configuración de tu dispositivo \npara recibir recordatorios.</string>
+
+    <string name="premium_plan_monthly_price">%1$s/mes</string>
+    <string name="premium_plan_quarterly_price">%1$s/cada 3 meses</string>
+    <string name="premium_plan_semi_price">%1$s/cada 6 meses</string>
+    <string name="premium_plan_lifetime_price">%1$s/pago único</string>
+    <string name="premium_subtitle">Disfruta SumaMente sin anuncios</string>
+    <string name="premium_benefits_title">Beneficios de PREMIUM</string>
+    <string name="premium_benefit_no_ads">Sin anuncios</string>
+    <string name="premium_benefit_support">Soporte prioritario</string>
+    <string name="premium_benefit_early_access">Acceso anticipado a funciones</string>
+    <string name="premium_plan_monthly_title">Mensual</string>
+    <string name="premium_plan_quarterly_title">Trimestral</string>
+    <string name="premium_plan_semi_title">Semestral</string>
+    <string name="premium_plan_lifetime_title">Lifetime</string>
+    <string name="premium_badge_popular">Más popular</string>
+    <string name="premium_cta_continue">Continuar</string>
+    <string name="premium_cta_restore">Restaurar compras</string>
+    <string name="premium_legal_autorenew">Se renueva automáticamente. Cancela cuando quieras en Google Play.</string>
+    <string name="premium_legal_region">El precio puede variar según región e impuestos.</string>
+    <string name="premium_terms_privacy">Términos y Privacidad</string>
+    <string name="premium_already_active">Tu cuenta ya es PREMIUM.</string>
+
+    <string name="premium_price_monthly" translatable="false">$4.99</string>
+    <string name="premium_price_quarterly" translatable="false">$13.99</string>
+    <string name="premium_price_semi" translatable="false">$23.99</string>
+    <string name="premium_price_lifetime" translatable="false">$89.99</string>
+    <string name="premium_title" translatable="false">PREMIUM</string>
+
 
 </resources>

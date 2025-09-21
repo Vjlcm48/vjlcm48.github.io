@@ -1565,10 +1565,42 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
     <string name="notif_mind_miss_alt_6">Verliere deine Serie in %2$s (%3$s) nicht! 🔥. Das nächste ist Level %1$d 🎯.</string>
     <string name="notif_mind_miss_alt_7">Der Spaß von %2$s (%3$s) ruft dich 🔔. Lass uns Level %1$d spielen! 🎉.</string>
 
-    <string name="notif_level_unlocked">Glückwunsch! 🎉 Du hast Level %1$d in %2$s (%3$s) freigeschaltet. Bereit für die nächste Herausforderung?</string>
-    <string name="notif_inactive_21days">21 Tage aus der Challenge! ⚡ Zeig, dass du nicht aufgibst, und komm heute wieder in die Action.</string>
-    <string name="notif_inactive_7days">7 Tage sind vergangen ⏳. Nimmst du die Herausforderung an, heute Punkte zu sammeln und deinen Platz in der Rangliste zurückzuerobern?</string>
-    <string name="notif_ranking_position">🔥 Du bist auf Platz %1$d der globalen Rangliste. Verteidige deinen Platz, bevor der Tag endet.</string>
-    <string name="notif_first_days_welcome">Willkommen zurück! Deine nächste Herausforderung wartet auf dich! Hast du das Zeug dazu?🚀</string>
+
+    <string name="notif_first_days_welcome">Willkommen zurück! %1$s, hast du das 🔥 Zeug dazu? 🚀</string>
+    <string name="notif_first_days_welcome_alt_1">Hallo, %1$s! Bereit für eine neue 💪 Herausforderung? 🤔</string>
+    <string name="notif_first_days_welcome_alt_2">Schön, dich zu sehen, %1$s! Dein 🧠 Verstand hat gewartet. ✨</string>
+    <string name="notif_first_days_welcome_alt_3">%1$s, lass uns 🚀 diesen Verstand trainieren! Sollen wir anfangen? 🎯</string>
+    <string name="notif_first_days_welcome_alt_4">Machen wir weiter, %1$s! Deine nächste 🌟 Herausforderung wartet. 🏆</string>
+    <string name="notif_first_days_welcome_alt_5">Hallo nochmal, %1$s! Zeig 😉 dein großes Potenzial. 💡</string>
+    <string name="notif_first_days_welcome_alt_6">Dein Verstand ist 🔥 bereit, %1$s. Lust auf mehr? 🧠</string>
+    <string name="notif_first_days_welcome_alt_7">%1$s, es ist 🎮 Zeit zu spielen! Nimmst du die Herausforderung an? 🤓</string>
+
+    <string name="remove_ads_title">Werbung entfernen</string>
+    <string name="remove_ads_subtitle">Wähle eine Option</string>
+    <string name="remove_ads_buy_premium">PREMIUM kaufen</string>
+    <string name="remove_ads_remove_free">Werbung kostenlos entfernen</string>
+    <string name="important">WICHTIG:</string>
+    <string name="notification_permission_reminder">Aktiviere die Benachrichtigungen von SumaMente \nin den Einstellungen deines Geräts, \num Erinnerungen zu erhalten.</string>
+
+    <string name="premium_plan_monthly_price">%1$s/Monat</string>
+    <string name="premium_plan_quarterly_price">%1$s/alle 3 Monate</string>
+    <string name="premium_plan_semi_price">%1$s/alle 6 Monate</string>
+    <string name="premium_plan_lifetime_price">%1$s/einmalig</string>
+    <string name="premium_subtitle">Genieße SumaMente ohne Werbung</string>
+    <string name="premium_benefits_title">PREMIUM-Vorteile</string>
+    <string name="premium_benefit_no_ads">Keine Werbung</string>
+    <string name="premium_benefit_support">Bevorzugter Support</string>
+    <string name="premium_benefit_early_access">Früherer Zugang zu Funktionen</string>
+    <string name="premium_plan_monthly_title">Monatlich</string>
+    <string name="premium_plan_quarterly_title">Vierteljährlich</string>
+    <string name="premium_plan_semi_title">Halbjährlich</string>
+    <string name="premium_plan_lifetime_title">Lebenslang</string>
+    <string name="premium_badge_popular">Am beliebtesten</string>
+    <string name="premium_cta_continue">Weiter</string>
+    <string name="premium_cta_restore">Käufe wiederherstellen</string>
+    <string name="premium_legal_autorenew">Verlängert sich automatisch. Jederzeit bei Google Play kündbar.</string>
+    <string name="premium_legal_region">Preis kann je nach Region und Steuern variieren.</string>
+    <string name="premium_terms_privacy">Bedingungen und Datenschutz</string>
+    <string name="premium_already_active">Dein Konto ist bereits PREMIUM.</string>
 
 </resources>

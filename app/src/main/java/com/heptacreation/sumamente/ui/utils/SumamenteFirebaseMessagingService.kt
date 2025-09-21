@@ -64,14 +64,13 @@ class SumamenteFirebaseMessagingService : FirebaseMessagingService() {
         val title = updatedContext.resources.getString(R.string.app_name)
 
         val message = when (key) {
-            "notif_inactive_21days" ->
-                updatedContext.resources.getString(R.string.notif_inactive_21days)
 
-            "notif_inactive_7days" ->
-                updatedContext.resources.getString(R.string.notif_inactive_7days)
 
-            "notif_first_days_welcome" ->
-                updatedContext.resources.getString(R.string.notif_first_days_welcome)
+            "notif_first_days_welcome" -> {
+                val username = remoteMessage.data["username"] ?: ""
+                Log.d("FCM_DEBUG", "Welcome message received for username: '$username'")
+                getRandomWelcomeMessage(updatedContext, username)
+            }
 
             "notif_mind_miss" -> {
                 Log.d("FCM_DEBUG", "Raw data: ${remoteMessage.data}")
@@ -89,22 +88,6 @@ class SumamenteFirebaseMessagingService : FirebaseMessagingService() {
                 finalMessage
             }
 
-            "notif_level_unlocked" -> {
-                val levelNum = remoteMessage.data["level"]?.toIntOrNull() ?: 1
-                val game = remoteMessage.data["game"] ?: ""
-                val difficulty = remoteMessage.data["difficulty"] ?: ""
-                updatedContext.resources.getString(
-                    R.string.notif_level_unlocked,
-                    levelNum,
-                    game,
-                    difficulty
-                )
-            }
-
-            "notif_ranking_position" -> {
-                val posNum = remoteMessage.data["position"]?.toIntOrNull() ?: 0
-                updatedContext.resources.getString(R.string.notif_ranking_position, posNum)
-            }
 
             else -> return
         }
@@ -135,6 +118,22 @@ class SumamenteFirebaseMessagingService : FirebaseMessagingService() {
 
         val randomIndex = kotlin.random.Random.nextInt(messages.size)
         return context.resources.getString(messages[randomIndex], levelNum, game, difficultyLabel)
+    }
+
+    private fun getRandomWelcomeMessage(context: Context, username: String): String {
+        val messages = arrayOf(
+            R.string.notif_first_days_welcome,
+            R.string.notif_first_days_welcome_alt_1,
+            R.string.notif_first_days_welcome_alt_2,
+            R.string.notif_first_days_welcome_alt_3,
+            R.string.notif_first_days_welcome_alt_4,
+            R.string.notif_first_days_welcome_alt_5,
+            R.string.notif_first_days_welcome_alt_6,
+            R.string.notif_first_days_welcome_alt_7
+        )
+
+        val randomIndex = kotlin.random.Random.nextInt(messages.size)
+        return context.resources.getString(messages[randomIndex], username)
     }
 
 

@@ -1318,10 +1318,42 @@
     <string name="notif_mind_miss_alt_6">%2$s (%3$s)での連勝を止めないでください！🔥。次はレベル%1$dです🎯。</string>
     <string name="notif_mind_miss_alt_7">%2$s (%3$s)の楽しさがあなたを呼んでいます🔔。レベル%1$dをプレイしましょう！🎉。</string>
 
-    <string name="notif_level_unlocked">おめでとうございます！ 🎉 %2$s (%3$s)でレベル%1$dをアンロックしました。次の挑戦の準備はできていますか？</string>
-    <string name="notif_inactive_21days">チャレンジから21日経過！ ⚡ あきらめないことを証明して、今日からまた行動に戻ろう。</string>
-    <string name="notif_inactive_7days">7日が過ぎました ⏳。今日ポイントを獲得して、ランキングでのあなたの場所を取り戻す挑戦を受け入れますか？</string>
-    <string name="notif_ranking_position">🔥 グローバルランキングで%1$d位です。今日が終わる前にあなたの場所を守りましょう。</string>
-    <string name="notif_first_days_welcome">おかえりなさい！ あなたの次の挑戦が待っています！ あなたは必要なものを持っていますか？🚀</string>
+
+    <string name="notif_first_days_welcome">おかえりなさい！%1$sさん、🔥実力はありますか？🚀</string>
+    <string name="notif_first_days_welcome_alt_1">こんにちは、%1$sさん！新しい💪挑戦の準備はいいですか？🤔</string>
+    <string name="notif_first_days_welcome_alt_2">またお会いできて嬉しいです、%1$sさん！あなたの🧠頭脳が待っていました。✨</string>
+    <string name="notif_first_days_welcome_alt_3">%1$sさん、その🚀頭脳を鍛えましょう！始めますか？🎯</string>
+    <string name="notif_first_days_welcome_alt_4">この調子でいきましょう、%1$sさん！次の🌟挑戦が待っています。🏆</string>
+    <string name="notif_first_days_welcome_alt_5">再びこんにちは、%1$sさん！あなたの😉素晴らしい可能性を見せてください。💡</string>
+    <string name="notif_first_days_welcome_alt_6">あなたの頭脳は🔥準備万端です、%1$sさん。もっと挑戦しますか？🧠</string>
+    <string name="notif_first_days_welcome_alt_7">%1$sさん、🎮ゲームの時間です！挑戦を受けますか？🤓</string>
+
+    <string name="remove_ads_title">広告を削除</string>
+    <string name="remove_ads_subtitle">オプションを選択</string>
+    <string name="remove_ads_buy_premium">プレミアムを購入</string>
+    <string name="remove_ads_remove_free">無料で広告を削除</string>
+    <string name="important">重要：</string>
+    <string name="notification_permission_reminder">リマインダーを受け取るには、\nデバイスの設定で\nSumaMenteの通知を有効にしてください。</string>
+
+    <string name="premium_plan_monthly_price">￥%1$s/月</string>
+    <string name="premium_plan_quarterly_price">￥%1$s/3ヶ月</string>
+    <string name="premium_plan_semi_price">￥%1$s/6ヶ月</string>
+    <string name="premium_plan_lifetime_price">￥%1$s/一括払い</string>
+    <string name="premium_subtitle">広告なしでSumaMenteを楽しむ</string>
+    <string name="premium_benefits_title">PREMIUMの特典</string>
+    <string name="premium_benefit_no_ads">広告なし</string>
+    <string name="premium_benefit_support">優先サポート</string>
+    <string name="premium_benefit_early_access">機能への早期アクセス</string>
+    <string name="premium_plan_monthly_title">月額</string>
+    <string name="premium_plan_quarterly_title">四半期</string>
+    <string name="premium_plan_semi_title">半年</string>
+    <string name="premium_plan_lifetime_title">ライフタイム</string>
+    <string name="premium_badge_popular">一番人気</string>
+    <string name="premium_cta_continue">続ける</string>
+    <string name="premium_cta_restore">購入を復元</string>
+    <string name="premium_legal_autorenew">自動的に更新されます。Google Playでいつでもキャンセルできます。</string>
+    <string name="premium_legal_region">価格は地域や税金によって異なる場合があります。</string>
+    <string name="premium_terms_privacy">利用規約とプライバシー</string>
+    <string name="premium_already_active">アカウントは既にPREMIUMです。</string>
 
 </resources>

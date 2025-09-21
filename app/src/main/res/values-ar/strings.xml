@@ -1680,9 +1680,42 @@
     <string name="notif_mind_miss_alt_6">لا تفقد سلسلة انتصاراتك في %2$s (%3$s)! 🔥. التالي هو المستوى %1$d 🎯.</string>
     <string name="notif_mind_miss_alt_7">متعة %2$s (%3$s) تناديك 🔔. هيا نلعب المستوى %1$d! 🎉.</string>
 
-    <string name="notif_level_unlocked">تهانينا! 🎉 لقد فتحت المستوى %1$d في %2$s (%3$s). هل أنت مستعد للتحدي التالي؟</string>
-    <string name="notif_inactive_21days">21 يومًا خارج التحدي! ⚡ أظهر أنك لا تستسلم وعد إلى العمل اليوم.</string>
-    <string name="notif_inactive_7days">لقد مرت 7 أيام ⏳. هل تقبل التحدي وتجمع النقاط اليوم لتستعيد مكانك في التصنيف؟</string>
-    <string name="notif_ranking_position">🔥 أنت في المركز %1$d في التصنيف العالمي. دافع عن مكانك قبل نهاية اليوم.</string>
-    <string name="notif_first_days_welcome">مرحبًا بعودتك! تحديك القادم في انتظارك! هل لديك ما يلزم؟🚀</string>
+
+    <string name="notif_first_days_welcome">أهلاً بعودتك! %1$s، هل لديك 🔥 ما يلزم؟ 🚀</string>
+    <string name="notif_first_days_welcome_alt_1">مرحباً، %1$s! هل أنت مستعد لتحدٍ 💪 جديد؟ 🤔</string>
+    <string name="notif_first_days_welcome_alt_2">من الرائع رؤيتك، %1$s! كان 🧠 عقلك في انتظارك. ✨</string>
+    <string name="notif_first_days_welcome_alt_3">%1$s، هيا ندرب 🚀 ذلك العقل! هل نبدأ؟ 🎯</string>
+    <string name="notif_first_days_welcome_alt_4">لنستمر في التقدم، %1$s! تحديك 🌟 القادم في انتظارك. 🏆</string>
+    <string name="notif_first_days_welcome_alt_5">مرحباً مجدداً، %1$s! أظهر 😉 إمكاناتك العظيمة. 💡</string>
+    <string name="notif_first_days_welcome_alt_6">عقلك 🔥 جاهز، %1$s. هل نذهب للمزيد؟ 🧠</string>
+    <string name="notif_first_days_welcome_alt_7">%1$s، حان وقت 🎮 اللعب! هل تقبل التحدي؟ 🤓</string>
+
+    <string name="remove_ads_title">إزالة الإعلانات</string>
+    <string name="remove_ads_subtitle">اختر خيارًا</string>
+    <string name="remove_ads_buy_premium">شراء PREMIUM</string>
+    <string name="remove_ads_remove_free">إزالة الإعلانات مجانًا</string>
+    <string name="important">هام:</string>
+    <string name="notification_permission_reminder">قم بتفعيل إشعارات SumaMente \nفي إعدادات جهازك \nلتلقي التذكيرات.</string>
+
+    <string name="premium_plan_monthly_price">%1$s/شهر</string>
+    <string name="premium_plan_quarterly_price">%1$s/كل 3 أشهر</string>
+    <string name="premium_plan_semi_price">%1$s/كل 6 أشهر</string>
+    <string name="premium_plan_lifetime_price">%1$s/دفعة واحدة</string>
+    <string name="premium_subtitle">استمتع بـ SumaMente بدون إعلانات</string>
+    <string name="premium_benefits_title">مزايا PREMIUM</string>
+    <string name="premium_benefit_no_ads">بدون إعلانات</string>
+    <string name="premium_benefit_support">دعم ذو أولوية</string>
+    <string name="premium_benefit_early_access">وصول مبكر للميزات</string>
+    <string name="premium_plan_monthly_title">شهري</string>
+    <string name="premium_plan_quarterly_title">ربع سنوي</string>
+    <string name="premium_plan_semi_title">نصف سنوي</string>
+    <string name="premium_plan_lifetime_title">مدى الحياة</string>
+    <string name="premium_badge_popular">الأكثر شيوعًا</string>
+    <string name="premium_cta_continue">متابعة</string>
+    <string name="premium_cta_restore">استعادة المشتريات</string>
+    <string name="premium_legal_autorenew">يتم التجديد تلقائيًا. يمكنك الإلغاء في أي وقت من Google Play.</string>
+    <string name="premium_legal_region">قد يختلف السعر حسب المنطقة والضرائب.</string>
+    <string name="premium_terms_privacy">الشروط والخصوصية</string>
+    <string name="premium_already_active">حسابك PREMIUM بالفعل.</string>
+
 </resources>
