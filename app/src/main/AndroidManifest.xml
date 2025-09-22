@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".MyApplication"
@@ -935,6 +936,9 @@
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-1889227735632244~1849487182"/>
 
 
 
@@ -950,8 +954,6 @@
         <activity
             android:name=".s5e.ui.S5ESelectDifficultyActivity"
             android:exported="false" />
-
-
 
 
         <provider

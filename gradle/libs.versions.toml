@@ -22,6 +22,7 @@ material = "1.13.0"
 activity = "1.11.0"
 constraintlayout = "2.2.1"
 gridlayout = "1.1.0"
+playServicesAds = "24.6.0"
 playServicesAuth = "21.4.0"
 testing = "1.0.0"
 composeCompiler = "1.5.15"
@@ -68,6 +69,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-gridlayout = { group = "androidx.gridlayout", name = "gridlayout", version.ref = "gridlayout" }
+play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServicesAds" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
 testing = { group = "com.google.assistant.appactions", name = "testing", version.ref = "testing" }
 compose-compiler = { group = "androidx.compose.compiler", name = "compiler", version.ref = "composeCompiler" }

@@ -19,6 +19,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import androidx.activity.enableEdgeToEdge
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 
 class InstructionsActivity : BaseActivity()  {
 
@@ -30,6 +33,7 @@ class InstructionsActivity : BaseActivity()  {
     private lateinit var tvGameName: TextView
     private lateinit var tvDifficulty: TextView
     private lateinit var tvScore: TextView
+    private lateinit var adView: AdView
 
     private val timeLimits = mapOf(
         1 to 20.44, 2 to 20.34, 3 to 20.23, 4 to 20.13, 5 to 20.02, 6 to 19.95, 7 to 19.80,
@@ -53,6 +57,11 @@ class InstructionsActivity : BaseActivity()  {
         tvGameName = findViewById(R.id.tv_game_name)
         tvDifficulty = findViewById(R.id.tv_difficulty)
         tvScore = findViewById(R.id.tv_score)
+
+        MobileAds.initialize(this) {}
+        adView = findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
 
         lifecycleScope.launch(Dispatchers.IO) {
             ScoreManager.init(this@InstructionsActivity)

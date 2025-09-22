@@ -14,8 +14,8 @@ android {
         applicationId = "com.heptacreation.sumamente"
         minSdk = 24
         targetSdk = 36
-        versionCode = 13
-        versionName = "1.1.1"
+        versionCode = 14
+        versionName = "1.1.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -110,5 +110,6 @@ dependencies {
     implementation(libs.installreferrer)
     implementation(libs.billing.ktx)
     implementation(libs.androidx.lifecycle.process)
+    implementation(libs.play.services.ads)
 
 }

@@ -15,6 +15,9 @@ import androidx.core.content.edit
 import androidx.core.view.isVisible
 import com.heptacreation.sumamente.R
 import androidx.activity.enableEdgeToEdge
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 
 class InstructionsActivityPrincipiante : BaseActivity()  {
 
@@ -26,6 +29,7 @@ class InstructionsActivityPrincipiante : BaseActivity()  {
     private lateinit var tvGameName: TextView
     private lateinit var tvDifficulty: TextView
     private lateinit var tvScore: TextView
+    private lateinit var adView: AdView
 
     private val timeLimits = mapOf(
         1 to 21.49, 2 to 21.39, 3 to 21.28, 4 to 21.18, 5 to 21.07, 6 to 21.00, 7 to 20.85,
@@ -49,6 +53,11 @@ class InstructionsActivityPrincipiante : BaseActivity()  {
         tvGameName = findViewById(R.id.tv_game_name)
         tvDifficulty = findViewById(R.id.tv_difficulty)
         tvScore = findViewById(R.id.tv_score)
+
+        MobileAds.initialize(this) {}
+        adView = findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
 
         setupInfoBar()
 
