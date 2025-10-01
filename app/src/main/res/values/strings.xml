@@ -1753,5 +1753,30 @@
     <string name="premium_price_lifetime" translatable="false">$99.99</string>
     <string name="premium_title" translatable="false">PREMIUM</string>
 
+    <string name="instruction_game_terms_28">Resuelve mentalmente los 28 ejercicios\nque se mueven en la pizarra. Si tu resultado\nestá en alguno de los botones, presiónalo.\nDe lo contrario, presiona NINGUNO.\nTienes un máximo de 12 errores. ¡A enfocarse!</string>
+    <string name="instruction_game_terms_14">Resuelve mentalmente los 14 ejercicios\nque se mueven en la pizarra. Si tu resultado\nestá en alguno de los botones, presiónalo.\nDe lo contrario, presiona NINGUNO.\nTienes un máximo de 6 errores. ¡A enfocarse!</string>
+    <string name="instruction_game_figures_28">Observa 28 pares de figuras en movimiento.\nSi un par de la pizarra coincide\ncon los que ves en los botones, presiónalo.\nSi ningún par coincide, presiona NINGUNO.\nTienes un máximo de 12 errores. ¡A enfocarse!</string>
+    <string name="instruction_game_letters_value">El valor de cada letra corresponde\na su posición en el alfabeto:\nA=1, B=2, C=3, y así sucesivamente.</string>
+    <string name="instruction_game_roman_numerals">En este ejercicio verás números romanos,\nestá atento según aparezcan, debes realizar\nlos cálculos aplicando su valor correspondiente.\n¡Mantén el enfoque!</string>
+    <string name="level_indicator_default" translatable="false">NIVEL 1 / 420</string>
+    <string name="level_indicator_foco">NIVEL %1$d / 420</string>
+    <string name="answer_none">NINGUNO</string>
+    <string name="level_prefix">NIVEL %1$d</string>
+
+    <string name="errors_counter_default" translatable="false">Errores 0/6</string>
+    <string name="errors_counter_format_dynamic" translatable="false">Errores %1$d/%2$d</string>
+    <string name="errors_counter_format_14" translatable="false">Errores %1$d/%2$d</string>
+    <string name="errors_counter_format_28" translatable="false">Errores %1$d/%2$d</string>
+    <string name="initial_time_format" translatable="false">00.00</string>
+    <string name="select_level_button" translatable="false">Selecciona un nivel</string>
+
+    <!-- Demo mode strings (Google Play review) - NO TRADUCIR -->
+    <string name="demo_section_title" translatable="false">Demo Mode (Google Review)</string>
+    <string name="demo_toggle_premium" translatable="false">Enable Premium (demo)</string>
+    <string name="demo_toggle_unlock" translatable="false">Unlock Levels (demo)</string>
+    <string name="premium_enabled_demo" translatable="false">Demo Premium enabled</string>
+    <string name="premium_disabled_demo" translatable="false">Demo Premium disabled</string>
+    <string name="unlock_enabled_demo" translatable="false">Demo unlock enabled</string>
+    <string name="unlock_disabled_demo" translatable="false">Demo unlock disabled</string>
 
 </resources>

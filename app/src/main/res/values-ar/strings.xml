@@ -1718,4 +1718,13 @@
     <string name="premium_terms_privacy">الشروط والخصوصية</string>
     <string name="premium_already_active">حسابك PREMIUM بالفعل.</string>
 
+    <string name="instruction_game_terms_28">حل عقليًا الـ 28 تمرينًا\nالتي تتحرك على السبورة. إذا كانت نتيجتك\nموجودة في أحد الأزرار، اضغط عليه.\nوإلا، اضغط على لا شيء.\nلديك حد أقصى 12 خطأ. ركز!</string>
+    <string name="instruction_game_terms_14">حل عقليًا الـ 14 تمرينًا\nالتي تتحرك على السبورة. إذا كانت نتيجتك\nموجودة في أحد الأزرار، اضغط عليه.\nوإلا، اضغط على لا شيء.\nلديك حد أقصى 6 أخطاء. ركز!</string>
+    <string name="instruction_game_figures_28">لاحظ 28 زوجًا من الأشكال المتحركة.\nإذا تطابق زوج من السبورة\nمع ما تراه في الأزرار، اضغط عليه.\nإذا لم يتطابق أي زوج، اضغط على لا شيء.\nلديك حد أقصى 12 خطأ. ركز!</string>
+    <string name="instruction_game_letters_value">قيمة كل حرف تتوافق\nمع موقعه في الأبجدية:\nA=1, B=2, C=3، وهكذا.</string>
+    <string name="instruction_game_roman_numerals">في هذا التمرين سترى أرقامًا رومانية،\nانتبه عند ظهورها، يجب عليك إجراء\nالحسابات بتطبيق قيمتها المقابلة.\nحافظ على تركيزك!</string>
+    <string name="level_indicator_foco">المستوى %1$d / 420</string>
+    <string name="answer_none">لا شيء</string>
+    <string name="level_prefix">المستوى %1$d</string>
+
 </resources>

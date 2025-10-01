@@ -28,6 +28,7 @@ class DifficultySelectionActivity : BaseActivity()   {
         const val DIFFICULTY_PRO = "pro"
 
         const val EXTRA_GAME_TYPE = "game_type"
+        const val GAME_TYPE_FOCO_PLUS = "FocoPlus"
 
         fun createIntent(context: Context, gameType: String, isFromInstructions: Boolean = false,
                          level: Int = 0, responseMode: String? = null): Intent {
@@ -60,6 +61,7 @@ class DifficultySelectionActivity : BaseActivity()   {
             "MasPlus" -> "MyPrefsMasPlus"
             "GenioPlus" -> "MyPrefsGenioPlus"
             "MathPlus" -> "MyPrefsMathPlus"
+            "FocoPlus" -> "MyPrefsFocoPlus"
             else -> "MyPrefs"
         }
 
@@ -84,6 +86,7 @@ class DifficultySelectionActivity : BaseActivity()   {
             "MasPlus" -> getString(R.string.game_mas_plus)
             "GenioPlus" -> getString(R.string.game_genio_plus)
             "MathPlus" -> getString(R.string.game_math_plus)
+            "FocoPlus" -> getString(R.string.game_foco_plus)
             else -> gameType
         }
 
@@ -101,6 +104,7 @@ class DifficultySelectionActivity : BaseActivity()   {
                 "MasPlus" -> R.string.game_subtitle_mas_plus
                 "GenioPlus" -> R.string.game_subtitle_genio_plus
                 "MathPlus" -> R.string.game_subtitle_math_plus
+                "FocoPlus" -> R.string.game_subtitle_foco_plus
                 else -> null
             }
 
@@ -193,11 +197,25 @@ class DifficultySelectionActivity : BaseActivity()   {
         responseMode: String?
     ) {
 
-
         if (gameType == "MathPlus") {
             when (difficulty) {
                 DIFFICULTY_PRINCIPIANTE -> { return }
                 DIFFICULTY_AVANZADO, DIFFICULTY_PRO -> { showComingSoonDialog(); return }
+            }
+        }
+
+        if (gameType == GAME_TYPE_FOCO_PLUS) {
+            when (difficulty) {
+                DIFFICULTY_PRINCIPIANTE -> {
+                    val intent = Intent(this, InstructionsLevelsActivityFocoPlus::class.java)
+                    startActivity(intent)
+                    finish()
+                    return
+                }
+                DIFFICULTY_AVANZADO, DIFFICULTY_PRO -> {
+                    showComingSoonDialogFoco()
+                    return
+                }
             }
         }
 
@@ -306,6 +324,7 @@ class DifficultySelectionActivity : BaseActivity()   {
         "Sumaresta"   -> "MyPrefsSumaResta"
         "MasPlus"     -> "MyPrefsMasPlus"
         "GenioPlus"   -> "MyPrefsGenioPlus"
+        "FocoPlus"    -> "MyPrefsFocoPlus"
         else -> null
     }
 
@@ -340,6 +359,22 @@ class DifficultySelectionActivity : BaseActivity()   {
         "GenioPlus" to DIFFICULTY_PRO            -> "selectedResponseModeGenioPlusPro"
 
         else -> null
+    }
+
+    private fun showComingSoonDialogFoco() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_foco_plus_info, null)
+
+        val dialog = androidx.appcompat.app.AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        dialogView.findViewById<ImageView>(R.id.btn_cerrar_dialog).setOnClickListener { dialog.dismiss() }
+        dialogView.findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_entendido).setOnClickListener { dialog.dismiss() }
+
+        dialog.show()
     }
 
     private fun saveScoreForDifficulty(difficulty: String) {
@@ -407,7 +442,6 @@ class DifficultySelectionActivity : BaseActivity()   {
         builder.setNegativeButton(getString(R.string.difficulty_exit_dialog_negative), null)
         builder.show()
     }
-
 
     private fun showComingSoonDialog() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_math_plus_coming_soon, null)

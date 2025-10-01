@@ -24,7 +24,6 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import com.heptacreation.sumamente.R
 import java.util.Locale
@@ -334,22 +333,8 @@ class GameSelectionActivity : BaseActivity() {
 
         btnFocoPlus.setOnClickListener {
             applyBounceEffect(it) {
-                val dialogView = layoutInflater.inflate(R.layout.dialog_foco_plus_info, null)
-
-                val dialog = androidx.appcompat.app.AlertDialog.Builder(this)
-                    .setView(dialogView)
-                    .setCancelable(true)
-                    .create()
-
-                dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-
-                dialogView.findViewById<ImageView>(R.id.btn_cerrar_dialog).setOnClickListener { dialog.dismiss() }
-                dialogView.findViewById<AppCompatButton>(R.id.btn_entendido).setOnClickListener { dialog.dismiss() }
-                dialogView.setOnClickListener { dialog.dismiss() }
-
-                dialog.show()
+                startActivity(DifficultySelectionActivity.createIntent(this, "FocoPlus"))
             }
-
         }
 
         btnMathPlus.setOnClickListener {

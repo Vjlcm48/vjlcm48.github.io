@@ -1352,4 +1352,13 @@
     <string name="premium_terms_privacy">약관 및 개인정보 보호</string>
     <string name="premium_already_active">귀하의 계정은 이미 PREMIUM입니다.</string>
 
+    <string name="instruction_game_terms_28">보드에서 움직이는 28개의 문제를\n암산으로 푸세요. 만약 당신의 결과가\n버튼 중 하나에 있다면, 그것을 누르세요.\n그렇지 않으면, 없음을 누르세요.\n최대 12번까지 틀릴 수 있습니다. 집중하세요!</string>
+    <string name="instruction_game_terms_14">보드에서 움직이는 14개의 문제를\n암산으로 푸세요. 만약 당신의 결과가\n버튼 중 하나에 있다면, 그것을 누르세요.\n그렇지 않으면, 없음을 누르세요.\n최대 6번까지 틀릴 수 있습니다. 집중하세요!</string>
+    <string name="instruction_game_figures_28">움직이는 28쌍의 도형을 관찰하세요.\n보드의 쌍 중 하나가 버튼에서\n보이는 것과 일치하면, 그것을 누르세요.\n일치하는 쌍이 없으면, 없음을 누르세요.\n최대 12번까지 틀릴 수 있습니다. 집중하세요!</string>
+    <string name="instruction_game_letters_value">각 문자의 값은 알파벳에서의\n위치에 해당합니다:\nA=1, B=2, C=3, 등등.</string>
+    <string name="instruction_game_roman_numerals">이 연습에서는 로마 숫자를 보게 됩니다.\n나타날 때 주의를 기울여, 해당하는 값을\n적용하여 계산을 수행해야 합니다.\n집중력을 유지하세요!</string>
+    <string name="level_indicator_foco">레벨 %1$d / 420</string>
+    <string name="answer_none">없음</string>
+    <string name="level_prefix">레벨 %1$d</string>
+
 </resources>

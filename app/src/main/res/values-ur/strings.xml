@@ -1401,4 +1401,13 @@
     <string name="premium_terms_privacy">شرائط اور رازداری</string>
     <string name="premium_already_active">آپ کا اکاؤنٹ پہلے سے ہی PREMIUM ہے۔</string>
 
+    <string name="instruction_game_terms_28">بورڈ پر حرکت کرتی 28 مشقوں کو\nذہنی طور پر حل کریں۔ اگر آپ کا نتیجہ\nبٹنوں میں سے کسی ایک پر ہے، تو اسے دبائیں۔\nورنہ، کوئی نہیں دبائیں۔\nآپ زیادہ سے زیادہ 12 غلطیاں کر سکتے ہیں۔ توجہ مرکوز کریں!</string>
+    <string name="instruction_game_terms_14">بورڈ پر حرکت کرتی 14 مشقوں کو\nذہنی طور پر حل کریں۔ اگر آپ کا نتیجہ\nبٹنوں میں سے کسی ایک پر ہے، تو اسے دبائیں۔\nورنہ، کوئی نہیں دبائیں۔\nآپ زیادہ سے زیادہ 6 غلطیاں کر سکتے ہیں۔ توجہ مرکوز کریں!</string>
+    <string name="instruction_game_figures_28">حرکت میں 28 جوڑوں کے اعداد و شمار کا مشاہدہ کریں۔\nاگر بورڈ سے کوئی جوڑا بٹنوں پر\nجو آپ دیکھتے ہیں اس سے میل کھاتا ہے، تو اسے دبائیں۔\nاگر کوئی جوڑا میل نہیں کھاتا، تو کوئی نہیں دبائیں۔\nآپ زیادہ سے زیادہ 12 غلطیاں کر سکتے ہیں۔ توجہ مرکوز کریں!</string>
+    <string name="instruction_game_letters_value">ہر حرف کی قدر حروف تہجی میں\nاس کی پوزیشن کے مطابق ہے:\nA=1, B=2, C=3، وغیرہ۔</string>
+    <string name="instruction_game_roman_numerals">اس مشق میں آپ رومن ہندسے دیکھیں گے،\nجیسے ہی وہ ظاہر ہوں، دھیان دیں، آپ کو\nان کی متعلقہ قدر کا اطلاق کرکے حساب کتاب کرنا ہوگا۔\nتوجہ مرکوز رکھیں!</string>
+    <string name="level_indicator_foco">لیول %1$d / 420</string>
+    <string name="answer_none">کوئی نہیں</string>
+    <string name="level_prefix">لیول %1$d</string>
+
 </resources>

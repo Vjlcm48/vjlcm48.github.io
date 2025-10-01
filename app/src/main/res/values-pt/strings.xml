@@ -1516,4 +1516,13 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
     <string name="premium_terms_privacy">Termos e Privacidade</string>
     <string name="premium_already_active">A sua conta já é PREMIUM.</string>
 
+    <string name="instruction_game_terms_28">Resolva mentalmente os 28 exercícios\nque se movem no quadro. Se o seu resultado\nestiver em um dos botões, pressione-o.\nCaso contrário, pressione NENHUM.\nVocê tem um máximo de 12 erros. Foco!</string>
+    <string name="instruction_game_terms_14">Resolva mentalmente os 14 exercícios\nque se movem no quadro. Se o seu resultado\nestiver em um dos botões, pressione-o.\nCaso contrário, pressione NENHUM.\nVocê tem um máximo de 6 erros. Foco!</string>
+    <string name="instruction_game_figures_28">Observe 28 pares de figuras em movimento.\nSe um par do quadro coincidir\ncom o que você vê nos botões, pressione-o.\nSe nenhum par coincidir, pressione NENHUM.\nVocê tem um máximo de 12 erros. Foco!</string>
+    <string name="instruction_game_letters_value">O valor de cada letra corresponde\nà sua posição no alfabeto:\nA=1, B=2, C=3, e assim por diante.</string>
+    <string name="instruction_game_roman_numerals">Neste exercício, você verá números romanos,\nfique atento conforme eles aparecem, você deve realizar\nos cálculos aplicando seu valor correspondente.\nMantenha o foco!</string>
+    <string name="level_indicator_foco">NÍVEL %1$d / 420</string>
+    <string name="answer_none">NENHUM</string>
+    <string name="level_prefix">NÍVEL %1$d</string>
+
 </resources>

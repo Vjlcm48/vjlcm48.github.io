@@ -1582,4 +1582,13 @@ Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di 
     <string name="premium_terms_privacy">Syarat dan Privasi</string>
     <string name="premium_already_active">Akun Anda sudah PREMIUM.</string>
 
+    <string name="instruction_game_terms_28">Selesaikan 28 latihan secara mental\nyang bergerak di papan tulis. Jika hasil Anda\nada di salah satu tombol, tekan.\nJika tidak, tekan TIDAK ADA.\nAnda memiliki maksimal 12 kesalahan. Fokus!</string>
+    <string name="instruction_game_terms_14">Selesaikan 14 latihan secara mental\nyang bergerak di papan tulis. Jika hasil Anda\nada di salah satu tombol, tekan.\nJika tidak, tekan TIDAK ADA.\nAnda memiliki maksimal 6 kesalahan. Fokus!</string>
+    <string name="instruction_game_figures_28">Amati 28 pasang gambar yang bergerak.\nJika sepasang dari papan tulis cocok\ndengan yang Anda lihat di tombol, tekan.\nJika tidak ada pasangan yang cocok, tekan TIDAK ADA.\nAnda memiliki maksimal 12 kesalahan. Fokus!</string>
+    <string name="instruction_game_letters_value">Nilai setiap huruf sesuai dengan\nposisinya di alfabet:\nA=1, B=2, C=3, dan seterusnya.</string>
+    <string name="instruction_game_roman_numerals">Dalam latihan ini Anda akan melihat angka Romawi,\nperhatikan saat muncul, Anda harus melakukan\nperhitungan dengan menerapkan nilai yang sesuai.\nTetap fokus!</string>
+    <string name="level_indicator_foco">LEVEL %1$d / 420</string>
+    <string name="answer_none">TIDAK ADA</string>
+    <string name="level_prefix">LEVEL %1$d</string>
+
 </resources>

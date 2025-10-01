@@ -1663,4 +1663,13 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
     <string name="premium_terms_privacy">Conditions et Confidentialité</string>
     <string name="premium_already_active">Votre compte est déjà PREMIUM.</string>
 
+    <string name="instruction_game_terms_28">Résolvez mentalement les 28 exercices\nse déplaçant sur le tableau. Si votre résultat\nest sur l\'un des boutons, appuyez dessus.\nSinon, appuyez sur AUCUN.\nVous avez un maximum de 12 erreurs. Concentrez-vous !</string>
+    <string name="instruction_game_terms_14">Résolvez mentalement les 14 exercices\nse déplaçant sur le tableau. Si votre résultat\nest sur l\'un des boutons, appuyez dessus.\nSinon, appuyez sur AUCUN.\nVous avez un maximum de 6 erreurs. Concentrez-vous !</string>
+    <string name="instruction_game_figures_28">Observez 28 paires de figures en mouvement.\nSi une paire du tableau correspond\nà ce que vous voyez sur les boutons, appuyez dessus.\nSi aucune paire ne correspond, appuyez sur AUCUN.\nVous avez un maximum de 12 erreurs. Concentrez-vous !</string>
+    <string name="instruction_game_letters_value">La valeur de chaque lettre correspond\nà sa position dans l\'alphabet :\nA=1, B=2, C=3, et ainsi de suite.</string>
+    <string name="instruction_game_roman_numerals">Dans cet exercice, vous verrez des chiffres romains,\nsoyez attentif à leur apparition, vous devez effectuer\nles calculs en appliquant leur valeur correspondante.\nRestez concentré !</string>
+    <string name="level_indicator_foco">NIVEAU %1$d / 420</string>
+    <string name="answer_none">AUCUN</string>
+    <string name="level_prefix">NIVEAU %1$d</string>
+
 </resources>

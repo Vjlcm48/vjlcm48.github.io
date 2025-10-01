@@ -535,6 +535,24 @@
             android:exported="false" />
 
         <activity
+            android:name="com.heptacreation.sumamente.ui.InstructionsLevelsActivityFocoPlus"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false" />
+
+        <activity
+            android:name="com.heptacreation.sumamente.ui.GameActivityFocoPlus"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false" />
+
+        <activity
+            android:name="com.heptacreation.sumamente.ui.LevelResultActivityFocoPlus"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false" />
+
+        <activity
             android:name="com.heptacreation.sumamente.ui.SplashScreenActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"

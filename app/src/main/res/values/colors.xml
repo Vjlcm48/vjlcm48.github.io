@@ -7,13 +7,13 @@
     <color name="blue_primary_dark">#1976D2</color>
     <color name="blue_secondary">#64B5F6</color>
     <color name="blue_primary_darker">#0D47A1</color>
+    <color name="cyan">#00BCD4</color>
     <color name="red_primary">#F44336</color>
     <color name="red_secondary">#D32F2F</color>
     <color name="green_accent">#4CAF50</color>
     <color name="grey_light">#F5F5F5</color>
     <color name="grey_medium">#BDBDBD</color>
     <color name="grey_dark">#9E9E9E</color>
-    <color name="cyan">#00BCD4</color>
     <color name="green_light">#8BC34A</color>
     <color name="green_medium">#388E3C</color>
     <color name="yellow">#FFEB3B</color>
@@ -23,6 +23,7 @@
     <color name="green_dark">#2E7D32</color>
     <color name="yellow_dark">#FFD600</color>
     <color name="orange_dark">#FB8C00</color>
+    <color name="gold">#FFD700</color>
     <color name="gray">#455A64</color>
     <color name="red">#FF0000</color>
     <color name="blue_pressed">#FF1565C0</color>
@@ -30,7 +31,6 @@
     <color name="blue_hovered">#FF87CEFA</color>
     <color name="red_lighter">#FFEBEE</color>
     <color name="dark_goldenrod">#8B6D0B</color>
-    <color name="gold">#FFD700</color>
     <color name="silver">#C0C0C0</color>
     <color name="bronze">#CD7F32</color>
     <color name="highlight_user_background">#E3F2FD</color>
@@ -99,6 +99,6 @@
     <color name="ranking_status_success">@color/blue_primary_darker</color>
     <color name="ranking_status_error">@color/red</color>
 
-
+    <color name="text_color_adaptive">#FF000000</color>
 
 </resources>

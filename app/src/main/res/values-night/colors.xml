@@ -102,5 +102,6 @@
     <color name="ranking_status_success">#4391F8</color>
     <color name="ranking_status_error">#FFFFFF</color>
 
+    <color name="text_color_adaptive">#FFFFFFFF</color>
 
 </resources>

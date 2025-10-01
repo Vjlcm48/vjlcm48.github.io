@@ -1356,4 +1356,12 @@
     <string name="premium_terms_privacy">利用規約とプライバシー</string>
     <string name="premium_already_active">アカウントは既にPREMIUMです。</string>
 
+    <string name="instruction_game_terms_28">ボード上を動く28問を\n暗算で解いてください。もしあなたの答えが\nいずれかのボタンにあれば、それを押してください。\nなければ「なし」を押してください。\n最大12回まで間違えられます。集中してください！</string>
+    <string name="instruction_game_terms_14">ボード上を動く14問を\n暗算で解いてください。もしあなたの答えが\nいずれかのボタンにあれば、それを押してください。\nなければ「なし」を押してください。\n最大6回まで間違えられます。集中してください！</string>
+    <string name="instruction_game_figures_28">動いている28組の図形を観察してください。\nボードの組の1つがボタンの表示と\n一致する場合は、それを押してください。\n一致する組がない場合は、「なし」を押してください。\n最大12回まで間違えられます。集中してください！</string>
+    <string name="instruction_game_letters_value">各文字の値はアルファベットの\n位置に対応しています：\nA=1、B=2、C=3、など。</string>
+    <string name="instruction_game_roman_numerals">このエクササイズではローマ数字が表示されます。\n表示されたら注意して、対応する値を\n適用して計算を行ってください。\n集中力を保ってください！</string>
+    <string name="level_indicator_foco">レベル %1$d / 420</string>
+    <string name="answer_none">なし</string>
+    <string name="level_prefix">レベル %1$d</string>
 </resources>

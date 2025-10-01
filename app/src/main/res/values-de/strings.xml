@@ -1603,4 +1603,13 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
     <string name="premium_terms_privacy">Bedingungen und Datenschutz</string>
     <string name="premium_already_active">Dein Konto ist bereits PREMIUM.</string>
 
+    <string name="instruction_game_terms_28">Löse die 28 Übungen mental,\ndie sich auf der Tafel bewegen. Wenn dein Ergebnis\nauf einer der Schaltflächen ist, drücke sie.\nAndernfalls drücke KEINE.\nDu hast maximal 12 Fehler. Konzentrier dich!</string>
+    <string name="instruction_game_terms_14">Löse die 14 Übungen mental,\ndie sich auf der Tafel bewegen. Wenn dein Ergebnis\nauf einer der Schaltflächen ist, drücke sie.\nAndernfalls drücke KEINE.\nDu hast maximal 6 Fehler. Konzentrier dich!</string>
+    <string name="instruction_game_figures_28">Beobachte 28 Paare von Figuren in Bewegung.\nWenn ein Paar von der Tafel\nmit dem übereinstimmt, was du auf den Tasten siehst, drücke es.\nWenn kein Paar übereinstimmt, drücke KEINE.\nDu hast maximal 12 Fehler. Konzentrier dich!</string>
+    <string name="instruction_game_letters_value">Der Wert jedes Buchstabens entspricht\nseiner Position im Alphabet:\nA=1, B=2, C=3, und so weiter.</string>
+    <string name="instruction_game_roman_numerals">In dieser Übung siehst du römische Zahlen,\nsei aufmerksam, wenn sie erscheinen, du musst\ndie Berechnungen mit ihrem entsprechenden Wert durchführen.\nBleib konzentriert!</string>
+    <string name="level_indicator_foco">LEVEL %1$d / 420</string>
+    <string name="answer_none">KEINE</string>
+    <string name="level_prefix">LEVEL %1$d</string>
+
 </resources>

@@ -319,6 +319,27 @@ object ScoreManager {
     var totalGamesGenioPlusExitos: Int = 0
     var totalTimeGenioPlusExitos: Double = 0.0
 
+    var currentScoreFocoPlus: Int = 0
+    var unlockedLevelsFocoPlus: Int = 2
+    val levelScoresFocoPlus: MutableMap<Int, Int> = mutableMapOf()
+
+    var currentScoreFocoPlusPrincipiante: Int = 0
+    var unlockedLevelsFocoPlusPrincipiante: Int = 2
+    val levelScoresFocoPlusPrincipiante: MutableMap<Int, Int> = mutableMapOf()
+
+    var currentScoreFocoPlusPro: Int = 0
+    var unlockedLevelsFocoPlusPro: Int = 2
+    val levelScoresFocoPlusPro: MutableMap<Int, Int> = mutableMapOf()
+
+    var totalGamesFocoPlusAvanzado: Int = 0
+    var totalGamesFocoPlusPrincipiante: Int = 0
+    var totalGamesFocoPlusPro: Int = 0
+
+    var totalGamesFocoPlus: Int = 0
+    var totalTimeFocoPlus: Double = 0.0
+    var totalGamesFocoPlusExitos: Int = 0
+    var totalTimeFocoPlusExitos: Double = 0.0
+
     private const val KEY_CONSECUTIVE_FAILURES = "consecutive_failures"
     private const val KEY_CONSECUTIVE_FAILURES_PRINCIPIANTE = "consecutive_failures_principiante"
     private const val KEY_CONSECUTIVE_FAILURES_PRO = "consecutive_failures_pro"
@@ -340,6 +361,30 @@ object ScoreManager {
     private const val KEY_CONSECUTIVE_FAILURES_GENIO_PLUS = "consecutive_failures_genio_plus"
     private const val KEY_CONSECUTIVE_FAILURES_GENIO_PLUS_PRINCIPIANTE = "consecutive_failures_genio_plus_principiante"
     private const val KEY_CONSECUTIVE_FAILURES_GENIO_PLUS_PRO = "consecutive_failures_genio_plus_pro"
+
+    private const val PREFS_NAME_FOCO_PLUS = "ScorePrefsFocoPlus"
+    private const val KEY_CURRENT_SCORE_FOCO_PLUS = "current_score_foco_plus"
+    private const val KEY_UNLOCKED_LEVELS_FOCO_PLUS = "unlocked_levels_foco_plus"
+    private const val KEY_COMPLETED_LEVELS_FOCO_PLUS = "completed_levels_foco_plus"
+
+    private const val PREFS_NAME_FOCO_PLUS_PRINCIPIANTE = "ScorePrefsFocoPlusPrincipiante"
+    private const val KEY_CURRENT_SCORE_FOCO_PLUS_PRINCIPIANTE = "current_score_foco_plus_principiante"
+    private const val KEY_UNLOCKED_LEVELS_FOCO_PLUS_PRINCIPIANTE = "unlocked_levels_foco_plus_principiante"
+    private const val KEY_COMPLETED_LEVELS_FOCO_PLUS_PRINCIPIANTE = "completed_levels_foco_plus_principiante"
+
+    private const val PREFS_NAME_FOCO_PLUS_PRO = "ScorePrefsFocoPlusPro"
+    private const val KEY_CURRENT_SCORE_FOCO_PLUS_PRO = "current_score_foco_plus_pro"
+    private const val KEY_UNLOCKED_LEVELS_FOCO_PLUS_PRO = "unlocked_levels_foco_plus_pro"
+    private const val KEY_COMPLETED_LEVELS_FOCO_PLUS_PRO = "completed_levels_foco_plus_pro"
+
+    private const val KEY_TOTAL_GAMES_FOCO_PLUS = "total_games_foco_plus"
+    private const val KEY_TOTAL_TIME_FOCO_PLUS = "total_time_foco_plus"
+    private const val KEY_TOTAL_GAMES_FOCO_PLUS_EXITOS = "total_games_foco_plus_exitos"
+    private const val KEY_TOTAL_TIME_FOCO_PLUS_EXITOS = "total_time_foco_plus_exitos"
+
+    private const val KEY_CONSECUTIVE_FAILURES_FOCO_PLUS = "consecutive_failures_foco_plus"
+    private const val KEY_CONSECUTIVE_FAILURES_FOCO_PLUS_PRINCIPIANTE = "consecutive_failures_foco_plus_principiante"
+    private const val KEY_CONSECUTIVE_FAILURES_FOCO_PLUS_PRO = "consecutive_failures_foco_plus_pro"
 
     private val consecutiveFailures: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresPrincipiante: MutableMap<Int, Int> = mutableMapOf()
@@ -363,6 +408,10 @@ object ScoreManager {
     private val consecutiveFailuresGenioPlusPrincipiante: MutableMap<Int, Int> = mutableMapOf()
     private val consecutiveFailuresGenioPlusPro: MutableMap<Int, Int> = mutableMapOf()
 
+    private val consecutiveFailuresFocoPlus: MutableMap<Int, Int> = mutableMapOf()
+    private val consecutiveFailuresFocoPlusPrincipiante: MutableMap<Int, Int> = mutableMapOf()
+    private val consecutiveFailuresFocoPlusPro: MutableMap<Int, Int> = mutableMapOf()
+
     private lateinit var preferencesPrincipiante: SharedPreferences
     private lateinit var preferencesPro: SharedPreferences
     private lateinit var preferencesDeciPlus: SharedPreferences
@@ -384,6 +433,10 @@ object ScoreManager {
     private lateinit var preferencesGenioPlusPrincipiante: SharedPreferences
     private lateinit var preferencesGenioPlusPro: SharedPreferences
 
+    private lateinit var preferencesFocoPlus: SharedPreferences
+    private lateinit var preferencesFocoPlusPrincipiante: SharedPreferences
+    private lateinit var preferencesFocoPlusPro: SharedPreferences
+
     data class RankingEntry(val userName: String, val valor: Double)
 
     private enum class Game {
@@ -393,7 +446,8 @@ object ScoreManager {
         ALFA_NUMEROS,
         SUMA_RESTA,
         MAS_PLUS,
-        GENIO_PLUS
+        GENIO_PLUS,
+        FOCO_PLUS
     }
 
     private enum class Difficulty {
@@ -550,6 +604,18 @@ object ScoreManager {
         }
         if (!::preferencesGenioPlusPro.isInitialized) {
             preferencesGenioPlusPro = context.getSharedPreferences(PREFS_NAME_GENIO_PLUS_PRO, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesGenioPlusPro.isInitialized) {
+            preferencesGenioPlusPro = context.getSharedPreferences(PREFS_NAME_GENIO_PLUS_PRO, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesFocoPlus.isInitialized) {
+            preferencesFocoPlus = context.getSharedPreferences(PREFS_NAME_FOCO_PLUS, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesFocoPlusPrincipiante.isInitialized) {
+            preferencesFocoPlusPrincipiante = context.getSharedPreferences(PREFS_NAME_FOCO_PLUS_PRINCIPIANTE, Context.MODE_PRIVATE)
+        }
+        if (!::preferencesFocoPlusPro.isInitialized) {
+            preferencesFocoPlusPro = context.getSharedPreferences(PREFS_NAME_FOCO_PLUS_PRO, Context.MODE_PRIVATE)
         }
 
         val key = Triple(game, difficulty, suffix)
@@ -714,6 +780,29 @@ object ScoreManager {
                         levelScoresGenioPlusPro, preferencesGenioPlusPro,
                         KEY_CURRENT_SCORE_GENIO_PLUS_PRO, KEY_UNLOCKED_LEVELS_GENIO_PLUS_PRO, KEY_COMPLETED_LEVELS_GENIO_PLUS_PRO,
                         KEY_CONSECUTIVE_FAILURES_GENIO_PLUS_PRO, consecutiveFailuresGenioPlusPro
+                    )
+                }
+                Game.FOCO_PLUS -> when (difficulty) {
+                    Difficulty.AVANZADO -> GameManager(
+                        { currentScoreFocoPlus }, { currentScoreFocoPlus = it },
+                        { unlockedLevelsFocoPlus }, { unlockedLevelsFocoPlus = it },
+                        levelScoresFocoPlus, preferencesFocoPlus,
+                        KEY_CURRENT_SCORE_FOCO_PLUS, KEY_UNLOCKED_LEVELS_FOCO_PLUS, KEY_COMPLETED_LEVELS_FOCO_PLUS,
+                        KEY_CONSECUTIVE_FAILURES_FOCO_PLUS, consecutiveFailuresFocoPlus
+                    )
+                    Difficulty.PRINCIPIANTE -> GameManager(
+                        { currentScoreFocoPlusPrincipiante }, { currentScoreFocoPlusPrincipiante = it },
+                        { unlockedLevelsFocoPlusPrincipiante }, { unlockedLevelsFocoPlusPrincipiante = it },
+                        levelScoresFocoPlusPrincipiante, preferencesFocoPlusPrincipiante,
+                        KEY_CURRENT_SCORE_FOCO_PLUS_PRINCIPIANTE, KEY_UNLOCKED_LEVELS_FOCO_PLUS_PRINCIPIANTE, KEY_COMPLETED_LEVELS_FOCO_PLUS_PRINCIPIANTE,
+                        KEY_CONSECUTIVE_FAILURES_FOCO_PLUS_PRINCIPIANTE, consecutiveFailuresFocoPlusPrincipiante
+                    )
+                    Difficulty.PRO -> GameManager(
+                        { currentScoreFocoPlusPro }, { currentScoreFocoPlusPro = it },
+                        { unlockedLevelsFocoPlusPro }, { unlockedLevelsFocoPlusPro = it },
+                        levelScoresFocoPlusPro, preferencesFocoPlusPro,
+                        KEY_CURRENT_SCORE_FOCO_PLUS_PRO, KEY_UNLOCKED_LEVELS_FOCO_PLUS_PRO, KEY_COMPLETED_LEVELS_FOCO_PLUS_PRO,
+                        KEY_CONSECUTIVE_FAILURES_FOCO_PLUS_PRO, consecutiveFailuresFocoPlusPro
                     )
                 }
             }
@@ -1051,6 +1140,47 @@ object ScoreManager {
         getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRO).loadConsecutiveFailures()
     }
 
+    fun initFocoPlus(context: Context) {
+        init(context)
+        ensurePreferencesInitialized(context)
+        preferencesFocoPlus = context.getSharedPreferences(PREFS_NAME_FOCO_PLUS, Context.MODE_PRIVATE)
+        currentScoreFocoPlus = preferencesFocoPlus.getIntCompat(KEY_CURRENT_SCORE_FOCO_PLUS, 0)
+        unlockedLevelsFocoPlus = preferencesFocoPlus.getIntCompat(KEY_UNLOCKED_LEVELS_FOCO_PLUS, 2)
+        getOrCreateManager(Game.FOCO_PLUS, Difficulty.AVANZADO).loadConsecutiveFailures()
+
+        totalGamesFocoPlusAvanzado = preferences.getIntCompat("total_games_focoplus_avanzado", 0)
+        totalGamesFocoPlusPrincipiante = preferences.getIntCompat("total_games_focoplus_principiante", 0)
+        totalGamesFocoPlusPro = preferences.getIntCompat("total_games_focoplus_pro", 0)
+        preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        totalGamesGlobal = preferences.getIntCompat(KEY_TOTAL_GAMES_GLOBAL, 0)
+        correctGamesGlobal = preferences.getIntCompat(KEY_CORRECT_GAMES_GLOBAL, 0)
+        totalGamesFocoPlus = preferencesFocoPlus.getIntCompat(KEY_TOTAL_GAMES_FOCO_PLUS, 0)
+        totalTimeFocoPlus = preferencesFocoPlus.getFloat(KEY_TOTAL_TIME_FOCO_PLUS, 0f).toDouble()
+        totalGamesFocoPlusExitos = preferences.getIntCompat(KEY_TOTAL_GAMES_FOCO_PLUS_EXITOS, 0)
+        totalTimeFocoPlusExitos = preferences.getFloat(KEY_TOTAL_TIME_FOCO_PLUS_EXITOS, 0f).toDouble()
+
+        val storedMap = preferences.getString(KEY_LAST_IQ_COMPONENTS, null)
+        lastIqComponentByGame = if (storedMap != null) gson.fromJson(storedMap, mapType) else mutableMapOf()
+    }
+
+    fun initFocoPlusPrincipiante(context: Context) {
+        init(context)
+        ensurePreferencesInitialized(context)
+        preferencesFocoPlusPrincipiante = context.getSharedPreferences(PREFS_NAME_FOCO_PLUS_PRINCIPIANTE, Context.MODE_PRIVATE)
+        currentScoreFocoPlusPrincipiante = preferencesFocoPlusPrincipiante.getIntCompat(KEY_CURRENT_SCORE_FOCO_PLUS_PRINCIPIANTE, 0)
+        unlockedLevelsFocoPlusPrincipiante = preferencesFocoPlusPrincipiante.getIntCompat(KEY_UNLOCKED_LEVELS_FOCO_PLUS_PRINCIPIANTE, 2)
+        getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRINCIPIANTE).loadConsecutiveFailures()
+    }
+
+    fun initFocoPlusPro(context: Context) {
+        init(context)
+        ensurePreferencesInitialized(context)
+        preferencesFocoPlusPro = context.getSharedPreferences(PREFS_NAME_FOCO_PLUS_PRO, Context.MODE_PRIVATE)
+        currentScoreFocoPlusPro = preferencesFocoPlusPro.getIntCompat(KEY_CURRENT_SCORE_FOCO_PLUS_PRO, 0)
+        unlockedLevelsFocoPlusPro = preferencesFocoPlusPro.getIntCompat(KEY_UNLOCKED_LEVELS_FOCO_PLUS_PRO, 2)
+        getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRO).loadConsecutiveFailures()
+    }
+
 /*
 fun getOrCreateDeviceReferralFingerprint(context: Context): String {
     val prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
@@ -1090,6 +1220,9 @@ fun saveScoreMasPlusPro() = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRO).sa
 fun saveScoreGenioPlus() = getOrCreateManager(Game.GENIO_PLUS, Difficulty.AVANZADO).saveScore()
 fun saveScoreGenioPlusPrincipiante() = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRINCIPIANTE).saveScore()
 fun saveScoreGenioPlusPro() = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRO).saveScore()
+fun saveScoreFocoPlus() = getOrCreateManager(Game.FOCO_PLUS, Difficulty.AVANZADO).saveScore()
+fun saveScoreFocoPlusPrincipiante() = getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRINCIPIANTE).saveScore()
+fun saveScoreFocoPlusPro() = getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRO).saveScore()
 
 
 fun saveStatsGlobalAndNumerosPlus() {
@@ -1197,6 +1330,21 @@ fun saveStatsGlobalAndGenioPlus() {
     }
 }
 
+fun saveStatsGlobalAndFocoPlus() {
+     preferences.edit {
+            putInt(KEY_TOTAL_GAMES_GLOBAL, totalGamesGlobal)
+            putInt(KEY_CORRECT_GAMES_GLOBAL, correctGamesGlobal)
+            putInt(KEY_TOTAL_GAMES_FOCO_PLUS, totalGamesFocoPlus)
+            putFloat(KEY_TOTAL_TIME_FOCO_PLUS, totalTimeFocoPlus.toFloat())
+            putInt(KEY_TOTAL_GAMES_FOCO_PLUS_EXITOS, totalGamesFocoPlusExitos)
+            putFloat(KEY_TOTAL_TIME_FOCO_PLUS_EXITOS, totalTimeFocoPlusExitos.toFloat())
+            putInt("total_games_focoplus_avanzado", totalGamesFocoPlusAvanzado)
+            putInt("total_games_focoplus_principiante", totalGamesFocoPlusPrincipiante)
+            putInt("total_games_focoplus_pro", totalGamesFocoPlusPro)
+            putString(KEY_LAST_IQ_COMPONENTS, gson.toJson(lastIqComponentByGame))
+     }
+}
+
 
 fun getPrecisionGlobal(): Double = if (totalGamesGlobal > 0) correctGamesGlobal.toDouble() / totalGamesGlobal else 1.0
 fun getTiempoPromedioNumerosPlus(): Double = if (totalGamesNumerosPlusExitos > 0) totalTimeNumerosPlusExitos / totalGamesNumerosPlusExitos else 1.0
@@ -1206,14 +1354,18 @@ fun getTiempoPromedioAlfaNumeros(): Double = if (totalGamesAlfaNumerosExitos > 0
 fun getTiempoPromedioSumaResta(): Double = if (totalGamesSumaRestaExitos > 0) totalTimeSumaRestaExitos / totalGamesSumaRestaExitos else 1.0
 fun getTiempoPromedioMasPlus(): Double = if (totalGamesMasPlusExitos > 0) totalTimeMasPlusExitos / totalGamesMasPlusExitos else 1.0
 fun getTiempoPromedioGenioPlus(): Double = if (totalGamesGenioPlusExitos > 0) totalTimeGenioPlusExitos / totalGamesGenioPlusExitos else 1.0
+fun getTiempoPromedioFocoPlus(): Double = if (totalGamesFocoPlusExitos > 0) totalTimeFocoPlusExitos / totalGamesFocoPlusExitos else 1.0
 
-fun getTiempoPromedioGlobal(): Double {
-    val totalTiempo = totalTimeNumerosPlusExitos + totalTimeDeciPlusExitos + totalTimeRomasExitos +
-            totalTimeAlfaNumerosExitos + totalTimeSumaRestaExitos + totalTimeMasPlusExitos + totalTimeGenioPlusExitos
-    val totalJuegos = totalGamesNumerosPlusExitos + totalGamesDeciPlusExitos + totalGamesRomasExitos +
-            totalGamesAlfaNumerosExitos + totalGamesSumaRestaExitos + totalGamesMasPlusExitos + totalGamesGenioPlusExitos
-    return if (totalJuegos > 0) totalTiempo / totalJuegos else 1.0
-}
+
+    fun getTiempoPromedioGlobal(): Double {
+        val totalTiempo = totalTimeNumerosPlusExitos + totalTimeDeciPlusExitos + totalTimeRomasExitos +
+                totalTimeAlfaNumerosExitos + totalTimeSumaRestaExitos + totalTimeMasPlusExitos + totalTimeGenioPlusExitos +
+                totalTimeFocoPlusExitos
+        val totalJuegos = totalGamesNumerosPlusExitos + totalGamesDeciPlusExitos + totalGamesRomasExitos +
+                totalGamesAlfaNumerosExitos + totalGamesSumaRestaExitos + totalGamesMasPlusExitos + totalGamesGenioPlusExitos +
+                totalGamesFocoPlusExitos
+        return if (totalJuegos > 0) totalTiempo / totalJuegos else 1.0
+    }
 
 
 fun addCompletedLevel(level: Int) = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.AVANZADO).addCompletedLevel(level)
@@ -1238,6 +1390,9 @@ fun addCompletedLevelGenioPlus(level: Int) = getOrCreateManager(Game.GENIO_PLUS,
 fun addCompletedLevelGenioPlusPrincipiante(level: Int) = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRINCIPIANTE).addCompletedLevel(level)
 fun addCompletedLevelGenioPlusPro(level: Int) = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRO).addCompletedLevel(level)
 
+fun addCompletedLevelFocoPlus(level: Int) = getOrCreateManager(Game.FOCO_PLUS, Difficulty.AVANZADO).addCompletedLevel(level)
+fun addCompletedLevelFocoPlusPrincipiante(level: Int) = getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRINCIPIANTE).addCompletedLevel(level)
+fun addCompletedLevelFocoPlusPro(level: Int) = getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRO).addCompletedLevel(level)
 
 fun hasCompletedLevel(level: Int): Boolean = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.AVANZADO).hasCompletedLevel(level)
 fun hasCompletedLevelPrincipiante(level: Int): Boolean = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRINCIPIANTE).hasCompletedLevel(level)
@@ -1261,6 +1416,9 @@ fun hasCompletedLevelGenioPlus(level: Int): Boolean = getOrCreateManager(Game.GE
 fun hasCompletedLevelGenioPlusPrincipiante(level: Int): Boolean = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRINCIPIANTE).hasCompletedLevel(level)
 fun hasCompletedLevelGenioPlusPro(level: Int): Boolean = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRO).hasCompletedLevel(level)
 
+fun hasCompletedLevelFocoPlus(level: Int): Boolean = getOrCreateManager(Game.FOCO_PLUS, Difficulty.AVANZADO).hasCompletedLevel(level)
+fun hasCompletedLevelFocoPlusPrincipiante(level: Int): Boolean = getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRINCIPIANTE).hasCompletedLevel(level)
+fun hasCompletedLevelFocoPlusPro(level: Int): Boolean = getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRO).hasCompletedLevel(level)
 
 fun getUniqueLevelsPlayedNumerosPlusPrincipiante(): Int = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRINCIPIANTE).getCompletedLevels().size
 fun getUniqueLevelsPlayedNumerosPlusAvanzado(): Int = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.AVANZADO).getCompletedLevels().size
@@ -1283,7 +1441,9 @@ fun getUniqueLevelsPlayedMasPlusPro(): Int = getOrCreateManager(Game.MAS_PLUS, D
 fun getUniqueLevelsPlayedGenioPlusPrincipiante(): Int = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRINCIPIANTE).getCompletedLevels().size
 fun getUniqueLevelsPlayedGenioPlusAvanzado(): Int = getOrCreateManager(Game.GENIO_PLUS, Difficulty.AVANZADO).getCompletedLevels().size
 fun getUniqueLevelsPlayedGenioPlusPro(): Int = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRO).getCompletedLevels().size
-
+fun getUniqueLevelsPlayedFocoPlusPrincipiante(): Int = getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRINCIPIANTE).getCompletedLevels().size
+fun getUniqueLevelsPlayedFocoPlusAvanzado(): Int = getOrCreateManager(Game.FOCO_PLUS, Difficulty.AVANZADO).getCompletedLevels().size
+fun getUniqueLevelsPlayedFocoPlusPro(): Int = getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRO).getCompletedLevels().size
 
 fun getMissingLevelsNumerosPlusPrincipiante(): Int = (12 - getUniqueLevelsPlayedNumerosPlusPrincipiante()).coerceAtLeast(0)
 fun getMissingLevelsNumerosPlusAvanzado(): Int = (12 - getUniqueLevelsPlayedNumerosPlusAvanzado()).coerceAtLeast(0)
@@ -1306,7 +1466,9 @@ fun getMissingLevelsMasPlusPro(): Int = (12 - getUniqueLevelsPlayedMasPlusPro())
 fun getMissingLevelsGenioPlusPrincipiante(): Int = (12 - getUniqueLevelsPlayedGenioPlusPrincipiante()).coerceAtLeast(0)
 fun getMissingLevelsGenioPlusAvanzado(): Int = (12 - getUniqueLevelsPlayedGenioPlusAvanzado()).coerceAtLeast(0)
 fun getMissingLevelsGenioPlusPro(): Int = (12 - getUniqueLevelsPlayedGenioPlusPro()).coerceAtLeast(0)
-
+fun getMissingLevelsFocoPlusPrincipiante(): Int = (12 - getUniqueLevelsPlayedFocoPlusPrincipiante()).coerceAtLeast(0)
+fun getMissingLevelsFocoPlusAvanzado(): Int = (12 - getUniqueLevelsPlayedFocoPlusAvanzado()).coerceAtLeast(0)
+fun getMissingLevelsFocoPlusPro(): Int = (12 - getUniqueLevelsPlayedFocoPlusPro()).coerceAtLeast(0)
 
 fun isEligibleForSpeedRankingNumerosPlus(): Boolean =
     getUniqueLevelsPlayedNumerosPlusPrincipiante() >= 12 &&
@@ -1343,6 +1505,11 @@ fun isEligibleForSpeedRankingGenioPlus(): Boolean =
             getUniqueLevelsPlayedGenioPlusAvanzado() >= 12 &&
             getUniqueLevelsPlayedGenioPlusPro() >= 12
 
+fun isEligibleForSpeedRankingFocoPlus(): Boolean =
+    getUniqueLevelsPlayedFocoPlusPrincipiante() >= 12 &&
+             getUniqueLevelsPlayedFocoPlusAvanzado() >= 12 &&
+             getUniqueLevelsPlayedFocoPlusPro() >= 12
+
 
 fun reset() = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.AVANZADO).reset()
 fun resetPrincipiante() = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRINCIPIANTE).reset()
@@ -1365,7 +1532,9 @@ fun resetMasPlusPro() = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRO).reset(
 fun resetGenioPlus() = getOrCreateManager(Game.GENIO_PLUS, Difficulty.AVANZADO).reset()
 fun resetGenioPlusPrincipiante() = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRINCIPIANTE).reset()
 fun resetGenioPlusPro() = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRO).reset()
-
+fun resetFocoPlus() = getOrCreateManager(Game.FOCO_PLUS, Difficulty.AVANZADO).reset()
+fun resetFocoPlusPrincipiante() = getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRINCIPIANTE).reset()
+fun resetFocoPlusPro() = getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRO).reset()
 
 fun incrementConsecutiveFailures(level: Int) = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.AVANZADO).incrementConsecutiveFailures(level)
 fun resetConsecutiveFailures(level: Int) = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.AVANZADO).resetConsecutiveFailures(level)
@@ -1472,6 +1641,21 @@ fun resetConsecutiveFailuresGenioPlusPro(level: Int) = getOrCreateManager(Game.G
 fun getConsecutiveFailuresGenioPlusPro(level: Int): Int = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRO).getConsecutiveFailures(level)
 fun isLevelBlockedByFailuresGenioPlusPro(level: Int): Boolean = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRO).isLevelBlockedByFailures(level)
 
+    fun incrementConsecutiveFailuresFocoPlus(level: Int) = getOrCreateManager(Game.FOCO_PLUS, Difficulty.AVANZADO).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresFocoPlus(level: Int) = getOrCreateManager(Game.FOCO_PLUS, Difficulty.AVANZADO).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresFocoPlus(level: Int): Int = getOrCreateManager(Game.FOCO_PLUS, Difficulty.AVANZADO).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresFocoPlus(level: Int): Boolean = getOrCreateManager(Game.FOCO_PLUS, Difficulty.AVANZADO).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresFocoPlusPrincipiante(level: Int) = getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRINCIPIANTE).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresFocoPlusPrincipiante(level: Int) = getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRINCIPIANTE).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresFocoPlusPrincipiante(level: Int): Int = getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRINCIPIANTE).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresFocoPlusPrincipiante(level: Int): Boolean = getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRINCIPIANTE).isLevelBlockedByFailures(level)
+
+    fun incrementConsecutiveFailuresFocoPlusPro(level: Int) = getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRO).incrementConsecutiveFailures(level)
+    fun resetConsecutiveFailuresFocoPlusPro(level: Int) = getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRO).resetConsecutiveFailures(level)
+    fun getConsecutiveFailuresFocoPlusPro(level: Int): Int = getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRO).getConsecutiveFailures(level)
+    fun isLevelBlockedByFailuresFocoPlusPro(level: Int): Boolean = getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRO).isLevelBlockedByFailures(level)
+
 
 private fun isEligibleForGlobalRanking(): Boolean =
     getTotalUniqueLevelsCompletedAllGames() >= RankingActivity.MIN_LEVELS_REQUIRED
@@ -1483,6 +1667,7 @@ private fun isEligibleSpeedRomas() = isEligibleForSpeedRankingRomas()
 private fun isEligibleSpeedSumaResta() = isEligibleForSpeedRankingSumaResta()
 private fun isEligibleSpeedMasPlus() = isEligibleForSpeedRankingMasPlus()
 private fun isEligibleSpeedGenioPlus() = isEligibleForSpeedRankingGenioPlus()
+private fun isEligibleSpeedFocoPlus() = isEligibleForSpeedRankingFocoPlus()
 
 fun isEligibleIQPlusRanking(): Boolean = haJugadoAlMenosUnNivelEnCadaJuegoYGrado()
 
@@ -1497,6 +1682,7 @@ fun getRankingList(rankingName: String): List<RankingEntry> {
         "VEL_SUMARESTA" -> if (isEligibleSpeedSumaResta()) listOf(RankingEntry(me, 1.0)) else emptyList()
         "VEL_MAS" -> if (isEligibleSpeedMasPlus()) listOf(RankingEntry(me, 1.0)) else emptyList()
         "VEL_GENIOS" -> if (isEligibleSpeedGenioPlus()) listOf(RankingEntry(me, 1.0)) else emptyList()
+        "VEL_FOCO" -> if (isEligibleSpeedFocoPlus()) listOf(RankingEntry(me, 1.0)) else emptyList()
         "IQ_PLUS" -> if (isEligibleIQPlusRanking()) listOf(RankingEntry(me, 1.0)) else emptyList()
         else -> emptyList()
     }
@@ -1530,7 +1716,10 @@ fun getTotalUniqueLevelsCompletedAllGames(): Int {
             getUniqueLevelsPlayedMasPlusPro() +
             getUniqueLevelsPlayedGenioPlusPrincipiante() +
             getUniqueLevelsPlayedGenioPlusAvanzado() +
-            getUniqueLevelsPlayedGenioPlusPro()
+            getUniqueLevelsPlayedGenioPlusPro() +
+            getUniqueLevelsPlayedFocoPlusPrincipiante() +
+            getUniqueLevelsPlayedFocoPlusAvanzado() +
+            getUniqueLevelsPlayedFocoPlusPro()
 }
 
 fun haJugadoAlMenosUnNivelEnCadaJuegoYGrado(): Boolean {
@@ -1554,7 +1743,10 @@ fun haJugadoAlMenosUnNivelEnCadaJuegoYGrado(): Boolean {
             getUniqueLevelsPlayedMasPlusPro() > 0 &&
             getUniqueLevelsPlayedGenioPlusPrincipiante() > 0 &&
             getUniqueLevelsPlayedGenioPlusAvanzado() > 0 &&
-            getUniqueLevelsPlayedGenioPlusPro() > 0
+            getUniqueLevelsPlayedGenioPlusPro() > 0 &&
+            getUniqueLevelsPlayedFocoPlusPrincipiante() > 0 &&
+            getUniqueLevelsPlayedFocoPlusAvanzado() > 0 &&
+            getUniqueLevelsPlayedFocoPlusPro() > 0
 }
 
 fun updateIqComponent(juego: String, grado: String, valor: Double) {
@@ -1570,6 +1762,7 @@ fun getMaxLevelForCombo(juego: String, grado: String): Int {
         "SumaResta" -> Game.SUMA_RESTA
         "MasPlus" -> Game.MAS_PLUS
         "GenioPlus" -> Game.GENIO_PLUS
+        "FocoPlus" -> Game.FOCO_PLUS
         else -> return 0
     }
     val difficulty = when (grado) {
@@ -1618,7 +1811,9 @@ fun exportAllDataAsJson(context: Context): String {
         // MasPlus
         "ScorePrefsMasPlus", "ScorePrefsMasPlusPrincipiante", "ScorePrefsMasPlusPro",
         // GenioPlus
-        "ScorePrefsGenioPlus", "ScorePrefsGenioPlusPrincipiante", "ScorePrefsGenioPlusPro"
+        "ScorePrefsGenioPlus", "ScorePrefsGenioPlusPrincipiante", "ScorePrefsGenioPlusPro",
+        // FocoPlus (Nuevo)
+        "ScorePrefsFocoPlus", "ScorePrefsFocoPlusPrincipiante", "ScorePrefsFocoPlusPro"
     )
 
     fun dumpPrefs(name: String): Map<String, TypedPrefValue> {

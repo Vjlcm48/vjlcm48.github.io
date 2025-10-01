@@ -1658,4 +1658,13 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
     <string name="premium_terms_privacy">Terms and Privacy</string>
     <string name="premium_already_active">Your account is already PREMIUM.</string>
 
+    <string name="instruction_game_terms_28">Mentally solve the 28 exercises\nmoving on the board. If your result\nis on one of the buttons, press it.\nOtherwise, press NONE.\nYou have a maximum of 12 mistakes. Focus up!</string>
+    <string name="instruction_game_terms_14">Mentally solve the 14 exercises\nmoving on the board. If your result\nis on one of the buttons, press it.\nOtherwise, press NONE.\nYou have a maximum of 6 mistakes. Focus up!</string>
+    <string name="instruction_game_figures_28">Observe 28 pairs of figures in motion.\nIf a pair from the board matches\nwhat you see on the buttons, press it.\nIf no pair matches, press NONE.\nYou have a maximum of 12 mistakes. Focus up!</string>
+    <string name="instruction_game_letters_value">The value of each letter corresponds\nto its position in the alphabet:\nA=1, B=2, C=3, and so on.</string>
+    <string name="instruction_game_roman_numerals">In this exercise you\'ll see Roman numerals,\npay attention as they appear, you must perform\nthe calculations using their corresponding value.\nStay focused!</string>
+    <string name="level_indicator_foco">LEVEL %1$d / 420</string>
+    <string name="answer_none">NONE</string>
+    <string name="level_prefix">LEVEL %1$d</string>
+
 </resources>

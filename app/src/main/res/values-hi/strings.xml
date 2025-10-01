@@ -1600,4 +1600,13 @@
     <string name="premium_terms_privacy">शर्तें और गोपनीयता</string>
     <string name="premium_already_active">आपका खाता पहले से ही PREMIUM है।</string>
 
+    <string name="instruction_game_terms_28">बोर्ड पर घूम रहे 28 अभ्यासों को\nमानसिक रूप से हल करें। यदि आपका परिणाम\nकिसी एक बटन पर है, तो उसे दबाएं।\nअन्यथा, कोई नहीं दबाएं।\nआपके पास अधिकतम 12 गलतियों की गुंजाइश है। ध्यान केंद्रित करें!</string>
+    <string name="instruction_game_terms_14">बोर्ड पर घूम रहे 14 अभ्यासों को\nमानसिक रूप से हल करें। यदि आपका परिणाम\nकिसी एक बटन पर है, तो उसे दबाएं।\nअन्यथा, कोई नहीं दबाएं।\nआपके पास अधिकतम 6 गलतियों की गुंजाइश है। ध्यान केंद्रित करें!</string>
+    <string name="instruction_game_figures_28">गति में 28 जोड़ी आकृतियों का निरीक्षण करें।\nयदि बोर्ड से कोई जोड़ी\nबटन पर जो आप देखते हैं उससे मेल खाती है, तो उसे दबाएं।\nयदि कोई जोड़ी मेल नहीं खाती है, तो कोई नहीं दबाएं।\nआपके पास अधिकतम 12 गलतियों की गुंजाइश है। ध्यान केंद्रित करें!</string>
+    <string name="instruction_game_letters_value">प्रत्येक अक्षर का मान वर्णमाला में\nउसकी स्थिति के अनुरूप होता है:\nA=1, B=2, C=3, और इसी तरह।</string>
+    <string name="instruction_game_roman_numerals">इस अभ्यास में आप रोमन अंक देखेंगे,\nजैसे ही वे दिखाई दें, सतर्क रहें, आपको\nउनके संगत मान को लागू करके गणना करनी होगी।\nध्यान केंद्रित रखें!</string>
+    <string name="level_indicator_foco">स्तर %1$d / 420</string>
+    <string name="answer_none">कोई नहीं</string>
+    <string name="level_prefix">स्तर %1$d</string>
+
 </resources>
