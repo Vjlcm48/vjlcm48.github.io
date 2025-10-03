@@ -50,8 +50,9 @@ class LevelsActivityGenioPlusPro : BaseActivity()  {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         sharedPreferences = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_levels_genio_plus)
 

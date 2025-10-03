@@ -36,8 +36,9 @@ class CanjeActivity : BaseActivity() {
     private var referidosDisponibles: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         setContentView(R.layout.activity_canje)
 
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)

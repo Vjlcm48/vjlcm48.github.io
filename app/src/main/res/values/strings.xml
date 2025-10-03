@@ -1612,6 +1612,7 @@
     <string name="difficulty_avanzado_button" translatable="false">Botón Avanzado</string>
     <string name="difficulty_pro_button" translatable="false">Botón Pro</string>
     <string name="difficulty_hyper_button" translatable="false">Botón Híper</string>
+    <string name="_0" translatable="false">0</string>
     <string name="_1" translatable="false">1</string>
     <string name="_2" translatable="false">2</string>
     <string name="_3" translatable="false">3</string>

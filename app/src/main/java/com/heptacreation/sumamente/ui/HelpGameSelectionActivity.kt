@@ -25,8 +25,9 @@ import androidx.activity.enableEdgeToEdge
 class HelpGameSelectionActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         setContentView(R.layout.activity_help_game_selection)
 
         setupClickListeners()

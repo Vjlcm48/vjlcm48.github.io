@@ -80,8 +80,9 @@ class GameActivityAlfaNumerosPrincipiante : BaseActivity()  {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
         setContentView(R.layout.activity_game_alfanumeros)
 

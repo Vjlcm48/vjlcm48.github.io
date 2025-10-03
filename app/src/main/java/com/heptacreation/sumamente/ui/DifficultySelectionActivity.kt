@@ -47,8 +47,9 @@ class DifficultySelectionActivity : BaseActivity()   {
     private lateinit var prefsName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
 
         gameType = intent.getStringExtra(EXTRA_GAME_TYPE) ?: "NumerosPlus"
         difficultyKey = "difficulty_${gameType.lowercase(Locale.getDefault())}"

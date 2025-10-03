@@ -36,8 +36,9 @@ class ClassificationActivity : BaseActivity() {
     private lateinit var preferenceChangeListener: SharedPreferences.OnSharedPreferenceChangeListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         setContentView(R.layout.activity_classification)
 
         instanceRef = WeakReference(this)

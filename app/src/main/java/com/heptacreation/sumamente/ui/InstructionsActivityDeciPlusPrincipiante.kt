@@ -43,8 +43,9 @@ class InstructionsActivityDeciPlusPrincipiante : BaseActivity()  {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         sharedPreferences = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_instructions_deci_plus)
 

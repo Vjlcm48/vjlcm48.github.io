@@ -81,8 +81,9 @@ class GameActivityMasPlus : BaseActivity()  {
     private var inputBlocked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         getSharedPreferences("MyPrefsMasPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_game_mas_plus)
 

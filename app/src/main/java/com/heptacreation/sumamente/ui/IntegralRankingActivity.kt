@@ -55,8 +55,9 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
     private var colorAnimator: ValueAnimator? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         setContentView(R.layout.activity_integral_ranking)
 
         ScoreManager.init(this)

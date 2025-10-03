@@ -24,8 +24,9 @@ class CoronasActivity : BaseActivity()  {
     private var isFinishingByBack = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         setContentView(R.layout.activity_coronas)
 
         initViews()

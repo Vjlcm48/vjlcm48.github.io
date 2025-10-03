@@ -35,8 +35,9 @@ class EmbajadorActivity : BaseActivity() {
     private var referidosValidados: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         setContentView(R.layout.activity_embajador)
 
         // Fuente de verdad local unificada

@@ -56,8 +56,9 @@ class LevelResultActivityMasPlus : BaseActivity()  {
     private lateinit var sharedPreferences: android.content.SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         sharedPreferences = getSharedPreferences("MyPrefsMasPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_level_result_mas_plus)
 

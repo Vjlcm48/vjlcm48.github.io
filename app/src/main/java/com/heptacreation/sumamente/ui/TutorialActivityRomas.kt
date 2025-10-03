@@ -80,8 +80,9 @@ class TutorialActivityRomas : BaseActivity()  {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
 
         val prefs = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)

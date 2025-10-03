@@ -25,8 +25,9 @@ class ExerciseReviewActivityGenioPlus : BaseActivity()  {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         setContentView(R.layout.activity_exercise_review_genio_plus)
 
         titleTextView = findViewById(R.id.title_textview)

@@ -38,8 +38,9 @@ class ResetProgressActivity : BaseActivity() {
     private lateinit var btnGenioPlus: ConstraintLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         initializeScoreManagers()
         setContentView(R.layout.activity_reset_progress)
         bindViews()

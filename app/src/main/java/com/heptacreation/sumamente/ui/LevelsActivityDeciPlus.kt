@@ -50,8 +50,9 @@ class LevelsActivityDeciPlus : BaseActivity()  {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         sharedPreferences = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
         ScoreManager.initDeciPlus(this)
         setContentView(R.layout.activity_levels_deci_plus)

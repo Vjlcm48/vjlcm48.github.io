@@ -81,8 +81,9 @@ class TutorialActivityNumeros : BaseActivity()  {
     private val fixedNumbers = listOf(7, 3, 5, -3, 4, 4, -11)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
 
 

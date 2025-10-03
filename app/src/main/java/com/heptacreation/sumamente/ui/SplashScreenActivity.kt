@@ -37,8 +37,9 @@ class SplashScreenActivity : AppCompatActivity() {
     private var fadeOutRunnable: Runnable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
 
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setTheme(R.style.Theme_SumaMente)

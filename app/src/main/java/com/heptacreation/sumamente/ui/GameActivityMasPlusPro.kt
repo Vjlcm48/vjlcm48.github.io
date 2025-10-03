@@ -80,8 +80,9 @@ class GameActivityMasPlusPro : BaseActivity()  {
     private var inputBlocked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         setContentView(R.layout.activity_game_mas_plus)
 
         ScoreManager.initMasPlusPro(this)

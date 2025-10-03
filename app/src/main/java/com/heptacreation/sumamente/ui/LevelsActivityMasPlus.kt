@@ -49,8 +49,9 @@ class LevelsActivityMasPlus : BaseActivity()  {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         sharedPreferences = getSharedPreferences("MyPrefsMasPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_levels_mas_plus)
 

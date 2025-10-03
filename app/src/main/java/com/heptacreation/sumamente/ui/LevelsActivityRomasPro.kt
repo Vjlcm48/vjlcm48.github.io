@@ -49,8 +49,9 @@ class LevelsActivityRomasPro : BaseActivity()  {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         ScoreManager.initRomasPro(this)
         sharedPreferences = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
         setContentView(R.layout.activity_levels_romas)

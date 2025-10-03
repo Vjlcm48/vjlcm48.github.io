@@ -55,8 +55,9 @@ class LevelResultActivityAlfaNumerosPrincipiante : BaseActivity()  {
     private lateinit var sharedPreferences: android.content.SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         sharedPreferences = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
         setContentView(R.layout.activity_level_result_alfanumeros)
 

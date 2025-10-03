@@ -10,14 +10,12 @@ import android.text.Spanned
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.core.view.isVisible
-import com.heptacreation.sumamente.R
-import androidx.activity.enableEdgeToEdge
-import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
+import com.heptacreation.sumamente.R
 
 class InstructionsActivityPrincipiante : BaseActivity()  {
 
@@ -45,8 +43,9 @@ class InstructionsActivityPrincipiante : BaseActivity()  {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_instructions)
 
@@ -54,10 +53,9 @@ class InstructionsActivityPrincipiante : BaseActivity()  {
         tvDifficulty = findViewById(R.id.tv_difficulty)
         tvScore = findViewById(R.id.tv_score)
 
-        MobileAds.initialize(this) {}
+        AdManager.initialize(this)
         adView = findViewById(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
-        adView.loadAd(adRequest)
+        AdManager.loadBanner(this, adView)
 
         setupInfoBar()
 

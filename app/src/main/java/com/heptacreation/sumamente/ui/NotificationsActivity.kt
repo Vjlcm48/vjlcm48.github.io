@@ -22,8 +22,9 @@ class NotificationsActivity : BaseActivity() {
     private lateinit var sharedPreferences: android.content.SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         setContentView(R.layout.activity_notifications)
 
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)

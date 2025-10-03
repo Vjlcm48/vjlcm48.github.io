@@ -34,8 +34,9 @@ class LanguageChangeActivity : BaseActivity() {
     private val supportedLanguages by lazy { LanguageManager.getOrderedLanguages(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         setContentView(R.layout.activity_language_change)
 
         val btnClose = findViewById<ImageView>(R.id.btn_close)

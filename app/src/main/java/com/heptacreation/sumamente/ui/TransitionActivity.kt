@@ -29,8 +29,9 @@ class TransitionActivity : BaseActivity() {
     private lateinit var transitionRunnable: Runnable
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         setContentView(R.layout.activity_transition)
 
         innerCircleView = findViewById(R.id.innerCircleView)

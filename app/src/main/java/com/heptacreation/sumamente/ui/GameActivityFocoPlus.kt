@@ -93,6 +93,9 @@ class GameActivityFocoPlus : BaseActivity() {
         data class PairFig(val aIcon: Int, val aColor: Int, val bIcon: Int, val bColor: Int) : Meta()
     }
     private val metas: MutableList<Meta> = mutableListOf()
+
+    private val dualVerticalOffsetDp = 24
+
     private var hiddenMetaIndexForFg: Int = -1
 
     private val iconNames = listOf(
@@ -113,8 +116,9 @@ class GameActivityFocoPlus : BaseActivity() {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         setContentView(R.layout.activity_game_foco_plus)
 
         currentLevel = intent.getIntExtra("LEVEL", 1)
@@ -430,8 +434,8 @@ class GameActivityFocoPlus : BaseActivity() {
         used += left.signature
         val right = buildExprForSubtypeTwoTerms(subtype, metasValues, mustMatch = rightIsMatch, usedSignatures = used)
 
-        tvLeft.text = left.text
-        tvRight.text = right.text
+        setColoredExercise(tvLeft, left.text)
+        setColoredExercise(tvRight, right.text)
 
         leftExpectedMetaIndex = if (leftIsMatch) indexOfFirstInMetas(left.result) else -1
         rightExpectedMetaIndex = if (rightIsMatch) indexOfFirstInMetas(right.result) else -1
@@ -441,7 +445,7 @@ class GameActivityFocoPlus : BaseActivity() {
     private fun renderSingleExercise(wantsMatch: Boolean) {
         val metasValues = metas.filterIsInstance<Meta.Numeric>().map { it.value }.toSet()
         val expr = buildExprForSubtypeThreeTerms(subtype, metasValues, mustMatch = wantsMatch)
-        tvSingle.text = expr.text
+        setColoredExercise(tvSingle, expr.text)
         currentExpectedMetaIndex = if (wantsMatch) indexOfFirstInMetas(expr.result) else -1
     }
 
@@ -454,8 +458,8 @@ class GameActivityFocoPlus : BaseActivity() {
 
                 tvLeft.translationX = -width * 0.15f
                 tvRight.translationX = width * 0.15f
-                tvLeft.translationY = -dp(8).toFloat()
-                tvRight.translationY = dp(8).toFloat()
+                tvLeft.translationY = -dp(dualVerticalOffsetDp).toFloat()
+                tvRight.translationY = dp(dualVerticalOffsetDp).toFloat()
 
                 startExerciseResponseTimer()
 
@@ -630,10 +634,10 @@ class GameActivityFocoPlus : BaseActivity() {
     }
 
     private fun applySoftBounceEffect(button: Button) {
-        val scaleDown = ObjectAnimator.ofFloat(button, "scaleX", 1f, 0.95f).apply { duration = 40 }
-        val scaleDownY = ObjectAnimator.ofFloat(button, "scaleY", 1f, 0.95f).apply { duration = 40 }
-        val scaleUp = ObjectAnimator.ofFloat(button, "scaleX", 0.95f, 1f).apply { duration = 40 }
-        val scaleUpY = ObjectAnimator.ofFloat(button, "scaleY", 0.95f, 1f).apply { duration = 40 }
+        val scaleDown = ObjectAnimator.ofFloat(button, "scaleX", 1f, 0.95f).apply { duration = 30 }
+        val scaleDownY = ObjectAnimator.ofFloat(button, "scaleY", 1f, 0.95f).apply { duration = 30 }
+        val scaleUp = ObjectAnimator.ofFloat(button, "scaleX", 0.95f, 1f).apply { duration = 30 }
+        val scaleUpY = ObjectAnimator.ofFloat(button, "scaleY", 0.95f, 1f).apply { duration = 30 }
 
         val animatorSet = android.animation.AnimatorSet()
         animatorSet.playTogether(scaleDown, scaleDownY)
@@ -650,7 +654,7 @@ class GameActivityFocoPlus : BaseActivity() {
 
         boardContainer.postDelayed({
             button.background = originalBackground
-        }, 250)
+        }, 120)
     }
 
     private fun handleNoAnswer() {
@@ -674,7 +678,7 @@ class GameActivityFocoPlus : BaseActivity() {
     }
 
     private fun applyFeedback() {
-        val color = R.color.red_primary
+        val color = R.color.red
         val overlay = View(this).apply {
             setBackgroundColor(ContextCompat.getColor(this@GameActivityFocoPlus, color))
             alpha = 0f
@@ -1163,7 +1167,7 @@ class GameActivityFocoPlus : BaseActivity() {
         val start = System.currentTimeMillis()
         val plan = MutableList(total) { false }
         var placed = 0
-        val wantCorrect = 6  // Siempre 6 para ejercicios simples
+        val wantCorrect = 6
 
         while (placed < wantCorrect) {
             val i = Random.nextInt(0, total)
@@ -1190,4 +1194,71 @@ class GameActivityFocoPlus : BaseActivity() {
             .setNegativeButton(R.string.btn_no, null)
         builder.create().show()
     }
+
+    private fun colorizeNegatives(text: String): CharSequence {
+        val white = android.graphics.Color.WHITE
+        val red = ContextCompat.getColor(this, R.color.red)
+
+        val sb = android.text.SpannableStringBuilder(text)
+        sb.setSpan(
+            android.text.style.ForegroundColorSpan(white),
+            0, sb.length,
+            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+
+
+        val chars = text.toCharArray()
+        var i = 0
+        while (i < chars.size) {
+            val c = chars[i]
+            val isMinus = (c == '-' || c == '−')
+            if (isMinus) {
+                val start = i
+                var j = i + 1
+
+
+                if (j < chars.size && chars[j].isWhitespace()) {
+                    j++
+                }
+
+                fun isTokenChar(ch: Char): Boolean {
+                    val up = ch.uppercaseChar()
+                    val isRoman = (up == 'M' || up == 'D' || up == 'C' || up == 'L' || up == 'X' || up == 'V' || up == 'I')
+                    val isLetter = up in 'A'..'Z'
+                    val isDigit = ch in '0'..'9'
+                    val isDot = ch == '.'
+                    return isRoman || isLetter || isDigit || isDot
+                }
+
+                while (j < chars.size) {
+                    val ch = chars[j]
+                    val isStop = ch.isWhitespace() ||
+                            ch == '+' || ch == '×' || ch == '÷' || ch == '/' ||
+                            ch == '-' || ch == '−' || ch == '(' || ch == ')' || ch == ','
+
+                    if (isStop) break
+                    if (!isTokenChar(ch)) break
+                    j++
+                }
+
+                sb.setSpan(
+                    android.text.style.ForegroundColorSpan(red),
+                    start, j,
+                    android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+
+                i = j
+                continue
+            }
+            i++
+        }
+
+        return sb
+    }
+
+    private fun setColoredExercise(textView: TextView, rawText: String) {
+        textView.setTextColor(android.graphics.Color.WHITE)
+        textView.text = colorizeNegatives(rawText)
+    }
+
 }

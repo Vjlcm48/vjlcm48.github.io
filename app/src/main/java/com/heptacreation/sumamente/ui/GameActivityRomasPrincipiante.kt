@@ -79,8 +79,9 @@ class GameActivityRomasPrincipiante : BaseActivity()  {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
         setContentView(R.layout.activity_game_romas)
 

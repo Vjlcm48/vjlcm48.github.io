@@ -1,0 +1,5 @@
+<!-- app/src/main/res/values/integers.xml -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Neutraliza el cutout heredado de Material3 -->
+    <integer name="m3c_window_layout_in_display_cutout_mode" tools:override="true">0</integer>
+</resources>

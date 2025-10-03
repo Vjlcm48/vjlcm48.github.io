@@ -78,8 +78,9 @@ class TutorialActivityGenioPlus : BaseActivity()  {
     private var currentNumberIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
 
         val prefs = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)

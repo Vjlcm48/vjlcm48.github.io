@@ -57,8 +57,9 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
     private lateinit var reviewExerciseTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         sharedPreferences = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
 
         setContentView(R.layout.activity_level_result_deci_plus)

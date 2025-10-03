@@ -68,8 +68,9 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         setContentView(R.layout.activity_speed_ranking)
 
         ScoreManager.ensurePreferencesInitialized(this)

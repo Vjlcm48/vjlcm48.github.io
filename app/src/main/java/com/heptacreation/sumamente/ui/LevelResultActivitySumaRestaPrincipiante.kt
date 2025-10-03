@@ -55,8 +55,9 @@ class LevelResultActivitySumaRestaPrincipiante : BaseActivity()  {
     private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         sharedPreferences = getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
         setContentView(R.layout.activity_level_result_suma_resta)
 

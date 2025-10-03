@@ -292,8 +292,9 @@ class FlagSelectionActivity : BaseActivity()  {
     private var currentCountryCode: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
 
         currentCountryCode = sharedPreferences.getString("savedCountryCode", null)

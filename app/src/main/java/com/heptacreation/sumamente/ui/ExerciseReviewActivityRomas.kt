@@ -24,8 +24,9 @@ class ExerciseReviewActivityRomas : BaseActivity()  {
     private lateinit var understoodButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         setContentView(R.layout.activity_exercise_review_romas)
 
         titleTextView = findViewById(R.id.title_textview)

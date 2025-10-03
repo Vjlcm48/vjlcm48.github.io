@@ -39,8 +39,9 @@ class DesafiosActivity : BaseActivity() {
     private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         setContentView(R.layout.activity_desafios)
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
 

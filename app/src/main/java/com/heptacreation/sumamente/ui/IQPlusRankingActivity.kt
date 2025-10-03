@@ -69,8 +69,9 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         ScoreManager.ensurePreferencesInitialized(this)
         setContentView(R.layout.activity_iqplus_ranking)
 

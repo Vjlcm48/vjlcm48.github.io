@@ -7,20 +7,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import java.util.Locale
 import androidx.core.content.edit
+import androidx.activity.enableEdgeToEdge
 
 abstract class BaseActivity : AppCompatActivity()  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         applySelectedTheme()
-
     }
+
 
     override fun attachBaseContext(newBase: Context) {
         val savedLanguage = getSavedLanguage(newBase)
         val updatedContext = updateContextWithLanguage(newBase, savedLanguage)
         super.attachBaseContext(updatedContext)
     }
+
 
     private fun getSavedLanguage(context: Context): String {
         val prefs = context.getSharedPreferences("MyPrefs", MODE_PRIVATE)

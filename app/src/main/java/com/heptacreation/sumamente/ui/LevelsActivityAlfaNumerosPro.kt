@@ -50,8 +50,9 @@ class LevelsActivityAlfaNumerosPro : BaseActivity()  {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         sharedPreferences = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
         setContentView(R.layout.activity_levels_alfa_numeros)
 

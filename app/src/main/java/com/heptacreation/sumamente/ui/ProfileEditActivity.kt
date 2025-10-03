@@ -31,8 +31,9 @@ class ProfileEditActivity : BaseActivity(), LinkUnlinkAccountDialogFragment.List
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         setContentView(R.layout.activity_profile_edit)
 
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)

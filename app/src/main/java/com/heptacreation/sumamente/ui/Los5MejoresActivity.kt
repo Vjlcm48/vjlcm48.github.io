@@ -24,8 +24,9 @@ class Los5MejoresActivity : BaseActivity()  {
     private var isFinishingByBack = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         setContentView(R.layout.activity_los5mejores)
 
         initViews()

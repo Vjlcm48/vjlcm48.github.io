@@ -59,8 +59,9 @@ class LevelResultActivityFocoPlus : BaseActivity() {
     private var currentDifficulty: String = DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
 
         currentDifficulty = intent.getStringExtra("DIFFICULTY") ?: DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE
 

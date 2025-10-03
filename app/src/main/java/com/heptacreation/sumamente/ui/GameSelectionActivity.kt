@@ -151,8 +151,9 @@ class GameSelectionActivity : BaseActivity() {
     private val gameButtons = mutableMapOf<Game, RelativeLayout>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         setContentView(R.layout.activity_game_selection)
 
         initializeScoreManager()

@@ -76,8 +76,9 @@ class GameActivityPro : BaseActivity()  {
     private var inputBlocked = false // Cambio #1 bloqueo de mas de 2 intentos //
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_game)
 

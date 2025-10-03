@@ -41,12 +41,14 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
     private var currentDifficulty = DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE
     private var miniblockSubtypes: List<Int> = emptyList()
     private var isFirstTimeUser = false
+    private var hasUserMadeSelection = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
 
         setupPreferences()
+        hasUserMadeSelection = false
         setContentView(R.layout.activity_instructions_levels_foco)
 
         initializeViews()
@@ -67,6 +69,7 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
+        hasUserMadeSelection = false
         setupInfoBar()
         updateLevelButtons()
     }
@@ -81,7 +84,7 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
         initializeScoreManager(currentDifficulty)
 
         selectedLevel = getNextAvailableLevel()
-        isFirstTimeUser = (getUnlockedLevels() == 1 && !hasCompletedLevel(1))
+        isFirstTimeUser = (getUnlockedLevels() == 1 && !hasCompletedLevel(1) && !hasCompletedLevel(2))
     }
 
     private fun initializeViews() {
@@ -164,17 +167,17 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
         val unlockedLevels = getUnlockedLevels()
 
         if (unlockedLevels >= 11) {
-            val maxLevel = minOf(unlockedLevels, 414)
-            for (level in 11..maxLevel) {
+            val maxVisibleLevel = minOf(unlockedLevels, 415)
+            for (level in 11..maxVisibleLevel) {
                 addDropdownLevelButton(level, isUnlocked = true)
             }
         }
 
-        if (unlockedLevels < 414) {
-            val remainingLevels = 414 - unlockedLevels
-            val suspensiveButtons = minOf(remainingLevels, 10)
+        if (unlockedLevels < 415) {
+            val nextLevelToShow = maxOf(11, unlockedLevels + 1)
+            val suspensiveButtonsNeeded = minOf(10, 415 - nextLevelToShow)
 
-            repeat(suspensiveButtons) {
+            repeat(suspensiveButtonsNeeded) {
                 addSuspensiveButton()
             }
         }
@@ -348,7 +351,11 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
 
     private fun selectLevel(level: Int) {
         selectedLevel = level
-        generateMiniblockSubtypesIfNeeded(level)
+        hasUserMadeSelection = true
+        val completedLevels = (1..420).count { hasCompletedLevel(it) }
+        if (completedLevels == 0) {
+            generateMiniblockSubtypesIfNeeded(level)
+        }
         updateLevelIndicator()
         updateInstructions()
         updateSelectedLevelDisplay()
@@ -374,29 +381,63 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
     }
 
     private fun updateLevelIndicator() {
-        val levelText = getString(R.string.level_indicator_foco, selectedLevel)
+        val completedLevels = (1..420).count { hasCompletedLevel(it) }
+
+        val displayLevel = if (completedLevels == 0 && miniblockSubtypes.isEmpty()) {
+            0
+        } else if (hasUserMadeSelection) {
+            selectedLevel
+        } else {
+            selectedLevel
+        }
+
+        val levelText = if (displayLevel == 0) {
+            "NIVEL ${getString(R.string._0)} / 420"
+        } else {
+            getString(R.string.level_indicator_foco, displayLevel)
+        }
+
         val spannableString = android.text.SpannableString(levelText)
 
-        val levelNumber = selectedLevel.toString()
-        val startIndex = levelText.indexOf(levelNumber)
-
-        if (startIndex != -1) {
-            spannableString.setSpan(
-                android.text.style.ForegroundColorSpan("#4391F8".toColorInt()),
-                startIndex,
-                startIndex + levelNumber.length,
-                android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-            )
+        if (displayLevel == 0) {
+            val zeroText = getString(R.string._0)
+            val startIndex = levelText.indexOf(zeroText)
+            if (startIndex != -1) {
+                spannableString.setSpan(
+                    android.text.style.ForegroundColorSpan(ContextCompat.getColor(this, R.color.red_primary)),
+                    startIndex,
+                    startIndex + zeroText.length,
+                    android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+        } else {
+            val levelNumber = displayLevel.toString()
+            val startIndex = levelText.indexOf(levelNumber)
+            if (startIndex != -1) {
+                spannableString.setSpan(
+                    android.text.style.ForegroundColorSpan("#4391F8".toColorInt()),
+                    startIndex,
+                    startIndex + levelNumber.length,
+                    android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
         }
 
         tvLevelIndicator.text = spannableString
     }
 
     private fun updateInstructions() {
-        if (isFirstTimeUser && selectedLevel <= 2 && miniblockSubtypes.isEmpty()) {
-            tvInstructions.text = ""
+        val completedLevels = (1..420).count { hasCompletedLevel(it) }
+
+        if (completedLevels == 0 && miniblockSubtypes.isEmpty()) {
+            tvInstructions.text = getString(R.string.select_level_button)
+            tvInstructions.setTextColor(ContextCompat.getColor(this, R.color.red_primary))
+            tvInstructions.gravity = android.view.Gravity.CENTER
             return
         }
+
+        tvInstructions.setTextColor(ContextCompat.getColor(this, R.color.text_color_adaptive))
+        tvInstructions.gravity = android.view.Gravity.CENTER
 
         val subtype = getSubtypeForLevel(selectedLevel)
         tvInstructions.text = getInstructionsForSubtype(subtype)
@@ -498,7 +539,11 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
     private fun startGame() {
         val subtype = getSubtypeForLevel(selectedLevel)
 
-        saveMiniblockSubtypes(selectedLevel)
+        val completedLevels = (1..420).count { hasCompletedLevel(it) }
+        if (completedLevels == 0) {
+            saveMiniblockSubtypes(selectedLevel)
+        }
+
         if (isFirstTimeUser && selectedLevel == 2) {
             isFirstTimeUser = false
         }
