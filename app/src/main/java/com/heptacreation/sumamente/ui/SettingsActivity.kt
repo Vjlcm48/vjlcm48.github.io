@@ -28,6 +28,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import com.heptacreation.sumamente.R
 import com.heptacreation.sumamente.ui.utils.MessagesStateManager
+import androidx.activity.enableEdgeToEdge
 
 
 class SettingsActivity : BaseActivity() {
@@ -70,10 +71,15 @@ class SettingsActivity : BaseActivity() {
         const val COOLDOWN_FLOAT_DISMISS = 2 * 24 * 60 * 60 * 1000L // 2 días (descartar botón)
         const val COOLDOWN_FLOAT_DIALOG_DISMISS = 3 * 24 * 60 * 60 * 1000L // 3 días (más tarde desde el flotante)
         const val COOLDOWN_FLOAT_DIALOG_NOT_NOW = 5 * 24 * 60 * 60 * 1000L // 5 días (no por ahora desde el flotante)
+        const val IS_TEST_USER = "isTestUser"
+        const val DEMO_PREMIUM = "demo_premium_enabled"
+        const val DEMO_FORCE_UNLOCK = "demo_force_unlock"
 
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
+
         super.onCreate(savedInstanceState)
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_settings)
@@ -91,13 +97,21 @@ class SettingsActivity : BaseActivity() {
         findViewById<View>(R.id.card_settings).alpha = 0f
         itemsContainer.alpha = 0f
 
+        if (isTestUser) {
+            addDemoToggles()
+        }
+
         startEntranceSequence()
         setupNotificationReminderLogic()
+
     }
 
     // TODO PREMIUM FLAG: cambia aquí la fuente de verdad cuando añadas pasarela de pago o backend
     private val isPremium: Boolean
         get() = sharedPreferences.getBoolean("isPremium", false)
+
+    private val isTestUser: Boolean
+        get() = sharedPreferences.getBoolean(IS_TEST_USER, false)
 
     private fun bindViews() {
         appLogo              = findViewById(R.id.app_logo)
@@ -592,4 +606,82 @@ class SettingsActivity : BaseActivity() {
         }
         animatorSet.start()
     }
+
+    private fun addDemoToggles() {
+        val container = itemsContainer
+
+        val titleDemo = TextView(this).apply {
+            text = getString(R.string.demo_section_title)
+            textSize = 18f
+            setTextColor(getColor(R.color.blue_primary))
+            setPadding(0, dpToPx(16), 0, dpToPx(8))
+            setTypeface(null, android.graphics.Typeface.BOLD)
+        }
+        container.addView(titleDemo)
+
+        // Toggle Premium
+        val rowPremium = createDemoToggleRow(
+            getString(R.string.demo_toggle_premium),
+            DEMO_PREMIUM,
+            onToggle = { isChecked ->
+                sharedPreferences.edit {
+                    putBoolean(DEMO_PREMIUM, isChecked)
+                    putBoolean("isPremium", isChecked)
+                }
+                Toast.makeText(
+                    this,
+                    if (isChecked) getString(R.string.premium_enabled_demo)
+                    else getString(R.string.premium_disabled_demo),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        )
+        container.addView(rowPremium)
+
+        // Toggle Unlock Levels
+        val rowUnlock = createDemoToggleRow(
+            getString(R.string.demo_toggle_unlock),
+            DEMO_FORCE_UNLOCK,
+            onToggle = { isChecked ->
+                sharedPreferences.edit { putBoolean(DEMO_FORCE_UNLOCK, isChecked) }
+                Toast.makeText(
+                    this,
+                    if (isChecked) getString(R.string.unlock_enabled_demo)
+                    else getString(R.string.unlock_disabled_demo),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        )
+        container.addView(rowUnlock)
+    }
+
+    private fun createDemoToggleRow(label: String, prefKey: String, onToggle: (Boolean) -> Unit): LinearLayout {
+        return LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            setPadding(0, dpToPx(8), 0, dpToPx(8))
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            gravity = android.view.Gravity.CENTER_VERTICAL
+
+            val textView = TextView(this@SettingsActivity).apply {
+                text = label
+                textSize = 16f
+                setTextColor(getColor(R.color.white))
+                layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+            }
+
+            val switch = SwitchCompat(this@SettingsActivity).apply {
+                isChecked = sharedPreferences.getBoolean(prefKey, false) ||
+                        (prefKey == DEMO_PREMIUM && sharedPreferences.getBoolean("isPremium", false))
+                setOnCheckedChangeListener { _, checked -> onToggle(checked) }
+            }
+
+            addView(textView)
+            addView(switch)
+        }
+    }
+
+    private fun dpToPx(dp: Int): Int = (dp * resources.displayMetrics.density).toInt()
 }

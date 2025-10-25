@@ -941,12 +941,12 @@
     <string name="msg_motiv_global_levels_11">¡Vamos por más niveles! El ranking global te está esperando.</string>
     <string name="msg_motiv_global_levels_12">¡La meta está cerca! Sigue jugando para llegar al ranking global.</string>
 
-    <string name="msg_iqplus_start_1">%1$s, juega 21 partidas, por lo menos una por cada juego y cada grado de dificultad… y aparecerás dentro del Ranking del IQ+.</string>
+    <string name="msg_iqplus_start_1">%1$s, juega 22 partidas, por lo menos una por cada juego y cada grado de dificultad… y aparecerás dentro del Ranking del IQ+.</string>
     <string name="msg_iqplus_start_2">¡Hola, %1$s! Empieza tu recorrido en SumaMente jugando al menos un nivel en cada juego y grado de dificultad para competir en el Ranking IQ+.</string>
     <string name="msg_iqplus_start_3">%1$s, todavía no has comenzado tu camino en el Ranking IQ+. Juega un nivel en todos los juegos y grados para ver tu posición y construir tu índice.</string>
     <string name="msg_iqplus_start_4">¡Vamos, %1$s! Cuando completes un nivel en cada juego y dificultad, podrás ver tu IQ+ y compararte con otros jugadores.</string>
-    <string name="msg_iqplus_start_5">%1$s, el primer paso para destacar en el Ranking IQ+ es jugar 21 niveles; uno al menos, en todos los juegos y grados. ¡Anímate y empieza hoy mismo!</string>
-    <string name="msg_iqplus_start_6">¿Listo para un reto, %1$s? Participa en al menos 21 juegos diferentes, uno por cada grado, y desbloquea tu lugar en el Ranking IQ+.</string>
+    <string name="msg_iqplus_start_5">%1$s, el primer paso para destacar en el Ranking IQ+ es jugar 22 niveles; uno al menos, en todos los juegos y grados. ¡Anímate y empieza hoy mismo!</string>
+    <string name="msg_iqplus_start_6">¿Listo para un reto, %1$s? Participa en al menos 22 juegos diferentes, uno por cada grado, y desbloquea tu lugar en el Ranking IQ+.</string>
 
     <string name="msg_iqplus_info_1">Tu actual índice IQ+ es: %1$.2f.</string>
     <string name="msg_iqplus_info_2">Por ahora, tu IQ+ es de %1$.2f puntos. ¡Sigue jugando para mejorarlo!</string>
@@ -1541,10 +1541,8 @@
     <string name="dialog_restore_message">Puedes restaurar tu avance, logros y perfil iniciando sesión con tu cuenta de Google.</string>
 
 
-
     <string name="dialog_restore_login">Inicia sesión con tu cuenta de Google</string>
     <string name="restore_success_title">¡PROGRESO RECUPERADO!</string>
-
 
     <string name="restore_error_title">Error al recuperar progreso</string>
 
@@ -1687,9 +1685,7 @@
         \nhabilitaremos esta función y podrás canjear \ntus referidos por tiempo premium.
         \n¡Te avisaremos cuando esté listo!</string>
 
-    <string name="error_canje" translatable="false">Ocurrió un error al procesar el canje. Inténtalo de nuevo.</string>
 
-    <string name="mensaje_premium_ads" translatable="false">Actualmente no se te muestra publicidad dentro \nde la app, sigue disfrutando de SumaMente</string>
 
     <string name="proximamente">✨ Próximamente…</string>
     <string name="mensaje_foco_plus_dialogo">🔎 Estamos desarrollando Foco⁺.
@@ -1754,22 +1750,60 @@
     <string name="premium_price_lifetime" translatable="false">$99.99</string>
     <string name="premium_title" translatable="false">PREMIUM</string>
 
-    <string name="instruction_game_terms_28">Resuelve mentalmente los 28 ejercicios\nque se mueven en la pizarra. Si tu resultado\nestá en alguno de los botones, presiónalo.\nDe lo contrario, presiona NINGUNO.\nTienes un máximo de 12 errores. ¡A enfocarse!</string>
-    <string name="instruction_game_terms_14">Resuelve mentalmente los 14 ejercicios\nque se mueven en la pizarra. Si tu resultado\nestá en alguno de los botones, presiónalo.\nDe lo contrario, presiona NINGUNO.\nTienes un máximo de 6 errores. ¡A enfocarse!</string>
-    <string name="instruction_game_figures_28">Observa 28 pares de figuras en movimiento.\nSi un par de la pizarra coincide\ncon los que ves en los botones, presiónalo.\nSi ningún par coincide, presiona NINGUNO.\nTienes un máximo de 12 errores. ¡A enfocarse!</string>
-    <string name="instruction_game_letters_value">El valor de cada letra corresponde\na su posición en el alfabeto:\nA=1, B=2, C=3, y así sucesivamente.</string>
-    <string name="instruction_game_roman_numerals">En este ejercicio verás números romanos,\nestá atento según aparezcan, debes realizar\nlos cálculos aplicando su valor correspondiente.\n¡Mantén el enfoque!</string>
-    <string name="level_indicator_default" translatable="false">NIVEL 1 / 420</string>
+    <string name="instruction_game_roman_numerals">¡Domina la numeración romana! ⚔️
+    Aparecerán ejercicios con números romanos en movimiento.
+    Realiza los cálculos aplicando el valor de cada símbolo romano.
+    Si tu resultado coincide con algún botón, presiónalo. De lo contrario, elige NINGUNO y sigue adelante.</string>
+
+    <string name="instruction_game_letters_value">¡Descifra el código del alfabeto! 🔤
+    Cada letra tiene un valor según su posición: A=1, B=2, C=3 y así sucesivamente hasta la Z.
+    Calcula el resultado de los ejercicios aplicando estos valores.
+    Si tu respuesta está en los botones, presiónala. Si no, elige NINGUNO y avanza.</string>
+
+    <string name="instruction_game_figures_28">¡Agudiza tu percepción visual! 👁️
+    Observa con atención los 28 pares de figuras que se mueven en la pizarra.
+    Si algún par coincide exactamente con los botones, presiónalo.
+    Si no encuentras ninguna coincidencia, selecciona NINGUNO.
+    Tienes un máximo de 12 errores. ¡Confía en tu vista!</string>
+
+    <string name="instruction_game_terms_14">¡Tu mente es tu mejor calculadora! 🎯
+    Observa los 14 ejercicios que se mueven en la pizarra y resuélvelos mentalmente.
+    Presiona el botón con tu respuesta o selecciona NINGUNO si no hay coincidencia.
+    Cuentas con hasta 6 errores permitidos. ¡A demostrar tu agilidad mental!</string>
+
+    <string name="instruction_game_terms_28">¡Prepárate para el desafío matemático! 🧮
+    Resuelve mentalmente los 28 ejercicios que aparecen en la pizarra.
+    Si encuentras tu resultado en los botones, presiónalo de inmediato.
+    Si ninguna opción coincide, elige NINGUNO sin dudarlo.
+    Tienes un máximo de 12 errores. ¡Mantén la concentración!</string>
+
+    <string name="instruction_game_time_addition" translatable="false">
+    ¡Demuestra tu dominio del tiempo! ⏰
+     Suma correctamente las horas y los minutos que aparecen en la pizarra.
+     Recuerda que 60 minutos equivalen a 1 hora.
+     Piensa con calma y busca el resultado exacto en formato 00:00.
+     Si ninguna opción encaja, elige “NINGUNO” y sigue adelante.</string>
+
+    <string name="level_indicator_default">NIVEL 1 / 420</string>
+    <string name="select_level_button">Selecciona un nivel</string>
+    <string name="attention_hide_button">Atención: ¡el contenido de un botón se ocultará!</string>
+    <string name="exercise_shown">Ejercicio \nmostrado</string>
+    <string name="correct_answer_column">Respuesta correcta</string>
+    <string name="user_answer_column">Respuesta usuario</string>
+    <string name="result_column">Resultado</string>
+    <string name="exercise_review_content">Lista de ejercicios revisados</string>
+
+    <string name="errors_counter_default">Errores 0/6</string>
+    <string name="errors_counter_format_dynamic">Errores %1$d/%2$d</string>
+    <string name="errors_counter_format_14">Errores %1$d/%2$d</string>
+    <string name="errors_counter_format_28">Errores %1$d/%2$d</string>
+
+    <string name="error_canje">Ocurrió un error al procesar el canje. Inténtalo de nuevo.</string>
+    <string name="mensaje_premium_ads">Actualmente no se te muestra publicidad dentro \nde la app, sigue disfrutando de SumaMente</string>
+
     <string name="level_indicator_foco">NIVEL %1$d / 420</string>
     <string name="answer_none">NINGUNO</string>
     <string name="level_prefix">NIVEL %1$d</string>
-
-    <string name="errors_counter_default" translatable="false">Errores 0/6</string>
-    <string name="errors_counter_format_dynamic" translatable="false">Errores %1$d/%2$d</string>
-    <string name="errors_counter_format_14" translatable="false">Errores %1$d/%2$d</string>
-    <string name="errors_counter_format_28" translatable="false">Errores %1$d/%2$d</string>
-    <string name="initial_time_format" translatable="false">00.00</string>
-    <string name="select_level_button" translatable="false">Selecciona un nivel</string>
 
     <!-- Demo mode strings (Google Play review) - NO TRADUCIR -->
     <string name="demo_section_title" translatable="false">Demo Mode (Google Review)</string>
@@ -1779,5 +1813,8 @@
     <string name="premium_disabled_demo" translatable="false">Demo Premium disabled</string>
     <string name="unlock_enabled_demo" translatable="false">Demo unlock enabled</string>
     <string name="unlock_disabled_demo" translatable="false">Demo unlock disabled</string>
+
+    <string name="initial_time_format" translatable="false">00.00</string>
+    <string name="no_response_dash" translatable="false">—</string>
 
 </resources>

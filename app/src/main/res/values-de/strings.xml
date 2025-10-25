@@ -901,12 +901,12 @@
     <string name="msg_motiv_global_levels_11">Auf zu mehr Leveln! Das globale Ranking wartet auf dich.</string>
     <string name="msg_motiv_global_levels_12">Das Ziel ist nah! Spiele weiter, um das globale Ranking zu erreichen.</string>
 
-    <string name="msg_iqplus_start_1">%1$s, spiele 21 Partien, mindestens eine für jedes Spiel und jeden Schwierigkeitsgrad… und du wirst im IQ+ Ranking erscheinen.</string>
+    <string name="msg_iqplus_start_1">%1$s, spiele 22 Partien, mindestens eine für jedes Spiel und jeden Schwierigkeitsgrad… und du wirst im IQ+ Ranking erscheinen.</string>
     <string name="msg_iqplus_start_2">Hallo, %1$s! Beginne deine Reise bei SumaMente, indem du mindestens ein Level in jedem Spiel und Schwierigkeitsgrad spielst, um im IQ+ Ranking anzutreten.</string>
     <string name="msg_iqplus_start_3">%1$s, du hast deinen Weg im IQ+ Ranking noch nicht begonnen. Spiele ein Level in allen Spielen und Schwierigkeitsgraden, um deine Position zu sehen und deinen Index aufzubauen.</string>
     <string name="msg_iqplus_start_4">Los geht\'s, %1$s! Wenn du ein Level in jedem Spiel und jeder Schwierigkeit abschließt, kannst du deinen IQ+ sehen und dich mit anderen Spielern vergleichen.</string>
-    <string name="msg_iqplus_start_5">%1$s, der erste Schritt, um im IQ+ Ranking hervorzustechen, ist, 21 Level zu spielen; mindestens eines in allen Spielen und Schwierigkeitsgraden. Trau dich und fang heute an!</string>
-    <string name="msg_iqplus_start_6">Bereit für eine Herausforderung, %1$s? Nimm an mindestens 21 verschiedenen Spielen teil, eines für jeden Schwierigkeitsgrad, und schalte deinen Platz im IQ+ Ranking frei.</string>
+    <string name="msg_iqplus_start_5">%1$s, der erste Schritt, um im IQ+ Ranking hervorzustechen, ist, 22 Level zu spielen; mindestens eines in allen Spielen und Schwierigkeitsgraden. Trau dich und fang heute an!</string>
+    <string name="msg_iqplus_start_6">Bereit für eine Herausforderung, %1$s? Nimm an mindestens 22 verschiedenen Spielen teil, eines für jeden Schwierigkeitsgrad, und schalte deinen Platz im IQ+ Ranking frei.</string>
 
     <string name="msg_iqplus_info_1">Dein aktueller IQ+ Index ist: %1$.2f.</string>
     <string name="msg_iqplus_info_2">Im Moment beträgt dein IQ+ %1$.2f Punkte. Spiele weiter, um ihn zu verbessern!</string>
@@ -1603,13 +1603,29 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
     <string name="premium_terms_privacy">Bedingungen und Datenschutz</string>
     <string name="premium_already_active">Dein Konto ist bereits PREMIUM.</string>
 
-    <string name="instruction_game_terms_28">Löse die 28 Übungen mental,\ndie sich auf der Tafel bewegen. Wenn dein Ergebnis\nauf einer der Schaltflächen ist, drücke sie.\nAndernfalls drücke KEINE.\nDu hast maximal 12 Fehler. Konzentrier dich!</string>
-    <string name="instruction_game_terms_14">Löse die 14 Übungen mental,\ndie sich auf der Tafel bewegen. Wenn dein Ergebnis\nauf einer der Schaltflächen ist, drücke sie.\nAndernfalls drücke KEINE.\nDu hast maximal 6 Fehler. Konzentrier dich!</string>
-    <string name="instruction_game_figures_28">Beobachte 28 Paare von Figuren in Bewegung.\nWenn ein Paar von der Tafel\nmit dem übereinstimmt, was du auf den Tasten siehst, drücke es.\nWenn kein Paar übereinstimmt, drücke KEINE.\nDu hast maximal 12 Fehler. Konzentrier dich!</string>
-    <string name="instruction_game_letters_value">Der Wert jedes Buchstabens entspricht\nseiner Position im Alphabet:\nA=1, B=2, C=3, und so weiter.</string>
-    <string name="instruction_game_roman_numerals">In dieser Übung siehst du römische Zahlen,\nsei aufmerksam, wenn sie erscheinen, du musst\ndie Berechnungen mit ihrem entsprechenden Wert durchführen.\nBleib konzentriert!</string>
     <string name="level_indicator_foco">LEVEL %1$d / 420</string>
     <string name="answer_none">KEINE</string>
     <string name="level_prefix">LEVEL %1$d</string>
+
+    <string name="level_indicator_default">LEVEL 1 / 420</string>
+    <string name="select_level_button">Level auswählen</string>
+    <string name="attention_hide_button">Achtung: Der Inhalt eines Buttons wird ausgeblendet!</string>
+    <string name="exercise_shown">Aufgabe \nangezeigt</string>
+    <string name="correct_answer_column">Korrekte Antwort</string>
+    <string name="user_answer_column">Nutzerantwort</string>
+    <string name="result_column">Ergebnis</string>
+    <string name="exercise_review_content">Liste der überprüften Aufgaben</string>
+    <string name="errors_counter_default">Fehler 0/6</string>
+    <string name="errors_counter_format_dynamic">Fehler %1$d/%2$d</string>
+    <string name="errors_counter_format_14">Fehler %1$d/%2$d</string>
+    <string name="errors_counter_format_28">Fehler %1$d/%2$d</string>
+    <string name="error_canje">Beim Verarbeiten der Einlösung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.</string>
+    <string name="mensaje_premium_ads">Aktuell werden Ihnen innerhalb \nder App keine Werbeanzeigen gezeigt. Genießen Sie SumaMente weiterhin.</string>
+    <string name="instruction_game_roman_numerals">Meistern Sie die römischen Zahlen! ⚔️ Es erscheinen Aufgaben mit beweglichen römischen Zahlen. Führen Sie die Berechnungen durch, indem Sie den Wert jedes römischen Symbols anwenden. Wenn Ihr Ergebnis mit einem der Buttons übereinstimmt, drücken Sie ihn. Andernfalls wählen Sie KEINER und fahren fort.</string>
+    <string name="instruction_game_letters_value">Entschlüsseln Sie den Alphabet-Code! 🔤 Jeder Buchstabe hat einen Wert entsprechend seiner Position: A=1, B=2, C=3 und so weiter bis Z. Berechnen Sie das Ergebnis der Aufgaben, indem Sie diese Werte anwenden. Wenn Ihre Antwort auf den Buttons steht, drücken Sie ihn. Wenn nicht, wählen Sie KEINER und fahren Sie fort.</string>
+    <string name="instruction_game_figures_28">Schärfen Sie Ihre visuelle Wahrnehmung! 👁️ Beobachten Sie aufmerksam die 28 Paare sich bewegender Figuren auf der Tafel. Wenn ein Paar genau mit den Buttons übereinstimmt, drücken Sie ihn. Wenn Sie keine Übereinstimmung finden, wählen Sie KEINER. Sie haben maximal 12 Fehler. Vertrauen Sie Ihrem Blick!</string>
+    <string name="instruction_game_terms_14">Ihr Geist ist Ihr bester Rechner! 🎯 Beobachten Sie die 14 sich auf der Tafel bewegenden Aufgaben und lösen Sie sie mental. Drücken Sie den Button mit Ihrer Antwort oder wählen Sie KEINER, wenn es keine Übereinstimmung gibt. Sie haben bis zu 6 erlaubte Fehler. Zeigen Sie Ihre mentale Beweglichkeit!</string>
+    <string name="instruction_game_terms_28">Bereiten Sie sich auf die mathematische Herausforderung vor! 🧮 Lösen Sie die 28 auf der Tafel erscheinenden Aufgaben mental. Wenn Sie Ihr Ergebnis auf den Buttons finden, drücken Sie ihn sofort. Wenn keine Option übereinstimmt, wählen Sie ohne zu zögern KEINER. Sie haben maximal 12 Fehler. Bleiben Sie konzentriert!</string>
+    <string name="instruction_game_time_addition">Demonstrieren Sie Ihre Beherrschung der Zeit! ⏰ Addieren Sie die auf der Tafel angezeigten Stunden und Minuten korrekt. Denken Sie daran, dass 60 Minuten 1 Stunde entsprechen. Denken Sie in Ruhe nach und suchen Sie das genaue Ergebnis im Format 00:00. Wenn keine Option passt, wählen Sie „KEINER“ und fahren Sie fort.</string>
 
 </resources>

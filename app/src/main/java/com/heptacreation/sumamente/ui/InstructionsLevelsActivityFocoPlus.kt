@@ -449,18 +449,40 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
 
         val miniblockKey = "focoplus_miniblock_${currentDifficulty}_$miniblockIndex"
         val savedSubtypes = sharedPreferences.getString(miniblockKey, null)
-
-        return if (savedSubtypes != null) {
-            val subtypesList = savedSubtypes.split(",").map { it.toInt() }
-            subtypesList.getOrNull(positionInMiniblock) ?: (((level - 1) % 14) + 1)
-        } else {
-            if (miniblockSubtypes.isNotEmpty() && miniblockSubtypes.size > positionInMiniblock) {
-                miniblockSubtypes[positionInMiniblock]
+        
+        fun buildPoolFor(miniIdx: Int): List<Int> {
+            val isOddMiniblock = ((miniIdx + 1) % 2 != 0)
+            val pool = (1..14).toMutableList()
+            if (isOddMiniblock) {
+                pool.remove(11)
+                if (!pool.contains(15)) pool.add(15)
             } else {
-                ((level - 1) % 14) + 1
+                pool.remove(15)
+                if (!pool.contains(11)) pool.add(11)
+            }
+            return pool
+        }
+
+        if (savedSubtypes != null) {
+            val subtypesList = savedSubtypes.split(",").mapNotNull { it.toIntOrNull() }
+            return subtypesList.getOrElse(positionInMiniblock) {
+
+                val pool = buildPoolFor(miniblockIndex)
+                pool.getOrElse(positionInMiniblock) { ((level - 1) % 14) + 1 }
             }
         }
+
+        if (miniblockSubtypes.isNotEmpty()) {
+            return miniblockSubtypes.getOrElse(positionInMiniblock) {
+                val pool = buildPoolFor(miniblockIndex)
+                pool.getOrElse(positionInMiniblock) { ((level - 1) % 14) + 1 }
+            }
+        }
+
+        val pool = buildPoolFor(miniblockIndex)
+        return pool.getOrElse(positionInMiniblock) { ((level - 1) % 14) + 1 }
     }
+
 
     private fun getInstructionsForSubtype(subtype: Int): String {
         return when (subtype) {
@@ -474,6 +496,8 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
                     getString(R.string.instruction_game_roman_numerals) + "\n\n" +
                     getString(R.string.instruction_game_letters_value)
             14 -> getString(R.string.instruction_game_figures_28)
+            15 -> getString(R.string.instruction_game_time_addition) + "\n\n" +
+                    getString(R.string.instruction_game_terms_14)
             else -> getString(R.string.instruction_game_terms_28)
         }
     }
@@ -537,8 +561,6 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
     }
 
     private fun startGame() {
-        val subtype = getSubtypeForLevel(selectedLevel)
-
         val completedLevels = (1..420).count { hasCompletedLevel(it) }
         if (completedLevels == 0) {
             saveMiniblockSubtypes(selectedLevel)
@@ -549,11 +571,72 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
         }
 
         val intent = Intent(this@InstructionsLevelsActivityFocoPlus, GameActivityFocoPlus::class.java)
-
         intent.putExtra("LEVEL", selectedLevel)
         intent.putExtra("DIFFICULTY", currentDifficulty)
+
+        ensureMiniblockShuffleAndAttachToIntent(intent, selectedLevel, currentDifficulty)
+
+        val subtype = getSubtypeForLevel(selectedLevel)
         intent.putExtra("SUBTYPE", subtype)
+
         startActivity(intent)
+    }
+
+    private fun ensureMiniblockShuffleAndAttachToIntent(
+        intent: Intent,
+        level: Int,
+        difficulty: String
+    ) {
+        val miniblockIndex = (level - 1) / 14
+
+        val prefs = getSharedPreferences("MyPrefsFocoPlus", MODE_PRIVATE)
+        val key = "focoplus_miniblock_${difficulty}_${miniblockIndex}"
+        val existing = prefs.getString(key, null)
+
+        val order: IntArray = if (existing.isNullOrBlank()) {
+
+            val isOddMiniblock = ((miniblockIndex + 1) % 2 != 0)
+
+            val subtypesPool = (1..14).toMutableList()
+
+            if (isOddMiniblock) {
+                subtypesPool.remove(11)
+                subtypesPool.add(15)
+            } else {
+
+                subtypesPool.remove(15)
+            }
+
+            val newOrder = subtypesPool.shuffled().toIntArray()
+            prefs.edit { putString(key, newOrder.joinToString(",")) }
+            newOrder
+        } else {
+
+            val list = existing.split(",").mapNotNull { it.toIntOrNull() }
+            if (list.size == 14) {
+                list.toIntArray()
+            } else {
+                val isOddMiniblock = ((miniblockIndex + 1) % 2 != 0)
+
+                val subtypesPool = (1..14).toMutableList()
+
+                if (isOddMiniblock) {
+
+                    subtypesPool.remove(11)
+                    subtypesPool.add(15)
+                } else {
+                    subtypesPool.remove(15)
+                }
+
+                val newOrder = subtypesPool.shuffled().toIntArray()
+                prefs.edit { putString(key, newOrder.joinToString(",")) }
+                newOrder
+            }
+        }
+
+        intent.putExtra("FOCO_SHUFFLE_ORDER", order)
+        intent.putExtra("FOCO_SHUFFLE_MINIBLOCK_INDEX", miniblockIndex)
+        intent.putExtra("FOCO_SHUFFLE_DIFFICULTY", difficulty)
     }
 
     private fun Int.dpToPx(context: android.content.Context): Int {
@@ -566,7 +649,22 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
 
         val savedSubtypes = sharedPreferences.getString(miniblockKey, null)
 
-        miniblockSubtypes = savedSubtypes?.split(",")?.map { it.toInt() } ?: (1..14).shuffled()
+        miniblockSubtypes = if (savedSubtypes != null) {
+            savedSubtypes.split(",").map { it.toInt() }
+        } else {
+
+            val isOddMiniblock = ((miniblockIndex + 1) % 2 != 0)
+            val subtypesPool = (1..14).toMutableList()
+
+            if (isOddMiniblock) {
+                subtypesPool.remove(11)
+                subtypesPool.add(15)
+            } else {
+                subtypesPool.remove(15)
+            }
+
+            subtypesPool.shuffled()
+        }
     }
 
     private fun saveMiniblockSubtypes(level: Int) {

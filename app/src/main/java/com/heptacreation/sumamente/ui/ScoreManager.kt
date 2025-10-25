@@ -22,6 +22,15 @@ object ScoreManager {
         }
     }
 
+    private const val DEMO_FORCE_UNLOCK_KEY = "demo_force_unlock"
+
+    private fun isDemoForceUnlockEnabled(): Boolean {
+        val myPrefs = appContext.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        return myPrefs.getBoolean(DEMO_FORCE_UNLOCK_KEY, false)
+    }
+
+
+
     private const val KEY_TOTAL_GAMES_GLOBAL = "total_games_global"
     private const val KEY_CORRECT_GAMES_GLOBAL = "correct_games_global"
 
@@ -439,7 +448,7 @@ object ScoreManager {
 
     data class RankingEntry(val userName: String, val valor: Double)
 
-    private enum class Game {
+    enum class Game {
         NUMEROS_PLUS,
         DECI_PLUS,
         ROMAS,
@@ -450,7 +459,7 @@ object ScoreManager {
         FOCO_PLUS
     }
 
-    private enum class Difficulty {
+    enum class Difficulty {
         AVANZADO, PRINCIPIANTE, PRO
     }
 
@@ -619,7 +628,7 @@ object ScoreManager {
         }
 
         val key = Triple(game, difficulty, suffix)
-        return gameManagers.getOrPut(key) {
+        val manager = gameManagers.getOrPut(key) {
             when (game) {
                 Game.NUMEROS_PLUS -> when (difficulty) {
                     Difficulty.AVANZADO -> GameManager(
@@ -807,6 +816,12 @@ object ScoreManager {
                 }
             }
         }
+
+        if (isDemoForceUnlockEnabled()) {
+            manager.setUnlockedLevels(70)
+        }
+
+        return manager
     }
 
     private fun SharedPreferences.getIntCompat(key: String, defaultValue: Int): Int {

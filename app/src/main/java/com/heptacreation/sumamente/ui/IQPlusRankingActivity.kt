@@ -65,7 +65,7 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
     private var colorAnimator: ValueAnimator? = null
 
     companion object {
-        const val TOTAL_COMBOS_REQUIRED = 21
+        const val TOTAL_COMBOS_REQUIRED = 22
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,6 +96,10 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
         ScoreManager.initGenioPlus(this)
         ScoreManager.initGenioPlusPrincipiante(this)
         ScoreManager.initGenioPlusPro(this)
+
+        ScoreManager.initFocoPlus(this)
+        ScoreManager.initFocoPlusPrincipiante(this)
+        ScoreManager.initFocoPlusPro(this)
 
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         initViews()
@@ -813,7 +817,9 @@ object IQPlusCombos {
         // GENIO+
         Combo("GenioPlus", "Principiante", 12.0),
         Combo("GenioPlus", "Avanzado", 15.0),
-        Combo("GenioPlus", "Pro", 18.0)
+        Combo("GenioPlus", "Pro", 18.0),
+        // FOCO+
+        Combo("FocoPlus", "Principiante", 14.0)
     )
     data class Combo(val juego: String, val grado: String, val peso: Double)
 }

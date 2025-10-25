@@ -923,12 +923,12 @@ et de t’amuser. 🚀
 
 
     <!-- IQ+ -->
-    <string name="msg_iqplus_start_1">%1$s, joue 21 parties, au moins une dans chaque jeu et chaque niveau de difficulté… et tu apparaîtras dans le classement IQ+.</string>
+    <string name="msg_iqplus_start_1">%1$s, joue 22 parties, au moins une dans chaque jeu et chaque niveau de difficulté… et tu apparaîtras dans le classement IQ+.</string>
     <string name="msg_iqplus_start_2">Salut, %1$s ! Commence ton parcours dans SumaMente en jouant au moins un niveau dans chaque jeu et chaque difficulté pour participer au classement IQ+.</string>
     <string name="msg_iqplus_start_3">%1$s, tu n’as pas encore commencé dans le classement IQ+. Joue un niveau dans tous les jeux et tous les niveaux pour voir ta position et construire ton indice.</string>
     <string name="msg_iqplus_start_4">Allez, %1$s ! Lorsque tu auras complété un niveau dans chaque jeu et difficulté, tu pourras voir ton IQ+ et te comparer aux autres joueurs.</string>
-    <string name="msg_iqplus_start_5">%1$s, la première étape pour te distinguer dans le classement IQ+ est de jouer 21 niveaux, au moins un dans chaque jeu et difficulté. Lance-toi et commence dès aujourd’hui !</string>
-    <string name="msg_iqplus_start_6">Prêt pour un défi, %1$s ? Participe à au moins 21 jeux différents, un dans chaque niveau, et débloque ta place dans le classement IQ+.</string>
+    <string name="msg_iqplus_start_5">%1$s, la première étape pour te distinguer dans le classement IQ+ est de jouer 22 niveaux, au moins un dans chaque jeu et difficulté. Lance-toi et commence dès aujourd’hui !</string>
+    <string name="msg_iqplus_start_6">Prêt pour un défi, %1$s ? Participe à au moins 22 jeux différents, un dans chaque niveau, et débloque ta place dans le classement IQ+.</string>
 
     <string name="msg_iqplus_info_1">Ton indice IQ+ actuel est : %1$.2f.</string>
     <string name="msg_iqplus_info_2">Pour l’instant, ton IQ+ est de %1$.2f points. Continue à jouer pour l’améliorer !</string>
@@ -1663,13 +1663,31 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
     <string name="premium_terms_privacy">Conditions et Confidentialité</string>
     <string name="premium_already_active">Votre compte est déjà PREMIUM.</string>
 
-    <string name="instruction_game_terms_28">Résolvez mentalement les 28 exercices\nse déplaçant sur le tableau. Si votre résultat\nest sur l\'un des boutons, appuyez dessus.\nSinon, appuyez sur AUCUN.\nVous avez un maximum de 12 erreurs. Concentrez-vous !</string>
-    <string name="instruction_game_terms_14">Résolvez mentalement les 14 exercices\nse déplaçant sur le tableau. Si votre résultat\nest sur l\'un des boutons, appuyez dessus.\nSinon, appuyez sur AUCUN.\nVous avez un maximum de 6 erreurs. Concentrez-vous !</string>
-    <string name="instruction_game_figures_28">Observez 28 paires de figures en mouvement.\nSi une paire du tableau correspond\nà ce que vous voyez sur les boutons, appuyez dessus.\nSi aucune paire ne correspond, appuyez sur AUCUN.\nVous avez un maximum de 12 erreurs. Concentrez-vous !</string>
-    <string name="instruction_game_letters_value">La valeur de chaque lettre correspond\nà sa position dans l\'alphabet :\nA=1, B=2, C=3, et ainsi de suite.</string>
-    <string name="instruction_game_roman_numerals">Dans cet exercice, vous verrez des chiffres romains,\nsoyez attentif à leur apparition, vous devez effectuer\nles calculs en appliquant leur valeur correspondante.\nRestez concentré !</string>
+
     <string name="level_indicator_foco">NIVEAU %1$d / 420</string>
     <string name="answer_none">AUCUN</string>
     <string name="level_prefix">NIVEAU %1$d</string>
+
+    <string name="level_indicator_default">NIVEAU 1 / 420</string>
+    <string name="select_level_button">Sélectionner un niveau</string>
+    <string name="attention_hide_button">Attention : le contenu d\'un bouton sera masqué !</string>
+    <string name="exercise_shown">Exercice \naffiché</string>
+    <string name="correct_answer_column">Réponse correcte</string>
+    <string name="user_answer_column">Réponse utilisateur</string>
+    <string name="result_column">Résultat</string>
+    <string name="exercise_review_content">Liste des exercices révisés</string>
+    <string name="errors_counter_default">Erreurs 0/6</string>
+    <string name="errors_counter_format_dynamic">Erreurs %1$d/%2$d</string>
+    <string name="errors_counter_format_14">Erreurs %1$d/%2$d</string>
+    <string name="errors_counter_format_28">Erreurs %1$d/%2$d</string>
+    <string name="error_canje">Une erreur s\'est produite lors du traitement de l\'échange. Veuillez réessayer.</string>
+    <string name="mensaje_premium_ads">Actuellement, aucune publicité ne vous est montrée dans \nl\'application, continuez à profiter de SumaMente</string>
+    <string name="instruction_game_roman_numerals">Maîtrisez la numération romaine ! ⚔️ Des exercices avec des chiffres romains en mouvement apparaîtront. Effectuez les calculs en appliquant la valeur de chaque symbole romain. Si votre résultat correspond à un bouton, appuyez dessus. Sinon, choisissez AUCUN et continuez.</string>
+    <string name="instruction_game_letters_value">Déchiffrez le code de l\'alphabet ! 🔤 Chaque lettre a une valeur selon sa position : A=1, B=2, C=3 et ainsi de suite jusqu\'à Z. Calculez le résultat des exercices en appliquant ces valeurs. Si votre réponse est sur les boutons, appuyez dessus. Sinon, choisissez AUCUN et avancez.</string>
+    <string name="instruction_game_figures_28">Aiguisez votre perception visuelle ! 👁️ Observez attentivement les 28 paires de figures qui se déplacent sur le tableau. Si une paire correspond exactement aux boutons, appuyez dessus. Si vous ne trouvez aucune correspondance, sélectionnez AUCUN. Vous avez un maximum de 12 erreurs. Faites confiance à votre vue !</string>
+    <string name="instruction_game_terms_14">Votre esprit est votre meilleure calculatrice ! 🎯 Observez les 14 exercices qui se déplacent sur le tableau et résolvez-les mentalement. Appuyez sur le bouton avec votre réponse ou sélectionnez AUCUN s\'il n\'y a pas de correspondance. Vous avez jusqu\'à 6 erreurs permises. Démontrez votre agilité mentale !</string>
+    <string name="instruction_game_terms_28">Préparez-vous pour le défi mathématique ! 🧮 Résolvez mentalement les 28 exercices qui apparaissent sur le tableau. Si vous trouvez votre résultat sur les boutons, appuyez immédiatement dessus. Si aucune option ne correspond, choisissez AUCUN sans hésiter. Vous avez un maximum de 12 erreurs. Maintenez la concentration !</string>
+    <string name="instruction_game_time_addition">Démontrez votre maîtrise du temps ! ⏰ Additionnez correctement les heures et les minutes qui apparaissent sur le tableau. N\'oubliez pas que 60 minutes équivalent à 1 heure. Pensez calmement et cherchez le résultat exact au format 00:00. Si aucune option ne correspond, choisissez “AUCUN” et continuez.</string>
+
 
 </resources>

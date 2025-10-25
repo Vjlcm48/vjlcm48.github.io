@@ -58,6 +58,11 @@ class LevelResultActivityFocoPlus : BaseActivity() {
     private var mediaPlayer: MediaPlayer? = null
     private var currentDifficulty: String = DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE
 
+    private var exercisesShown: Array<String>? = null
+    private var userResponses: Array<String>? = null
+    private var correctAnswers: Array<String>? = null
+    private var subtype: Int = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     enableEdgeToEdge()
@@ -76,6 +81,11 @@ class LevelResultActivityFocoPlus : BaseActivity() {
         maxErrorsAllowed = intent.getIntExtra("MAX_ERRORS", 6)
         errorsCount = intent.getIntExtra("ERRORS", 0)
         timeSpentInSeconds = intent.getDoubleExtra("TOTAL_TIME", 0.0)
+
+        exercisesShown = intent.getStringArrayExtra("EXERCISES_SHOWN")
+        userResponses = intent.getStringArrayExtra("USER_RESPONSES")
+        correctAnswers = intent.getStringArrayExtra("CORRECT_ANSWERS")
+        subtype = intent.getIntExtra("SUBTYPE", 1)
 
         isSuccessful = errorsCount < maxErrorsAllowed && correctCount > 0
 
@@ -265,14 +275,17 @@ class LevelResultActivityFocoPlus : BaseActivity() {
         ScoreManager.correctGamesGlobal += 1
         ScoreManager.totalGamesFocoPlus += 1
         ScoreManager.totalGamesFocoPlusExitos += 1
-        ScoreManager.totalTimeFocoPlusExitos += rawTimeSpent
+
+        val tiempoNormalizado = rawTimeSpent / 100.0
+        ScoreManager.totalTimeFocoPlusExitos += tiempoNormalizado
 
         when (currentDifficulty) {
             DifficultySelectionActivity.DIFFICULTY_AVANZADO -> ScoreManager.totalGamesFocoPlusAvanzado = gameCounter + 1
             DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> ScoreManager.totalGamesFocoPlusPrincipiante = gameCounter + 1
             DifficultySelectionActivity.DIFFICULTY_PRO -> ScoreManager.totalGamesFocoPlusPro = gameCounter + 1
         }
-        ScoreManager.totalTimeFocoPlus += rawTimeSpent
+
+        ScoreManager.totalTimeFocoPlus += tiempoNormalizado
     }
 
     private fun updateFailureStats() {
@@ -284,7 +297,9 @@ class LevelResultActivityFocoPlus : BaseActivity() {
             DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> ScoreManager.totalGamesFocoPlusPrincipiante += 1
             DifficultySelectionActivity.DIFFICULTY_PRO -> ScoreManager.totalGamesFocoPlusPro += 1
         }
-        ScoreManager.totalTimeFocoPlus += rawTimeSpent
+
+        val tiempoNormalizado = rawTimeSpent / 100.0
+        ScoreManager.totalTimeFocoPlus += tiempoNormalizado
     }
 
     private fun updateIqComponent(success: Boolean) {
@@ -293,10 +308,10 @@ class LevelResultActivityFocoPlus : BaseActivity() {
         val precision = ScoreManager.correctGamesGlobal.toDouble() / ScoreManager.totalGamesGlobal.toDouble()
 
         val multiplier = when (currentDifficulty) {
-            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> 2.0
-            DifficultySelectionActivity.DIFFICULTY_AVANZADO -> 5.0
-            DifficultySelectionActivity.DIFFICULTY_PRO -> 8.0
-            else -> 2.0
+            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> 14.0
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO -> 17.0
+            DifficultySelectionActivity.DIFFICULTY_PRO -> 20.0
+            else -> 14.0
         }
 
         val aporte = if (success) {
@@ -310,13 +325,12 @@ class LevelResultActivityFocoPlus : BaseActivity() {
 
     private fun obtenerFactorCorreccion(): Double {
 
-        val maxLevel = 420
         return when (currentLevel) {
-            in 1..maxLevel / 6 -> 0.80
-            in maxLevel / 6 + 1 .. maxLevel / 4 -> 0.85
-            in maxLevel / 4 + 1 .. maxLevel / 3 -> 0.90
-            in maxLevel / 3 + 1 .. maxLevel / 2 -> 0.95
-            in maxLevel / 2 + 1 .. maxLevel -> 1.00
+            in 1..84 -> 0.80
+            in 85..168 -> 0.85
+            in 169..252 -> 0.90
+            in 253..336 -> 0.95
+            in 337..420 -> 1.00
             else -> 1.00
         }
     }
@@ -343,9 +357,10 @@ class LevelResultActivityFocoPlus : BaseActivity() {
         }
 
         val tiempoPromedio = ScoreManager.getTiempoPromedioFocoPlus()
+        val tiempoNormalizadoActual = timeSpentInSeconds / 100.0
 
         val puntosPorVelocidad = if (tiempoPromedio > 0) {
-            (velocidadBonus * (1.0 / tiempoPromedio))
+            (velocidadBonus * (1.0 / (tiempoPromedio + tiempoNormalizadoActual)))
         } else {
             0.0
         }
@@ -582,8 +597,23 @@ class LevelResultActivityFocoPlus : BaseActivity() {
             repeatLevelTextView.startAnimation(fadeIn)
         }
 
-        reviewExerciseTextView.setOnClickListener {
+        if (exercisesShown != null && userResponses != null && correctAnswers != null) {
+            reviewExerciseTextView.visibility = View.VISIBLE
+            applyTouchAnimation(reviewExerciseTextView)
 
+            reviewExerciseTextView.setOnClickListener {
+                val intent = Intent(this, ExerciseReviewActivityFocoPlus::class.java)
+                intent.putExtra("EXERCISES_SHOWN", exercisesShown)
+                intent.putExtra("USER_RESPONSES", userResponses)
+                intent.putExtra("CORRECT_ANSWERS", correctAnswers)
+                intent.putExtra("SUBTYPE", subtype)
+                intent.putExtra("LEVEL", currentLevel)
+                startActivity(intent)
+            }
+
+            reviewExerciseTextView.startAnimation(fadeIn)
+        } else {
+            reviewExerciseTextView.visibility = View.GONE
         }
     }
 

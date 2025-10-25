@@ -924,12 +924,12 @@
     <string name="msg_motiv_global_levels_11">Let\’s go for more levels! The global leaderboard is waiting for you.</string>
     <string name="msg_motiv_global_levels_12">The goal is near! Keep playing to reach the global ranking.</string>
 
-    <string name="msg_iqplus_start_1">%1$s, play 21 rounds—at least one in each game and each difficulty level—to appear in the IQ+ Ranking.</string>
+    <string name="msg_iqplus_start_1">%1$s, play 22 rounds—at least one in each game and each difficulty level—to appear in the IQ+ Ranking.</string>
     <string name="msg_iqplus_start_2">Hello, %1$s! Start your journey in SumaMente by playing at least one level in every game and difficulty to compete in the IQ+ Ranking.</string>
     <string name="msg_iqplus_start_3">%1$s, you haven\'t started your IQ+ Ranking journey yet. Play a level in every game and difficulty to see your position and build your index.</string>
     <string name="msg_iqplus_start_4">Let\'s go, %1$s! When you complete a level in every game and difficulty, you\'ll see your IQ+ and compare yourself with other players.</string>
-    <string name="msg_iqplus_start_5">%1$s, the first step to stand out in the IQ+ Ranking is to play 21 levels—one in every game and difficulty. Get started today!</string>
-    <string name="msg_iqplus_start_6">Ready for a challenge, %1$s? Play at least 21 different games, one in each difficulty, and unlock your place in the IQ+ Ranking.</string>
+    <string name="msg_iqplus_start_5">%1$s, the first step to stand out in the IQ+ Ranking is to play 22 levels—one in every game and difficulty. Get started today!</string>
+    <string name="msg_iqplus_start_6">Ready for a challenge, %1$s? Play at least 22 different games, one in each difficulty, and unlock your place in the IQ+ Ranking.</string>
 
     <string name="msg_iqplus_info_1">Your current IQ+ index is: %1$.2f.</string>
     <string name="msg_iqplus_info_2">For now, your IQ+ is %1$.2f points. Keep playing to improve it!</string>
@@ -1658,13 +1658,29 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
     <string name="premium_terms_privacy">Terms and Privacy</string>
     <string name="premium_already_active">Your account is already PREMIUM.</string>
 
-    <string name="instruction_game_terms_28">Mentally solve the 28 exercises\nmoving on the board. If your result\nis on one of the buttons, press it.\nOtherwise, press NONE.\nYou have a maximum of 12 mistakes. Focus up!</string>
-    <string name="instruction_game_terms_14">Mentally solve the 14 exercises\nmoving on the board. If your result\nis on one of the buttons, press it.\nOtherwise, press NONE.\nYou have a maximum of 6 mistakes. Focus up!</string>
-    <string name="instruction_game_figures_28">Observe 28 pairs of figures in motion.\nIf a pair from the board matches\nwhat you see on the buttons, press it.\nIf no pair matches, press NONE.\nYou have a maximum of 12 mistakes. Focus up!</string>
-    <string name="instruction_game_letters_value">The value of each letter corresponds\nto its position in the alphabet:\nA=1, B=2, C=3, and so on.</string>
-    <string name="instruction_game_roman_numerals">In this exercise you\'ll see Roman numerals,\npay attention as they appear, you must perform\nthe calculations using their corresponding value.\nStay focused!</string>
     <string name="level_indicator_foco">LEVEL %1$d / 420</string>
     <string name="answer_none">NONE</string>
     <string name="level_prefix">LEVEL %1$d</string>
+
+    <string name="level_indicator_default">LEVEL 1 / 420</string>
+    <string name="select_level_button">Select a level</string>
+    <string name="attention_hide_button">Attention: a button\'s content will be hidden!</string>
+    <string name="exercise_shown">Exercise \nshown</string>
+    <string name="correct_answer_column">Correct Answer</string>
+    <string name="user_answer_column">User Answer</string>
+    <string name="result_column">Result</string>
+    <string name="exercise_review_content">List of reviewed exercises</string>
+    <string name="errors_counter_default">Errors 0/6</string>
+    <string name="errors_counter_format_dynamic">Errors %1$d/%2$d</string>
+    <string name="errors_counter_format_14">Errors %1$d/%2$d</string>
+    <string name="errors_counter_format_28">Errors %1$d/%2$d</string>
+    <string name="error_canje">An error occurred while processing the redemption. Please try again.</string>
+    <string name="mensaje_premium_ads">You\'re currently not being shown ads within \nthe app, keep enjoying SumaMente</string>
+    <string name="instruction_game_roman_numerals">Master Roman numerals! ⚔️ Exercises with moving Roman numerals will appear. Perform the calculations by applying the value of each Roman symbol. If your result matches a button, press it. Otherwise, choose NONE and move on.</string>
+    <string name="instruction_game_letters_value">Decipher the alphabet code! 🔤 Each letter has a value according to its position: A=1, B=2, C=3 and so on up to Z. Calculate the result of the exercises by applying these values. If your answer is on the buttons, press it. If not, choose NONE and advance.</string>
+    <string name="instruction_game_figures_28">Sharpen your visual perception! 👁️ Observe carefully the 28 pairs of figures moving on the board. If any pair exactly matches the buttons, press it. If you don\'t find a match, select NONE. You have a maximum of 12 errors. Trust your sight!</string>
+    <string name="instruction_game_terms_14">Your mind is your best calculator! 🎯 Observe the 14 exercises moving on the board and solve them mentally. Press the button with your answer or select NONE if there is no match. You have up to 6 allowed errors. Show your mental agility!</string>
+    <string name="instruction_game_terms_28">Get ready for the mathematical challenge! 🧮 Mentally solve the 28 exercises that appear on the board. If you find your result on the buttons, press it immediately. If no option matches, choose NONE without hesitation. You have a maximum of 12 errors. Maintain concentration!</string>
+    <string name="instruction_game_time_addition">Demonstrate your mastery of time! ⏰ Correctly add the hours and minutes that appear on the board. Remember that 60 minutes equals 1 hour. Think calmly and look for the exact result in 00:00 format. If no option fits, choose “NONE” and move on.</string>
 
 </resources>

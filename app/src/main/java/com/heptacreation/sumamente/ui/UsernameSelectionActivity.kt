@@ -32,8 +32,9 @@ class UsernameSelectionActivity : BaseActivity() {
     private lateinit var btnAccept: AppCompatButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_username_selection)
 
@@ -68,6 +69,11 @@ class UsernameSelectionActivity : BaseActivity() {
         btnAccept.animate().alpha(1f).translationY(-20f).setDuration(duration).setStartDelay(delay * 3).start()
     }
 
+
+    private fun isTestUsername(username: String): Boolean {
+        return username.equals("Usertest", ignoreCase = true)
+    }
+
     private fun validateUsername() {
         playClickSound()
 
@@ -75,6 +81,26 @@ class UsernameSelectionActivity : BaseActivity() {
         usernameInputLayout.error = null
         usernameInputLayout.endIconMode = TextInputLayout.END_ICON_NONE
         usernameInputLayout.isEndIconVisible = false
+
+
+        if (isTestUsername(username)) {
+            playValidationSound()
+            showSuccessCheckmark()
+            Handler(Looper.getMainLooper()).postDelayed({
+                btnAccept.isEnabled = false
+                usernameInputLayout.isEnabled = false
+
+                val auth = FirebaseAuth.getInstance()
+                val user = auth.currentUser
+
+                if (user != null) {
+                    saveTestUserData(username, user.uid)
+                } else {
+                    handleAuthenticationError()
+                }
+            }, 1500)
+            return
+        }
 
         if (username.length !in 4..12) {
             usernameInputLayout.error = getString(R.string.error_invalid_username_length)
@@ -175,12 +201,44 @@ class UsernameSelectionActivity : BaseActivity() {
                 sharedPreferences.edit {
                     putString("savedUserName", username)
                     putBoolean("isAccountLinked", false)
+                    putBoolean("isTestUser", false)
                 }
                 proceedWithAnimation()
             }
             .addOnFailureListener { e ->
                 Log.e("USERNAME_DEBUG", "Error saving username and user data: ${e.message}")
                 Log.e("USERNAME_DEBUG", "Error details: $e")
+                btnAccept.isEnabled = true
+                usernameInputLayout.isEnabled = true
+                usernameInputLayout.error = getString(R.string.error_save_username_failed)
+                playErrorSound()
+                showErrorIcon()
+            }
+    }
+
+    private fun saveTestUserData(username: String, uid: String) {
+        Log.d("USERNAME_DEBUG", "Guardando TEST username '$username' con UID '$uid' (solo usuarios, sin reserva)")
+        val firestore = FirebaseFirestore.getInstance()
+
+        val userData = hashMapOf(
+            "username" to username,
+            "lastUpdate" to com.google.firebase.firestore.FieldValue.serverTimestamp()
+        )
+
+        firestore.collection("usuarios")
+            .document(uid)
+            .set(userData, com.google.firebase.firestore.SetOptions.merge())
+            .addOnSuccessListener {
+                Log.d("USERNAME_DEBUG", "Test user data saved successfully")
+                sharedPreferences.edit {
+                    putString("savedUserName", username)
+                    putBoolean("isAccountLinked", false)
+                    putBoolean("isTestUser", true)
+                }
+                proceedWithAnimation()
+            }
+            .addOnFailureListener { e ->
+                Log.e("USERNAME_DEBUG", "Error saving test user data: ${e.message}")
                 btnAccept.isEnabled = true
                 usernameInputLayout.isEnabled = true
                 usernameInputLayout.error = getString(R.string.error_save_username_failed)

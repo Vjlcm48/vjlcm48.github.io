@@ -942,12 +942,12 @@
     <string name="msg_motiv_global_levels_11">دعنا نلعب المزيد من المستويات! التصنيف العالمي في انتظارك.</string>
     <string name="msg_motiv_global_levels_12">الهدف قريب! استمر في اللعب للوصول إلى التصنيف العالمي.</string>
 
-    <string name="msg_iqplus_start_1">%1$s، العب 21 مباراة، على الأقل واحدة لكل لعبة وكل درجة صعوبة… وستظهر في تصنيف IQ+.</string>
+    <string name="msg_iqplus_start_1">%1$s، العب 22 مباراة، على الأقل واحدة لكل لعبة وكل درجة صعوبة… وستظهر في تصنيف IQ+.</string>
     <string name="msg_iqplus_start_2">مرحبًا، %1$s! ابدأ رحلتك في SumaMente بلعب مستوى واحد على الأقل في كل لعبة ودرجة صعوبة للتنافس في تصنيف IQ+.</string>
     <string name="msg_iqplus_start_3">%1$s، لم تبدأ طريقك بعد في تصنيف IQ+. العب مستوى واحد في جميع الألعاب والدرجات لترى مركزك وتبني مؤشرك.</string>
     <string name="msg_iqplus_start_4">هيا، %1$s! عندما تكمل مستوى واحد في كل لعبة وصعوبة، ستتمكن من رؤية IQ+ الخاص بك ومقارنة نفسك باللاعبين الآخرين.</string>
-    <string name="msg_iqplus_start_5">%1$s، الخطوة الأولى للتميز في تصنيف IQ+ هي لعب 21 مستوى؛ على الأقل واحد، في جميع الألعاب والدرجات. تشجع وابدأ اليوم!</string>
-    <string name="msg_iqplus_start_6">هل أنت مستعد للتحدي، %1$s؟ شارك في 21 لعبة مختلفة على الأقل، واحدة لكل درجة، وافتح مكانك في تصنيف IQ+.</string>
+    <string name="msg_iqplus_start_5">%1$s، الخطوة الأولى للتميز في تصنيف IQ+ هي لعب 22 مستوى؛ على الأقل واحد، في جميع الألعاب والدرجات. تشجع وابدأ اليوم!</string>
+    <string name="msg_iqplus_start_6">هل أنت مستعد للتحدي، %1$s؟ شارك في 22 لعبة مختلفة على الأقل، واحدة لكل درجة، وافتح مكانك في تصنيف IQ+.</string>
 
     <string name="msg_iqplus_info_1">مؤشر IQ+ الحالي الخاص بك هو: %1$.2f.</string>
     <string name="msg_iqplus_info_2">في الوقت الحالي، IQ+ الخاص بك هو %1$.2f نقطة. استمر في اللعب لتحسينه!</string>
@@ -1718,13 +1718,30 @@
     <string name="premium_terms_privacy">الشروط والخصوصية</string>
     <string name="premium_already_active">حسابك PREMIUM بالفعل.</string>
 
-    <string name="instruction_game_terms_28">حل عقليًا الـ 28 تمرينًا\nالتي تتحرك على السبورة. إذا كانت نتيجتك\nموجودة في أحد الأزرار، اضغط عليه.\nوإلا، اضغط على لا شيء.\nلديك حد أقصى 12 خطأ. ركز!</string>
-    <string name="instruction_game_terms_14">حل عقليًا الـ 14 تمرينًا\nالتي تتحرك على السبورة. إذا كانت نتيجتك\nموجودة في أحد الأزرار، اضغط عليه.\nوإلا، اضغط على لا شيء.\nلديك حد أقصى 6 أخطاء. ركز!</string>
-    <string name="instruction_game_figures_28">لاحظ 28 زوجًا من الأشكال المتحركة.\nإذا تطابق زوج من السبورة\nمع ما تراه في الأزرار، اضغط عليه.\nإذا لم يتطابق أي زوج، اضغط على لا شيء.\nلديك حد أقصى 12 خطأ. ركز!</string>
-    <string name="instruction_game_letters_value">قيمة كل حرف تتوافق\nمع موقعه في الأبجدية:\nA=1, B=2, C=3، وهكذا.</string>
-    <string name="instruction_game_roman_numerals">في هذا التمرين سترى أرقامًا رومانية،\nانتبه عند ظهورها، يجب عليك إجراء\nالحسابات بتطبيق قيمتها المقابلة.\nحافظ على تركيزك!</string>
+
     <string name="level_indicator_foco">المستوى %1$d / 420</string>
     <string name="answer_none">لا شيء</string>
     <string name="level_prefix">المستوى %1$d</string>
+
+    <string name="level_indicator_default">المستوى 1 / 420</string>
+    <string name="select_level_button">اختر مستوى</string>
+    <string name="attention_hide_button">تنبيه: سيتم إخفاء محتوى أحد الأزرار!</string>
+    <string name="exercise_shown">تمرين \nمعروض</string>
+    <string name="correct_answer_column">الإجابة الصحيحة</string>
+    <string name="user_answer_column">إجابة المستخدم</string>
+    <string name="result_column">النتيجة</string>
+    <string name="exercise_review_content">قائمة التمارين التي تمت مراجعتها</string>
+    <string name="errors_counter_default">أخطاء 0/6</string>
+    <string name="errors_counter_format_dynamic">أخطاء %1$d/%2$d</string>
+    <string name="errors_counter_format_14">أخطاء %1$d/%2$d</string>
+    <string name="errors_counter_format_28">أخطاء %1$d/%2$d</string>
+    <string name="error_canje">حدث خطأ أثناء معالجة الاسترداد. حاول مرة أخرى.</string>
+    <string name="mensaje_premium_ads">لا يتم عرض إعلانات لك حاليًا داخل \nالتطبيق، استمر في الاستمتاع بـ SumaMente</string>
+    <string name="instruction_game_roman_numerals">أتقن الأرقام الرومانية! ⚔️ ستظهر تمارين بها أرقام رومانية متحركة. قم بإجراء العمليات الحسابية بتطبيق قيمة كل رمز روماني. إذا كانت نتيجتك تتطابق مع أي زر، فاضغط عليه. وإلا، فاختر لا شيء واستمر.</string>
+    <string name="instruction_game_letters_value">فك شفرة الأبجدية! 🔤 لكل حرف قيمة حسب موضعه: أ=1، ب=2، ج=3، وهكذا حتى ي. احسب نتيجة التمارين بتطبيق هذه القيم. إذا كانت إجابتك موجودة في الأزرار، فاضغط عليها. وإذا لم تكن كذلك، فاختر لا شيء وتقدم.</string>
+    <string name="instruction_game_figures_28">اشحذ إدراكك البصري! 👁️ راقب بعناية 28 زوجًا من الأشكال المتحركة على اللوحة. إذا كان أي زوج يتطابق تمامًا مع الأزرار، فاضغط عليه. إذا لم تجد أي تطابق، فاختر لا شيء. لديك حد أقصى 12 خطأ. ثق بحدسك!</string>
+    <string name="instruction_game_terms_14">عقلك هو أفضل آلة حاسبة لديك! 🎯 راقب 14 تمرينًا تتحرك على اللوحة وقم بحلها عقليًا. اضغط على الزر الذي يحتوي على إجابتك أو اختر لا شيء إذا لم يكن هناك تطابق. يُسمح لك بما يصل إلى 6 أخطاء. أظهر مهارتك الذهنية!</string>
+    <string name="instruction_game_terms_28">استعد للتحدي الرياضي! 🧮 حل عقليًا التمارين الـ 28 التي تظهر على اللوحة. إذا وجدت نتيجتك في الأزرار، فاضغط عليها على الفور. إذا لم يتطابق أي خيار، فاختر لا شيء دون تردد. لديك حد أقصى 12 خطأ. حافظ على تركيزك!</string>
+    <string name="instruction_game_time_addition">أظهر إتقانك للوقت! ⏰ اجمع الساعات والدقائق التي تظهر على اللوحة بشكل صحيح. تذكر أن 60 دقيقة تعادل 1 ساعة. فكر بهدوء وابحث عن النتيجة الدقيقة بصيغة 00:00. إذا لم يتطابق أي خيار، فاختر “لا شيء” واستمر.</string>
 
 </resources>

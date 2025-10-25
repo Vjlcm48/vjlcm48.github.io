@@ -853,12 +853,12 @@
     <string name="msg_motiv_global_levels_10">Excelente trabalho! Continue e muito em breve você aparecerá no ranking.</string>
     <string name="msg_motiv_global_levels_11">Vamos por mais níveis! O ranking global está te esperando.</string>
     <string name="msg_motiv_global_levels_12">A meta está perto! Continue jogando para chegar ao ranking global.</string>
-    <string name="msg_iqplus_start_1">%1$s, jogue 21 partidas, pelo menos uma por cada jogo e cada grau de dificuldade… e você aparecerá no Ranking do IQ+.</string>
+    <string name="msg_iqplus_start_1">%1$s, jogue 22 partidas, pelo menos uma por cada jogo e cada grau de dificuldade… e você aparecerá no Ranking do IQ+.</string>
     <string name="msg_iqplus_start_2">Olá, %1$s! Comece sua jornada em SumaMente jogando pelo menos um nível em cada jogo e grau de dificuldade para competir no Ranking IQ+.</string>
     <string name="msg_iqplus_start_3">%1$s, você ainda não começou seu caminho no Ranking IQ+. Jogue um nível em todos os jogos e graus para ver sua posição e construir seu índice.</string>
     <string name="msg_iqplus_start_4">Vamos, %1$s! Quando completar um nível em cada jogo e dificuldade, poderá ver seu IQ+ e se comparar com outros jogadores.</string>
-    <string name="msg_iqplus_start_5">%1$s, o primeiro passo para se destacar no Ranking IQ+ é jogar 21 níveis; um pelo menos, em todos os jogos e graus. Anime-se e comece hoje mesmo!</string>
-    <string name="msg_iqplus_start_6">Pronto para um desafio, %1$s? Participe de pelo menos 21 jogos diferentes, um por cada grau, и desbloqueie seu lugar no Ranking IQ+.</string>
+    <string name="msg_iqplus_start_5">%1$s, o primeiro passo para se destacar no Ranking IQ+ é jogar 22 níveis; um pelo menos, em todos os jogos e graus. Anime-se e comece hoje mesmo!</string>
+    <string name="msg_iqplus_start_6">Pronto para um desafio, %1$s? Participe de pelo menos 22 jogos diferentes, um por cada grau, и desbloqueie seu lugar no Ranking IQ+.</string>
     <string name="msg_iqplus_info_1">Seu índice IQ+ atual é: %1$.2f.</string>
     <string name="msg_iqplus_info_2">Por agora, seu IQ+ é de %1$.2f pontos. Continue jogando para melhorá-lo!</string>
     <string name="msg_iqplus_info_3">Índice IQ+ provisório: %1$.2f. Jogue em todos os jogos e graus para competir no ranking.</string>
@@ -1516,13 +1516,29 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
     <string name="premium_terms_privacy">Termos e Privacidade</string>
     <string name="premium_already_active">A sua conta já é PREMIUM.</string>
 
-    <string name="instruction_game_terms_28">Resolva mentalmente os 28 exercícios\nque se movem no quadro. Se o seu resultado\nestiver em um dos botões, pressione-o.\nCaso contrário, pressione NENHUM.\nVocê tem um máximo de 12 erros. Foco!</string>
-    <string name="instruction_game_terms_14">Resolva mentalmente os 14 exercícios\nque se movem no quadro. Se o seu resultado\nestiver em um dos botões, pressione-o.\nCaso contrário, pressione NENHUM.\nVocê tem um máximo de 6 erros. Foco!</string>
-    <string name="instruction_game_figures_28">Observe 28 pares de figuras em movimento.\nSe um par do quadro coincidir\ncom o que você vê nos botões, pressione-o.\nSe nenhum par coincidir, pressione NENHUM.\nVocê tem um máximo de 12 erros. Foco!</string>
-    <string name="instruction_game_letters_value">O valor de cada letra corresponde\nà sua posição no alfabeto:\nA=1, B=2, C=3, e assim por diante.</string>
-    <string name="instruction_game_roman_numerals">Neste exercício, você verá números romanos,\nfique atento conforme eles aparecem, você deve realizar\nos cálculos aplicando seu valor correspondente.\nMantenha o foco!</string>
     <string name="level_indicator_foco">NÍVEL %1$d / 420</string>
     <string name="answer_none">NENHUM</string>
     <string name="level_prefix">NÍVEL %1$d</string>
+
+    <string name="level_indicator_default">NÍVEL 1 / 420</string>
+    <string name="select_level_button">Selecione um nível</string>
+    <string name="attention_hide_button">Atenção: o conteúdo de um botão será ocultado!</string>
+    <string name="exercise_shown">Exercício \nexibido</string>
+    <string name="correct_answer_column">Resposta correta</string>
+    <string name="user_answer_column">Resposta do usuário</string>
+    <string name="result_column">Resultado</string>
+    <string name="exercise_review_content">Lista de exercícios revisados</string>
+    <string name="errors_counter_default">Erros 0/6</string>
+    <string name="errors_counter_format_dynamic">Erros %1$d/%2$d</string>
+    <string name="errors_counter_format_14">Erros %1$d/%2$d</string>
+    <string name="errors_counter_format_28">Erros %1$d/%2$d</string>
+    <string name="error_canje">Ocorreu um erro ao processar o resgate. Tente novamente.</string>
+    <string name="mensaje_premium_ads">Atualmente não está a ser apresentada publicidade dentro \nda aplicação, continue a desfrutar do SumaMente</string>
+    <string name="instruction_game_roman_numerals">Domine a numeração romana! ⚔️ Aparecerão exercícios com números romanos em movimento. Faça os cálculos aplicando o valor de cada símbolo romano. Se o seu resultado coincidir com algum botão, pressione-o. Caso contrário, escolha NENHUM e siga em frente.</string>
+    <string name="instruction_game_letters_value">Decifre o código do alfabeto! 🔤 Cada letra tem um valor de acordo com a sua posição: A=1, B=2, C=3 e assim por diante até Z. Calcule o resultado dos exercícios aplicando estes valores. Se a sua resposta estiver nos botões, pressione-a. Se não, escolha NENHUM e avance.</string>
+    <string name="instruction_game_figures_28">Afie a sua percepção visual! 👁️ Observe com atenção os 28 pares de figuras que se movem no quadro. Se algum par coincidir exatamente com os botões, pressione-o. Se não encontrar nenhuma coincidência, selecione NENHUM. Tem um máximo de 12 erros. Confie na sua visão!</string>
+    <string name="instruction_game_terms_14">A sua mente é a sua melhor calculadora! 🎯 Observe os 14 exercícios que se movem no quadro e resolva-os mentalmente. Pressione o botão com a sua resposta ou selecione NENHUM se não houver coincidência. Tem até 6 erros permitidos. Demonstre a sua agilidade mental!</string>
+    <string name="instruction_game_terms_28">Prepare-se para o desafio matemático! 🧮 Resolva mentalmente os 28 exercícios que aparecem no quadro. Se encontrar o seu resultado nos botões, pressione-o de imediato. Se nenhuma opção coincidir, escolha NENHUM sem hesitar. Tem um máximo de 12 erros. Mantenha a concentração!</string>
+    <string name="instruction_game_time_addition">Demonstre o seu domínio do tempo! ⏰ Some corretamente as horas e os minutos que aparecem no quadro. Lembre-se que 60 minutos equivalem a 1 hora. Pense com calma e procure o resultado exato no formato 00:00. Se nenhuma opção encaixar, escolha “NENHUM” e siga em frente.</string>
 
 </resources>

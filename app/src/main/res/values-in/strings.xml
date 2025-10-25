@@ -888,12 +888,12 @@
     <string name="msg_motiv_global_levels_11">Ayo main lebih banyak level! Peringkat global menanti Anda.</string>
     <string name="msg_motiv_global_levels_12">Tujuan sudah dekat! Teruslah bermain untuk mencapai peringkat global.</string>
 
-    <string name="msg_iqplus_start_1">%1$s, mainkan 21 game, setidaknya satu untuk setiap game dan setiap tingkat kesulitan… dan Anda akan muncul di Peringkat IQ+.</string>
+    <string name="msg_iqplus_start_1">%1$s, mainkan 22 game, setidaknya satu untuk setiap game dan setiap tingkat kesulitan… dan Anda akan muncul di Peringkat IQ+.</string>
     <string name="msg_iqplus_start_2">Halo, %1$s! Mulailah perjalanan Anda di SumaMente dengan memainkan setidaknya satu level di setiap game dan tingkat kesulitan untuk bersaing di Peringkat IQ+.</string>
     <string name="msg_iqplus_start_3">%1$s, Anda belum memulai jalan Anda di Peringkat IQ+. Mainkan satu level di semua game dan tingkat untuk melihat posisi Anda dan membangun indeks Anda.</string>
     <string name="msg_iqplus_start_4">Ayo, %1$s! Ketika Anda menyelesaikan satu level di setiap game dan kesulitan, Anda akan dapat melihat IQ+ Anda dan membandingkan diri Anda dengan pemain lain.</string>
-    <string name="msg_iqplus_start_5">%1$s, langkah pertama untuk menonjol di Peringkat IQ+ adalah memainkan 21 level; setidaknya satu, di semua game dan tingkat. Semangat dan mulailah hari ini!</string>
-    <string name="msg_iqplus_start_6">Siap untuk tantangan, %1$s? Berpartisipasi dalam setidaknya 21 game yang berbeda, satu untuk setiap tingkat, dan buka tempat Anda di Peringkat IQ+.</string>
+    <string name="msg_iqplus_start_5">%1$s, langkah pertama untuk menonjol di Peringkat IQ+ adalah memainkan 22 level; setidaknya satu, di semua game dan tingkat. Semangat dan mulailah hari ini!</string>
+    <string name="msg_iqplus_start_6">Siap untuk tantangan, %1$s? Berpartisipasi dalam setidaknya 22 game yang berbeda, satu untuk setiap tingkat, dan buka tempat Anda di Peringkat IQ+.</string>
 
     <string name="msg_iqplus_info_1">Indeks IQ+ Anda saat ini adalah: %1$.2f.</string>
     <string name="msg_iqplus_info_2">Untuk saat ini, IQ+ Anda adalah %1$.2f poin. Teruslah bermain untuk meningkatkannya!</string>
@@ -1582,13 +1582,34 @@ Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di 
     <string name="premium_terms_privacy">Syarat dan Privasi</string>
     <string name="premium_already_active">Akun Anda sudah PREMIUM.</string>
 
-    <string name="instruction_game_terms_28">Selesaikan 28 latihan secara mental\nyang bergerak di papan tulis. Jika hasil Anda\nada di salah satu tombol, tekan.\nJika tidak, tekan TIDAK ADA.\nAnda memiliki maksimal 12 kesalahan. Fokus!</string>
-    <string name="instruction_game_terms_14">Selesaikan 14 latihan secara mental\nyang bergerak di papan tulis. Jika hasil Anda\nada di salah satu tombol, tekan.\nJika tidak, tekan TIDAK ADA.\nAnda memiliki maksimal 6 kesalahan. Fokus!</string>
-    <string name="instruction_game_figures_28">Amati 28 pasang gambar yang bergerak.\nJika sepasang dari papan tulis cocok\ndengan yang Anda lihat di tombol, tekan.\nJika tidak ada pasangan yang cocok, tekan TIDAK ADA.\nAnda memiliki maksimal 12 kesalahan. Fokus!</string>
-    <string name="instruction_game_letters_value">Nilai setiap huruf sesuai dengan\nposisinya di alfabet:\nA=1, B=2, C=3, dan seterusnya.</string>
-    <string name="instruction_game_roman_numerals">Dalam latihan ini Anda akan melihat angka Romawi,\nperhatikan saat muncul, Anda harus melakukan\nperhitungan dengan menerapkan nilai yang sesuai.\nTetap fokus!</string>
+
     <string name="level_indicator_foco">LEVEL %1$d / 420</string>
     <string name="answer_none">TIDAK ADA</string>
     <string name="level_prefix">LEVEL %1$d</string>
+
+    <string name="level_indicator_default">LEVEL 1 / 420</string>
+    <string name="select_level_button">Pilih level</string>
+    <string name="attention_hide_button">Perhatian: konten tombol akan disembunyikan!</string>
+    <string name="exercise_shown">Latihan \nditampilkan</string>
+    <string name="correct_answer_column">Jawaban Benar</string>
+    <string name="user_answer_column">Jawaban Pengguna</string>
+    <string name="result_column">Hasil</string>
+    <string name="exercise_review_content">Daftar latihan yang ditinjau</string>
+    <string name="errors_counter_default">Kesalahan 0/6</string>
+    <string name="errors_counter_format_dynamic">Kesalahan %1$d/%2$d</string>
+    <string name="errors_counter_format_14">Kesalahan %1$d/%2$d</string>
+    <string name="errors_counter_format_28">Kesalahan %1$d/%2$d</string>
+    <string name="error_canje">Terjadi kesalahan saat memproses penukaran. Silakan coba lagi.</string>
+    <string name="mensaje_premium_ads">Saat ini Anda tidak diperlihatkan iklan di dalam \naplikasi, terus nikmati SumaMente</string>
+
+
+    <string name="instruction_game_roman_numerals">Kuasai angka Romawi! ⚔️ Latihan dengan angka Romawi bergerak akan muncul. Lakukan perhitungan dengan menerapkan nilai dari setiap simbol Romawi. Jika hasil Anda cocok dengan salah satu tombol, tekan tombol itu. Jika tidak, pilih TIDAK ADA dan lanjutkan.</string>
+    <string name="instruction_game_letters_value">Pecahkan kode alfabet! 🔤 Setiap huruf memiliki nilai sesuai dengan posisinya: A=1, B=2, C=3 dan seterusnya hingga Z. Hitung hasil latihan dengan menerapkan nilai-nilai ini. Jika jawaban Anda ada di tombol, tekan tombol itu. Jika tidak, pilih TIDAK ADA dan maju.</string>
+    <string name="instruction_game_figures_28">Pertajam persepsi visual Anda! 👁️ Amati dengan cermat 28 pasang gambar yang bergerak di papan tulis. Jika ada pasangan yang sangat cocok dengan tombol, tekan tombol itu. Jika Anda tidak menemukan kecocokan, pilih TIDAK ADA. Anda memiliki maksimum 12 kesalahan. Percayai penglihatan Anda!</string>
+    <string name="instruction_game_terms_14">Pikiran Anda adalah kalkulator terbaik Anda! 🎯 Amati 14 latihan yang bergerak di papan tulis dan selesaikan secara mental. Tekan tombol dengan jawaban Anda atau pilih TIDAK ADA jika tidak ada kecocokan. Anda diizinkan hingga 6 kesalahan. Tunjukkan kelincahan mental Anda!</string>
+    <string name="instruction_game_terms_28">Bersiap untuk tantangan matematika! 🧮 Selesaikan 28 latihan yang muncul di papan tulis secara mental. Jika Anda menemukan hasil Anda di tombol, tekan tombol itu segera. Jika tidak ada opsi yang cocok, pilih TIDAK ADA tanpa ragu. Anda memiliki maksimum 12 kesalahan. Pertahankan konsentrasi!</string>
+
+
+    <string name="instruction_game_time_addition">Tunjukkan penguasaan Anda atas waktu! ⏰ Jumlahkan jam dan menit yang muncul di papan tulis dengan benar. Ingat bahwa 60 menit sama dengan 1 jam. Pikirkan dengan tenang dan cari hasil yang tepat dalam format 00:00. Jika tidak ada opsi yang cocok, pilih “TIDAK ADA” dan lanjutkan.</string>
 
 </resources>

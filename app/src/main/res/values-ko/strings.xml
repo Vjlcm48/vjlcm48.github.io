@@ -799,12 +799,12 @@
     <string name="msg_motiv_global_levels_10">훌륭한 작업입니다! 계속하면 곧 랭킹에 나타날 것입니다.</string>
     <string name="msg_motiv_global_levels_11">더 많은 레벨을 플레이합시다! 글로벌 랭킹이 당신을 기다리고 있습니다.</string>
     <string name="msg_motiv_global_levels_12">목표가 가까워요! 글로벌 랭킹에 도달하기 위해 계속 플레이하세요.</string>
-    <string name="msg_iqplus_start_1">%1$s님, 각 게임 및 난이도별로 최소 하나씩, 총 21개의 게임을 플레이하면 IQ+ 랭킹에 표시됩니다.</string>
+    <string name="msg_iqplus_start_1">%1$s님, 각 게임 및 난이도별로 최소 하나씩, 총 22개의 게임을 플레이하면 IQ+ 랭킹에 표시됩니다.</string>
     <string name="msg_iqplus_start_2">안녕하세요, %1$s님! SumaMente에서 IQ+ 랭킹에 참여하려면 각 게임 및 난이도에서 최소 한 레벨을 플레이하여 여정을 시작하세요.</string>
     <string name="msg_iqplus_start_3">%1$s님, 아직 IQ+ 랭킹에서 여정을 시작하지 않았습니다. 모든 게임과 등급에서 한 레벨을 플레이하여 순위를 확인하고 지수를 구축하세요.</string>
     <string name="msg_iqplus_start_4">어서요, %1$s님! 각 게임과 난이도에서 한 레벨을 완료하면 당신의 IQ+를 보고 다른 플레이어와 비교할 수 있습니다.</string>
-    <string name="msg_iqplus_start_5">%1$s님, IQ+ 랭킹에서 두각을 나타내기 위한 첫 번째 단계는 모든 게임과 등급에서 최소 하나씩, 총 21개의 레벨을 플레이하는 것입니다. 오늘 시작하세요!</string>
-    <string name="msg_iqplus_start_6">도전할 준비가 되셨나요, %1$s님? 각 등급별로 하나씩, 최소 21개의 다른 게임에 참여하여 IQ+ 랭킹에서 당신의 자리를 잠금 해제하세요.</string>
+    <string name="msg_iqplus_start_5">%1$s님, IQ+ 랭킹에서 두각을 나타내기 위한 첫 번째 단계는 모든 게임과 등급에서 최소 하나씩, 총 22개의 레벨을 플레이하는 것입니다. 오늘 시작하세요!</string>
+    <string name="msg_iqplus_start_6">도전할 준비가 되셨나요, %1$s님? 각 등급별로 하나씩, 최소 22개의 다른 게임에 참여하여 IQ+ 랭킹에서 당신의 자리를 잠금 해제하세요.</string>
     <string name="msg_iqplus_info_1">현재 IQ+ 지수는 %1$.2f입니다.</string>
     <string name="msg_iqplus_info_2">현재 당신의 IQ+는 %1$.2f 포인트입니다. 개선하기 위해 계속 플레이하세요!</string>
     <string name="msg_iqplus_info_3">임시 IQ+ 지수: %1$.2f. 랭킹에서 경쟁하려면 모든 게임과 등급에서 플레이하세요.</string>
@@ -1352,13 +1352,32 @@
     <string name="premium_terms_privacy">약관 및 개인정보 보호</string>
     <string name="premium_already_active">귀하의 계정은 이미 PREMIUM입니다.</string>
 
-    <string name="instruction_game_terms_28">보드에서 움직이는 28개의 문제를\n암산으로 푸세요. 만약 당신의 결과가\n버튼 중 하나에 있다면, 그것을 누르세요.\n그렇지 않으면, 없음을 누르세요.\n최대 12번까지 틀릴 수 있습니다. 집중하세요!</string>
-    <string name="instruction_game_terms_14">보드에서 움직이는 14개의 문제를\n암산으로 푸세요. 만약 당신의 결과가\n버튼 중 하나에 있다면, 그것을 누르세요.\n그렇지 않으면, 없음을 누르세요.\n최대 6번까지 틀릴 수 있습니다. 집중하세요!</string>
-    <string name="instruction_game_figures_28">움직이는 28쌍의 도형을 관찰하세요.\n보드의 쌍 중 하나가 버튼에서\n보이는 것과 일치하면, 그것을 누르세요.\n일치하는 쌍이 없으면, 없음을 누르세요.\n최대 12번까지 틀릴 수 있습니다. 집중하세요!</string>
-    <string name="instruction_game_letters_value">각 문자의 값은 알파벳에서의\n위치에 해당합니다:\nA=1, B=2, C=3, 등등.</string>
-    <string name="instruction_game_roman_numerals">이 연습에서는 로마 숫자를 보게 됩니다.\n나타날 때 주의를 기울여, 해당하는 값을\n적용하여 계산을 수행해야 합니다.\n집중력을 유지하세요!</string>
+
     <string name="level_indicator_foco">레벨 %1$d / 420</string>
     <string name="answer_none">없음</string>
     <string name="level_prefix">레벨 %1$d</string>
+
+    <string name="level_indicator_default">레벨 1 / 420</string>
+    <string name="select_level_button">레벨 선택</string>
+    <string name="attention_hide_button">주의: 버튼의 내용이 숨겨집니다!</string>
+    <string name="exercise_shown">연습 문제 \n표시됨</string>
+    <string name="correct_answer_column">정답</string>
+    <string name="user_answer_column">사용자 응답</string>
+    <string name="result_column">결과</string>
+    <string name="exercise_review_content">검토된 연습 문제 목록</string>
+    <string name="errors_counter_default">오류 0/6</string>
+    <string name="errors_counter_format_dynamic">오류 %1$d/%2$d</string>
+    <string name="errors_counter_format_14">오류 %1$d/%2$d</string>
+    <string name="errors_counter_format_28">오류 %1$d/%2$d</string>
+    <string name="error_canje">교환 처리 중 오류가 발생했습니다. 다시 시도해 주세요.</string>
+    <string name="mensaje_premium_ads">현재 앱 내에서 광고가 표시되지 않고 있습니다. 계속해서 SumaMente를 즐겨주세요</string>
+
+    <string name="instruction_game_roman_numerals">로마 숫자를 마스터하세요! ⚔️ 움직이는 로마 숫자로 된 연습 문제가 나타납니다. 각 로마 기호의 값을 적용하여 계산을 수행하세요. 결과가 버튼과 일치하면 버튼을 누르세요. 그렇지 않으면, 없음 을 선택하고 계속 진행하세요.</string>
+    <string name="instruction_game_letters_value">알파벳 코드를 해독하세요! 🔤 각 문자는 위치에 따라 값이 있습니다: A=1, B=2, C=3이며 Z까지 이어집니다. 이 값들을 적용하여 연습 문제의 결과를 계산하세요. 답변이 버튼에 있으면, 버튼을 누르세요. 그렇지 않으면, 없음 을 선택하고 나아가세요.</string>
+    <string name="instruction_game_figures_28">시각적 인식을 날카롭게 하세요! 👁️ 칠판 위를 움직이는 28쌍의 도형을 주의 깊게 관찰하세요. 어떤 쌍이 버튼과 정확히 일치하면, 버튼을 누르세요. 일치하는 것을 찾지 못하면, 없음 을 선택하세요. 최대 12개의 오류가 허용됩니다. 당신의 눈을 믿으세요!</string>
+    <string name="instruction_game_terms_14">당신의 정신이 최고의 계산기입니다! 🎯 칠판 위를 움직이는 14개의 연습 문제를 관찰하고 머릿속으로 푸세요. 답변이 있는 버튼을 누르거나, 일치하는 것이 없으면 없음 을 선택하세요. 최대 6개의 오류가 허용됩니다. 당신의 정신적 민첩성을 보여주세요!</string>
+    <string name="instruction_game_terms_28">수학적 도전에 대비하세요! 🧮 칠판에 나타나는 28개의 연습 문제를 머릿속으로 푸세요. 버튼에서 결과를 찾으면 즉시 버튼을 누르세요. 어떤 옵션도 일치하지 않으면, 주저하지 말고 없음 을 선택하세요. 최대 12개의 오류가 허용됩니다. 집중력을 유지하세요!</string>
+
+    <string name="instruction_game_time_addition">시간에 대한 당신의 숙련도를 보여주세요! ⏰ 칠판에 나타나는 시와 분을 올바르게 더하세요. 60분이 1시간과 같다는 것을 기억하세요. 차분하게 생각하고 00:00 형식으로 정확한 결과를 찾으세요. 어떤 옵션도 맞지 않으면, “없음”을 선택하고 계속 진행하세요.</string>
 
 </resources>

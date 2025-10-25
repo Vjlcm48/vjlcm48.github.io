@@ -800,12 +800,12 @@
     <string name="msg_motiv_global_levels_10">素晴らしい仕事です！続けていけば、すぐにランキングに表示されます。</string>
     <string name="msg_motiv_global_levels_11">もっとレベルをプレイしましょう！グローバルランキングがあなたを待っています。</string>
     <string name="msg_motiv_global_levels_12">ゴールは近いです！グローバルランキングに到達するためにプレイを続けてください。</string>
-    <string name="msg_iqplus_start_1">%1$sさん、各ゲームと各難易度で少なくとも1つずつ、合計21ゲームプレイすると、IQ+ランキングに表示されます。</string>
+    <string name="msg_iqplus_start_1">%1$sさん、各ゲームと各難易度で少なくとも1つずつ、合計22ゲームプレイすると、IQ+ランキングに表示されます。</string>
     <string name="msg_iqplus_start_2">こんにちは、%1$sさん！SumaMenteでの旅を始め、IQ+ランキングで競うために、各ゲームと難易度で少なくとも1レベルプレイしてください。</string>
     <string name="msg_iqplus_start_3">%1$sさん、まだIQ+ランキングの道を歩み始めていません。すべてのゲームとレベルで1レベルプレイして、あなたの順位を確認し、インデックスを構築してください。</string>
     <string name="msg_iqplus_start_4">さあ、%1$sさん！各ゲームと難易度で1レベルクリアすると、あなたのIQ+を見て、他のプレイヤーと比較することができます。</string>
-    <string name="msg_iqplus_start_5">%1$sさん、IQ+ランキングで目立つための第一歩は、すべてのゲームとレベルで少なくとも1つ、合計21レベルプレイすることです。ぜひ今日から始めてください！</string>
-    <string name="msg_iqplus_start_6">挑戦の準備はいいですか、%1$sさん？各レベルで少なくとも1つ、合計21の異なるゲームに参加し、IQ+ランキングでのあなたの場所をアンロックしてください。</string>
+    <string name="msg_iqplus_start_5">%1$sさん、IQ+ランキングで目立つための第一歩は、すべてのゲームとレベルで少なくとも1つ、合計22レベルプレイすることです。ぜひ今日から始めてください！</string>
+    <string name="msg_iqplus_start_6">挑戦の準備はいいですか、%1$sさん？各レベルで少なくとも1つ、合計22の異なるゲームに参加し、IQ+ランキングでのあなたの場所をアンロックしてください。</string>
     <string name="msg_iqplus_info_1">あなたの現在のIQ+インデックスは：%1$.2fです。</string>
     <string name="msg_iqplus_info_2">今のところ、あなたのIQ+は%1$.2fポイントです。改善するためにプレイを続けてください！</string>
     <string name="msg_iqplus_info_3">暫定IQ+インデックス：%1$.2f。ランキングで競うために、すべてのゲームとレベルでプレイしてください。</string>
@@ -1356,12 +1356,30 @@
     <string name="premium_terms_privacy">利用規約とプライバシー</string>
     <string name="premium_already_active">アカウントは既にPREMIUMです。</string>
 
-    <string name="instruction_game_terms_28">ボード上を動く28問を\n暗算で解いてください。もしあなたの答えが\nいずれかのボタンにあれば、それを押してください。\nなければ「なし」を押してください。\n最大12回まで間違えられます。集中してください！</string>
-    <string name="instruction_game_terms_14">ボード上を動く14問を\n暗算で解いてください。もしあなたの答えが\nいずれかのボタンにあれば、それを押してください。\nなければ「なし」を押してください。\n最大6回まで間違えられます。集中してください！</string>
-    <string name="instruction_game_figures_28">動いている28組の図形を観察してください。\nボードの組の1つがボタンの表示と\n一致する場合は、それを押してください。\n一致する組がない場合は、「なし」を押してください。\n最大12回まで間違えられます。集中してください！</string>
-    <string name="instruction_game_letters_value">各文字の値はアルファベットの\n位置に対応しています：\nA=1、B=2、C=3、など。</string>
-    <string name="instruction_game_roman_numerals">このエクササイズではローマ数字が表示されます。\n表示されたら注意して、対応する値を\n適用して計算を行ってください。\n集中力を保ってください！</string>
+
     <string name="level_indicator_foco">レベル %1$d / 420</string>
     <string name="answer_none">なし</string>
     <string name="level_prefix">レベル %1$d</string>
+
+    <string name="level_indicator_default">レベル 1 / 420</string>
+    <string name="select_level_button">レベルを選択</string>
+    <string name="attention_hide_button">注意: ボタンのコンテンツが非表示になります！</string>
+    <string name="exercise_shown">問題 \n表示中</string>
+    <string name="correct_answer_column">正解</string>
+    <string name="user_answer_column">ユーザーの回答</string>
+    <string name="result_column">結果</string>
+    <string name="exercise_review_content">レビューされた問題リスト</string>
+    <string name="errors_counter_default">エラー 0/6</string>
+    <string name="errors_counter_format_dynamic">エラー %1$d/%2$d</string>
+    <string name="errors_counter_format_14">エラー %1$d/%2$d</string>
+    <string name="errors_counter_format_28">エラー %1$d/%2$d</string>
+    <string name="error_canje">引き換え処理中にエラーが発生しました。もう一度お試しください。</string>
+    <string name="mensaje_premium_ads">現在、アプリ内に広告は表示されていません。\n引き続き SumaMente をお楽しみください</string>
+    <string name="instruction_game_roman_numerals">ローマ数字をマスターしよう！ ⚔️ 動くローマ数字を使った問題が表示されます。各ローマ数字記号の値を適用して計算を実行してください。結果がボタンと一致する場合は、それを押してください。そうでない場合は、「なし」を選択して進んでください。</string>
+    <string name="instruction_game_letters_value">アルファベットコードを解読しよう！ 🔤 各文字にはその位置に応じた値があります: A=1、B=2、C=3、そしてZまで続きます。これらの値を適用して問題の結果を計算してください。あなたの回答がボタンにある場合は、それを押してください。そうでない場合は、「なし」を選択して進んでください。</string>
+    <string name="instruction_game_figures_28">視覚的な知覚を研ぎ澄まそう！ 👁️ ボード上を動く28組の図形を注意深く観察してください。いずれかのペアがボタンと完全に一致する場合は、それを押してください。一致するものが見つからない場合は、「なし」を選択してください。最大12個のエラーが許容されます。あなたの目利きを信じて！</string>
+    <string name="instruction_game_terms_14">あなたの心は最高の電卓です！ 🎯 ボード上を動く14個の問題を観察し、頭の中で解いてください。あなたの回答が書かれたボタンを押すか、一致がない場合は「なし」を選択してください。最大6個のエラーが許容されます。あなたの精神的な機敏さを見せてください！</string>
+    <string name="instruction_game_terms_28">数学の挑戦に備えよう！ 🧮 ボードに表示される28個の問題を頭の中で解いてください。ボタンにあなたの結果が見つかった場合は、すぐにそれを押してください。どのオプションも一致しない場合は、ためらうことなく「なし」を選択してください。最大12個のエラーが許容されます。集中力を維持してください！</string>
+    <string name="instruction_game_time_addition">時間の支配力を証明しよう！ ⏰ ボードに表示される時間と分を正しく足し算してください。60分が1時間に等しいことを忘れないでください。落ち着いて考え、00:00形式で正確な結果を探してください。どのオプションも当てはまらない場合は、「なし」を選択して進んでください。</string>
+
 </resources>
