@@ -648,18 +648,18 @@
     <string name="pin_invictus">50 levels. Unbeatable. 24 hours. INVICTUS… Only the indomitable prevail.</string>
 
     <!-- 🟦 MEDALS -->
-    <string name="medalla_initium_100">The journey is just beginning. Complete 100 games and INITIUM will be yours.</string>
-    <string name="medalla_fidelis_200">Your consistency will be rewarded. Reach 200 games and earn this medal.</string>
-    <string name="medalla_virtus_300">Train daily. Reaching 300 games proves your disciplined mind.</string>
-    <string name="medalla_audax_400">Only the bold move forward. Conquer 400 games without hesitation.</string>
-    <string name="medalla_fortis_500">Your mind is steady. Reach 500 games and strengthen your legacy.</string>
-    <string name="medalla_tenax_600">Don\'t stop. Complete 600 games and let your tenacity shine.</string>
-    <string name="medalla_intrepidus_700">Face every challenge fearlessly. Earn this medal by reaching 700 games.</string>
-    <string name="medalla_sapiens_800">Wisdom comes from experience. 800 completed games will prove it.</string>
-    <string name="medalla_exemplar_900">Be the example. At 900 games, your determination will be undeniable.</string>
-    <string name="medalla_gloriam_1000">Dare to reach the top. 1000 games will take you to glory.</string>
-    <string name="medalla_magnus_1100">Greatness is built with effort. Reach 1100 games and claim MAGNUS.</string>
-    <string name="medalla_immortalis_1200">Your legacy will transcend. Complete 1200 games to be immortalized.</string>
+    <string name="medalla_initium_100">The journey is just beginning. Complete 250 games and INITIUM will be yours.</string>
+    <string name="medalla_fidelis_200">Your consistency will be rewarded. Reach 500 games and earn this medal.</string>
+    <string name="medalla_virtus_300">Train daily. Reaching 750 games proves your disciplined mind.</string>
+    <string name="medalla_audax_400">Only the bold move forward. Conquer 1000 games without hesitation.</string>
+    <string name="medalla_fortis_500">Your mind is steady. Reach 1250 games and strengthen your legacy.</string>
+    <string name="medalla_tenax_600">Don\'t stop. Complete 1500 games and let your tenacity shine.</string>
+    <string name="medalla_intrepidus_700">Face every challenge fearlessly. Earn this medal by reaching 1750 games.</string>
+    <string name="medalla_sapiens_800">Wisdom comes from experience. 2000 completed games will prove it.</string>
+    <string name="medalla_exemplar_900">Be the example. At 2250 games, your determination will be undeniable.</string>
+    <string name="medalla_gloriam_1000">Dare to reach the top. 2500 games will take you to glory.</string>
+    <string name="medalla_magnus_1100">Greatness is built with effort. Reach 2750 games and claim MAGNUS.</string>
+    <string name="medalla_immortalis_1200">Your legacy will transcend. Complete 3000 games to be immortalized.</string>
 
     <!-- 🟥 CROWNS -->
     <string name="corona_volucer_1">For the fastest mind. Only those who take first place deserve this legendary crown.</string>
@@ -1077,31 +1077,31 @@
     <string name="medalla_titulo_immortalis">✨ IMMORTALIS LEGEND FORGED! ✨</string>
 
     <!-- REUSABLE MEDAL MESSAGES -->
-    <string name="medalla_desc_initium">You\'ve completed 100 unique games! Your dedication has earned you the INITIUM medal, the beginning of your collection.</string>
-    <string name="medalla_desc_fidelis">200 games completed! Your consistency is admirable, earning you the FIDELIS medal.</string>
-    <string name="medalla_desc_virtus">The VIRTUS medal is yours for overcoming 300 different challenges. Your mental courage shows with every game!</string>
-    <string name="medalla_desc_audax">400 games dominated! Your boldness has led you to conquer the prestigious AUDAX medal.</string>
-    <string name="medalla_desc_fortis">You\'ve demonstrated mental strength in 500 distinct games, deserving the exceptional FORTIS medal.</string>
-    <string name="medalla_desc_tenax">Perseverance has its reward! 600 completed games crown you with the TENAX medal.</string>
-    <string name="medalla_desc_intrepidus">Your intrepid spirit has overcome 700 challenges, granting you the respected INTREPIDUS medal.</string>
-    <string name="medalla_desc_sapiens">Wisdom is acquired through practice: 800 completed games make you worthy of the SAPIENS medal.</string>
-    <string name="medalla_desc_exemplar">You\'re an example of determination! 900 games overcome have granted you the exemplary EXEMPLAR medal.</string>
-    <string name="medalla_desc_gloriam">Glory to your perseverance! You\'ve conquered 1000 challenges, achieving the glorious GLORIAM medal.</string>
-    <string name="medalla_desc_magnus">Magnificent achievement! By completing 1100 different games, you\'ve obtained the grand MAGNUS medal.</string>
-    <string name="medalla_desc_immortalis">Immortal feat! You\'ve completed 1200 unique challenges, consecrating yourself with the legendary IMMORTALIS medal.</string>
+    <string name="medalla_desc_initium">You\'ve completed 250 unique games! Your dedication has earned you the INITIUM medal, the beginning of your collection.</string>
+    <string name="medalla_desc_fidelis">500 games completed! Your consistency is admirable, earning you the FIDELIS medal.</string>
+    <string name="medalla_desc_virtus">The VIRTUS medal is yours for overcoming 750 different challenges. Your mental courage shows with every game!</string>
+    <string name="medalla_desc_audax">1000 games dominated! Your boldness has led you to conquer the prestigious AUDAX medal.</string>
+    <string name="medalla_desc_fortis">You\'ve demonstrated mental strength in 1250 distinct games, deserving the exceptional FORTIS medal.</string>
+    <string name="medalla_desc_tenax">Perseverance has its reward! 1500 completed games crown you with the TENAX medal.</string>
+    <string name="medalla_desc_intrepidus">Your intrepid spirit has overcome 1750 challenges, granting you the respected INTREPIDUS medal.</string>
+    <string name="medalla_desc_sapiens">Wisdom is acquired through practice: 2000 completed games make you worthy of the SAPIENS medal.</string>
+    <string name="medalla_desc_exemplar">You\'re an example of determination! 2250 games overcome have granted you the exemplary EXEMPLAR medal.</string>
+    <string name="medalla_desc_gloriam">Glory to your perseverance! You\'ve conquered 2500 challenges, achieving the glorious GLORIAM medal.</string>
+    <string name="medalla_desc_magnus">Magnificent achievement! By completing 2750 different games, you\'ve obtained the grand MAGNUS medal.</string>
+    <string name="medalla_desc_immortalis">Immortal feat! You\'ve completed 3000 unique challenges, consecrating yourself with the legendary IMMORTALIS medal.</string>
 
     <!-- MEDAL MOTIVATION MESSAGES -->
-    <string name="medalla_motiv_initium">⭐ Next goal: FIDELIS - complete 100 new levels and this medal will be yours</string>
-    <string name="medalla_motiv_fidelis">🎯 Next challenge: VIRTUS - add 100 more games and unlock your next achievement</string>
-    <string name="medalla_motiv_virtus">🚀 Your next conquest: AUDAX - 100 additional levels await you</string>
-    <string name="medalla_motiv_audax">💫 Road to greatness: FORTIS - continue with 100 new games</string>
-    <string name="medalla_motiv_fortis">⚡ Advance towards: TENAX - 100 more challenges and glory will be yours</string>
-    <string name="medalla_motiv_tenax">🔥 On the horizon: INTREPIDUS - persist 100 more games to reach it</string>
-    <string name="medalla_motiv_intrepidus">🧠 Path to wisdom: SAPIENS - 100 new levels bring you closer to it</string>
-    <string name="medalla_motiv_sapiens">👑 Your destiny: EXEMPLAR - complete 100 additional games and be an example</string>
-    <string name="medalla_motiv_exemplar">🌟 Glory awaits you: GLORIAM - just 100 more levels towards the summit</string>
-    <string name="medalla_motiv_gloriam">🏆 Greatness approaching: MAGNUS - 100 more challenges for magnificence</string>
-    <string name="medalla_motiv_magnus">✨ Towards immortality: IMMORTALIS - 100 final games for the legend</string>
+    <string name="medalla_motiv_initium">⭐ Next goal: FIDELIS - complete 250 new levels and this medal will be yours</string>
+    <string name="medalla_motiv_fidelis">🎯 Next challenge: VIRTUS - add 250 more games and unlock your next achievement</string>
+    <string name="medalla_motiv_virtus">🚀 Your next conquest: AUDAX - 250 additional levels await you</string>
+    <string name="medalla_motiv_audax">💫 Road to greatness: FORTIS - continue with 250 new games</string>
+    <string name="medalla_motiv_fortis">⚡ Advance towards: TENAX - 250 more challenges and glory will be yours</string>
+    <string name="medalla_motiv_tenax">🔥 On the horizon: INTREPIDUS - persist 250 more games to reach it</string>
+    <string name="medalla_motiv_intrepidus">🧠 Path to wisdom: SAPIENS - 250 new levels bring you closer to it</string>
+    <string name="medalla_motiv_sapiens">👑 Your destiny: EXEMPLAR - complete 250 additional games and be an example</string>
+    <string name="medalla_motiv_exemplar">🌟 Glory awaits you: GLORIAM - just 250 more levels towards the summit</string>
+    <string name="medalla_motiv_gloriam">🏆 Greatness approaching: MAGNUS - 250 more challenges for magnificence</string>
+    <string name="medalla_motiv_magnus">✨ Towards immortality: IMMORTALIS - 250 final games for the legend</string>
     <string name="medalla_motiv_immortalis">🏆 Medal collection COMPLETE! You\'re a SumaMente legend!</string>
 
     <!-- DYNAMIC MEDAL COUNTER -->
@@ -1682,5 +1682,8 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
     <string name="instruction_game_terms_14">Your mind is your best calculator! 🎯 Observe the 14 exercises moving on the board and solve them mentally. Press the button with your answer or select NONE if there is no match. You have up to 6 allowed errors. Show your mental agility!</string>
     <string name="instruction_game_terms_28">Get ready for the mathematical challenge! 🧮 Mentally solve the 28 exercises that appear on the board. If you find your result on the buttons, press it immediately. If no option matches, choose NONE without hesitation. You have a maximum of 12 errors. Maintain concentration!</string>
     <string name="instruction_game_time_addition">Demonstrate your mastery of time! ⏰ Correctly add the hours and minutes that appear on the board. Remember that 60 minutes equals 1 hour. Think calmly and look for the exact result in 00:00 format. If no option fits, choose “NONE” and move on.</string>
+
+    <string name="error_username_check_failed">Couldn\'t verify username. Please try again.</string>
+    <string name="username_error_icon_description">Error validating username</string>
 
 </resources>

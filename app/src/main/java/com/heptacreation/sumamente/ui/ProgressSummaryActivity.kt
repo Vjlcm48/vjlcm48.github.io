@@ -53,6 +53,9 @@ class ProgressSummaryActivity : BaseActivity() {
         ScoreManager.initGenioPlus(this)
         ScoreManager.initGenioPlusPrincipiante(this)
         ScoreManager.initGenioPlusPro(this)
+        ScoreManager.initFocoPlus(this)
+        ScoreManager.initFocoPlusPrincipiante(this)
+        ScoreManager.initFocoPlusPro(this)
     }
 
     private fun setupNavigation() {
@@ -83,7 +86,7 @@ class ProgressSummaryActivity : BaseActivity() {
         val tvGlobalProgress = findViewById<TextView>(R.id.tv_global_progress)
 
         val totalCompleted = ScoreManager.getTotalUniqueLevelsCompletedAllGames()
-        val totalLevels = 1470.0
+        val totalLevels = 1890.0
         val percentage = (totalCompleted / totalLevels) * 100
         val percentageString = String.format(Locale.getDefault(), "%.2f", percentage)
 
@@ -175,6 +178,15 @@ class ProgressSummaryActivity : BaseActivity() {
                 getPrincipianteData = { ScoreManager.getUniqueLevelsPlayedGenioPlusPrincipiante() },
                 getAvanzadoData = { ScoreManager.getUniqueLevelsPlayedGenioPlusAvanzado() },
                 getProData = { ScoreManager.getUniqueLevelsPlayedGenioPlusPro() }
+            ),
+            GameProgressItem(
+                borderColorRes = R.color.s5e_green_800,
+                totalRowBackgroundRes = R.drawable.button_background_foco,
+                gameNameRes = R.string.game_foco_plus,
+                gameNameTextColorRes = if (isNightMode()) R.attr.colorOnBackground else android.R.color.white,
+                getPrincipianteData = { ScoreManager.getUniqueLevelsPlayedFocoPlusPrincipiante() },
+                getAvanzadoData = { 0 },
+                getProData = { 0 }
             )
         )
     }

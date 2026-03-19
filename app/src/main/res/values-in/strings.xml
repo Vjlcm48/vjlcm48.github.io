@@ -644,18 +644,18 @@
     <string name="pin_optimum">40 level. Tanpa kesalahan. Satu hari. OPTIMUM… Hanya yang terbaik yang bertahan.</string>
     <string name="pin_invictus">50 level. Tak terkalahkan. 24 jam. INVICTUS… Hanya yang gigih yang berhasil.</string>
 
-    <string name="medalla_initium_100">Perjalanan baru saja dimulai. Capai 100 permainan yang diselesaikan dan Anda akan mendapatkan INITIUM.</string>
-    <string name="medalla_fidelis_200">Ketekunan Anda akan diakui. Capai 200 permainan dan medali ini akan menjadi milik Anda.</string>
-    <string name="medalla_virtus_300">Berlatihlah setiap hari. Dengan menyelesaikan 300 permainan, Anda akan menunjukkan kebajikan disiplin.</string>
-    <string name="medalla_audax_400">Hanya yang berani yang terus maju. Taklukkan 400 permainan tanpa ragu.</string>
-    <string name="medalla_fortis_500">Pikiran Anda teguh. Capai 500 permainan dan perkuat legenda Anda.</string>
-    <string name="medalla_tenax_600">Jangan berhenti. Setelah menyelesaikan 600 permainan, keuletan Anda akan bersinar.</string>
-    <string name="medalla_intrepidus_700">Hadapi setiap tantangan tanpa rasa takut. Medali ini milik Anda setelah mencapai 700 permainan.</string>
-    <string name="medalla_sapiens_800">Kebijaksanaan diperoleh dengan pengalaman. 800 permainan yang diselesaikan akan membuktikannya.</string>
-    <string name="medalla_exemplar_900">Jadilah teladan. Saat Anda mencapai 900 permainan, semua orang akan tahu bahwa Anda tidak pernah menyerah.</string>
-    <string name="medalla_gloriam_1000">Berani mencapai puncak. 1000 permainan akan membawa Anda menuju kemuliaan.</string>
-    <string name="medalla_magnus_1100">Kehebatan dibangun dengan usaha. Capai 1100 permainan dan Anda akan menerima MAGNUS.</string>
-    <string name="medalla_immortalis_1200">Warisan Anda akan melampaui. Setelah menyelesaikan 1200 permainan, medali ini mengabadikan Anda.</string>
+    <string name="medalla_initium_100">Perjalanan baru saja dimulai. Capai 250 permainan yang diselesaikan dan Anda akan mendapatkan INITIUM.</string>
+    <string name="medalla_fidelis_200">Ketekunan Anda akan diakui. Capai 500 permainan dan medali ini akan menjadi milik Anda.</string>
+    <string name="medalla_virtus_300">Berlatihlah setiap hari. Dengan menyelesaikan 750 permainan, Anda akan menunjukkan kebajikan disiplin.</string>
+    <string name="medalla_audax_400">Hanya yang berani yang terus maju. Taklukkan 1000 permainan tanpa ragu.</string>
+    <string name="medalla_fortis_500">Pikiran Anda teguh. Capai 1250 permainan dan perkuat legenda Anda.</string>
+    <string name="medalla_tenax_600">Jangan berhenti. Setelah menyelesaikan 1500 permainan, keuletan Anda akan bersinar.</string>
+    <string name="medalla_intrepidus_700">Hadapi setiap tantangan tanpa rasa takut. Medali ini milik Anda setelah mencapai 1750 permainan.</string>
+    <string name="medalla_sapiens_800">Kebijaksanaan diperoleh dengan pengalaman. 2000 permainan yang diselesaikan akan membuktikannya.</string>
+    <string name="medalla_exemplar_900">Jadilah teladan. Saat Anda mencapai 2250 permainan, semua orang akan tahu bahwa Anda tidak pernah menyerah.</string>
+    <string name="medalla_gloriam_1000">Berani mencapai puncak. 2500 permainan akan membawa Anda menuju kemuliaan.</string>
+    <string name="medalla_magnus_1100">Kehebatan dibangun dengan usaha. Capai 2750 permainan dan Anda akan menerima MAGNUS.</string>
+    <string name="medalla_immortalis_1200">Warisan Anda akan melampaui. Setelah menyelesaikan 3000 permainan, medali ini mengabadikan Anda.</string>
 
     <string name="corona_volucer_1">Untuk pikiran tercepat. Hanya yang menempati posisi pertama yang pantas mendapatkan mahkota legendaris ini.</string>
     <string name="corona_celeris_6">Bagi yang menaklukkan posisi kedua dalam kecepatan. Mahkota Celeris menghargai kecepatan dan ketekunan Anda.</string>
@@ -1025,30 +1025,30 @@
     <string name="medalla_titulo_magnus">🏆 KEHEBATAN MAGNUS DITAKLUKKAN! 🏆</string>
     <string name="medalla_titulo_immortalis">✨ LEGENDA IMMORTALIS DITEMPA! ✨</string>
 
-    <string name="medalla_desc_initium">Anda telah menyelesaikan 100 permainan unik! Dedikasi Anda telah memberi Anda medali INITIUM, awal dari koleksi Anda.</string>
-    <string name="medalla_desc_fidelis">200 permainan selesai! Ketekunan Anda sangat mengagumkan, sehingga Anda mendapatkan medali FIDELIS.</string>
-    <string name="medalla_desc_virtus">Medali VIRTUS adalah milik Anda karena telah mengatasi 300 tantangan yang berbeda. Keberanian mental Anda ditunjukkan dengan setiap permainan!</string>
-    <string name="medalla_desc_audax">400 permainan dikuasai! Keberanian Anda telah membawa Anda untuk menaklukkan medali AUDAX yang bergengsi.</string>
-    <string name="medalla_desc_fortis">Anda telah menunjukkan kekuatan mental dalam 500 permainan yang berbeda, pantas mendapatkan medali FORTIS yang luar biasa.</string>
-    <string name="medalla_desc_tenax">Kegigihan ada imbalannya! 600 permainan yang diselesaikan menobatkan Anda dengan medali TENAX.</string>
-    <string name="medalla_desc_intrepidus">Semangat tak kenal takut Anda telah mengatasi 700 tantangan, memberi Anda medali INTREPIDUS yang dihormati.</string>
-    <string name="medalla_desc_sapiens">Kebijaksanaan diperoleh dengan latihan: 800 permainan yang diselesaikan membuat Anda pantas mendapatkan medali SAPIENS.</string>
-    <string name="medalla_desc_exemplar">Anda adalah contoh tekad! 900 permainan yang diselesaikan telah memberi Anda medali EXEMPLAR yang teladan.</string>
-    <string name="medalla_desc_gloriam">Kemuliaan bagi kegigihan Anda! Anda telah menaklukkan 1000 tantangan, mencapai medali GLORIAM yang mulia.</string>
-    <string name="medalla_desc_magnus">Pencapaian luar biasa! Dengan menyelesaikan 1100 permainan yang berbeda, Anda telah mendapatkan medali MAGNUS yang agung.</string>
-    <string name="medalla_desc_immortalis">Prestasi abadi! Anda telah menyelesaikan 1200 tantangan unik, menguduskan diri Anda dengan medali IMMORTALIS yang legendaris.</string>
+    <string name="medalla_desc_initium">Anda telah menyelesaikan 250 permainan unik! Dedikasi Anda telah memberi Anda medali INITIUM, awal dari koleksi Anda.</string>
+    <string name="medalla_desc_fidelis">500 permainan selesai! Ketekunan Anda sangat mengagumkan, sehingga Anda mendapatkan medali FIDELIS.</string>
+    <string name="medalla_desc_virtus">Medali VIRTUS adalah milik Anda karena telah mengatasi 750 tantangan yang berbeda. Keberanian mental Anda ditunjukkan dengan setiap permainan!</string>
+    <string name="medalla_desc_audax">1000 permainan dikuasai! Keberanian Anda telah membawa Anda untuk menaklukkan medali AUDAX yang bergengsi.</string>
+    <string name="medalla_desc_fortis">Anda telah menunjukkan kekuatan mental dalam 1250 permainan yang berbeda, pantas mendapatkan medali FORTIS yang luar biasa.</string>
+    <string name="medalla_desc_tenax">Kegigihan ada imbalannya! 1500 permainan yang diselesaikan menobatkan Anda dengan medali TENAX.</string>
+    <string name="medalla_desc_intrepidus">Semangat tak kenal takut Anda telah mengatasi 1750 tantangan, memberi Anda medali INTREPIDUS yang dihormati.</string>
+    <string name="medalla_desc_sapiens">Kebijaksanaan diperoleh dengan latihan: 2000 permainan yang diselesaikan membuat Anda pantas mendapatkan medali SAPIENS.</string>
+    <string name="medalla_desc_exemplar">Anda adalah contoh tekad! 2250 permainan yang diselesaikan telah memberi Anda medali EXEMPLAR yang teladan.</string>
+    <string name="medalla_desc_gloriam">Kemuliaan bagi kegigihan Anda! Anda telah menaklukkan 2500 tantangan, mencapai medali GLORIAM yang mulia.</string>
+    <string name="medalla_desc_magnus">Pencapaian luar biasa! Dengan menyelesaikan 2750 permainan yang berbeda, Anda telah mendapatkan medali MAGNUS yang agung.</string>
+    <string name="medalla_desc_immortalis">Prestasi abadi! Anda telah menyelesaikan 3000 tantangan unik, menguduskan diri Anda dengan medali IMMORTALIS yang legendaris.</string>
 
-    <string name="medalla_motiv_initium">⭐ Tujuan berikutnya: FIDELIS - selesaikan 100 level baru dan medali ini akan menjadi milik Anda</string>
-    <string name="medalla_motiv_fidelis">🎯 Tantangan berikutnya: VIRTUS - tambahkan 100 game lagi dan Anda akan membuka pencapaian berikutnya</string>
-    <string name="medalla_motiv_virtus">🚀 Penaklukan berikutnya: AUDAX - 100 level tambahan menanti Anda</string>
-    <string name="medalla_motiv_audax">💫 Menuju kehebatan: FORTIS - lanjutkan dengan 100 game baru</string>
-    <string name="medalla_motiv_fortis">⚡ Maju menuju: TENAX - 100 tantangan lagi dan kemuliaan akan menjadi milik Anda</string>
-    <string name="medalla_motiv_tenax">🔥 Di cakrawala: INTREPIDUS - bertahan 100 game lagi untuk mencapainya</string>
-    <string name="medalla_motiv_intrepidus">🧠 Jalan menuju kebijaksanaan: SAPIENS - 100 level baru membawa Anda lebih dekat</string>
-    <string name="medalla_motiv_sapiens">👑 Takdir Anda: EXEMPLAR - selesaikan 100 game tambahan dan jadilah teladan</string>
-    <string name="medalla_motiv_exemplar">🌟 Kemuliaan menanti: GLORIAM - hanya 100 level lagi menuju puncak</string>
-    <string name="medalla_motiv_gloriam">🏆 Kehebatan berikutnya: MAGNUS - 100 tantangan lagi untuk kemegahan</string>
-    <string name="medalla_motiv_magnus">✨ Menuju keabadian: IMMORTALIS - 100 game terakhir untuk legenda</string>
+    <string name="medalla_motiv_initium">⭐ Tujuan berikutnya: FIDELIS - selesaikan 250 level baru dan medali ini akan menjadi milik Anda</string>
+    <string name="medalla_motiv_fidelis">🎯 Tantangan berikutnya: VIRTUS - tambahkan 250 game lagi dan Anda akan membuka pencapaian berikutnya</string>
+    <string name="medalla_motiv_virtus">🚀 Penaklukan berikutnya: AUDAX - 250 level tambahan menanti Anda</string>
+    <string name="medalla_motiv_audax">💫 Menuju kehebatan: FORTIS - lanjutkan dengan 250 game baru</string>
+    <string name="medalla_motiv_fortis">⚡ Maju menuju: TENAX - 250 tantangan lagi dan kemuliaan akan menjadi milik Anda</string>
+    <string name="medalla_motiv_tenax">🔥 Di cakrawala: INTREPIDUS - bertahan 250 game lagi untuk mencapainya</string>
+    <string name="medalla_motiv_intrepidus">🧠 Jalan menuju kebijaksanaan: SAPIENS - 250 level baru membawa Anda lebih dekat</string>
+    <string name="medalla_motiv_sapiens">👑 Takdir Anda: EXEMPLAR - selesaikan 250 game tambahan dan jadilah teladan</string>
+    <string name="medalla_motiv_exemplar">🌟 Kemuliaan menanti: GLORIAM - hanya 250 level lagi menuju puncak</string>
+    <string name="medalla_motiv_gloriam">🏆 Kehebatan berikutnya: MAGNUS - 250 tantangan lagi untuk kemegahan</string>
+    <string name="medalla_motiv_magnus">✨ Menuju keabadian: IMMORTALIS - 250 game terakhir untuk legenda</string>
     <string name="medalla_motiv_immortalis">🏆 Koleksi medali SELESAI! Anda adalah legenda SumaMente!</string>
 
     <plurals name="medalla_contador_progreso">
@@ -1602,14 +1602,15 @@ Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di 
     <string name="error_canje">Terjadi kesalahan saat memproses penukaran. Silakan coba lagi.</string>
     <string name="mensaje_premium_ads">Saat ini Anda tidak diperlihatkan iklan di dalam \naplikasi, terus nikmati SumaMente</string>
 
-
     <string name="instruction_game_roman_numerals">Kuasai angka Romawi! ⚔️ Latihan dengan angka Romawi bergerak akan muncul. Lakukan perhitungan dengan menerapkan nilai dari setiap simbol Romawi. Jika hasil Anda cocok dengan salah satu tombol, tekan tombol itu. Jika tidak, pilih TIDAK ADA dan lanjutkan.</string>
     <string name="instruction_game_letters_value">Pecahkan kode alfabet! 🔤 Setiap huruf memiliki nilai sesuai dengan posisinya: A=1, B=2, C=3 dan seterusnya hingga Z. Hitung hasil latihan dengan menerapkan nilai-nilai ini. Jika jawaban Anda ada di tombol, tekan tombol itu. Jika tidak, pilih TIDAK ADA dan maju.</string>
     <string name="instruction_game_figures_28">Pertajam persepsi visual Anda! 👁️ Amati dengan cermat 28 pasang gambar yang bergerak di papan tulis. Jika ada pasangan yang sangat cocok dengan tombol, tekan tombol itu. Jika Anda tidak menemukan kecocokan, pilih TIDAK ADA. Anda memiliki maksimum 12 kesalahan. Percayai penglihatan Anda!</string>
     <string name="instruction_game_terms_14">Pikiran Anda adalah kalkulator terbaik Anda! 🎯 Amati 14 latihan yang bergerak di papan tulis dan selesaikan secara mental. Tekan tombol dengan jawaban Anda atau pilih TIDAK ADA jika tidak ada kecocokan. Anda diizinkan hingga 6 kesalahan. Tunjukkan kelincahan mental Anda!</string>
     <string name="instruction_game_terms_28">Bersiap untuk tantangan matematika! 🧮 Selesaikan 28 latihan yang muncul di papan tulis secara mental. Jika Anda menemukan hasil Anda di tombol, tekan tombol itu segera. Jika tidak ada opsi yang cocok, pilih TIDAK ADA tanpa ragu. Anda memiliki maksimum 12 kesalahan. Pertahankan konsentrasi!</string>
 
-
     <string name="instruction_game_time_addition">Tunjukkan penguasaan Anda atas waktu! ⏰ Jumlahkan jam dan menit yang muncul di papan tulis dengan benar. Ingat bahwa 60 menit sama dengan 1 jam. Pikirkan dengan tenang dan cari hasil yang tepat dalam format 00:00. Jika tidak ada opsi yang cocok, pilih “TIDAK ADA” dan lanjutkan.</string>
+
+    <string name="error_username_check_failed">Tidak dapat memverifikasi nama pengguna. Silakan coba lagi.</string>
+    <string name="username_error_icon_description">Gagal memvalidasi nama pengguna</string>
 
 </resources>

@@ -592,18 +592,21 @@
     <string name="pin_victoris">30 لیولز۔ کوئی غلطی نہیں۔ 24 گھنٹے۔ VICTORIS… صرف فاتح ہی سمجھیں گے۔</string>
     <string name="pin_optimum">40 لیولز۔ کوئی غلطی نہیں۔ ایک دن۔ OPTIMUM… صرف بہترین ہی قائم رہتے ہیں۔</string>
     <string name="pin_invictus">50 لیولز۔ ناقابل شکست۔ 24 گھنٹے۔ INVICTUS… صرف ناقابل تسخیر ہی اسے حاصل کرتے ہیں۔</string>
-    <string name="medalla_initium_100">سفر ابھی شروع ہوا ہے۔ 100 مکمل شدہ گیمز تک پہنچیں اور آپ کو INITIUM ملے گا۔</string>
-    <string name="medalla_fidelis_200">آپ کی مستقل مزاجی کو تسلیم کیا جائے گا۔ 200 گیمز تک پہنچیں اور یہ تمغہ آپ کا ہوگا۔</string>
-    <string name="medalla_virtus_300">ہر روز تربیت کریں۔ 300 گیمز جمع کرکے آپ نظم و ضبط کی خوبی کا مظاہرہ کریں گے۔</string>
-    <string name="medalla_audax_400">صرف بہادر ہی آگے بڑھتے رہتے ہیں۔ بغیر کسی ہچکچاہٹ کے 400 گیمز فتح کریں۔</string>
-    <string name="medalla_fortis_500">آپ کا دماغ مضبوط ہے۔ 500 گیمز تک پہنچیں اور اپنی لیجنڈ کو مضبوط کریں۔</string>
-    <string name="medalla_tenax_600">رکیں نہیں۔ 600 گیمز مکمل کرنے پر، آپ کی استقامت چمکے گی۔</string>
-    <string name="medalla_intrepidus_700">ہر چیلنج کا بغیر کسی خوف کے سامنا کریں۔ 700 گیمز تک پہنچنے پر یہ تمغہ آپ کا ہے۔</string>
-    <string name="medalla_sapiens_800">حکمت تجربے سے حاصل ہوتی ہے۔ 800 مکمل شدہ گیمز اسے ثابت کریں گے۔</string>
-    <string name="medalla_exemplar_900">مثال بنیں۔ 900 گیمز تک پہنچنے پر، سب جان جائیں گے کہ آپ نے کبھی ہار نہیں مانی۔</string>
-    <string name="medalla_gloriam_1000">چوٹی تک پہنچنے کی ہمت کریں۔ 1000 گیمز آپ کو جلال کی طرف لے جائیں گے۔</string>
-    <string name="medalla_magnus_1100">عظمت کوشش سے بنتی ہے۔ 1100 گیمز تک پہنچیں اور آپ کو MAGNUS ملے گا۔</string>
-    <string name="medalla_immortalis_1200">آپ کی میراث آگے بڑھے گی۔ 1200 گیمز مکمل کرنے پر، یہ تمغہ آپ کو امر کر دیتا ہے۔</string>
+
+    <string name="medalla_initium_100">سفر ابھی شروع ہوا ہے۔ 250 مکمل شدہ گیمز تک پہنچیں اور آپ کو INITIUM ملے گا۔</string>
+    <string name="medalla_fidelis_200">آپ کی مستقل مزاجی کو تسلیم کیا جائے گا۔ 500 گیمز تک پہنچیں اور یہ تمغہ آپ کا ہوگا۔</string>
+    <string name="medalla_virtus_300">ہر روز تربیت کریں۔ 750 گیمز جمع کرکے آپ نظم و ضبط کی خوبی کا مظاہرہ کریں گے۔</string>
+    <string name="medalla_audax_400">صرف بہادر ہی آگے بڑھتے رہتے ہیں۔ بغیر کسی ہچکچاہٹ کے 1000 گیمز فتح کریں۔</string>
+    <string name="medalla_fortis_500">آپ کا دماغ مضبوط ہے۔ 1250 گیمز تک پہنچیں اور اپنی لیجنڈ کو مضبوط کریں۔</string>
+    <string name="medalla_tenax_600">رکیں نہیں۔ 1500 گیمز مکمل کرنے پر، آپ کی استقامت چمکے گی۔</string>
+    <string name="medalla_intrepidus_700">ہر چیلنج کا بغیر کسی خوف کے سامنا کریں۔ 1750 گیمز تک پہنچنے پر یہ تمغہ آپ کا ہے۔</string>
+    <string name="medalla_sapiens_800">حکمت تجربے سے حاصل ہوتی ہے۔ 2000 مکمل شدہ گیمز اسے ثابت کریں گے۔</string>
+    <string name="medalla_exemplar_900">مثال بنیں۔ 2250 گیمز تک پہنچنے پر، سب جان جائیں گے کہ آپ نے کبھی ہار نہیں مانی۔</string>
+    <string name="medalla_gloriam_1000">چوٹی تک پہنچنے کی ہمت کریں۔ 2500 گیمز آپ کو جلال کی طرف لے جائیں گے۔</string>
+    <string name="medalla_magnus_1100">عظمت کوشش سے بنتی ہے۔ 2750 گیمز تک پہنچیں اور آپ کو MAGNUS ملے گا۔</string>
+    <string name="medalla_immortalis_1200">آپ کی میراث آگے بڑھے گی۔ 3000 گیمز مکمل کرنے پر، یہ تمغہ آپ کو امر کر دیتا ہے۔</string>
+
+
     <string name="corona_volucer_1">سب سے تیز دماغ کے لیے۔ صرف جو پہلے نمبر پر ہے، وہی اس افسانوی تاج کا مستحق ہے۔</string>
     <string name="corona_celeris_6">جو رفتار میں دوسرے نمبر پر فتح حاصل کرتا ہے۔ Celeris تاج آپ کی تیزی اور استقامت کو انعام دیتا ہے۔</string>
     <string name="corona_velocitas_10">رفتار میں تیسرا نمبر بھی عزت کے لائق ہے۔ یہ تاج آپ کی ذہنی چستی کو تسلیم کرتا ہے۔</string>
@@ -922,30 +925,34 @@
     <string name="medalla_titulo_gloriam">🌟 GLORIAM اعلیٰ جلال حاصل کیا! 🌟</string>
     <string name="medalla_titulo_magnus">🏆 MAGNUS عظمت فتح کی! 🏆</string>
     <string name="medalla_titulo_immortalis">✨ IMMORTALIS لیجنڈ بنائی گئی! ✨</string>
-    <string name="medalla_desc_initium">آپ نے 100 منفرد گیمز مکمل کر لیے ہیں! آپ کی لگن نے آپ کو INITIUM تمغہ عطا کیا ہے، جو آپ کے مجموعے کا آغاز ہے۔</string>
-    <string name="medalla_desc_fidelis">200 گیمز مکمل! آپ کی مستقل مزاجی قابل تعریف ہے، اس طرح FIDELIS تمغہ حاصل کرنا۔</string>
-    <string name="medalla_desc_virtus">VIRTUS تمغہ 300 مختلف چیلنجز پر قابو پانے کے لیے آپ کا ہے۔ آپ کی ذہنی بہادری ہر گیم کے ساتھ ظاہر ہوتی ہے!</string>
-    <string name="medalla_desc_audax">400 گیمز پر مہارت حاصل! آپ کی جرات نے آپ کو باوقار AUDAX تمغہ فتح کرنے کی طرف راغب کیا ہے۔</string>
-    <string name="medalla_desc_fortis">آپ نے 500 مختلف گیمز میں ذہنی مضبوطی کا مظاہرہ کیا ہے، غیر معمولی FORTIS تمغے کے مستحق ہیں۔</string>
-    <string name="medalla_desc_tenax">ثابت قدمی کا انعام ہے! 600 مکمل شدہ گیمز آپ کو TENAX تمغے سے نوازتے ہیں۔</string>
-    <string name="medalla_desc_intrepidus">آپ کی نڈر روح نے 700 چیلنجز پر قابو پا لیا ہے، جو آپ کو قابل احترام INTREPIDUS تمغہ عطا کرتی ہے۔</string>
-    <string name="medalla_desc_sapiens">حکمت تجربے سے حاصل ہوتی ہے: 800 مکمل شدہ گیمز آپ کو SAPIENS تمغے کا مستحق بناتے ہیں۔</string>
-    <string name="medalla_desc_exemplar">آپ عزم کی ایک مثال ہیں! 900 عبور کیے گئے گیمز نے آپ کو مثالی EXEMPLAR تمغہ عطا کیا ہے۔</string>
-    <string name="medalla_desc_gloriam">آپ کی ثابت قدمی کو جلال! آپ نے 1000 چیلنجز فتح کیے ہیں، شاندار GLORIAM تمغے تک پہنچ گئے ہیں۔</string>
-    <string name="medalla_desc_magnus">شاندار کامیابی! 1100 مختلف گیمز مکمل کرنے پر، آپ نے عظیم MAGNUS تمغہ حاصل کیا ہے۔</string>
-    <string name="medalla_desc_immortalis">لافانی کارنامہ! آپ نے 1200 منفرد چیلنجز مکمل کیے ہیں، افسانوی IMMORTALIS تمغے کے ساتھ خود کو مقدس کیا ہے۔</string>
-    <string name="medalla_motiv_initium">⭐ اگلا مقصد: FIDELIS - 100 نئے لیولز مکمل کریں اور یہ تمغہ آپ کا ہوگا۔</string>
-    <string name="medalla_motiv_fidelis">🎯 اگلا چیلنج: VIRTUS - 100 مزید گیمز شامل کریں اور آپ اپنی اگلی کامیابی کو کھول دیں گے۔</string>
-    <string name="medalla_motiv_virtus">🚀 آپ کی اگلی فتح: AUDAX - 100 اضافی لیولز آپ کا انتظار کر رہے ہیں۔</string>
-    <string name="medalla_motiv_audax">💫 عظمت کی طرف: FORTIS - 100 نئے گیمز کے ساتھ جاری رکھیں۔</string>
-    <string name="medalla_motiv_fortis">⚡ کی طرف بڑھیں: TENAX - 100 مزید چیلنجز اور جلال آپ کا ہوگا۔</string>
-    <string name="medalla_motiv_tenax">🔥 افق پر: INTREPIDUS - اسے حاصل کرنے کے لیے 100 مزید گیمز جاری رکھیں۔</string>
-    <string name="medalla_motiv_intrepidus">🧠 حکمت کی راہ: SAPIENS - 100 نئے لیولز آپ کو اس کے قریب لاتے ہیں۔</string>
-    <string name="medalla_motiv_sapiens">👑 آپ کی تقدیر: EXEMPLAR - 100 اضافی گیمز مکمل کریں اور ایک مثال بنیں۔</string>
-    <string name="medalla_motiv_exemplar">🌟 جلال آپ کا انتظار کر رہا ہے: GLORIAM - چوٹی تک صرف 100 مزید لیولز۔</string>
-    <string name="medalla_motiv_gloriam">🏆 اگلی عظمت: MAGNUS - عظمت کے لیے 100 مزید چیلنجز۔</string>
-    <string name="medalla_motiv_magnus">✨ لافانیت کی طرف: IMMORTALIS - لیجنڈ کے لیے 100 آخری گیمز۔</string>
+
+
+    <string name="medalla_desc_initium">آپ نے 250 منفرد گیمز مکمل کر لیے ہیں! آپ کی لگن نے آپ کو INITIUM تمغہ عطا کیا ہے، جو آپ کے مجموعے کا آغاز ہے۔</string>
+    <string name="medalla_desc_fidelis">500 گیمز مکمل! آپ کی مستقل مزاجی قابل تعریف ہے، اس طرح FIDELIS تمغہ حاصل کرنا۔</string>
+    <string name="medalla_desc_virtus">VIRTUS تمغہ 750 مختلف چیلنجز پر قابو پانے کے لیے آپ کا ہے۔ آپ کی ذہنی بہادری ہر گیم کے ساتھ ظاہر ہوتی ہے!</string>
+    <string name="medalla_desc_audax">1000 گیمز پر مہارت حاصل! آپ کی جرات نے آپ کو باوقار AUDAX تمغہ فتح کرنے کی طرف راغب کیا ہے۔</string>
+    <string name="medalla_desc_fortis">آپ نے 1250 مختلف گیمز میں ذہنی مضبوطی کا مظاہرہ کیا ہے، غیر معمولی FORTIS تمغے کے مستحق ہیں۔</string>
+    <string name="medalla_desc_tenax">ثابت قدمی کا انعام ہے! 1500 مکمل شدہ گیمز آپ کو TENAX تمغے سے نوازتے ہیں۔</string>
+    <string name="medalla_desc_intrepidus">آپ کی نڈر روح نے 1750 چیلنجز پر قابو پا لیا ہے، جو آپ کو قابل احترام INTREPIDUS تمغہ عطا کرتی ہے۔</string>
+    <string name="medalla_desc_sapiens">حکمت تجربے سے حاصل ہوتی ہے: 2000 مکمل شدہ گیمز آپ کو SAPIENS تمغے کا مستحق بناتے ہیں۔</string>
+    <string name="medalla_desc_exemplar">آپ عزم کی ایک مثال ہیں! 2250 عبور کیے گئے گیمز نے آپ کو مثالی EXEMPLAR تمغہ عطا کیا ہے۔</string>
+    <string name="medalla_desc_gloriam">آپ کی ثابت قدمی کو جلال! آپ نے 2500 چیلنجز فتح کیے ہیں، شاندار GLORIAM تمغے تک پہنچ گئے ہیں۔</string>
+    <string name="medalla_desc_magnus">شاندار کامیابی! 2750 مختلف گیمز مکمل کرنے پر، آپ نے عظیم MAGNUS تمغہ حاصل کیا ہے۔</string>
+    <string name="medalla_desc_immortalis">لافانی کارنامہ! آپ نے 3000 منفرد چیلنجز مکمل کیے ہیں، افسانوی IMMORTALIS تمغے کے ساتھ خود کو مقدس کیا ہے۔</string>
+
+    <string name="medalla_motiv_initium">⭐ اگلا مقصد: FIDELIS - 250 نئے لیولز مکمل کریں اور یہ تمغہ آپ کا ہوگا۔</string>
+    <string name="medalla_motiv_fidelis">🎯 اگلا چیلنج: VIRTUS - 250 مزید گیمز شامل کریں اور آپ اپنی اگلی کامیابی کو کھول دیں گے۔</string>
+    <string name="medalla_motiv_virtus">🚀 آپ کی اگلی فتح: AUDAX - 250 اضافی لیولز آپ کا انتظار کر رہے ہیں۔</string>
+    <string name="medalla_motiv_audax">💫 عظمت کی طرف: FORTIS - 250 نئے گیمز کے ساتھ جاری رکھیں۔</string>
+    <string name="medalla_motiv_fortis">⚡ کی طرف بڑھیں: TENAX - 250 مزید چیلنجز اور جلال آپ کا ہوگا۔</string>
+    <string name="medalla_motiv_tenax">🔥 افق پر: INTREPIDUS - اسے حاصل کرنے کے لیے 250 مزید گیمز جاری رکھیں۔</string>
+    <string name="medalla_motiv_intrepidus">🧠 حکمت کی راہ: SAPIENS - 250 نئے لیولز آپ کو اس کے قریب لاتے ہیں۔</string>
+    <string name="medalla_motiv_sapiens">👑 آپ کی تقدیر: EXEMPLAR - 250 اضافی گیمز مکمل کریں اور ایک مثال بنیں۔</string>
+    <string name="medalla_motiv_exemplar">🌟 جلال آپ کا انتظار کر رہا ہے: GLORIAM - چوٹی تک صرف 250 مزید لیولز۔</string>
+    <string name="medalla_motiv_gloriam">🏆 اگلی عظمت: MAGNUS - عظمت کے لیے 250 مزید چیلنجز۔</string>
+    <string name="medalla_motiv_magnus">✨ لافانیت کی طرف: IMMORTALIS - لیجنڈ کے لیے 250 آخری گیمز۔</string>
     <string name="medalla_motiv_immortalis">🏆 تمغوں کا مجموعہ مکمل! آپ ایک SumaMente لیجنڈ ہیں!</string>
+
     <plurals name="medalla_contador_progreso">
         <item quantity="one">📈 آپ کے پاس %1$d تمغہ ہے، %2$d باقی ہیں۔</item>
         <item quantity="other">📈 آپ کے پاس %1$d تمغے ہیں، %2$d باقی ہیں۔</item>
@@ -1427,5 +1434,7 @@
     <string name="instruction_game_terms_28">ریاضی کے چیلنج کے لیے تیار ہو جائیں! 🧮 تختہ پر ظاہر ہونے والی 28 مشقوں کو ذہنی طور پر حل کریں۔ اگر آپ کو بٹنوں پر اپنا نتیجہ ملتا ہے، تو اسے فوری طور پر دبائیں۔ اگر کوئی آپشن میل نہیں کھاتا ہے، تو بغیر کسی ہچکچاہٹ کے کوئی نہیں کا انتخاب کریں۔ آپ کے پاس زیادہ سے زیادہ 12 غلطیاں ہیں۔ توجہ برقرار رکھیں!</string>
     <string name="instruction_game_time_addition">وقت پر اپنی مہارت کا مظاہرہ کریں! ⏰ تختہ پر ظاہر ہونے والے گھنٹوں اور منٹوں کو صحیح طریقے سے جمع کریں۔ یاد رکھیں کہ 60 منٹ 1 گھنٹہ کے برابر ہوتے ہیں۔ سکون سے سوچیں اور 00:00 فارمیٹ میں درست نتیجہ تلاش کریں۔ اگر کوئی آپشن فٹ نہیں ہوتا ہے، تو "کوئی نہیں" کا انتخاب کریں اور آگے بڑھیں۔</string>
 
+    <string name="error_username_check_failed">صارف کے نام کی تصدیق نہیں ہو سکی۔ دوبارہ کوشش کریں۔</string>
+    <string name="username_error_icon_description">صارف کے نام کی تصدیق میں خرابی</string>
 
 </resources>

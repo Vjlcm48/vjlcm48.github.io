@@ -592,18 +592,20 @@
     <string name="pin_victoris">৩০টি লেভেল। কোনো ভুল নেই। ২৪ ঘণ্টা। VICTORIS… শুধুমাত্র বিজয়ীরাই বুঝবে।</string>
     <string name="pin_optimum">৪০টি লেভেল। কোনো ত্রুটি নেই। একটি দিন। OPTIMUM… শুধুমাত্র সেরারাই টিকে থাকে।</string>
     <string name="pin_invictus">৫০টি লেভেল। অপরাজেয়। ২৪ ঘণ্টা। INVICTUS… শুধুমাত্র অদম্যরাই এটি অর্জন করে।</string>
-    <string name="medalla_initium_100">যাত্রা সবে শুরু হয়েছে। ১০০টি সম্পন্ন খেলায় পৌঁছান এবং আপনি INITIUM পাবেন।</string>
-    <string name="medalla_fidelis_200">আপনার স্থিরতার স্বীকৃতি দেওয়া হবে। ২০০টি খেলায় পৌঁছান এবং এই পদকটি আপনার হবে।</string>
-    <string name="medalla_virtus_300">প্রতিদিন প্রশিক্ষণ নিন। ৩০০টি খেলা যোগ করে আপনি শৃঙ্খলার গুণ প্রদর্শন করবেন।</string>
-    <string name="medalla_audax_400">শুধুমাত্র সাহসীরাই এগিয়ে যায়। দ্বিধা ছাড়াই ৪০০টি খেলা জয় করুন।</string>
-    <string name="medalla_fortis_500">আপনার মন দৃঢ়। ৫০০টি খেলায় পৌঁছান এবং আপনার কিংবদন্তি শক্তিশালী করুন।</string>
-    <string name="medalla_tenax_600">থামবেন না। ৬০০টি খেলা সম্পন্ন করার পর, আপনার দৃঢ়তা উজ্জ্বল হবে।</string>
-    <string name="medalla_intrepidus_700">ভয় ছাড়াই প্রতিটি চ্যালেঞ্জের মুখোমুখি হন। ৭০০টি খেলায় পৌঁছালে এই পদকটি আপনার।</string>
-    <string name="medalla_sapiens_800">জ্ঞান অভিজ্ঞতা দিয়ে অর্জিত হয়। ৮০০টি সম্পন্ন খেলা এটি প্রমাণ করবে।</string>
-    <string name="medalla_exemplar_900">উদাহরণ হোন। ৯০০টি খেলায় পৌঁছালে সবাই জানবে যে আপনি কখনও হাল ছাড়েননি।</string>
-    <string name="medalla_gloriam_1000">শিখরে পৌঁছানোর সাহস করুন। ১০০০টি খেলা আপনাকে গৌরবের দিকে নিয়ে যাবে।</string>
-    <string name="medalla_magnus_1100">মহত্ত্ব প্রচেষ্টা দিয়ে তৈরি হয়। ১১০০টি খেলায় পৌঁছান এবং আপনি MAGNUS পাবেন।</string>
-    <string name="medalla_immortalis_1200">আপনার উত্তরাধিকার অতিক্রম করবে। ১২০০টি খেলা সম্পন্ন করার পর, এই পদকটি আপনাকে অমর করে তোলে।</string>
+
+    <string name="medalla_initium_100">যাত্রা সবে শুরু হয়েছে। ২৫০টি সম্পন্ন খেলায় পৌঁছান এবং আপনি INITIUM পাবেন।</string>
+    <string name="medalla_fidelis_200">আপনার স্থিরতার স্বীকৃতি দেওয়া হবে। ৫০০টি খেলায় পৌঁছান এবং এই পদকটি আপনার হবে।</string>
+    <string name="medalla_virtus_300">প্রতিদিন প্রশিক্ষণ নিন। ৭৫০টি খেলা যোগ করে আপনি শৃঙ্খলার গুণ প্রদর্শন করবেন।</string>
+    <string name="medalla_audax_400">শুধুমাত্র সাহসীরাই এগিয়ে যায়। দ্বিধা ছাড়াই ১০০০টি খেলা জয় করুন।</string>
+    <string name="medalla_fortis_500">আপনার মন দৃঢ়। ১২৫০টি খেলায় পৌঁছান এবং আপনার কিংবদন্তি শক্তিশালী করুন।</string>
+    <string name="medalla_tenax_600">থামবেন না। ১৫০০টি খেলা সম্পন্ন করার পর, আপনার দৃঢ়তা উজ্জ্বল হবে।</string>
+    <string name="medalla_intrepidus_700">ভয় ছাড়াই প্রতিটি চ্যালেঞ্জের মুখোমুখি হন। ১৭৫০টি খেলায় পৌঁছালে এই পদকটি আপনার।</string>
+    <string name="medalla_sapiens_800">জ্ঞান অভিজ্ঞতা দিয়ে অর্জিত হয়। ২০০০টি সম্পন্ন খেলা এটি প্রমাণ করবে।</string>
+    <string name="medalla_exemplar_900">উদাহরণ হোন। ২২৫০টি খেলায় পৌঁছালে সবাই জানবে যে আপনি কখনও হাল ছাড়েননি।</string>
+    <string name="medalla_gloriam_1000">শিখরে পৌঁছানোর সাহস করুন। ২৫০০টি খেলা আপনাকে গৌরবের দিকে নিয়ে যাবে।</string>
+    <string name="medalla_magnus_1100">মহত্ত্ব প্রচেষ্টা দিয়ে তৈরি হয়। ২৭৫০টি খেলায় পৌঁছান এবং আপনি MAGNUS পাবেন।</string>
+    <string name="medalla_immortalis_1200">আপনার উত্তরাধিকার অতিক্রম করবে। ৩০০০টি খেলা সম্পন্ন করার পর, এই পদকটি আপনাকে অমর করে তোলে।</string>
+
     <string name="corona_volucer_1">দ্রুততম মনের জন্য। শুধুমাত্র প্রথম স্থান অধিকারকারীই এই কিংবদন্তী মুকুটের যোগ্য।</string>
     <string name="corona_celeris_6">গতির ক্ষেত্রে দ্বিতীয় স্থান জয়কারীর জন্য। Celeris মুকুট আপনার গতি এবং স্থিরতার পুরস্কার দেয়।</string>
     <string name="corona_velocitas_10">গতির ক্ষেত্রে তৃতীয় স্থানও সম্মানের যোগ্য। এই মুকুটটি আপনার মানসিক চটপটেতার স্বীকৃতি দেয়।</string>
@@ -911,6 +913,7 @@
     <string name="msg_top10_honorabilis_1">%1$s, আপনি পেরেছেন! গ্লোবাল &lt;b&gt;১০ম স্থান&lt;/b&gt; আপনাকে সম্মাননা &lt;b&gt;%2$s&lt;/b&gt; প্রদান করে। এই সম্মান উপভোগ করুন!</string>
     <string name="msg_top10_honorabilis_2">%1$s, আপনার নাম মহানদের মধ্যে উপস্থিত হয়: &lt;b&gt;%2$s&lt;/b&gt; এবং &lt;b&gt;১০ম স্থান&lt;/b&gt; এখন আপনার।</string>
     <string name="msg_top10_honorabilis_3">আপনি সবাইকে অনুপ্রাণিত করেন, %1$s! সম্মাননা &lt;b&gt;%2$s&lt;/b&gt; আপনার র‍্যাঙ্কিং-এ &lt;b&gt;১০ম স্থানের&lt;/b&gt; স্বীকৃতি দেয়।</string>
+
     <string name="medalla_titulo_initium">🏅 INITIUM পদক জয় করা হয়েছে! 🏅</string>
     <string name="medalla_titulo_fidelis">🎖️ FIDELIS কৃতিত্ব আনলক করা হয়েছে! 🎖️</string>
     <string name="medalla_titulo_virtus">⭐ VIRTUS সম্মান অর্জিত হয়েছে! ⭐</string>
@@ -923,30 +926,33 @@
     <string name="medalla_titulo_gloriam">🌟 GLORIAM সর্বোচ্চ গৌরব অর্জিত হয়েছে! 🌟</string>
     <string name="medalla_titulo_magnus">🏆 MAGNUS মহত্ত্ব জয় করা হয়েছে! 🏆</string>
     <string name="medalla_titulo_immortalis">✨ IMMORTALIS কিংবদন্তি তৈরি করা হয়েছে! ✨</string>
-    <string name="medalla_desc_initium">আপনি ১০০টি অনন্য খেলা সম্পন্ন করেছেন! আপনার উৎসর্গ আপনাকে INITIUM পদক দিয়েছে, যা আপনার সংগ্রহের শুরু।</string>
-    <string name="medalla_desc_fidelis">২০০টি খেলা সম্পন্ন হয়েছে! আপনার স্থিরতা প্রশংসনীয়, এভাবে FIDELIS পদক অর্জন করা।</string>
-    <string name="medalla_desc_virtus">৩০০টি ভিন্ন চ্যালেঞ্জ অতিক্রম করার জন্য VIRTUS পদকটি আপনার। আপনার মানসিক সাহস প্রতিটি খেলার সাথে প্রদর্শিত হয়!</string>
-    <string name="medalla_desc_audax">৪০০টি খেলা আয়ত্ত করা হয়েছে! আপনার সাহসিকতা আপনাকে মর্যাদাপূর্ণ AUDAX পদক জয় করতে পরিচালিত করেছে।</string>
-    <string name="medalla_desc_fortis">আপনি ৫০০টি ভিন্ন খেলায় মানসিক শক্তি দেখিয়েছেন, ব্যতিক্রমী FORTIS পদকের যোগ্য।</string>
-    <string name="medalla_desc_tenax">অধ্যবসায়ের পুরস্কার আছে! ৬০০টি সম্পন্ন খেলা আপনাকে TENAX পদক দিয়ে মুকুট পরায়।</string>
-    <string name="medalla_desc_intrepidus">আপনার নির্ভীক আত্মা ৭০০টি চ্যালেঞ্জ অতিক্রম করেছে, আপনাকে সম্মানিত INTREPIDUS পদক প্রদান করেছে।</string>
-    <string name="medalla_desc_sapiens">জ্ঞান অনুশীলনের মাধ্যমে অর্জিত হয়: ৮০০টি সম্পন্ন খেলা আপনাকে SAPIENS পদকের যোগ্য করে তোলে।</string>
-    <string name="medalla_desc_exemplar">আপনি সংকল্পের একটি উদাহরণ! ৯০০টি অতিক্রম করা খেলা আপনাকে অনুকরণীয় EXEMPLAR পদক প্রদান করেছে।</string>
-    <string name="medalla_desc_gloriam">আপনার অধ্যবসায়কে গৌরব! আপনি ১০০০টি চ্যালেঞ্জ জয় করেছেন, মহিমান্বিত GLORIAM পদক অর্জন করেছেন।</string>
-    <string name="medalla_desc_magnus">চমৎকার কৃতিত্ব! ১১০০টি ভিন্ন খেলা সম্পন্ন করার মাধ্যমে, আপনি মহান MAGNUS পদক অর্জন করেছেন।</string>
-    <string name="medalla_desc_immortalis">অমর কীর্তি! আপনি ১২০০টি অনন্য চ্যালেঞ্জ সম্পন্ন করেছেন, নিজেকে কিংবদন্তী IMMORTALIS পদক দিয়ে পবিত্র করেছেন।</string>
-    <string name="medalla_motiv_initium">⭐ পরবর্তী লক্ষ্য: FIDELIS - ১০০টি নতুন লেভেল সম্পন্ন করুন এবং এই পদকটি আপনার হবে</string>
-    <string name="medalla_motiv_fidelis">🎯 পরবর্তী চ্যালেঞ্জ: VIRTUS - আরও ১০০টি খেলা যোগ করুন এবং আপনি আপনার পরবর্তী কৃতিত্ব আনলক করবেন</string>
-    <string name="medalla_motiv_virtus">🚀 আপনার পরবর্তী জয়: AUDAX - আরও ১০০টি অতিরিক্ত লেভেল আপনার জন্য অপেক্ষা করছে</string>
-    <string name="medalla_motiv_audax">💫 মহত্ত্বের দিকে: FORTIS - ১০০টি নতুন খেলা দিয়ে চালিয়ে যান</string>
-    <string name="medalla_motiv_fortis">⚡ এর দিকে এগিয়ে যান: TENAX - আরও ১০০টি চ্যালেঞ্জ এবং গৌরব আপনার হবে</string>
-    <string name="medalla_motiv_tenax">🔥 দিগন্তে: INTREPIDUS - এটি অর্জন করতে আরও ১০০টি খেলা চালিয়ে যান</string>
-    <string name="medalla_motiv_intrepidus">🧠 জ্ঞানের পথে: SAPIENS - ১০০টি নতুন লেভেল আপনাকে এর কাছে নিয়ে আসে</string>
-    <string name="medalla_motiv_sapiens">👑 আপনার ভাগ্য: EXEMPLAR - আরও ১০০টি অতিরিক্ত খেলা সম্পন্ন করুন এবং একটি উদাহরণ হোন</string>
-    <string name="medalla_motiv_exemplar">🌟 গৌরব আপনার জন্য অপেক্ষা করছে: GLORIAM - শিখরের দিকে মাত্র ১০০টি লেভেল বাকি আছে</string>
-    <string name="medalla_motiv_gloriam">🏆 আসন্ন মহত্ত্ব: MAGNUS - মহিমার জন্য আরও ১০০টি চ্যালেঞ্জ</string>
-    <string name="medalla_motiv_magnus">✨ অমরত্বের দিকে: IMMORTALIS - কিংবদন্তীর জন্য চূড়ান্ত ১০০টি খেলা</string>
+
+    <string name="medalla_desc_initium">আপনি ২৫০টি অনন্য খেলা সম্পন্ন করেছেন! আপনার উৎসর্গ আপনাকে INITIUM পদক দিয়েছে, যা আপনার সংগ্রহের শুরু।</string>
+    <string name="medalla_desc_fidelis">৫০০টি খেলা সম্পন্ন হয়েছে! আপনার স্থিরতা প্রশংসনীয়, এভাবে FIDELIS পদক অর্জন করা।</string>
+    <string name="medalla_desc_virtus">৭৫০টি ভিন্ন চ্যালেঞ্জ অতিক্রম করার জন্য VIRTUS পদকটি আপনার। আপনার মানসিক সাহস প্রতিটি খেলার সাথে প্রদর্শিত হয়!</string>
+    <string name="medalla_desc_audax">১০০০টি খেলা আয়ত্ত করা হয়েছে! আপনার সাহসিকতা আপনাকে মর্যাদাপূর্ণ AUDAX পদক জয় করতে পরিচালিত করেছে।</string>
+    <string name="medalla_desc_fortis">আপনি ১২৫০টি ভিন্ন খেলায় মানসিক শক্তি দেখিয়েছেন, ব্যতিক্রমী FORTIS পদকের যোগ্য।</string>
+    <string name="medalla_desc_tenax">অধ্যবসায়ের পুরস্কার আছে! ১৫০০টি সম্পন্ন খেলা আপনাকে TENAX পদক দিয়ে মুকুট পরায়।</string>
+    <string name="medalla_desc_intrepidus">আপনার নির্ভীক আত্মা ১৭৫০টি চ্যালেঞ্জ অতিক্রম করেছে, আপনাকে সম্মানিত INTREPIDUS পদক প্রদান করেছে।</string>
+    <string name="medalla_desc_sapiens">জ্ঞান অনুশীলনের মাধ্যমে অর্জিত হয়: ২০০০টি সম্পন্ন খেলা আপনাকে SAPIENS পদকের যোগ্য করে তোলে।</string>
+    <string name="medalla_desc_exemplar">আপনি সংকল্পের একটি উদাহরণ! ২২৫০টি অতিক্রম করা খেলা আপনাকে অনুকরণীয় EXEMPLAR পদক প্রদান করেছে।</string>
+    <string name="medalla_desc_gloriam">আপনার অধ্যবসায়কে গৌরব! আপনি ২৫০০টি চ্যালেঞ্জ জয় করেছেন, মহিমান্বিত GLORIAM পদক অর্জন করেছেন।</string>
+    <string name="medalla_desc_magnus">চমৎকার কৃতিত্ব! ২৭৫০টি ভিন্ন খেলা সম্পন্ন করার মাধ্যমে, আপনি মহান MAGNUS পদক অর্জন করেছেন।</string>
+    <string name="medalla_desc_immortalis">অমর কীর্তি! আপনি ৩০০০টি অনন্য চ্যালেঞ্জ সম্পন্ন করেছেন, নিজেকে কিংবদন্তী IMMORTALIS পদক দিয়ে পবিত্র করেছেন।</string>
+
+    <string name="medalla_motiv_initium">⭐ পরবর্তী লক্ষ্য: FIDELIS - ২৫০টি নতুন লেভেল সম্পন্ন করুন এবং এই পদকটি আপনার হবে</string>
+    <string name="medalla_motiv_fidelis">🎯 পরবর্তী চ্যালেঞ্জ: VIRTUS - আরও ২৫০টি খেলা যোগ করুন এবং আপনি আপনার পরবর্তী কৃতিত্ব আনলক করবেন</string>
+    <string name="medalla_motiv_virtus">🚀 আপনার পরবর্তী জয়: AUDAX - আরও ২৫০টি অতিরিক্ত লেভেল আপনার জন্য অপেক্ষা করছে</string>
+    <string name="medalla_motiv_audax">💫 মহত্ত্বের দিকে: FORTIS - ২৫০টি নতুন খেলা দিয়ে চালিয়ে যান</string>
+    <string name="medalla_motiv_fortis">⚡ এর দিকে এগিয়ে যান: TENAX - আরও ২৫০টি চ্যালেঞ্জ এবং গৌরব আপনার হবে</string>
+    <string name="medalla_motiv_tenax">🔥 দিগন্তে: INTREPIDUS - এটি অর্জন করতে আরও ২৫০টি খেলা চালিয়ে যান</string>
+    <string name="medalla_motiv_intrepidus">🧠 জ্ঞানের পথে: SAPIENS - ২৫০টি নতুন লেভেল আপনাকে এর কাছে নিয়ে আসে</string>
+    <string name="medalla_motiv_sapiens">👑 আপনার ভাগ্য: EXEMPLAR - আরও ২৫০টি অতিরিক্ত খেলা সম্পন্ন করুন এবং একটি উদাহরণ হোন</string>
+    <string name="medalla_motiv_exemplar">🌟 গৌরব আপনার জন্য অপেক্ষা করছে: GLORIAM - শিখরের দিকে মাত্র ২৫০টি লেভেল বাকি আছে</string>
+    <string name="medalla_motiv_gloriam">🏆 আসন্ন মহত্ত্ব: MAGNUS - মহিমার জন্য আরও ২৫০টি চ্যালেঞ্জ</string>
+    <string name="medalla_motiv_magnus">✨ অমরত্বের দিকে: IMMORTALIS - কিংবদন্তীর জন্য চূড়ান্ত ২৫০টি খেলা</string>
     <string name="medalla_motiv_immortalis">🏆 পদক সংগ্রহ সম্পন্ন! আপনি একজন SumaMente কিংবদন্তি!</string>
+
     <plurals name="medalla_contador_progreso">
         <item quantity="one">📈 আপনার %1$dটি পদক আছে, %2$dটি বাকি আছে</item>
         <item quantity="other">📈 আপনার %1$dটি পদক আছে, %2$dটি বাকি আছে</item>
@@ -1416,5 +1422,8 @@
     <string name="instruction_game_terms_14">আপনার মন আপনার সেরা ক্যালকুলেটর! 🎯 বোর্ডে চলন্ত 14টি অনুশীলন পর্যবেক্ষণ করুন এবং সেগুলির মানসিক সমাধান করুন। আপনার উত্তর সহ বোতামটি চাপুন বা যদি কোনো মিল না থাকে তবে কোনোটিই নয় নির্বাচন করুন। আপনার 6টি ভুল করার অনুমতি আছে। আপনার মানসিক তত্পরতা প্রমাণ করুন!</string>
     <string name="instruction_game_terms_28">গণিতের চ্যালেঞ্জের জন্য প্রস্তুত হন! 🧮 বোর্ডে প্রদর্শিত 28টি অনুশীলনের মানসিক সমাধান করুন। যদি আপনি বোতামগুলিতে আপনার ফলাফল খুঁজে পান, তবে অবিলম্বে সেটি চাপুন। যদি কোনো বিকল্পের মিল না থাকে, তবে দ্বিধা ছাড়াই কোনোটিই নয় নির্বাচন করুন। আপনার সর্বোচ্চ 12টি ত্রুটি করার অনুমতি আছে। মনোযোগ বজায় রাখুন!</string>
     <string name="instruction_game_time_addition">সময়ের উপর আপনার দক্ষতা দেখান! ⏰ বোর্ডে প্রদর্শিত ঘন্টা এবং মিনিট সঠিকভাবে যোগ করুন। মনে রাখবেন যে 60 মিনিট 1 ঘন্টার সমান। শান্তভাবে চিন্তা করুন এবং 00:00 ফরম্যাটে সঠিক ফলাফল খুঁজুন। যদি কোনো বিকল্পের মিল না হয়, তবে “কোনোটিই নয়” নির্বাচন করুন এবং এগিয়ে যান।</string>
+
+    <string name="error_username_check_failed">ব্যবহারকারীর নাম যাচাই করা যায়নি। আবার চেষ্টা করুন।</string>
+    <string name="username_error_icon_description">ব্যবহারকারীর নাম যাচাই করতে ত্রুটি হয়েছে</string>
 
 </resources>

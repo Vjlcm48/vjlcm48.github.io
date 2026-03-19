@@ -140,15 +140,15 @@ class LanguageChangeActivity : BaseActivity() {
 
     private fun setAppLocale(languageCode: String) {
         LanguageManager.saveNewLanguageOrder(this, languageCode)
-        val appDisplayLanguage = languageCode
         val preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         preferences.edit {
             putString("selected_language", languageCode)
-            putString("app_display_language", appDisplayLanguage)
-            apply()
+            putString("app_display_language", languageCode)
+            // apply()
+            commit()
         }
 
-        // setAppLanguage(languageCode)
+        setAppLanguage(languageCode)  //  esta linea antes estaba comentada
 
         checkMarks.forEach { it.visibility = View.GONE }
 
@@ -175,6 +175,13 @@ class LanguageChangeActivity : BaseActivity() {
         }, 350)
     }
 
+    private fun setAppLanguage(languageCode: String) {
+        val locale = java.util.Locale.Builder().setLanguage(languageCode).build()
+        java.util.Locale.setDefault(locale)
+        val configuration = android.content.res.Configuration(resources.configuration)
+        configuration.setLocale(locale)
+        resources.updateConfiguration(configuration, resources.displayMetrics)
+    }  //  esta funcion se incluyó para dejar operativa la linea que se des comentó
 
     private fun startAnimations() {
         val logo = findViewById<ImageView>(R.id.app_logo)

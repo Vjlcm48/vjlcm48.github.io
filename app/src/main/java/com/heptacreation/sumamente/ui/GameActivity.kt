@@ -393,7 +393,7 @@ class GameActivity : BaseActivity()  {
     }
 
     private fun showNumbers() {
-        var index = 0
+        val index = 0
 
         handler.post(object : Runnable {
             override fun run() {
@@ -436,7 +436,7 @@ class GameActivity : BaseActivity()  {
 
                     val duration = timePerNumberList[index]
 
-                    index++
+
                     handler.postDelayed(this, duration)
                 } else {
                     transitionToPrompt()

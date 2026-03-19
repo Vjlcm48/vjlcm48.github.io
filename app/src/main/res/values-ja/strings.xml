@@ -593,18 +593,20 @@
     <string name="pin_victoris">30レベル。ミスなし。24時間。VICTORIS… 勝者のみが理解する。</string>
     <string name="pin_optimum">40レベル。失敗なし。1日。OPTIMUM… 最適な者のみが耐える。</string>
     <string name="pin_invictus">50レベル。無敵。24時間。INVICTUS… 不屈の者のみが達成する。</string>
-    <string name="medalla_initium_100">旅は始まったばかりです。100ゲームクリアを達成し、INITIUMを手に入れましょう。</string>
-    <string name="medalla_fidelis_200">あなたの粘り強さは認められるでしょう。200ゲームに到達すれば、このメダルはあなたのものです。</string>
-    <string name="medalla_virtus_300">毎日トレーニングしましょう。300ゲームを達成すると、規律の美徳を示すことになります。</string>
-    <string name="medalla_audax_400">勇敢な者だけが前進し続けます。ためらうことなく400ゲームを制覇しましょう。</string>
-    <string name="medalla_fortis_500">あなたの心は揺るぎません。500ゲームに到達し、あなたの伝説を強化しましょう。</string>
-    <string name="medalla_tenax_600">止まらないでください。600ゲームをクリアすると、あなたの粘り強さが輝きます。</string>
-    <string name="medalla_intrepidus_700">恐れることなくすべての挑戦に立ち向かいましょう。700ゲームを達成すれば、このメダルはあなたのものです。</string>
-    <string name="medalla_sapiens_800">知恵は経験によって得られます。800ゲームのクリアがそれを証明するでしょう。</string>
-    <string name="medalla_exemplar_900">模範となりましょう。900ゲームに到達すれば、あなたが決して諦めなかったことを誰もが知るでしょう。</string>
-    <string name="medalla_gloriam_1000">頂点を目指す勇気を持ちましょう。1000ゲームがあなたを栄光へと導きます。</string>
-    <string name="medalla_magnus_1100">偉大さは努力によって築かれます。1100ゲームに到達し、MAGNUSを受け取りましょう。</string>
-    <string name="medalla_immortalis_1200">あなたの遺産は語り継がれるでしょう。1200ゲームをクリアすると、このメダルがあなたを不滅にします。</string>
+
+    <string name="medalla_initium_100">旅は始まったばかりです。250ゲームクリアを達成し、INITIUMを手に入れましょう。</string>
+    <string name="medalla_fidelis_200">あなたの粘り強さは認められるでしょう。500ゲームに到達すれば、このメダルはあなたのものです。</string>
+    <string name="medalla_virtus_300">毎日トレーニングしましょう。750ゲームを達成すると、規律の美徳を示すことになります。</string>
+    <string name="medalla_audax_400">勇敢な者だけが前進し続けます。ためらうことなく1000ゲームを制覇しましょう。</string>
+    <string name="medalla_fortis_500">あなたの心は揺るぎません。1250ゲームに到達し、あなたの伝説を強化しましょう。</string>
+    <string name="medalla_tenax_600">止まらないでください。1500ゲームをクリアすると、あなたの粘り強さが輝きます。</string>
+    <string name="medalla_intrepidus_700">恐れることなくすべての挑戦に立ち向かいましょう。1750ゲームを達成すれば、このメダルはあなたのものです。</string>
+    <string name="medalla_sapiens_800">知恵は経験によって得られます。2000ゲームのクリアがそれを証明するでしょう。</string>
+    <string name="medalla_exemplar_900">模範となりましょう。2250ゲームに到達すれば、あなたが決して諦めなかったことを誰もが知るでしょう。</string>
+    <string name="medalla_gloriam_1000">頂点を目指す勇気を持ちましょう。2500ゲームがあなたを栄光へと導きます。</string>
+    <string name="medalla_magnus_1100">偉大さは努力によって築かれます。2750ゲームに到達し、MAGNUSを受け取りましょう。</string>
+    <string name="medalla_immortalis_1200">あなたの遺産は語り継がれるでしょう。3000ゲームをクリアすると、このメダルがあなたを不滅にします。</string>
+
     <string name="corona_volucer_1">最速の頭脳のために。1位の者だけがこの伝説の王冠に値します。</string>
     <string name="corona_celeris_6">スピードで2位を獲得した者のために。Celerisの王冠はあなたの速さと粘り強さを称えます。</string>
     <string name="corona_velocitas_10">スピードで3位も名誉に値します。この王冠はあなたの精神的な敏捷性を認めます。</string>
@@ -905,30 +907,34 @@
     <string name="medalla_titulo_gloriam">🌟 最高のGLORIAM達成！ 🌟</string>
     <string name="medalla_titulo_magnus">🏆 MAGNUSの偉大さを征服！ 🏆</string>
     <string name="medalla_titulo_immortalis">✨ IMMORTALISの伝説を築く！ ✨</string>
-    <string name="medalla_desc_initium">100のユニークなゲームをクリアしました！あなたの献身により、コレクションの始まりであるINITIUMメダルが授与されました。</string>
-    <string name="medalla_desc_fidelis">200ゲームクリア！あなたの粘り強さは称賛に値し、FIDELISメダルを獲得しました。</string>
-    <string name="medalla_desc_virtus">300の異なるチャレンジを乗り越えたあなたにVIRTUSメダルが贈られます。あなたの精神的な勇気はゲームごとに示されます！</string>
-    <string name="medalla_desc_audax">400ゲームをマスター！あなたの大胆さが、名誉あるAUDAXメダルを征服へと導きました。</string>
-    <string name="medalla_desc_fortis">500の異なるゲームで精神的な強さを示し、卓越したFORTISメダルに値します。</string>
-    <string name="medalla_desc_tenax">忍耐は報われる！600ゲームクリアでTENAXメダルが授与されます。</string>
-    <string name="medalla_desc_intrepidus">あなたの不屈の精神が700のチャレンジを乗り越え、尊敬されるINTREPIDUSメダルが授与されました。</string>
-    <string name="medalla_desc_sapiens">知恵は実践によって得られます：800ゲームクリアでSAPIENSメダルに値します。</string>
-    <string name="medalla_desc_exemplar">あなたは決意の模範です！900ゲームをクリアし、模範的なEXEMPLARメダルが授与されました。</string>
-    <string name="medalla_desc_gloriam">あなたの忍耐に栄光あれ！1000のチャレンジを制覇し、栄光のGLORIAMメダルを達成しました。</string>
-    <string name="medalla_desc_magnus">壮大な成果！1100の異なるゲームをクリアし、壮大なMAGNUSメダルを獲得しました。</string>
-    <string name="medalla_desc_immortalis">不滅の偉業！1200のユニークなチャレンジをクリアし、伝説のIMMORTALISメダルで聖別されました。</string>
-    <string name="medalla_motiv_initium">⭐ 次の目標：FIDELIS - 新しい100レベルをクリアすれば、このメダルはあなたのものになります</string>
-    <string name="medalla_motiv_fidelis">🎯 次のチャレンジ：VIRTUS - さらに100ゲーム追加すれば、次の実績がアンロックされます</string>
-    <string name="medalla_motiv_virtus">🚀 次の征服：AUDAX - さらに100レベルがあなたを待っています</string>
-    <string name="medalla_motiv_audax">💫 偉大さへの道：FORTIS - 新しい100ゲームを続けてください</string>
-    <string name="medalla_motiv_fortis">⚡ TENAXへ向かって：さらに100のチャレンジで栄光はあなたのものになります</string>
-    <string name="medalla_motiv_tenax">🔥 地平線上に：INTREPIDUS - それを達成するためにあと100ゲーム粘り強く続けてください</string>
-    <string name="medalla_motiv_intrepidus">🧠 知恵への道：SAPIENS - 新しい100レベルがあなたをそれに近づけます</string>
-    <string name="medalla_motiv_sapiens">👑 あなたの運命：EXEMPLAR - さらに100ゲームをクリアし、模範となってください</string>
-    <string name="medalla_motiv_exemplar">🌟 栄光が待っています：GLORIAM - 頂上まであと100レベルだけです</string>
-    <string name="medalla_motiv_gloriam">🏆 次の偉大さ：MAGNUS - 壮大さのためにあと100のチャレンジです</string>
-    <string name="medalla_motiv_magnus">✨ 不滅へ向かって：IMMORTALIS - 伝説のための最後の100ゲームです</string>
+
+    <string name="medalla_desc_initium">250のユニークなゲームをクリアしました！あなたの献身により、コレクションの始まりであるINITIUMメダルが授与されました。</string>
+    <string name="medalla_desc_fidelis">500ゲームクリア！あなたの粘り強さは称賛に値し、FIDELISメダルを獲得しました。</string>
+    <string name="medalla_desc_virtus">750の異なるチャレンジを乗り越えたあなたにVIRTUSメダルが贈られます。あなたの精神的な勇気はゲームごとに示されます！</string>
+    <string name="medalla_desc_audax">1000ゲームをマスター！あなたの大胆さが、名誉あるAUDAXメダルを征服へと導きました。</string>
+    <string name="medalla_desc_fortis">1250の異なるゲームで精神的な強さを示し、卓越したFORTISメダルに値します。</string>
+    <string name="medalla_desc_tenax">忍耐は報われる！1500ゲームクリアでTENAXメダルが授与されます。</string>
+    <string name="medalla_desc_intrepidus">あなたの不屈の精神が1750のチャレンジを乗り越え、尊敬されるINTREPIDUSメダルが授与されました。</string>
+    <string name="medalla_desc_sapiens">知恵は実践によって得られます：2000ゲームクリアでSAPIENSメダルに値します。</string>
+    <string name="medalla_desc_exemplar">あなたは決意の模範です！2250ゲームをクリアし、模範的なEXEMPLARメダルが授与されました。</string>
+    <string name="medalla_desc_gloriam">あなたの忍耐に栄光あれ！2500のチャレンジを制覇し、栄光のGLORIAMメダルを達成しました。</string>
+    <string name="medalla_desc_magnus">壮大な成果！2750の異なるゲームをクリアし、壮大なMAGNUSメダルを獲得しました。</string>
+    <string name="medalla_desc_immortalis">不滅の偉業！3000のユニークなチャレンジをクリアし、伝説のIMMORTALISメダルで聖別されました。</string>
+
+    <string name="medalla_motiv_initium">⭐ 次の目標：FIDELIS - 新しい250レベルをクリアすれば、このメダルはあなたのものになります</string>
+    <string name="medalla_motiv_fidelis">🎯 次のチャレンジ：VIRTUS - さらに250ゲーム追加すれば、次の実績がアンロックされます</string>
+    <string name="medalla_motiv_virtus">🚀 次の征服：AUDAX - さらに250レベルがあなたを待っています</string>
+    <string name="medalla_motiv_audax">💫 偉大さへの道：FORTIS - 新しい250ゲームを続けてください</string>
+    <string name="medalla_motiv_fortis">⚡ TENAXへ向かって：さらに250のチャレンジで栄光はあなたのものになります</string>
+    <string name="medalla_motiv_tenax">🔥 地平線上に：INTREPIDUS - それを達成するためにあと250ゲーム粘り強く続けてください</string>
+    <string name="medalla_motiv_intrepidus">🧠 知恵への道：SAPIENS - 新しい250レベルがあなたをそれに近づけます</string>
+    <string name="medalla_motiv_sapiens">👑 あなたの運命：EXEMPLAR - さらに250ゲームをクリアし、模範となってください</string>
+    <string name="medalla_motiv_exemplar">🌟 栄光が待っています：GLORIAM - 頂上まであと250レベルだけです</string>
+    <string name="medalla_motiv_gloriam">🏆 次の偉大さ：MAGNUS - 壮大さのためにあと250のチャレンジです</string>
+    <string name="medalla_motiv_magnus">✨ 不滅へ向かって：IMMORTALIS - 伝説のための最後の250ゲームです</string>
     <string name="medalla_motiv_immortalis">🏆 メダルコレクションコンプリート！あなたはSumaMenteの伝説です！</string>
+
+
     <plurals name="medalla_contador_progreso">
         <item quantity="other">📈 メダル%1$d個、残り%2$d個</item>
     </plurals>
@@ -1381,5 +1387,8 @@
     <string name="instruction_game_terms_14">あなたの心は最高の電卓です！ 🎯 ボード上を動く14個の問題を観察し、頭の中で解いてください。あなたの回答が書かれたボタンを押すか、一致がない場合は「なし」を選択してください。最大6個のエラーが許容されます。あなたの精神的な機敏さを見せてください！</string>
     <string name="instruction_game_terms_28">数学の挑戦に備えよう！ 🧮 ボードに表示される28個の問題を頭の中で解いてください。ボタンにあなたの結果が見つかった場合は、すぐにそれを押してください。どのオプションも一致しない場合は、ためらうことなく「なし」を選択してください。最大12個のエラーが許容されます。集中力を維持してください！</string>
     <string name="instruction_game_time_addition">時間の支配力を証明しよう！ ⏰ ボードに表示される時間と分を正しく足し算してください。60分が1時間に等しいことを忘れないでください。落ち着いて考え、00:00形式で正確な結果を探してください。どのオプションも当てはまらない場合は、「なし」を選択して進んでください。</string>
+
+    <string name="error_username_check_failed">ユーザー名を確認できませんでした。もう一度お試しください。</string>
+    <string name="username_error_icon_description">ユーザー名の確認中にエラーが発生しました</string>
 
 </resources>

@@ -32,7 +32,7 @@ import java.util.Locale
 class GameSelectionActivity : BaseActivity() {
 
     private companion object {
-        const val TOTAL_LEVELS = 1470.0
+        const val TOTAL_LEVELS = 1890.0
         const val ANIMATION_DURATION = 450L
         const val ANIMATION_DELAY_START = 70L
         const val ANIMATION_DELAY_ITEM = 80L
@@ -121,7 +121,18 @@ class GameSelectionActivity : BaseActivity() {
             LevelsActivityGenioPlusPrincipiante::class.java,
             LevelsActivityGenioPlus::class.java,
             LevelsActivityGenioPlusPro::class.java
+        ),
+        FOCO_PLUS(
+            R.id.btn_foco_plus,
+            "MyPrefsFocoPlus",
+            "hasSeenInstructionsFocoPlus",
+            "difficulty_focoplus",
+            InstructionsLevelsActivityFocoPlus::class.java,
+            InstructionsLevelsActivityFocoPlus::class.java,
+            InstructionsLevelsActivityFocoPlus::class.java,
+            InstructionsLevelsActivityFocoPlus::class.java
         )
+
     }
 
     // Datos del juego
@@ -214,6 +225,9 @@ class GameSelectionActivity : BaseActivity() {
             initGenioPlus(this@GameSelectionActivity)
             initGenioPlusPrincipiante(this@GameSelectionActivity)
             initGenioPlusPro(this@GameSelectionActivity)
+            initFocoPlus(this@GameSelectionActivity)
+            initFocoPlusPrincipiante(this@GameSelectionActivity)
+            initFocoPlusPro(this@GameSelectionActivity)
         }
     }
 
@@ -373,12 +387,19 @@ class GameSelectionActivity : BaseActivity() {
                 Game.SUMA_RESTA -> "Sumaresta"
                 Game.MAS_PLUS -> "MasPlus"
                 Game.GENIO_PLUS -> "GenioPlus"
+                Game.FOCO_PLUS -> "FocoPlus"
             }
             startActivity(DifficultySelectionActivity.createIntent(this, gameTypeString))
             return
         }
 
         val difficulty = prefs.getString(game.difficultyKey, DifficultySelectionActivity.DIFFICULTY_AVANZADO)
+
+        if (game == Game.FOCO_PLUS && (difficulty == DifficultySelectionActivity.DIFFICULTY_AVANZADO || difficulty == DifficultySelectionActivity.DIFFICULTY_PRO)) {
+            startActivity(DifficultySelectionActivity.createIntent(this, "FocoPlus"))
+            return
+        }
+
         val intent = when (difficulty) {
             DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> Intent(this, game.principianteActivity)
             DifficultySelectionActivity.DIFFICULTY_PRO -> Intent(this, game.proActivity)
@@ -397,6 +418,7 @@ class GameSelectionActivity : BaseActivity() {
         updateGameButton(Game.SUMA_RESTA, scores[Game.SUMA_RESTA]!!)
         updateGameButton(Game.MAS_PLUS, scores[Game.MAS_PLUS]!!)
         updateGameButton(Game.GENIO_PLUS, scores[Game.GENIO_PLUS]!!)
+        updateGameButton(Game.FOCO_PLUS, scores[Game.FOCO_PLUS]!!)
 
         applySpecialColors()
     }
@@ -437,6 +459,11 @@ class GameSelectionActivity : BaseActivity() {
                 ScoreManager.currentScoreGenioPlus,
                 ScoreManager.currentScoreGenioPlusPrincipiante,
                 ScoreManager.currentScoreGenioPlusPro
+            ),
+            Game.FOCO_PLUS to GameScores(
+                ScoreManager.currentScoreFocoPlus,
+                ScoreManager.currentScoreFocoPlusPrincipiante,
+                ScoreManager.currentScoreFocoPlusPro
             )
         )
     }
@@ -497,11 +524,23 @@ class GameSelectionActivity : BaseActivity() {
                 titleResId = R.string.game_genio_plus
                 subtitleResId = R.string.game_subtitle_genio_plus
             }
+            Game.FOCO_PLUS -> {
+                gameNameTextView = button.findViewById(R.id.tv_game_name_foco_plus)
+                pointsTextView = button.findViewById(R.id.tv_points_foco_plus)
+                gameSubtitleTextView = button.findViewById(R.id.tv_game_subtitle_foco_plus)
+                titleResId = R.string.game_foco_plus
+                subtitleResId = R.string.game_subtitle_foco_plus
+            }
         }
 
         titleResId?.let { gameNameTextView.text = getString(it) }
 
-        if (Locale.getDefault().language != "es") {
+        if (game == Game.FOCO_PLUS) {
+            subtitleResId.let {
+                gameSubtitleTextView.text = getString(it)
+                gameSubtitleTextView.visibility = View.VISIBLE
+            }
+        } else if (Locale.getDefault().language != "es") {
             subtitleResId.let {
                 gameSubtitleTextView.text = getString(it)
                 gameSubtitleTextView.visibility = View.VISIBLE

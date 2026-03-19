@@ -638,18 +638,18 @@
     <string name="pin_optimum">40 مستوى. لا خطأ. يوم واحد. OPTIMUM… فقط الأفضل يصمدون.</string>
     <string name="pin_invictus">50 مستوى. لا يقهر. 24 ساعة. INVICTUS… فقط الذين لا يقهرون يحققونه.</string>
 
-    <string name="medalla_initium_100">الرحلة بدأت للتو. أكمل 100 لعبة وستحصل على INITIUM.</string>
-    <string name="medalla_fidelis_200">سيتم تقدير ثباتك. أكمل 200 لعبة وستكون هذه الميدالية لك.</string>
-    <string name="medalla_virtus_300">تدرب كل يوم. عند إكمال 300 لعبة، ستظهر فضيلة الانضباط.</string>
-    <string name="medalla_audax_400">فقط الشجعان يستمرون. اهزم 400 لعبة دون تردد.</string>
-    <string name="medalla_fortis_500">عقلك ثابت. أكمل 500 لعبة وعزز أسطورتك.</string>
-    <string name="medalla_tenax_600">لا تتوقف. عند إكمال 600 لعبة، ستتألق عزيمتك.</string>
-    <string name="medalla_intrepidus_700">واجه كل تحدٍ بلا خوف. هذه الميدالية لك عند إكمال 700 لعبة.</string>
-    <string name="medalla_sapiens_800">الحكمة تُكتسب بالخبرة. 800 لعبة مكتملة ستثبت ذلك.</string>
-    <string name="medalla_exemplar_900">كن قدوة. عند وصولك إلى 900 لعبة، سيعرف الجميع أنك لم تستسلم أبدًا.</string>
-    <string name="medalla_gloriam_1000">تجرأ على الوصول إلى القمة. 1000 لعبة ستقودك إلى المجد.</string>
-    <string name="medalla_magnus_1100">العظمة تُبنى بالجهد. أكمل 1100 لعبة وستحصل على MAGNUS.</string>
-    <string name="medalla_immortalis_1200">إرثك سيستمر. عند إكمال 1200 لعبة، هذه الميدالية تخلدك.</string>
+    <string name="medalla_initium_100">الرحلة بدأت للتو. أكمل 250 لعبة وستحصل على INITIUM.</string>
+    <string name="medalla_fidelis_200">سيتم تقدير ثباتك. أكمل 500 لعبة وستكون هذه الميدالية لك.</string>
+    <string name="medalla_virtus_300">تدرب كل يوم. عند إكمال 750 لعبة، ستظهر فضيلة الانضباط.</string>
+    <string name="medalla_audax_400">فقط الشجعان يستمرون. اهزم 1000 لعبة دون تردد.</string>
+    <string name="medalla_fortis_500">عقلك ثابت. أكمل 1250 لعبة وعزز أسطورتك.</string>
+    <string name="medalla_tenax_600">لا تتوقف. عند إكمال 1500 لعبة، ستتألق عزيمتك.</string>
+    <string name="medalla_intrepidus_700">واجه كل تحدٍ بلا خوف. هذه الميدالية لك عند إكمال 1750 لعبة.</string>
+    <string name="medalla_sapiens_800">الحكمة تُكتسب بالخبرة. 2000 لعبة مكتملة ستثبت ذلك.</string>
+    <string name="medalla_exemplar_900">كن قدوة. عند وصولك إلى 2250 لعبة، سيعرف الجميع أنك لم تستسلم أبدًا.</string>
+    <string name="medalla_gloriam_1000">تجرأ على الوصول إلى القمة. 2500 لعبة ستقودك إلى المجد.</string>
+    <string name="medalla_magnus_1100">العظمة تُبنى بالجهد. أكمل 2750 لعبة وستحصل على MAGNUS.</string>
+    <string name="medalla_immortalis_1200">إرثك سيستمر. عند إكمال 3000 لعبة، هذه الميدالية تخلدك.</string>
 
     <string name="corona_volucer_1">لأسرع عقل. فقط من يحتل المركز الأول يستحق هذا التاج الأسطوري.</string>
     <string name="corona_celeris_6">لمن يحتل المركز الثاني في السرعة. تاج Celeris يكافئ سرعتك وثباتك.</string>
@@ -1103,30 +1103,30 @@
     <string name="medalla_titulo_magnus">🏆 عظمة MAGNUS تم الفوز بها! 🏆</string>
     <string name="medalla_titulo_immortalis">✨ أسطورة IMMORTALIS تم تشكيلها! ✨</string>
 
-    <string name="medalla_desc_initium">لقد أكملت 100 لعبة فريدة! لقد منحك تفانيك ميدالية INITIUM، بداية مجموعتك.</string>
-    <string name="medalla_desc_fidelis">200 لعبة مكتملة! مثابرتك جديرة بالإعجاب، وبذلك تحصل على ميدالية FIDELIS.</string>
-    <string name="medalla_desc_virtus">ميدالية VIRTUS لك لتجاوز 300 تحدٍ مختلف. شجاعتك العقلية تظهر مع كل لعبة!</string>
-    <string name="medalla_desc_audax">400 لعبة متقنة! جرأتك قادتك للفوز بميدالية AUDAX المرموقة.</string>
-    <string name="medalla_desc_fortis">لقد أظهرت قوة عقلية في 500 لعبة مختلفة، وتستحق ميدالية FORTIS الاستثنائية.</string>
-    <string name="medalla_desc_tenax">المثابرة لها مكافأة! 600 لعبة مكتملة تتوجك بميدالية TENAX.</string>
-    <string name="medalla_desc_intrepidus">روحك الجريئة تغلبت على 700 تحدٍ، مما يمنحك ميدالية INTREPIDUS المحترمة.</string>
-    <string name="medalla_desc_sapiens">الحكمة تكتسب بالممارسة: 800 لعبة مكتملة تجعلك تستحق ميدالية SAPIENS.</string>
-    <string name="medalla_desc_exemplar">أنت مثال للعزيمة! 900 لعبة متجاوزة منحتك ميدالية EXEMPLAR المثالية.</string>
-    <string name="medalla_desc_gloriam">المجد لمثابرتك! لقد غزوت 1000 تحدٍ، وحصلت على ميدالية GLORIAM المجيدة.</string>
-    <string name="medalla_desc_magnus">إنجاز رائع! بإكمال 1100 لعبة مختلفة، حصلت على ميدالية MAGNUS العظيمة.</string>
-    <string name="medalla_desc_immortalis">إنجاز خالد! لقد أكملت 1200 تحدٍ فريد، وكرست نفسك بميدالية IMMORTALIS الأسطورية.</string>
+    <string name="medalla_desc_initium">لقد أكملت 250 لعبة فريدة! لقد منحك تفانيك ميدالية INITIUM، بداية مجموعتك.</string>
+    <string name="medalla_desc_fidelis">500 لعبة مكتملة! مثابرتك جديرة بالإعجاب، وبذلك تحصل على ميدالية FIDELIS.</string>
+    <string name="medalla_desc_virtus">ميدالية VIRTUS لك لتجاوز 750 تحدٍ مختلف. شجاعتك العقلية تظهر مع كل لعبة!</string>
+    <string name="medalla_desc_audax">1000 لعبة متقنة! جرأتك قادتك للفوز بميدالية AUDAX المرموقة.</string>
+    <string name="medalla_desc_fortis">لقد أظهرت قوة عقلية في 1250 لعبة مختلفة، وتستحق ميدالية FORTIS الاستثنائية.</string>
+    <string name="medalla_desc_tenax">المثابرة لها مكافأة! 1500 لعبة مكتملة تتوجك بميدالية TENAX.</string>
+    <string name="medalla_desc_intrepidus">روحك الجريئة تغلبت على 1750 تحدٍ، مما يمنحك ميدالية INTREPIDUS المحترمة.</string>
+    <string name="medalla_desc_sapiens">الحكمة تكتسب بالممارسة: 2000 لعبة مكتملة تجعلك تستحق ميدالية SAPIENS.</string>
+    <string name="medalla_desc_exemplar">أنت مثال للعزيمة! 2250 لعبة متجاوزة منحتك ميدالية EXEMPLAR المثالية.</string>
+    <string name="medalla_desc_gloriam">المجد لمثابرتك! لقد غزوت 2500 تحدٍ، وحصلت على ميدالية GLORIAM المجيدة.</string>
+    <string name="medalla_desc_magnus">إنجاز رائع! بإكمال 2750 لعبة مختلفة، حصلت على ميدالية MAGNUS العظيمة.</string>
+    <string name="medalla_desc_immortalis">إنجاز خالد! لقد أكملت 3000 تحدٍ فريد، وكرست نفسك بميدالية IMMORTALIS الأسطورية.</string>
 
-    <string name="medalla_motiv_initium">⭐ الهدف التالي: FIDELIS - أكمل 100 مستوى جديد وستكون هذه الميدالية لك</string>
-    <string name="medalla_motiv_fidelis">🎯 التحدي التالي: VIRTUS - أضف 100 لعبة أخرى وستفتح إنجازك التالي</string>
-    <string name="medalla_motiv_virtus">🚀 غزوتك التالية: AUDAX - 100 مستوى إضافي في انتظارك</string>
-    <string name="medalla_motiv_audax">💫 نحو العظمة: FORTIS - استمر مع 100 لعبة جديدة</string>
-    <string name="medalla_motiv_fortis">⚡ تقدم نحو: TENAX - 100 تحدٍ آخر وسيكون المجد لك</string>
-    <string name="medalla_motiv_tenax">🔥 في الأفق: INTREPIDUS - استمر في 100 لعبة أخرى للوصول إليها</string>
-    <string name="medalla_motiv_intrepidus">🧠 طريق الحكمة: SAPIENS - 100 مستوى جديد يقربك إليها</string>
-    <string name="medalla_motiv_sapiens">👑 مصيرك: EXEMPLAR - أكمل 100 لعبة إضافية وكن مثالاً</string>
-    <string name="medalla_motiv_exemplar">🌟 المجد في انتظارك: GLORIAM - فقط 100 مستوى آخر نحو القمة</string>
-    <string name="medalla_motiv_gloriam">🏆 العظمة القادمة: MAGNUS - 100 تحدٍ آخر للعظمة</string>
-    <string name="medalla_motiv_magnus">✨ نحو الخلود: IMMORTALIS - 100 لعبة نهائية للأسطورة</string>
+    <string name="medalla_motiv_initium">⭐ الهدف التالي: FIDELIS - أكمل 250 مستوى جديد وستكون هذه الميدالية لك</string>
+    <string name="medalla_motiv_fidelis">🎯 التحدي التالي: VIRTUS - أضف 250 لعبة أخرى وستفتح إنجازك التالي</string>
+    <string name="medalla_motiv_virtus">🚀 غزوتك التالية: AUDAX - 250 مستوى إضافي في انتظارك</string>
+    <string name="medalla_motiv_audax">💫 نحو العظمة: FORTIS - استمر مع 250 لعبة جديدة</string>
+    <string name="medalla_motiv_fortis">⚡ تقدم نحو: TENAX - 250 تحدٍ آخر وسيكون المجد لك</string>
+    <string name="medalla_motiv_tenax">🔥 في الأفق: INTREPIDUS - استمر في 250 لعبة أخرى للوصول إليها</string>
+    <string name="medalla_motiv_intrepidus">🧠 طريق الحكمة: SAPIENS - 250 مستوى جديد يقربك إليها</string>
+    <string name="medalla_motiv_sapiens">👑 مصيرك: EXEMPLAR - أكمل 250 لعبة إضافية وكن مثالاً</string>
+    <string name="medalla_motiv_exemplar">🌟 المجد في انتظارك: GLORIAM - فقط 250 مستوى آخر نحو القمة</string>
+    <string name="medalla_motiv_gloriam">🏆 العظمة القادمة: MAGNUS - 250 تحدٍ آخر للعظمة</string>
+    <string name="medalla_motiv_magnus">✨ نحو الخلود: IMMORTALIS - 250 لعبة نهائية للأسطورة</string>
     <string name="medalla_motiv_immortalis">🏆 مجموعة الميداليات كاملة! أنت أسطورة SumaMente!</string>
 
     <plurals name="medalla_contador_progreso">
@@ -1743,5 +1743,8 @@
     <string name="instruction_game_terms_14">عقلك هو أفضل آلة حاسبة لديك! 🎯 راقب 14 تمرينًا تتحرك على اللوحة وقم بحلها عقليًا. اضغط على الزر الذي يحتوي على إجابتك أو اختر لا شيء إذا لم يكن هناك تطابق. يُسمح لك بما يصل إلى 6 أخطاء. أظهر مهارتك الذهنية!</string>
     <string name="instruction_game_terms_28">استعد للتحدي الرياضي! 🧮 حل عقليًا التمارين الـ 28 التي تظهر على اللوحة. إذا وجدت نتيجتك في الأزرار، فاضغط عليها على الفور. إذا لم يتطابق أي خيار، فاختر لا شيء دون تردد. لديك حد أقصى 12 خطأ. حافظ على تركيزك!</string>
     <string name="instruction_game_time_addition">أظهر إتقانك للوقت! ⏰ اجمع الساعات والدقائق التي تظهر على اللوحة بشكل صحيح. تذكر أن 60 دقيقة تعادل 1 ساعة. فكر بهدوء وابحث عن النتيجة الدقيقة بصيغة 00:00. إذا لم يتطابق أي خيار، فاختر “لا شيء” واستمر.</string>
+
+    <string name="error_username_check_failed">تعذر التحقق من اسم المستخدم. حاول مرة أخرى.</string>
+    <string name="username_error_icon_description">خطأ في التحقق من اسم المستخدم</string>
 
 </resources>

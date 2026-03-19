@@ -667,20 +667,6 @@
     <string name="pin_optimum">40 niveles. Ni un fallo. Un solo día. OPTIMUM… Solo los óptimos resisten.</string>
     <string name="pin_invictus">50 niveles. Imbatible. 24 horas. INVICTUS… Solo los indomables lo logran.</string>
 
-    <!-- 🟦 MEDALLAS -->
-    <string name="medalla_initium_100">El viaje apenas comienza. Alcanza 100 juegos completados y obtendrás INITIUM.</string>
-    <string name="medalla_fidelis_200">Tu constancia será reconocida. Llega a 200 juegos y esta medalla será tuya.</string>
-    <string name="medalla_virtus_300">Entrena cada día. Al sumar 300 juegos demostrarás la virtud de la disciplina.</string>
-    <string name="medalla_audax_400">Solo los valientes siguen adelante. Conquista 400 juegos sin dudar.</string>
-    <string name="medalla_fortis_500">Tu mente es firme. Llega a 500 juegos y fortalece tu leyenda.</string>
-    <string name="medalla_tenax_600">No te detengas. Al completar 600 juegos, tu tenacidad brillará.</string>
-    <string name="medalla_intrepidus_700">Enfrenta cada reto sin miedo. Esta medalla es tuya al alcanzar 700 juegos.</string>
-    <string name="medalla_sapiens_800">La sabiduría se gana con experiencia. 800 juegos completados lo demostrarán.</string>
-    <string name="medalla_exemplar_900">Sé el ejemplo. Al llegar a 900 juegos, todos sabrán que nunca abandonaste.</string>
-    <string name="medalla_gloriam_1000">Atrévete a alcanzar la cima. 1000 juegos te llevarán a la gloria.</string>
-    <string name="medalla_magnus_1100">La grandeza se construye con esfuerzo. Llega a 1100 juegos y recibirás MAGNUS.</string>
-    <string name="medalla_immortalis_1200">Tu legado trascenderá. Al completar 1200 juegos, esta medalla te inmortaliza.</string>
-
     <!-- 🟥 CORONAS -->
     <string name="corona_volucer_1">Para la mente más rápida. Solo quien ocupa el primer lugar merece esta corona legendaria.</string>
     <string name="corona_celeris_6">Para quien conquista el segundo lugar en velocidad. La corona Celeris premia tu rapidez y constancia.</string>
@@ -1095,32 +1081,46 @@
     <string name="medalla_titulo_magnus">🏆 ¡GRANDEZA MAGNUS CONQUISTADA! 🏆</string>
     <string name="medalla_titulo_immortalis">✨ ¡LEYENDA IMMORTALIS FORJADA! ✨</string>
 
+    <!-- 🟦 MEDALLAS -->
+    <string name="medalla_initium_100">El viaje apenas comienza. Alcanza 100 juegos completados y obtendrás INITIUM.</string>
+    <string name="medalla_fidelis_200">Tu constancia será reconocida. Llega a 500 juegos y esta medalla será tuya.</string>
+    <string name="medalla_virtus_300">Entrena cada día. Al sumar 750 juegos demostrarás la virtud de la disciplina.</string>
+    <string name="medalla_audax_400">Solo los valientes siguen adelante. Conquista 1000 juegos sin dudar.</string>
+    <string name="medalla_fortis_500">Tu mente es firme. Llega a 1250 juegos y fortalece tu leyenda.</string>
+    <string name="medalla_tenax_600">No te detengas. Al completar 1500 juegos, tu tenacidad brillará.</string>
+    <string name="medalla_intrepidus_700">Enfrenta cada reto sin miedo. Esta medalla es tuya al alcanzar 1750 juegos.</string>
+    <string name="medalla_sapiens_800">La sabiduría se gana con experiencia. 2000 juegos completados lo demostrarán.</string>
+    <string name="medalla_exemplar_900">Sé el ejemplo. Al llegar a 2250 juegos, todos sabrán que nunca abandonaste.</string>
+    <string name="medalla_gloriam_1000">Atrévete a alcanzar la cima. 2500 juegos te llevarán a la gloria.</string>
+    <string name="medalla_magnus_1100">La grandeza se construye con esfuerzo. Llega a 2750 juegos y recibirás MAGNUS.</string>
+    <string name="medalla_immortalis_1200">Tu legado trascenderá. Al completar 3000 juegos, esta medalla te inmortaliza.</string>
+
     <!-- MENSAJES REUTILIZABLES DE MEDALLAS -->
-    <string name="medalla_desc_initium">¡Has completado 100 juegos únicos! Tu dedicación te ha otorgado la medalla INITIUM, el comienzo de tu colección.</string>
-    <string name="medalla_desc_fidelis">¡200 juegos completados! Tu constancia es admirable, consiguiendo así la medalla FIDELIS.</string>
-    <string name="medalla_desc_virtus">La medalla VIRTUS es tuya por superar 300 desafíos diferentes. ¡Tu valentía mental se demuestra con cada juego!</string>
-    <string name="medalla_desc_audax">¡400 juegos dominados! Tu audacia te ha llevado a conquistar la prestigiosa medalla AUDAX.</string>
-    <string name="medalla_desc_fortis">Has demostrado fortaleza mental en 500 juegos distintos, mereciendo la excepcional medalla FORTIS.</string>
-    <string name="medalla_desc_tenax">¡La perseverancia tiene premio! 600 juegos completados te coronan con la medalla TENAX.</string>
-    <string name="medalla_desc_intrepidus">Tu espíritu intrépido ha superado 700 desafíos, otorgándote la respetada medalla INTREPIDUS.</string>
-    <string name="medalla_desc_sapiens">La sabiduría se adquiere con práctica: 800 juegos completados te hacen merecedor de la medalla SAPIENS.</string>
-    <string name="medalla_desc_exemplar">¡Eres un ejemplo de determinación! 900 juegos superados te han concedido la ejemplar medalla EXEMPLAR.</string>
-    <string name="medalla_desc_gloriam">¡Gloria a tu perseverancia! Has conquistado 1000 desafíos, alcanzando la gloriosa medalla GLORIAM.</string>
-    <string name="medalla_desc_magnus">¡Logro magnífico! Al completar 1100 juegos diferentes, has obtenido la grandiosa medalla MAGNUS.</string>
-    <string name="medalla_desc_immortalis">¡Hazaña inmortal! Has culminado 1200 desafíos únicos, consagrándote con la legendaria medalla IMMORTALIS.</string>
+    <string name="medalla_desc_initium">¡Has completado 250 juegos únicos! Tu dedicación te ha otorgado la medalla INITIUM, el comienzo de tu colección.</string>
+    <string name="medalla_desc_fidelis">¡500 juegos completados! Tu constancia es admirable, consiguiendo así la medalla FIDELIS.</string>
+    <string name="medalla_desc_virtus">La medalla VIRTUS es tuya por superar 750 desafíos diferentes. ¡Tu valentía mental se demuestra con cada juego!</string>
+    <string name="medalla_desc_audax">¡1000 juegos dominados! Tu audacia te ha llevado a conquistar la prestigiosa medalla AUDAX.</string>
+    <string name="medalla_desc_fortis">Has demostrado fortaleza mental en 1250 juegos distintos, mereciendo la excepcional medalla FORTIS.</string>
+    <string name="medalla_desc_tenax">¡La perseverancia tiene premio! 1500 juegos completados te coronan con la medalla TENAX.</string>
+    <string name="medalla_desc_intrepidus">Tu espíritu intrépido ha superado 1750 desafíos, otorgándote la respetada medalla INTREPIDUS.</string>
+    <string name="medalla_desc_sapiens">La sabiduría se adquiere con práctica: 2000 juegos completados te hacen merecedor de la medalla SAPIENS.</string>
+    <string name="medalla_desc_exemplar">¡Eres un ejemplo de determinación! 2250 juegos superados te han concedido la ejemplar medalla EXEMPLAR.</string>
+    <string name="medalla_desc_gloriam">¡Gloria a tu perseverancia! Has conquistado 2500 desafíos, alcanzando la gloriosa medalla GLORIAM.</string>
+    <string name="medalla_desc_magnus">¡Logro magnífico! Al completar 2750 juegos diferentes, has obtenido la grandiosa medalla MAGNUS.</string>
+    <string name="medalla_desc_immortalis">¡Hazaña inmortal! Has culminado 3000 desafíos únicos, consagrándote con la legendaria medalla IMMORTALIS.</string>
 
     <!-- MENSAJES DE MOTIVACIÓN DE MEDALLAS -->
-    <string name="medalla_motiv_initium">⭐ Siguiente meta: FIDELIS - completa 100 niveles nuevos y será tuya esta medalla</string>
-    <string name="medalla_motiv_fidelis">🎯 Próximo desafío: VIRTUS - suma 100 juegos más y desbloquearás tu siguiente logro</string>
-    <string name="medalla_motiv_virtus">🚀 Tu siguiente conquista: AUDAX - 100 niveles adicionales te esperan</string>
-    <string name="medalla_motiv_audax">💫 Rumbo a la grandeza: FORTIS - continúa con 100 juegos nuevos</string>
-    <string name="medalla_motiv_fortis">⚡ Avanza hacia: TENAX - 100 desafíos más y la gloria será tuya</string>
-    <string name="medalla_motiv_tenax">🔥 En el horizonte: INTREPIDUS - persiste 100 juegos más para alcanzarla</string>
-    <string name="medalla_motiv_intrepidus">🧠 Camino a la sabiduría: SAPIENS - 100 niveles nuevos te acercan a ella</string>
-    <string name="medalla_motiv_sapiens">👑 Tu destino: EXEMPLAR - completa 100 juegos adicionales y sé un ejemplo</string>
-    <string name="medalla_motiv_exemplar">🌟 La gloria te espera: GLORIAM - solo 100 niveles más hacia la cima</string>
-    <string name="medalla_motiv_gloriam">🏆 Grandeza próxima: MAGNUS - 100 desafíos más para la magnificencia</string>
-    <string name="medalla_motiv_magnus">✨ Hacia la inmortalidad: IMMORTALIS - 100 juegos finales para la leyenda</string>
+    <string name="medalla_motiv_initium">⭐ Siguiente meta: FIDELIS - completa 250 niveles nuevos y será tuya esta medalla</string>
+    <string name="medalla_motiv_fidelis">🎯 Próximo desafío: VIRTUS - suma 250 juegos más y desbloquearás tu siguiente logro</string>
+    <string name="medalla_motiv_virtus">🚀 Tu siguiente conquista: AUDAX - 250 niveles adicionales te esperan</string>
+    <string name="medalla_motiv_audax">💫 Rumbo a la grandeza: FORTIS - continúa con 250 juegos nuevos</string>
+    <string name="medalla_motiv_fortis">⚡ Avanza hacia: TENAX - 250 desafíos más y la gloria será tuya</string>
+    <string name="medalla_motiv_tenax">🔥 En el horizonte: INTREPIDUS - persiste 250 juegos más para alcanzarla</string>
+    <string name="medalla_motiv_intrepidus">🧠 Camino a la sabiduría: SAPIENS - 250 niveles nuevos te acercan a ella</string>
+    <string name="medalla_motiv_sapiens">👑 Tu destino: EXEMPLAR - completa 250 juegos adicionales y sé un ejemplo</string>
+    <string name="medalla_motiv_exemplar">🌟 La gloria te espera: GLORIAM - solo 250 niveles más hacia la cima</string>
+    <string name="medalla_motiv_gloriam">🏆 Grandeza próxima: MAGNUS - 250 desafíos más para la magnificencia</string>
+    <string name="medalla_motiv_magnus">✨ Hacia la inmortalidad: IMMORTALIS - 250 juegos finales para la leyenda</string>
     <string name="medalla_motiv_immortalis">🏆 ¡Colección de medallas COMPLETA! ¡Eres una leyenda de SumaMente!</string>
 
     <!-- CONTADOR DINÁMICO DE MEDALLAS -->
@@ -1816,5 +1816,8 @@
 
     <string name="initial_time_format" translatable="false">00.00</string>
     <string name="no_response_dash" translatable="false">—</string>
+
+    <string name="error_username_check_failed">No se pudo verificar el nombre de usuario. Inténtalo nuevamente.</string>
+    <string name="username_error_icon_description">Error al validar el nombre de usuario</string>
 
 </resources>

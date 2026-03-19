@@ -89,12 +89,51 @@ class MyApplication : Application() {
                     android.util.Log.e("AuthInit", "Error creando usuario anónimo", exception)
                 }
         } else {
-            val userId = auth.currentUser?.uid
+            val currentUser = auth.currentUser
+            val userId = currentUser?.uid
             android.util.Log.d("AuthInit", "Usuario anónimo existente: $userId")
-            if (userId != null) {
-                actualizarDatosUsuarioExistente(userId)
+
+            if (currentUser != null && userId != null) {
+                currentUser.getIdToken(true)
+                    .addOnSuccessListener {
+                        android.util.Log.d("AuthInit", "Sesión válida confirmada para UID: $userId")
+                        actualizarDatosUsuarioExistente(userId)
+                    }
+                    .addOnFailureListener { e ->
+                        android.util.Log.w("AuthInit", "Sesión inválida detectada, se limpiarán rastros locales: ${e.message}")
+                        limpiarRastrosLocalesDeSesion()
+                        crearNuevaSesionAnonima()
+                    }
+            } else {
+                android.util.Log.w("AuthInit", "No hay currentUser válido, se limpiarán rastros locales y se creará nueva sesión")
+                limpiarRastrosLocalesDeSesion()
+                crearNuevaSesionAnonima()
             }
         }
+    }
+
+    private fun limpiarRastrosLocalesDeSesion() {
+        val authPrefs = getSharedPreferences("AuthPrefs", MODE_PRIVATE)
+        authPrefs.edit { remove("saved_uid") }
+
+        val mainPrefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        mainPrefs.edit { remove("savedUserName") }
+    }
+
+    private fun crearNuevaSesionAnonima() {
+        val auth = FirebaseAuth.getInstance()
+
+        auth.signInAnonymously()
+            .addOnSuccessListener { authResult ->
+                val newUserId = authResult.user?.uid
+                android.util.Log.d("AuthInit", "Nueva sesión anónima creada: $newUserId")
+                if (newUserId != null) {
+                    crearDocumentoUsuarioCompleto(newUserId)
+                }
+            }
+            .addOnFailureListener { e ->
+                android.util.Log.e("AuthInit", "Error creando nueva sesión anónima", e)
+            }
     }
 
     private fun crearDocumentoUsuarioCompleto(userId: String) {

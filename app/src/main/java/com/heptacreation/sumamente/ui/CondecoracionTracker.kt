@@ -160,18 +160,18 @@ object CondecoracionTracker {
     )
 
     enum class MedallaType(val requiredLevels: Int, val nombreMedalla: String) {
-        INITIUM(100, "INITIUM"),
-        FIDELIS(200, "FIDELIS"),
-        VIRTUS(300, "VIRTUS"),
-        AUDAX(400, "AUDAX"),
-        FORTIS(500, "FORTIS"),
-        TENAX(600, "TENAX"),
-        INTREPIDUS(700, "INTREPIDUS"),
-        SAPIENS(800, "SAPIENS"),
-        EXEMPLAR(900, "EXEMPLAR"),
-        GLORIAM(1000, "GLORIAM"),
-        MAGNUS(1100, "MAGNUS"),
-        IMMORTALIS(1200, "IMMORTALIS")
+        INITIUM(250, "INITIUM"),
+        FIDELIS(500, "FIDELIS"),
+        VIRTUS(750, "VIRTUS"),
+        AUDAX(1000, "AUDAX"),
+        FORTIS(1250, "FORTIS"),
+        TENAX(1500, "TENAX"),
+        INTREPIDUS(1750, "INTREPIDUS"),
+        SAPIENS(2000, "SAPIENS"),
+        EXEMPLAR(2250, "EXEMPLAR"),
+        GLORIAM(2500, "GLORIAM"),
+        MAGNUS(2750, "MAGNUS"),
+        IMMORTALIS(3000, "IMMORTALIS")
     }
 
     private var completedLevelsUnified: MutableList<CompletedLevel> = mutableListOf()
@@ -1090,7 +1090,7 @@ object CondecoracionTracker {
         val totalNivelesUnicos = ScoreManager.getTotalUniqueLevelsCompletedAllGames()
         val totalTrofeos = trofeosObtenidos.size
 
-        if (totalNivelesUnicos >= 1470 && totalTrofeos >= 1) {
+        if (totalNivelesUnicos >= 1890 && totalTrofeos >= 1) {
             val yaObtenida = apexSupremusObtenida != null
 
             if (!yaObtenida) {
@@ -1527,7 +1527,8 @@ object CondecoracionTracker {
                 ScoreManager.currentScoreSumaRestaPro + ScoreManager.currentScoreMasPlus +
                 ScoreManager.currentScoreMasPlusPrincipiante + ScoreManager.currentScoreMasPlusPro +
                 ScoreManager.currentScoreGenioPlus + ScoreManager.currentScoreGenioPlusPrincipiante +
-                ScoreManager.currentScoreGenioPlusPro).toLong()
+                ScoreManager.currentScoreGenioPlusPro + ScoreManager.currentScoreFocoPlus +
+                ScoreManager.currentScoreFocoPlusPrincipiante + ScoreManager.currentScoreFocoPlusPro).toLong()
     }
 
     private fun calculateUserAveragePosition(): Double {

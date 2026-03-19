@@ -174,8 +174,13 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
         }
 
         if (unlockedLevels < 415) {
-            val nextLevelToShow = maxOf(11, unlockedLevels + 1)
-            val suspensiveButtonsNeeded = minOf(10, 415 - nextLevelToShow)
+            val suspensiveButtonsNeeded = when {
+                unlockedLevels < 411 -> 5
+                unlockedLevels == 411 -> 4
+                unlockedLevels == 412 -> 3
+                unlockedLevels == 413 -> 2
+                else -> 1
+            }
 
             repeat(suspensiveButtonsNeeded) {
                 addSuspensiveButton()

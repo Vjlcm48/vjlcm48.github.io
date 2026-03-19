@@ -642,18 +642,18 @@
     <string name="pin_optimum">40 स्तर। कोई गलती नहीं। एक ही दिन। OPTIMUM… केवल सर्वोत्तम ही टिकते हैं।</string>
     <string name="pin_invictus">50 स्तर। अपराजेय। 24 घंटे। INVICTUS… केवल अदम्य ही इसे प्राप्त करते हैं।</string>
 
-    <string name="medalla_initium_100">यात्रा अभी शुरू हुई है। 100 पूर्ण किए गए गेम तक पहुंचें और आपको INITIUM मिलेगा।</string>
-    <string name="medalla_fidelis_200">आपकी निरंतरता को पहचाना जाएगा। 200 गेम तक पहुंचें और यह पदक आपका होगा।</string>
-    <string name="medalla_virtus_300">हर दिन प्रशिक्षण लें। 300 गेम जोड़कर आप अनुशासन का गुण प्रदर्शित करेंगे।</string>
-    <string name="medalla_audax_400">केवल बहादुर ही आगे बढ़ते रहते हैं। बिना किसी हिचकिचाहट के 400 गेम जीतें।</string>
-    <string name="medalla_fortis_500">आपका मन दृढ़ है। 500 गेम तक पहुंचें और अपनी किंवदंती को मजबूत करें।</string>
-    <string name="medalla_tenax_600">रुको मत। 600 गेम पूरा करने पर, आपकी दृढ़ता चमकेगी।</string>
-    <string name="medalla_intrepidus_700">हर चुनौती का बिना डरे सामना करें। 700 गेम तक पहुंचने पर यह पदक आपका है।</string>
-    <string name="medalla_sapiens_800">ज्ञान अनुभव से प्राप्त होता है। 800 पूर्ण किए गए गेम इसे साबित करेंगे।</string>
-    <string name="medalla_exemplar_900">एक उदाहरण बनें। 900 गेम तक पहुंचने पर, सभी को पता चल जाएगा कि आपने कभी हार नहीं मानी।</string>
-    <string name="medalla_gloriam_1000">शिखर तक पहुंचने का साहस करें। 1000 गेम आपको गौरव तक ले जाएंगे।</string>
-    <string name="medalla_magnus_1100">महानता प्रयास से बनती है। 1100 गेम तक पहुंचें और आपको MAGNUS मिलेगा।</string>
-    <string name="medalla_immortalis_1200">आपकी विरासत आगे बढ़ेगी। 1200 गेम पूरा करने पर, यह पदक आपको अमर बना देता है।</string>
+    <string name="medalla_initium_100">यात्रा अभी शुरू हुई है। 250 पूर्ण किए गए गेम तक पहुंचें और आपको INITIUM मिलेगा।</string>
+    <string name="medalla_fidelis_200">आपकी निरंतरता को पहचाना जाएगा। 500 गेम तक पहुंचें और यह पदक आपका होगा।</string>
+    <string name="medalla_virtus_300">हर दिन प्रशिक्षण लें। 750 गेम जोड़कर आप अनुशासन का गुण प्रदर्शित करेंगे।</string>
+    <string name="medalla_audax_400">केवल बहादुर ही आगे बढ़ते रहते हैं। बिना किसी हिचकिचाहट के 1000 गेम जीतें।</string>
+    <string name="medalla_fortis_500">आपका मन दृढ़ है। 1250 गेम तक पहुंचें और अपनी किंवदंती को मजबूत करें।</string>
+    <string name="medalla_tenax_600">रुको मत। 1500 गेम पूरा करने पर, आपकी दृढ़ता चमकेगी।</string>
+    <string name="medalla_intrepidus_700">हर चुनौती का बिना डरे सामना करें। 1750 गेम तक पहुंचने पर यह पदक आपका है।</string>
+    <string name="medalla_sapiens_800">ज्ञान अनुभव से प्राप्त होता है। 2000 पूर्ण किए गए गेम इसे साबित करेंगे।</string>
+    <string name="medalla_exemplar_900">एक उदाहरण बनें। 2250 गेम तक पहुंचने पर, सभी को पता चल जाएगा कि आपने कभी हार नहीं मानी।</string>
+    <string name="medalla_gloriam_1000">शिखर तक पहुंचने का साहस करें। 2500 गेम आपको गौरव तक ले जाएंगे।</string>
+    <string name="medalla_magnus_1100">महानता प्रयास से बनती है। 2750 गेम तक पहुंचें और आपको MAGNUS मिलेगा।</string>
+    <string name="medalla_immortalis_1200">आपकी विरासत आगे बढ़ेगी। 3000 गेम पूरा करने पर, यह पदक आपको अमर बना देता है।</string>
 
     <string name="corona_volucer_1">सबसे तेज दिमाग के लिए। केवल जो पहले स्थान पर है, वही इस महान ताज का हकदार है।</string>
     <string name="corona_celeris_6">जो गति में दूसरे स्थान पर विजय प्राप्त करता है। Celeris ताज आपकी गति और दृढ़ता को पुरस्कृत करता है।</string>
@@ -1035,30 +1035,30 @@
     <string name="medalla_titulo_magnus">🏆 MAGNUS महानता जीती! 🏆</string>
     <string name="medalla_titulo_immortalis">✨ IMMORTALIS किंवदंती गढ़ी! ✨</string>
 
-    <string name="medalla_desc_initium">आपने 100 अनोखे गेम पूरे कर लिए हैं! आपके समर्पण ने आपको INITIUM पदक दिलाया है, जो आपके संग्रह की शुरुआत है।</string>
-    <string name="medalla_desc_fidelis">200 गेम पूरे हुए! आपकी निरंतरता सराहनीय है, इस प्रकार FIDELIS पदक प्राप्त करना।</string>
-    <string name="medalla_desc_virtus">VIRTUS पदक 300 विभिन्न चुनौतियों को पार करने के लिए आपका है। आपकी मानसिक बहादुरी हर खेल के साथ प्रदर्शित होती है!</string>
-    <string name="medalla_desc_audax">400 गेम महारत हासिल! आपके दुस्साहस ने आपको प्रतिष्ठित AUDAX पदक जीतने के लिए प्रेरित किया है।</string>
-    <string name="medalla_desc_fortis">आपने 500 विभिन्न खेलों में मानसिक शक्ति का प्रदर्शन किया है, असाधारण FORTIS पदक के हकदार हैं।</string>
-    <string name="medalla_desc_tenax">दृढ़ता का पुरस्कार है! 600 पूरे किए गए गेम आपको TENAX पदक से सम्मानित करते हैं।</string>
-    <string name="medalla_desc_intrepidus">आपकी निडर आत्मा ने 700 चुनौतियों को पार कर लिया है, जिससे आपको सम्मानित INTREPIDUS पदक मिला है।</string>
-    <string name="medalla_desc_sapiens">ज्ञान अभ्यास से प्राप्त होता है: 800 पूरे किए गए गेम आपको SAPIENS पदक का हकदार बनाते हैं।</string>
-    <string name="medalla_desc_exemplar">आप दृढ़ संकल्प का एक उदाहरण हैं! 900 पार किए गए गेम ने आपको अनुकरणीय EXEMPLAR पदक प्रदान किया है।</string>
-    <string name="medalla_desc_gloriam">आपकी दृढ़ता को महिमा! आपने 1000 चुनौतियों पर विजय प्राप्त की है, शानदार GLORIAM पदक तक पहुंचे हैं।</string>
-    <string name="medalla_desc_magnus">शानदार उपलब्धि! 1100 विभिन्न गेम पूरा करने पर, आपने महान MAGNUS पदक प्राप्त किया है।</string>
-    <string name="medalla_desc_immortalis">अमर करतब! आपने 1200 अनोखी चुनौतियों को पूरा किया है, खुद को महान IMMORTALIS पदक के साथ प्रतिष्ठित किया है।</string>
+    <string name="medalla_desc_initium">आपने 250 अनोखे गेम पूरे कर लिए हैं! आपके समर्पण ने आपको INITIUM पदक दिलाया है, जो आपके संग्रह की शुरुआत है।</string>
+    <string name="medalla_desc_fidelis">500 गेम पूरे हुए! आपकी निरंतरता सराहनीय है, इस प्रकार FIDELIS पदक प्राप्त करना।</string>
+    <string name="medalla_desc_virtus">VIRTUS पदक 750 विभिन्न चुनौतियों को पार करने के लिए आपका है। आपकी मानसिक बहादुरी हर खेल के साथ प्रदर्शित होती है!</string>
+    <string name="medalla_desc_audax">1000 गेम महारत हासिल! आपके दुस्साहस ने आपको प्रतिष्ठित AUDAX पदक जीतने के लिए प्रेरित किया है।</string>
+    <string name="medalla_desc_fortis">आपने 1250 विभिन्न खेलों में मानसिक शक्ति का प्रदर्शन किया है, असाधारण FORTIS पदक के हकदार हैं।</string>
+    <string name="medalla_desc_tenax">दृढ़ता का पुरस्कार है! 1500 पूरे किए गए गेम आपको TENAX पदक से सम्मानित करते हैं।</string>
+    <string name="medalla_desc_intrepidus">आपकी निडर आत्मा ने 1750 चुनौतियों को पार कर लिया है, जिससे आपको सम्मानित INTREPIDUS पदक मिला है।</string>
+    <string name="medalla_desc_sapiens">ज्ञान अभ्यास से प्राप्त होता है: 2000 पूरे किए गए गेम आपको SAPIENS पदक का हकदार बनाते हैं।</string>
+    <string name="medalla_desc_exemplar">आप दृढ़ संकल्प का एक उदाहरण हैं! 2250 पार किए गए गेम ने आपको अनुकरणीय EXEMPLAR पदक प्रदान किया है।</string>
+    <string name="medalla_desc_gloriam">आपकी दृढ़ता को महिमा! आपने 2500 चुनौतियों पर विजय प्राप्त की है, शानदार GLORIAM पदक तक पहुंचे हैं।</string>
+    <string name="medalla_desc_magnus">शानदार उपलब्धि! 2750 विभिन्न गेम पूरा करने पर, आपने महान MAGNUS पदक प्राप्त किया है।</string>
+    <string name="medalla_desc_immortalis">अमर करतब! आपने 3000 अनोखी चुनौतियों को पूरा किया है, खुद को महान IMMORTALIS पदक के साथ प्रतिष्ठित किया है।</string>
 
-    <string name="medalla_motiv_initium">⭐ अगला लक्ष्य: FIDELIS - 100 नए स्तर पूरे करें और यह पदक आपका होगा</string>
-    <string name="medalla_motiv_fidelis">🎯 अगली चुनौती: VIRTUS - 100 और गेम जोड़ें और आप अपनी अगली उपलब्धि को अनलॉक कर देंगे</string>
-    <string name="medalla_motiv_virtus">🚀 आपकी अगली विजय: AUDAX - 100 अतिरिक्त स्तर आपका इंतजार कर रहे हैं</string>
-    <string name="medalla_motiv_audax">💫 महानता की ओर: FORTIS - 100 नए खेलों के साथ जारी रखें</string>
-    <string name="medalla_motiv_fortis">⚡ की ओर बढ़ें: TENAX - 100 और चुनौतियां और महिमा आपकी होगी</string>
-    <string name="medalla_motiv_tenax">🔥 क्षितिज पर: INTREPIDUS - इसे प्राप्त करने के लिए 100 और गेम जारी रखें</string>
-    <string name="medalla_motiv_intrepidus">🧠 ज्ञान की राह: SAPIENS - 100 नए स्तर आपको इसके करीब लाते हैं</string>
-    <string name="medalla_motiv_sapiens">👑 आपका भाग्य: EXEMPLAR - 100 अतिरिक्त गेम पूरे करें और एक उदाहरण बनें</string>
-    <string name="medalla_motiv_exemplar">🌟 महिमा आपका इंतजार कर रही है: GLORIAM - शिखर की ओर केवल 100 और स्तर</string>
-    <string name="medalla_motiv_gloriam">🏆 अगली महानता: MAGNUS - भव्यता के लिए 100 और चुनौतियां</string>
-    <string name="medalla_motiv_magnus">✨ अमरता की ओर: IMMORTALIS - किंवदंती के लिए 100 अंतिम गेम</string>
+    <string name="medalla_motiv_initium">⭐ अगला लक्ष्य: FIDELIS - 250 नए स्तर पूरे करें और यह पदक आपका होगा</string>
+    <string name="medalla_motiv_fidelis">🎯 अगली चुनौती: VIRTUS - 250 और गेम जोड़ें और आप अपनी अगली उपलब्धि को अनलॉक कर देंगे</string>
+    <string name="medalla_motiv_virtus">🚀 आपकी अगली विजय: AUDAX - 250 अतिरिक्त स्तर आपका इंतजार कर रहे हैं</string>
+    <string name="medalla_motiv_audax">💫 महानता की ओर: FORTIS - 250 नए खेलों के साथ जारी रखें</string>
+    <string name="medalla_motiv_fortis">⚡ की ओर बढ़ें: TENAX - 250 और चुनौतियां और महिमा आपकी होगी</string>
+    <string name="medalla_motiv_tenax">🔥 क्षितिज पर: INTREPIDUS - इसे प्राप्त करने के लिए 250 और गेम जारी रखें</string>
+    <string name="medalla_motiv_intrepidus">🧠 ज्ञान की राह: SAPIENS - 250 नए स्तर आपको इसके करीब लाते हैं</string>
+    <string name="medalla_motiv_sapiens">👑 आपका भाग्य: EXEMPLAR - 250 अतिरिक्त गेम पूरे करें और एक उदाहरण बनें</string>
+    <string name="medalla_motiv_exemplar">🌟 महिमा आपका इंतजार कर रही है: GLORIAM - शिखर की ओर केवल 250 और स्तर</string>
+    <string name="medalla_motiv_gloriam">🏆 अगली महानता: MAGNUS - भव्यता के लिए 250 और चुनौतियां</string>
+    <string name="medalla_motiv_magnus">✨ अमरता की ओर: IMMORTALIS - किंवदंती के लिए 250 अंतिम गेम</string>
     <string name="medalla_motiv_immortalis">🏆 पदक संग्रह पूरा! आप एक SumaMente किंवदंती हैं!</string>
 
     <plurals name="medalla_contador_progreso">
@@ -1627,5 +1627,7 @@
 
     <string name="instruction_game_time_addition">समय पर अपनी महारत दिखाएं! ⏰ बोर्ड पर दिखाई देने वाले घंटे और मिनट को सही ढंग से जोड़ें। याद रखें कि 60 मिनट 1 घंटे के बराबर होते हैं। शांति से सोचें और 00:00 प्रारूप में सटीक परिणाम खोजें। यदि कोई विकल्प फिट नहीं होता है, तो “कोई नहीं” चुनें और आगे बढ़ें।</string>
 
+    <string name="error_username_check_failed">उपयोगकर्ता नाम की पुष्टि नहीं की जा सकी। कृपया पुन: प्रयास करें।</string>
+    <string name="username_error_icon_description">उपयोगकर्ता नाम सत्यापित करने में त्रुटि</string>
 
 </resources>

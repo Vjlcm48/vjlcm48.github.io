@@ -32,8 +32,8 @@ class UsernameSelectionActivity : BaseActivity() {
     private lateinit var btnAccept: AppCompatButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
 
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_username_selection)
@@ -68,7 +68,6 @@ class UsernameSelectionActivity : BaseActivity() {
         usernameInputLayout.animate().alpha(1f).translationY(-20f).setDuration(duration).setStartDelay(delay * 2).start()
         btnAccept.animate().alpha(1f).translationY(-20f).setDuration(duration).setStartDelay(delay * 3).start()
     }
-
 
     private fun isTestUsername(username: String): Boolean {
         return username.equals("Usertest", ignoreCase = true)

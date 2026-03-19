@@ -592,18 +592,21 @@
     <string name="pin_victoris">30 레벨. 실수 없음. 24시간. VICTORIS… 오직 승자만이 이해할 것입니다.</string>
     <string name="pin_optimum">40 레벨. 실패 없음. 단 하루. OPTIMUM… 오직 최고만이 견뎌냅니다.</string>
     <string name="pin_invictus">50 레벨. 무적. 24시간. INVICTUS… 오직 불굴의 의지를 가진 자만이 이룰 수 있습니다.</string>
-    <string name="medalla_initium_100">여정은 이제 막 시작되었습니다. 100개의 게임을 완료하고 INITIUM을 획득하세요.</string>
-    <string name="medalla_fidelis_200">당신의 꾸준함은 인정받을 것입니다. 200개의 게임에 도달하면 이 메달은 당신의 것이 됩니다.</string>
-    <string name="medalla_virtus_300">매일 훈련하세요. 300개의 게임을 완료하면 규율의 미덕을 보여줄 것입니다.</string>
-    <string name="medalla_audax_400">오직 용감한 자만이 계속 나아갑니다. 주저 없이 400개의 게임을 정복하세요.</string>
-    <string name="medalla_fortis_500">당신의 마음은 확고합니다. 500개의 게임에 도달하여 당신의 전설을 강화하세요.</string>
-    <string name="medalla_tenax_600">멈추지 마세요. 600개의 게임을 완료하면 당신의 끈기가 빛날 것입니다.</string>
-    <string name="medalla_intrepidus_700">두려움 없이 모든 도전에 맞서세요. 700개의 게임에 도달하면 이 메달은 당신의 것입니다.</string>
-    <string name="medalla_sapiens_800">지혜는 경험으로 얻어집니다. 800개의 게임을 완료하면 그것을 증명할 것입니다.</string>
-    <string name="medalla_exemplar_900">모범이 되세요. 900개의 게임에 도달하면 당신이 결코 포기하지 않았다는 것을 모두가 알게 될 것입니다.</string>
-    <string name="medalla_gloriam_1000">정상에 오를 용기를 내세요. 1000개의 게임이 당신을 영광으로 이끌 것입니다.</string>
-    <string name="medalla_magnus_1100">위대함은 노력으로 만들어집니다. 1100개의 게임에 도달하여 MAGNUS를 받으세요.</string>
-    <string name="medalla_immortalis_1200">당신의 유산은 영원할 것입니다. 1200개의 게임을 완료하면 이 메달이 당신을 불멸하게 합니다.</string>
+
+    <string name="medalla_initium_100">여정은 이제 막 시작되었습니다. 250개의 게임을 완료하고 INITIUM을 획득하세요.</string>
+    <string name="medalla_fidelis_200">당신의 꾸준함은 인정받을 것입니다. 500개의 게임에 도달하면 이 메달은 당신의 것이 됩니다.</string>
+    <string name="medalla_virtus_300">매일 훈련하세요. 750개의 게임을 완료하면 규율의 미덕을 보여줄 것입니다.</string>
+    <string name="medalla_audax_400">오직 용감한 자만이 계속 나아갑니다. 주저 없이 1000개의 게임을 정복하세요.</string>
+    <string name="medalla_fortis_500">당신의 마음은 확고합니다. 1250개의 게임에 도달하여 당신의 전설을 강화하세요.</string>
+    <string name="medalla_tenax_600">멈추지 마세요. 1500개의 게임을 완료하면 당신의 끈기가 빛날 것입니다.</string>
+    <string name="medalla_intrepidus_700">두려움 없이 모든 도전에 맞서세요. 1750개의 게임에 도달하면 이 메달은 당신의 것입니다.</string>
+    <string name="medalla_sapiens_800">지혜는 경험으로 얻어집니다. 2000개의 게임을 완료하면 그것을 증명할 것입니다.</string>
+    <string name="medalla_exemplar_900">모범이 되세요. 2250개의 게임에 도달하면 당신이 결코 포기하지 않았다는 것을 모두가 알게 될 것입니다.</string>
+    <string name="medalla_gloriam_1000">정상에 오를 용기를 내세요. 2500개의 게임이 당신을 영광으로 이끌 것입니다.</string>
+    <string name="medalla_magnus_1100">위대함은 노력으로 만들어집니다. 2750개의 게임에 도달하여 MAGNUS를 받으세요.</string>
+    <string name="medalla_immortalis_1200">당신의 유산은 영원할 것입니다. 3000개의 게임을 완료하면 이 메달이 당신을 불멸하게 합니다.</string>
+
+
     <string name="corona_volucer_1">가장 빠른 정신을 위해. 1위를 차지한 자만이 이 전설적인 왕관을 받을 자격이 있습니다.</string>
     <string name="corona_celeris_6">속도에서 2위를 차지한 자를 위해. Celeris 왕관은 당신의 속도와 꾸준함을 보상합니다.</string>
     <string name="corona_velocitas_10">속도에서 3위도 명예에 걸맞습니다. 이 왕관은 당신의 정신적 민첩성을 인정합니다.</string>
@@ -904,30 +907,34 @@
     <string name="medalla_titulo_gloriam">🌟 최고의 GLORIAM 달성! 🌟</string>
     <string name="medalla_titulo_magnus">🏆 MAGNUS 위대함 정복! 🏆</string>
     <string name="medalla_titulo_immortalis">✨ IMMORTALIS 전설 구축! ✨</string>
-    <string name="medalla_desc_initium">100개의 독특한 게임을 완료했습니다! 당신의 헌신으로 컬렉션의 시작인 INITIUM 메달을 획득했습니다.</string>
-    <string name="medalla_desc_fidelis">200개의 게임을 완료했습니다! 당신의 꾸준함은 칭찬받을 만하며, 이로써 FIDELIS 메달을 획득했습니다.</string>
-    <string name="medalla_desc_virtus">300개의 다른 도전을 극복한 당신에게 VIRTUS 메달이 주어집니다. 당신의 정신적 용기는 모든 게임에서 드러납니다!</string>
-    <string name="medalla_desc_audax">400개의 게임을 마스터했습니다! 당신의 대담함이 당신을 명망 있는 AUDAX 메달 정복으로 이끌었습니다.</string>
-    <string name="medalla_desc_fortis">500개의 다른 게임에서 정신력을 보여주었으며, 뛰어난 FORTIS 메달을 받을 자격이 있습니다.</string>
-    <string name="medalla_desc_tenax">인내는 보상받습니다! 600개의 게임을 완료하면 TENAX 메달을 받게 됩니다.</string>
-    <string name="medalla_desc_intrepidus">당신의 용감한 정신이 700개의 도전을 극복하여 존경받는 INTREPIDUS 메달을 수여받았습니다.</string>
-    <string name="medalla_desc_sapiens">지혜는 연습을 통해 얻어집니다: 800개의 게임을 완료하면 SAPIENS 메달을 받을 자격이 있습니다.</string>
-    <string name="medalla_desc_exemplar">당신은 결단력의 모범입니다! 900개의 게임을 통과하여 모범적인 EXEMPLAR 메달을 받았습니다.</string>
-    <string name="medalla_desc_gloriam">당신의 인내에 영광을! 1000개의 도전을 정복하여 영광스러운 GLORIAM 메달을 달성했습니다.</string>
-    <string name="medalla_desc_magnus">장엄한 업적입니다! 1100개의 다른 게임을 완료하여 위대한 MAGNUS 메달을 획득했습니다.</string>
-    <string name="medalla_desc_immortalis">불멸의 위업! 1200개의 독특한 도전을 완료하여 전설적인 IMMORTALIS 메달로 자신을 봉헌했습니다.</string>
-    <string name="medalla_motiv_initium">⭐ 다음 목표: FIDELIS - 100개의 새로운 레벨을 완료하면 이 메달은 당신의 것입니다</string>
-    <string name="medalla_motiv_fidelis">🎯 다음 도전: VIRTUS - 100개의 게임을 더 추가하면 다음 업적이 잠금 해제됩니다</string>
-    <string name="medalla_motiv_virtus">🚀 당신의 다음 정복: AUDAX - 100개의 추가 레벨이 당신을 기다립니다</string>
-    <string name="medalla_motiv_audax">💫 위대함을 향하여: FORTIS - 100개의 새로운 게임으로 계속하세요</string>
-    <string name="medalla_motiv_fortis">⚡ TENAX를 향해 나아가세요 - 100개의 도전만 더 하면 영광은 당신의 것입니다</string>
-    <string name="medalla_motiv_tenax">🔥 지평선 너머에: INTREPIDUS - 100개의 게임을 더 견뎌내면 달성할 수 있습니다</string>
-    <string name="medalla_motiv_intrepidus">🧠 지혜로 가는 길: SAPIENS - 100개의 새로운 레벨이 당신을 더 가깝게 만듭니다</string>
-    <string name="medalla_motiv_sapiens">👑 당신의 운명: EXEMPLAR - 100개의 추가 게임을 완료하고 모범이 되세요</string>
-    <string name="medalla_motiv_exemplar">🌟 영광이 기다립니다: GLORIAM - 정상까지 100개의 레벨만 남았습니다</string>
-    <string name="medalla_motiv_gloriam">🏆 다음 위대함: MAGNUS - 장엄함을 위해 100개의 도전만 더 하면 됩니다</string>
-    <string name="medalla_motiv_magnus">✨ 불멸을 향하여: IMMORTALIS - 전설을 위한 마지막 100개의 게임</string>
+
+    <string name="medalla_desc_initium">250개의 독특한 게임을 완료했습니다! 당신의 헌신으로 컬렉션의 시작인 INITIUM 메달을 획득했습니다.</string>
+    <string name="medalla_desc_fidelis">500개의 게임을 완료했습니다! 당신의 꾸준함은 칭찬받을 만하며, 이로써 FIDELIS 메달을 획득했습니다.</string>
+    <string name="medalla_desc_virtus">750개의 다른 도전을 극복한 당신에게 VIRTUS 메달이 주어집니다. 당신의 정신적 용기는 모든 게임에서 드러납니다!</string>
+    <string name="medalla_desc_audax">1000개의 게임을 마스터했습니다! 당신의 대담함이 당신을 명망 있는 AUDAX 메달 정복으로 이끌었습니다.</string>
+    <string name="medalla_desc_fortis">1250개의 다른 게임에서 정신력을 보여주었으며, 뛰어난 FORTIS 메달을 받을 자격이 있습니다.</string>
+    <string name="medalla_desc_tenax">인내는 보상받습니다! 1500개의 게임을 완료하면 TENAX 메달을 받게 됩니다.</string>
+    <string name="medalla_desc_intrepidus">당신의 용감한 정신이 1750개의 도전을 극복하여 존경받는 INTREPIDUS 메달을 수여받았습니다.</string>
+    <string name="medalla_desc_sapiens">지혜는 연습을 통해 얻어집니다: 2000개의 게임을 완료하면 SAPIENS 메달을 받을 자격이 있습니다.</string>
+    <string name="medalla_desc_exemplar">당신은 결단력의 모범입니다! 2250개의 게임을 통과하여 모범적인 EXEMPLAR 메달을 받았습니다.</string>
+    <string name="medalla_desc_gloriam">당신의 인내에 영광을! 2500개의 도전을 정복하여 영광스러운 GLORIAM 메달을 달성했습니다.</string>
+    <string name="medalla_desc_magnus">장엄한 업적입니다! 2750개의 다른 게임을 완료하여 위대한 MAGNUS 메달을 획득했습니다.</string>
+    <string name="medalla_desc_immortalis">불멸의 위업! 3000개의 독특한 도전을 완료하여 전설적인 IMMORTALIS 메달로 자신을 봉헌했습니다.</string>
+
+    <string name="medalla_motiv_initium">⭐ 다음 목표: FIDELIS - 250개의 새로운 레벨을 완료하면 이 메달은 당신의 것입니다</string>
+    <string name="medalla_motiv_fidelis">🎯 다음 도전: VIRTUS - 250개의 게임을 더 추가하면 다음 업적이 잠금 해제됩니다</string>
+    <string name="medalla_motiv_virtus">🚀 당신의 다음 정복: AUDAX - 250개의 추가 레벨이 당신을 기다립니다</string>
+    <string name="medalla_motiv_audax">💫 위대함을 향하여: FORTIS - 250개의 새로운 게임으로 계속하세요</string>
+    <string name="medalla_motiv_fortis">⚡ TENAX를 향해 나아가세요 - 250개의 도전만 더 하면 영광은 당신의 것입니다</string>
+    <string name="medalla_motiv_tenax">🔥 지평선 너머에: INTREPIDUS - 250개의 게임을 더 견뎌내면 달성할 수 있습니다</string>
+    <string name="medalla_motiv_intrepidus">🧠 지혜로 가는 길: SAPIENS - 250개의 새로운 레벨이 당신을 더 가깝게 만듭니다</string>
+    <string name="medalla_motiv_sapiens">👑 당신의 운명: EXEMPLAR - 250개의 추가 게임을 완료하고 모범이 되세요</string>
+    <string name="medalla_motiv_exemplar">🌟 영광이 기다립니다: GLORIAM - 정상까지 250개의 레벨만 남았습니다</string>
+    <string name="medalla_motiv_gloriam">🏆 다음 위대함: MAGNUS - 장엄함을 위해 250개의 도전만 더 하면 됩니다</string>
+    <string name="medalla_motiv_magnus">✨ 불멸을 향하여: IMMORTALIS - 전설을 위한 마지막 250개의 게임</string>
     <string name="medalla_motiv_immortalis">🏆 메달 컬렉션 완료! 당신은 SumaMente의 전설입니다!</string>
+
+
     <plurals name="medalla_contador_progreso">
         <item quantity="other">📈 메달 %1$d개, %2$d개 남음</item>
     </plurals>
@@ -1379,5 +1386,8 @@
     <string name="instruction_game_terms_28">수학적 도전에 대비하세요! 🧮 칠판에 나타나는 28개의 연습 문제를 머릿속으로 푸세요. 버튼에서 결과를 찾으면 즉시 버튼을 누르세요. 어떤 옵션도 일치하지 않으면, 주저하지 말고 없음 을 선택하세요. 최대 12개의 오류가 허용됩니다. 집중력을 유지하세요!</string>
 
     <string name="instruction_game_time_addition">시간에 대한 당신의 숙련도를 보여주세요! ⏰ 칠판에 나타나는 시와 분을 올바르게 더하세요. 60분이 1시간과 같다는 것을 기억하세요. 차분하게 생각하고 00:00 형식으로 정확한 결과를 찾으세요. 어떤 옵션도 맞지 않으면, “없음”을 선택하고 계속 진행하세요.</string>
+
+    <string name="error_username_check_failed">사용자 이름을 확인하지 못했습니다. 다시 시도해 주세요.</string>
+    <string name="username_error_icon_description">사용자 이름 확인 오류</string>
 
 </resources>

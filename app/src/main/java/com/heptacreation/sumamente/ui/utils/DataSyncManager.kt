@@ -925,11 +925,7 @@ object DataSyncManager {
 
     fun updateCanjeStatus(status: Boolean) {
         val firestore = FirebaseFirestore.getInstance()
-        val user = auth.currentUser
-
-        if (user == null) {
-            return
-        }
+        val user = auth.currentUser ?: return
 
         firestore.collection("usuarios")
             .document(user.uid)

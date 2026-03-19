@@ -1995,7 +1995,6 @@ class GameActivityFocoPlus : BaseActivity() {
                 val width = boardContainer.width.toFloat()
                 val offset = width * 0.25f
                 val startX = -tvSingle.width.toFloat()
-                val endX = offset
 
                 tvSingle.translationX = startX
                 tvSingle.translationY = 0f
@@ -2003,7 +2002,7 @@ class GameActivityFocoPlus : BaseActivity() {
                 tvSingle.visibility = View.VISIBLE
 
 
-                ObjectAnimator.ofFloat(tvSingle, "translationX", startX, endX).apply {
+                ObjectAnimator.ofFloat(tvSingle, "translationX", startX, offset).apply {
                     duration = perExerciseMs / 2
                     interpolator = AccelerateDecelerateInterpolator()
                     repeatMode = ValueAnimator.REVERSE

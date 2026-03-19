@@ -168,7 +168,9 @@ class DifficultySelectionActivity : BaseActivity()   {
                     }
                 }
 
-                saveDifficultyPreference(DIFFICULTY_AVANZADO)
+                if (gameType != GAME_TYPE_FOCO_PLUS) {
+                    saveDifficultyPreference(DIFFICULTY_AVANZADO)
+                }
                 navigateBasedOnSelection(DIFFICULTY_AVANZADO, isFromInstructions, level, responseModeStr)
             }
         }
@@ -185,7 +187,9 @@ class DifficultySelectionActivity : BaseActivity()   {
                     }
                 }
 
-                saveDifficultyPreference(DIFFICULTY_PRO)
+                if (gameType != GAME_TYPE_FOCO_PLUS) {
+                    saveDifficultyPreference(DIFFICULTY_PRO)
+                }
                 navigateBasedOnSelection(DIFFICULTY_PRO, isFromInstructions, level, responseModeStr)
             }
         }
@@ -200,8 +204,7 @@ class DifficultySelectionActivity : BaseActivity()   {
 
         if (gameType == "MathPlus") {
             when (difficulty) {
-                DIFFICULTY_PRINCIPIANTE -> { return }
-                DIFFICULTY_AVANZADO, DIFFICULTY_PRO -> { showComingSoonDialog(); return }
+                DIFFICULTY_PRINCIPIANTE, DIFFICULTY_AVANZADO, DIFFICULTY_PRO -> { showComingSoonDialog(); return }
             }
         }
 

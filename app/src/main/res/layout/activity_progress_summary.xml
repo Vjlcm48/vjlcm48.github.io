@@ -58,8 +58,6 @@
             android:layout_height="wrap_content"
             android:text="@string/levels_completed"
             android:textColor="?attr/colorOnBackground"
-
-
             android:fontFamily="@font/roboto_bold"
             android:textSize="16sp"
             android:layout_toStartOf="@id/tv_global_progress"
@@ -71,8 +69,6 @@
             android:layout_height="wrap_content"
             android:text="@string/progress"
             android:textColor="?attr/colorOnBackground"
-
-
             android:fontFamily="@font/roboto_bold"
             android:textSize="16sp"
             android:layout_alignParentEnd="true"/>
