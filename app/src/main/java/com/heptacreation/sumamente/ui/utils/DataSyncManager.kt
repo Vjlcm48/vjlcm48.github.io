@@ -109,6 +109,8 @@ object DataSyncManager {
 
         Log.d("DataSyncManager", "Sincronizando datos con Firebase")
 
+
+
         firestore.collection("usuarios")
             .document(user.uid)
             .set(data, SetOptions.merge())
@@ -180,7 +182,6 @@ object DataSyncManager {
                         CondecoracionTracker.importAllDataFromJson(context, json)
                     }
                 }
-
 
                 onResult(true, null)
             }

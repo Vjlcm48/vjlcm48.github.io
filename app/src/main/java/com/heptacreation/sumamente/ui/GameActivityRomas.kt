@@ -464,7 +464,6 @@ class GameActivityRomas : BaseActivity()  {
         })
     }
 
-
     private fun startProgressTimer() {
         val totalDuration = timePerNumberList.sum()
         progressRing.startProgressAnimation(totalDuration)

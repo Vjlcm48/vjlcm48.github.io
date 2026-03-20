@@ -81,7 +81,6 @@ class UsernameSelectionActivity : BaseActivity() {
         usernameInputLayout.endIconMode = TextInputLayout.END_ICON_NONE
         usernameInputLayout.isEndIconVisible = false
 
-
         if (isTestUsername(username)) {
             playValidationSound()
             showSuccessCheckmark()

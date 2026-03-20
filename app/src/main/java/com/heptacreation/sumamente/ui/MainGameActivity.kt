@@ -57,6 +57,7 @@ class MainGameActivity : BaseActivity() {
         const val BOUNCE_DURATION = 50L
         const val WORK_TAG = "daily_condecoraciones"
         const val WORK_INTERVAL_HOURS = 24L
+        const val POST_RESUME_DEFER_MS = 2500L
     }
 
     private var mediaPlayer: MediaPlayer? = null
@@ -80,6 +81,11 @@ class MainGameActivity : BaseActivity() {
     private lateinit var statisticsButton: TextView
     private lateinit var welcomeOverlay: FrameLayout
     private var isActivityVisible = false
+    private val postResumeHandler = Handler(Looper.getMainLooper())
+    private var postResumeWork: Runnable? = null
+    private var backgroundCondecoracionesThread: Thread? = null
+    private var backgroundSyncThread: Thread? = null
+    private var isNavigating = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
@@ -262,6 +268,8 @@ class MainGameActivity : BaseActivity() {
     }
 
     private fun navegarA(activityClass: Class<*>) {
+        if (isNavigating) return
+        isNavigating = true
         fadeOutAndStop()
         startActivity(Intent(this, activityClass))
     }
@@ -379,6 +387,7 @@ class MainGameActivity : BaseActivity() {
                 if (player.isPlaying) {
                     player.stop()
                 }
+                player.reset()
                 player.release()
             } catch (_: IllegalStateException) {
 
@@ -609,18 +618,42 @@ class MainGameActivity : BaseActivity() {
         super.onResume()
         isActivityVisible = true
 
-        actualizarCondecoraciones()
-        updateTrophyRedDot()
+        isNavigating = false
+
         actualizarEstadoMusica()
         actualizarPerfil()
-        updateMessagesRedDot()
+        updateTrophyRedDot()
 
-        val now = System.currentTimeMillis()
-        if (now - lastSyncUpMs > 60_000) {
-            DataSyncManager.syncDataToCloud(this) { _, _ -> /* no-op */ }
-            lastSyncUpMs = now
+        postResumeWork?.let { postResumeHandler.removeCallbacks(it) }
+        postResumeWork = Runnable {
+            if (!isActivityVisible || isFinishing || isDestroyed) return@Runnable
+
+            backgroundCondecoracionesThread?.interrupt()
+            backgroundCondecoracionesThread = Thread {
+                try {
+                    actualizarCondecoraciones()
+                    runOnUiThread {
+                        if (!isFinishing && !isDestroyed && isActivityVisible) {
+                            updateTrophyRedDot()
+                            updateMessagesRedDot()
+                        }
+                    }
+                } catch (_: Exception) { }
+            }.apply { start() }
+
+            val now = System.currentTimeMillis()
+            if (now - lastSyncUpMs > 240_000) {
+                lastSyncUpMs = now
+                backgroundSyncThread?.interrupt()
+                backgroundSyncThread = Thread {
+                    try {
+                        DataSyncManager.syncDataToCloud(this) { _, _ -> }
+                    } catch (_: Exception) { }
+                }.apply { start() }
+            }
         }
 
+        postResumeHandler.postDelayed(postResumeWork!!, POST_RESUME_DEFER_MS)
     }
 
     private fun actualizarCondecoraciones() {
@@ -663,6 +696,11 @@ class MainGameActivity : BaseActivity() {
     override fun onPause() {
         super.onPause()
         isActivityVisible = false
+        postResumeWork?.let { postResumeHandler.removeCallbacks(it) }
+        backgroundCondecoracionesThread?.interrupt()
+        backgroundCondecoracionesThread = null
+        backgroundSyncThread?.interrupt()
+        backgroundSyncThread = null
         stopMusic()
         locationManager.removeUpdates(locationListener)
     }

@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.enableEdgeToEdge
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.heptacreation.sumamente.R
@@ -29,6 +30,8 @@ class MisCondecoracionesActivity : BaseActivity()  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+
         setContentView(R.layout.activity_mis_condecoraciones)
 
         CondecoracionTracker.init(this)
@@ -63,7 +66,6 @@ class MisCondecoracionesActivity : BaseActivity()  {
         btnBack = findViewById(R.id.btn_back)
         btnClose = findViewById(R.id.btn_close)
     }
-
 
     private fun setupButtons() {
 
