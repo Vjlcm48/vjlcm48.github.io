@@ -175,7 +175,9 @@ class GameSelectionActivity : BaseActivity() {
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                startActivity(Intent(this@GameSelectionActivity, MainGameActivity::class.java))
+                val intent = Intent(this@GameSelectionActivity, MainGameActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
                 finish()
             }
         })
@@ -342,7 +344,9 @@ class GameSelectionActivity : BaseActivity() {
 
         closeButton.setOnClickListener {
             applyBounceEffect(it) {
-                startActivity(Intent(this, MainGameActivity::class.java))
+                val intent = Intent(this, MainGameActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
             }
         }
 

@@ -174,6 +174,12 @@ class LevelResultActivitySumaResta : BaseActivity()  {
         ScoreManager.updateIqComponent("SumaResta", "Avanzado", aporte)
         ScoreManager.saveStatsGlobalAndSumaResta()
 
+        Thread {
+            try {
+                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
+            } catch (_: Exception) { }
+        }.start()
+
     }
 
     private fun handleFailureScenario() {
@@ -188,6 +194,12 @@ class LevelResultActivitySumaResta : BaseActivity()  {
 
         ScoreManager.updateIqComponent("SumaResta", "Avanzado", 0.0)
         ScoreManager.saveStatsGlobalAndSumaResta()
+
+        Thread {
+            try {
+                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
+            } catch (_: Exception) { }
+        }.start()
     }
 
     private fun verificarMedallasAntesDeMostrarExito() {

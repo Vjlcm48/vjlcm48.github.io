@@ -175,6 +175,12 @@ class LevelResultActivityRomasPro : BaseActivity()  {
         ScoreManager.updateIqComponent("Romas", "Pro", aporte)
         ScoreManager.saveStatsGlobalAndRomas()
 
+        Thread {
+            try {
+                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
+            } catch (_: Exception) { }
+        }.start()
+
     }
 
     private fun handleFailureScenario() {
@@ -189,6 +195,12 @@ class LevelResultActivityRomasPro : BaseActivity()  {
 
         ScoreManager.updateIqComponent("Romas", "Pro", 0.0)
         ScoreManager.saveStatsGlobalAndRomas()
+
+        Thread {
+            try {
+                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
+            } catch (_: Exception) { }
+        }.start()
     }
 
     private fun verificarMedallasAntesDeMostrarExito() {

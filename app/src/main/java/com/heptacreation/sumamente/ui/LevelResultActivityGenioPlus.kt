@@ -163,6 +163,12 @@ class LevelResultActivityGenioPlus : BaseActivity()  {
         val aporte = ((factor * velocidad * precision * 15) * 100).roundToInt() / 100.0
         ScoreManager.updateIqComponent("GenioPlus", "Avanzado", aporte)
         ScoreManager.saveStatsGlobalAndGenioPlus()
+
+        Thread {
+            try {
+                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
+            } catch (_: Exception) { }
+        }.start()
     }
 
     private fun handleFailureScenario() {
@@ -177,6 +183,12 @@ class LevelResultActivityGenioPlus : BaseActivity()  {
 
         ScoreManager.updateIqComponent("GenioPlus", "Avanzado", 0.0)
         ScoreManager.saveStatsGlobalAndGenioPlus()
+
+        Thread {
+            try {
+                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
+            } catch (_: Exception) { }
+        }.start()
     }
 
     private fun verificarMedallasAntesDeMostrarExito() {

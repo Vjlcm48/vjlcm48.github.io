@@ -196,6 +196,13 @@ class LevelResultActivity : BaseActivity()  {
         val aporte = ((factor * velocidad * precision * 5) * 100).roundToInt() / 100.0
         ScoreManager.updateIqComponent("NumerosPlus", "Avanzado", aporte)
         ScoreManager.saveStatsGlobalAndNumerosPlus()
+
+        Thread {
+            try {
+                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
+            } catch (_: Exception) { }
+        }.start()
+
     }
 
     private fun handleFailureScenario() {
@@ -212,6 +219,12 @@ class LevelResultActivity : BaseActivity()  {
 
         ScoreManager.updateIqComponent("NumerosPlus", "Avanzado", 0.0)
         ScoreManager.saveStatsGlobalAndNumerosPlus()
+
+        Thread {
+            try {
+                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
+            } catch (_: Exception) { }
+        }.start()
 
     }
 

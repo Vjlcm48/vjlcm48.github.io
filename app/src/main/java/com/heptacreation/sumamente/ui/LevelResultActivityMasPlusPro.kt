@@ -178,6 +178,12 @@ class LevelResultActivityMasPlusPro : BaseActivity()  {
         val aporte = ((factor * velocidad * precision * 16) * 100).roundToInt() / 100.0
         ScoreManager.updateIqComponent("MasPlus", "Pro", aporte)
         ScoreManager.saveStatsGlobalAndMasPlus()
+
+        Thread {
+            try {
+                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
+            } catch (_: Exception) { }
+        }.start()
     }
 
     private fun handleFailureScenario() {
@@ -192,6 +198,12 @@ class LevelResultActivityMasPlusPro : BaseActivity()  {
 
         ScoreManager.updateIqComponent("MasPlus", "Pro", 0.0)
         ScoreManager.saveStatsGlobalAndMasPlus()
+
+        Thread {
+            try {
+                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
+            } catch (_: Exception) { }
+        }.start()
     }
 
     private fun verificarMedallasAntesDeMostrarExito() {

@@ -58,6 +58,9 @@ class MainGameActivity : BaseActivity() {
         const val WORK_TAG = "daily_condecoraciones"
         const val WORK_INTERVAL_HOURS = 24L
         const val POST_RESUME_DEFER_MS = 2500L
+        private const val LIGHTWEIGHT_SYNC_INTERVAL_MS = 240_000L // 4 minutos
+        private const val CONDECORACIONES_INTERVAL_MS = 120_000L // 2 minutos
+        private var lastCondecoracionesCheckMs = 0L
     }
 
     private var mediaPlayer: MediaPlayer? = null
@@ -563,14 +566,23 @@ class MainGameActivity : BaseActivity() {
     }
 
     private fun scheduleDailyCondecoracionesWork() {
-        val delayMs = calcularDelayHastaMedianoche()
-        val work = crearTrabajoPeriodicoCondecoraciones(delayMs)
-
-        WorkManager.getInstance(this).enqueueUniquePeriodicWork(
-            WORK_TAG,
-            ExistingPeriodicWorkPolicy.KEEP,
-            work
-        )
+        val workManager = WorkManager.getInstance(this)
+        workManager.getWorkInfosForUniqueWorkLiveData(WORK_TAG)
+            .observe(this) { infos ->
+                val yaExisteActivo = infos?.any {
+                    it.state == androidx.work.WorkInfo.State.ENQUEUED ||
+                            it.state == androidx.work.WorkInfo.State.RUNNING
+                } ?: false
+                if (!yaExisteActivo) {
+                    val delayMs = calcularDelayHastaMedianoche()
+                    val work = crearTrabajoPeriodicoCondecoraciones(delayMs)
+                    workManager.enqueueUniquePeriodicWork(
+                        WORK_TAG,
+                        ExistingPeriodicWorkPolicy.KEEP,
+                        work
+                    )
+                }
+            }
     }
 
     private fun calcularDelayHastaMedianoche(): Long {
@@ -617,7 +629,6 @@ class MainGameActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         isActivityVisible = true
-
         isNavigating = false
 
         actualizarEstadoMusica()
@@ -628,26 +639,19 @@ class MainGameActivity : BaseActivity() {
         postResumeWork = Runnable {
             if (!isActivityVisible || isFinishing || isDestroyed) return@Runnable
 
-            backgroundCondecoracionesThread?.interrupt()
-            backgroundCondecoracionesThread = Thread {
-                try {
-                    actualizarCondecoraciones()
-                    runOnUiThread {
-                        if (!isFinishing && !isDestroyed && isActivityVisible) {
-                            updateTrophyRedDot()
-                            updateMessagesRedDot()
-                        }
-                    }
-                } catch (_: Exception) { }
-            }.apply { start() }
-
-            val now = System.currentTimeMillis()
-            if (now - lastSyncUpMs > 240_000) {
-                lastSyncUpMs = now
-                backgroundSyncThread?.interrupt()
-                backgroundSyncThread = Thread {
+            val nowCond = System.currentTimeMillis()
+            if (nowCond - lastCondecoracionesCheckMs > CONDECORACIONES_INTERVAL_MS) {
+                lastCondecoracionesCheckMs = nowCond
+                backgroundCondecoracionesThread?.interrupt()
+                backgroundCondecoracionesThread = Thread {
                     try {
-                        DataSyncManager.syncDataToCloud(this) { _, _ -> }
+                        actualizarCondecoraciones()
+                        runOnUiThread {
+                            if (!isFinishing && !isDestroyed && isActivityVisible) {
+                                updateTrophyRedDot()
+                                updateMessagesRedDot()
+                            }
+                        }
                     } catch (_: Exception) { }
                 }.apply { start() }
             }
@@ -658,11 +662,6 @@ class MainGameActivity : BaseActivity() {
 
     private fun actualizarCondecoraciones() {
         CondecoracionTracker.verificarYEntregarPines()
-        CondecoracionTracker.verificarYActualizarCoronasDeVelocidad(this)
-        CondecoracionTracker.verificarYActualizarCondecoracionesTop10(this)
-        CondecoracionTracker.verificarYActualizarCondecoracionesIQ7(this)
-        CondecoracionTracker.verificarYActualizarCondecoracionesTop5Integral(this)
-        CondecoracionTracker.verificarYActualizarInsigniaRIPlus(this)
     }
 
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
@@ -708,6 +707,15 @@ class MainGameActivity : BaseActivity() {
     override fun onStop() {
         super.onStop()
         stopMusic()
+        val now = System.currentTimeMillis()
+        if (now - lastSyncUpMs > LIGHTWEIGHT_SYNC_INTERVAL_MS) {
+            lastSyncUpMs = now
+            Thread {
+                try {
+                    DataSyncManager.syncLightweightToCloud(this)
+                } catch (_: Exception) { }
+            }.start()
+        }
     }
 
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])

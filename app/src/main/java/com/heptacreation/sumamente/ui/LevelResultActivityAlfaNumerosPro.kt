@@ -175,6 +175,12 @@ class LevelResultActivityAlfaNumerosPro : BaseActivity()  {
         ScoreManager.updateIqComponent("AlfaNumeros", "Pro", aporte)
         ScoreManager.saveStatsGlobalAndAlfaNumeros()
 
+        Thread {
+            try {
+                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
+            } catch (_: Exception) { }
+        }.start()
+
     }
 
     private fun handleFailureScenario() {
@@ -189,6 +195,12 @@ class LevelResultActivityAlfaNumerosPro : BaseActivity()  {
 
         ScoreManager.updateIqComponent("AlfaNumeros", "Pro", 0.0)
         ScoreManager.saveStatsGlobalAndAlfaNumeros()
+
+        Thread {
+            try {
+                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
+            } catch (_: Exception) { }
+        }.start()
     }
 
     private fun verificarMedallasAntesDeMostrarExito() {
@@ -439,10 +451,10 @@ class LevelResultActivityAlfaNumerosPro : BaseActivity()  {
 
                                 override fun onAnimationEnd(animation: android.view.animation.Animation?) {
 
-                                    val puntosAlfaNumeosProActual = ScoreManager.currentScoreAlfaNumerosPro
-                                    val puntajeActualText = getString(R.string.puntaje_actual, puntosAlfaNumeosProActual)
+                                    val puntosAlfaNumerosProActual = ScoreManager.currentScoreAlfaNumerosPro
+                                    val puntajeActualText = getString(R.string.puntaje_actual, puntosAlfaNumerosProActual)
                                     val spannablePuntajeActual = SpannableString(puntajeActualText)
-                                    val puntosStrActual = puntosAlfaNumeosProActual.toString()
+                                    val puntosStrActual = puntosAlfaNumerosProActual.toString()
                                     val startIdxActual = puntajeActualText.indexOf(puntosStrActual)
 
                                     // LR2 Cambio para solucionar el formato de los decimales //

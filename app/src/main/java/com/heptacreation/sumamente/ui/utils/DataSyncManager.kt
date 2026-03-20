@@ -139,6 +139,27 @@ object DataSyncManager {
             }
     }
 
+    fun syncLightweightToCloud(context: Context) {
+        val user = auth.currentUser ?: return
+        val prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val userName = prefs.getString("savedUserName", "") ?: ""
+        val countryCode = prefs.getString("savedCountryCode", "sumamente") ?: "sumamente"
+
+        val data = hashMapOf(
+            "username" to userName,
+            "countryCode" to countryCode,
+            "lastActive" to FieldValue.serverTimestamp()
+        )
+
+        FirebaseFirestore.getInstance()
+            .collection("usuarios")
+            .document(user.uid)
+            .set(data, SetOptions.merge())
+            .addOnFailureListener { e ->
+                Log.e("DataSyncManager", "Error en sync liviano: ${e.localizedMessage}")
+            }
+    }
+
     fun syncDataFromCloud(
         context: Context,
         onResult: (success: Boolean, error: String?) -> Unit

@@ -25,7 +25,9 @@ class DailyCondecoracionesWorker(
             CondecoracionTracker.verificarYActualizarCondecoracionesIQ7Async(applicationContext) { latch.countDown() }
             CondecoracionTracker.verificarYActualizarCondecoracionesTop5IntegralAsync(applicationContext) { latch.countDown() }
 
-            latch.await(45, java.util.concurrent.TimeUnit.SECONDS)
+            kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
+                latch.await(45, java.util.concurrent.TimeUnit.SECONDS)
+            }
 
             Result.success()
         } catch (e: Exception) {

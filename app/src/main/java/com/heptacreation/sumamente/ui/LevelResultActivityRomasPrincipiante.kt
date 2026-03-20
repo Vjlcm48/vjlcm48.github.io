@@ -176,6 +176,12 @@ class LevelResultActivityRomasPrincipiante : BaseActivity()  {
         val aporte = ((factor * velocidad * precision * 6) * 100).roundToInt() / 100.0
         ScoreManager.updateIqComponent("Romas", "Principiante", aporte)
         ScoreManager.saveStatsGlobalAndRomas()
+
+        Thread {
+            try {
+                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
+            } catch (_: Exception) { }
+        }.start()
     }
 
     private fun handleFailureScenario() {
@@ -190,6 +196,12 @@ class LevelResultActivityRomasPrincipiante : BaseActivity()  {
 
         ScoreManager.updateIqComponent("Romas", "Principiante", 0.0)
         ScoreManager.saveStatsGlobalAndRomas()
+
+        Thread {
+            try {
+                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
+            } catch (_: Exception) { }
+        }.start()
     }
 
     private fun verificarMedallasAntesDeMostrarExito() {

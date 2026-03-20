@@ -175,6 +175,12 @@ class LevelResultActivityAlfaNumerosPrincipiante : BaseActivity()  {
         ScoreManager.updateIqComponent("AlfaNumeros", "Principiante", aporte)
         ScoreManager.saveStatsGlobalAndAlfaNumeros()
 
+        Thread {
+            try {
+                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
+            } catch (_: Exception) { }
+        }.start()
+
     }
 
     private fun handleFailureScenario() {
@@ -189,6 +195,12 @@ class LevelResultActivityAlfaNumerosPrincipiante : BaseActivity()  {
 
         ScoreManager.updateIqComponent("AlfaNumeros", "Principiante", 0.0)
         ScoreManager.saveStatsGlobalAndAlfaNumeros()
+
+        Thread {
+            try {
+                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
+            } catch (_: Exception) { }
+        }.start()
     }
 
     private fun verificarMedallasAntesDeMostrarExito() {
