@@ -244,6 +244,7 @@ class DesafiosActivity : BaseActivity() {
 
     private fun returnToMainGame() {
         val intent = Intent(this, MainGameActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
         val options = ActivityOptions.makeCustomAnimation(
             this,
             android.R.anim.fade_in,

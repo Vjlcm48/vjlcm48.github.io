@@ -38,6 +38,7 @@ class MedallasActivity : BaseActivity()  {
             override fun handleOnBackPressed() {
 
                 val intent = Intent(this@MedallasActivity, MainGameActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
                 startActivity(intent)
                 finish()
                 TrofeosActivity.finishTrofeosActivity()
@@ -95,6 +96,7 @@ class MedallasActivity : BaseActivity()  {
         btnClose.setOnClickListener {
             applyBounceEffect(it) {
                 val intent = Intent(this, MainGameActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
                 startActivity(intent)
                 finish()
 

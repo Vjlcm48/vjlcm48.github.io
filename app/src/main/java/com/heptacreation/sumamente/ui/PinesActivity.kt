@@ -40,6 +40,7 @@ class PinesActivity : BaseActivity()  {
 
                 MusicManager.stop()
                 val intent = Intent(this@PinesActivity, MainGameActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
                 startActivity(intent)
                 finish()
                 TrofeosActivity.finishTrofeosActivity()
@@ -91,6 +92,7 @@ class PinesActivity : BaseActivity()  {
             applyBounceEffect(it) {
                 MusicManager.stop()
                 val intent = Intent(this, MainGameActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
                 startActivity(intent)
                 finish()
 

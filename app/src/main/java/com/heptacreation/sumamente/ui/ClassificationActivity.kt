@@ -64,6 +64,7 @@ class ClassificationActivity : BaseActivity() {
             override fun handleOnBackPressed() {
                 MusicManager.stop()
                 val intent = Intent(this@ClassificationActivity, MainGameActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
                 startActivity(intent)
                 finish()
             }
@@ -94,6 +95,7 @@ class ClassificationActivity : BaseActivity() {
             applyBounceEffect(it) {
                 MusicManager.stop()
                 val intent = Intent(this, MainGameActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
                 startActivity(intent)
                 finish()
             }
@@ -103,6 +105,7 @@ class ClassificationActivity : BaseActivity() {
             applyBounceEffect(it) {
                 MusicManager.stop()
                 val intent = Intent(this, MainGameActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
                 startActivity(intent)
                 finish()
             }

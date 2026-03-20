@@ -737,6 +737,7 @@ class LevelResultActivitySumaRestaPrincipiante : BaseActivity()  {
 
     private fun navigateToHome() {
         val intent = Intent(this, MainGameActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
         startActivity(intent)
         finish()
     }
