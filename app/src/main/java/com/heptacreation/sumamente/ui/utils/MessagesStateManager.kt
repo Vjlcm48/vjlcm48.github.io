@@ -4,6 +4,10 @@ import android.content.Context
 import androidx.core.content.edit
 import com.heptacreation.sumamente.R
 import com.heptacreation.sumamente.ui.ScoreManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 object MessagesStateManager {
 
@@ -31,7 +35,10 @@ object MessagesStateManager {
         val unread: Boolean
     )
 
-    fun ensureActivationByThresholds(context: Context) {
+    fun ensureActivationByThresholds(
+        context: Context,
+        onFinished: (() -> Unit)? = null
+    ) {
         val total = ScoreManager.getTotalUniqueLevelsCompletedAllGames()
 
         val prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
@@ -40,8 +47,15 @@ object MessagesStateManager {
         if (total >= 20) maybeActivate(context, MSG_RATE)
         if (total >= 30 && !isPremium) maybeActivate(context, MSG_AMBASSADOR)
 
-        checkReferralUpdates(context)
         cleanupExpiredReferralMessages(context)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            checkReferralUpdates(context)
+
+            withContext(Dispatchers.Main) {
+                onFinished?.invoke()
+            }
+        }
     }
 
 
@@ -67,14 +81,12 @@ object MessagesStateManager {
         }
     }
 
-    private fun checkReferralUpdates(context: Context) {
+    private suspend fun checkReferralUpdates(context: Context) {
         val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
         val storedCount = prefs.getInt("last_referral_count", 0)
 
         val currentCount = try {
-            kotlinx.coroutines.runBlocking {
-                ReferralManager.getReferralsCount()
-            }
+            ReferralManager.getReferralsCount()
         } catch (_: Exception) {
             storedCount
         }

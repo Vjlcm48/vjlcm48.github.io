@@ -18,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.heptacreation.sumamente.R
 import com.heptacreation.sumamente.databinding.ActivitySplashScreenBinding
+import com.google.firebase.auth.FirebaseAuth
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
@@ -107,7 +108,6 @@ class SplashScreenActivity : AppCompatActivity() {
         handler.postDelayed(goNextScreenRunnable, 7000)
     }
 
-
     private fun cancelAllSplashRunnables() {
         fun remove(r: Runnable?) { if (r != null) handler.removeCallbacks(r) }
 
@@ -196,12 +196,16 @@ class SplashScreenActivity : AppCompatActivity() {
                     if (hasNavigated) return
                     hasNavigated = true
 
-                    val username = sharedPreferences.getString("savedUserName", null)
-                    val intent = if (username == null) {
-                        Intent(this@SplashScreenActivity, LanguageSelectionActivity::class.java)
-                    } else {
+                    val authUser = FirebaseAuth.getInstance().currentUser
+                    val authPrefs = getSharedPreferences("AuthPrefs", MODE_PRIVATE)
+                    val savedUid = authPrefs.getString("saved_uid", null)
+                    val hasValidSession = authUser != null || !savedUid.isNullOrBlank()
+
+                    val intent = if (hasValidSession) {
                         Intent(this@SplashScreenActivity, TransitionActivity::class.java)
                             .putExtra("SOURCE", "SplashScreen")
+                    } else {
+                        Intent(this@SplashScreenActivity, LanguageSelectionActivity::class.java)
                     }
 
                     val options = ActivityOptions.makeCustomAnimation(

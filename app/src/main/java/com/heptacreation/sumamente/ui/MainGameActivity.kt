@@ -43,6 +43,8 @@ import android.view.ViewTreeObserver
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.isVisible
 import com.heptacreation.sumamente.ui.utils.MessagesStateManager
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class MainGameActivity : BaseActivity() {
@@ -261,9 +263,20 @@ class MainGameActivity : BaseActivity() {
     }
 
     private fun inicializarCondecoraciones() {
-        ScoreManager.init(this)
-        CondecoracionTracker.init(this)
         scheduleDailyCondecoracionesWork()
+        backgroundSyncThread?.interrupt()
+        backgroundSyncThread = Thread {
+            try {
+                ScoreManager.init(this)
+                CondecoracionTracker.init(this)
+                runOnUiThread {
+                    if (!isFinishing && !isDestroyed) {
+                        updateTrophyRedDot()
+                        updateMessagesRedDot()
+                    }
+                }
+            } catch (_: Exception) { }
+        }.apply { start() }
     }
 
     private fun inicializarMusica() {
@@ -508,12 +521,16 @@ class MainGameActivity : BaseActivity() {
     }
 
     private fun updateMessagesRedDot() {
-        MessagesStateManager.ensureActivationByThresholds(this)
-        val visible = MessagesStateManager.hasGlobalRedDot(this)
-        messagesRedDot.visibility = if (visible) View.VISIBLE else View.GONE
+        val visibleInicial = MessagesStateManager.hasGlobalRedDot(this)
+        messagesRedDot.visibility = if (visibleInicial) View.VISIBLE else View.GONE
+
+        MessagesStateManager.ensureActivationByThresholds(this) {
+            if (!isFinishing && !isDestroyed) {
+                val visibleActualizado = MessagesStateManager.hasGlobalRedDot(this)
+                messagesRedDot.visibility = if (visibleActualizado) View.VISIBLE else View.GONE
+            }
+        }
     }
-
-
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
         val animatorSet = crearAnimacionBounce(view)
@@ -671,8 +688,34 @@ class MainGameActivity : BaseActivity() {
     }
 
     private fun actualizarNombreUsuario() {
-        val savedUsername = sharedPreferences.getString("savedUserName", "Usuario")
-        profileText.text = savedUsername
+        val savedUsername = sharedPreferences.getString("savedUserName", null)
+
+        if (!savedUsername.isNullOrBlank()) {
+            profileText.text = savedUsername
+            return
+        }
+
+        profileText.text = getString(R.string.default_username)
+
+        val currentUser = FirebaseAuth.getInstance().currentUser ?: return
+
+        FirebaseFirestore.getInstance()
+            .collection("usuarios")
+            .document(currentUser.uid)
+            .get()
+            .addOnSuccessListener { document ->
+                val usernameFirestore = document.getString("username")
+
+                if (!usernameFirestore.isNullOrBlank()) {
+                    sharedPreferences.edit {
+                        putString("savedUserName", usernameFirestore)
+                    }
+
+                    if (!isFinishing && !isDestroyed) {
+                        profileText.text = usernameFirestore
+                    }
+                }
+            }
     }
 
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
