@@ -164,11 +164,8 @@ class LevelResultActivityGenioPlus : BaseActivity()  {
         ScoreManager.updateIqComponent("GenioPlus", "Avanzado", aporte)
         ScoreManager.saveStatsGlobalAndGenioPlus()
 
-        Thread {
-            try {
-                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
-            } catch (_: Exception) { }
-        }.start()
+        val syncRequest = androidx.work.OneTimeWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.SyncWorker>().build()
+        androidx.work.WorkManager.getInstance(this).enqueue(syncRequest)
     }
 
     private fun handleFailureScenario() {
@@ -184,11 +181,8 @@ class LevelResultActivityGenioPlus : BaseActivity()  {
         ScoreManager.updateIqComponent("GenioPlus", "Avanzado", 0.0)
         ScoreManager.saveStatsGlobalAndGenioPlus()
 
-        Thread {
-            try {
-                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
-            } catch (_: Exception) { }
-        }.start()
+        val syncRequest = androidx.work.OneTimeWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.SyncWorker>().build()
+        androidx.work.WorkManager.getInstance(this).enqueue(syncRequest)
     }
 
     private fun verificarMedallasAntesDeMostrarExito() {

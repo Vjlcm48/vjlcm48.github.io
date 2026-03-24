@@ -12,6 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.messaging.FirebaseMessaging
 import com.heptacreation.sumamente.ui.ScoreManager
+import com.heptacreation.sumamente.ui.SettingsActivity
 import com.heptacreation.sumamente.ui.utils.PlayStoreReferrerReceiver
 
 class MyApplication : Application() {
@@ -21,23 +22,31 @@ class MyApplication : Application() {
         super.onCreate()
 
         FirebaseApp.initializeApp(this)
+
+        val firestoreSettings = com.google.firebase.firestore.FirebaseFirestoreSettings.Builder()
+            .setPersistenceEnabled(true)
+            .setCacheSizeBytes(com.google.firebase.firestore.FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
+            .build()
+        FirebaseFirestore.getInstance().firestoreSettings = firestoreSettings
+
         ScoreManager.init(this)
 
         ProcessLifecycleOwner.get().lifecycle.addObserver(object : DefaultLifecycleObserver {
+
+
+            @android.annotation.SuppressLint("HardwareIds")
             override fun onStart(owner: LifecycleOwner) {
-
-                android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
-                    setAppState("abierta")
-                    updateLastActive()
-
-                    resetWelcomeCounterIfNeeded()
-
-                }, 1000)
+                setAppState()
+                updateLastActive()
+                resetWelcomeCounterIfNeeded()
+                verificarDispositivoActivo()
             }
 
             override fun onStop(owner: LifecycleOwner) {
-
-                setAppState("cerrada")
+                val appStateRequest = androidx.work.OneTimeWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.AppStateWorker>()
+                    .setExpedited(androidx.work.OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
+                    .build()
+                androidx.work.WorkManager.getInstance(applicationContext).enqueue(appStateRequest)
             }
         })
 
@@ -51,13 +60,13 @@ class MyApplication : Application() {
         }
     }
 
-    private fun setAppState(state: String) {
+    private fun setAppState() {
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
         FirebaseFirestore.getInstance()
             .collection("usuarios")
             .document(uid)
-            .set(mapOf("appState" to state), SetOptions.merge())
-            .addOnSuccessListener { android.util.Log.d("AppState", "appState=$state") }
+            .set(mapOf("appState" to "abierta"), SetOptions.merge())
+            .addOnSuccessListener { android.util.Log.d("AppState", "appState=abierta") }
             .addOnFailureListener { e -> android.util.Log.e("AppState", "Error appState", e) }
     }
 
@@ -94,15 +103,32 @@ class MyApplication : Application() {
             android.util.Log.d("AuthInit", "Usuario anónimo existente: $userId")
 
             if (currentUser != null && userId != null) {
+                val tokenTimeout = android.os.Handler(android.os.Looper.getMainLooper())
+                val tokenTimeoutRunnable = Runnable {
+                    android.util.Log.w("AuthInit", "getIdToken timeout — procediendo directamente para UID: $userId")
+                    actualizarDatosUsuarioExistente(userId)
+                }
+                tokenTimeout.postDelayed(tokenTimeoutRunnable, 5000)
+
                 currentUser.getIdToken(true)
                     .addOnSuccessListener {
+                        tokenTimeout.removeCallbacks(tokenTimeoutRunnable)
                         android.util.Log.d("AuthInit", "Sesión válida confirmada para UID: $userId")
                         actualizarDatosUsuarioExistente(userId)
                     }
                     .addOnFailureListener { e ->
-                        android.util.Log.w("AuthInit", "Sesión inválida detectada, se limpiarán rastros locales: ${e.message}")
-                        limpiarRastrosLocalesDeSesion()
-                        crearNuevaSesionAnonima()
+                        tokenTimeout.removeCallbacks(tokenTimeoutRunnable)
+                        val esErrorDeRed = e is com.google.firebase.FirebaseNetworkException
+                                || e.message?.contains("network", ignoreCase = true) == true
+                                || e.message?.contains("timeout", ignoreCase = true) == true
+                        if (esErrorDeRed) {
+                            android.util.Log.w("AuthInit", "Fallo de red en getIdToken — manteniendo sesión existente para UID: $userId")
+                            actualizarDatosUsuarioExistente(userId)
+                        } else {
+                            android.util.Log.w("AuthInit", "Sesión inválida detectada, se limpiarán rastros locales: ${e.message}")
+                            limpiarRastrosLocalesDeSesion()
+                            crearNuevaSesionAnonima()
+                        }
                     }
             } else {
                 android.util.Log.w("AuthInit", "No hay currentUser válido, se limpiarán rastros locales y se creará nueva sesión")
@@ -248,5 +274,34 @@ class MyApplication : Application() {
                     android.util.Log.e("WelcomeReset", "Error eliminando campos welcome", e)
                 }
         }
+    }
+
+    @android.annotation.SuppressLint("HardwareIds")
+    private fun verificarDispositivoActivo() {
+        val auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser ?: return
+        val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        val isLinked = prefs.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)
+        if (!isLinked) return
+
+        val currentDeviceId = android.provider.Settings.Secure.getString(
+            contentResolver, android.provider.Settings.Secure.ANDROID_ID
+        ) ?: return
+
+        FirebaseFirestore.getInstance()
+            .collection("usuarios")
+            .document(user.uid)
+            .get()
+            .addOnSuccessListener { doc ->
+                val storedDeviceId = doc.getString("activeDeviceId") ?: return@addOnSuccessListener
+                if (storedDeviceId.isNotBlank() && storedDeviceId != currentDeviceId) {
+                    android.util.Log.w("AuthInit", "Dispositivo no autorizado — cerrando sesión")
+                    auth.signOut()
+                    limpiarRastrosLocalesDeSesion()
+                }
+            }
+            .addOnFailureListener { e ->
+                android.util.Log.e("AuthInit", "Error verificando dispositivo activo: ${e.message}")
+            }
     }
 }

@@ -30,6 +30,7 @@ object DataSyncManager {
     private const val SCHEMA_VERSION_CONDECO = 2
 
 
+    @android.annotation.SuppressLint("HardwareIds")
     fun syncDataToCloud(
         context: Context,
         onResult: (success: Boolean, error: String?) -> Unit
@@ -104,60 +105,54 @@ object DataSyncManager {
             "condecoracion_schema_version" to SCHEMA_VERSION_CONDECO,
             "hasInsigniaRIPlus" to (CondecoracionTracker.getInsigniaRIPlus() != null),
             "account_linked" to prefs.getBoolean(SettingsActivity.ACCOUNT_LINKED, false),
+            "activeDeviceId" to if (prefs.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)) {
+                android.provider.Settings.Secure.getString(context.contentResolver, android.provider.Settings.Secure.ANDROID_ID) ?: ""
+            } else "",
             "lastActive" to FieldValue.serverTimestamp()
         )
 
         Log.d("DataSyncManager", "Sincronizando datos con Firebase")
 
+        var syncAttempts = 0
+        val maxSyncAttempts = 3
 
+        fun attemptSync() {
+            syncAttempts++
+            firestore.collection("usuarios")
+                .document(user.uid)
+                .set(data, SetOptions.merge())
+                .addOnSuccessListener {
+                    Log.d("DataSyncManager", "Sincronización exitosa (intento $syncAttempts)")
 
-        firestore.collection("usuarios")
-            .document(user.uid)
-            .set(data, SetOptions.merge())
-            .addOnSuccessListener {
-                Log.d("DataSyncManager", "Sincronización exitosa")
+                    val uid = FirebaseAuth.getInstance().currentUser?.uid
+                    if (uid != null) {
+                        FirebaseMessaging.getInstance().token
+                            .addOnSuccessListener { tk ->
+                                FirebaseFirestore.getInstance()
+                                    .collection("usuarios")
+                                    .document(uid)
+                                    .set(mapOf("fcmToken" to tk), SetOptions.merge())
+                                    .addOnSuccessListener { Log.d("DataSyncManager", "fcmToken (post-sync) guardado con merge") }
+                                    .addOnFailureListener { e -> Log.e("DataSyncManager", "Error guardando fcmToken post-sync", e) }
+                            }
+                            .addOnFailureListener { e -> Log.e("DataSyncManager", "No se pudo obtener token FCM post-sync", e) }
+                    }
 
-                val uid = FirebaseAuth.getInstance().currentUser?.uid
-                if (uid != null) {
-                    FirebaseMessaging.getInstance().token
-                        .addOnSuccessListener { tk ->
-                            FirebaseFirestore.getInstance()
-                                .collection("usuarios")
-                                .document(uid)
-                                .set(mapOf("fcmToken" to tk), SetOptions.merge())
-                                .addOnSuccessListener { Log.d("DataSyncManager", "fcmToken (post-sync) guardado con merge") }
-                                .addOnFailureListener { e -> Log.e("DataSyncManager", "Error guardando fcmToken post-sync", e) }
-                        }
-                        .addOnFailureListener { e -> Log.e("DataSyncManager", "No se pudo obtener token FCM post-sync", e) }
+                    onResult(true, null)
                 }
+                .addOnFailureListener { e ->
+                    Log.e("DataSyncManager", "Error en sincronización intento $syncAttempts: ${e.localizedMessage}")
+                    if (syncAttempts < maxSyncAttempts) {
+                        android.os.Handler(android.os.Looper.getMainLooper())
+                            .postDelayed({ attemptSync() }, 2000)
+                    } else {
+                        Log.e("DataSyncManager", "Sincronización fallida tras $maxSyncAttempts intentos")
+                        onResult(false, e.localizedMessage)
+                    }
+                }
+        }
 
-                onResult(true, null)
-            }
-            .addOnFailureListener { e ->
-                Log.e("DataSyncManager", "Error en sincronización: ${e.localizedMessage}")
-                onResult(false, e.localizedMessage)
-            }
-    }
-
-    fun syncLightweightToCloud(context: Context) {
-        val user = auth.currentUser ?: return
-        val prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val userName = prefs.getString("savedUserName", "") ?: ""
-        val countryCode = prefs.getString("savedCountryCode", "sumamente") ?: "sumamente"
-
-        val data = hashMapOf(
-            "username" to userName,
-            "countryCode" to countryCode,
-            "lastActive" to FieldValue.serverTimestamp()
-        )
-
-        FirebaseFirestore.getInstance()
-            .collection("usuarios")
-            .document(user.uid)
-            .set(data, SetOptions.merge())
-            .addOnFailureListener { e ->
-                Log.e("DataSyncManager", "Error en sync liviano: ${e.localizedMessage}")
-            }
+        attemptSync()
     }
 
     fun syncDataFromCloud(
@@ -201,6 +196,16 @@ object DataSyncManager {
                     (privateData["condecoracion_data"] as? String)?.let { json ->
                         CondecoracionTracker.init(context)
                         CondecoracionTracker.importAllDataFromJson(context, json)
+                    }
+                }
+
+                // Fallback: si savedUserName sigue vacío, usar el username del nivel principal
+                val currentSavedName = prefs.getString("savedUserName", null)
+                if (currentSavedName.isNullOrBlank()) {
+                    val topLevelUsername = doc.getString("username")
+                    if (!topLevelUsername.isNullOrBlank()) {
+                        prefs.edit { putString("savedUserName", topLevelUsername) }
+                        Log.d("DataSync", "Fallback: savedUserName restaurado desde username principal: $topLevelUsername")
                     }
                 }
 
@@ -419,7 +424,7 @@ object DataSyncManager {
                         onResult(false, errorMessage)
                     }
             }
-            .addOnFailureListener { firestoreException ->
+            .addOnFailureListener { _ ->
 
                 onResult(false, context.getString(R.string.account_deleted_error_firestore))
             }

@@ -197,11 +197,8 @@ class LevelResultActivity : BaseActivity()  {
         ScoreManager.updateIqComponent("NumerosPlus", "Avanzado", aporte)
         ScoreManager.saveStatsGlobalAndNumerosPlus()
 
-        Thread {
-            try {
-                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
-            } catch (_: Exception) { }
-        }.start()
+        val syncRequest = androidx.work.OneTimeWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.SyncWorker>().build()
+        androidx.work.WorkManager.getInstance(this).enqueue(syncRequest)
 
     }
 
@@ -220,11 +217,8 @@ class LevelResultActivity : BaseActivity()  {
         ScoreManager.updateIqComponent("NumerosPlus", "Avanzado", 0.0)
         ScoreManager.saveStatsGlobalAndNumerosPlus()
 
-        Thread {
-            try {
-                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
-            } catch (_: Exception) { }
-        }.start()
+        val syncRequest = androidx.work.OneTimeWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.SyncWorker>().build()
+        androidx.work.WorkManager.getInstance(this).enqueue(syncRequest)
 
     }
 

@@ -184,6 +184,7 @@ class SplashScreenActivity : AppCompatActivity() {
         handler.post(fadeOutRunnable!!)
     }
 
+    @SuppressLint("HardwareIds")
     private fun proceedToNextScreen() {
 
         if (hasNavigated) return
@@ -197,9 +198,9 @@ class SplashScreenActivity : AppCompatActivity() {
                     hasNavigated = true
 
                     val authUser = FirebaseAuth.getInstance().currentUser
-                    val authPrefs = getSharedPreferences("AuthPrefs", MODE_PRIVATE)
-                    val savedUid = authPrefs.getString("saved_uid", null)
-                    val hasValidSession = authUser != null || !savedUid.isNullOrBlank()
+                    val mainPrefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+                    val savedUserName = mainPrefs.getString("savedUserName", null)
+                    val hasValidSession = authUser != null && !savedUserName.isNullOrBlank()
 
                     val intent = if (hasValidSession) {
                         Intent(this@SplashScreenActivity, TransitionActivity::class.java)

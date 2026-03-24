@@ -182,11 +182,8 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
         ScoreManager.updateIqComponent("DeciPlus", "Pro", aporte)
         ScoreManager.saveStatsGlobalAndDeciPlus()
 
-        Thread {
-            try {
-                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
-            } catch (_: Exception) { }
-        }.start()
+        val syncRequest = androidx.work.OneTimeWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.SyncWorker>().build()
+        androidx.work.WorkManager.getInstance(this).enqueue(syncRequest)
 
     }
 
@@ -203,11 +200,8 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
         ScoreManager.updateIqComponent("DeciPlus", "Pro", 0.0)
         ScoreManager.saveStatsGlobalAndDeciPlus()
 
-        Thread {
-            try {
-                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
-            } catch (_: Exception) { }
-        }.start()
+        val syncRequest = androidx.work.OneTimeWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.SyncWorker>().build()
+        androidx.work.WorkManager.getInstance(this).enqueue(syncRequest)
     }
 
     private fun verificarMedallasAntesDeMostrarExito() {

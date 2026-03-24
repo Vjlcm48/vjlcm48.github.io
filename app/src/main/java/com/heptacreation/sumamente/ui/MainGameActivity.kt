@@ -60,7 +60,7 @@ class MainGameActivity : BaseActivity() {
         const val WORK_TAG = "daily_condecoraciones"
         const val WORK_INTERVAL_HOURS = 24L
         const val POST_RESUME_DEFER_MS = 2500L
-        private const val LIGHTWEIGHT_SYNC_INTERVAL_MS = 240_000L // 4 minutos
+
         private const val CONDECORACIONES_INTERVAL_MS = 120_000L // 2 minutos
         private var lastCondecoracionesCheckMs = 0L
     }
@@ -69,7 +69,7 @@ class MainGameActivity : BaseActivity() {
     private var fadeHandler: Handler? = null
     private var fadeRunnable: Runnable? = null
     private var didCloudRestore = false
-    private var lastSyncUpMs = 0L
+
     private lateinit var locationManager: LocationManager
     private val locationListener = createLocationListener()
     private lateinit var profileText: TextView
@@ -750,15 +750,6 @@ class MainGameActivity : BaseActivity() {
     override fun onStop() {
         super.onStop()
         stopMusic()
-        val now = System.currentTimeMillis()
-        if (now - lastSyncUpMs > LIGHTWEIGHT_SYNC_INTERVAL_MS) {
-            lastSyncUpMs = now
-            Thread {
-                try {
-                    DataSyncManager.syncLightweightToCloud(this)
-                } catch (_: Exception) { }
-            }.start()
-        }
     }
 
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])

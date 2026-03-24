@@ -101,8 +101,7 @@ class TransitionActivity : BaseActivity() {
         val hasUsername = sharedPrefs.getString("savedUserName", null) != null
 
         val targetActivity = when (source) {
-            "SplashScreen" -> MainGameActivity::class.java
-            "LanguageSelection" -> {
+            "SplashScreen", "LanguageSelection" -> {
                 if (hasUsername) MainGameActivity::class.java
                 else NotificationsActivity::class.java
             }

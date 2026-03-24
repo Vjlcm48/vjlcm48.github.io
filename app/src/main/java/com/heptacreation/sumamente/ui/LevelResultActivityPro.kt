@@ -186,11 +186,8 @@ class LevelResultActivityPro : BaseActivity()  {
         ScoreManager.updateIqComponent("NumerosPlus", "Pro", aporte)
         ScoreManager.saveStatsGlobalAndNumerosPlus()
 
-        Thread {
-            try {
-                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
-            } catch (_: Exception) { }
-        }.start()
+        val syncRequest = androidx.work.OneTimeWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.SyncWorker>().build()
+        androidx.work.WorkManager.getInstance(this).enqueue(syncRequest)
     }
 
     private fun handleFailureScenario() {
@@ -208,11 +205,8 @@ class LevelResultActivityPro : BaseActivity()  {
         ScoreManager.updateIqComponent("NumerosPlus", "Pro", 0.0)
         ScoreManager.saveStatsGlobalAndNumerosPlus()
 
-        Thread {
-            try {
-                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
-            } catch (_: Exception) { }
-        }.start()
+        val syncRequest = androidx.work.OneTimeWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.SyncWorker>().build()
+        androidx.work.WorkManager.getInstance(this).enqueue(syncRequest)
     }
 
     private fun verificarMedallasAntesDeMostrarExito() {

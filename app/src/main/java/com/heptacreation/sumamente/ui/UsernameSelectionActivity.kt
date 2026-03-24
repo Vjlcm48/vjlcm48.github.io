@@ -109,7 +109,15 @@ class UsernameSelectionActivity : BaseActivity() {
 
         btnAccept.isEnabled = false
 
-        checkUsernameAvailable(username) { available ->
+        checkUsernameAvailable(username) { success, available ->
+            if (!success) {
+                usernameInputLayout.error = getString(R.string.error_username_check_failed)
+                showErrorIcon()
+                playErrorSound()
+                shakeView(usernameInputLayout)
+                btnAccept.isEnabled = true
+                return@checkUsernameAvailable
+            }
             if (!available) {
                 usernameInputLayout.error = getString(R.string.error_username_taken)
                 showErrorIcon()
@@ -139,19 +147,29 @@ class UsernameSelectionActivity : BaseActivity() {
         }
     }
 
-    private fun checkUsernameAvailable(username: String, onResult: (Boolean) -> Unit) {
+    private fun checkUsernameAvailable(username: String, onResult: (Boolean, Boolean) -> Unit) {
         val firestore = FirebaseFirestore.getInstance()
+        var attempts = 0
+        val maxAttempts = 3
 
-        firestore.collection("usernames")
-            .document(username)
-            .get()
-            .addOnSuccessListener { document ->
-                val isAvailable = !document.exists()
-                onResult(isAvailable)
-            }
-            .addOnFailureListener {
-                onResult(false)
-            }
+        fun attempt() {
+            attempts++
+            firestore.collection("usernames")
+                .document(username)
+                .get(com.google.firebase.firestore.Source.SERVER)
+                .addOnSuccessListener { document ->
+                    onResult(true, !document.exists())
+                }
+                .addOnFailureListener {
+                    if (attempts < maxAttempts) {
+                        Handler(Looper.getMainLooper())
+                            .postDelayed({ attempt() }, 2000)
+                    } else {
+                        onResult(false, false)
+                    }
+                }
+        }
+        attempt()
     }
 
     private fun showSuccessCheckmark() {

@@ -220,6 +220,9 @@ class LevelResultActivityFocoPlus : BaseActivity() {
         getScoreManagerFunction("saveScore").invoke()
         ScoreManager.saveStatsGlobalAndFocoPlus()
 
+        val syncRequest = androidx.work.OneTimeWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.SyncWorker>().build()
+        androidx.work.WorkManager.getInstance(this).enqueue(syncRequest)
+
         showSuccessDialog()
     }
 
@@ -235,6 +238,9 @@ class LevelResultActivityFocoPlus : BaseActivity() {
 
         getScoreManagerFunction("saveScore").invoke()
         ScoreManager.saveStatsGlobalAndFocoPlus()
+
+        val syncRequest = androidx.work.OneTimeWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.SyncWorker>().build()
+        androidx.work.WorkManager.getInstance(this).enqueue(syncRequest)
 
         showFailureDialog()
     }

@@ -148,7 +148,7 @@ class LanguageChangeActivity : BaseActivity() {
             commit()
         }
 
-        setAppLanguage(languageCode)  //  esta linea antes estaba comentada
+        // setAppLanguage(languageCode)  //  esta linea antes estaba comentada
 
         checkMarks.forEach { it.visibility = View.GONE }
 
@@ -175,129 +175,129 @@ class LanguageChangeActivity : BaseActivity() {
         }, 350)
     }
 
-    private fun setAppLanguage(languageCode: String) {
-        val locale = java.util.Locale.Builder().setLanguage(languageCode).build()
-        java.util.Locale.setDefault(locale)
-        val configuration = android.content.res.Configuration(resources.configuration)
-        configuration.setLocale(locale)
-        resources.updateConfiguration(configuration, resources.displayMetrics)
-    }  //  esta funcion se incluyó para dejar operativa la linea que se des comentó
+/* private fun setAppLanguage(languageCode: String) {
+    val locale = java.util.Locale.Builder().setLanguage(languageCode).build()
+    java.util.Locale.setDefault(locale)
+    val configuration = android.content.res.Configuration(resources.configuration)
+    configuration.setLocale(locale)
+    resources.updateConfiguration(configuration, resources.displayMetrics)
+} */  //  esta función se incluyó para dejar operativa la línea que se des comentó
 
-    private fun startAnimations() {
-        val logo = findViewById<ImageView>(R.id.app_logo)
-        val card = findViewById<View>(R.id.card_view)
-        val logoZoomIn = AnimationUtils.loadAnimation(this, R.anim.logo_zoom_in)
+private fun startAnimations() {
+    val logo = findViewById<ImageView>(R.id.app_logo)
+    val card = findViewById<View>(R.id.card_view)
+    val logoZoomIn = AnimationUtils.loadAnimation(this, R.anim.logo_zoom_in)
 
-        logo.startAnimation(logoZoomIn)
-        logo.alpha = 1f
+    logo.startAnimation(logoZoomIn)
+    logo.alpha = 1f
 
-        logoZoomIn.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
-            override fun onAnimationStart(animation: android.view.animation.Animation?) {}
+    logoZoomIn.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
+        override fun onAnimationStart(animation: android.view.animation.Animation?) {}
 
-            override fun onAnimationEnd(animation: android.view.animation.Animation?) {
-                card.animate()
-                    .alpha(1f)
-                    .setDuration(800)
-                    .setStartDelay(0)
-                    .start()
-
-                languageButtons.forEachIndexed { index, button ->
-                    button.animate()
-                        .alpha(1f)
-                        .translationY(0f)
-                        .setDuration(500)
-                        .setStartDelay(200 + (80 * index).toLong())
-                        .start()
-                }
-                val bounceAnimation = AnimationUtils.loadAnimation(this@LanguageChangeActivity, R.anim.bounce_arrow)
-                arrowIcon.startAnimation(bounceAnimation)
-                arrowIcon.animate().alpha(1f).setDuration(400).setStartDelay(800).start()
-                gradientView.animate().alpha(1f).setDuration(400).setStartDelay(800).start()
-            }
-
-            override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
-        })
-
-        languageButtons.forEachIndexed { index, button ->
-            button.alpha = 0f
-            button.translationY = 150f
-            button.animate()
+        override fun onAnimationEnd(animation: android.view.animation.Animation?) {
+            card.animate()
                 .alpha(1f)
-                .translationY(0f)
-                .setDuration(500)
-                .setStartDelay(500 + (80 * index).toLong())
+                .setDuration(800)
+                .setStartDelay(0)
                 .start()
-        }
 
-        val bounceAnimation = AnimationUtils.loadAnimation(this, R.anim.bounce_arrow)
-        arrowIcon.startAnimation(bounceAnimation)
-        arrowIcon.animate().alpha(1f).setDuration(400).setStartDelay(800).start()
-        gradientView.animate().alpha(1f).setDuration(400).setStartDelay(800).start()
-    }
-
-    private fun setupScrollListener() {
-        scrollView.setOnScrollChangeListener { _, _, scrollY, _, _ ->
-            if (scrollY > 50 && arrowIcon.isVisible) {
-                arrowIcon.clearAnimation()
-                arrowIcon.animate().alpha(0f).setDuration(200).withEndAction {
-                    arrowIcon.visibility = View.GONE
-                    gradientView.visibility = View.GONE
-                }.start()
+            languageButtons.forEachIndexed { index, button ->
+                button.animate()
+                    .alpha(1f)
+                    .translationY(0f)
+                    .setDuration(500)
+                    .setStartDelay(200 + (80 * index).toLong())
+                    .start()
             }
+            val bounceAnimation = AnimationUtils.loadAnimation(this@LanguageChangeActivity, R.anim.bounce_arrow)
+            arrowIcon.startAnimation(bounceAnimation)
+            arrowIcon.animate().alpha(1f).setDuration(400).setStartDelay(800).start()
+            gradientView.animate().alpha(1f).setDuration(400).setStartDelay(800).start()
         }
+
+        override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
+    })
+
+    languageButtons.forEachIndexed { index, button ->
+        button.alpha = 0f
+        button.translationY = 150f
+        button.animate()
+            .alpha(1f)
+            .translationY(0f)
+            .setDuration(500)
+            .setStartDelay(500 + (80 * index).toLong())
+            .start()
     }
 
-    private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
-        val scaleDownX = android.animation.ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.9f).setDuration(50)
-        val scaleDownY = android.animation.ObjectAnimator.ofFloat(view, "scaleY", 1f, 0.9f).setDuration(50)
-        val scaleUpX = android.animation.ObjectAnimator.ofFloat(view, "scaleX", 0.9f, 1f).setDuration(50)
-        val scaleUpY = android.animation.ObjectAnimator.ofFloat(view, "scaleY", 0.9f, 1f).setDuration(50)
+    val bounceAnimation = AnimationUtils.loadAnimation(this, R.anim.bounce_arrow)
+    arrowIcon.startAnimation(bounceAnimation)
+    arrowIcon.animate().alpha(1f).setDuration(400).setStartDelay(800).start()
+    gradientView.animate().alpha(1f).setDuration(400).setStartDelay(800).start()
+}
 
-        val scaleDown = android.animation.AnimatorSet().apply {
-            playTogether(scaleDownX, scaleDownY)
+private fun setupScrollListener() {
+    scrollView.setOnScrollChangeListener { _, _, scrollY, _, _ ->
+        if (scrollY > 50 && arrowIcon.isVisible) {
+            arrowIcon.clearAnimation()
+            arrowIcon.animate().alpha(0f).setDuration(200).withEndAction {
+                arrowIcon.visibility = View.GONE
+                gradientView.visibility = View.GONE
+            }.start()
         }
-        val scaleUp = android.animation.AnimatorSet().apply {
-            playTogether(scaleUpX, scaleUpY)
-        }
+    }
+}
 
-        val animatorSet = android.animation.AnimatorSet()
-        animatorSet.playSequentially(scaleDown, scaleUp)
-        animatorSet.addListener(object : AnimatorListenerAdapter() {
+private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {
+    val scaleDownX = android.animation.ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.9f).setDuration(50)
+    val scaleDownY = android.animation.ObjectAnimator.ofFloat(view, "scaleY", 1f, 0.9f).setDuration(50)
+    val scaleUpX = android.animation.ObjectAnimator.ofFloat(view, "scaleX", 0.9f, 1f).setDuration(50)
+    val scaleUpY = android.animation.ObjectAnimator.ofFloat(view, "scaleY", 0.9f, 1f).setDuration(50)
+
+    val scaleDown = android.animation.AnimatorSet().apply {
+        playTogether(scaleDownX, scaleDownY)
+    }
+    val scaleUp = android.animation.AnimatorSet().apply {
+        playTogether(scaleUpX, scaleUpY)
+    }
+
+    val animatorSet = android.animation.AnimatorSet()
+    animatorSet.playSequentially(scaleDown, scaleUp)
+    animatorSet.addListener(object : AnimatorListenerAdapter() {
+        override fun onAnimationEnd(animation: Animator) {
+            onAnimationEnd()
+        }
+    })
+    animatorSet.start()
+}
+
+private fun animateCheck(view: ImageView, onEndAction: () -> Unit = {}) {
+    view.scaleX = 0f
+    view.scaleY = 0f
+    view.alpha = 0f
+    view.visibility = View.VISIBLE
+
+    val animatorX = android.animation.ObjectAnimator.ofFloat(view, "scaleX", 1f).apply {
+        duration = 600
+        interpolator = android.view.animation.AccelerateDecelerateInterpolator()
+    }
+    val animatorY = android.animation.ObjectAnimator.ofFloat(view, "scaleY", 1f).apply {
+        duration = 600
+        interpolator = android.view.animation.AccelerateDecelerateInterpolator()
+    }
+    val animatorAlpha = android.animation.ObjectAnimator.ofFloat(view, "alpha", 1f).apply {
+        duration = 600
+        interpolator = android.view.animation.AccelerateDecelerateInterpolator()
+    }
+    android.animation.AnimatorSet().apply {
+        playTogether(animatorX, animatorY, animatorAlpha)
+        addListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
-                onAnimationEnd()
+
+                onEndAction()
             }
         })
-        animatorSet.start()
+        start()
     }
-
-    private fun animateCheck(view: ImageView, onEndAction: () -> Unit = {}) {
-        view.scaleX = 0f
-        view.scaleY = 0f
-        view.alpha = 0f
-        view.visibility = View.VISIBLE
-
-        val animatorX = android.animation.ObjectAnimator.ofFloat(view, "scaleX", 1f).apply {
-            duration = 600
-            interpolator = android.view.animation.AccelerateDecelerateInterpolator()
-        }
-        val animatorY = android.animation.ObjectAnimator.ofFloat(view, "scaleY", 1f).apply {
-            duration = 600
-            interpolator = android.view.animation.AccelerateDecelerateInterpolator()
-        }
-        val animatorAlpha = android.animation.ObjectAnimator.ofFloat(view, "alpha", 1f).apply {
-            duration = 600
-            interpolator = android.view.animation.AccelerateDecelerateInterpolator()
-        }
-        android.animation.AnimatorSet().apply {
-            playTogether(animatorX, animatorY, animatorAlpha)
-            addListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-
-                    onEndAction()
-                }
-            })
-            start()
-        }
-    }
+}
 
 }

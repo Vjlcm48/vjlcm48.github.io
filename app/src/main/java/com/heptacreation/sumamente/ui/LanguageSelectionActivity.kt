@@ -2,10 +2,10 @@ package com.heptacreation.sumamente.ui
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.annotation.SuppressLint
 import android.app.ActivityOptions
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -17,15 +17,15 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.edit
 import androidx.core.view.isVisible
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.card.MaterialCardView
 import com.heptacreation.sumamente.R
 import com.heptacreation.sumamente.ui.utils.DataSyncManager
-import com.google.android.material.card.MaterialCardView
 import java.util.Locale
-import com.google.android.material.button.MaterialButton
-import androidx.activity.enableEdgeToEdge
 
 class LanguageSelectionActivity : BaseActivity() {
 
@@ -42,8 +42,8 @@ class LanguageSelectionActivity : BaseActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
 
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         val suggestedLanguageCode = loadAndSetInitialLanguageState()
@@ -202,7 +202,8 @@ class LanguageSelectionActivity : BaseActivity() {
             animateCheck(checkMarks[selectedIndex])
         }
 
-        setAppLanguage(languageCode)
+        // setAppLanguage(languageCode)  //  205 y 386
+
         LanguageManager.saveNewLanguageOrder(this, languageCode)
         sharedPreferences.edit {
             putString("selected_language", languageCode)
@@ -214,14 +215,14 @@ class LanguageSelectionActivity : BaseActivity() {
         }, 700)
     }
 
-    private fun setAppLanguage(languageCode: String) {
+    /* private fun setAppLanguage(languageCode: String) {
         val locale = Locale.Builder().setLanguage(languageCode).build()
         Locale.setDefault(locale)
         val config = Configuration(resources.configuration)
         config.setLocale(locale)
         @Suppress("DEPRECATION")
         resources.updateConfiguration(config, resources.displayMetrics)
-    }
+    }  */
 
     private fun proceedToMainApp() {
         val intent = Intent(this, TransitionActivity::class.java)
@@ -367,6 +368,7 @@ class LanguageSelectionActivity : BaseActivity() {
         }
     }
 
+    @SuppressLint("HardwareIds")
     private fun proceedWithRestore() {
 
         FirebaseAuthManager.startGoogleSignIn(
@@ -379,10 +381,23 @@ class LanguageSelectionActivity : BaseActivity() {
                         val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
                         val languageCode = prefs.getString("selected_language", "en") ?: "en"
                         restoringLanguage = languageCode
-                        setAppLanguage(languageCode)
+
+                        // setAppLanguage(languageCode) // 205 y 386
 
                         prefs.edit {
                             putBoolean(SettingsActivity.ACCOUNT_LINKED, true)
+                        }
+
+// Registrar este dispositivo como el activo para esta cuenta
+                        val currentDeviceId = android.provider.Settings.Secure.getString(
+                            contentResolver, android.provider.Settings.Secure.ANDROID_ID
+                        ) ?: ""
+                        val uid = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid
+                        if (uid != null && currentDeviceId.isNotBlank()) {
+                            com.google.firebase.firestore.FirebaseFirestore.getInstance()
+                                .collection("usuarios")
+                                .document(uid)
+                                .set(mapOf("activeDeviceId" to currentDeviceId), com.google.firebase.firestore.SetOptions.merge())
                         }
 
                         showRestoreSuccessDialog()

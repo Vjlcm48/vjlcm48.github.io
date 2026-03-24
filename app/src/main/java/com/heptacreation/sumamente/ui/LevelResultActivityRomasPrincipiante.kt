@@ -177,11 +177,8 @@ class LevelResultActivityRomasPrincipiante : BaseActivity()  {
         ScoreManager.updateIqComponent("Romas", "Principiante", aporte)
         ScoreManager.saveStatsGlobalAndRomas()
 
-        Thread {
-            try {
-                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
-            } catch (_: Exception) { }
-        }.start()
+        val syncRequest = androidx.work.OneTimeWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.SyncWorker>().build()
+        androidx.work.WorkManager.getInstance(this).enqueue(syncRequest)
     }
 
     private fun handleFailureScenario() {
@@ -197,11 +194,8 @@ class LevelResultActivityRomasPrincipiante : BaseActivity()  {
         ScoreManager.updateIqComponent("Romas", "Principiante", 0.0)
         ScoreManager.saveStatsGlobalAndRomas()
 
-        Thread {
-            try {
-                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
-            } catch (_: Exception) { }
-        }.start()
+        val syncRequest = androidx.work.OneTimeWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.SyncWorker>().build()
+        androidx.work.WorkManager.getInstance(this).enqueue(syncRequest)
     }
 
     private fun verificarMedallasAntesDeMostrarExito() {

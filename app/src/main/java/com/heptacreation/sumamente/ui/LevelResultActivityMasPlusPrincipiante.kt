@@ -178,11 +178,9 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
         val aporte = ((factor * velocidad * precision * 10) * 100).roundToInt() / 100.0
         ScoreManager.updateIqComponent("MasPlus", "Principiante", aporte)
         ScoreManager.saveStatsGlobalAndMasPlus()
-        Thread {
-            try {
-                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
-            } catch (_: Exception) { }
-        }.start()
+
+        val syncRequest = androidx.work.OneTimeWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.SyncWorker>().build()
+        androidx.work.WorkManager.getInstance(this).enqueue(syncRequest)
 
     }
 
@@ -199,11 +197,8 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
         ScoreManager.updateIqComponent("MasPlus", "Principiante", 0.0)
         ScoreManager.saveStatsGlobalAndMasPlus()
 
-        Thread {
-            try {
-                com.heptacreation.sumamente.ui.utils.DataSyncManager.syncDataToCloud(this) { _, _ -> }
-            } catch (_: Exception) { }
-        }.start()
+        val syncRequest = androidx.work.OneTimeWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.SyncWorker>().build()
+        androidx.work.WorkManager.getInstance(this).enqueue(syncRequest)
     }
 
     private fun verificarMedallasAntesDeMostrarExito() {
