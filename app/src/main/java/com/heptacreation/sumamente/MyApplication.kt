@@ -298,6 +298,14 @@ class MyApplication : Application() {
                     android.util.Log.w("AuthInit", "Dispositivo no autorizado — cerrando sesión")
                     auth.signOut()
                     limpiarRastrosLocalesDeSesion()
+
+                    // Llamar al equipo de limpieza profunda
+                    com.heptacreation.sumamente.ui.utils.DataSyncManager.clearAllLocalData(applicationContext)
+
+                    // Escoltar al usuario a la puerta de calle (SplashScreen) borrando el historial
+                    val intent = android.content.Intent(applicationContext, com.heptacreation.sumamente.ui.SplashScreenActivity::class.java)
+                    intent.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK or android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
                 }
             }
             .addOnFailureListener { e ->

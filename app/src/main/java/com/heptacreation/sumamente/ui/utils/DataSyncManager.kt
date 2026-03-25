@@ -430,7 +430,7 @@ object DataSyncManager {
             }
     }
 
-    private fun clearAllLocalData(context: Context) {
+    fun clearAllLocalData(context: Context) {
 
         val allPrefsNames = listOf(
             "MyPrefs",
