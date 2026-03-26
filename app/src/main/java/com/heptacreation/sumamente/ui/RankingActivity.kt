@@ -636,9 +636,11 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
     }
 
     private fun ensureFreshThen(block: () -> Unit) {
-        val isLinked = sharedPreferences.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)
-        if (!isLinked) { block(); return }
-        DataSyncManager.syncDataFromCloud(this) { _, _ -> block() }
+        if (ScoreManager.isUserInRanking("GLOBAL")) {
+            DataSyncManager.syncDataFromCloud(this) { _, _ -> block() }
+        } else {
+            block()
+        }
     }
 
     private fun getUserId(): String {

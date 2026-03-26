@@ -917,9 +917,22 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
     }
 
     private fun ensureFreshThen(block: () -> Unit) {
-        val isLinked = sharedPreferences.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)
-        if (!isLinked) { block(); return }
-        DataSyncManager.syncDataFromCloud(this) { _, _ -> block() }
+        val gameType = intent.getStringExtra(EXTRA_GAME_TYPE) ?: run { block(); return }
+        val rankingKey = when (gameType) {
+            SpeedClassificationActivity.GAME_NUMEROS_PLUS -> "VEL_NUMEROS"
+            SpeedClassificationActivity.GAME_DECI_PLUS    -> "VEL_DECI"
+            SpeedClassificationActivity.GAME_ROMAS        -> "VEL_ROMAS"
+            SpeedClassificationActivity.GAME_ALFA_NUMEROS -> "VEL_ALFANUM"
+            SpeedClassificationActivity.GAME_SUMA_RESTA   -> "VEL_SUMARESTA"
+            SpeedClassificationActivity.GAME_MAS_PLUS     -> "VEL_MAS"
+            SpeedClassificationActivity.GAME_GENIO_PLUS   -> "VEL_GENIOS"
+            else -> null
+        }
+        if (rankingKey != null && ScoreManager.isUserInRanking(rankingKey)) {
+            DataSyncManager.syncDataFromCloud(this) { _, _ -> block() }
+        } else {
+            block()
+        }
     }
 
     private fun getUserId(): String {

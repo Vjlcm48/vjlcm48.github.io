@@ -718,9 +718,15 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
     }
 
     private fun ensureFreshThen(block: () -> Unit) {
-        val isLinked = sharedPreferences.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)
-        if (!isLinked) { block(); return }
-        DataSyncManager.syncDataFromCloud(this) { _, _ -> block() }
+        val isInIntegral = listOf(
+            "GLOBAL", "VEL_NUMEROS", "VEL_DECI", "VEL_ALFANUM", "VEL_ROMAS",
+            "VEL_SUMARESTA", "VEL_MAS", "VEL_GENIOS", "IQ_PLUS"
+        ).all { ScoreManager.isUserInRanking(it) }
+        if (isInIntegral) {
+            DataSyncManager.syncDataFromCloud(this) { _, _ -> block() }
+        } else {
+            block()
+        }
     }
 
     private fun getUserId(): String {

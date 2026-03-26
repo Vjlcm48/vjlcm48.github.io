@@ -760,9 +760,11 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
     }
 
     private fun ensureFreshThen(block: () -> Unit) {
-        val isLinked = sharedPreferences.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)
-        if (!isLinked) { block(); return }
-        DataSyncManager.syncDataFromCloud(this) { _, _ -> block() }
+        if (ScoreManager.isUserInRanking("IQ_PLUS")) {
+            DataSyncManager.syncDataFromCloud(this) { _, _ -> block() }
+        } else {
+            block()
+        }
     }
 
     private fun getUserId(): String {
