@@ -18,7 +18,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.heptacreation.sumamente.R
 import com.heptacreation.sumamente.databinding.ActivitySplashScreenBinding
-import com.google.firebase.auth.FirebaseAuth
+import com.heptacreation.sumamente.ui.utils.AppSecurityManager
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
@@ -38,9 +38,8 @@ class SplashScreenActivity : AppCompatActivity() {
     private var fadeOutRunnable: Runnable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    enableEdgeToEdge()
-
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
 
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setTheme(R.style.Theme_SumaMente)
@@ -50,7 +49,7 @@ class SplashScreenActivity : AppCompatActivity() {
         val controller = WindowCompat.getInsetsController(window, window.decorView)
         controller.hide(WindowInsetsCompat.Type.systemBars())
         controller.systemBarsBehavior =
-        WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
 
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
 
@@ -60,7 +59,6 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun startAnimationSequence() {
-
         val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
         if (soundEnabled) {
             mediaPlayer = MediaPlayer.create(this, R.raw.presentacion)
@@ -72,7 +70,6 @@ class SplashScreenActivity : AppCompatActivity() {
         } else {
             mediaPlayer = null
         }
-
 
         showCompanyNameRunnable = Runnable {
             binding.companyNameInitial.animate().alpha(1f).setDuration(2000).start()
@@ -99,7 +96,6 @@ class SplashScreenActivity : AppCompatActivity() {
 
         goNextScreenRunnable = Runnable { navigateToNextScreen() }
 
-
         handler.postDelayed(showCompanyNameRunnable, 500)
         handler.postDelayed(hideCompanyNameRunnable, 2500)
         handler.postDelayed(showTextSumamenteRunnable, 4000)
@@ -109,7 +105,9 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun cancelAllSplashRunnables() {
-        fun remove(r: Runnable?) { if (r != null) handler.removeCallbacks(r) }
+        fun remove(r: Runnable?) {
+            if (r != null) handler.removeCallbacks(r)
+        }
 
         if (::showCompanyNameRunnable.isInitialized) remove(showCompanyNameRunnable)
         if (::hideCompanyNameRunnable.isInitialized) remove(hideCompanyNameRunnable)
@@ -120,25 +118,28 @@ class SplashScreenActivity : AppCompatActivity() {
         remove(fadeOutRunnable)
     }
 
-
     private fun safeReleasePlayer() {
         val mp = mediaPlayer ?: run {
             playerReleased = true
             return
         }
-        try { mp.stop() } catch (_: IllegalStateException) {  } catch (_: Throwable) {}
-        try { mp.release() } catch (_: Throwable) {}
+        try {
+            mp.stop()
+        } catch (_: IllegalStateException) {
+        } catch (_: Throwable) {
+        }
+        try {
+            mp.release()
+        } catch (_: Throwable) {
+        }
         mediaPlayer = null
         playerReleased = true
     }
 
-
     private fun navigateToNextScreen() {
         if (hasNavigated) return
 
-
         cancelAllSplashRunnables()
-
 
         val mp = mediaPlayer
         if (mp == null || playerReleased) {
@@ -186,7 +187,6 @@ class SplashScreenActivity : AppCompatActivity() {
 
     @SuppressLint("HardwareIds")
     private fun proceedToNextScreen() {
-
         if (hasNavigated) return
 
         binding.root.animate()
@@ -197,25 +197,31 @@ class SplashScreenActivity : AppCompatActivity() {
                     if (hasNavigated) return
                     hasNavigated = true
 
-                    val authUser = FirebaseAuth.getInstance().currentUser
-                    val mainPrefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
-                    val savedUserName = mainPrefs.getString("savedUserName", null)
-                    val hasValidSession = authUser != null && !savedUserName.isNullOrBlank()
+                    AppSecurityManager.verifyActiveDeviceIfNeeded(this@SplashScreenActivity) { authorized ->
 
-                    val intent = if (hasValidSession) {
-                        Intent(this@SplashScreenActivity, TransitionActivity::class.java)
-                            .putExtra("SOURCE", "SplashScreen")
-                    } else {
-                        Intent(this@SplashScreenActivity, LanguageSelectionActivity::class.java)
+                        if (!authorized) {
+                            // Ya fue expulsado internamente (logout + limpieza + redirección)
+                            return@verifyActiveDeviceIfNeeded
+                        }
+
+                        val shouldContinueAsExistingUser =
+                            AppSecurityManager.shouldContinueAsExistingUser(this@SplashScreenActivity)
+
+                        val intent = if (shouldContinueAsExistingUser) {
+                            Intent(this@SplashScreenActivity, TransitionActivity::class.java)
+                                .putExtra("SOURCE", "SplashScreen")
+                        } else {
+                            Intent(this@SplashScreenActivity, LanguageSelectionActivity::class.java)
+                        }
+
+                        val options = ActivityOptions.makeCustomAnimation(
+                            this@SplashScreenActivity,
+                            android.R.anim.fade_in,
+                            android.R.anim.fade_out
+                        )
+                        startActivity(intent, options.toBundle())
+                        finish()
                     }
-
-                    val options = ActivityOptions.makeCustomAnimation(
-                        this@SplashScreenActivity,
-                        android.R.anim.fade_in,
-                        android.R.anim.fade_out
-                    )
-                    startActivity(intent, options.toBundle())
-                    finish()
                 }
             })
             .start()

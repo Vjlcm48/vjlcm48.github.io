@@ -18,6 +18,8 @@ class DailyCondecoracionesWorker(
 
             CondecoracionTracker.verificarYEntregarPines()
 
+            CondecoracionTracker.verificarYActualizarInsigniaRIPlus(applicationContext)
+
             val latch = java.util.concurrent.CountDownLatch(4)
 
             CondecoracionTracker.verificarYActualizarCoronasDeVelocidadAsync(applicationContext) { latch.countDown() }
@@ -67,5 +69,9 @@ class DailyCondecoracionesWorker(
         ScoreManager.initGenioPlusPrincipiante(context)
         ScoreManager.initGenioPlus(context)
         ScoreManager.initGenioPlusPro(context)
+
+        ScoreManager.initFocoPlusPrincipiante(context)
+        ScoreManager.initFocoPlus(context)
+        ScoreManager.initFocoPlusPro(context)
     }
 }

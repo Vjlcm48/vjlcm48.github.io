@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import com.heptacreation.sumamente.R
+import android.content.Context
 
 object FirebaseAuthManager {
     private const val RC_SIGN_IN = 9001
@@ -101,10 +102,16 @@ object FirebaseAuthManager {
                             .document(user.uid)
                             .get()
                             .addOnSuccessListener { document ->
-                                val hasData = document.exists() &&
-                                        (document.getString("score_data") != null ||
-                                                document.get("profile_preferences") != null ||
-                                                document.getString("username") != null)
+                                val privateData = document.get("private") as? Map<*, *>
+                                val hasScoreData = (privateData?.get("score_data") as? String).isNullOrBlank().not()
+                                val hasProfilePreferences = privateData?.get("profile_preferences") != null
+                                val hasUsername = !document.getString("username").isNullOrBlank()
+
+                                val hasData = document.exists() && (
+                                        hasScoreData ||
+                                                hasProfilePreferences ||
+                                                hasUsername
+                                        )
 
                                 tempAuth.signOut()
 
@@ -138,15 +145,64 @@ object FirebaseAuthManager {
             callback?.invoke(false, activity.getString(R.string.invalid_google_account))
             return
         }
+
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
-        firebaseAuth.signInWithCredential(credential)
-            .addOnCompleteListener(activity) { task ->
-                if (task.isSuccessful) {
-                    callback?.invoke(true, null)
-                } else {
-                    callback?.invoke(false, activity.getString(R.string.firebase_link_failed))
+        val currentUser = FirebaseAuth.getInstance().currentUser
+
+        if (currentUser != null && currentUser.isAnonymous) {
+            currentUser.linkWithCredential(credential)
+                .addOnCompleteListener(activity) { task ->
+                    if (task.isSuccessful) {
+                        callback?.invoke(true, null)
+                    } else {
+                        val fallbackError = task.exception?.localizedMessage ?: ""
+                        val shouldFallbackToSignIn =
+                            fallbackError.contains("already linked", ignoreCase = true) ||
+                                    fallbackError.contains("credential is already in use", ignoreCase = true) ||
+                                    fallbackError.contains("already in use", ignoreCase = true)
+
+                        if (shouldFallbackToSignIn) {
+                            FirebaseAuth.getInstance().signInWithCredential(credential)
+                                .addOnCompleteListener(activity) { signInTask ->
+                                    if (signInTask.isSuccessful) {
+                                        callback?.invoke(true, null)
+                                    } else {
+                                        callback?.invoke(false, activity.getString(R.string.firebase_link_failed))
+                                    }
+                                }
+                        } else {
+                            callback?.invoke(false, activity.getString(R.string.firebase_link_failed))
+                        }
+                    }
                 }
-            }
+        } else {
+            firebaseAuth.signInWithCredential(credential)
+                .addOnCompleteListener(activity) { task ->
+                    if (task.isSuccessful) {
+                        callback?.invoke(true, null)
+                    } else {
+                        callback?.invoke(false, activity.getString(R.string.firebase_link_failed))
+                    }
+                }
+        }
+    }
+
+    fun signOutCompletely(context: Context) {
+        FirebaseAuth.getInstance().signOut()
+
+        val currentWebClientId = webClientId ?: context.getString(R.string.default_web_client_id)
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(currentWebClientId)
+            .requestEmail()
+            .build()
+
+        GoogleSignIn.getClient(context, gso).apply {
+            signOut()
+            android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+                revokeAccess()
+            }, 2000)
+        }
     }
 
     private fun getGoogleSignInClient(activity: Activity, webClientId: String): GoogleSignInClient {

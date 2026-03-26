@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fullBackupContent>
-    <exclude domain="sharedpref" path="MyPrefsDeciPlus.xml"/>
-    <exclude domain="sharedpref" path="ScorePrefsDeciPlus.xml"/>
-    <exclude domain="sharedpref" path="MyPrefs.xml"/>
-    <exclude domain="sharedpref" path="ScorePrefs.xml"/>
-</fullBackupContent>
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="sharedpref" path="AuthPrefs.xml" />
+        <exclude domain="sharedpref" path="ReferralPrefs.xml" />
+    </cloud-backup>
+
+    <device-transfer>
+        <exclude domain="sharedpref" path="AuthPrefs.xml" />
+        <exclude domain="sharedpref" path="ReferralPrefs.xml" />
+    </device-transfer>
+</data-extraction-rules>

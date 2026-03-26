@@ -679,6 +679,11 @@ class MainGameActivity : BaseActivity() {
 
     private fun actualizarCondecoraciones() {
         CondecoracionTracker.verificarYEntregarPines()
+        CondecoracionTracker.verificarYActualizarCoronasDeVelocidad(this)
+        CondecoracionTracker.verificarYActualizarCondecoracionesTop10(this)
+        CondecoracionTracker.verificarYActualizarCondecoracionesIQ7(this)
+        CondecoracionTracker.verificarYActualizarCondecoracionesTop5Integral(this)
+        CondecoracionTracker.verificarYActualizarInsigniaRIPlus(this)
     }
 
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])

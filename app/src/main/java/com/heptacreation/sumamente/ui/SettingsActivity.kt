@@ -154,7 +154,11 @@ class SettingsActivity : BaseActivity() {
     }
 
     private fun incrementSettingsVisitCounter() {
-        val currentCount = sharedPreferences.getInt("settings_visit_count", 0)
+        val currentCount = try {
+            sharedPreferences.getInt("settings_visit_count", 0)
+        } catch (_: ClassCastException) {
+            sharedPreferences.getLong("settings_visit_count", 0L).toInt()
+        }
         val newCount = currentCount + 1
         sharedPreferences.edit { putInt("settings_visit_count", newCount) }
     }

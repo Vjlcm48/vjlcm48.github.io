@@ -105,9 +105,6 @@ object DataSyncManager {
             "condecoracion_schema_version" to SCHEMA_VERSION_CONDECO,
             "hasInsigniaRIPlus" to (CondecoracionTracker.getInsigniaRIPlus() != null),
             "account_linked" to prefs.getBoolean(SettingsActivity.ACCOUNT_LINKED, false),
-            "activeDeviceId" to if (prefs.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)) {
-                android.provider.Settings.Secure.getString(context.contentResolver, android.provider.Settings.Secure.ANDROID_ID) ?: ""
-            } else "",
             "lastActive" to FieldValue.serverTimestamp()
         )
 
@@ -233,7 +230,7 @@ object DataSyncManager {
         val allPrefsNames = listOf(
 
             "MyPrefs", "MyPrefsDeciPlus", "MyPrefsRomas", "MyPrefsAlfaNumeros",
-            "MyPrefsSumaResta", "MyPrefsMasPlus", "MyPrefsGenioPlus",
+            "MyPrefsSumaResta", "MyPrefsMasPlus", "MyPrefsGenioPlus", "MyPrefsFocoPlus",
 
             "ScorePrefs", "ScorePrefsPrincipiante", "ScorePrefsPro",
             "ScorePrefsDeciPlus", "ScorePrefsDeciPlusPrincipiante", "ScorePrefsDeciPlusPro",
@@ -241,7 +238,8 @@ object DataSyncManager {
             "ScorePrefsAlfaNumeros", "ScorePrefsAlfaNumerosPrincipiante", "ScorePrefsAlfaNumerosPro",
             "ScorePrefsSumaResta", "ScorePrefsSumaRestaPrincipiante", "ScorePrefsSumaRestaPro",
             "ScorePrefsMasPlus", "ScorePrefsMasPlusPrincipiante", "ScorePrefsMasPlusPro",
-            "ScorePrefsGenioPlus", "ScorePrefsGenioPlusPrincipiante", "ScorePrefsGenioPlusPro"
+            "ScorePrefsGenioPlus", "ScorePrefsGenioPlusPrincipiante", "ScorePrefsGenioPlusPro",
+            "ScorePrefsFocoPlus", "ScorePrefsFocoPlusPrincipiante", "ScorePrefsFocoPlusPro"
         )
 
         val allGamePrefs = mutableMapOf<String, Map<String, Any>>()
@@ -285,7 +283,7 @@ object DataSyncManager {
         val sound = raw[SettingsActivity.SOUND_ENABLED] as? Boolean
         val notif = raw[SettingsActivity.NOTIFICATIONS_ENABLED] as? Boolean
         val ads = raw[SettingsActivity.ADS_ENABLED] as? Boolean
-        val linked = raw[SettingsActivity.ACCOUNT_LINKED] as? Boolean ?: true
+        val linked = raw[SettingsActivity.ACCOUNT_LINKED] as? Boolean ?: false
 
         prefs.edit {
             username?.let { putString("savedUserName", it) }
@@ -374,7 +372,8 @@ object DataSyncManager {
             .document(user.uid)
             .get()
             .addOnSuccessListener { doc ->
-                val cloudProgress = doc.getString("score_data")
+                val privateData = doc.get("private") as? Map<*, *>
+                val cloudProgress = privateData?.get("score_data") as? String
                 callback(localProgress, cloudProgress)
             }
             .addOnFailureListener {
@@ -435,7 +434,8 @@ object DataSyncManager {
         val allPrefsNames = listOf(
             "MyPrefs",
             "MyPrefsDeciPlus", "MyPrefsRomas", "MyPrefsAlfaNumeros",
-            "MyPrefsSumaResta", "MyPrefsMasPlus", "MyPrefsGenioPlus",
+            "MyPrefsSumaResta", "MyPrefsMasPlus", "MyPrefsGenioPlus", "MyPrefsFocoPlus",
+
             "ScorePrefs", "ScorePrefsPrincipiante", "ScorePrefsPro",
             "ScorePrefsDeciPlus", "ScorePrefsDeciPlusPrincipiante", "ScorePrefsDeciPlusPro",
             "ScorePrefsRomas", "ScorePrefsRomasPrincipiante", "ScorePrefsRomasPro",
@@ -443,7 +443,10 @@ object DataSyncManager {
             "ScorePrefsSumaResta", "ScorePrefsSumaRestaPrincipiante", "ScorePrefsSumaRestaPro",
             "ScorePrefsMasPlus", "ScorePrefsMasPlusPrincipiante", "ScorePrefsMasPlusPro",
             "ScorePrefsGenioPlus", "ScorePrefsGenioPlusPrincipiante", "ScorePrefsGenioPlusPro",
-            "CondecoracionPrefs"
+            "ScorePrefsFocoPlus", "ScorePrefsFocoPlusPrincipiante", "ScorePrefsFocoPlusPro",
+
+            "CondecoracionPrefs",
+            "AuthPrefs"
         )
 
         allPrefsNames.forEach { prefsName ->

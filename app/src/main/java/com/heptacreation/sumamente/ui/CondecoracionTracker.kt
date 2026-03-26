@@ -208,7 +208,7 @@ object CondecoracionTracker {
                 val type = object : TypeToken<MutableList<T>>() {}.type
                 val list: MutableList<T> = gson.fromJson(jsonString, type)
 
-                list.filterIsInstance<T>().toMutableList()
+                list.toList().toMutableList()
             } catch (e: Exception) {
                 android.util.Log.e("CondecoracionTracker", "Error deserializando $key: ${e.message}")
                 mutableListOf()

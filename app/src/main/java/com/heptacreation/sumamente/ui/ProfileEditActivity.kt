@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -207,6 +208,7 @@ class ProfileEditActivity : BaseActivity(), LinkUnlinkAccountDialogFragment.List
         animatorSet.start()
     }
 
+    @SuppressLint("HardwareIds")
     override fun onDialogAction() {
         if (isLinking) {
             FirebaseAuthManager.startGoogleSignIn(
@@ -225,8 +227,34 @@ class ProfileEditActivity : BaseActivity(), LinkUnlinkAccountDialogFragment.List
                         } else {
 
                             DataSyncManager.syncDataToCloud(this) { ok, err ->
-                                showResultDialog(restoring = false)
-                                updateLinkButtonState()
+                                if (ok) {
+                                    showResultDialog(restoring = false)
+
+                                    val uid = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid
+                                    val deviceId = android.provider.Settings.Secure.getString(
+                                        contentResolver,
+                                        android.provider.Settings.Secure.ANDROID_ID
+                                    ) ?: ""
+                                    if (uid != null && deviceId.isNotBlank()) {
+                                        com.google.firebase.firestore.FirebaseFirestore.getInstance()
+                                            .collection("usuarios")
+                                            .document(uid)
+                                            .set(
+                                                mapOf("activeDeviceId" to deviceId),
+                                                com.google.firebase.firestore.SetOptions.merge()
+                                            )
+                                    }
+
+                                    updateLinkButtonState()
+                                } else {
+                                    sharedPreferences.edit { putBoolean(SettingsActivity.ACCOUNT_LINKED, false) }
+                                    updateLinkButtonState()
+                                    Toast.makeText(
+                                        this,
+                                        err ?: getString(R.string.account_linked_error),
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
                             }
                         }
                     }
@@ -235,6 +263,22 @@ class ProfileEditActivity : BaseActivity(), LinkUnlinkAccountDialogFragment.List
                     updateLinkButtonState()
                 }
             }
+        }
+
+        else {
+            sharedPreferences.edit { putBoolean(SettingsActivity.ACCOUNT_LINKED, false) }
+            updateLinkButtonState()
+            val uid = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid
+            if (uid != null) {
+                com.google.firebase.firestore.FirebaseFirestore.getInstance()
+                    .collection("usuarios")
+                    .document(uid)
+                    .set(
+                        mapOf("activeDeviceId" to ""),
+                        com.google.firebase.firestore.SetOptions.merge()
+                    )
+            }
+            showResultDialog(restoring = false)
         }
 
     }
@@ -261,14 +305,30 @@ class ProfileEditActivity : BaseActivity(), LinkUnlinkAccountDialogFragment.List
     }
 
     override fun onRestoreCloud() {
-        DataSyncManager.syncDataFromCloud(this) { ok, _ ->
-            showResultDialog(restoring = true)
+        DataSyncManager.syncDataFromCloud(this) { ok, err ->
+            if (ok) {
+                showResultDialog(restoring = true)
+            } else {
+                Toast.makeText(
+                    this,
+                    err ?: getString(R.string.account_linked_error),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
     }
 
     override fun onKeepLocal() {
-        DataSyncManager.syncDataToCloud(this) { ok, _ ->
-            showResultDialog(restoring = false)
+        DataSyncManager.syncDataToCloud(this) { ok, err ->
+            if (ok) {
+                showResultDialog(restoring = false)
+            } else {
+                Toast.makeText(
+                    this,
+                    err ?: getString(R.string.account_linked_error),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
     }
 

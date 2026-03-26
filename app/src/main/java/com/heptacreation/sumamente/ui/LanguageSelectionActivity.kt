@@ -388,19 +388,40 @@ class LanguageSelectionActivity : BaseActivity() {
                             putBoolean(SettingsActivity.ACCOUNT_LINKED, true)
                         }
 
-// Registrar este dispositivo como el activo para esta cuenta
+                        // Registrar este dispositivo como el activo para esta cuenta
                         val currentDeviceId = android.provider.Settings.Secure.getString(
-                            contentResolver, android.provider.Settings.Secure.ANDROID_ID
+                            contentResolver,
+                            android.provider.Settings.Secure.ANDROID_ID
                         ) ?: ""
                         val uid = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid
-                        if (uid != null && currentDeviceId.isNotBlank()) {
-                            com.google.firebase.firestore.FirebaseFirestore.getInstance()
-                                .collection("usuarios")
-                                .document(uid)
-                                .set(mapOf("activeDeviceId" to currentDeviceId), com.google.firebase.firestore.SetOptions.merge())
+
+                        if (uid == null || currentDeviceId.isBlank()) {
+                            showErrorDialog(
+                                getString(R.string.restore_error_title),
+                                getString(R.string.restore_error_message)
+                            )
+                            return@syncDataFromCloud
                         }
 
-                        showRestoreSuccessDialog()
+                        com.google.firebase.firestore.FirebaseFirestore.getInstance()
+                            .collection("usuarios")
+                            .document(uid)
+                            .set(
+                                mapOf(
+                                    "activeDeviceId" to currentDeviceId,
+                                    "account_linked" to true
+                                ),
+                                com.google.firebase.firestore.SetOptions.merge()
+                            )
+                            .addOnSuccessListener {
+                                showRestoreSuccessDialog()
+                            }
+                            .addOnFailureListener { e ->
+                                showErrorDialog(
+                                    getString(R.string.restore_error_title),
+                                    e.localizedMessage ?: getString(R.string.restore_error_message)
+                                )
+                            }
                     } else {
 
                         showErrorDialog(
