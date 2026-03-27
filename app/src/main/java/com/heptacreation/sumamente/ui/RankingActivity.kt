@@ -220,6 +220,7 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
     }
 
     private fun loadRankingData() {
+        android.util.Log.d("RankingDebug", "=== loadRankingData INICIO ===")
         loadingIndicator.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
         emptyView.visibility = View.GONE
@@ -228,6 +229,8 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
         btnShareRanking.visibility = View.GONE
 
         Handler(Looper.getMainLooper()).postDelayed({
+            android.util.Log.d("RankingDebug", "=== Handler 700ms ejecutado ===")
+
             val totalLevels = getTotalLevelsPlayed()
             val username = sharedPreferences.getString("savedUserName", getString(R.string.default_username)) ?: getString(R.string.default_username)
             val countryCode = sharedPreferences.getString("savedCountryCode", "us") ?: "us"
@@ -240,7 +243,10 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
                     ScoreManager.currentScoreGenioPlus + ScoreManager.currentScoreGenioPlusPrincipiante + ScoreManager.currentScoreGenioPlusPro +
                     ScoreManager.currentScoreFocoPlusPrincipiante
 
+            android.util.Log.d("RankingDebug", "totalLevels=$totalLevels score=$score MIN=$MIN_LEVELS_REQUIRED username=$username")
+
             if (totalLevels == 0) {
+                android.util.Log.d("RankingDebug", "BLOQUE: totalLevels==0 → mostrando mensaje sin juegos")
                 val noGamesMsgs = arrayOf(
                     getString(R.string.msg_need_more_games_global_1, username), getString(R.string.msg_need_more_games_global_2, username),
                     getString(R.string.msg_need_more_games_global_3, username), getString(R.string.msg_need_more_games_global_4, username),
@@ -252,57 +258,53 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
                 return@postDelayed
             }
 
+            android.util.Log.d("RankingDebug", "Pasó el bloque totalLevels==0, llamando handleLinkAccountInvitation")
             handleLinkAccountInvitation()
 
             if (totalLevels >= MIN_LEVELS_REQUIRED) {
+                android.util.Log.d("RankingDebug", "BLOQUE: totalLevels>=$MIN_LEVELS_REQUIRED → entrando al ranking real")
                 val globalRankingItems: MutableList<GlobalRankingItem> = mutableListOf()
 
-
-                // Subir datos a Firebase y obtener ranking real
-                DataSyncManager.uploadGlobalRankingToFirebase(
-                    userId = getUserId(),
-                    userName = username,
-                    country = countryCode,
-                    totalPoints = score.toLong()
-                )
-
+                android.util.Log.d("RankingDebug", "Llamando getTopGlobalRanking directamente")
                 DataSyncManager.getTopGlobalRanking(
                     userId = getUserId(),
                     userName = username,
                     country = countryCode,
                     totalPoints = score.toLong()
                 ) { rankingList, userPosition, userItem ->
-                    globalRankingItems.clear()
-                    globalRankingItems.addAll(rankingList)
+                        android.util.Log.d("RankingDebug", "getTopGlobalRanking respondió: rankingList.size=${rankingList.size} userPosition=$userPosition userItem=$userItem")
+                        globalRankingItems.clear()
+                        globalRankingItems.addAll(rankingList)
 
-                    if (userItem != null && userPosition > 200) {
-                        globalRankingItems.add(userItem.copy(position = userPosition))
-                    }
+                        if (userItem != null && userPosition > 200) {
+                            globalRankingItems.add(userItem.copy(position = userPosition))
+                        }
 
-                    rankingItems.clear()
-                    globalRankingItems.forEach { globalItem ->
-                        rankingItems.add(
-                            RankingItem(
-                                position = globalItem.position,
-                                username = globalItem.username,
-                                countryCode = globalItem.countryCode,
-                                score = globalItem.totalPoints.toInt(),
-                                isCurrentUser = globalItem.isCurrentUser,
-                                hasInsigniaRIPlus = globalItem.hasInsigniaRIPlus
+                        rankingItems.clear()
+                        globalRankingItems.forEach { globalItem ->
+                            rankingItems.add(
+                                RankingItem(
+                                    position = globalItem.position,
+                                    username = globalItem.username,
+                                    countryCode = globalItem.countryCode,
+                                    score = globalItem.totalPoints.toInt(),
+                                    isCurrentUser = globalItem.isCurrentUser,
+                                    hasInsigniaRIPlus = globalItem.hasInsigniaRIPlus
+                                )
                             )
-                        )
+                        }
+                        android.util.Log.d("RankingDebug", "rankingItems final size=${rankingItems.size} → notificando adapter")
+                        @Suppress("NotifyDataSetChanged")
+                        adapter.notifyDataSetChanged()
+                        recyclerView.visibility = View.VISIBLE
+                        btnShareRanking.visibility = View.VISIBLE
+                        emptyView.visibility = View.GONE
+                        loadingIndicator.visibility = View.GONE
                     }
-                    @Suppress("NotifyDataSetChanged")
-                    adapter.notifyDataSetChanged()
-                    recyclerView.visibility = View.VISIBLE
-                    btnShareRanking.visibility = View.VISIBLE
-                    emptyView.visibility = View.GONE
-                    loadingIndicator.visibility = View.GONE
                 }
 
-
-            } else {
-
+             else {
+                android.util.Log.d("RankingDebug", "BLOQUE: totalLevels<$MIN_LEVELS_REQUIRED → mostrando mensaje motivacional")
                 val levelsRemaining = MIN_LEVELS_REQUIRED - totalLevels
                 val infoPluralsWithName = arrayOf(
                     R.plurals.msg_info_global_levels_1, R.plurals.msg_info_global_levels_2, R.plurals.msg_info_global_levels_3,
@@ -636,11 +638,8 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
     }
 
     private fun ensureFreshThen(block: () -> Unit) {
-        if (ScoreManager.isUserInRanking("GLOBAL")) {
-            DataSyncManager.syncDataFromCloud(this) { _, _ -> block() }
-        } else {
-            block()
-        }
+        android.util.Log.d("RankingDebug", "ensureFreshThen - saltando descarga innecesaria, directo a cargar ranking")
+        block()
     }
 
     private fun getUserId(): String {

@@ -70,7 +70,7 @@ object DataSyncManager {
                         }
                     }
                 } catch (e: Exception) {
-                    Log.e("DataSyncManager", "Error al validar referido: ${e.message}")
+                    Log.e("DataSyncManager", "Error al validar referido: ${e.message}", e)
                 }
             }
         } else {
@@ -94,32 +94,53 @@ object DataSyncManager {
             "condecoracion_data" to condecoJson
         )
 
+        val totalScoreAllGames = ScoreManager.getTotalScoreAllGames()
+        val hasInsigniaRIPlus = (CondecoracionTracker.getInsigniaRIPlus() != null)
+
         val data = hashMapOf(
             "username" to userName,
             "countryCode" to countryCode,
             "lastUpdate" to FieldValue.serverTimestamp(),
             "iqPlus" to ScoreManager.lastIqComponentByGame.values.sum(),
             "global_ranking_points" to ScoreManager.getTotalUniqueLevelsCompletedAllGames().toLong(),
+            "global_ranking" to hashMapOf(
+                "totalPoints" to totalScoreAllGames,
+                "updated_at" to FieldValue.serverTimestamp()
+            ),
             "private" to privateData,
             "score_schema_version" to SCHEMA_VERSION_SCORE,
             "condecoracion_schema_version" to SCHEMA_VERSION_CONDECO,
-            "hasInsigniaRIPlus" to (CondecoracionTracker.getInsigniaRIPlus() != null),
+            "hasInsigniaRIPlus" to hasInsigniaRIPlus,
             "account_linked" to prefs.getBoolean(SettingsActivity.ACCOUNT_LINKED, false),
             "lastActive" to FieldValue.serverTimestamp()
         )
 
-        Log.d("DataSyncManager", "Sincronizando datos con Firebase")
+        val globalRankingPublicData = hashMapOf(
+            "username" to userName,
+            "countryCode" to countryCode,
+            "totalPoints" to totalScoreAllGames,
+            "hasInsigniaRIPlus" to hasInsigniaRIPlus,
+            "updated_at" to FieldValue.serverTimestamp()
+        )
+
+        Log.d("DataSyncManager", "Sincronizando datos privados con Firebase")
+        Log.d(
+            "DataSyncManager",
+            "Preparando rankings_global uid=${user.uid} username=$userName country=$countryCode totalPoints=$totalScoreAllGames insignia=$hasInsigniaRIPlus"
+        )
 
         var syncAttempts = 0
         val maxSyncAttempts = 3
 
         fun attemptSync() {
             syncAttempts++
+            Log.d("DataSyncManager", "attemptSync - intento $syncAttempts de $maxSyncAttempts")
+
             firestore.collection("usuarios")
                 .document(user.uid)
                 .set(data, SetOptions.merge())
                 .addOnSuccessListener {
-                    Log.d("DataSyncManager", "Sincronización exitosa (intento $syncAttempts)")
+                    Log.d("DataSyncManager", "Documento usuarios/${user.uid} sincronizado correctamente")
 
                     val uid = FirebaseAuth.getInstance().currentUser?.uid
                     if (uid != null) {
@@ -129,16 +150,36 @@ object DataSyncManager {
                                     .collection("usuarios")
                                     .document(uid)
                                     .set(mapOf("fcmToken" to tk), SetOptions.merge())
-                                    .addOnSuccessListener { Log.d("DataSyncManager", "fcmToken (post-sync) guardado con merge") }
-                                    .addOnFailureListener { e -> Log.e("DataSyncManager", "Error guardando fcmToken post-sync", e) }
+                                    .addOnSuccessListener {
+                                        Log.d("DataSyncManager", "fcmToken (post-sync) guardado con merge")
+                                    }
+                                    .addOnFailureListener { e ->
+                                        Log.e("DataSyncManager", "Error guardando fcmToken post-sync", e)
+                                    }
                             }
-                            .addOnFailureListener { e -> Log.e("DataSyncManager", "No se pudo obtener token FCM post-sync", e) }
+                            .addOnFailureListener { e ->
+                                Log.e("DataSyncManager", "No se pudo obtener token FCM post-sync", e)
+                            }
                     }
 
-                    onResult(true, null)
+                    firestore.collection("rankings_global")
+                        .document(user.uid)
+                        .set(globalRankingPublicData, SetOptions.merge())
+                        .addOnSuccessListener {
+                            Log.d("DataSyncManager", "Documento rankings_global/${user.uid} sincronizado correctamente")
+                            onResult(true, null)
+                        }
+                        .addOnFailureListener { e ->
+                            Log.e(
+                                "DataSyncManager",
+                                "Error escribiendo rankings_global/${user.uid}: ${e.localizedMessage}",
+                                e
+                            )
+                            onResult(false, e.localizedMessage ?: "Error escribiendo ranking global")
+                        }
                 }
                 .addOnFailureListener { e ->
-                    Log.e("DataSyncManager", "Error en sincronización intento $syncAttempts: ${e.localizedMessage}")
+                    Log.e("DataSyncManager", "Error en sincronización intento $syncAttempts: ${e.localizedMessage}", e)
                     if (syncAttempts < maxSyncAttempts) {
                         android.os.Handler(android.os.Looper.getMainLooper())
                             .postDelayed({ attemptSync() }, 2000)
@@ -156,59 +197,73 @@ object DataSyncManager {
         context: Context,
         onResult: (success: Boolean, error: String?) -> Unit
     ) {
+        Log.d("RankingDebug", "syncDataFromCloud - INICIO")
         val firestore = FirebaseFirestore.getInstance()
         val user = auth.currentUser
         val prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+
         if (user == null) {
+            Log.d("RankingDebug", "syncDataFromCloud - user==null → onResult(false)")
             onResult(false, context.getString(R.string.user_not_authenticated))
             return
         }
 
+        Log.d("RankingDebug", "syncDataFromCloud - consultando Firestore uid=${user.uid}")
         firestore.collection("usuarios")
             .document(user.uid)
             .get()
             .addOnSuccessListener { doc ->
-                if (!doc.exists()) {
+                try {
+                    Log.d("RankingDebug", "syncDataFromCloud - Firestore respondió. doc.exists=${doc.exists()}")
+                    if (!doc.exists()) {
+                        Log.d("RankingDebug", "syncDataFromCloud - doc no existe → onResult(true)")
+                        onResult(true, null)
+                        return@addOnSuccessListener
+                    }
+
+                    val privateData = doc.get("private") as? Map<*, *>
+                    Log.d("RankingDebug", "syncDataFromCloud - privateData=${if (privateData != null) "presente" else "null"}")
+
+                    val canjeEnabled = doc.getBoolean("canje_enabled") ?: false
+                    if (canjeEnabled) {
+                        prefs.edit { putBoolean("canje_enabled", true) }
+                    }
+
+                    if (privateData != null) {
+                        (privateData["profile_preferences"] as? Map<*, *>)?.let {
+                            applyProfilePreferencesBox(context, it)
+                        }
+                        (privateData["score_data"] as? String)?.let { json ->
+                            Log.d("RankingDebug", "syncDataFromCloud - importando score_data")
+                            ScoreManager.importAllDataFromJson(context, json)
+                        }
+                        (privateData["condecoracion_data"] as? String)?.let { json ->
+                            CondecoracionTracker.init(context)
+                            CondecoracionTracker.importAllDataFromJson(context, json)
+                        }
+                    }
+
+                    val currentSavedName = prefs.getString("savedUserName", null)
+                    if (currentSavedName.isNullOrBlank()) {
+                        val topLevelUsername = doc.getString("username")
+                        if (!topLevelUsername.isNullOrBlank()) {
+                            prefs.edit { putString("savedUserName", topLevelUsername) }
+                            Log.d("DataSync", "Fallback: savedUserName restaurado desde username principal: $topLevelUsername")
+                        }
+                    }
+
+                    Log.d("RankingDebug", "syncDataFromCloud - todo ok → onResult(true)")
                     onResult(true, null)
-                    return@addOnSuccessListener
+
+                } catch (e: Exception) {
+                    Log.e("RankingDebug", "syncDataFromCloud - EXCEPCION: ${e.message}", e)
+                    onResult(false, e.message)
                 }
-
-                val privateData = doc.get("private") as? Map<*, *>
-
-                val canjeEnabled = doc.getBoolean("canje_enabled") ?: false
-                if (canjeEnabled) {
-                    prefs.edit { putBoolean("canje_enabled", true) }
-                }
-
-                if (privateData != null) {
-                    // 1) Perfil
-                    (privateData["profile_preferences"] as? Map<*, *>)?.let {
-                        applyProfilePreferencesBox(context, it)
-                    }
-                    // 2) Progreso
-                    (privateData["score_data"] as? String)?.let { json ->
-                        ScoreManager.importAllDataFromJson(context, json)
-                    }
-                    // 3) Condecoraciones
-                    (privateData["condecoracion_data"] as? String)?.let { json ->
-                        CondecoracionTracker.init(context)
-                        CondecoracionTracker.importAllDataFromJson(context, json)
-                    }
-                }
-
-                // Fallback: si savedUserName sigue vacío, usar el username del nivel principal
-                val currentSavedName = prefs.getString("savedUserName", null)
-                if (currentSavedName.isNullOrBlank()) {
-                    val topLevelUsername = doc.getString("username")
-                    if (!topLevelUsername.isNullOrBlank()) {
-                        prefs.edit { putString("savedUserName", topLevelUsername) }
-                        Log.d("DataSync", "Fallback: savedUserName restaurado desde username principal: $topLevelUsername")
-                    }
-                }
-
-                onResult(true, null)
             }
-            .addOnFailureListener { e -> onResult(false, e.localizedMessage) }
+            .addOnFailureListener { e ->
+                Log.d("RankingDebug", "syncDataFromCloud - FALLO Firestore: ${e.localizedMessage}")
+                onResult(false, e.localizedMessage)
+            }
     }
 
     private fun buildProfilePreferencesBox(context: Context): Map<String, Any> {
@@ -476,17 +531,8 @@ object DataSyncManager {
         iqPlus: Double
     ) {
         val db = FirebaseFirestore.getInstance()
-        val userDoc = db.collection("usuarios").document(userId)
+        val userDoc = db.collection("rankings_iqplus").document(userId)
 
-        userDoc.set(
-            hashMapOf(
-                "profile_preferences" to hashMapOf(
-                    "savedUserName" to userName,
-                    "savedCountryCode" to country
-                )
-            ),
-            SetOptions.merge()
-        )
 
         if (!ScoreManager.isEligibleIQPlusRanking() || !iqPlus.isFinite()) {
             userDoc.update(mapOf("iqPlus" to FieldValue.delete()))
@@ -510,7 +556,7 @@ object DataSyncManager {
         callback: (List<IQPlusRankingItem>, Int, IQPlusRankingItem?) -> Unit
     ) {
         val db = FirebaseFirestore.getInstance()
-        db.collection("usuarios")
+        db.collection("rankings_iqplus")
             .orderBy("iqPlus", com.google.firebase.firestore.Query.Direction.DESCENDING)
             .limit(200)
             .get()
@@ -551,7 +597,7 @@ object DataSyncManager {
 
                 // Si el usuario NO está en el top 200, busca su posición real
                 if (userPosition == -1) {
-                    db.collection("usuarios")
+                    db.collection("rankings_iqplus")
                         .whereGreaterThan("iqPlus", iqPlus)
                         .get()
                         .addOnSuccessListener { others ->
@@ -582,17 +628,8 @@ object DataSyncManager {
         averageTime: Double
     ) {
         val db = FirebaseFirestore.getInstance()
-        val userDoc = db.collection("usuarios").document(userId)
+        val userDoc = db.collection("rankings_speed").document(userId)
 
-        userDoc.set(
-            hashMapOf(
-                "profile_preferences" to hashMapOf(
-                    "savedUserName" to userName,
-                    "savedCountryCode" to country
-                )
-            ),
-            SetOptions.merge()
-        )
 
         val fieldName = "speed_ranking_$gameType"
 
@@ -608,7 +645,7 @@ object DataSyncManager {
         }
 
         if (!isEligible || !averageTime.isFinite()) {
-            userDoc.update(mapOf(fieldName to FieldValue.delete()))
+            userDoc.set(mapOf(fieldName to FieldValue.delete()), SetOptions.merge())
             return
         }
 
@@ -617,6 +654,8 @@ object DataSyncManager {
                 "averageTime" to averageTime,
                 "updated_at" to FieldValue.serverTimestamp()
             ),
+            "username" to userName,
+            "countryCode" to country,
             "hasInsigniaRIPlus" to (CondecoracionTracker.getInsigniaRIPlus() != null)
         )
         userDoc.set(data, SetOptions.merge())
@@ -634,7 +673,7 @@ object DataSyncManager {
         val fieldBase = "speed_ranking_$gameType"
         val fieldAvg = "$fieldBase.averageTime"
 
-        db.collection("usuarios")
+        db.collection("rankings_speed")
             .orderBy(fieldAvg)
             .limit(200)
             .get()
@@ -681,7 +720,7 @@ object DataSyncManager {
 
                 if (userPosition == -1) {
 
-                    db.collection("usuarios")
+                    db.collection("rankings_speed")
                         .whereLessThan(fieldAvg, averageTime)
                         .get()
                         .addOnSuccessListener { betterUsers ->
@@ -708,39 +747,6 @@ object DataSyncManager {
             }
     }
 
-    fun uploadGlobalRankingToFirebase(
-        userId: String,
-        userName: String,
-        country: String,
-        totalPoints: Long
-    ) {
-        val db = FirebaseFirestore.getInstance()
-        val userDoc = db.collection("usuarios").document(userId)
-
-        userDoc.set(
-            hashMapOf(
-                "profile_preferences" to hashMapOf(
-                    "savedUserName" to userName,
-                    "savedCountryCode" to country
-                )
-            ),
-            SetOptions.merge()
-        )
-
-        if (!ScoreManager.isUserInRanking("GLOBAL")) {
-            userDoc.update(mapOf("global_ranking" to FieldValue.delete()))
-            return
-        }
-
-        val data = hashMapOf(
-            "global_ranking" to hashMapOf(
-                "totalPoints" to totalPoints,
-                "updated_at" to FieldValue.serverTimestamp()
-            ),
-            "hasInsigniaRIPlus" to (CondecoracionTracker.getInsigniaRIPlus() != null)
-        )
-        userDoc.set(data, SetOptions.merge())
-    }
 
     fun getTopGlobalRanking(
         userId: String,
@@ -751,22 +757,54 @@ object DataSyncManager {
     ) {
         val db = FirebaseFirestore.getInstance()
 
-        db.collection("usuarios")
-            .orderBy("global_ranking.totalPoints", com.google.firebase.firestore.Query.Direction.DESCENDING)
+        Log.d(
+            "RankingDebug",
+            "getTopGlobalRanking - INICIO userId=$userId userName=$userName country=$country totalPoints=$totalPoints"
+        )
+
+        val query = db.collection("rankings_global")
+            .orderBy("totalPoints", com.google.firebase.firestore.Query.Direction.DESCENDING)
             .limit(200)
-            .get()
+
+        Log.d(
+            "RankingDebug",
+            "getTopGlobalRanking - ejecutando query principal orderBy(global_ranking.totalPoints DESC) limit=200"
+        )
+
+        query.get(com.google.firebase.firestore.Source.CACHE)
             .addOnSuccessListener { result ->
+                Log.d(
+                    "RankingDebug",
+                    "getTopGlobalRanking - query principal SUCCESS docs=${result.size()}"
+                )
+
                 val rankingList = mutableListOf<GlobalRankingItem>()
                 var userPosition = -1
                 var userItem: GlobalRankingItem? = null
                 var currentPosition = 1
                 var previousPoints: Long? = null
+                var processedDocs = 0
+                var skippedDocs = 0
 
                 for (doc in result) {
-                    val pointsData = doc.get("global_ranking") as? Map<*, *>
-                    val value = ((pointsData?.get("totalPoints") ?: 0L) as Number).toLong()
+                    processedDocs++
 
-                    if (value <= 0L) continue
+                    val rawPoints = doc.get("totalPoints")
+                    val value = (rawPoints as? Number)?.toLong() ?: 0L
+
+                    Log.d(
+                        "RankingDebug",
+                        "getTopGlobalRanking - doc=${doc.id} username=${doc.getString("username")} country=${doc.getString("countryCode")} rawPoints=$rawPoints parsedPoints=$value"
+                    )
+
+                    if (value <= 0L) {
+                        skippedDocs++
+                        Log.d(
+                            "RankingDebug",
+                            "getTopGlobalRanking - doc=${doc.id} OMITIDO porque totalPoints<=0"
+                        )
+                        continue
+                    }
 
                     val name = doc.getString("username") ?: ""
                     val code = doc.getString("countryCode") ?: "us"
@@ -776,6 +814,10 @@ object DataSyncManager {
 
                     if (previousPoints != null && value < previousPoints) {
                         currentPosition++
+                        Log.d(
+                            "RankingDebug",
+                            "getTopGlobalRanking - cambio de posición currentPosition=$currentPosition porque $value < $previousPoints"
+                        )
                     }
 
                     val item = GlobalRankingItem(
@@ -786,22 +828,41 @@ object DataSyncManager {
                         isCurrentUser = isCurrent,
                         hasInsigniaRIPlus = hasInsignia
                     )
+
                     rankingList.add(item)
 
                     if (isCurrent) {
                         userPosition = currentPosition
                         userItem = item
+                        Log.d(
+                            "RankingDebug",
+                            "getTopGlobalRanking - USUARIO ACTUAL ENCONTRADO en query principal posición=$userPosition item=$userItem"
+                        )
                     }
 
                     previousPoints = value
                 }
 
-                if (userPosition == -1) {
+                Log.d(
+                    "RankingDebug",
+                    "getTopGlobalRanking - fin recorrido principal processedDocs=$processedDocs skippedDocs=$skippedDocs rankingListSize=${rankingList.size} userPosition=$userPosition"
+                )
 
-                    db.collection("usuarios")
-                        .whereGreaterThan("global_ranking.totalPoints", totalPoints)
+                if (userPosition == -1) {
+                    Log.d(
+                        "RankingDebug",
+                        "getTopGlobalRanking - usuario actual NO está en top 200, ejecutando query secundaria whereGreaterThan(global_ranking.totalPoints, $totalPoints)"
+                    )
+
+                    db.collection("rankings_global")
+                        .whereGreaterThan("totalPoints", totalPoints)
                         .get()
                         .addOnSuccessListener { betterUsers ->
+                            Log.d(
+                                "RankingDebug",
+                                "getTopGlobalRanking - query secundaria SUCCESS betterUsers=${betterUsers.size()}"
+                            )
+
                             userPosition = betterUsers.size() + 1
                             userItem = GlobalRankingItem(
                                 position = userPosition,
@@ -811,16 +872,36 @@ object DataSyncManager {
                                 isCurrentUser = true,
                                 hasInsigniaRIPlus = (CondecoracionTracker.getInsigniaRIPlus() != null)
                             )
+
+                            Log.d(
+                                "RankingDebug",
+                                "getTopGlobalRanking - callback FINAL desde query secundaria userPosition=$userPosition userItem=$userItem rankingListSize=${rankingList.size}"
+                            )
+
                             callback(rankingList, userPosition, userItem)
                         }
-                        .addOnFailureListener {
+                        .addOnFailureListener { e ->
+                            Log.e(
+                                "RankingDebug",
+                                "getTopGlobalRanking - query secundaria FAILURE error=${e.message}",
+                                e
+                            )
                             callback(rankingList, -1, null)
                         }
                 } else {
+                    Log.d(
+                        "RankingDebug",
+                        "getTopGlobalRanking - callback FINAL desde query principal userPosition=$userPosition userItem=$userItem rankingListSize=${rankingList.size}"
+                    )
                     callback(rankingList, userPosition, userItem)
                 }
             }
-            .addOnFailureListener {
+            .addOnFailureListener { e ->
+                Log.e(
+                    "RankingDebug",
+                    "getTopGlobalRanking - query principal FAILURE error=${e.message}",
+                    e
+                )
                 callback(emptyList(), -1, null)
             }
     }
@@ -832,17 +913,7 @@ object DataSyncManager {
         averagePosition: Double
     ) {
         val db = FirebaseFirestore.getInstance()
-        val userDoc = db.collection("usuarios").document(userId)
-
-        userDoc.set(
-            hashMapOf(
-                "profile_preferences" to hashMapOf(
-                    "savedUserName" to userName,
-                    "savedCountryCode" to country
-                )
-            ),
-            SetOptions.merge()
-        )
+        val userDoc = db.collection("rankings_integral").document(userId)
 
         val required = listOf(
             "GLOBAL","VEL_NUMEROS","VEL_DECI","VEL_ALFANUM","VEL_ROMAS",
@@ -854,7 +925,7 @@ object DataSyncManager {
 
         if (!eligible || !validAvg) {
 
-            userDoc.update(mapOf("integral_ranking" to FieldValue.delete()))
+            userDoc.set(mapOf("integral_ranking" to FieldValue.delete()), SetOptions.merge())
             return
         }
 
@@ -865,6 +936,8 @@ object DataSyncManager {
                 "averagePosition" to rounded,
                 "updated_at" to FieldValue.serverTimestamp()
             ),
+            "username" to userName,
+            "countryCode" to country,
             "hasInsigniaRIPlus" to (CondecoracionTracker.getInsigniaRIPlus() != null)
         )
         userDoc.set(data, SetOptions.merge())
@@ -881,7 +954,7 @@ object DataSyncManager {
         val fieldBase = "integral_ranking"
         val fieldAvg = "$fieldBase.averagePosition"
 
-        db.collection("usuarios")
+        db.collection("rankings_integral")
             .orderBy(fieldAvg)
             .limit(200)
             .get()
@@ -930,7 +1003,7 @@ object DataSyncManager {
 
                 if (userPosition == -1) {
 
-                    db.collection("usuarios")
+                    db.collection("rankings_integral")
                         .whereLessThan(fieldAvg, averagePosition)
                         .get()
                         .addOnSuccessListener { betterUsers ->
