@@ -747,7 +747,6 @@ object DataSyncManager {
             }
     }
 
-
     fun getTopGlobalRanking(
         userId: String,
         userName: String,
@@ -757,26 +756,17 @@ object DataSyncManager {
     ) {
         val db = FirebaseFirestore.getInstance()
 
-        Log.d(
-            "RankingDebug",
-            "getTopGlobalRanking - INICIO userId=$userId userName=$userName country=$country totalPoints=$totalPoints"
-        )
+        Log.d("RankingDebug", "getTopGlobalRanking - INICIO userId=$userId userName=$userName country=$country totalPoints=$totalPoints")
+        Log.d("RankingDebug", "getTopGlobalRanking - ejecutando query simple sin orderBy, ordenamiento manual")
 
-        val query = db.collection("rankings_global")
-            .orderBy("totalPoints", com.google.firebase.firestore.Query.Direction.DESCENDING)
-            .limit(200)
-
-        Log.d(
-            "RankingDebug",
-            "getTopGlobalRanking - ejecutando query principal orderBy(global_ranking.totalPoints DESC) limit=200"
-        )
-
-        query.get(com.google.firebase.firestore.Source.CACHE)
+        db.collection("rankings_global")
+            .get()
             .addOnSuccessListener { result ->
-                Log.d(
-                    "RankingDebug",
-                    "getTopGlobalRanking - query principal SUCCESS docs=${result.size()}"
-                )
+                Log.d("RankingDebug", "getTopGlobalRanking - query SUCCESS docs=${result.size()}")
+
+                val sortedDocs = result.documents
+                    .sortedByDescending { (it.get("totalPoints") as? Number)?.toLong() ?: 0L }
+                    .take(200)
 
                 val rankingList = mutableListOf<GlobalRankingItem>()
                 var userPosition = -1
@@ -786,23 +776,17 @@ object DataSyncManager {
                 var processedDocs = 0
                 var skippedDocs = 0
 
-                for (doc in result) {
+                for (doc in sortedDocs) {
                     processedDocs++
 
                     val rawPoints = doc.get("totalPoints")
                     val value = (rawPoints as? Number)?.toLong() ?: 0L
 
-                    Log.d(
-                        "RankingDebug",
-                        "getTopGlobalRanking - doc=${doc.id} username=${doc.getString("username")} country=${doc.getString("countryCode")} rawPoints=$rawPoints parsedPoints=$value"
-                    )
+                    Log.d("RankingDebug", "getTopGlobalRanking - doc=${doc.id} username=${doc.getString("username")} country=${doc.getString("countryCode")} rawPoints=$rawPoints parsedPoints=$value")
 
                     if (value <= 0L) {
                         skippedDocs++
-                        Log.d(
-                            "RankingDebug",
-                            "getTopGlobalRanking - doc=${doc.id} OMITIDO porque totalPoints<=0"
-                        )
+                        Log.d("RankingDebug", "getTopGlobalRanking - doc=${doc.id} OMITIDO porque totalPoints<=0")
                         continue
                     }
 
@@ -814,10 +798,7 @@ object DataSyncManager {
 
                     if (previousPoints != null && value < previousPoints) {
                         currentPosition++
-                        Log.d(
-                            "RankingDebug",
-                            "getTopGlobalRanking - cambio de posición currentPosition=$currentPosition porque $value < $previousPoints"
-                        )
+                        Log.d("RankingDebug", "getTopGlobalRanking - cambio de posición currentPosition=$currentPosition porque $value < $previousPoints")
                     }
 
                     val item = GlobalRankingItem(
@@ -834,74 +815,35 @@ object DataSyncManager {
                     if (isCurrent) {
                         userPosition = currentPosition
                         userItem = item
-                        Log.d(
-                            "RankingDebug",
-                            "getTopGlobalRanking - USUARIO ACTUAL ENCONTRADO en query principal posición=$userPosition item=$userItem"
-                        )
+                        Log.d("RankingDebug", "getTopGlobalRanking - USUARIO ACTUAL ENCONTRADO posición=$userPosition")
                     }
 
                     previousPoints = value
                 }
 
-                Log.d(
-                    "RankingDebug",
-                    "getTopGlobalRanking - fin recorrido principal processedDocs=$processedDocs skippedDocs=$skippedDocs rankingListSize=${rankingList.size} userPosition=$userPosition"
-                )
+                Log.d("RankingDebug", "getTopGlobalRanking - fin recorrido processedDocs=$processedDocs skippedDocs=$skippedDocs rankingListSize=${rankingList.size} userPosition=$userPosition")
 
                 if (userPosition == -1) {
-                    Log.d(
-                        "RankingDebug",
-                        "getTopGlobalRanking - usuario actual NO está en top 200, ejecutando query secundaria whereGreaterThan(global_ranking.totalPoints, $totalPoints)"
+                    val betterUsers = sortedDocs.count {
+                        ((it.get("totalPoints") as? Number)?.toLong() ?: 0L) > totalPoints
+                    }
+                    userPosition = betterUsers + 1
+                    userItem = GlobalRankingItem(
+                        position = userPosition,
+                        username = userName,
+                        countryCode = country,
+                        totalPoints = totalPoints,
+                        isCurrentUser = true,
+                        hasInsigniaRIPlus = (CondecoracionTracker.getInsigniaRIPlus() != null)
                     )
-
-                    db.collection("rankings_global")
-                        .whereGreaterThan("totalPoints", totalPoints)
-                        .get()
-                        .addOnSuccessListener { betterUsers ->
-                            Log.d(
-                                "RankingDebug",
-                                "getTopGlobalRanking - query secundaria SUCCESS betterUsers=${betterUsers.size()}"
-                            )
-
-                            userPosition = betterUsers.size() + 1
-                            userItem = GlobalRankingItem(
-                                position = userPosition,
-                                username = userName,
-                                countryCode = country,
-                                totalPoints = totalPoints,
-                                isCurrentUser = true,
-                                hasInsigniaRIPlus = (CondecoracionTracker.getInsigniaRIPlus() != null)
-                            )
-
-                            Log.d(
-                                "RankingDebug",
-                                "getTopGlobalRanking - callback FINAL desde query secundaria userPosition=$userPosition userItem=$userItem rankingListSize=${rankingList.size}"
-                            )
-
-                            callback(rankingList, userPosition, userItem)
-                        }
-                        .addOnFailureListener { e ->
-                            Log.e(
-                                "RankingDebug",
-                                "getTopGlobalRanking - query secundaria FAILURE error=${e.message}",
-                                e
-                            )
-                            callback(rankingList, -1, null)
-                        }
-                } else {
-                    Log.d(
-                        "RankingDebug",
-                        "getTopGlobalRanking - callback FINAL desde query principal userPosition=$userPosition userItem=$userItem rankingListSize=${rankingList.size}"
-                    )
-                    callback(rankingList, userPosition, userItem)
+                    Log.d("RankingDebug", "getTopGlobalRanking - usuario NO en top, posición calculada=$userPosition")
                 }
+
+                Log.d("RankingDebug", "getTopGlobalRanking - callback FINAL userPosition=$userPosition rankingListSize=${rankingList.size}")
+                callback(rankingList, userPosition, userItem)
             }
             .addOnFailureListener { e ->
-                Log.e(
-                    "RankingDebug",
-                    "getTopGlobalRanking - query principal FAILURE error=${e.message}",
-                    e
-                )
+                Log.e("RankingDebug", "getTopGlobalRanking - FAILURE error=${e.message}", e)
                 callback(emptyList(), -1, null)
             }
     }

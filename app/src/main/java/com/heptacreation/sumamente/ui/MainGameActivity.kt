@@ -131,13 +131,24 @@ class MainGameActivity : BaseActivity() {
             val btnTest = findViewById<android.widget.Button>(R.id.btn_test_firebase)
             btnTest.setOnClickListener {
                 android.widget.Toast.makeText(this, "Tocado", android.widget.Toast.LENGTH_SHORT).show()
+                val start = System.currentTimeMillis()
                 FirebaseFirestore.getInstance()
                     .collection("rankings_global")
                     .get()
                     .addOnSuccessListener { result ->
-                        android.widget.Toast.makeText(this, "OK: ${result.size()} docs", android.widget.Toast.LENGTH_LONG).show()
+                        val elapsed = System.currentTimeMillis() - start
+                        val sorted = result.documents.sortedByDescending {
+                            (it.get("totalPoints") as? Number)?.toLong() ?: 0L
+                        }
+                        android.util.Log.d("FirebaseDiag", "ÉXITO en ${elapsed}ms — docs=${sorted.size}")
+                        sorted.forEachIndexed { i, doc ->
+                            android.util.Log.d("FirebaseDiag", "#${i+1} username=${doc.getString("username")} totalPoints=${doc.get("totalPoints")}")
+                        }
+                        android.widget.Toast.makeText(this, "OK: ${sorted.size} docs en ${elapsed}ms", android.widget.Toast.LENGTH_LONG).show()
                     }
                     .addOnFailureListener { e ->
+                        val elapsed = System.currentTimeMillis() - start
+                        android.util.Log.e("FirebaseDiag", "ERROR en ${elapsed}ms — ${e.message}")
                         android.widget.Toast.makeText(this, "ERROR: ${e.message}", android.widget.Toast.LENGTH_LONG).show()
                     }
             }

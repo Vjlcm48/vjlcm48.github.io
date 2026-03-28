@@ -45,7 +45,7 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
     private var colorAnimator: ValueAnimator? = null
 
     companion object {
-        const val MIN_LEVELS_REQUIRED = 36
+        const val MIN_LEVELS_REQUIRED = 4
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -258,7 +258,36 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
                 return@postDelayed
             }
 
-            android.util.Log.d("RankingDebug", "Pasó el bloque totalLevels==0, llamando handleLinkAccountInvitation")
+            android.util.Log.d("RankingDebug", "Llamando getTopGlobalRanking directamente")
+
+// ===== DIAGNÓSTICO TEMPORAL FIREBASE =====
+            val db = com.google.firebase.firestore.FirebaseFirestore.getInstance()
+            val diagStart = System.currentTimeMillis()
+            android.util.Log.d("RankingDebug", "DIAG: iniciando lectura directa de documento en rankings_global")
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                android.util.Log.e("RankingDebug", "DIAG: SIN RESPUESTA tras 10 segundos — Firebase no está respondiendo desde este dispositivo")
+            }, 10000)
+
+            db.collection("rankings_global")
+                .document("PMGhzn0IuEXPPDFZk4KSskutiNh2")
+                .get()
+                .addOnSuccessListener { doc ->
+                    Handler(Looper.getMainLooper()).removeCallbacksAndMessages(null)
+                    val elapsed = System.currentTimeMillis() - diagStart
+                    if (doc.exists()) {
+                        android.util.Log.d("RankingDebug", "DIAG: documento encontrado en ${elapsed}ms — username=${doc.getString("username")} totalPoints=${doc.getLong("totalPoints")}")
+                    } else {
+                        android.util.Log.w("RankingDebug", "DIAG: documento NO existe en ${elapsed}ms")
+                    }
+                }
+                .addOnFailureListener { e ->
+                    Handler(Looper.getMainLooper()).removeCallbacksAndMessages(null)
+                    val elapsed = System.currentTimeMillis() - diagStart
+                    android.util.Log.e("RankingDebug", "DIAG: error tras ${elapsed}ms — ${e.javaClass.simpleName}: ${e.message}")
+                }
+// ===== FIN DIAGNÓSTICO =====
+
             handleLinkAccountInvitation()
 
             if (totalLevels >= MIN_LEVELS_REQUIRED) {
