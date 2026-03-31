@@ -30,6 +30,14 @@ class MyApplication : Application() {
 
         ScoreManager.init(this)
 
+        val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        if (!prefs.contains("heavy_sync_anchor_time")) {
+            prefs.edit {
+                putLong("heavy_sync_anchor_time", System.currentTimeMillis())
+            }
+            android.util.Log.d("HeavySync", "Anchor time inicial guardado")
+        }
+
         ProcessLifecycleOwner.get().lifecycle.addObserver(object : DefaultLifecycleObserver {
 
             override fun onStart(owner: LifecycleOwner) {
@@ -58,6 +66,17 @@ class MyApplication : Application() {
             PlayStoreReferrerReceiver.captureInstallReferrer(applicationContext)
             prefsReferral.edit { putBoolean("install_referrer_captured", true) }
         }
+
+        val heavySyncRequest =
+            androidx.work.PeriodicWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.HeavySyncWorker>(
+                1, java.util.concurrent.TimeUnit.DAYS
+            ).build()
+
+        androidx.work.WorkManager.getInstance(applicationContext).enqueueUniquePeriodicWork(
+            "heavy_sync_worker",
+            androidx.work.ExistingPeriodicWorkPolicy.KEEP,
+            heavySyncRequest
+        )
     }
 
     private fun setAppState() {

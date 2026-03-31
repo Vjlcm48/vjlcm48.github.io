@@ -81,6 +81,9 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
         ScoreManager.initGenioPlus(this)
         ScoreManager.initGenioPlusPrincipiante(this)
         ScoreManager.initGenioPlusPro(this)
+        ScoreManager.initFocoPlus(this)
+        ScoreManager.initFocoPlusPrincipiante(this)
+        ScoreManager.initFocoPlusPro(this)
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
 
         initViews()
@@ -217,22 +220,7 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
         return rankingsStatus.all { it } // Debe estar en TODOS los 9 rankings
     }
 
-    private fun calculateAveragePosition(): Double {
-
-        val positions = listOf(
-            ScoreManager.getUserPositionInRanking("GLOBAL"),
-            ScoreManager.getUserPositionInRanking("VEL_NUMEROS"),
-            ScoreManager.getUserPositionInRanking("VEL_DECI"),
-            ScoreManager.getUserPositionInRanking("VEL_ALFANUM"),
-            ScoreManager.getUserPositionInRanking("VEL_ROMAS"),
-            ScoreManager.getUserPositionInRanking("VEL_SUMARESTA"),
-            ScoreManager.getUserPositionInRanking("VEL_MAS"),
-            ScoreManager.getUserPositionInRanking("VEL_GENIOS"),
-            ScoreManager.getUserPositionInRanking("IQ_PLUS")
-        )
-
-        return positions.average()
-    }
+    private fun calculateIntegralScore(): Double = ScoreManager.calculateIntegralScore()
 
     private fun loadIntegralRankingData() {
 
@@ -252,7 +240,7 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
                 0       -> showNoRankingsMessage()
                 in 1..8 -> showProgressMessage(rankingsCount, rankingsStatus)
                 9       -> {
-                    calculateAveragePosition()
+
                     showIntegralRanking()
                 }
             }
@@ -410,20 +398,20 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
             return
         }
 
-        val averagePosition = calculateAveragePosition()
+        val integralScore = calculateIntegralScore()
 
         DataSyncManager.uploadIntegralRankingToFirebase(
             userId = getUserId(),
             userName = username,
             country = countryCode,
-            averagePosition = averagePosition
+            integralScore = integralScore
         )
 
         DataSyncManager.getTopIntegralRanking(
             userId = getUserId(),
             userName = username,
             country = countryCode,
-            averagePosition = averagePosition
+            integralScore = integralScore
         ) { rankingList, userPosition, userItem ->
             rankingItems.clear()
             rankingItems.addAll(rankingList)

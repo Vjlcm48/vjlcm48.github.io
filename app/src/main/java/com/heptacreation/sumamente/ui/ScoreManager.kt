@@ -1485,71 +1485,46 @@ fun getMissingLevelsFocoPlusPrincipiante(): Int = (12 - getUniqueLevelsPlayedFoc
 fun getMissingLevelsFocoPlusAvanzado(): Int = (12 - getUniqueLevelsPlayedFocoPlusAvanzado()).coerceAtLeast(0)
 fun getMissingLevelsFocoPlusPro(): Int = (12 - getUniqueLevelsPlayedFocoPlusPro()).coerceAtLeast(0)
 
-fun isEligibleForSpeedRankingNumerosPlus(): Boolean =
-    getUniqueLevelsPlayedNumerosPlusPrincipiante() >= 12 &&
-            getUniqueLevelsPlayedNumerosPlusAvanzado() >= 12 &&
-            getUniqueLevelsPlayedNumerosPlusPro() >= 12
+    fun isEligibleForSpeedRankingNumerosPlus(): Boolean =
+        getUniqueLevelsPlayedNumerosPlusPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedNumerosPlusAvanzado() >= 12 &&
+                getUniqueLevelsPlayedNumerosPlusPro() >= 12
 
-fun isEligibleForSpeedRankingDeciPlus(): Boolean =
-    getUniqueLevelsPlayedDeciPlusPrincipiante() >= 12 &&
-            getUniqueLevelsPlayedDeciPlusAvanzado() >= 12 &&
-            getUniqueLevelsPlayedDeciPlusPro() >= 12
+    fun isEligibleForSpeedRankingDeciPlus(): Boolean =
+        getUniqueLevelsPlayedDeciPlusPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedDeciPlusAvanzado() >= 12 &&
+                getUniqueLevelsPlayedDeciPlusPro() >= 12
 
-fun isEligibleForSpeedRankingRomas(): Boolean =
-    getUniqueLevelsPlayedRomasPrincipiante() >= 12 &&
-            getUniqueLevelsPlayedRomasAvanzado() >= 12 &&
-            getUniqueLevelsPlayedRomasPro() >= 12
+    fun isEligibleForSpeedRankingRomas(): Boolean =
+        getUniqueLevelsPlayedRomasPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedRomasAvanzado() >= 12 &&
+                getUniqueLevelsPlayedRomasPro() >= 12
 
-fun isEligibleForSpeedRankingAlfaNumeros(): Boolean =
-    getUniqueLevelsPlayedAlfaNumerosPrincipiante() >= 12 &&
-            getUniqueLevelsPlayedAlfaNumerosAvanzado() >= 12 &&
-            getUniqueLevelsPlayedAlfaNumerosPro() >= 12
+    fun isEligibleForSpeedRankingAlfaNumeros(): Boolean =
+        getUniqueLevelsPlayedAlfaNumerosPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedAlfaNumerosAvanzado() >= 12 &&
+                getUniqueLevelsPlayedAlfaNumerosPro() >= 12
 
-fun isEligibleForSpeedRankingSumaResta(): Boolean =
-    getUniqueLevelsPlayedSumaRestaPrincipiante() >= 12 &&
-            getUniqueLevelsPlayedSumaRestaAvanzado() >= 12 &&
-            getUniqueLevelsPlayedSumaRestaPro() >= 12
+    fun isEligibleForSpeedRankingSumaResta(): Boolean =
+        getUniqueLevelsPlayedSumaRestaPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedSumaRestaAvanzado() >= 12 &&
+                getUniqueLevelsPlayedSumaRestaPro() >= 12
 
-fun isEligibleForSpeedRankingMasPlus(): Boolean =
-    getUniqueLevelsPlayedMasPlusPrincipiante() >= 12 &&
-            getUniqueLevelsPlayedMasPlusAvanzado() >= 12 &&
-            getUniqueLevelsPlayedMasPlusPro() >= 12
+    fun isEligibleForSpeedRankingMasPlus(): Boolean =
+        getUniqueLevelsPlayedMasPlusPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedMasPlusAvanzado() >= 12 &&
+                getUniqueLevelsPlayedMasPlusPro() >= 12
 
-fun isEligibleForSpeedRankingGenioPlus(): Boolean =
-    getUniqueLevelsPlayedGenioPlusPrincipiante() >= 12 &&
-            getUniqueLevelsPlayedGenioPlusAvanzado() >= 12 &&
-            getUniqueLevelsPlayedGenioPlusPro() >= 12
+    fun isEligibleForSpeedRankingGenioPlus(): Boolean =
+        getUniqueLevelsPlayedGenioPlusPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedGenioPlusAvanzado() >= 12 &&
+                getUniqueLevelsPlayedGenioPlusPro() >= 12
 
-fun isEligibleForSpeedRankingFocoPlus(): Boolean =
-    getUniqueLevelsPlayedFocoPlusPrincipiante() >= 12 &&
-             getUniqueLevelsPlayedFocoPlusAvanzado() >= 12 &&
-             getUniqueLevelsPlayedFocoPlusPro() >= 12
+    fun isEligibleForSpeedRankingFocoPlus(): Boolean =
+        getUniqueLevelsPlayedFocoPlusPrincipiante() >= 12 &&
+                getUniqueLevelsPlayedFocoPlusAvanzado() >= 12 &&
+                getUniqueLevelsPlayedFocoPlusPro() >= 12
 
-
-fun reset() = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.AVANZADO).reset()
-fun resetPrincipiante() = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRINCIPIANTE).reset()
-fun resetPro() = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.PRO).reset()
-fun resetDeciPlus() = getOrCreateManager(Game.DECI_PLUS, Difficulty.AVANZADO).reset()
-fun resetDeciPlusPrincipiante() = getOrCreateManager(Game.DECI_PLUS, Difficulty.PRINCIPIANTE).reset()
-fun resetDeciPlusPro() = getOrCreateManager(Game.DECI_PLUS, Difficulty.PRO).reset()
-fun resetRomas() = getOrCreateManager(Game.ROMAS, Difficulty.AVANZADO).reset()
-fun resetRomasPrincipiante() = getOrCreateManager(Game.ROMAS, Difficulty.PRINCIPIANTE).reset()
-fun resetRomasPro() = getOrCreateManager(Game.ROMAS, Difficulty.PRO).reset()
-fun resetAlfaNumeros() = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.AVANZADO).reset()
-fun resetAlfaNumerosPrincipiante() = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRINCIPIANTE).reset()
-fun resetAlfaNumerosPro() = getOrCreateManager(Game.ALFA_NUMEROS, Difficulty.PRO).reset()
-fun resetSumaResta() = getOrCreateManager(Game.SUMA_RESTA, Difficulty.AVANZADO).reset()
-fun resetSumaRestaPrincipiante() = getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRINCIPIANTE).reset()
-fun resetSumaRestaPro() = getOrCreateManager(Game.SUMA_RESTA, Difficulty.PRO).reset()
-fun resetMasPlus() = getOrCreateManager(Game.MAS_PLUS, Difficulty.AVANZADO).reset()
-fun resetMasPlusPrincipiante() = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRINCIPIANTE).reset()
-fun resetMasPlusPro() = getOrCreateManager(Game.MAS_PLUS, Difficulty.PRO).reset()
-fun resetGenioPlus() = getOrCreateManager(Game.GENIO_PLUS, Difficulty.AVANZADO).reset()
-fun resetGenioPlusPrincipiante() = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRINCIPIANTE).reset()
-fun resetGenioPlusPro() = getOrCreateManager(Game.GENIO_PLUS, Difficulty.PRO).reset()
-fun resetFocoPlus() = getOrCreateManager(Game.FOCO_PLUS, Difficulty.AVANZADO).reset()
-fun resetFocoPlusPrincipiante() = getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRINCIPIANTE).reset()
-fun resetFocoPlusPro() = getOrCreateManager(Game.FOCO_PLUS, Difficulty.PRO).reset()
 
 fun incrementConsecutiveFailures(level: Int) = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.AVANZADO).incrementConsecutiveFailures(level)
 fun resetConsecutiveFailures(level: Int) = getOrCreateManager(Game.NUMEROS_PLUS, Difficulty.AVANZADO).resetConsecutiveFailures(level)
@@ -1794,8 +1769,7 @@ fun haJugadoAlMenosUnNivelEnCadaJuegoYGrado(): Boolean {
             getUniqueLevelsPlayedGenioPlusAvanzado() > 0 &&
             getUniqueLevelsPlayedGenioPlusPro() > 0 &&
             getUniqueLevelsPlayedFocoPlusPrincipiante() > 0 &&
-            getUniqueLevelsPlayedFocoPlusAvanzado() > 0 &&
-            getUniqueLevelsPlayedFocoPlusPro() > 0
+            getUniqueLevelsPlayedFocoPlusPrincipiante() > 0    // aca en un futuro debemos colocar foco avanzado y foco pro //
 }
 
 fun updateIqComponent(juego: String, grado: String, valor: Double) {
@@ -1826,6 +1800,14 @@ fun getMaxLevelForCombo(juego: String, grado: String): Int {
 fun hasCompleted12LevelsInAnyGame(): Boolean {
     return getTotalUniqueLevelsCompletedAllGames() >= 12
 }
+
+    fun calculateIntegralScore(): Double {
+        val totalPoints = getTotalScoreAllGames().toDouble()
+        val iqPlus = lastIqComponentByGame.values.sum()
+        val puntosPart = (totalPoints / 500_000.0) * 50.0
+        val iqPart = (iqPlus / 1_000.0) * 50.0
+        return (puntosPart + iqPart).coerceIn(0.0, 100.0)
+    }
 
 fun isRankedInAtLeastOneGame(): Boolean {
     val rankingNames = listOf(

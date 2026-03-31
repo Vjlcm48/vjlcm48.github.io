@@ -1630,4 +1630,9 @@
     <string name="error_username_check_failed">उपयोगकर्ता नाम की पुष्टि नहीं की जा सकी। कृपया पुन: प्रयास करें।</string>
     <string name="username_error_icon_description">उपयोगकर्ता नाम सत्यापित करने में त्रुटि</string>
 
+    <string name="ranking_top_percent_label">शीर्ष %1$s%%</string>
+    <string name="ranking_position_prompt_title">आपका सही स्थान क्या है?</string>
+    <string name="ranking_position_prompt_message">आप इस रैंकिंग के शीर्ष %1$s%% में हैं। क्या आप सभी खिलाड़ियों के बीच अपनी सटीक स्थिति जानना चाहते हैं?</string>
+    <string name="ranking_discover_position_button">इसे जानें!</string>
+
 </resources>

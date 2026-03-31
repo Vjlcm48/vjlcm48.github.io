@@ -246,6 +246,9 @@ class GameSelectionActivity : BaseActivity() {
         tvPillProximamenteFoco = btnFocoPlus.findViewById(R.id.tv_pill_proximamente_foco)
 
         btnMathPlus = findViewById(R.id.btn_math_plus)
+
+        btnMathPlus.visibility = View.GONE   ///  al eliminar esta línea el botón de Math plus vuelve a aparecer ///
+
         tvGameNameMathPlus = btnMathPlus.findViewById(R.id.tv_game_name_math_plus)
         tvGameSubtitleMathPlus = btnMathPlus.findViewById(R.id.tv_game_subtitle_math_plus)
         tvPillNuevoMath = btnMathPlus.findViewById(R.id.tv_pill_nuevo_math)

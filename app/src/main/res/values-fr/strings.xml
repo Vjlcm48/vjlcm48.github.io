@@ -1692,4 +1692,9 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
     <string name="error_username_check_failed">Impossible de vérifier le nom d\'utilisateur. Veuillez réessayer.</string>
     <string name="username_error_icon_description">Erreur lors de la validation du nom d\'utilisateur</string>
 
+    <string name="ranking_top_percent_label">Top %1$s%%</string>
+    <string name="ranking_position_prompt_title">Quelle est votre place exacte ?</string>
+    <string name="ranking_position_prompt_message">Vous êtes dans le Top %1$s%% de ce classement. Voulez-vous connaître votre position exacte parmi tous les joueurs ?</string>
+    <string name="ranking_discover_position_button">Le découvrir !</string>
+
 </resources>

@@ -1549,4 +1549,9 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
     <string name="error_username_check_failed">Não foi possível verificar o nome de utilizador. Tente novamente.</string>
     <string name="username_error_icon_description">Erro ao validar o nome de utilizador</string>
 
+    <string name="ranking_top_percent_label">Top %1$s%%</string>
+    <string name="ranking_position_prompt_title">Qual é o seu lugar exato?</string>
+    <string name="ranking_position_prompt_message">Está no Top %1$s%% deste ranking. Quer saber a sua posição exata entre todos os jogadores?</string>
+    <string name="ranking_discover_position_button">Descobrir!</string>
+
 </resources>

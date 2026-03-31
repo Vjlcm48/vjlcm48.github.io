@@ -2,67 +2,88 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_speed_ranking_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginVertical="4dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="2dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/speed_ranking_item_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="12dp">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv_position"
-            android:layout_width="0dp"
+        <View
+            android:id="@+id/view_user_strip"
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:background="@color/green_accent"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="?attr/colorOnBackground"
+            android:layout_toEndOf="@id/view_user_strip"
+            android:orientation="horizontal"
+            android:padding="12dp">
 
+            <TextView
+                android:id="@+id/tv_position"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="?attr/colorOnBackground"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="1" />
 
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="1" />
+            <ImageView
+                android:id="@+id/iv_insignia"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_insignia_ri_plus"
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/insignia_supremus_integralis"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tv_username"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:gravity="center"
-            android:textColor="?attr/colorOnBackground"
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="?attr/colorOnBackground"
+                android:textSize="16sp"
+                tools:text="SpeedMaster" />
 
+            <ImageView
+                android:id="@+id/iv_country_flag"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/bandera_pais"
+                android:gravity="center"
+                android:scaleType="fitCenter"
+                tools:src="@drawable/us" />
 
-            android:textSize="16sp"
-            tools:text="SpeedMaster" />
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:textColor="?attr/colorOnBackground"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="02:15 seg" />
 
-        <ImageView
-            android:id="@+id/iv_country_flag"
-            android:layout_width="0dp"
-            android:layout_height="24dp"
-            android:layout_weight="1"
-            android:contentDescription="@string/bandera_pais"
-            android:gravity="center"
-            android:scaleType="fitCenter"
-            tools:src="@drawable/us" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:textColor="?attr/colorOnBackground"
-
-
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="02:15 seg" />
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

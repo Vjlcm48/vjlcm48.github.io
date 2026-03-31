@@ -8,6 +8,7 @@ import com.android.installreferrer.api.InstallReferrerClient
 import com.android.installreferrer.api.InstallReferrerStateListener
 import com.android.installreferrer.api.ReferrerDetails
 import androidx.core.content.edit
+import kotlinx.coroutines.launch
 
 class PlayStoreReferrerReceiver : BroadcastReceiver() {
 
@@ -72,6 +73,10 @@ class PlayStoreReferrerReceiver : BroadcastReceiver() {
                 if (referralCode.startsWith("SM")) {
 
                     ReferralManager.saveReferrerCode(context, referralCode)
+
+                    kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.IO).launch {
+                        ReferralManager.syncReferralDataIfNeeded(context)
+                    }
 
                     val prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
                     prefs.edit { putString("last_captured_referrer", referralCode) }

@@ -905,12 +905,6 @@
             android:exported="false"
             android:theme="@style/Theme.SumaMente" />
 
-        <activity
-            android:name="com.heptacreation.sumamente.ui.ResetProgressActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:exported="false"
-            android:theme="@style/Theme.SumaMente" />
 
         <activity
             android:name="com.heptacreation.sumamente.ui.ApexSupremusActivity"

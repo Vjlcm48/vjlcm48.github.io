@@ -1,12 +1,12 @@
 package com.heptacreation.sumamente.ui
 
 import android.content.Context
+import android.graphics.Typeface
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -27,9 +27,12 @@ class IntegralRankingAdapter(
 ) : RecyclerView.Adapter<IntegralRankingAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val container: LinearLayout = view.findViewById(R.id.integral_ranking_item_container)
+        val card: androidx.cardview.widget.CardView = view.findViewById(R.id.card_integral_ranking_item)
+        val container: View = view.findViewById(R.id.integral_ranking_item_container)
+        val userStrip: View = view.findViewById(R.id.view_user_strip)
         val positionTextView: TextView = view.findViewById(R.id.tv_position)
         val usernameTextView: TextView = view.findViewById(R.id.tv_username)
+        val insigniaImageView: ImageView = view.findViewById(R.id.iv_insignia)
         val countryFlagImageView: ImageView = view.findViewById(R.id.iv_country_flag)
         val integralScoreTextView: TextView = view.findViewById(R.id.tv_integral_score)
     }
@@ -40,124 +43,81 @@ class IntegralRankingAdapter(
         return ViewHolder(view)
     }
 
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
+        val context = holder.itemView.context
 
         holder.positionTextView.text = item.position.toString()
+        holder.usernameTextView.text = item.username
 
-
-        if (item.hasInsigniaRIPlus) {
-
-            val usernameContainer = LinearLayout(holder.itemView.context)
-            usernameContainer.orientation = LinearLayout.HORIZONTAL
-            usernameContainer.gravity = android.view.Gravity.CENTER_VERTICAL
-
-
-            (holder.usernameTextView.parent as ViewGroup).apply {
-                val index = indexOfChild(holder.usernameTextView)
-                removeView(holder.usernameTextView)
-                addView(usernameContainer, index, holder.usernameTextView.layoutParams)
+        holder.insigniaImageView.visibility = if (item.hasInsigniaRIPlus) View.VISIBLE else View.GONE
+        holder.insigniaImageView.setOnClickListener {
+            val prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+            if (prefs.getBoolean("insignia_ri_plus_vista", false)) {
+                android.widget.Toast.makeText(context, context.getString(R.string.insignia_supremus_integralis), android.widget.Toast.LENGTH_SHORT).show()
+            } else {
+                val fm = (context as? androidx.fragment.app.FragmentActivity)?.supportFragmentManager
+                fm?.let { InsigniaRIPlusBottomSheet().show(it, "InsigniaBottomSheet") }
             }
-
-            val usernameView = TextView(holder.itemView.context).apply {
-                text = item.username
-                textSize = 16f
-                val textColor = if (item.isCurrentUser) R.color.highlight_user_text else R.attr.colorOnBackground
-                setTextColor(ContextCompat.getColor(holder.itemView.context, textColor))
-                setTypeface(null, android.graphics.Typeface.BOLD)
-            }
-            usernameContainer.addView(usernameView)
-
-
-            val insigniaImageView = ImageView(holder.itemView.context).apply {
-                setImageResource(R.drawable.ic_insignia_ri_plus)
-                val layoutParams = LinearLayout.LayoutParams(36, 36)
-                layoutParams.marginStart = 8
-                this.layoutParams = layoutParams
-                setOnClickListener { showInsigniaTooltip(it) }
-            }
-            usernameContainer.addView(insigniaImageView)
-
-        } else {
-
-            holder.usernameTextView.text = item.username
-            val textColor = if (item.isCurrentUser) R.color.highlight_user_text else android.R.color.black
-            holder.usernameTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, textColor))
         }
-
 
         val countryCode = item.countryCode.lowercase(Locale.ROOT)
         val resId = FlagsAdapter.flagResourceMap[countryCode]
-
         if (resId != null) {
             holder.countryFlagImageView.setImageResource(resId)
+            holder.countryFlagImageView.visibility = View.VISIBLE
         } else {
-            holder.countryFlagImageView.setImageResource(R.drawable.ve)
+            holder.countryFlagImageView.visibility = View.GONE
         }
 
-        val scoreWithLabel = holder.itemView.context.getString(
-            R.string.integral_score_label,
-            item.integralScore
-        )
+        val scoreWithLabel = context.getString(R.string.integral_score_label, item.integralScore)
         holder.integralScoreTextView.text = scoreWithLabel
 
-
         if (item.isCurrentUser) {
+            holder.userStrip.visibility = View.VISIBLE
+            holder.card.cardElevation = context.resources.displayMetrics.density * 8
             holder.container.setBackgroundColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_background)
+                ContextCompat.getColor(context, R.color.highlight_user_background)
             )
-            holder.positionTextView.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_text)
-            )
-            holder.integralScoreTextView.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_text)
-            )
+            val highlightColor = ContextCompat.getColor(context, R.color.highlight_user_text)
+            holder.positionTextView.setTextColor(highlightColor)
+            holder.positionTextView.textSize = 17f
+            holder.usernameTextView.setTextColor(highlightColor)
+            holder.usernameTextView.setTypeface(null, Typeface.BOLD)
+            holder.usernameTextView.textSize = 17f
+            holder.integralScoreTextView.setTextColor(highlightColor)
+            holder.integralScoreTextView.textSize = 17f
         } else {
-            val backgroundColor = if (position % 2 == 0)
-                R.color.ranking_item_even
-            else
-                R.color.ranking_item_odd
-
+            holder.userStrip.visibility = View.GONE
+            holder.card.cardElevation = context.resources.displayMetrics.density * 2
+            val backgroundColor = if (position % 2 == 0) R.color.ranking_item_even else R.color.ranking_item_odd
             holder.container.setBackgroundColor(
-                ContextCompat.getColor(holder.itemView.context, backgroundColor)
+                ContextCompat.getColor(context, backgroundColor)
             )
-            holder.positionTextView.setTextColor(
-                getColorFromAttr(holder.itemView.context, R.attr.colorOnBackground)
-            )
-            holder.integralScoreTextView.setTextColor(
-                getColorFromAttr(holder.itemView.context, R.attr.colorOnBackground)
-            )
+            holder.positionTextView.setTextColor(getColorFromAttr(context, R.attr.colorOnBackground))
+            holder.positionTextView.textSize = 16f
+            holder.usernameTextView.setTextColor(getColorFromAttr(context, R.attr.colorOnBackground))
+            holder.usernameTextView.setTypeface(null, Typeface.NORMAL)
+            holder.usernameTextView.textSize = 16f
+            holder.integralScoreTextView.setTextColor(getColorFromAttr(context, R.attr.colorOnBackground))
+            holder.integralScoreTextView.textSize = 16f
         }
 
-        if (!item.isCurrentUser) {
-            when (item.position) {
-                1 -> {
-                    holder.positionTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.gold))
-                    holder.integralScoreTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.gold))
-                }
-                2 -> {
-                    holder.positionTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.silver))
-                    holder.integralScoreTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.silver))
-                }
-                3 -> {
-                    holder.positionTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.bronze))
-                    holder.integralScoreTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.bronze))
-                }
+        when (item.position) {
+            1 -> {
+                holder.positionTextView.setTextColor(ContextCompat.getColor(context, R.color.gold))
+                holder.integralScoreTextView.setTextColor(ContextCompat.getColor(context, R.color.gold))
+            }
+            2 -> {
+                holder.positionTextView.setTextColor(ContextCompat.getColor(context, R.color.silver))
+                holder.integralScoreTextView.setTextColor(ContextCompat.getColor(context, R.color.silver))
+            }
+            3 -> {
+                holder.positionTextView.setTextColor(ContextCompat.getColor(context, R.color.bronze))
+                holder.integralScoreTextView.setTextColor(ContextCompat.getColor(context, R.color.bronze))
             }
         }
-
-        if (item.isCurrentUser) {
-            holder.positionTextView.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_text)
-            )
-            holder.integralScoreTextView.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_text)
-            )
-        }
     }
-
-    override fun getItemCount() = items.size
 
     private fun getColorFromAttr(context: Context, attrId: Int): Int {
         val typedValue = TypedValue()
@@ -165,7 +125,5 @@ class IntegralRankingAdapter(
         return typedValue.data
     }
 
-    private fun showInsigniaTooltip(view: View) {
-        android.widget.Toast.makeText(view.context, "SUPREMUS INTEGRALIS", android.widget.Toast.LENGTH_SHORT).show()
-    }
+    override fun getItemCount() = items.size
 }

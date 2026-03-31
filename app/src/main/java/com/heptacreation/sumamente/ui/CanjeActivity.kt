@@ -14,11 +14,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.edit
+import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.functions.FirebaseFunctions
 import com.heptacreation.sumamente.R
 import com.heptacreation.sumamente.ui.utils.DataSyncManager
 import com.heptacreation.sumamente.ui.utils.ReferralManager
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class CanjeActivity : BaseActivity() {
@@ -102,6 +104,10 @@ class CanjeActivity : BaseActivity() {
             actualizarTextoSaldo()
         }
 
+        lifecycleScope.launch {
+            ReferralManager.syncReferralDataIfNeeded(this@CanjeActivity)
+        }
+
         val shared = sharedPreferences.getBoolean("has_shared_referral", false)
         if (prev == 0 && latest >= 1 && shared) {
             com.heptacreation.sumamente.ui.utils.MessagesStateManager
@@ -163,6 +169,11 @@ class CanjeActivity : BaseActivity() {
                         }
 
                         actualizarTextoSaldo()
+
+                        lifecycleScope.launch {
+                            ReferralManager.syncReferralDataIfNeeded(this@CanjeActivity)
+                        }
+
                         DataSyncManager.updateCanjeStatus(true)
                     }
                     .addOnFailureListener { e ->

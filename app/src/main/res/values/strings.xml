@@ -1820,4 +1820,11 @@
     <string name="error_username_check_failed">No se pudo verificar el nombre de usuario. Inténtalo nuevamente.</string>
     <string name="username_error_icon_description">Error al validar el nombre de usuario</string>
 
+    <string name="ranking_top_percent_label">Top %1$s%%</string>
+    <string name="ranking_position_prompt_title">¿Cuál es tu lugar exacto?</string>
+    <string name="ranking_position_prompt_message">Estás en el Top %1$s%% de este ranking. ¿Quieres conocer tu posición exacta entre todos los jugadores?</string>
+    <string name="ranking_discover_position_button">¡Descubrirlo!</string>
+
+    <string name="ranking_search_emoji" translatable="false">🔍</string>
+
 </resources>

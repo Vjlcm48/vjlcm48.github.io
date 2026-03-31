@@ -26,12 +26,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/iv_insignia_main"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="4dp"
+        android:src="@drawable/ic_insignia_ri_plus"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/insignia_supremus_integralis"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@id/profile_text"
+        app:layout_constraintTop_toTopOf="@id/profile_text"
+        app:layout_constraintBottom_toBottomOf="@id/profile_text" />
+
         <FrameLayout
             android:id="@+id/trophy_container"
             android:layout_width="48dp"
             android:layout_height="48dp"
             app:layout_constraintEnd_toStartOf="@+id/settings_icon"
-            app:layout_constraintStart_toEndOf="@id/profile_text"
+            app:layout_constraintStart_toEndOf="@id/iv_insignia_main"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
@@ -265,15 +279,5 @@
             android:fontFamily="@font/roboto_bold" />
     </RelativeLayout>
     </FrameLayout>
-
-    <Button
-        android:id="@+id/btn_test_firebase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/content_description_check_icon"
-        android:elevation="10dp"
-        app:layout_constraintTop_toBottomOf="@id/new_game_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,7 @@ import androidx.core.content.edit
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.functions.FirebaseFunctions
 import com.heptacreation.sumamente.ui.ScoreManager
 import kotlinx.coroutines.tasks.await
@@ -117,7 +118,7 @@ object ReferralManager {
                 try {
                     val db = FirebaseFirestore.getInstance()
                     db.collection("usuarios").document(currentUser.uid)
-                        .set(mapOf("referredBy" to referrerCode), com.google.firebase.firestore.SetOptions.merge())
+                        .set(mapOf("referredBy" to referrerCode), SetOptions.merge())
                 } catch (e: Exception) {
                     Log.w("ReferralManager", "No se pudo sincronizar referredBy: ${e.message}")
                 }
@@ -176,7 +177,7 @@ object ReferralManager {
             if (userId != null) {
                 val db = FirebaseFirestore.getInstance()
                 db.collection("usuarios").document(userId)
-                    .set(mapOf("referralCode" to tempCode), com.google.firebase.firestore.SetOptions.merge())
+                    .set(mapOf("referralCode" to tempCode), SetOptions.merge())
                 db.collection("referral_codes").document(tempCode)
                     .set(mapOf("uid" to userId, "timestamp" to FieldValue.serverTimestamp()))
             }
@@ -199,6 +200,37 @@ object ReferralManager {
         } catch (e: Exception) {
             Log.e("ReferralManager", "Error obteniendo conteo: ${e.message}")
             0
+        }
+    }
+
+    suspend fun syncReferralDataIfNeeded(context: Context): Boolean {
+        return try {
+            val user = FirebaseAuth.getInstance().currentUser ?: return false
+            val uid = user.uid
+            val db = FirebaseFirestore.getInstance()
+
+            val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+
+            val referralCode = sharedPreferences.getString("referral_code", null)
+            val referidosValidados = sharedPreferences.getInt("referidos_validados", 0)
+
+            val data = hashMapOf<String, Any>(
+                "referidos_validados" to referidosValidados
+            )
+
+            if (!referralCode.isNullOrEmpty()) {
+                data["referral_code"] = referralCode
+            }
+
+            db.collection("usuarios")
+                .document(uid)
+                .set(data, SetOptions.merge())
+                .await()
+
+            true
+
+        } catch (_: Exception) {
+            false
         }
     }
 }

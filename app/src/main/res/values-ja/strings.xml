@@ -1391,4 +1391,9 @@
     <string name="error_username_check_failed">ユーザー名を確認できませんでした。もう一度お試しください。</string>
     <string name="username_error_icon_description">ユーザー名の確認中にエラーが発生しました</string>
 
+    <string name="ranking_top_percent_label">トップ %1$s%%</string>
+    <string name="ranking_position_prompt_title">あなたの正確な順位は？</string>
+    <string name="ranking_position_prompt_message">あなたはこのランキングのトップ %1$s%% に入っています。全プレイヤーの中での正確な順位を知りたいですか？</string>
+    <string name="ranking_discover_position_button">確認する！</string>
+
 </resources>

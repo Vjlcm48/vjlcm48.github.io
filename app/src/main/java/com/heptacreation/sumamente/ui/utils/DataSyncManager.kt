@@ -8,6 +8,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.SetOptions
 import com.heptacreation.sumamente.R
 import com.heptacreation.sumamente.ui.CondecoracionTracker
@@ -18,7 +19,7 @@ import com.heptacreation.sumamente.ui.ScoreManager
 import com.heptacreation.sumamente.ui.SettingsActivity
 import com.heptacreation.sumamente.ui.SpeedRankingItem
 import kotlinx.coroutines.launch
-import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.firestore.AggregateSource
 
 
 object DataSyncManager {
@@ -33,9 +34,10 @@ object DataSyncManager {
     @android.annotation.SuppressLint("HardwareIds")
     fun syncDataToCloud(
         context: Context,
+        validateReferralIfNeeded: Boolean = false,
         onResult: (success: Boolean, error: String?) -> Unit
     ) {
-        Log.d("DataSyncManager", "=== INICIO syncDataToCloud ===")
+        Log.d("DataSyncManager", "=== INICIO syncDataToCloud LIGERA ===")
 
         val firestore = FirebaseFirestore.getInstance()
         val user = auth.currentUser
@@ -46,127 +48,112 @@ object DataSyncManager {
             return
         }
 
-        val prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val isFirstTimeUser = prefs.getBoolean("is_first_run", true)
-        val hasCompleted12Levels = ScoreManager.hasCompleted12LevelsInAnyGame()
-        val totalLevels = ScoreManager.getTotalUniqueLevelsCompletedAllGames()
+        try {
+            val prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
-        Log.d("DataSyncManager", "isFirstTimeUser: $isFirstTimeUser")
-        Log.d("DataSyncManager", "hasCompleted12Levels: $hasCompleted12Levels")
-        Log.d("DataSyncManager", "totalLevels: $totalLevels")
+            val userName = prefs.getString("savedUserName", "") ?: ""
+            val countryCode = prefs.getString("savedCountryCode", "sumamente") ?: "sumamente"
+            val hasInsigniaRIPlus = (CondecoracionTracker.getInsigniaRIPlus() != null)
+            val welcomeMissCounter = prefs.getInt("welcomeMissCounter", 0)
 
-        if (isFirstTimeUser || hasCompleted12Levels) {
-            Log.d("DataSyncManager", "Condición cumplida - ejecutando validación de referidos")
+            val totalScoreAllGames = ScoreManager.getTotalScoreAllGames()
+            val iqPlusValue = ScoreManager.lastIqComponentByGame.values.sum()
+            val globalRankingPoints = ScoreManager.getTotalUniqueLevelsCompletedAllGames().toLong()
+            val accountLinked = prefs.getBoolean(SettingsActivity.ACCOUNT_LINKED, false)
 
-            kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.IO).launch {
-                try {
-                    Log.d("DataSyncManager", "Iniciando corrutina de validación")
-                    val validated = ReferralManager.checkAndValidateReferral(context)
-                    Log.d("DataSyncManager", "Resultado validación: $validated")
+            val lightUserData = hashMapOf(
+                "username" to userName,
+                "countryCode" to countryCode,
+                "hasInsigniaRIPlus" to hasInsigniaRIPlus,
+                "iqPlus" to iqPlusValue,
+                "global_ranking_points" to globalRankingPoints,
+                "account_linked" to accountLinked,
+                "welcomeMissCounter" to welcomeMissCounter,
+                "insignia_ri_plus_vista" to prefs.getBoolean("insignia_ri_plus_vista", false),
+                "lastUpdate" to FieldValue.serverTimestamp()
+            )
 
-                    if (validated) {
-                        prefs.edit {
-                            putBoolean("is_first_run", false)
-                        }
-                    }
-                } catch (e: Exception) {
-                    Log.e("DataSyncManager", "Error al validar referido: ${e.message}", e)
-                }
-            }
-        } else {
-            Log.d("DataSyncManager", "Condición NO cumplida - saltando validación de referidos")
-        }
-
-        val profileBox = buildProfilePreferencesBox(context)
-        val scoreJson = ScoreManager.exportAllDataAsJson(context)
-        val condecoJson = CondecoracionTracker.exportAllDataAsJson(context)
-        val userName = prefs.getString("savedUserName", "") ?: ""
-        val countryCode = prefs.getString("savedCountryCode", "sumamente") ?: "sumamente"
-        val activateCanjeNow = false
-
-        if (activateCanjeNow) {
-            updateCanjeStatus(true)
-        }
-
-        val privateData = hashMapOf(
-            "profile_preferences" to profileBox,
-            "score_data" to scoreJson,
-            "condecoracion_data" to condecoJson
-        )
-
-        val totalScoreAllGames = ScoreManager.getTotalScoreAllGames()
-        val hasInsigniaRIPlus = (CondecoracionTracker.getInsigniaRIPlus() != null)
-
-        val data = hashMapOf(
-            "username" to userName,
-            "countryCode" to countryCode,
-            "lastUpdate" to FieldValue.serverTimestamp(),
-            "iqPlus" to ScoreManager.lastIqComponentByGame.values.sum(),
-            "global_ranking_points" to ScoreManager.getTotalUniqueLevelsCompletedAllGames().toLong(),
-            "global_ranking" to hashMapOf(
+            val globalRankingPublicData = hashMapOf(
+                "username" to userName,
+                "countryCode" to countryCode,
                 "totalPoints" to totalScoreAllGames,
+                "hasInsigniaRIPlus" to hasInsigniaRIPlus,
                 "updated_at" to FieldValue.serverTimestamp()
-            ),
-            "private" to privateData,
-            "score_schema_version" to SCHEMA_VERSION_SCORE,
-            "condecoracion_schema_version" to SCHEMA_VERSION_CONDECO,
-            "hasInsigniaRIPlus" to hasInsigniaRIPlus,
-            "account_linked" to prefs.getBoolean(SettingsActivity.ACCOUNT_LINKED, false),
-            "lastActive" to FieldValue.serverTimestamp()
-        )
-
-        val globalRankingPublicData = hashMapOf(
-            "username" to userName,
-            "countryCode" to countryCode,
-            "totalPoints" to totalScoreAllGames,
-            "hasInsigniaRIPlus" to hasInsigniaRIPlus,
-            "updated_at" to FieldValue.serverTimestamp()
-        )
-
-        Log.d("DataSyncManager", "Sincronizando datos privados con Firebase")
-        Log.d(
-            "DataSyncManager",
-            "Preparando rankings_global uid=${user.uid} username=$userName country=$countryCode totalPoints=$totalScoreAllGames insignia=$hasInsigniaRIPlus"
-        )
-
-        var syncAttempts = 0
-        val maxSyncAttempts = 3
-
-        fun attemptSync() {
-            syncAttempts++
-            Log.d("DataSyncManager", "attemptSync - intento $syncAttempts de $maxSyncAttempts")
+            )
 
             firestore.collection("usuarios")
                 .document(user.uid)
-                .set(data, SetOptions.merge())
+                .set(lightUserData, SetOptions.merge())
                 .addOnSuccessListener {
-                    Log.d("DataSyncManager", "Documento usuarios/${user.uid} sincronizado correctamente")
-
-                    val uid = FirebaseAuth.getInstance().currentUser?.uid
-                    if (uid != null) {
-                        FirebaseMessaging.getInstance().token
-                            .addOnSuccessListener { tk ->
-                                FirebaseFirestore.getInstance()
-                                    .collection("usuarios")
-                                    .document(uid)
-                                    .set(mapOf("fcmToken" to tk), SetOptions.merge())
-                                    .addOnSuccessListener {
-                                        Log.d("DataSyncManager", "fcmToken (post-sync) guardado con merge")
-                                    }
-                                    .addOnFailureListener { e ->
-                                        Log.e("DataSyncManager", "Error guardando fcmToken post-sync", e)
-                                    }
-                            }
-                            .addOnFailureListener { e ->
-                                Log.e("DataSyncManager", "No se pudo obtener token FCM post-sync", e)
-                            }
-                    }
+                    Log.d("DataSyncManager", "Documento ligero usuarios/${user.uid} sincronizado correctamente")
 
                     firestore.collection("rankings_global")
                         .document(user.uid)
                         .set(globalRankingPublicData, SetOptions.merge())
                         .addOnSuccessListener {
                             Log.d("DataSyncManager", "Documento rankings_global/${user.uid} sincronizado correctamente")
+
+                            uploadIQPlusToFirebase(
+                                userId = user.uid,
+                                userName = userName,
+                                country = countryCode,
+                                iqPlus = iqPlusValue
+                            )
+
+                            val avgNumeros = if (ScoreManager.totalGamesNumerosPlusExitos > 0)
+                                ScoreManager.totalTimeNumerosPlusExitos / ScoreManager.totalGamesNumerosPlusExitos
+                            else Double.POSITIVE_INFINITY
+
+                            val avgDeci = if (ScoreManager.totalGamesDeciPlusExitos > 0)
+                                ScoreManager.totalTimeDeciPlusExitos / ScoreManager.totalGamesDeciPlusExitos
+                            else Double.POSITIVE_INFINITY
+
+                            val avgRomas = if (ScoreManager.totalGamesRomasExitos > 0)
+                                ScoreManager.totalTimeRomasExitos / ScoreManager.totalGamesRomasExitos
+                            else Double.POSITIVE_INFINITY
+
+                            val avgAlfa = if (ScoreManager.totalGamesAlfaNumerosExitos > 0)
+                                ScoreManager.totalTimeAlfaNumerosExitos / ScoreManager.totalGamesAlfaNumerosExitos
+                            else Double.POSITIVE_INFINITY
+
+                            val avgSumaResta = if (ScoreManager.totalGamesSumaRestaExitos > 0)
+                                ScoreManager.totalTimeSumaRestaExitos / ScoreManager.totalGamesSumaRestaExitos
+                            else Double.POSITIVE_INFINITY
+
+                            val avgMas = if (ScoreManager.totalGamesMasPlusExitos > 0)
+                                ScoreManager.totalTimeMasPlusExitos / ScoreManager.totalGamesMasPlusExitos
+                            else Double.POSITIVE_INFINITY
+
+                            val avgGenios = if (ScoreManager.totalGamesGenioPlusExitos > 0)
+                                ScoreManager.totalTimeGenioPlusExitos / ScoreManager.totalGamesGenioPlusExitos
+                            else Double.POSITIVE_INFINITY
+
+                            uploadSpeedRankingToFirebase(user.uid, userName, countryCode, "NumerosPlus", avgNumeros)
+                            uploadSpeedRankingToFirebase(user.uid, userName, countryCode, "DeciPlus", avgDeci)
+                            uploadSpeedRankingToFirebase(user.uid, userName, countryCode, "Romas", avgRomas)
+                            uploadSpeedRankingToFirebase(user.uid, userName, countryCode, "AlfaNumeros", avgAlfa)
+                            uploadSpeedRankingToFirebase(user.uid, userName, countryCode, "SumaResta", avgSumaResta)
+                            uploadSpeedRankingToFirebase(user.uid, userName, countryCode, "MasPlus", avgMas)
+                            uploadSpeedRankingToFirebase(user.uid, userName, countryCode, "GenioPlus", avgGenios)
+
+                            uploadIntegralRankingToFirebase(
+                                userId = user.uid,
+                                userName = userName,
+                                country = countryCode,
+                                integralScore = ScoreManager.calculateIntegralScore()
+                            )
+
+                            // Validación puntual de referido solo cuando esta sync viene del flujo de LevelResult
+                            if (validateReferralIfNeeded) {
+                                kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.IO).launch {
+                                    try {
+                                        ReferralManager.checkAndValidateReferral(context)
+                                    } catch (e: Exception) {
+                                        Log.e("DataSyncManager", "Error validando referido desde sync ligera: ${e.message}", e)
+                                    }
+                                }
+                            }
+
                             onResult(true, null)
                         }
                         .addOnFailureListener { e ->
@@ -179,18 +166,76 @@ object DataSyncManager {
                         }
                 }
                 .addOnFailureListener { e ->
-                    Log.e("DataSyncManager", "Error en sincronización intento $syncAttempts: ${e.localizedMessage}", e)
-                    if (syncAttempts < maxSyncAttempts) {
-                        android.os.Handler(android.os.Looper.getMainLooper())
-                            .postDelayed({ attemptSync() }, 2000)
-                    } else {
-                        Log.e("DataSyncManager", "Sincronización fallida tras $maxSyncAttempts intentos")
-                        onResult(false, e.localizedMessage)
-                    }
+                    Log.e(
+                        "DataSyncManager",
+                        "Error escribiendo usuarios/${user.uid} en sync ligera: ${e.localizedMessage}",
+                        e
+                    )
+                    onResult(false, e.localizedMessage)
                 }
+
+        } catch (e: Exception) {
+            Log.e("DataSyncManager", "EXCEPCIÓN syncDataToCloud ligera: ${e.message}", e)
+            onResult(false, e.message)
+        }
+    }
+
+    fun syncHeavyDataToCloud(
+        context: Context,
+        onResult: (success: Boolean, error: String?) -> Unit
+    ) {
+        Log.d("DataSyncManager", "=== INICIO syncHeavyDataToCloud ===")
+
+        val firestore = FirebaseFirestore.getInstance()
+        val user = auth.currentUser
+
+        if (user == null) {
+            Log.d("DataSyncManager", "Usuario no autenticado en syncHeavyDataToCloud")
+            onResult(false, context.getString(R.string.user_not_authenticated))
+            return
         }
 
-        attemptSync()
+        try {
+            val prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+
+            val profileBox = buildProfilePreferencesBox(context)
+            val scoreJson = ScoreManager.exportAllDataAsJson(context)
+            val condecoJson = CondecoracionTracker.exportAllDataAsJson(context)
+
+            val privateData = hashMapOf(
+                "profile_preferences" to profileBox,
+                "score_data" to scoreJson,
+                "condecoracion_data" to condecoJson
+            )
+
+            val heavyData = hashMapOf(
+                "private" to privateData,
+                "score_schema_version" to SCHEMA_VERSION_SCORE,
+                "condecoracion_schema_version" to SCHEMA_VERSION_CONDECO,
+                "account_linked" to prefs.getBoolean(SettingsActivity.ACCOUNT_LINKED, false),
+                "lastUpdate" to FieldValue.serverTimestamp()
+            )
+
+            firestore.collection("usuarios")
+                .document(user.uid)
+                .set(heavyData, SetOptions.merge())
+                .addOnSuccessListener {
+                    Log.d("DataSyncManager", "syncHeavyDataToCloud OK usuarios/${user.uid}")
+                    onResult(true, null)
+                }
+                .addOnFailureListener { e ->
+                    Log.e(
+                        "DataSyncManager",
+                        "syncHeavyDataToCloud ERROR usuarios/${user.uid}: ${e.localizedMessage}",
+                        e
+                    )
+                    onResult(false, e.localizedMessage)
+                }
+
+        } catch (e: Exception) {
+            Log.e("DataSyncManager", "EXCEPCIÓN syncHeavyDataToCloud: ${e.message}", e)
+            onResult(false, e.message)
+        }
     }
 
     fun syncDataFromCloud(
@@ -227,6 +272,11 @@ object DataSyncManager {
                     val canjeEnabled = doc.getBoolean("canje_enabled") ?: false
                     if (canjeEnabled) {
                         prefs.edit { putBoolean("canje_enabled", true) }
+                    }
+
+                    val insigniaVista = doc.getBoolean("insignia_ri_plus_vista") ?: false
+                    if (insigniaVista) {
+                        prefs.edit { putBoolean("insignia_ri_plus_vista", true) }
                     }
 
                     if (privateData != null) {
@@ -455,6 +505,10 @@ object DataSyncManager {
         }
 
         batch.delete(firestore.collection("usuarios").document(user.uid))
+        batch.delete(firestore.collection("rankings_global").document(user.uid))
+        batch.delete(firestore.collection("rankings_iqplus").document(user.uid))
+        batch.delete(firestore.collection("rankings_speed").document(user.uid))
+        batch.delete(firestore.collection("rankings_integral").document(user.uid))
 
         batch.commit()
             .addOnSuccessListener {
@@ -557,7 +611,7 @@ object DataSyncManager {
     ) {
         val db = FirebaseFirestore.getInstance()
         db.collection("rankings_iqplus")
-            .orderBy("iqPlus", com.google.firebase.firestore.Query.Direction.DESCENDING)
+            .orderBy("iqPlus", Query.Direction.DESCENDING)
             .limit(200)
             .get()
             .addOnSuccessListener { result ->
@@ -752,99 +806,86 @@ object DataSyncManager {
         userName: String,
         country: String,
         totalPoints: Long,
-        callback: (List<GlobalRankingItem>, Int, GlobalRankingItem?) -> Unit
+        callback: (List<GlobalRankingItem>, Int, GlobalRankingItem?, Int) -> Unit
     ) {
         val db = FirebaseFirestore.getInstance()
 
-        Log.d("RankingDebug", "getTopGlobalRanking - INICIO userId=$userId userName=$userName country=$country totalPoints=$totalPoints")
-        Log.d("RankingDebug", "getTopGlobalRanking - ejecutando query simple sin orderBy, ordenamiento manual")
+        Log.d("RankingDebug", "getTopGlobalRanking - consultando top 200 por totalPoints")
 
         db.collection("rankings_global")
+            .orderBy("totalPoints", Query.Direction.DESCENDING)
+            .limit(200)
             .get()
             .addOnSuccessListener { result ->
-                Log.d("RankingDebug", "getTopGlobalRanking - query SUCCESS docs=${result.size()}")
-
-                val sortedDocs = result.documents
-                    .sortedByDescending { (it.get("totalPoints") as? Number)?.toLong() ?: 0L }
-                    .take(200)
-
                 val rankingList = mutableListOf<GlobalRankingItem>()
                 var userPosition = -1
                 var userItem: GlobalRankingItem? = null
                 var currentPosition = 1
                 var previousPoints: Long? = null
-                var processedDocs = 0
-                var skippedDocs = 0
 
-                for (doc in sortedDocs) {
-                    processedDocs++
+                for (doc in result) {
+                    val name = doc.getString("username")?.trim().orEmpty()
+                    if (name.isBlank()) continue
 
-                    val rawPoints = doc.get("totalPoints")
-                    val value = (rawPoints as? Number)?.toLong() ?: 0L
-
-                    Log.d("RankingDebug", "getTopGlobalRanking - doc=${doc.id} username=${doc.getString("username")} country=${doc.getString("countryCode")} rawPoints=$rawPoints parsedPoints=$value")
-
-                    if (value <= 0L) {
-                        skippedDocs++
-                        Log.d("RankingDebug", "getTopGlobalRanking - doc=${doc.id} OMITIDO porque totalPoints<=0")
-                        continue
-                    }
-
-                    val name = doc.getString("username") ?: ""
-                    val code = doc.getString("countryCode") ?: "us"
+                    val code = doc.getString("countryCode") ?: ""
+                    val points = (doc.get("totalPoints") as? Number)?.toLong() ?: 0L
                     val thisUserId = doc.id
                     val isCurrent = thisUserId == userId
                     val hasInsignia = doc.getBoolean("hasInsigniaRIPlus") ?: false
 
-                    if (previousPoints != null && value < previousPoints) {
+                    if (previousPoints != null && points < previousPoints) {
                         currentPosition++
-                        Log.d("RankingDebug", "getTopGlobalRanking - cambio de posición currentPosition=$currentPosition porque $value < $previousPoints")
                     }
 
                     val item = GlobalRankingItem(
                         position = currentPosition,
                         username = name,
                         countryCode = code,
-                        totalPoints = value,
+                        totalPoints = points,
                         isCurrentUser = isCurrent,
                         hasInsigniaRIPlus = hasInsignia
                     )
-
                     rankingList.add(item)
 
                     if (isCurrent) {
                         userPosition = currentPosition
                         userItem = item
-                        Log.d("RankingDebug", "getTopGlobalRanking - USUARIO ACTUAL ENCONTRADO posición=$userPosition")
                     }
-
-                    previousPoints = value
+                    previousPoints = points
                 }
-
-                Log.d("RankingDebug", "getTopGlobalRanking - fin recorrido processedDocs=$processedDocs skippedDocs=$skippedDocs rankingListSize=${rankingList.size} userPosition=$userPosition")
 
                 if (userPosition == -1) {
-                    val betterUsers = sortedDocs.count {
-                        ((it.get("totalPoints") as? Number)?.toLong() ?: 0L) > totalPoints
-                    }
-                    userPosition = betterUsers + 1
-                    userItem = GlobalRankingItem(
-                        position = userPosition,
-                        username = userName,
-                        countryCode = country,
-                        totalPoints = totalPoints,
-                        isCurrentUser = true,
-                        hasInsigniaRIPlus = (CondecoracionTracker.getInsigniaRIPlus() != null)
-                    )
-                    Log.d("RankingDebug", "getTopGlobalRanking - usuario NO en top, posición calculada=$userPosition")
+                    db.collection("rankings_global")
+                        .whereGreaterThan("totalPoints", totalPoints)
+                        .get()
+                        .addOnSuccessListener { others ->
+                            val pos = others.size() + 1
+                            val item = GlobalRankingItem(
+                                position = pos,
+                                username = userName,
+                                countryCode = country,
+                                totalPoints = totalPoints,
+                                isCurrentUser = true,
+                                hasInsigniaRIPlus = (CondecoracionTracker.getInsigniaRIPlus() != null)
+                            )
+                            db.collection("rankings_global")
+                                .count()
+                                .get(AggregateSource.SERVER)
+                                .addOnSuccessListener { countSnapshot ->
+                                    callback(rankingList, pos, item, countSnapshot.count.toInt())
+                                }
+                                .addOnFailureListener {
+                                    callback(rankingList, pos, item, 0)
+                                }
+                        }
+                        .addOnFailureListener { callback(rankingList, -1, null, 0) }
+                } else {
+                    callback(rankingList, userPosition, userItem, 0)
                 }
-
-                Log.d("RankingDebug", "getTopGlobalRanking - callback FINAL userPosition=$userPosition rankingListSize=${rankingList.size}")
-                callback(rankingList, userPosition, userItem)
             }
             .addOnFailureListener { e ->
-                Log.e("RankingDebug", "getTopGlobalRanking - FAILURE error=${e.message}", e)
-                callback(emptyList(), -1, null)
+                Log.e("RankingDebug", "getTopGlobalRanking FAILURE error=${e.message}", e)
+                callback(emptyList(), -1, null, 0)
             }
     }
 
@@ -852,7 +893,7 @@ object DataSyncManager {
         userId: String,
         userName: String,
         country: String,
-        averagePosition: Double
+        integralScore: Double
     ) {
         val db = FirebaseFirestore.getInstance()
         val userDoc = db.collection("rankings_integral").document(userId)
@@ -863,19 +904,19 @@ object DataSyncManager {
         )
         val eligible = required.all { tag -> ScoreManager.isUserInRanking(tag) }
 
-        val validAvg = averagePosition.isFinite() && averagePosition >= 1.0 && averagePosition <= 1_000_000.0
+        val validScore = integralScore.isFinite() && integralScore >= 0.0 && integralScore <= 100.0
 
-        if (!eligible || !validAvg) {
+        if (!eligible || !validScore) {
 
             userDoc.set(mapOf("integral_ranking" to FieldValue.delete()), SetOptions.merge())
             return
         }
 
-        val rounded = kotlin.math.round(averagePosition * 1000.0) / 1000.0
+        val rounded = kotlin.math.round(integralScore * 1000.0) / 1000.0
 
         val data = hashMapOf(
             "integral_ranking" to hashMapOf(
-                "averagePosition" to rounded,
+                "integralScore" to rounded,
                 "updated_at" to FieldValue.serverTimestamp()
             ),
             "username" to userName,
@@ -889,15 +930,15 @@ object DataSyncManager {
         userId: String,
         userName: String,
         country: String,
-        averagePosition: Double,
+        integralScore: Double,
         callback: (List<IntegralRankingItem>, Int, IntegralRankingItem?) -> Unit
     ) {
         val db = FirebaseFirestore.getInstance()
         val fieldBase = "integral_ranking"
-        val fieldAvg = "$fieldBase.averagePosition"
+        val fieldAvg = "$fieldBase.integralScore"
 
         db.collection("rankings_integral")
-            .orderBy(fieldAvg)
+            .orderBy(fieldAvg, Query.Direction.DESCENDING)
             .limit(200)
             .get()
             .addOnSuccessListener { result ->
@@ -909,10 +950,9 @@ object DataSyncManager {
 
                 for (doc in result) {
                     val integralData = doc.get(fieldBase) as? Map<*, *>
-                    val value = (integralData?.get("averagePosition") as? Number)?.toDouble() ?: Double.POSITIVE_INFINITY
+                    val value = (integralData?.get("integralScore") as? Number)?.toDouble() ?: -1.0
 
-
-                    if (!value.isFinite() || value <= 0.0) continue
+                    if (!value.isFinite() || value < 0.0) continue
 
                     val name = doc.getString("username") ?: ""
                     val code = doc.getString("countryCode") ?: "us"
@@ -921,7 +961,7 @@ object DataSyncManager {
                     val hasInsignia = doc.getBoolean("hasInsigniaRIPlus") ?: false
 
 
-                    if (previousAverage != null && value > previousAverage) {
+                    if (previousAverage != null && value < previousAverage) {
                         currentPosition++
                     }
 
@@ -946,7 +986,7 @@ object DataSyncManager {
                 if (userPosition == -1) {
 
                     db.collection("rankings_integral")
-                        .whereLessThan(fieldAvg, averagePosition)
+                        .whereGreaterThan(fieldAvg, integralScore)
                         .get()
                         .addOnSuccessListener { betterUsers ->
                             userPosition = betterUsers.size() + 1
@@ -954,7 +994,7 @@ object DataSyncManager {
                                 position = userPosition,
                                 username = userName,
                                 countryCode = country,
-                                integralScore = averagePosition,
+                                integralScore = integralScore,
                                 isCurrentUser = true,
                                 hasInsigniaRIPlus = (CondecoracionTracker.getInsigniaRIPlus() != null)
                             )

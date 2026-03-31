@@ -18,8 +18,6 @@ class DailyCondecoracionesWorker(
 
             CondecoracionTracker.verificarYEntregarPines()
 
-            CondecoracionTracker.verificarYActualizarInsigniaRIPlus(applicationContext)
-
             val latch = java.util.concurrent.CountDownLatch(4)
 
             CondecoracionTracker.verificarYActualizarCoronasDeVelocidadAsync(applicationContext) { latch.countDown() }

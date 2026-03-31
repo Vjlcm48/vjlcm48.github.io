@@ -505,7 +505,7 @@ object CondecoracionTracker {
             userName = username,
             country = countryCode,
             totalPoints = totalPoints
-        ) { _, userPosition, _ ->
+        ) { _, userPosition, _, _ ->
             callback(if (userPosition > 0) userPosition else -1)
         }
     }
@@ -746,13 +746,13 @@ object CondecoracionTracker {
         val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val username = sharedPreferences.getString("savedUserName", "Usuario") ?: "Usuario"
         val countryCode = sharedPreferences.getString("savedCountryCode", "us") ?: "us"
-        val averagePosition = calculateUserAveragePosition()
+        val integralScore = calculateUserIntegralScore()
 
         DataSyncManager.getTopIntegralRanking(
             userId = getUserId(context),
             userName = username,
             country = countryCode,
-            averagePosition = averagePosition
+            integralScore = integralScore
         ) { _, userPosition, _ ->
             callback(if (userPosition > 0) userPosition else -1)
         }
@@ -846,6 +846,24 @@ object CondecoracionTracker {
             updateLastCheckDate = { lastRIPlusCheckDate = it },
             procesarDia = { procesarInsigniaRIPlusDelDia(context) }
         )
+    }
+
+    fun verificarYOtorgarInsigniaRIPlusInmediato() {
+        if (insigniaRIPlus != null) return
+
+        val required = listOf(
+            "GLOBAL", "VEL_NUMEROS", "VEL_DECI", "VEL_ALFANUM",
+            "VEL_ROMAS", "VEL_SUMARESTA", "VEL_MAS", "VEL_GENIOS", "IQ_PLUS"
+        )
+        if (!required.all { tag -> ScoreManager.isUserInRanking(tag) }) return
+
+        val nuevaInsignia = InsigniaRIPlus(
+            fechaObtencion = System.currentTimeMillis(),
+            vista = false
+        )
+        insigniaRIPlus = nuevaInsignia
+        saveInsigniaRIPlus()
+        updateRedDotsStatus()
     }
 
     private fun procesarInsigniaRIPlusDelDia(context: Context) {
@@ -1531,20 +1549,7 @@ object CondecoracionTracker {
                 ScoreManager.currentScoreFocoPlusPrincipiante + ScoreManager.currentScoreFocoPlusPro).toLong()
     }
 
-    private fun calculateUserAveragePosition(): Double {
-        val positions = listOf(
-            ScoreManager.getUserPositionInRanking("GLOBAL"),
-            ScoreManager.getUserPositionInRanking("VEL_NUMEROS"),
-            ScoreManager.getUserPositionInRanking("VEL_DECI"),
-            ScoreManager.getUserPositionInRanking("VEL_ALFANUM"),
-            ScoreManager.getUserPositionInRanking("VEL_ROMAS"),
-            ScoreManager.getUserPositionInRanking("VEL_SUMARESTA"),
-            ScoreManager.getUserPositionInRanking("VEL_MAS"),
-            ScoreManager.getUserPositionInRanking("VEL_GENIOS"),
-            ScoreManager.getUserPositionInRanking("IQ_PLUS")
-        )
-        return positions.average()
-    }
+    private fun calculateUserIntegralScore(): Double = ScoreManager.calculateIntegralScore()
 
     private fun getUserId(context: Context): String {
         val auth = FirebaseAuth.getInstance()

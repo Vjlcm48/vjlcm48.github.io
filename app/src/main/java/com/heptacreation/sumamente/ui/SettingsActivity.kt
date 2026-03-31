@@ -45,7 +45,6 @@ class SettingsActivity : BaseActivity() {
     private lateinit var linearProfile: LinearLayout
     private lateinit var linearShare: LinearLayout
     private lateinit var linearHelp: LinearLayout
-    private lateinit var linearResetProgress: LinearLayout
     private lateinit var linearLanguage: LinearLayout
     private lateinit var linearTheme: LinearLayout
     private lateinit var messagesRedDotSettings: View
@@ -127,7 +126,7 @@ class SettingsActivity : BaseActivity() {
         linearProfile        = findViewById(R.id.linear_profile)
         linearShare          = findViewById(R.id.linear_share)
         linearHelp           = findViewById(R.id.linear_help)
-        linearResetProgress  = findViewById(R.id.linear_reset_progress)
+
         linearLanguage       = findViewById(R.id.linear_language)
         linearTheme          = findViewById(R.id.linear_theme)
         notificationReminderOverlay = findViewById(R.id.notification_reminder_overlay)
@@ -277,9 +276,7 @@ class SettingsActivity : BaseActivity() {
         linearHelp.setOnClickListener { view ->
             applyBounceEffect(view) { startActivity(Intent(this, HelpGameSelectionActivity::class.java)) }
         }
-        linearResetProgress.setOnClickListener { view ->
-            applyBounceEffect(view) { startActivity(Intent(this, ResetProgressActivity::class.java)) }
-        }
+
         linearLanguage.setOnClickListener { view ->
             applyBounceEffect(view) { startActivity(Intent(this, LanguageChangeActivity::class.java)) }
         }

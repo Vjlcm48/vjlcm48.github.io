@@ -1631,4 +1631,9 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
     <string name="error_username_check_failed">Benutzername konnte nicht überprüft werden. Bitte versuchen Sie es erneut.</string>
     <string name="username_error_icon_description">Fehler bei der Validierung des Benutzernamens</string>
 
+    <string name="ranking_top_percent_label">Top %1$s%%</string>
+    <string name="ranking_position_prompt_title">Was ist dein genauer Platz?</string>
+    <string name="ranking_position_prompt_message">Du gehörst zu den Top %1$s%% in diesem Ranking. Möchtest du deine genaue Position unter allen Spielern erfahren?</string>
+    <string name="ranking_discover_position_button">Jetzt entdecken!</string>
+
 </resources>

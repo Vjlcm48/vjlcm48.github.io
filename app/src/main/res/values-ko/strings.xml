@@ -1390,4 +1390,9 @@
     <string name="error_username_check_failed">사용자 이름을 확인하지 못했습니다. 다시 시도해 주세요.</string>
     <string name="username_error_icon_description">사용자 이름 확인 오류</string>
 
+    <string name="ranking_top_percent_label">상위 %1$s%%</string>
+    <string name="ranking_position_prompt_title">정확한 순위는 무엇인가요?</string>
+    <string name="ranking_position_prompt_message">이 랭킹에서 상위 %1$s%%에 올랐습니다. 모든 플레이어 중 당신의 정확한 순위를 확인하시겠습니까?</string>
+    <string name="ranking_discover_position_button">확인하기!</string>
+
 </resources>

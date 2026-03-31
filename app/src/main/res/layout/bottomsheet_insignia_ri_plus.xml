@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/dialog_background_with_border">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+
+        <ImageView
+            android:id="@+id/btn_cerrar_bottomsheet"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/close"
+            android:padding="4dp"
+            android:src="@drawable/ic_close" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/insignia_supremus_integralis"
+        android:src="@drawable/ic_insignia_ri_plus"
+        android:scaleType="fitCenter" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:maxHeight="350dp">
+
+        <TextView
+            android:id="@+id/tv_mensaje_insignia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:text="@string/desc_insignia_supremus_integralis"
+            android:textColor="?attr/colorOnBackground"
+            android:textSize="16sp" />
+
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_entendido_insignia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/roboto_bold"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:text="@string/entendido"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
+
+</LinearLayout>

@@ -1747,4 +1747,9 @@
     <string name="error_username_check_failed">تعذر التحقق من اسم المستخدم. حاول مرة أخرى.</string>
     <string name="username_error_icon_description">خطأ في التحقق من اسم المستخدم</string>
 
+    <string name="ranking_top_percent_label">أفضل %1$s%%</string>
+    <string name="ranking_position_prompt_title">ما هو مركزك بالضبط؟</string>
+    <string name="ranking_position_prompt_message">أنت ضمن أفضل %1$s%% في هذا الترتيب. هل تريد معرفة مركزك الدقيق بين جميع اللاعبين؟</string>
+    <string name="ranking_discover_position_button">اكتشف ذلك!</string>
+
 </resources>

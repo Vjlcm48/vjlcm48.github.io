@@ -4,12 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.heptacreation.sumamente.R
-import java.util.Locale
 
 data class GlobalRankingItem(
     val position: Int,
@@ -26,138 +24,142 @@ data class RankingItem(
     val countryCode: String,
     val score: Int,
     val isCurrentUser: Boolean = false,
-    val hasInsigniaRIPlus: Boolean = false
+    val hasInsigniaRIPlus: Boolean = false,
+    val topPercentage: String? = null,
+    val isPromptRow: Boolean = false
 )
 
 class RankingAdapter(
     private val items: List<RankingItem>
-) : RecyclerView.Adapter<RankingAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val container: LinearLayout = view.findViewById(R.id.ranking_item_container)
+    var onDiscoverClick: (() -> Unit)? = null
+    var onNotNowClick: (() -> Unit)? = null
+
+    companion object {
+        private const val TYPE_NORMAL = 0
+        private const val TYPE_PROMPT = 1
+    }
+
+    class NormalViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val card: androidx.cardview.widget.CardView = view.findViewById(R.id.card_ranking_item)
+        val container: View = view.findViewById(R.id.ranking_item_container)
+        val userStrip: View = view.findViewById(R.id.view_user_strip)
         val positionTextView: TextView = view.findViewById(R.id.tv_position)
         val usernameTextView: TextView = view.findViewById(R.id.tv_username)
+        val insigniaImageView: ImageView = view.findViewById(R.id.iv_insignia)
         val countryFlagImageView: ImageView = view.findViewById(R.id.iv_country_flag)
         val scoreTextView: TextView = view.findViewById(R.id.tv_score)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_ranking, parent, false)
-        return ViewHolder(view)
+    class PromptViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val tvTitle: TextView = view.findViewById(R.id.tv_prompt_title)
+        val tvMessage: TextView = view.findViewById(R.id.tv_prompt_message)
+        val btnDiscover: com.google.android.material.button.MaterialButton = view.findViewById(R.id.btn_discover_position)
+        val btnNotNow: com.google.android.material.button.MaterialButton = view.findViewById(R.id.btn_not_now_position)
     }
 
-    // En RankingAdapter.kt
+    override fun getItemViewType(position: Int): Int {
+        return if (items[position].isPromptRow) TYPE_PROMPT else TYPE_NORMAL
+    }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return if (viewType == TYPE_PROMPT) {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_ranking_position_prompt, parent, false)
+            PromptViewHolder(view)
+        } else {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_ranking, parent, false)
+            NormalViewHolder(view)
+        }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = items[position]
 
-        holder.positionTextView.text = item.position.toString()
+        if (holder is PromptViewHolder) {
+            holder.tvTitle.text = holder.itemView.context.getString(R.string.ranking_position_prompt_title)
+            holder.tvMessage.text = holder.itemView.context.getString(
+                R.string.ranking_position_prompt_message,
+                item.topPercentage ?: ""
+            )
+            holder.btnDiscover.setOnClickListener { onDiscoverClick?.invoke() }
+            holder.btnNotNow.setOnClickListener { onNotNowClick?.invoke() }
+            return
+        }
 
-
-        if (item.hasInsigniaRIPlus) {
-
-            val usernameContainer = LinearLayout(holder.itemView.context)
-            usernameContainer.orientation = LinearLayout.HORIZONTAL
-            usernameContainer.gravity = android.view.Gravity.CENTER_VERTICAL
-
-            (holder.usernameTextView.parent as ViewGroup).apply {
-                val index = indexOfChild(holder.usernameTextView)
-                removeView(holder.usernameTextView)
-                addView(usernameContainer, index, holder.usernameTextView.layoutParams)
+        if (holder is NormalViewHolder) {
+            if (item.topPercentage != null && item.isCurrentUser) {
+                holder.positionTextView.text = holder.itemView.context.getString(
+                    R.string.ranking_top_percent_label,
+                    item.topPercentage
+                )
+            } else {
+                holder.positionTextView.text = item.position.toString()
             }
-
-            val usernameView = TextView(holder.itemView.context).apply {
-                text = item.username
-                textSize = 16f
-                val textColor = if (item.isCurrentUser) R.color.highlight_user_text else android.R.color.black
-                setTextColor(ContextCompat.getColor(context, textColor))
-                setTypeface(null, android.graphics.Typeface.BOLD)
-            }
-            usernameContainer.addView(usernameView)
-
-            val insigniaImageView = ImageView(holder.itemView.context).apply {
-                setImageResource(R.drawable.ic_insignia_ri_plus)
-                val layoutParams = LinearLayout.LayoutParams(36, 36)
-                layoutParams.marginStart = 8
-                this.layoutParams = layoutParams
-                setOnClickListener {
-                    android.widget.Toast.makeText(it.context, "SUPREMUS INTEGRALIS", android.widget.Toast.LENGTH_SHORT).show()
-                }
-            }
-            usernameContainer.addView(insigniaImageView)
-
-        } else {
 
             holder.usernameTextView.text = item.username
 
-            val textColor = if (item.isCurrentUser) R.color.highlight_user_text else android.R.color.black
-            holder.usernameTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, textColor))
-        }
-
-        val countryCode = item.countryCode.lowercase(Locale.ROOT)
-        val resId = FlagsAdapter.flagResourceMap[countryCode]
-
-        if (resId != null) {
-            holder.countryFlagImageView.setImageResource(resId)
-        } else {
-            holder.countryFlagImageView.setImageResource(R.drawable.ve)
-        }
-
-        holder.scoreTextView.text = item.score.toString()
-
-
-        if (item.isCurrentUser) {
-            holder.container.setBackgroundColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_background)
-            )
-            holder.positionTextView.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_text)
-            )
-            holder.scoreTextView.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_text)
-            )
-        } else {
-            val backgroundColor = if (position % 2 == 0)
-                R.color.ranking_item_even
-            else
-                R.color.ranking_item_odd
-
-            holder.container.setBackgroundColor(
-                ContextCompat.getColor(holder.itemView.context, backgroundColor)
-            )
-            holder.positionTextView.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, android.R.color.black)
-            )
-            holder.scoreTextView.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, android.R.color.black)
-            )
-        }
-
-        if (!item.isCurrentUser) {
-            when (item.position) {
-                1 -> {
-                    holder.positionTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.gold))
-                    holder.scoreTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.gold))
-                }
-                2 -> {
-                    holder.positionTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.silver))
-                    holder.scoreTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.silver))
-                }
-                3 -> {
-                    holder.positionTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.bronze))
-                    holder.scoreTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.bronze))
+            holder.insigniaImageView.visibility = if (item.hasInsigniaRIPlus) View.VISIBLE else View.GONE
+            holder.insigniaImageView.setOnClickListener {
+                val ctx = holder.itemView.context
+                val prefs = ctx.getSharedPreferences("MyPrefs", android.content.Context.MODE_PRIVATE)
+                if (prefs.getBoolean("insignia_ri_plus_vista", false)) {
+                    android.widget.Toast.makeText(ctx, ctx.getString(R.string.insignia_supremus_integralis), android.widget.Toast.LENGTH_SHORT).show()
+                } else {
+                    val fm = (ctx as? androidx.fragment.app.FragmentActivity)?.supportFragmentManager
+                    fm?.let { InsigniaRIPlusBottomSheet().show(it, "InsigniaBottomSheet") }
                 }
             }
-        }
 
-        if (item.isCurrentUser) {
-            holder.positionTextView.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_text)
-            )
-            holder.scoreTextView.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_text)
-            )
+            val flagResId = FlagsAdapter.flagResourceMap[item.countryCode.lowercase()]
+            if (flagResId != null) {
+                holder.countryFlagImageView.setImageResource(flagResId)
+                holder.countryFlagImageView.visibility = View.VISIBLE
+            } else {
+                holder.countryFlagImageView.visibility = View.GONE
+            }
+
+            val formattedScore = java.text.NumberFormat.getNumberInstance().format(item.score)
+            holder.scoreTextView.text = formattedScore
+            holder.scoreTextView.visibility = View.VISIBLE
+
+            if (item.isCurrentUser) {
+                holder.userStrip.visibility = View.VISIBLE
+                holder.card.cardElevation = holder.itemView.context.resources.displayMetrics.density * 8
+                holder.container.setBackgroundColor(
+                    ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_background)
+                )
+                val highlightColor = ContextCompat.getColor(holder.itemView.context, R.color.highlight_user_text)
+                holder.positionTextView.setTextColor(highlightColor)
+                holder.positionTextView.textSize = 17f
+                holder.usernameTextView.setTextColor(highlightColor)
+                holder.usernameTextView.setTypeface(null, android.graphics.Typeface.BOLD)
+                holder.usernameTextView.textSize = 17f
+                holder.scoreTextView.setTextColor(highlightColor)
+                holder.scoreTextView.textSize = 17f
+            } else {
+                holder.userStrip.visibility = View.GONE
+                holder.card.cardElevation = holder.itemView.context.resources.displayMetrics.density * 2
+                val backgroundColor = if (position % 2 == 0) R.color.ranking_item_even else R.color.ranking_item_odd
+                holder.container.setBackgroundColor(
+                    ContextCompat.getColor(holder.itemView.context, backgroundColor)
+                )
+                holder.positionTextView.setTextColor(
+                    ContextCompat.getColor(holder.itemView.context, android.R.color.black)
+                )
+                holder.positionTextView.textSize = 16f
+                holder.usernameTextView.setTextColor(
+                    ContextCompat.getColor(holder.itemView.context, android.R.color.black)
+                )
+                holder.usernameTextView.setTypeface(null, android.graphics.Typeface.NORMAL)
+                holder.usernameTextView.textSize = 16f
+                holder.scoreTextView.setTextColor(
+                    ContextCompat.getColor(holder.itemView.context, android.R.color.black)
+                )
+                holder.scoreTextView.textSize = 16f
+            }
         }
     }
 

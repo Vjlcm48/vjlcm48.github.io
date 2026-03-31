@@ -18,33 +18,32 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import android.view.ViewTreeObserver
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
+import androidx.core.view.isVisible
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
-import com.heptacreation.sumamente.R
-import com.heptacreation.sumamente.ui.utils.DailyCondecoracionesWorker
-import com.heptacreation.sumamente.ui.utils.DataSyncManager
 import com.google.android.material.transition.platform.MaterialSharedAxis
 import com.google.firebase.FirebaseApp
 import com.google.firebase.analytics.FirebaseAnalytics
-import java.util.Locale
-import java.util.concurrent.TimeUnit
-import android.view.ViewTreeObserver
-import androidx.activity.enableEdgeToEdge
-import androidx.core.view.isVisible
-import com.heptacreation.sumamente.ui.utils.MessagesStateManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.heptacreation.sumamente.R
+import com.heptacreation.sumamente.ui.utils.DailyCondecoracionesWorker
+import com.heptacreation.sumamente.ui.utils.MessagesStateManager
+import java.util.Locale
+import java.util.concurrent.TimeUnit
 
 
 class MainGameActivity : BaseActivity() {
@@ -61,18 +60,19 @@ class MainGameActivity : BaseActivity() {
         const val WORK_INTERVAL_HOURS = 24L
         const val POST_RESUME_DEFER_MS = 2500L
 
-        private const val CONDECORACIONES_INTERVAL_MS = 120_000L // 2 minutos
+        private const val CONDECORACIONES_INTERVAL_MS = 1_800_000L // 30 minutos
         private var lastCondecoracionesCheckMs = 0L
     }
 
     private var mediaPlayer: MediaPlayer? = null
     private var fadeHandler: Handler? = null
     private var fadeRunnable: Runnable? = null
-    private var didCloudRestore = false
+
 
     private lateinit var locationManager: LocationManager
     private val locationListener = createLocationListener()
     private lateinit var profileText: TextView
+    private lateinit var ivInsigniaMain: ImageView
     private lateinit var trophyContainer: FrameLayout
     private lateinit var trophyRedDot: View
     private lateinit var messagesRedDot: View
@@ -114,11 +114,7 @@ class MainGameActivity : BaseActivity() {
         inicializarMusica()
         aplicarAnimacionDeColor(tvSumaMenteTitle)
 
-        if (sharedPreferences.getBoolean(SettingsActivity.ACCOUNT_LINKED, false) && !didCloudRestore) {
-            DataSyncManager.syncDataFromCloud(this) { ok, _ ->
-                if (ok) didCloudRestore = true
-            }
-        }
+
 
         val firebaseAnalytics = FirebaseAnalytics.getInstance(this)
         val bundle = Bundle().apply {
@@ -126,35 +122,6 @@ class MainGameActivity : BaseActivity() {
         }
         firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, bundle)
 
-        // PRUEBA DIAGNÓSTICA TEMPORAL
-        try {
-            val btnTest = findViewById<android.widget.Button>(R.id.btn_test_firebase)
-            btnTest.setOnClickListener {
-                android.widget.Toast.makeText(this, "Tocado", android.widget.Toast.LENGTH_SHORT).show()
-                val start = System.currentTimeMillis()
-                FirebaseFirestore.getInstance()
-                    .collection("rankings_global")
-                    .get()
-                    .addOnSuccessListener { result ->
-                        val elapsed = System.currentTimeMillis() - start
-                        val sorted = result.documents.sortedByDescending {
-                            (it.get("totalPoints") as? Number)?.toLong() ?: 0L
-                        }
-                        android.util.Log.d("FirebaseDiag", "ÉXITO en ${elapsed}ms — docs=${sorted.size}")
-                        sorted.forEachIndexed { i, doc ->
-                            android.util.Log.d("FirebaseDiag", "#${i+1} username=${doc.getString("username")} totalPoints=${doc.get("totalPoints")}")
-                        }
-                        android.widget.Toast.makeText(this, "OK: ${sorted.size} docs en ${elapsed}ms", android.widget.Toast.LENGTH_LONG).show()
-                    }
-                    .addOnFailureListener { e ->
-                        val elapsed = System.currentTimeMillis() - start
-                        android.util.Log.e("FirebaseDiag", "ERROR en ${elapsed}ms — ${e.message}")
-                        android.widget.Toast.makeText(this, "ERROR: ${e.message}", android.widget.Toast.LENGTH_LONG).show()
-                    }
-            }
-        } catch (e: Exception) {
-            android.util.Log.e("TestBtn", "Error: ${e.message}")
-        }
 
     }
 
@@ -180,6 +147,7 @@ class MainGameActivity : BaseActivity() {
     private fun inicializarComponentes() {
         locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
         profileText = findViewById(R.id.profile_text)
+        ivInsigniaMain = findViewById(R.id.iv_insignia_main)
         trophyContainer = findViewById(R.id.trophy_container)
         trophyRedDot = findViewById(R.id.trophy_red_dot)
         tvSumaMenteTitle = findViewById(R.id.tv_sumamente_title)
@@ -714,13 +682,14 @@ class MainGameActivity : BaseActivity() {
         CondecoracionTracker.verificarYActualizarCondecoracionesTop10(this)
         CondecoracionTracker.verificarYActualizarCondecoracionesIQ7(this)
         CondecoracionTracker.verificarYActualizarCondecoracionesTop5Integral(this)
-        CondecoracionTracker.verificarYActualizarInsigniaRIPlus(this)
+
     }
 
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     private fun actualizarPerfil() {
         actualizarNombreUsuario()
         actualizarBanderaPais()
+        actualizarInsigniaMain()
     }
 
     private fun actualizarNombreUsuario() {
@@ -752,6 +721,20 @@ class MainGameActivity : BaseActivity() {
                     }
                 }
             }
+    }
+
+    private fun actualizarInsigniaMain() {
+        CondecoracionTracker.verificarYOtorgarInsigniaRIPlusInmediato()
+        val tieneInsignia = CondecoracionTracker.getInsigniaRIPlus() != null
+        ivInsigniaMain.visibility = if (tieneInsignia) View.VISIBLE else View.GONE
+        ivInsigniaMain.setOnClickListener {
+            val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+            if (prefs.getBoolean("insignia_ri_plus_vista", false)) {
+                android.widget.Toast.makeText(this, getString(R.string.insignia_supremus_integralis), android.widget.Toast.LENGTH_SHORT).show()
+            } else {
+                InsigniaRIPlusBottomSheet().show(supportFragmentManager, "InsigniaBottomSheet")
+            }
+        }
     }
 
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])

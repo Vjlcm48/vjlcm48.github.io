@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -34,102 +33,64 @@ class IQPlusRankingAdapter(
         return RankingViewHolder(view)
     }
 
-
     override fun onBindViewHolder(holder: RankingViewHolder, position: Int) {
         val item = rankingList[position]
         val context = holder.itemView.context
 
         holder.tvPos.text = item.position.toString()
+        holder.tvPlayerName.text = item.username
 
-
-        if (item.hasInsigniaRIPlus) {
-
-            val usernameContainer = LinearLayout(context)
-            usernameContainer.orientation = LinearLayout.HORIZONTAL
-            usernameContainer.gravity = android.view.Gravity.CENTER_VERTICAL
-
-
-            (holder.tvPlayerName.parent as ViewGroup).apply {
-                val index = indexOfChild(holder.tvPlayerName)
-                removeView(holder.tvPlayerName)
-                addView(usernameContainer, index, holder.tvPlayerName.layoutParams)
-            }
-
-
-            val usernameView = TextView(context).apply {
-                text = item.username
-                textSize = 16f
-                if (item.isCurrentUser) {
-                    setTextColor(ContextCompat.getColor(context, R.color.highlight_user_text))
-                } else {
-                    setTextColor(getColorFromAttr(context, R.attr.colorOnBackground))
-                }
-                setTypeface(null, Typeface.BOLD)
-            }
-            usernameContainer.addView(usernameView)
-
-
-            val insigniaImageView = ImageView(context).apply {
-                setImageResource(R.drawable.ic_insignia_ri_plus)
-                val layoutParams = LinearLayout.LayoutParams(36, 36)
-                layoutParams.marginStart = 8
-                this.layoutParams = layoutParams
-                setOnClickListener {
-                    android.widget.Toast.makeText(context, "SUPREMUS INTEGRALIS", android.widget.Toast.LENGTH_SHORT).show()
-                }
-            }
-            usernameContainer.addView(insigniaImageView)
-
-        } else {
-
-            holder.tvPlayerName.text = item.username
-            if (item.isCurrentUser) {
-                holder.tvPlayerName.setTextColor(ContextCompat.getColor(context, R.color.highlight_user_text))
+        holder.ivInsignia.visibility = if (item.hasInsigniaRIPlus) View.VISIBLE else View.GONE
+        holder.ivInsignia.setOnClickListener {
+            val prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+            if (prefs.getBoolean("insignia_ri_plus_vista", false)) {
+                android.widget.Toast.makeText(context, context.getString(R.string.insignia_supremus_integralis), android.widget.Toast.LENGTH_SHORT).show()
             } else {
-                holder.tvPlayerName.setTextColor(getColorFromAttr(context, R.attr.colorOnBackground))
+                val fm = (context as? androidx.fragment.app.FragmentActivity)?.supportFragmentManager
+                fm?.let { InsigniaRIPlusBottomSheet().show(it, "InsigniaBottomSheet") }
             }
-
-            holder.tvPlayerName.setTypeface(null, if (item.isCurrentUser) Typeface.BOLD else Typeface.NORMAL)
         }
-
 
         val countryCode = item.countryCode.lowercase(Locale.ROOT)
         val resId = FlagsAdapter.flagResourceMap[countryCode]
-
         if (resId != null) {
             holder.ivFlag.setImageResource(resId)
+            holder.ivFlag.visibility = View.VISIBLE
         } else {
-            holder.ivFlag.setImageResource(R.drawable.ve)
+            holder.ivFlag.visibility = View.GONE
         }
 
-        val iqPlusWithLabel = context.getString(
-            R.string.integral_score_label,
-            item.iqPlus
-        )
+        val iqPlusWithLabel = context.getString(R.string.integral_score_label, item.iqPlus)
         holder.tvIQPlus.text = iqPlusWithLabel
 
-
         if (item.isCurrentUser) {
+            holder.userStrip.visibility = View.VISIBLE
+            holder.card.cardElevation = context.resources.displayMetrics.density * 8
             holder.container.setBackgroundColor(
                 ContextCompat.getColor(context, R.color.highlight_user_background)
             )
-            holder.tvPos.setTextColor(
-                ContextCompat.getColor(context, R.color.highlight_user_text)
-            )
-            holder.tvIQPlus.setTextColor(
-                ContextCompat.getColor(context, R.color.highlight_user_text)
-            )
+            val highlightColor = ContextCompat.getColor(context, R.color.highlight_user_text)
+            holder.tvPos.setTextColor(highlightColor)
+            holder.tvPos.textSize = 17f
+            holder.tvPlayerName.setTextColor(highlightColor)
+            holder.tvPlayerName.setTypeface(null, Typeface.BOLD)
+            holder.tvPlayerName.textSize = 17f
+            holder.tvIQPlus.setTextColor(highlightColor)
+            holder.tvIQPlus.textSize = 17f
         } else {
-            val backgroundColor = if (position % 2 == 0)
-                R.color.ranking_item_even
-            else
-                R.color.ranking_item_odd
-
+            holder.userStrip.visibility = View.GONE
+            holder.card.cardElevation = context.resources.displayMetrics.density * 2
+            val backgroundColor = if (position % 2 == 0) R.color.ranking_item_even else R.color.ranking_item_odd
             holder.container.setBackgroundColor(
                 ContextCompat.getColor(context, backgroundColor)
             )
             holder.tvPos.setTextColor(getColorFromAttr(context, R.attr.colorOnBackground))
+            holder.tvPos.textSize = 16f
+            holder.tvPlayerName.setTextColor(getColorFromAttr(context, R.attr.colorOnBackground))
+            holder.tvPlayerName.setTypeface(null, Typeface.NORMAL)
+            holder.tvPlayerName.textSize = 16f
             holder.tvIQPlus.setTextColor(getColorFromAttr(context, R.attr.colorOnBackground))
+            holder.tvIQPlus.textSize = 16f
         }
 
         when (item.position) {
@@ -150,20 +111,13 @@ class IQPlusRankingAdapter(
         holder.tvIQPlus.setOnClickListener {
             if (item.isCurrentUser && onIQPlusClick != null) {
                 holder.tvIQPlus.animate()
-                    .scaleX(1.1f)
-                    .scaleY(1.1f)
-                    .setDuration(100)
+                    .scaleX(1.1f).scaleY(1.1f).setDuration(100)
                     .withEndAction {
                         holder.tvIQPlus.animate()
-                            .scaleX(1f)
-                            .scaleY(1f)
-                            .setDuration(100)
-                            .withEndAction {
-                                onIQPlusClick.invoke()
-                            }
+                            .scaleX(1f).scaleY(1f).setDuration(100)
+                            .withEndAction { onIQPlusClick.invoke() }
                             .start()
-                    }
-                    .start()
+                    }.start()
             }
         }
     }
@@ -176,10 +130,13 @@ class IQPlusRankingAdapter(
 
     override fun getItemCount() = rankingList.size
 
-    inner class RankingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val container: LinearLayout = itemView.findViewById(R.id.iqplus_ranking_item_container)
+    class RankingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val card: androidx.cardview.widget.CardView = itemView.findViewById(R.id.card_iqplus_ranking_item)
+        val container: View = itemView.findViewById(R.id.iqplus_ranking_item_container)
+        val userStrip: View = itemView.findViewById(R.id.view_user_strip)
         val tvPos: TextView = itemView.findViewById(R.id.tvPos)
         val tvPlayerName: TextView = itemView.findViewById(R.id.tvPlayerName)
+        val ivInsignia: ImageView = itemView.findViewById(R.id.iv_insignia)
         val ivFlag: ImageView = itemView.findViewById(R.id.ivFlag)
         val tvIQPlus: TextView = itemView.findViewById(R.id.tvIQPlus)
     }

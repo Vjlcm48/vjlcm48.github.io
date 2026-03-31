@@ -1437,4 +1437,9 @@
     <string name="error_username_check_failed">صارف کے نام کی تصدیق نہیں ہو سکی۔ دوبارہ کوشش کریں۔</string>
     <string name="username_error_icon_description">صارف کے نام کی تصدیق میں خرابی</string>
 
+    <string name="ranking_top_percent_label">ٹاپ %1$s%%</string>
+    <string name="ranking_position_prompt_title">آپ کا صحیح مقام کیا ہے؟</string>
+    <string name="ranking_position_prompt_message">آپ اس رینکنگ میں ٹاپ %1$s%% میں شامل ہیں۔ کیا آپ تمام کھلاڑیوں کے درمیان اپنی صحیح پوزیشن جاننا چاہتے ہیں؟</string>
+    <string name="ranking_discover_position_button">دریافت کریں!</string>
+
 </resources>

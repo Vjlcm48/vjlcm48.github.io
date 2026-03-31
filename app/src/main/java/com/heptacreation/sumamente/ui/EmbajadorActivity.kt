@@ -56,8 +56,11 @@ class EmbajadorActivity : BaseActivity() {
         lifecycleScope.launch {
             try {
                 android.util.Log.d("Embajador", "Prefetch referral: start")
-                withTimeout(8_000) {
+                val code = withTimeout(8_000) {
                     ReferralManager.getOrGenerateReferralCode(this@EmbajadorActivity)
+                }
+                if (!code.isNullOrEmpty()) {
+                    ReferralManager.syncReferralDataIfNeeded(this@EmbajadorActivity)
                 }
                 android.util.Log.d("Embajador", "Prefetch referral: done (si llegó, quedó cacheado en MyPrefs.referral_code)")
             } catch (e: Exception) {
@@ -157,8 +160,8 @@ class EmbajadorActivity : BaseActivity() {
                 }
                 android.util.Log.d("Embajador", "Referral obtenido de red: ${code ?: "null"}")
                 if (!code.isNullOrEmpty()) {
-                    // Guardado lo hace ReferralManager; de igual modo lo leemos de vuelta
-                    sharedPreferences.edit { putString("referral_code", code) } // refuerzo de cache unificada
+                    sharedPreferences.edit { putString("referral_code", code) }
+                    ReferralManager.syncReferralDataIfNeeded(this@EmbajadorActivity)
                     shareNow(code)
                 } else {
                     android.widget.Toast
@@ -249,6 +252,8 @@ class EmbajadorActivity : BaseActivity() {
                 sharedPreferences.edit { putInt("referidos_validados", count) }
                 actualizarContadorReferidos()
             }
+
+            ReferralManager.syncReferralDataIfNeeded(this@EmbajadorActivity)
 
             // Si ya compartió y apareció el primer referido validado → cerrar mensaje Embajador
             val shared = sharedPreferences.getBoolean("has_shared_referral", false)

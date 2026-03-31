@@ -1426,4 +1426,9 @@
     <string name="error_username_check_failed">ব্যবহারকারীর নাম যাচাই করা যায়নি। আবার চেষ্টা করুন।</string>
     <string name="username_error_icon_description">ব্যবহারকারীর নাম যাচাই করতে ত্রুটি হয়েছে</string>
 
+    <string name="ranking_top_percent_label">সেরা %1$s%%</string>
+    <string name="ranking_position_prompt_title">আপনার সঠিক অবস্থান কোনটি?</string>
+    <string name="ranking_position_prompt_message">আপনি এই র‍্যাঙ্কিংয়ের সেরা %1$s%% এর মধ্যে আছেন। আপনি কি সব খেলোয়াড়দের মধ্যে আপনার সঠিক অবস্থান জানতে চান?</string>
+    <string name="ranking_discover_position_button">এটি আবিষ্কার করুন!</string>
+
 </resources>
