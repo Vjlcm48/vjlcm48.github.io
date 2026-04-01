@@ -1827,4 +1827,6 @@
 
     <string name="ranking_search_emoji" translatable="false">🔍</string>
 
+    <string name="ranking_total_participants">🏆 %1$s participantes</string>
+
 </resources>

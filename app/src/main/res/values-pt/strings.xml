@@ -1554,4 +1554,6 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
     <string name="ranking_position_prompt_message">Está no Top %1$s%% deste ranking. Quer saber a sua posição exata entre todos os jogadores?</string>
     <string name="ranking_discover_position_button">Descobrir!</string>
 
+    <string name="ranking_total_participants">🏆 %1$s participantes</string>
+
 </resources>

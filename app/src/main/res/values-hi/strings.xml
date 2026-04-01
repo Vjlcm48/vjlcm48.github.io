@@ -1635,4 +1635,6 @@
     <string name="ranking_position_prompt_message">आप इस रैंकिंग के शीर्ष %1$s%% में हैं। क्या आप सभी खिलाड़ियों के बीच अपनी सटीक स्थिति जानना चाहते हैं?</string>
     <string name="ranking_discover_position_button">इसे जानें!</string>
 
+    <string name="ranking_total_participants">🏆 %1$s प्रतिभागी</string>
+
 </resources>

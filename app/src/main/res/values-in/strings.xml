@@ -1618,4 +1618,6 @@ Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di 
     <string name="ranking_position_prompt_message">Anda berada di Top %1$s%% dalam peringkat ini. Apakah Anda ingin mengetahui posisi tepat Anda di antara semua pemain?</string>
     <string name="ranking_discover_position_button">Temukan!</string>
 
+    <string name="ranking_total_participants">🏆 %1$s peserta</string>
+
 </resources>

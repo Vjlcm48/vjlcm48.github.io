@@ -1396,4 +1396,6 @@
     <string name="ranking_position_prompt_message">あなたはこのランキングのトップ %1$s%% に入っています。全プレイヤーの中での正確な順位を知りたいですか？</string>
     <string name="ranking_discover_position_button">確認する！</string>
 
+    <string name="ranking_total_participants">🏆 %1$s 参加者</string>
+
 </resources>

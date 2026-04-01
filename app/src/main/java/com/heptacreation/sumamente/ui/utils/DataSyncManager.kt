@@ -721,7 +721,7 @@ object DataSyncManager {
         country: String,
         gameType: String,
         averageTime: Double,
-        callback: (List<SpeedRankingItem>, Int, SpeedRankingItem?) -> Unit
+        callback: (List<SpeedRankingItem>, Int, SpeedRankingItem?, Int) -> Unit
     ) {
         val db = FirebaseFirestore.getInstance()
         val fieldBase = "speed_ranking_$gameType"
@@ -772,32 +772,44 @@ object DataSyncManager {
                     previousTime = value
                 }
 
-                if (userPosition == -1) {
+                fun fetchCountThen(pos: Int, item: SpeedRankingItem?) {
+                    db.collection("rankings_speed")
+                        .orderBy(fieldAvg)
+                        .count()
+                        .get(AggregateSource.SERVER)
+                        .addOnSuccessListener { countSnapshot ->
+                            callback(rankingList, pos, item, countSnapshot.count.toInt())
+                        }
+                        .addOnFailureListener {
+                            callback(rankingList, pos, item, 0)
+                        }
+                }
 
+                if (userPosition == -1) {
                     db.collection("rankings_speed")
                         .whereLessThan(fieldAvg, averageTime)
                         .get()
                         .addOnSuccessListener { betterUsers ->
-                            userPosition = betterUsers.size() + 1
-                            userItem = SpeedRankingItem(
-                                position = userPosition,
+                            val pos = betterUsers.size() + 1
+                            val item = SpeedRankingItem(
+                                position = pos,
                                 username = userName,
                                 countryCode = country,
                                 averageTime = averageTime.toFloat(),
                                 isCurrentUser = true,
                                 hasInsigniaRIPlus = (CondecoracionTracker.getInsigniaRIPlus() != null)
                             )
-                            callback(rankingList, userPosition, userItem)
+                            fetchCountThen(pos, item)
                         }
                         .addOnFailureListener {
-                            callback(rankingList, -1, null)
+                            callback(rankingList, -1, null, 0)
                         }
                 } else {
-                    callback(rankingList, userPosition, userItem)
+                    fetchCountThen(userPosition, userItem)
                 }
             }
             .addOnFailureListener {
-                callback(emptyList(), -1, null)
+                callback(emptyList(), -1, null, 0)
             }
     }
 
@@ -880,7 +892,15 @@ object DataSyncManager {
                         }
                         .addOnFailureListener { callback(rankingList, -1, null, 0) }
                 } else {
-                    callback(rankingList, userPosition, userItem, 0)
+                    db.collection("rankings_global")
+                        .count()
+                        .get(AggregateSource.SERVER)
+                        .addOnSuccessListener { countSnapshot ->
+                            callback(rankingList, userPosition, userItem, countSnapshot.count.toInt())
+                        }
+                        .addOnFailureListener {
+                            callback(rankingList, userPosition, userItem, 0)
+                        }
                 }
             }
             .addOnFailureListener { e ->

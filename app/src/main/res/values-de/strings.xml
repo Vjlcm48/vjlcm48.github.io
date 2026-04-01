@@ -1636,4 +1636,6 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
     <string name="ranking_position_prompt_message">Du gehörst zu den Top %1$s%% in diesem Ranking. Möchtest du deine genaue Position unter allen Spielern erfahren?</string>
     <string name="ranking_discover_position_button">Jetzt entdecken!</string>
 
+    <string name="ranking_total_participants">🏆 %1$s Teilnehmer</string>
+
 </resources>

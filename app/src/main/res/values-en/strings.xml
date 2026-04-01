@@ -1691,4 +1691,6 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
     <string name="ranking_position_prompt_message">You\'re in the Top %1$s%% of this ranking. Do you want to know your exact position among all players?</string>
     <string name="ranking_discover_position_button">Discover it!</string>
 
+    <string name="ranking_total_participants">🏆 %1$s participants</string>
+
 </resources>

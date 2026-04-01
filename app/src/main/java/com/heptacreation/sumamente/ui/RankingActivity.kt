@@ -44,6 +44,7 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
     private var isDialogFromFloatingButton = false
     private var pulseAnimator: ValueAnimator? = null
     private var colorAnimator: ValueAnimator? = null
+    private lateinit var tvTotalParticipants: TextView
 
     companion object {
         const val MIN_LEVELS_REQUIRED = 36
@@ -122,6 +123,8 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
 
         tvMsgGlobalRanking = findViewById(R.id.tvMsgGlobalRanking)
         floatingLinkButton = findViewById(R.id.floating_link_button)
+
+        tvTotalParticipants = findViewById(R.id.tv_total_participants)
 
         setupFloatingButtonInteractions()
     }
@@ -229,6 +232,8 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
         floatingLinkButton.visibility = View.GONE
         btnShareRanking.visibility = View.GONE
 
+        tvTotalParticipants.visibility = View.GONE
+
         Handler(Looper.getMainLooper()).postDelayed({
             android.util.Log.d("RankingDebug", "=== Handler 700ms ejecutado ===")
 
@@ -318,6 +323,12 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
                                 topPercentage = topPct
                             )
                         )
+                    }
+
+                    if (totalUsers > 0) {
+                        val formatted = java.text.NumberFormat.getNumberInstance().format(totalUsers)
+                        tvTotalParticipants.text = getString(R.string.ranking_total_participants, formatted)
+                        tvTotalParticipants.visibility = View.VISIBLE
                     }
 
                     adapter.onDiscoverClick = {

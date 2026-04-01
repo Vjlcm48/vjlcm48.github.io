@@ -1697,4 +1697,6 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
     <string name="ranking_position_prompt_message">Vous êtes dans le Top %1$s%% de ce classement. Voulez-vous connaître votre position exacte parmi tous les joueurs ?</string>
     <string name="ranking_discover_position_button">Le découvrir !</string>
 
+    <string name="ranking_total_participants">🏆 %1$s participants</string>
+
 </resources>

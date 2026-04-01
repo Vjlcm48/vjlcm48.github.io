@@ -4,11 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-android:background="?android:attr/colorBackground">
-
-
-
+    android:background="?android:attr/colorBackground">
 
 
     <ImageView
@@ -37,8 +33,6 @@ android:background="?android:attr/colorBackground">
         android:text="@string/ranking_global"
         android:textAlignment="center"
         android:textColor="?attr/colorOnBackground"
-
-
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +59,6 @@ android:background="?android:attr/colorBackground">
             android:gravity="center"
             android:text="@string/ranking_position_header"
             android:textColor="?attr/colorOnPrimary"
-
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -76,7 +69,6 @@ android:background="?android:attr/colorBackground">
             android:gravity="center"
             android:text="@string/ranking_player_header"
             android:textColor="?attr/colorOnPrimary"
-
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -87,7 +79,6 @@ android:background="?android:attr/colorBackground">
             android:gravity="center"
             android:text="@string/pais"
             android:textColor="?attr/colorOnPrimary"
-
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -98,10 +89,25 @@ android:background="?android:attr/colorBackground">
             android:gravity="center"
             android:text="@string/puntaje"
             android:textColor="?attr/colorOnPrimary"
-
             android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_total_participants"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:textSize="13sp"
+        android:textColor="?attr/colorOnBackground"
+        android:alpha="0.7"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_layout" />
 
 
     <ScrollView
@@ -114,7 +120,7 @@ android:background="?android:attr/colorBackground">
         app:layout_constraintBottom_toTopOf="@id/floating_link_button"
         app:layout_constraintEnd_toEndOf="@id/header_layout"
         app:layout_constraintStart_toStartOf="@id/header_layout"
-        app:layout_constraintTop_toBottomOf="@id/header_layout">
+        app:layout_constraintTop_toBottomOf="@id/tv_total_participants">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -136,8 +142,6 @@ android:background="?android:attr/colorBackground">
                 android:fontFamily="@font/roboto_bold"
                 android:gravity="center"
                 android:textColor="?attr/colorOnBackground"
-
-
                 android:textSize="24sp"
                 android:visibility="gone" />
 
@@ -149,8 +153,6 @@ android:background="?android:attr/colorBackground">
                 android:gravity="center"
                 android:text="@string/ranking_sin_datos"
                 android:textColor="?attr/colorOnBackground"
-
-
                 android:textSize="18sp"
                 android:visibility="gone" />
 

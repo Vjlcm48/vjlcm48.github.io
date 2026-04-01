@@ -60,6 +60,7 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
     private var isDialogFromFloatingButton = false
     private var pulseAnimator: ValueAnimator? = null
     private var colorAnimator: ValueAnimator? = null
+    private lateinit var tvTotalParticipants: TextView
 
     companion object {
         const val EXTRA_GAME_TYPE = "game_type"
@@ -156,6 +157,8 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
         floatingLinkButton = findViewById(R.id.floating_link_button)
 
         btnShareSpeedRanking = findViewById(R.id.btnShareSpeedRanking)
+
+        tvTotalParticipants = findViewById(R.id.tv_total_participants)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         rankingItems = mutableListOf()
@@ -284,6 +287,8 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
 
         floatingLinkButton.visibility = View.GONE
         btnShareSpeedRanking.visibility = View.GONE
+
+        tvTotalParticipants.visibility = View.GONE
 
         val tvMsgSpeedRanking = findViewById<TextView>(R.id.tvMsgSpeedRanking)
         tvMsgSpeedRanking.visibility = View.GONE
@@ -517,12 +522,41 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
                 country = countryCode,
                 gameType = gameType,
                 averageTime = avgTime.toDouble()
-            ) { rankingList, userPosition, userItem ->
+            ) { rankingList, userPosition, userItem, totalUsers ->
                 rankingItems.clear()
                 rankingItems.addAll(rankingList)
 
-                if (userItem != null && userPosition > 200) {
-                    rankingItems.add(userItem.copy(position = userPosition))
+                if (userPosition > 200 && userItem != null && totalUsers > 0) {
+                    val topPct = calcTopPercent(userPosition, totalUsers)
+                    rankingItems.add(
+                        userItem.copy(
+                            position = userPosition,
+                            topPercentage = topPct
+                        )
+                    )
+                    rankingItems.add(
+                        SpeedRankingItem(
+                            position = -1,
+                            username = "",
+                            countryCode = "",
+                            averageTime = 0f,
+                            isPromptRow = true,
+                            topPercentage = topPct
+                        )
+                    )
+                }
+
+                adapter.onDiscoverClick = {
+                    // Pendiente: flujo de pago con monedas
+                }
+                adapter.onNotNowClick = {
+                    // El usuario cerró el prompt, no se hace nada por ahora
+                }
+
+                if (totalUsers > 0) {
+                    val formatted = java.text.NumberFormat.getNumberInstance().format(totalUsers)
+                    tvTotalParticipants.text = getString(R.string.ranking_total_participants, formatted)
+                    tvTotalParticipants.visibility = View.VISIBLE
                 }
 
                 @Suppress("NotifyDataSetChanged")
@@ -534,6 +568,13 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
             }
 
         }, 700)
+    }
+
+    private fun calcTopPercent(position: Int, total: Int): String {
+        if (total <= 0) return "50"
+        val raw = (position.toDouble() / total.toDouble()) * 100.0
+        val rounded = (kotlin.math.ceil(raw / 5.0) * 5.0).toInt().coerceIn(5, 100)
+        return rounded.toString()
     }
 
     private fun handleLinkAccountInvitation() {

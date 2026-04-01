@@ -1395,4 +1395,6 @@
     <string name="ranking_position_prompt_message">이 랭킹에서 상위 %1$s%%에 올랐습니다. 모든 플레이어 중 당신의 정확한 순위를 확인하시겠습니까?</string>
     <string name="ranking_discover_position_button">확인하기!</string>
 
+    <string name="ranking_total_participants">🏆 %1$s 참가자</string>
+
 </resources>

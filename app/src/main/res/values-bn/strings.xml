@@ -1431,4 +1431,6 @@
     <string name="ranking_position_prompt_message">আপনি এই র‍্যাঙ্কিংয়ের সেরা %1$s%% এর মধ্যে আছেন। আপনি কি সব খেলোয়াড়দের মধ্যে আপনার সঠিক অবস্থান জানতে চান?</string>
     <string name="ranking_discover_position_button">এটি আবিষ্কার করুন!</string>
 
+    <string name="ranking_total_participants">🏆 %1$s অংশগ্রহণকারী</string>
+
 </resources>

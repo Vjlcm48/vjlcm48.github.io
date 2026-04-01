@@ -147,20 +147,26 @@ class RankingAdapter(
                     ContextCompat.getColor(holder.itemView.context, backgroundColor)
                 )
                 holder.positionTextView.setTextColor(
-                    ContextCompat.getColor(holder.itemView.context, android.R.color.black)
+                    getColorFromAttr(holder.itemView.context, R.attr.colorOnBackground)
                 )
                 holder.positionTextView.textSize = 16f
                 holder.usernameTextView.setTextColor(
-                    ContextCompat.getColor(holder.itemView.context, android.R.color.black)
+                    getColorFromAttr(holder.itemView.context, R.attr.colorOnBackground)
                 )
                 holder.usernameTextView.setTypeface(null, android.graphics.Typeface.NORMAL)
                 holder.usernameTextView.textSize = 16f
                 holder.scoreTextView.setTextColor(
-                    ContextCompat.getColor(holder.itemView.context, android.R.color.black)
+                    getColorFromAttr(holder.itemView.context, R.attr.colorOnBackground)
                 )
                 holder.scoreTextView.textSize = 16f
             }
         }
+    }
+
+    private fun getColorFromAttr(context: android.content.Context, attrId: Int): Int {
+        val typedValue = android.util.TypedValue()
+        context.theme.resolveAttribute(attrId, typedValue, true)
+        return typedValue.data
     }
 
     override fun getItemCount() = items.size
