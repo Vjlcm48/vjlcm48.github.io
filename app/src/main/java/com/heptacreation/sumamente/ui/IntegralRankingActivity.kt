@@ -53,6 +53,7 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
     private var isDialogFromFloatingButton = false
     private var pulseAnimator: ValueAnimator? = null
     private var colorAnimator: ValueAnimator? = null
+    private lateinit var tvTotalParticipants: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -125,6 +126,8 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
         floatingLinkButton = findViewById(R.id.floating_link_button)
 
         btnShareIntegralRanking = findViewById(R.id.btnShareIntegralRanking)
+
+        tvTotalParticipants = findViewById(R.id.tv_total_participants)
 
         setupFloatingButtonInteractions()
 
@@ -228,6 +231,8 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
         scrollViewContainer.visibility = View.GONE
         btnShareIntegralRanking.visibility = View.GONE
         floatingLinkButton.visibility = View.GONE
+
+        tvTotalParticipants.visibility = View.GONE
 
         Handler(Looper.getMainLooper()).postDelayed({
             val rankingsStatus = checkUserRankingsStatus()
@@ -412,18 +417,50 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
             userName = username,
             country = countryCode,
             integralScore = integralScore
-        ) { rankingList, userPosition, userItem ->
+        ) { rankingList, userPosition, userItem, totalUsers ->
             rankingItems.clear()
             rankingItems.addAll(rankingList)
 
-            if (userItem != null && userPosition > 200) {
-                rankingItems.add(userItem.copy(position = userPosition))
+            if (userPosition > 200 && userItem != null && totalUsers > 0) {
+                val topPct = calcTopPercent(userPosition, totalUsers)
+                rankingItems.add(userItem.copy(position = userPosition, topPercentage = topPct))
+                rankingItems.add(
+                    IntegralRankingItem(
+                        position = -1,
+                        username = "",
+                        countryCode = "",
+                        integralScore = 0.0,
+                        isPromptRow = true,
+                        topPercentage = topPct
+                    )
+                )
             }
+
+            adapter.onDiscoverClick = {
+                // Pendiente: flujo de pago con monedas
+            }
+            adapter.onNotNowClick = {
+                // El usuario cerró el prompt, no se hace nada por ahora
+            }
+
+            if (totalUsers > 0) {
+                val formatted = java.text.NumberFormat.getNumberInstance().format(totalUsers)
+                tvTotalParticipants.text = getString(R.string.ranking_total_participants, formatted)
+                tvTotalParticipants.visibility = View.VISIBLE
+            }
+
             @Suppress("NotifyDataSetChanged")
             adapter.notifyDataSetChanged()
             btnShareIntegralRanking.visibility = View.VISIBLE
         }
-        btnShareIntegralRanking.visibility = View.VISIBLE
+
+    }
+
+    private fun calcTopPercent(position: Int, total: Int): String {
+        if (total <= 0) return "50"
+        val raw = (position.toDouble() / total.toDouble()) * 100.0
+        val rounded = (kotlin.math.ceil(raw / 5.0) * 5.0).toInt().coerceIn(5, 100)
+        return rounded.toString()
     }
 
     private fun handleLinkAccountInvitation() {

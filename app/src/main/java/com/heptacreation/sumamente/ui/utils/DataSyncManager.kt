@@ -607,7 +607,7 @@ object DataSyncManager {
         userName: String,
         country: String,
         iqPlus: Double,
-        callback: (List<IQPlusRankingItem>, Int, IQPlusRankingItem?) -> Unit
+        callback: (List<IQPlusRankingItem>, Int, IQPlusRankingItem?, Int) -> Unit
     ) {
         val db = FirebaseFirestore.getInstance()
         db.collection("rankings_iqplus")
@@ -649,29 +649,41 @@ object DataSyncManager {
                     previousIQPlus = value
                 }
 
-                // Si el usuario NO está en el top 200, busca su posición real
+                fun fetchCountThen(pos: Int, item: IQPlusRankingItem?) {
+                    db.collection("rankings_iqplus")
+                        .orderBy("iqPlus", Query.Direction.DESCENDING)
+                        .count()
+                        .get(AggregateSource.SERVER)
+                        .addOnSuccessListener { countSnapshot ->
+                            callback(rankingList, pos, item, countSnapshot.count.toInt())
+                        }
+                        .addOnFailureListener {
+                            callback(rankingList, pos, item, 0)
+                        }
+                }
+
                 if (userPosition == -1) {
                     db.collection("rankings_iqplus")
                         .whereGreaterThan("iqPlus", iqPlus)
                         .get()
                         .addOnSuccessListener { others ->
-                            userPosition = others.size() + 1
-                            userItem = IQPlusRankingItem(
-                                position = userPosition,
+                            val pos = others.size() + 1
+                            val item = IQPlusRankingItem(
+                                position = pos,
                                 username = userName,
                                 countryCode = country,
                                 iqPlus = iqPlus,
                                 isCurrentUser = true,
                                 hasInsigniaRIPlus = (CondecoracionTracker.getInsigniaRIPlus() != null)
                             )
-                            callback(rankingList, userPosition, userItem)
+                            fetchCountThen(pos, item)
                         }
-                        .addOnFailureListener { callback(rankingList, -1, null) }
+                        .addOnFailureListener { callback(rankingList, -1, null, 0) }
                 } else {
-                    callback(rankingList, userPosition, userItem)
+                    fetchCountThen(userPosition, userItem)
                 }
             }
-            .addOnFailureListener { callback(emptyList(), -1, null) }
+            .addOnFailureListener { callback(emptyList(), -1, null, 0) }
     }
 
     fun uploadSpeedRankingToFirebase(
@@ -951,7 +963,7 @@ object DataSyncManager {
         userName: String,
         country: String,
         integralScore: Double,
-        callback: (List<IntegralRankingItem>, Int, IntegralRankingItem?) -> Unit
+        callback: (List<IntegralRankingItem>, Int, IntegralRankingItem?, Int) -> Unit
     ) {
         val db = FirebaseFirestore.getInstance()
         val fieldBase = "integral_ranking"
@@ -980,7 +992,6 @@ object DataSyncManager {
                     val isCurrent = thisUserId == userId
                     val hasInsignia = doc.getBoolean("hasInsigniaRIPlus") ?: false
 
-
                     if (previousAverage != null && value < previousAverage) {
                         currentPosition++
                     }
@@ -999,33 +1010,44 @@ object DataSyncManager {
                         userPosition = currentPosition
                         userItem = item
                     }
-
                     previousAverage = value
                 }
 
-                if (userPosition == -1) {
+                fun fetchCountThen(pos: Int, item: IntegralRankingItem?) {
+                    db.collection("rankings_integral")
+                        .orderBy(fieldAvg, Query.Direction.DESCENDING)
+                        .count()
+                        .get(AggregateSource.SERVER)
+                        .addOnSuccessListener { countSnapshot ->
+                            callback(rankingList, pos, item, countSnapshot.count.toInt())
+                        }
+                        .addOnFailureListener {
+                            callback(rankingList, pos, item, 0)
+                        }
+                }
 
+                if (userPosition == -1) {
                     db.collection("rankings_integral")
                         .whereGreaterThan(fieldAvg, integralScore)
                         .get()
                         .addOnSuccessListener { betterUsers ->
-                            userPosition = betterUsers.size() + 1
-                            userItem = IntegralRankingItem(
-                                position = userPosition,
+                            val pos = betterUsers.size() + 1
+                            val item = IntegralRankingItem(
+                                position = pos,
                                 username = userName,
                                 countryCode = country,
                                 integralScore = integralScore,
                                 isCurrentUser = true,
                                 hasInsigniaRIPlus = (CondecoracionTracker.getInsigniaRIPlus() != null)
                             )
-                            callback(rankingList, userPosition, userItem)
+                            fetchCountThen(pos, item)
                         }
-                        .addOnFailureListener { callback(rankingList, -1, null) }
+                        .addOnFailureListener { callback(rankingList, -1, null, 0) }
                 } else {
-                    callback(rankingList, userPosition, userItem)
+                    fetchCountThen(userPosition, userItem)
                 }
             }
-            .addOnFailureListener { callback(emptyList(), -1, null) }
+            .addOnFailureListener { callback(emptyList(), -1, null, 0) }
     }
 
     fun updateCanjeStatus(status: Boolean) {

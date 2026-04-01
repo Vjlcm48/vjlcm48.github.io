@@ -63,6 +63,7 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
     private var isDialogFromFloatingButton = false
     private var pulseAnimator: ValueAnimator? = null
     private var colorAnimator: ValueAnimator? = null
+    private lateinit var tvTotalParticipants: TextView
 
     companion object {
         const val TOTAL_COMBOS_REQUIRED = 22
@@ -135,6 +136,9 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
         btnBack = findViewById(R.id.btnBack)
         loadingIndicator = findViewById(R.id.loadingIndicator)
         floatingLinkButton = findViewById(R.id.floating_link_button)
+
+        tvTotalParticipants = findViewById(R.id.tv_total_participants)
+
     }
 
     private fun setupRecyclerView() {
@@ -165,6 +169,8 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
         tvMsgIQPlus.visibility = View.GONE
         btnShareRanking.visibility = View.GONE
         floatingLinkButton.visibility = View.GONE
+
+        tvTotalParticipants.visibility = View.GONE
 
         Handler(Looper.getMainLooper()).postDelayed({
             rankingIQPlus.clear()
@@ -208,21 +214,53 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
                 userName = nombre,
                 country = pais,
                 iqPlus = iqPlus
-            ) { rankingList, userPosition, userItem ->
+            ) { rankingList, userPosition, userItem, totalUsers ->
                 rankingIQPlus.clear()
                 rankingIQPlusFiltrado.clear()
                 rankingIQPlus.addAll(rankingList)
                 rankingIQPlusFiltrado.addAll(rankingList)
 
-                if (userItem != null && userPosition > 200) {
-                    rankingIQPlusFiltrado.add(userItem.copy(position = userPosition))
+                if (userPosition > 200 && userItem != null && totalUsers > 0) {
+                    val topPct = calcTopPercent(userPosition, totalUsers)
+                    rankingIQPlusFiltrado.add(userItem.copy(position = userPosition, topPercentage = topPct))
+                    rankingIQPlusFiltrado.add(
+                        IQPlusRankingItem(
+                            position = -1,
+                            username = "",
+                            countryCode = "",
+                            iqPlus = 0.0,
+                            isPromptRow = true,
+                            topPercentage = topPct
+                        )
+                    )
                 }
+
+                adapter.onDiscoverClick = {
+                    // Pendiente: flujo de pago con monedas
+                }
+                adapter.onNotNowClick = {
+                    // El usuario cerró el prompt, no se hace nada por ahora
+                }
+
+                if (totalUsers > 0) {
+                    val formatted = java.text.NumberFormat.getNumberInstance().format(totalUsers)
+                    tvTotalParticipants.text = getString(R.string.ranking_total_participants, formatted)
+                    tvTotalParticipants.visibility = View.VISIBLE
+                }
+
                 @Suppress("NotifyDataSetChanged")
                 adapter.notifyDataSetChanged()
                 recyclerView.visibility = View.VISIBLE
                 btnShareRanking.visibility = View.VISIBLE
             }
         }, 800)
+    }
+
+    private fun calcTopPercent(position: Int, total: Int): String {
+        if (total <= 0) return "50"
+        val raw = (position.toDouble() / total.toDouble()) * 100.0
+        val rounded = (kotlin.math.ceil(raw / 5.0) * 5.0).toInt().coerceIn(5, 100)
+        return rounded.toString()
     }
 
     private fun handleLinkAccountInvitation() {
