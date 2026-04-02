@@ -108,3 +108,10 @@ dependencies {
     implementation(libs.play.services.ads)
 
 }
+
+configurations.all {
+    resolutionStrategy {
+        force("androidx.concurrent:concurrent-futures:1.1.0")
+        force("androidx.concurrent:concurrent-futures-ktx:1.1.0")
+    }
+}

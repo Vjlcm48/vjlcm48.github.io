@@ -638,7 +638,7 @@ object CondecoracionTracker {
             userName = username,
             country = countryCode,
             iqPlus = iqPlus
-        ) { _, userPosition, _ ->
+        ) { _, userPosition, _, _ ->
             callback(if (userPosition > 0) userPosition else -1)
         }
     }
@@ -753,7 +753,7 @@ object CondecoracionTracker {
             userName = username,
             country = countryCode,
             integralScore = integralScore
-        ) { _, userPosition, _ ->
+        ) { _, userPosition, _, _ ->
             callback(if (userPosition > 0) userPosition else -1)
         }
     }
@@ -1204,7 +1204,7 @@ object CondecoracionTracker {
             country = countryCode,
             gameType = juego,
             averageTime = averageTime
-        ) { rankingList, _, _ ->
+        ) { rankingList, _, _, _ ->
 
             val top3 = rankingList.take(3).map { it.username }
             callback(top3)

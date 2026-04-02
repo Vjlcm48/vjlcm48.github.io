@@ -44,6 +44,11 @@ import com.heptacreation.sumamente.ui.utils.DailyCondecoracionesWorker
 import com.heptacreation.sumamente.ui.utils.MessagesStateManager
 import java.util.Locale
 import java.util.concurrent.TimeUnit
+import android.app.AlertDialog
+import android.view.LayoutInflater
+import android.widget.LinearLayout
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.snackbar.Snackbar
 
 
 class MainGameActivity : BaseActivity() {
@@ -85,6 +90,8 @@ class MainGameActivity : BaseActivity() {
     private lateinit var calendarButton: TextView
     private lateinit var statisticsButton: TextView
     private lateinit var welcomeOverlay: FrameLayout
+    private lateinit var coinsContainer: LinearLayout
+    private lateinit var tvCoinsBalance: TextView
     private var isActivityVisible = false
     private val postResumeHandler = Handler(Looper.getMainLooper())
     private var postResumeWork: Runnable? = null
@@ -101,6 +108,8 @@ class MainGameActivity : BaseActivity() {
         inicializarPreferencias()
         setContentView(R.layout.activity_main_game)
         inicializarComponentes()
+
+        actualizarSaldoMonedasUI()
 
         //welcomeOverlay.bringToFront()
 
@@ -157,6 +166,8 @@ class MainGameActivity : BaseActivity() {
         calendarButton = findViewById(R.id.calendar_button)
         statisticsButton = findViewById(R.id.statistics_button)
         welcomeOverlay = findViewById(R.id.welcome_overlay)
+        coinsContainer = findViewById(R.id.coins_container)
+        tvCoinsBalance = findViewById(R.id.tv_coins_balance)
 
     }
 
@@ -165,6 +176,7 @@ class MainGameActivity : BaseActivity() {
         configurarBotonesNavegacion()
         configurarBotonPerfil()
         configurarBotonTrofeos()
+        configurarBotonMonedas()
     }
 
     private fun configurarBotonNewGame() {
@@ -215,6 +227,71 @@ class MainGameActivity : BaseActivity() {
                 navegarA(TrofeosActivity::class.java)
             }
         }
+    }
+
+    private fun configurarBotonMonedas() {
+        coinsContainer.setOnClickListener {
+            aplicarEfectoConAccion(it) {
+                mostrarDialogoMonedas()
+            }
+        }
+    }
+
+    private fun actualizarSaldoMonedasUI() {
+        val saldoActual = sharedPreferences.getInt("coins_balance", 0)
+        tvCoinsBalance.text = saldoActual.toString()
+    }
+
+    private fun verificarBonoDiario() {
+        when (val result = CoinManager.claimDailyBonus(this)) {
+            is CoinManager.DailyBonusResult.Success -> {
+                actualizarSaldoMonedasUI()
+                val msg = if (result.streakBroken) {
+                    getString(R.string.coins_daily_streak_broken_msg, result.coinsAdded)
+                } else {
+                    getString(R.string.coins_daily_bonus_msg, result.coinsAdded, result.streak)
+                }
+                Snackbar.make(
+                    findViewById(android.R.id.content),
+                    msg,
+                    Snackbar.LENGTH_LONG
+                ).show()
+            }
+            else -> { /* AlreadyClaimed y LimitReached: silencioso */ }
+        }
+    }
+
+    private fun mostrarDialogoMonedas() {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_coins, null)
+
+        val ivClose = dialogView.findViewById<ImageView>(R.id.iv_close_coins_dialog)
+        val tvBalanceValue = dialogView.findViewById<TextView>(R.id.tv_coins_dialog_balance_value)
+        val btnWatchVideo = dialogView.findViewById<MaterialButton>(R.id.btn_watch_video_coins)
+        val btnBuyCoins = dialogView.findViewById<MaterialButton>(R.id.btn_buy_coins)
+
+        val saldoActual = sharedPreferences.getInt("coins_balance", 0)
+        tvBalanceValue.text = saldoActual.toString()
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        ivClose.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        btnWatchVideo.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        btnBuyCoins.setOnClickListener {
+            dialog.dismiss()
+            startActivity(Intent(this, CoinPacksActivity::class.java))
+        }
+
+        dialog.show()
     }
 
     private fun configurarBackPressedCallback() {
@@ -649,6 +726,10 @@ class MainGameActivity : BaseActivity() {
 
         actualizarEstadoMusica()
         actualizarPerfil()
+        actualizarSaldoMonedasUI()
+
+        verificarBonoDiario()
+
         updateTrophyRedDot()
 
         postResumeWork?.let { postResumeHandler.removeCallbacks(it) }

@@ -1829,4 +1829,22 @@
 
     <string name="ranking_total_participants">🏆 %1$s participantes</string>
 
+    <string name="coins_initial_balance" translatable="false">0</string>
+    <string name="coins_dialog_title" translatable="false">Monedas</string>
+    <string name="coins_current_balance" translatable="false">Tu saldo actual</string>
+    <string name="coins_watch_video" translatable="false">Ver video y ganar monedas</string>
+    <string name="coins_buy" translatable="false">Comprar monedas</string>
+
+    <string name="coins_packs_title" translatable="false">Monedas</string>
+    <string name="coins_welcome_bonus_title" translatable="false">🪙 ¡Bono de bienvenida!</string>
+    <string name="coins_welcome_bonus_desc" translatable="false">Primera compra: ¡monedas extra gratis!</string>
+    <string name="coins_pack_amount" translatable="false">%1$d monedas</string>
+    <string name="coins_pack_bonus_badge" translatable="false">+%1$d BONO</string>
+    <string name="coins_pack_total_with_bonus" translatable="false">Total: %1$d</string>
+    <string name="coins_pack_limit_msg" translatable="false">Límite alcanzado</string>
+    <string name="coins_pack_purchased_msg" translatable="false">+%1$d monedas añadidas</string>
+    <string name="coins_go_premium_btn" translatable="false">💎 ¿Sin límites? Sé Premium</string>
+    <string name="coins_daily_bonus_msg" translatable="false">+%1$d monedas · Racha: %2$d días</string>
+    <string name="coins_daily_streak_broken_msg" translatable="false">+%1$d monedas · Racha reiniciada</string>
+
 </resources>

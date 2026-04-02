@@ -44,7 +44,7 @@
             android:id="@+id/trophy_container"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            app:layout_constraintEnd_toStartOf="@+id/settings_icon"
+            app:layout_constraintEnd_toStartOf="@+id/coins_container"
             app:layout_constraintStart_toEndOf="@id/iv_insignia_main"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -66,6 +66,40 @@
                 android:background="@drawable/red_dot_big"
                 android:visibility="gone" />
         </FrameLayout>
+
+
+    <LinearLayout
+        android:id="@+id/coins_container"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintStart_toEndOf="@id/trophy_container"
+        app:layout_constraintEnd_toStartOf="@id/settings_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/trophy_container">
+
+        <ImageView
+            android:id="@+id/coins_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/coins_dialog_title"
+            android:src="@drawable/ic_coins" />
+
+        <TextView
+            android:id="@+id/tv_coins_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="@string/coins_initial_balance"
+            android:textColor="?attr/colorOnBackground"
+            android:textSize="14sp"
+            android:fontFamily="@font/roboto_bold" />
+
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/settings_icon"

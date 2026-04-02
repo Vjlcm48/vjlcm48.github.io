@@ -52,7 +52,7 @@ class PremiumPlansActivity : BaseActivity() {
 
         billingClient = BillingClient.newBuilder(this)
             .enablePendingPurchases(
-                PendingPurchasesParams.newBuilder().build()
+                PendingPurchasesParams.newBuilder().enableOneTimeProducts().build()
             )
             .setListener { billingResult, purchases ->
                 if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {

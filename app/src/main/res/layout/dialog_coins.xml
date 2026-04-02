@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="16dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp"
+    app:cardBackgroundColor="@color/card_bg_dialog">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_coins_dialog_icon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="@string/coins_dialog_title"
+                android:src="@drawable/ic_coins" />
+
+            <ImageView
+                android:id="@+id/iv_close_coins_dialog"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/cerrar"
+                android:padding="8dp"
+                android:src="@drawable/ic_close" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_coins_dialog_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@string/coins_dialog_title"
+            android:textColor="?attr/colorOnBackground"
+            android:textSize="20sp"
+            android:fontFamily="@font/roboto_bold" />
+
+        <TextView
+            android:id="@+id/tv_coins_dialog_balance_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/coins_current_balance"
+            android:textColor="?attr/colorOnBackground"
+            android:textSize="16sp"
+            android:fontFamily="@font/roboto_bold" />
+
+        <TextView
+            android:id="@+id/tv_coins_dialog_balance_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:text="@string/coins_initial_balance"
+            android:textColor="?attr/colorOnBackground"
+            android:textSize="22sp"
+            android:fontFamily="@font/roboto_bold"
+            app:drawableStartCompat="@drawable/ic_coins" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_watch_video_coins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:maxWidth="320dp"
+            android:text="@string/coins_watch_video"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/roboto_bold"
+            app:cornerRadius="16dp"
+            app:backgroundTint="@color/primary_button_color" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_buy_coins"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:maxWidth="320dp"
+            android:background="@drawable/button_background_avanzado"
+            android:text="@string/coins_buy"
+            android:textColor="?attr/colorOnBackground"
+            android:fontFamily="@font/roboto_bold"
+            app:backgroundTint="@null" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
