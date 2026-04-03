@@ -47,6 +47,7 @@ class LevelResultActivity : BaseActivity()  {
     private var timeSpentInSeconds = 0.0
     private var rawTimeSpent = 0.0
     private var pointsEarned = 0
+    private var usedHint = false
 
     private var numberList: IntArray? = null
     private var correctAnswer: Int = 0
@@ -77,6 +78,9 @@ class LevelResultActivity : BaseActivity()  {
         // C2 //
         rawTimeSpent = intent.getDoubleExtra("TIME_SPENT", 0.0)
         val useManualAnswer = intent.getBooleanExtra("USE_MANUAL_ANSWER", false)
+
+        usedHint = intent.getBooleanExtra("USED_HINT", false)
+
         timeSpentInSeconds = rawTimeSpent
         if (useManualAnswer) {
             timeSpentInSeconds *= 0.7
@@ -664,7 +668,7 @@ class LevelResultActivity : BaseActivity()  {
             repeatLevelTextView.visibility = View.VISIBLE
         }
 
-        mainMessageTextView.text = if (attempts >= 2) {
+        mainMessageTextView.text = if (attempts >= 2 || (usedHint && attempts >= 1)) {
             getString(R.string.has_agotado_tus_intentos)
         } else {
             getString(R.string.se_agoto_el_tiempo)
@@ -702,7 +706,7 @@ class LevelResultActivity : BaseActivity()  {
             repeatLevelTextView.startAnimation(fadeIn)
         }
 
-        if (attempts >= 2 && numberList != null && userResponses != null) {
+        if ((attempts >= 2 || (usedHint && attempts >= 1)) && numberList != null && userResponses != null) {
             reviewExerciseTextView.visibility = View.VISIBLE
             applyTouchAnimation(reviewExerciseTextView)
 

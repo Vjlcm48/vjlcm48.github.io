@@ -1847,4 +1847,12 @@
     <string name="coins_daily_bonus_msg" translatable="false">+%1$d monedas · Racha: %2$d días</string>
     <string name="coins_daily_streak_broken_msg" translatable="false">+%1$d monedas · Racha reiniciada</string>
 
+    <string name="hint_title" translatable="false">🧠 ¿Usas una pista?</string>
+    <string name="hint_cost" translatable="false">Costo: 4 monedas</string>
+    <string name="hint_desc_selection" translatable="false">Elimina 2 opciones incorrectas</string>
+    <string name="hint_desc_writing" translatable="false">Muestra 2 posibles respuestas</string>
+    <string name="hint_use_btn" translatable="false">Usar pista  -4 🪙</string>
+    <string name="hint_skip_btn" translatable="false">Continuar sin pista</string>
+
+
 </resources>

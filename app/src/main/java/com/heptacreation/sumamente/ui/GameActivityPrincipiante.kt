@@ -1,9 +1,11 @@
 package com.heptacreation.sumamente.ui
 
 import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
+import android.animation.ValueAnimator
 import android.content.Intent
 import android.graphics.Typeface
 import android.media.MediaPlayer
@@ -20,16 +22,21 @@ import android.view.View
 import android.view.ViewTreeObserver
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
+import android.view.animation.LinearInterpolator
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import com.google.android.material.button.MaterialButton
 import com.heptacreation.sumamente.R
 import java.util.Locale
 import kotlin.random.Random
@@ -58,6 +65,17 @@ class GameActivityPrincipiante : BaseActivity()  {
     private lateinit var chronometerTextView: TextView
     private lateinit var progressRingContainer: View
 
+    // ── Vistas del sistema de pistas ─────────────────────────────
+    private lateinit var hintOverlay: FrameLayout
+    private lateinit var tvHintBalance: TextView
+    private lateinit var tvHintDescription: TextView
+    private lateinit var btnUseHint: MaterialButton
+    private lateinit var btnSkipHint: MaterialButton
+    private lateinit var hintTimerBar: ProgressBar
+    private lateinit var hintOptionsLayout: LinearLayout
+    private lateinit var btnHintOption1: MaterialButton
+    private lateinit var btnHintOption2: MaterialButton
+
     private var currentLevel = 1
     private var numberList = mutableListOf<Int>()
     private val handler = Handler(Looper.getMainLooper())
@@ -73,12 +91,22 @@ class GameActivityPrincipiante : BaseActivity()  {
     private var soundPlayed = false
     private var userResponses = mutableListOf<Int>()
     private var timeSpentInSeconds: Double = 0.0
-    private var inputBlocked = false // Cambio #1 bloqueo de mas de 2 intentos //
+    private var inputBlocked = false
+
+    // ── Variables del sistema de pistas ──────────────────────────
+    private var pistaActivada = false
+    private var hintTimerAnimator: ObjectAnimator? = null
+    private var hintCountDownTimer: CountDownTimer? = null
+
+    companion object {
+        private const val HINT_COST_COINS = 4
+        private const val HINT_TIMER_MS = 5000L
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
 
         getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_game)
@@ -122,6 +150,17 @@ class GameActivityPrincipiante : BaseActivity()  {
         chronometerTextView = findViewById(R.id.chronometer_text_view)
         chronometerTextView.typeface = Typeface.MONOSPACE
 
+        // Vistas de pistas
+        hintOverlay      = findViewById(R.id.hint_overlay)
+        tvHintBalance    = findViewById(R.id.tv_hint_balance)
+        tvHintDescription= findViewById(R.id.tv_hint_description)
+        btnUseHint       = findViewById(R.id.btn_use_hint)
+        btnSkipHint      = findViewById(R.id.btn_skip_hint)
+        hintTimerBar     = findViewById(R.id.hint_timer_bar)
+        hintOptionsLayout= findViewById(R.id.hint_options_layout)
+        btnHintOption1   = findViewById(R.id.btn_hint_option_1)
+        btnHintOption2   = findViewById(R.id.btn_hint_option_2)
+
         currentLevel = intent.getIntExtra("LEVEL", 1)
         levelTitle.text = getString(R.string.level_title, currentLevel)
         scoreTextView.text = getString(R.string.score_label, ScoreManager.currentScorePrincipiante)
@@ -139,6 +178,7 @@ class GameActivityPrincipiante : BaseActivity()  {
 
         attempts = 0
         inputBlocked = false
+        pistaActivada = false
 
         Thread {
             generateNumbers()
@@ -158,16 +198,19 @@ class GameActivityPrincipiante : BaseActivity()  {
         handler.removeCallbacksAndMessages(null)
         chronometerTimer?.cancel()
         heartbeatAnimator?.cancel()
+        hintTimerAnimator?.cancel()
+        hintCountDownTimer?.cancel()
     }
 
     override fun onPause() {
         super.onPause()
         if (!isFinishing) {
-
             answerTimer?.cancel()
             handler.removeCallbacksAndMessages(null)
             chronometerTimer?.cancel()
             heartbeatAnimator?.cancel()
+            hintTimerAnimator?.cancel()
+            hintCountDownTimer?.cancel()
             finish()
         }
     }
@@ -344,7 +387,6 @@ class GameActivityPrincipiante : BaseActivity()  {
             }
             if (ok) return
         }
-
     }
 
     private fun calculateSum(): Int {
@@ -443,7 +485,8 @@ class GameActivityPrincipiante : BaseActivity()  {
                     index++
                     handler.postDelayed(this, duration)
                 } else {
-                    transitionToPrompt()
+
+                    verificarYMostrarPista()
                 }
             }
         })
@@ -453,6 +496,84 @@ class GameActivityPrincipiante : BaseActivity()  {
         val totalDuration = timePerNumberList.sum()
         progressRing.startProgressAnimation(totalDuration)
     }
+
+    // ── Sistema de pistas ─────────────────────────────────────────
+
+    private fun verificarYMostrarPista() {
+        val saldo = CoinManager.getBalance(this)
+        if (saldo >= HINT_COST_COINS) {
+            mostrarOverlayPista(saldo)
+        } else {
+            transitionToPrompt()
+        }
+    }
+
+    private fun mostrarOverlayPista(saldo: Int) {
+        tvHintBalance.text = saldo.toString()
+        tvHintDescription.text = if (useManualAnswer) {
+            getString(R.string.hint_desc_writing)
+        } else {
+            getString(R.string.hint_desc_selection)
+        }
+
+        hintOverlay.visibility = View.VISIBLE
+
+        // Barra de tiempo vaciándose
+        hintTimerBar.progress = 100
+        hintTimerAnimator = ObjectAnimator.ofInt(hintTimerBar, "progress", 100, 0).apply {
+            duration = HINT_TIMER_MS
+            interpolator = LinearInterpolator()
+            start()
+        }
+
+        // Autocierre al agotarse el tiempo
+        hintCountDownTimer = object : CountDownTimer(HINT_TIMER_MS, HINT_TIMER_MS) {
+            override fun onTick(millisUntilFinished: Long) {}
+            override fun onFinish() {
+                cerrarOverlayYContinuar(false)
+            }
+        }.start()
+
+        btnUseHint.setOnClickListener {
+            hintTimerAnimator?.cancel()
+            hintCountDownTimer?.cancel()
+            animarGastoMonedas(saldo) {
+                cerrarOverlayYContinuar(true)
+            }
+        }
+
+        btnSkipHint.setOnClickListener {
+            hintTimerAnimator?.cancel()
+            hintCountDownTimer?.cancel()
+            cerrarOverlayYContinuar(false)
+        }
+    }
+
+    private fun animarGastoMonedas(saldoAntes: Int, onFin: () -> Unit) {
+        CoinManager.spendCoins(this, HINT_COST_COINS)
+        val saldoDespues = CoinManager.getBalance(this)
+
+        ValueAnimator.ofInt(saldoAntes, saldoDespues).apply {
+            duration = 400
+            addUpdateListener {
+                tvHintBalance.text = (it.animatedValue as Int).toString()
+            }
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    Handler(Looper.getMainLooper()).postDelayed({ onFin() }, 300)
+                }
+            })
+            start()
+        }
+    }
+
+    private fun cerrarOverlayYContinuar(usoPista: Boolean) {
+        pistaActivada = usoPista
+        hintOverlay.visibility = View.GONE
+        transitionToPrompt()
+    }
+
+    // ─────────────────────────────────────────────────────────────
 
     private fun transitionToPrompt() {
         numberTextView.visibility = View.GONE
@@ -495,7 +616,6 @@ class GameActivityPrincipiante : BaseActivity()  {
                 val elapsedMillis = 10000 - millisUntilFinished
                 val elapsedSeconds = elapsedMillis / 1000.0
 
-                // GA1 Cambio para solucionar el formato de los decimales //
                 val formattedTime = String.format(Locale.getDefault(), "%04.2f", elapsedSeconds)
                 val spannableString = SpannableString(formattedTime)
                 val decimalPointIndex = formattedTime.indexOf('.')
@@ -511,7 +631,6 @@ class GameActivityPrincipiante : BaseActivity()  {
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
                 }
-                // Fin del cambio GA1 //
 
                 val textColor = when {
                     elapsedSeconds < 5.0 -> ContextCompat.getColor(this@GameActivityPrincipiante, R.color.green_medium)
@@ -610,10 +729,13 @@ class GameActivityPrincipiante : BaseActivity()  {
     }
 
     private fun showManualInput() {
+        if (pistaActivada) {
+            mostrarOpcionesPistaEscritura()
+        }
+
         manualInputLayout.visibility = View.VISIBLE
 
         if (useManualAnswer) {
-
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
             manualAnswerEditText.requestFocus()
 
@@ -633,6 +755,37 @@ class GameActivityPrincipiante : BaseActivity()  {
         startAnswerTimer()
     }
 
+    private fun mostrarOpcionesPistaEscritura() {
+        val rangeOffset = when (currentLevel) {
+            in 1..10  -> 3
+            in 11..20 -> 4
+            in 21..30 -> 5
+            in 31..40 -> 6
+            in 41..50 -> 7
+            in 51..60 -> 8
+            else      -> 9
+        }
+
+        var incorrecta: Int
+        do {
+            incorrecta = correctAnswer + Random.nextInt(-rangeOffset, rangeOffset + 1)
+        } while (incorrecta == correctAnswer || incorrecta < 1)
+
+        val opciones = listOf(correctAnswer, incorrecta).shuffled()
+
+        btnHintOption1.text = opciones[0].toString()
+        btnHintOption2.text = opciones[1].toString()
+
+        hintOptionsLayout.visibility = View.VISIBLE
+
+        btnHintOption1.setOnClickListener {
+            manualAnswerEditText.setText(opciones[0].toString())
+        }
+        btnHintOption2.setOnClickListener {
+            manualAnswerEditText.setText(opciones[1].toString())
+        }
+    }
+
     private fun submitManualAnswer() {
         val userAnswer = manualAnswerEditText.text.toString().toIntOrNull()
         if (userAnswer != null) {
@@ -647,7 +800,6 @@ class GameActivityPrincipiante : BaseActivity()  {
         val elapsedMillis = currentTime - chronometerStartTime
         timeSpentInSeconds = elapsedMillis / 1000.0
 
-        // GA2 Cambio para solucionar el formato de los decimales //
         val formattedTime = String.format(Locale.getDefault(), "%04.2f", timeSpentInSeconds)
         val spannableString = SpannableString(formattedTime)
         val decimalPointIndex = formattedTime.indexOf('.')
@@ -675,21 +827,19 @@ class GameActivityPrincipiante : BaseActivity()  {
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         chronometerTextView.text = spannableString
-        // Fin del cambio GA2 //
-
     }
 
     private fun checkManualAnswer(userAnswer: Int) {
-        if (inputBlocked) return // Cambio #3 bloqueo de mas de 2 intentos //
+        if (inputBlocked) return
         val isCorrect = userAnswer == correctAnswer
         userResponses.add(userAnswer)
+
         if (isCorrect) {
             answerTimer?.cancel()
             chronometerTimer?.cancel()
 
-            inputBlocked = true  // Cambio #02 para bloqueo después de respuesta correcta
-            disableAllInputs()   // Cambio #02 para bloqueo después de respuesta correcta
-
+            inputBlocked = true
+            disableAllInputs()
 
             manualAnswerEditText.setBackgroundResource(R.drawable.sombra_correcta)
             val shake = AnimationUtils.loadAnimation(this, R.anim.shake)
@@ -708,14 +858,13 @@ class GameActivityPrincipiante : BaseActivity()  {
             manualAnswerEditText.startAnimation(shake)
 
             attempts++
-            if (attempts >= 2) {
-                inputBlocked = true  // Cambio #4 bloqueo de mas de 2 intentos //
-                disableAllInputs() // Cambio #4 bloqueo de mas de 2 intentos //
+            if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
+                inputBlocked = true
+                disableAllInputs()
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
 
                 calculateTimeSpent()
-
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     manualAnswerEditText.background = originalBackground
@@ -743,12 +892,30 @@ class GameActivityPrincipiante : BaseActivity()  {
 
         setAnswerValues()
 
+        if (pistaActivada) {
+            aplicarPistaSeleccion()
+        }
+
         btnAnswer1.setOnClickListener { checkAnswer(btnAnswer1) }
         btnAnswer2.setOnClickListener { checkAnswer(btnAnswer2) }
         btnAnswer3.setOnClickListener { checkAnswer(btnAnswer3) }
         btnAnswer4.setOnClickListener { checkAnswer(btnAnswer4) }
 
         startAnswerTimer()
+    }
+
+    private fun aplicarPistaSeleccion() {
+        val botones = listOf(btnAnswer1, btnAnswer2, btnAnswer3, btnAnswer4)
+        val incorrectos = botones.filter {
+            it.text.toString().toIntOrNull() != correctAnswer
+        }.toMutableList()
+
+        incorrectos.shuffle()
+        incorrectos.take(2).forEach { boton ->
+            boton.alpha = 0.3f
+            boton.isEnabled = false
+            boton.isClickable = false
+        }
     }
 
     private fun setAnswerValues() {
@@ -779,7 +946,6 @@ class GameActivityPrincipiante : BaseActivity()  {
 
         for (i in buttons.indices) {
             buttons[i].text = String.format(Locale.getDefault(), "%d", allAnswers[i])
-            
         }
     }
 
@@ -796,7 +962,7 @@ class GameActivityPrincipiante : BaseActivity()  {
     }
 
     private fun checkAnswer(selectedButton: Button) {
-        if (inputBlocked) return // Cambio #5 bloqueo de mas de 2 intentos //
+        if (inputBlocked) return
 
         selectedButton.clearFocus()
 
@@ -809,16 +975,14 @@ class GameActivityPrincipiante : BaseActivity()  {
             answerTimer?.cancel()
             chronometerTimer?.cancel()
 
-            inputBlocked = true  // Cambio #02 para bloqueo después de respuesta correcta
-            disableAllInputs()   // Cambio #02 para bloqueo después de respuesta correcta
-
+            inputBlocked = true
+            disableAllInputs()
 
             selectedButton.setBackgroundResource(R.drawable.sombra_correcta)
             val shake = AnimationUtils.loadAnimation(this, R.anim.shake)
             selectedButton.startAnimation(shake)
 
             calculateTimeSpent()
-
 
             Handler(Looper.getMainLooper()).postDelayed({
                 navigateToLevelResult(true)
@@ -834,9 +998,9 @@ class GameActivityPrincipiante : BaseActivity()  {
             }, 500)
 
             attempts++
-            if (attempts >= 2) {
-                inputBlocked = true // Cambio #6 bloqueo de mas de 2 intentos //
-                disableAllInputs() // Cambio #6 bloqueo de mas de 2 intentos //
+            if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
+                inputBlocked = true
+                disableAllInputs()
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
 
@@ -850,9 +1014,7 @@ class GameActivityPrincipiante : BaseActivity()  {
         }
     }
 
-    // Cambio #7 bloqueo de mas de 2 intentos //
     private fun disableAllInputs() {
-
         btnAnswer1.isEnabled = false
         btnAnswer2.isEnabled = false
         btnAnswer3.isEnabled = false
@@ -909,12 +1071,14 @@ class GameActivityPrincipiante : BaseActivity()  {
         if (isSuccessful) {
             ScoreManager.resetConsecutiveFailuresPrincipiante(currentLevel)
         }
-        else if (attempts >= 2) {
+        else if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
             intent.putExtra("NUMBER_LIST", numberList.toIntArray())
             intent.putExtra("CORRECT_ANSWER", correctAnswer)
             intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
             intent.putExtra("USER_RESPONSES", userResponses.toIntArray())
         }
+
+        intent.putExtra("USED_HINT", pistaActivada)
 
         intent.putExtra("USE_MANUAL_ANSWER", useManualAnswer)
 

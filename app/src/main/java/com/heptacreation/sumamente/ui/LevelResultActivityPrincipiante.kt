@@ -41,6 +41,7 @@ class LevelResultActivityPrincipiante : BaseActivity()  {
     private var currentLevel = 1
     private var isSuccessful = false
     private var attempts = 0
+    private var usedHint = false
     private var timeSpentInSeconds = 0.0
     private var rawTimeSpent = 0.0 // C1 //
     private var pointsEarned = 0
@@ -69,6 +70,9 @@ class LevelResultActivityPrincipiante : BaseActivity()  {
         currentLevel = intent.getIntExtra("LEVEL", 1)
         isSuccessful = intent.getBooleanExtra("IS_SUCCESSFUL", false)
         attempts = intent.getIntExtra("ATTEMPTS", 0)
+
+        usedHint = intent.getBooleanExtra("USED_HINT", false)
+
         timeSpentInSeconds = intent.getDoubleExtra("TIME_SPENT", 0.0)
 
         // C2 //
@@ -597,7 +601,7 @@ class LevelResultActivityPrincipiante : BaseActivity()  {
             repeatLevelTextView.visibility = View.VISIBLE
         }
 
-        mainMessageTextView.text = if (attempts >= 2) {
+        mainMessageTextView.text = if (attempts >= 2 || (usedHint && attempts >= 1)) {
             getString(R.string.has_agotado_tus_intentos)
         } else {
             getString(R.string.se_agoto_el_tiempo)
@@ -635,7 +639,7 @@ class LevelResultActivityPrincipiante : BaseActivity()  {
             repeatLevelTextView.startAnimation(fadeIn)
         }
 
-        if (attempts >= 2 && numberList != null && userResponses != null) {
+        if ((attempts >= 2 || (usedHint && attempts >= 1)) && numberList != null && userResponses != null) {
             reviewExerciseTextView.visibility = View.VISIBLE
             applyTouchAnimation(reviewExerciseTextView)
 

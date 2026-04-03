@@ -5,6 +5,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
@@ -92,6 +93,8 @@ class MainGameActivity : BaseActivity() {
     private lateinit var welcomeOverlay: FrameLayout
     private lateinit var coinsContainer: LinearLayout
     private lateinit var tvCoinsBalance: TextView
+    private lateinit var ivCoinsIcon: ImageView
+    private var coinPulseAnimator: ValueAnimator? = null
     private var isActivityVisible = false
     private val postResumeHandler = Handler(Looper.getMainLooper())
     private var postResumeWork: Runnable? = null
@@ -169,6 +172,8 @@ class MainGameActivity : BaseActivity() {
         coinsContainer = findViewById(R.id.coins_container)
         tvCoinsBalance = findViewById(R.id.tv_coins_balance)
 
+        ivCoinsIcon = findViewById(R.id.coins_icon)
+
     }
 
     private fun configurarListeners() {
@@ -235,6 +240,21 @@ class MainGameActivity : BaseActivity() {
                 mostrarDialogoMonedas()
             }
         }
+    }
+
+    private fun startCoinPulseAnimation() {
+        coinPulseAnimator?.cancel()
+        coinPulseAnimator = ValueAnimator.ofFloat(1.0f, 1.15f).apply {
+            duration = 1500L
+            repeatMode = ValueAnimator.REVERSE
+            repeatCount = ValueAnimator.INFINITE
+            addUpdateListener { animator ->
+                val scale = animator.animatedValue as Float
+                ivCoinsIcon.scaleX = scale
+                ivCoinsIcon.scaleY = scale
+            }
+        }
+        coinPulseAnimator?.start()
     }
 
     private fun actualizarSaldoMonedasUI() {
@@ -639,7 +659,7 @@ class MainGameActivity : BaseActivity() {
     }
 
     private fun aplicarAnimacionDeColor(textView: TextView) {
-        val colorAnimator = android.animation.ValueAnimator.ofArgb(
+        val colorAnimator = ValueAnimator.ofArgb(
 
             ContextCompat.getColor(this, R.color.blue_primary_darker),
             ContextCompat.getColor(this, R.color.blue_primary),
@@ -649,8 +669,8 @@ class MainGameActivity : BaseActivity() {
 
             duration = 8000L
 
-            repeatMode = android.animation.ValueAnimator.REVERSE
-            repeatCount = android.animation.ValueAnimator.INFINITE
+            repeatMode = ValueAnimator.REVERSE
+            repeatCount = ValueAnimator.INFINITE
             addUpdateListener { animator ->
                 textView.setTextColor(animator.animatedValue as Int)
             }
@@ -727,10 +747,9 @@ class MainGameActivity : BaseActivity() {
         actualizarEstadoMusica()
         actualizarPerfil()
         actualizarSaldoMonedasUI()
-
         verificarBonoDiario()
-
         updateTrophyRedDot()
+        startCoinPulseAnimation()
 
         postResumeWork?.let { postResumeHandler.removeCallbacks(it) }
         postResumeWork = Runnable {
@@ -838,6 +857,10 @@ class MainGameActivity : BaseActivity() {
     override fun onPause() {
         super.onPause()
         isActivityVisible = false
+
+        coinPulseAnimator?.cancel()
+        coinPulseAnimator = null
+
         postResumeWork?.let { postResumeHandler.removeCallbacks(it) }
         backgroundCondecoracionesThread?.interrupt()
         backgroundCondecoracionesThread = null
