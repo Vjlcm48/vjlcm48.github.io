@@ -202,6 +202,7 @@
                 android:layout_marginTop="12dp"
                 android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/chronometer_text_view"
+                app:layout_constraintBottom_toTopOf="@id/manual_input_layout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
@@ -237,9 +238,9 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginTop="30dp"
+                android:layout_marginBottom="16dp"
                 android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/hint_options_layout"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 

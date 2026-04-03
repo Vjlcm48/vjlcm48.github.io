@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import java.util.TimeZone
 
 object CoinManager {
 
@@ -84,14 +85,14 @@ object CoinManager {
 
         if (last == today) return DailyBonusResult.AlreadyClaimed
 
-        val yesterday  = dateStr(Calendar.getInstance().apply {
+        val yesterday  = dateStr(Calendar.getInstance(TimeZone.getTimeZone("America/Chicago")).apply {
             add(Calendar.DAY_OF_MONTH, -1)
         }.time)
 
         val newStreak  = if (last == yesterday) streak + 1 else 1
         val premium    = isPremium(context)
-        val rawBonus   = if (premium) minOf(12 + (newStreak - 1) * 2, 30)
-        else         minOf(5  + (newStreak - 1),      15)
+        val rawBonus   = if (premium) 7 + ((newStreak - 1) % 8)
+        else                  5 + ((newStreak - 1) % 8)
 
         val current    = getBalance(context)
         val space      = MAX_COINS - current
@@ -119,7 +120,9 @@ object CoinManager {
 
     // ── Helpers ────────────────────────────────────────────────────────────
     private fun dateStr(date: Date): String =
-        SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(date)
+        SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).apply {
+            timeZone = TimeZone.getTimeZone("America/Chicago")
+        }.format(date)
 
     private fun prefs(context: Context) =
         context.getSharedPreferences(PREFS_COINS, Context.MODE_PRIVATE)
