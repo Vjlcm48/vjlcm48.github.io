@@ -95,7 +95,7 @@
             android:maxLines="2"
             android:minHeight="48dp"
             android:padding="8dp"
-            android:textColor="?attr/colorOnBackground"
+            android:textColor="?attr/colorFocoPlusScore"
             android:textStyle="bold"
             app:autoSizeMaxTextSize="30sp"
             app:autoSizeMinTextSize="18sp"

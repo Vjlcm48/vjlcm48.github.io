@@ -1722,27 +1722,30 @@ fun getTotalUniqueLevelsCompletedAllGames(): Int {
             }
 
         return (
-                sp("ScorePrefs",                      "current_score") +
-                        sp("ScorePrefsPrincipiante",          "current_score_principiante") +
-                        sp("ScorePrefsPro",                   "current_score_pro") +
-                        sp("ScorePrefsDeciPlus",              "current_score_deci_plus") +
-                        sp("ScorePrefsDeciPlusPrincipiante",  "current_score_deci_plus_principiante") +
-                        sp("ScorePrefsDeciPlusPro",           "current_score_deci_plus_pro") +
-                        sp("ScorePrefsRomas",                 "current_score_romas") +
-                        sp("ScorePrefsRomasPrincipiante",     "current_score_romas_principiante") +
-                        sp("ScorePrefsRomasPro",              "current_score_romas_pro") +
-                        sp("ScorePrefsAlfaNumeros",           "current_score_alfanumeros") +
-                        sp("ScorePrefsAlfaNumerosPrincipiante","current_score_alfanumeros_principiante") +
-                        sp("ScorePrefsAlfaNumerosPro",        "current_score_alfanumeros_pro") +
-                        sp("ScorePrefsSumaResta",             "current_score_sumaresta") +
-                        sp("ScorePrefsSumaRestaPrincipiante", "current_score_sumaresta_principiante") +
-                        sp("ScorePrefsSumaRestaPro",          "current_score_sumaresta_pro") +
-                        sp("ScorePrefsMasPlus",               "current_score_mas_plus") +
-                        sp("ScorePrefsMasPlusPrincipiante",   "current_score_mas_plus_principiante") +
-                        sp("ScorePrefsMasPlusPro",            "current_score_mas_plus_pro") +
-                        sp("ScorePrefsGenioPlus",             "current_score_genio_plus") +
-                        sp("ScorePrefsGenioPlusPrincipiante", "current_score_genio_plus_principiante") +
-                        sp("ScorePrefsGenioPlusPro",          "current_score_genio_plus_pro")
+                        sp("ScorePrefs",                        "current_score") +
+                        sp("ScorePrefsPrincipiante",            "current_score_principiante") +
+                        sp("ScorePrefsPro",                     "current_score_pro") +
+                        sp("ScorePrefsDeciPlus",                "current_score_deci_plus") +
+                        sp("ScorePrefsDeciPlusPrincipiante",    "current_score_deci_plus_principiante") +
+                        sp("ScorePrefsDeciPlusPro",             "current_score_deci_plus_pro") +
+                        sp("ScorePrefsRomas",                   "current_score_romas") +
+                        sp("ScorePrefsRomasPrincipiante",       "current_score_romas_principiante") +
+                        sp("ScorePrefsRomasPro",                "current_score_romas_pro") +
+                        sp("ScorePrefsAlfaNumeros",             "current_score_alfanumeros") +
+                        sp("ScorePrefsAlfaNumerosPrincipiante", "current_score_alfanumeros_principiante") +
+                        sp("ScorePrefsAlfaNumerosPro",          "current_score_alfanumeros_pro") +
+                        sp("ScorePrefsSumaResta",               "current_score_sumaresta") +
+                        sp("ScorePrefsSumaRestaPrincipiante",   "current_score_sumaresta_principiante") +
+                        sp("ScorePrefsSumaRestaPro",            "current_score_sumaresta_pro") +
+                        sp("ScorePrefsMasPlus",                 "current_score_mas_plus") +
+                        sp("ScorePrefsMasPlusPrincipiante",     "current_score_mas_plus_principiante") +
+                        sp("ScorePrefsMasPlusPro",              "current_score_mas_plus_pro") +
+                        sp("ScorePrefsGenioPlus",               "current_score_genio_plus") +
+                        sp("ScorePrefsGenioPlusPrincipiante",   "current_score_genio_plus_principiante") +
+                        sp("ScorePrefsGenioPlusPro",            "current_score_genio_plus_pro") +
+                        sp("ScorePrefsFocoPlus",                "current_score_foco_plus") +
+                        sp("ScorePrefsFocoPlusPrincipiante",    "current_score_foco_plus_principiante") +
+                        sp("ScorePrefsFocoPlusPro",             "current_score_foco_plus_pro")
                 ).toLong()
     }
 

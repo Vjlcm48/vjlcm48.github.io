@@ -44,6 +44,7 @@ class LevelResultActivityAlfaNumeros : BaseActivity()  {
     private var timeSpentInSeconds = 0.0
     private var rawTimeSpent = 0.0 // C1 //
     private var pointsEarned = 0
+    private var usedHint = false
 
     private var mediaPlayer: MediaPlayer? = null
 
@@ -55,8 +56,8 @@ class LevelResultActivityAlfaNumeros : BaseActivity()  {
     private lateinit var sharedPreferences: android.content.SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
 
         sharedPreferences = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
         setContentView(R.layout.activity_level_result_alfanumeros)
@@ -67,6 +68,7 @@ class LevelResultActivityAlfaNumeros : BaseActivity()  {
         currentLevel = intent.getIntExtra("LEVEL", 1)
         isSuccessful = intent.getBooleanExtra("IS_SUCCESSFUL", false)
         attempts = intent.getIntExtra("ATTEMPTS", 0)
+        usedHint = intent.getBooleanExtra("USED_HINT", false)
         timeSpentInSeconds = intent.getDoubleExtra("TIME_SPENT", 0.0)
 
         // C2 //
@@ -535,7 +537,7 @@ class LevelResultActivityAlfaNumeros : BaseActivity()  {
             })
         }, 2000)
 
-    unlockLevelTextView.setOnClickListener {
+        unlockLevelTextView.setOnClickListener {
             finish()
             navigateToLevels()
         }
@@ -577,7 +579,7 @@ class LevelResultActivityAlfaNumeros : BaseActivity()  {
             repeatLevelTextView.visibility = View.VISIBLE
         }
 
-        mainMessageTextView.text = if (attempts >= 2) {
+        mainMessageTextView.text = if (attempts >= 2 || (usedHint && attempts >= 1)) {
             getString(R.string.has_agotado_tus_intentos)
         } else {
             getString(R.string.se_agoto_el_tiempo)
@@ -613,7 +615,7 @@ class LevelResultActivityAlfaNumeros : BaseActivity()  {
         unlockLevelTextView.startAnimation(fadeIn)
         repeatLevelTextView.startAnimation(fadeIn)
 
-        if (attempts >= 2 && elementList != null && userResponses != null) {
+        if ((attempts >= 2 || (usedHint && attempts >= 1)) && elementList != null && userResponses != null) {
             reviewExerciseTextView.visibility = View.VISIBLE
             applyTouchAnimation(reviewExerciseTextView)
 

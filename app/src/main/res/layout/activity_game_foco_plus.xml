@@ -61,6 +61,7 @@
         android:maxLines="2"
         android:ellipsize="end"
         android:fontFamily="@font/gochi_hand"
+        android:textColor="?attr/colorFocoPlusScore"
         app:layout_constraintStart_toStartOf="@id/guideline_mid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/back_arrow"
@@ -75,7 +76,7 @@
         android:fillViewport="true"
         android:scrollbars="vertical"
         app:layout_constraintTop_toBottomOf="@id/back_arrow"
-        app:layout_constraintBottom_toTopOf="@id/home_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -116,7 +117,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintWidth_percent="0.90"
-                app:layout_constraintDimensionRatio="8:4"
+                app:layout_constraintDimensionRatio="8:4.5"
                 android:layout_marginTop="12dp">
 
                 <TextView
@@ -145,8 +146,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="42sp"
-                        android:textColor="@android:color/white"
-                        android:fontFamily="@font/gochi_hand"/>
+                        android:textColor="@android:color/white"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -164,8 +164,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:textSize="32sp"
-                        android:textColor="@android:color/white"
-                        android:fontFamily="@font/gochi_hand"/>
+                        android:textColor="@android:color/white"/>
 
                     <TextView
                         android:id="@+id/tv_right_exercise"
@@ -174,8 +173,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:textSize="32sp"
-                        android:textColor="@android:color/white"
-                        android:fontFamily="@font/gochi_hand"/>
+                        android:textColor="@android:color/white"/>
 
                     <ImageView
                         android:id="@+id/iv_board_left"
@@ -281,7 +279,6 @@
                         android:textStyle="bold"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:fontFamily="@font/gochi_hand"
                         app:autoSizeTextType="uniform"
                         app:autoSizeMinTextSize="14sp"
                         app:autoSizeMaxTextSize="30sp"
@@ -307,7 +304,6 @@
                         android:textStyle="bold"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:fontFamily="@font/gochi_hand"
                         app:autoSizeTextType="uniform"
                         app:autoSizeMinTextSize="14sp"
                         app:autoSizeMaxTextSize="30sp"
@@ -333,7 +329,6 @@
                         android:textStyle="bold"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:fontFamily="@font/gochi_hand"
                         app:autoSizeTextType="uniform"
                         app:autoSizeMinTextSize="14sp"
                         app:autoSizeMaxTextSize="30sp"
@@ -359,7 +354,6 @@
                         android:textStyle="bold"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:fontFamily="@font/gochi_hand"
                         app:autoSizeTextType="uniform"
                         app:autoSizeMinTextSize="14sp"
                         app:autoSizeMaxTextSize="30sp"
@@ -385,7 +379,6 @@
                         android:textStyle="bold"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:fontFamily="@font/gochi_hand"
                         app:autoSizeTextType="uniform"
                         app:autoSizeMinTextSize="14sp"
                         app:autoSizeMaxTextSize="30sp"
@@ -411,7 +404,6 @@
                         android:textStyle="bold"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:fontFamily="@font/gochi_hand"
                         app:autoSizeTextType="uniform"
                         app:autoSizeMinTextSize="14sp"
                         app:autoSizeMaxTextSize="30sp"
@@ -513,7 +505,6 @@
                     android:textColor="@android:color/black"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    android:fontFamily="@font/gochi_hand"
                     app:autoSizeTextType="uniform"
                     app:autoSizeMinTextSize="14sp"
                     app:autoSizeMaxTextSize="30sp"
@@ -525,68 +516,120 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <TextView
-        android:id="@+id/home_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="55dp"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:drawablePadding="6dp"
-        android:focusable="true"
-        android:fontFamily="@font/gochi_hand"
-        android:gravity="center"
-        android:minHeight="96dp"
-        android:padding="12dp"
-        android:text="@string/home_text"
-        android:textColor="?attr/colorOnBackground"
-        android:textSize="20sp"
-        app:drawableTopCompat="@drawable/ic_inicio"
+
+
+    <!-- ── Overlay de pistas ─────────────────────────────── -->
+    <FrameLayout
+        android:id="@+id/hint_options_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B3000000"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/calendar_button"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <TextView
-        android:id="@+id/calendar_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:minHeight="96dp"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:drawablePadding="6dp"
-        android:focusable="true"
-        android:gravity="center"
-        android:padding="12dp"
-        android:text="@string/calendar_text"
-        android:textColor="?attr/colorOnBackground"
-        android:textSize="20sp"
-        android:fontFamily="@font/gochi_hand"
-        app:drawableTopCompat="@drawable/ic_calendario"
-        app:layout_constraintTop_toTopOf="@+id/home_button"
-        app:layout_constraintEnd_toStartOf="@+id/statistics_button"
-        app:layout_constraintStart_toEndOf="@+id/home_button" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="@color/card_bg_dialog"
+            app:cardElevation="8dp">
 
-    <TextView
-        android:id="@+id/statistics_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:minHeight="96dp"
-        android:layout_marginEnd="24dp"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:drawablePadding="6dp"
-        android:focusable="true"
-        android:gravity="center"
-        android:padding="12dp"
-        android:text="@string/statistics_text"
-        android:textColor="?attr/colorOnBackground"
-        android:textSize="20sp"
-        android:fontFamily="@font/gochi_hand"
-        app:drawableTopCompat="@drawable/ic_estadisticas"
-        app:layout_constraintTop_toTopOf="@+id/home_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/calendar_button" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hint_title"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnBackground"
+                    android:fontFamily="@font/gochi_hand"
+                    android:layout_marginBottom="12dp"/>
+
+                <TextView
+                    android:id="@+id/tv_hint_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hint_desc_foco_simple"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:textColor="?attr/colorOnBackground"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hint_cost_7"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnBackground"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:id="@+id/tv_hint_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="?attr/colorOnBackground"
+                    android:layout_marginBottom="16dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_use_hint"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        android:text="@string/hint_use_btn_7"
+                        android:textColor="@android:color/white"
+                        android:background="@drawable/button_background_foco"
+                        android:fontFamily="@font/gochi_hand"
+                        android:textSize="16sp"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_skip_hint"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/hint_skip_btn"
+                        android:textColor="@android:color/white"
+                        android:background="@drawable/button_background_foco"
+                        android:fontFamily="@font/gochi_hand"
+                        android:textSize="16sp"/>
+
+                </LinearLayout>
+
+                <ProgressBar
+                    android:id="@+id/hint_timer_bar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="4dp"
+                    android:max="100"
+                    android:progress="100"
+                    android:progressTint="@color/primary_button_color"
+                    android:progressBackgroundTint="@color/grey_dark" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+    <!-- ── Fin overlay de pistas ─────────────────────────────── -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

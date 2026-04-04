@@ -15,14 +15,14 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.enableEdgeToEdge
 import com.airbnb.lottie.LottieAnimationView
 import com.heptacreation.sumamente.R
 import java.util.Locale
 import kotlin.math.max
 import kotlin.math.roundToInt
-import androidx.activity.enableEdgeToEdge
 
-class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
+class LevelResultActivityMasPlusPrincipiante : BaseActivity() {
 
     private lateinit var mainMessageTextView: TextView
     private lateinit var pointsTextView: TextView
@@ -44,8 +44,9 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
     private var isSuccessful = false
     private var attempts = 0
     private var timeSpentInSeconds = 0.0
-    private var rawTimeSpent = 0.0 // C1 //
+    private var rawTimeSpent = 0.0
     private var pointsEarned = 0
+    private var usedHint = false
 
     private var numberList: Array<String>? = null
     private var correctAnswer: Int = 0
@@ -56,11 +57,11 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
     private lateinit var sharedPreferences: android.content.SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    enableEdgeToEdge()
+        enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_level_result_mas_plus)
 
         sharedPreferences = getSharedPreferences("MyPrefsMasPlus", MODE_PRIVATE)
-        setContentView(R.layout.activity_level_result_mas_plus)
 
         ScoreManager.initMasPlusPrincipiante(this)
         CondecoracionTracker.init(this)
@@ -70,9 +71,10 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
         attempts = intent.getIntExtra("ATTEMPTS", 0)
         timeSpentInSeconds = intent.getDoubleExtra("TIME_SPENT", 0.0)
 
-        // C2 //
         rawTimeSpent = intent.getDoubleExtra("TIME_SPENT", 0.0)
         val useManualAnswer = intent.getBooleanExtra("USE_MANUAL_ANSWER", false)
+        usedHint = intent.getBooleanExtra("USED_HINT", false)
+
         timeSpentInSeconds = rawTimeSpent
         if (useManualAnswer) {
             timeSpentInSeconds *= 0.7
@@ -100,16 +102,14 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
         reviewExerciseTextView = findViewById(R.id.review_exercise_textview)
 
         setupUI()
-        // Inicio del cambio flecha de regresar del celular
+
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-
                 navigateToLevels()
                 finish()
             }
         }
         onBackPressedDispatcher.addCallback(this, callback)
-        // Fin del código de flecha de regresar del celular
     }
 
     private fun setupUI() {
@@ -152,19 +152,17 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
         }
 
         ScoreManager.levelScoresMasPlusPrincipiante[currentLevel] = pointsEarned
-        ScoreManager.currentScoreMasPlusPrincipiante = max(ScoreManager.currentScoreMasPlusPrincipiante + pointsEarned, 0)
+        ScoreManager.currentScoreMasPlusPrincipiante =
+            max(ScoreManager.currentScoreMasPlusPrincipiante + pointsEarned, 0)
 
         if (!ScoreManager.hasCompletedLevelMasPlusPrincipiante(currentLevel)) {
             ScoreManager.addCompletedLevelMasPlusPrincipiante(currentLevel)
         }
 
-        // Conteo para pines //
         CondecoracionTracker.marcarNivelConTimestamp("MasPlus", "Principiante", currentLevel)
         CondecoracionTracker.verificarYEntregarPines()
 
-
         ScoreManager.resetConsecutiveFailuresMasPlusPrincipiante(currentLevel)
-
         ScoreManager.saveScoreMasPlusPrincipiante()
 
         checkAndUpdateBestGame("MasPlus", "Principiante", currentLevel)
@@ -179,9 +177,9 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
         ScoreManager.updateIqComponent("MasPlus", "Principiante", aporte)
         ScoreManager.saveStatsGlobalAndMasPlus()
 
-        val syncRequest = androidx.work.OneTimeWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.SyncWorker>().build()
+        val syncRequest =
+            androidx.work.OneTimeWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.SyncWorker>().build()
         androidx.work.WorkManager.getInstance(this).enqueue(syncRequest)
-
     }
 
     private fun handleFailureScenario() {
@@ -197,13 +195,13 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
         ScoreManager.updateIqComponent("MasPlus", "Principiante", 0.0)
         ScoreManager.saveStatsGlobalAndMasPlus()
 
-        val syncRequest = androidx.work.OneTimeWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.SyncWorker>().build()
+        val syncRequest =
+            androidx.work.OneTimeWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.SyncWorker>().build()
         androidx.work.WorkManager.getInstance(this).enqueue(syncRequest)
     }
 
     private fun verificarMedallasAntesDeMostrarExito() {
         CondecoracionTracker.verificarYEntregarMedallas { nuevaMedalla ->
-
             if (nuevaMedalla != null && currentLevel == 70) {
                 verificarTrofeosParaDobleCondecoracion(nuevaMedalla)
             } else if (nuevaMedalla != null) {
@@ -327,8 +325,6 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
             timeSpentInSeconds
         }
 
-        // C3 ELIMINAR EL 0.7 //
-
         val puntosPorVelocidad = if (tiempoPromedio > 0) {
             (velocidadBonus * (1.0 / tiempoPromedio))
         } else {
@@ -411,7 +407,10 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
 
                 override fun onAnimationEnd(animation: android.view.animation.Animation?) {
                     animationView.setAnimation("confetti_animation.json")
-                    val fadeIn = AnimationUtils.loadAnimation(this@LevelResultActivityMasPlusPrincipiante, R.anim.dialog_fade_in)
+                    val fadeIn = AnimationUtils.loadAnimation(
+                        this@LevelResultActivityMasPlusPrincipiante,
+                        R.anim.dialog_fade_in
+                    )
                     animationView.startAnimation(fadeIn)
                     animationView.playAnimation()
 
@@ -421,19 +420,25 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
 
                     pointsTextView.visibility = View.VISIBLE
 
-                    // LR1 Cambio para solucionar el formato de los decimales //
                     val puntosObtenidos = getString(R.string.puntos_obtenidos, pointsEarned)
                     val spannable = SpannableString(puntosObtenidos)
                     val puntosStr = pointsEarned.toString()
                     val startIdx = puntosObtenidos.indexOf(puntosStr)
                     val endIdx = startIdx + puntosStr.length
                     if (startIdx >= 0 && endIdx <= puntosObtenidos.length) {
-                        spannable.setSpan(StyleSpan(Typeface.BOLD), startIdx, endIdx, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                        spannable.setSpan(
+                            StyleSpan(Typeface.BOLD),
+                            startIdx,
+                            endIdx,
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
                     }
                     pointsTextView.text = spannable
-                    // Fin del cambio LR1 //
 
-                    val pointsAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityMasPlusPrincipiante, R.anim.points_appear_from_back)
+                    val pointsAnimation = AnimationUtils.loadAnimation(
+                        this@LevelResultActivityMasPlusPrincipiante,
+                        R.anim.points_appear_from_back
+                    )
                     pointsTextView.startAnimation(pointsAnimation)
 
                     pointsAnimation.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
@@ -441,80 +446,113 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
 
                         override fun onAnimationEnd(animation: android.view.animation.Animation?) {
                             checkImageView.visibility = View.VISIBLE
-                            val checkAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityMasPlusPrincipiante, R.anim.check_appear)
+                            val checkAnimation = AnimationUtils.loadAnimation(
+                                this@LevelResultActivityMasPlusPrincipiante,
+                                R.anim.check_appear
+                            )
                             checkImageView.startAnimation(checkAnimation)
 
-                            checkAnimation.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
+                            checkAnimation.setAnimationListener(object :
+                                android.view.animation.Animation.AnimationListener {
                                 override fun onAnimationStart(animation: android.view.animation.Animation?) {}
-                                override fun onAnimationEnd(animation: android.view.animation.Animation?) {
 
+                                override fun onAnimationEnd(animation: android.view.animation.Animation?) {
                                     val puntosMasPlusActual = ScoreManager.currentScoreMasPlusPrincipiante
                                     val puntajeActualText = getString(R.string.puntaje_actual, puntosMasPlusActual)
                                     val spannablePuntajeActual = SpannableString(puntajeActualText)
                                     val puntosStrActual = puntosMasPlusActual.toString()
                                     val startIdxActual = puntajeActualText.indexOf(puntosStrActual)
 
-                                    // LR2 Cambio para solucionar el formato de los decimales //
                                     val endIdxActual = startIdxActual + puntosStrActual.length
                                     if (startIdxActual >= 0 && endIdxActual <= puntajeActualText.length) {
-                                        spannablePuntajeActual.setSpan(StyleSpan(Typeface.BOLD), startIdxActual, endIdxActual, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                                        spannablePuntajeActual.setSpan(
+                                            StyleSpan(Typeface.BOLD),
+                                            startIdxActual,
+                                            endIdxActual,
+                                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                                        )
                                     }
                                     currentScoreTextView.text = spannablePuntajeActual
-                                    // Fin del cambio LR2 //
 
                                     currentScoreTextView.visibility = View.VISIBLE
                                     starImageView.visibility = View.VISIBLE
 
-                                    val puntajeActualAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityMasPlusPrincipiante, R.anim.points_appear_from_back)
+                                    val puntajeActualAnimation = AnimationUtils.loadAnimation(
+                                        this@LevelResultActivityMasPlusPrincipiante,
+                                        R.anim.points_appear_from_back
+                                    )
                                     currentScoreTextView.startAnimation(puntajeActualAnimation)
                                     starImageView.startAnimation(puntajeActualAnimation)
 
-                                    puntajeActualAnimation.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
+                                    puntajeActualAnimation.setAnimationListener(object :
+                                        android.view.animation.Animation.AnimationListener {
                                         override fun onAnimationStart(animation: android.view.animation.Animation?) {}
 
                                         override fun onAnimationEnd(animation: android.view.animation.Animation?) {
-
-                                            /// Cambio de variable para tiempo real mostrado C4 //
-                                            // LR3 Cambio para solucionar el formato de los decimales //
                                             val formattedTime = String.format(Locale.getDefault(), "%.2f", rawTimeSpent)
                                             val tiempoEmpleadoText = getString(R.string.tiempo_empleado, formattedTime)
                                             val spannableTime = SpannableString(tiempoEmpleadoText)
                                             val startIdxTime = tiempoEmpleadoText.indexOf(formattedTime)
                                             val endIdxTime = startIdxTime + formattedTime.length
                                             if (startIdxTime >= 0 && endIdxTime <= tiempoEmpleadoText.length) {
-                                                spannableTime.setSpan(StyleSpan(Typeface.BOLD), startIdxTime, endIdxTime, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                                                spannableTime.setSpan(
+                                                    StyleSpan(Typeface.BOLD),
+                                                    startIdxTime,
+                                                    endIdxTime,
+                                                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                                                )
                                             }
                                             timeSpentTextView.text = spannableTime
 
-                                            // Fin del cambio LR3 //
-
                                             timeSpentTextView.visibility = View.VISIBLE
-                                            val timeAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityMasPlusPrincipiante, R.anim.points_appear_from_back)
+                                            val timeAnimation = AnimationUtils.loadAnimation(
+                                                this@LevelResultActivityMasPlusPrincipiante,
+                                                R.anim.points_appear_from_back
+                                            )
                                             timeSpentTextView.startAnimation(timeAnimation)
 
-                                            timeAnimation.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
+                                            timeAnimation.setAnimationListener(object :
+                                                android.view.animation.Animation.AnimationListener {
                                                 override fun onAnimationStart(animation: android.view.animation.Animation?) {}
 
                                                 override fun onAnimationEnd(animation: android.view.animation.Animation?) {
                                                     checkBlueImageView.visibility = View.VISIBLE
-                                                    val checkBlueAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityMasPlusPrincipiante, R.anim.check_appear)
+                                                    val checkBlueAnimation = AnimationUtils.loadAnimation(
+                                                        this@LevelResultActivityMasPlusPrincipiante,
+                                                        R.anim.check_appear
+                                                    )
                                                     checkBlueImageView.startAnimation(checkBlueAnimation)
 
                                                     unlockLevelTextView.text = getString(R.string.jugar_un_nuevo_nivel)
 
                                                     mainHandler.postDelayed({
                                                         rankingChangedTextView.visibility = View.VISIBLE
-                                                        rankingChangedTextView.startAnimation(AnimationUtils.loadAnimation(this@LevelResultActivityMasPlusPrincipiante, R.anim.dialog_fade_in))
+                                                        rankingChangedTextView.startAnimation(
+                                                            AnimationUtils.loadAnimation(
+                                                                this@LevelResultActivityMasPlusPrincipiante,
+                                                                R.anim.dialog_fade_in
+                                                            )
+                                                        )
                                                     }, 300)
 
                                                     mainHandler.postDelayed({
                                                         unlockLevelTextView.visibility = View.VISIBLE
-                                                        unlockLevelTextView.startAnimation(AnimationUtils.loadAnimation(this@LevelResultActivityMasPlusPrincipiante, R.anim.dialog_fade_in))
+                                                        unlockLevelTextView.startAnimation(
+                                                            AnimationUtils.loadAnimation(
+                                                                this@LevelResultActivityMasPlusPrincipiante,
+                                                                R.anim.dialog_fade_in
+                                                            )
+                                                        )
                                                     }, 600)
 
                                                     mainHandler.postDelayed({
                                                         repeatLevelTextView.visibility = View.VISIBLE
-                                                        repeatLevelTextView.startAnimation(AnimationUtils.loadAnimation(this@LevelResultActivityMasPlusPrincipiante, R.anim.dialog_fade_in))
+                                                        repeatLevelTextView.startAnimation(
+                                                            AnimationUtils.loadAnimation(
+                                                                this@LevelResultActivityMasPlusPrincipiante,
+                                                                R.anim.dialog_fade_in
+                                                            )
+                                                        )
                                                     }, 900)
                                                 }
 
@@ -571,8 +609,8 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
         rankingChangedTextView.visibility = View.VISIBLE
         unlockLevelTextView.visibility = View.VISIBLE
 
-
-        val isLevelBlockedAfterThisFail = ScoreManager.getConsecutiveFailuresMasPlusPrincipiante(currentLevel) >= 12
+        val isLevelBlockedAfterThisFail =
+            ScoreManager.getConsecutiveFailuresMasPlusPrincipiante(currentLevel) >= 12
 
         if (isLevelBlockedAfterThisFail) {
             repeatLevelTextView.visibility = View.GONE
@@ -580,7 +618,7 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
             repeatLevelTextView.visibility = View.VISIBLE
         }
 
-        mainMessageTextView.text = if (attempts >= 2) {
+        mainMessageTextView.text = if (attempts >= 2 || (usedHint && attempts >= 1)) {
             getString(R.string.has_agotado_tus_intentos)
         } else {
             getString(R.string.se_agoto_el_tiempo)
@@ -618,7 +656,7 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
             repeatLevelTextView.startAnimation(fadeIn)
         }
 
-        if (attempts >= 2 && numberList != null && userResponses != null) {
+        if ((attempts >= 2 || (usedHint && attempts >= 1)) && numberList != null && userResponses != null) {
             reviewExerciseTextView.visibility = View.VISIBLE
             applyTouchAnimation(reviewExerciseTextView)
 
@@ -642,6 +680,7 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
                 MotionEvent.ACTION_DOWN -> {
                     v.animate().scaleX(0.90f).scaleY(0.90f).setDuration(100).start()
                 }
+
                 MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                     v.animate().scaleX(1f).scaleY(1f).setDuration(100).start()
                     if (event.action == MotionEvent.ACTION_UP) {
@@ -652,6 +691,7 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
             true
         }
     }
+
     private fun isSoundEnabled(): Boolean {
         val globalPrefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         return globalPrefs.getBoolean(SettingsActivity.SOUND_ENABLED, true)
@@ -661,7 +701,6 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
         if (!isSoundEnabled()) return
 
         try {
-            // Liberar MediaPlayer anterior de forma segura
             mediaPlayer?.let { mp ->
                 try {
                     if (mp.isPlaying) {
@@ -674,10 +713,8 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
                 mediaPlayer = null
             }
 
-            // Crear nuevo MediaPlayer
             mediaPlayer = MediaPlayer.create(this, soundResourceId)
             mediaPlayer?.let { mp ->
-                // Configurar listeners
                 mp.setOnCompletionListener { player ->
                     try {
                         player.release()
@@ -699,12 +736,10 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
                     } catch (e: Exception) {
                         android.util.Log.e("MediaPlayer", "Error liberando MediaPlayer en OnError", e)
                     }
-                    true // Indica que manejamos el error
+                    true
                 }
 
-                // Iniciar reproducción
                 mp.start()
-
             } ?: run {
                 android.util.Log.e("MediaPlayer", "No se pudo crear MediaPlayer para recurso: $soundResourceId")
             }
@@ -747,5 +782,4 @@ class LevelResultActivityMasPlusPrincipiante : BaseActivity()  {
         startActivity(intent)
         finish()
     }
-
 }

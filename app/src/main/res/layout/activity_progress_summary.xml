@@ -72,6 +72,18 @@
             android:fontFamily="@font/roboto_bold"
             android:textSize="16sp"
             android:layout_alignParentEnd="true"/>
+
+        <TextView
+            android:id="@+id/tv_global_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_global_levels_completed"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:textColor="?attr/colorOnBackground"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="16sp"/>
+
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView

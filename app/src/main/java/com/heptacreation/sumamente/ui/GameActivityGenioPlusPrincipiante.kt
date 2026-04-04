@@ -1,9 +1,11 @@
 package com.heptacreation.sumamente.ui
 
 import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
+import android.animation.ValueAnimator
 import android.content.Intent
 import android.graphics.Typeface
 import android.media.MediaPlayer
@@ -18,18 +20,25 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.util.TypedValue
 import android.view.View
+import android.view.ViewTreeObserver
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
+import android.view.animation.LinearInterpolator
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import com.google.android.material.button.MaterialButton
 import com.heptacreation.sumamente.R
 import com.heptacreation.sumamente.ui.utils.isPositiveNumber
 import java.util.Locale
@@ -37,10 +46,8 @@ import kotlin.math.pow
 import kotlin.math.round
 import kotlin.math.sqrt
 import kotlin.random.Random
-import androidx.activity.enableEdgeToEdge
-import android.view.ViewTreeObserver
 
-class GameActivityGenioPlusPrincipiante : BaseActivity()  {
+class GameActivityGenioPlusPrincipiante : BaseActivity() {
 
     data class GameElement(val value: String, val isNegative: Boolean = false)
 
@@ -65,6 +72,18 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
     private lateinit var vamosTextView: TextView
     private lateinit var chronometerTextView: TextView
     private lateinit var progressRingContainer: View
+
+    // Sistema de pistas
+    private lateinit var hintOverlay: FrameLayout
+    private lateinit var tvHintBalance: TextView
+    private lateinit var tvHintDescription: TextView
+    private lateinit var btnUseHint: MaterialButton
+    private lateinit var btnSkipHint: MaterialButton
+    private lateinit var hintTimerBar: ProgressBar
+    private lateinit var hintOptionsLayout: LinearLayout
+    private lateinit var btnHintOption1: MaterialButton
+    private lateinit var btnHintOption2: MaterialButton
+
     private var userResponses = mutableListOf<Int>()
     private var currentLevel = 1
     private var elementList = mutableListOf<GameElement>()
@@ -80,7 +99,16 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
     private var heartbeatAnimator: ObjectAnimator? = null
     private var soundPlayed = false
     private var timeSpentInSeconds: Double = 0.0
-    private var inputBlocked = false // Cambio #1 bloqueo de mas de 2 intentos //
+    private var inputBlocked = false
+
+    private var pistaActivada = false
+    private var hintTimerAnimator: ObjectAnimator? = null
+    private var hintCountDownTimer: CountDownTimer? = null
+
+    companion object {
+        private const val HINT_COST_COINS = 5
+        private const val HINT_TIMER_MS = 5000L
+    }
 
     private val groupsOfFractions = mapOf(
         "Grupo A" to listOf((3 to 1), (6 to 3), (40 to 10), (15 to 5), (90 to 9), (1 to 1), (6 to 1), (72 to 8), (54 to 6), (20 to 4)),
@@ -105,8 +133,8 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
 
         getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_game_genio_plus)
@@ -151,6 +179,16 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
         chronometerTextView = findViewById(R.id.chronometer_text_view)
         chronometerTextView.typeface = Typeface.MONOSPACE
 
+        hintOverlay = findViewById(R.id.hint_overlay)
+        tvHintBalance = findViewById(R.id.tv_hint_balance)
+        tvHintDescription = findViewById(R.id.tv_hint_description)
+        btnUseHint = findViewById(R.id.btn_use_hint)
+        btnSkipHint = findViewById(R.id.btn_skip_hint)
+        hintTimerBar = findViewById(R.id.hint_timer_bar)
+        hintOptionsLayout = findViewById(R.id.hint_options_layout)
+        btnHintOption1 = findViewById(R.id.btn_hint_option_1)
+        btnHintOption2 = findViewById(R.id.btn_hint_option_2)
+
         currentLevel = intent.getIntExtra("LEVEL", 1)
         levelTitle.text = getString(R.string.level_title, currentLevel)
         scoreTextView.text = getString(R.string.score_label, ScoreManager.currentScoreGenioPlusPrincipiante)
@@ -166,6 +204,8 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
 
         attempts = 0
         inputBlocked = false
+        pistaActivada = false
+        userResponses.clear()
 
         Thread {
             generateElements()
@@ -184,16 +224,19 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
         handler.removeCallbacksAndMessages(null)
         chronometerTimer?.cancel()
         heartbeatAnimator?.cancel()
+        hintTimerAnimator?.cancel()
+        hintCountDownTimer?.cancel()
     }
 
     override fun onPause() {
         super.onPause()
         if (!isFinishing) {
-
             answerTimer?.cancel()
             handler.removeCallbacksAndMessages(null)
             chronometerTimer?.cancel()
             heartbeatAnimator?.cancel()
+            hintTimerAnimator?.cancel()
+            hintCountDownTimer?.cancel()
             finish()
         }
     }
@@ -208,7 +251,6 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
         manualInputLayout.visibility = View.INVISIBLE
         chronometerTextView.visibility = View.GONE
 
-
         blueCircle.scaleX = 0f
         blueCircle.scaleY = 0f
         blueCircle.visibility = View.VISIBLE
@@ -219,7 +261,6 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
             PropertyValuesHolder.ofFloat("scaleY", 0f, 1f)
         ).setDuration(500)
 
-
         progressRing.scaleX = 0f
         progressRing.scaleY = 0f
         progressRing.visibility = View.VISIBLE
@@ -229,7 +270,6 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
             PropertyValuesHolder.ofFloat("scaleX", 0f, 1f),
             PropertyValuesHolder.ofFloat("scaleY", 0f, 1f)
         ).setDuration(500)
-
 
         vamosTextView.scaleX = 0f
         vamosTextView.scaleY = 0f
@@ -345,9 +385,7 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
             else -> 0
         }
         applyNegatives(allElements, numNegatives)
-
         ensureNoConsecutiveDuplicates(allElements)
-
         elementList.addAll(allElements)
     }
 
@@ -360,7 +398,6 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
 
         return filteredList.sumOf { elem ->
             when {
-
                 elem.value.isPositiveNumber() -> elem.value.toInt()
 
                 elem.value.matches(Regex("\\(\\w \\+ \\d+\\)")) -> {
@@ -390,22 +427,18 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
                 }
 
                 elem.value.matches(Regex("^√\\d+$")) -> {
-
                     val number = elem.value.substring(1).toIntOrNull() ?: 0
                     val rootValue = sqrt(number.toDouble()).toInt()
                     if (elem.isNegative) -rootValue else rootValue
                 }
 
                 elem.value.matches(Regex("^∛\\d+$")) -> {
-
                     val number = elem.value.substring(1).toIntOrNull() ?: 0
                     val rootValue = round(number.toDouble().pow(1.0 / 3.0)).toInt()
                     if (elem.isNegative) -rootValue else rootValue
                 }
 
-
                 elem.value.matches(Regex("^-?\\d+/\\d+$")) -> {
-
                     val fractionParts = elem.value.replace("-", "").split("/")
                     val numerator = fractionParts[0].toInt()
                     val denominator = fractionParts[1].toInt()
@@ -413,9 +446,7 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
                     if (elem.isNegative || elem.value.startsWith("-")) -fractionResult.toInt() else fractionResult.toInt()
                 }
 
-
                 elem.value.matches(Regex("\\(.*\\+.*\\)")) -> {
-
                     parseMixedExpression(elem)
                 }
 
@@ -426,7 +457,6 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
             }
         }
     }
-
 
     private fun generateRandomNumbers(count: Int, range: IntRange): MutableList<Int> {
         return MutableList(count) { Random.nextInt(range.first, range.last + 1) }
@@ -475,7 +505,6 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
         }
     }
 
-
     private fun applyNegatives(elements: MutableList<GameElement>, numNegatives: Int) {
         if (numNegatives <= 0) return
         repeat(numNegatives) {
@@ -509,7 +538,6 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
     }
 
     private fun parseMixedExpression(elem: GameElement): Int {
-
         val expressionContent = elem.value.removePrefix("(").removeSuffix(")")
         val parts = expressionContent.split("+").map { it.trim() }
 
@@ -533,14 +561,12 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
                 part.matches(Regex("^\\d+$")) -> {
                     sum += part.toInt()
                 }
-
                 part.matches(Regex("^-?[A-G]$")) -> {
                     val letter = part.replace("-", "")[0]
                     val letterValue = (letter - 'A') + 1
                     sum += if (part.startsWith("-")) -letterValue else letterValue
                 }
                 else -> {
-
                     sum += 0
                 }
             }
@@ -597,11 +623,10 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
                     elementTextView.text = spannableString
 
                     val duration = timePerElementList[index]
-
                     index++
                     handler.postDelayed(this, duration)
                 } else {
-                    transitionToPrompt()
+                    verificarYMostrarPista()
                 }
             }
         })
@@ -612,12 +637,9 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
         val level = currentLevel
 
         var firstNumberTime = 2.80
-
         val blockNumber = (level - 1) / 5
         firstNumberTime -= blockNumber * 0.07
-
         val levelInBlock = (level - 1) % 5
-
         var currentTime = firstNumberTime
 
         for (i in elementList.indices) {
@@ -644,6 +666,80 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
         progressRing.startProgressAnimation(totalDuration)
     }
 
+    private fun verificarYMostrarPista() {
+        val saldo = CoinManager.getBalance(this)
+        if (saldo >= HINT_COST_COINS) {
+            mostrarOverlayPista(saldo)
+        } else {
+            transitionToPrompt()
+        }
+    }
+
+    private fun mostrarOverlayPista(saldo: Int) {
+        tvHintBalance.text = saldo.toString()
+        tvHintDescription.text = if (useManualAnswer) {
+            getString(R.string.hint_desc_writing)
+        } else {
+            getString(R.string.hint_desc_selection)
+        }
+
+        btnUseHint.text = getString(R.string.hint_use_btn_5)
+
+        hintOverlay.visibility = View.VISIBLE
+
+        hintTimerBar.progress = 100
+        hintTimerAnimator = ObjectAnimator.ofInt(hintTimerBar, "progress", 100, 0).apply {
+            duration = HINT_TIMER_MS
+            interpolator = LinearInterpolator()
+            start()
+        }
+
+        hintCountDownTimer = object : CountDownTimer(HINT_TIMER_MS, HINT_TIMER_MS) {
+            override fun onTick(millisUntilFinished: Long) {}
+            override fun onFinish() {
+                cerrarOverlayYContinuar(false)
+            }
+        }.start()
+
+        btnUseHint.setOnClickListener {
+            hintTimerAnimator?.cancel()
+            hintCountDownTimer?.cancel()
+            animarGastoMonedas(saldo) {
+                cerrarOverlayYContinuar(true)
+            }
+        }
+
+        btnSkipHint.setOnClickListener {
+            hintTimerAnimator?.cancel()
+            hintCountDownTimer?.cancel()
+            cerrarOverlayYContinuar(false)
+        }
+    }
+
+    private fun animarGastoMonedas(saldoAntes: Int, onFin: () -> Unit) {
+        CoinManager.spendCoins(this, HINT_COST_COINS)
+        val saldoDespues = CoinManager.getBalance(this)
+
+        ValueAnimator.ofInt(saldoAntes, saldoDespues).apply {
+            duration = 400
+            addUpdateListener {
+                tvHintBalance.text = (it.animatedValue as Int).toString()
+            }
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    Handler(Looper.getMainLooper()).postDelayed({ onFin() }, 300)
+                }
+            })
+            start()
+        }
+    }
+
+    private fun cerrarOverlayYContinuar(usoPista: Boolean) {
+        pistaActivada = usoPista
+        hintOverlay.visibility = View.GONE
+        transitionToPrompt()
+    }
+
     private fun transitionToPrompt() {
         elementTextView.visibility = View.GONE
         progressRing.visibility = View.GONE
@@ -667,7 +763,6 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
     private fun startChronometer() {
         chronometerStartTime = System.currentTimeMillis()
         soundPlayed = false
-
         chronometerTextView.visibility = View.VISIBLE
 
         if (useManualAnswer) {
@@ -685,8 +780,7 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
                 val elapsedMillis = 10000 - millisUntilFinished
                 val elapsedSeconds = elapsedMillis / 1000.0
 
-                // GA1 Cambio para solucionar el formato de los decimales //
-                val formattedTime = String.format(Locale.getDefault(), "%04.2f", elapsedSeconds)
+                val formattedTime = String.format(Locale.getDefault(), "%05.2f", elapsedSeconds)
                 val spannableString = SpannableString(formattedTime)
                 val decimalPointIndex = formattedTime.indexOf('.')
                 val decimalCommaIndex = formattedTime.indexOf(',')
@@ -701,7 +795,6 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
                 }
-                // Fin del cambio GA1 //
 
                 val textColor = when {
                     elapsedSeconds < 5.0 -> ContextCompat.getColor(this@GameActivityGenioPlusPrincipiante, R.color.green_medium)
@@ -743,7 +836,6 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
                 )
 
                 chronometerTextView.text = spannableString
-
                 performFinalHeartbeatAndDisappear()
                 navigateToLevelResult(false)
             }
@@ -800,6 +892,10 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
     }
 
     private fun showManualInput() {
+        if (pistaActivada) {
+            mostrarOpcionesPistaEscritura()
+        }
+
         manualInputLayout.visibility = View.VISIBLE
 
         if (useManualAnswer) {
@@ -822,6 +918,37 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
         startAnswerTimer()
     }
 
+    private fun mostrarOpcionesPistaEscritura() {
+        val rangeOffset = when (currentLevel) {
+            in 1..10 -> 3
+            in 11..20 -> 4
+            in 21..30 -> 5
+            in 31..40 -> 6
+            in 41..50 -> 7
+            in 51..60 -> 8
+            else -> 9
+        }
+
+        var incorrecta: Int
+        do {
+            incorrecta = correctAnswer + Random.nextInt(-rangeOffset, rangeOffset + 1)
+        } while (incorrecta == correctAnswer || incorrecta < 1)
+
+        val opciones = listOf(correctAnswer, incorrecta).shuffled()
+
+        btnHintOption1.text = opciones[0].toString()
+        btnHintOption2.text = opciones[1].toString()
+
+        hintOptionsLayout.visibility = View.VISIBLE
+
+        btnHintOption1.setOnClickListener {
+            manualAnswerEditText.setText(opciones[0].toString())
+        }
+        btnHintOption2.setOnClickListener {
+            manualAnswerEditText.setText(opciones[1].toString())
+        }
+    }
+
     private fun submitManualAnswer() {
         val userAnswer = manualAnswerEditText.text.toString().toIntOrNull()
         if (userAnswer != null) {
@@ -832,7 +959,7 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
     }
 
     private fun checkManualAnswer(userAnswer: Int) {
-        if (inputBlocked) return // Cambio #3 bloqueo de mas de 2 intentos //
+        if (inputBlocked) return
         val isCorrect = userAnswer == correctAnswer
         userResponses.add(userAnswer)
 
@@ -840,8 +967,8 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
             answerTimer?.cancel()
             chronometerTimer?.cancel()
 
-            inputBlocked = true  // Cambio #02 para bloqueo después de respuesta correcta
-            disableAllInputs()   // Cambio #02 para bloqueo después de respuesta correcta
+            inputBlocked = true
+            disableAllInputs()
 
             manualAnswerEditText.setBackgroundResource(R.drawable.sombra_correcta)
             val shake = AnimationUtils.loadAnimation(this, R.anim.shake)
@@ -860,10 +987,9 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
             manualAnswerEditText.startAnimation(shake)
 
             attempts++
-            if (attempts >= 2) {
-                inputBlocked = true  // Cambio #4 bloqueo de mas de 2 intentos //
-                disableAllInputs() // Cambio #4 bloqueo de mas de 2 intentos //
-                ScoreManager.incrementConsecutiveFailuresGenioPlusPrincipiante(currentLevel)
+            if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
+                inputBlocked = true
+                disableAllInputs()
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
 
@@ -871,11 +997,7 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     manualAnswerEditText.background = originalBackground
-
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        navigateToLevelResult(false)
-                    }, 1000)
-
+                    navigateToLevelResult(false)
                 }, shake.duration)
             } else {
                 Handler(Looper.getMainLooper()).postDelayed({
@@ -884,7 +1006,6 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
             }
         }
     }
-
 
     private fun showAnswerButtons() {
         answerButtonsGrid.visibility = View.VISIBLE
@@ -895,12 +1016,30 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
 
         setAnswerValues()
 
+        if (pistaActivada) {
+            aplicarPistaSeleccion()
+        }
+
         btnAnswer1.setOnClickListener { checkAnswer(btnAnswer1) }
         btnAnswer2.setOnClickListener { checkAnswer(btnAnswer2) }
         btnAnswer3.setOnClickListener { checkAnswer(btnAnswer3) }
         btnAnswer4.setOnClickListener { checkAnswer(btnAnswer4) }
 
         startAnswerTimer()
+    }
+
+    private fun aplicarPistaSeleccion() {
+        val botones = listOf(btnAnswer1, btnAnswer2, btnAnswer3, btnAnswer4)
+        val incorrectos = botones.filter {
+            it.text.toString().toIntOrNull() != correctAnswer
+        }.toMutableList()
+
+        incorrectos.shuffle()
+        incorrectos.take(2).forEach { boton ->
+            boton.alpha = 0.3f
+            boton.isEnabled = false
+            boton.isClickable = false
+        }
     }
 
     private fun setAnswerValues() {
@@ -932,12 +1071,10 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
 
         for (i in buttons.indices) {
             buttons[i].text = String.format(Locale.getDefault(), "%d", allAnswers[i])
-
         }
     }
 
     private fun startAnswerTimer() {
-        System.currentTimeMillis()
         answerTimer?.cancel()
         answerTimer = object : CountDownTimer(10000, 75) {
             override fun onTick(millisUntilFinished: Long) {}
@@ -948,7 +1085,7 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
     }
 
     private fun checkAnswer(selectedButton: Button) {
-        if (inputBlocked) return // Cambio #5 bloqueo de mas de 2 intentos //
+        if (inputBlocked) return
         selectedButton.clearFocus()
 
         val selectedAnswer = selectedButton.text.toString().toInt()
@@ -960,8 +1097,8 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
             answerTimer?.cancel()
             chronometerTimer?.cancel()
 
-            inputBlocked = true  // Cambio #02 para bloqueo después de respuesta correcta
-            disableAllInputs()   // Cambio #02 para bloqueo después de respuesta correcta
+            inputBlocked = true
+            disableAllInputs()
 
             selectedButton.setBackgroundResource(R.drawable.sombra_correcta)
             val shake = AnimationUtils.loadAnimation(this, R.anim.shake)
@@ -983,10 +1120,9 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
             }, 500)
 
             attempts++
-            if (attempts >= 2) {
-                inputBlocked = true // Cambio #6 bloqueo de mas de 2 intentos //
-                disableAllInputs() // Cambio #6 bloqueo de mas de 2 intentos //
-                ScoreManager.incrementConsecutiveFailuresGenioPlusPrincipiante(currentLevel)
+            if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
+                inputBlocked = true
+                disableAllInputs()
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
 
@@ -999,9 +1135,7 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
         }
     }
 
-    // Cambio #7 bloqueo de mas de 2 intentos //
     private fun disableAllInputs() {
-
         btnAnswer1.isEnabled = false
         btnAnswer2.isEnabled = false
         btnAnswer3.isEnabled = false
@@ -1011,14 +1145,12 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
         submitAnswerButton.isEnabled = false
     }
 
-
     private fun calculateTimeSpent() {
         val currentTime = System.currentTimeMillis()
         val elapsedMillis = currentTime - chronometerStartTime
         timeSpentInSeconds = elapsedMillis / 1000.0
 
-        // GA2 Cambio para solucionar el formato de los decimales //
-        val formattedTime = String.format(Locale.getDefault(), "%04.2f", timeSpentInSeconds)
+        val formattedTime = String.format(Locale.getDefault(), "%05.2f", timeSpentInSeconds)
         val spannableString = SpannableString(formattedTime)
         val decimalPointIndex = formattedTime.indexOf('.')
         val decimalCommaIndex = formattedTime.indexOf(',')
@@ -1034,8 +1166,8 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
             )
         }
         val textColor = when {
-            timeSpentInSeconds < 3.0 -> ContextCompat.getColor(this, R.color.green_medium)
-            timeSpentInSeconds < 5.0 -> ContextCompat.getColor(this, R.color.orange_dark)
+            timeSpentInSeconds < 5.0 -> ContextCompat.getColor(this, R.color.green_medium)
+            timeSpentInSeconds < 8.0 -> ContextCompat.getColor(this, R.color.orange_dark)
             else -> ContextCompat.getColor(this, R.color.red)
         }
         spannableString.setSpan(
@@ -1045,9 +1177,7 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         chronometerTextView.text = spannableString
-        // Fin del cambio GA2 //
     }
-
 
     private fun showExitConfirmation(onConfirm: () -> Unit) {
         val builder = AlertDialog.Builder(this)
@@ -1064,17 +1194,18 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
         intent.putExtra("ATTEMPTS", attempts)
         intent.putExtra("TIME_SPENT", timeSpentInSeconds)
 
-        if (isSuccessful) {
-            ScoreManager.resetConsecutiveFailuresGenioPlusPrincipiante(currentLevel)
-        } else if (attempts >= 2) {
-            ScoreManager.incrementConsecutiveFailuresGenioPlusPrincipiante(currentLevel)
-            if (userResponses.isEmpty()) userResponses.add(-1)
+        if (!isSuccessful && userResponses.isEmpty()) {
+            userResponses.add(-1)
+        }
+
+        if (!isSuccessful && (attempts >= 2 || (pistaActivada && attempts >= 1))) {
             intent.putExtra("NUMBER_LIST", elementList.map { it.value }.toTypedArray())
             intent.putExtra("CORRECT_ANSWER", correctAnswer)
             intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
             intent.putExtra("USER_RESPONSES", userResponses.toIntArray())
         }
 
+        intent.putExtra("USED_HINT", pistaActivada)
         intent.putExtra("USE_MANUAL_ANSWER", useManualAnswer)
 
         startActivity(intent)
@@ -1088,7 +1219,7 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
                 override fun onGlobalLayout() {
                     iconoReferencia.viewTreeObserver.removeOnGlobalLayoutListener(this)
                     val ancho = iconoReferencia.width
-                    val alto  = iconoReferencia.height
+                    val alto = iconoReferencia.height
                     val botones = listOf(bottomNavHome, bottomNavChallenges, bottomNavStatistics)
                     for (boton in botones) {
                         val iconoTop = boton.compoundDrawables[1]
@@ -1124,5 +1255,3 @@ class GameActivityGenioPlusPrincipiante : BaseActivity()  {
         finish()
     }
 }
-
-

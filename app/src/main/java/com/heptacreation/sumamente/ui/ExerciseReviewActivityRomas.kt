@@ -53,24 +53,31 @@ class ExerciseReviewActivityRomas : BaseActivity()  {
 
         displayNumbers(numberList, excludedIndex)
 
-        convertToRoman(correctAnswer)
+        correctAnswerTextView.text = getString(
+            R.string.correct_answer_format_romas,
+            correctAnswer.toString()
+        )
 
-        correctAnswerTextView.text = getString(R.string.correct_answer_format_romas, correctAnswer.toString())
-
-        val formattedUserResponses = if (userResponses.size >= 2) {
-            String.format(
-                Locale.getDefault(),
-                "%s, %s",
-                userResponses[0].toString(),
-                userResponses[1].toString()
+        val responseText = if (userResponses.size >= 2) {
+            getString(
+                R.string.user_responses_format_romas,
+                String.format(
+                    Locale.getDefault(),
+                    "%s, %s",
+                    userResponses[0].toString(),
+                    userResponses[1].toString()
+                )
             )
         } else if (userResponses.isNotEmpty()) {
-            userResponses[0].toString()
+            getString(
+                R.string.user_responses_format_romas,
+                userResponses[0].toString()
+            )
         } else {
-            ""
+            getString(R.string.user_responses_format_romas, "")
         }
 
-        userResponsesTextView.text = getString(R.string.user_responses_format_romas, formattedUserResponses)
+        userResponsesTextView.text = responseText
 
         applyTouchAnimation(understoodButton)
         understoodButton.setOnClickListener {

@@ -44,11 +44,11 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
     private var currentLevel = 1
     private var isSuccessful = false
     private var attempts = 0
+    private var usedHint = false
     private var timeSpentInSeconds = 0.0
-    private var rawTimeSpent = 0.0 // C1 //
+    private var rawTimeSpent = 0.0
     private var pointsEarned = 0
     private var mediaPlayer: MediaPlayer? = null
-
 
     private var numberList: DoubleArray? = null
     private var correctAnswer: Double = 0.0
@@ -57,8 +57,8 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
     private lateinit var reviewExerciseTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
 
         sharedPreferences = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
 
@@ -70,9 +70,8 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
         currentLevel = intent.getIntExtra("LEVEL", 1)
         isSuccessful = intent.getBooleanExtra("IS_SUCCESSFUL", false)
         attempts = intent.getIntExtra("ATTEMPTS", 0)
-        timeSpentInSeconds = intent.getDoubleExtra("TIME_SPENT", 0.0)
+        usedHint = intent.getBooleanExtra("USED_HINT", false)
 
-        // C2 //
         rawTimeSpent = intent.getDoubleExtra("TIME_SPENT", 0.0)
         val useManualAnswer = intent.getBooleanExtra("USE_MANUAL_ANSWER", false)
         timeSpentInSeconds = rawTimeSpent
@@ -85,7 +84,6 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
         userResponses = intent.getDoubleArrayExtra("USER_RESPONSES")
         val exclIndex = intent.getIntExtra("EXCLUDED_INDEX", -1)
         excludedIndex = if (exclIndex >= 0) exclIndex else null
-
 
         mainMessageTextView = findViewById(R.id.mainMessageTextView)
         pointsTextView = findViewById(R.id.pointsTextView)
@@ -103,16 +101,13 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
         reviewExerciseTextView = findViewById(R.id.reviewexercisetextview)
 
         setupUI()
-        // Inicio del cambio flecha de regresar del celular
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-
                 navigateToLevels()
                 finish()
             }
         }
         onBackPressedDispatcher.addCallback(this, callback)
-        // Fin del código de flecha de regresar del celular
     }
 
     private fun setupUI() {
@@ -160,13 +155,8 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
             ScoreManager.addCompletedLevelDeciPlusPrincipiante(currentLevel)
         }
 
-        // Conteo para pines //
         CondecoracionTracker.marcarNivelConTimestamp("DeciPlus", "Principiante", currentLevel)
         CondecoracionTracker.verificarYEntregarPines()
-
-        //if (currentLevel >= ScoreManager.unlockedLevelsDeciPlusPrincipiante) {
-         //   ScoreManager.unlockedLevelsDeciPlusPrincipiante = currentLevel + 1
-        //}
 
         ScoreManager.saveScoreDeciPlusPrincipiante()
 
@@ -185,7 +175,6 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
 
         val syncRequest = androidx.work.OneTimeWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.SyncWorker>().build()
         androidx.work.WorkManager.getInstance(this).enqueue(syncRequest)
-
     }
 
     private fun handleFailureScenario() {
@@ -207,43 +196,33 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
 
     private fun verificarMedallasAntesDeMostrarExito() {
         CondecoracionTracker.verificarYEntregarMedallas { nuevaMedalla ->
-
             if (nuevaMedalla != null && currentLevel == 70) {
-
                 verificarTrofeosParaDobleCondecoracion(nuevaMedalla)
             } else if (nuevaMedalla != null) {
-
                 mostrarAnimacionMedalla(nuevaMedalla)
             } else if (currentLevel == 70) {
-
                 verificarTrofeosAntesDeMostrarExito()
             } else {
-
                 showSuccessDialog()
             }
         }
     }
 
-
     private fun verificarTrofeosParaDobleCondecoracion(nuevaMedalla: CondecoracionTracker.MedallaObtenida) {
-
         CondecoracionTracker.verificarYEntregarTrofeos("DeciPlus", "Principiante") { nuevoTrofeo ->
             if (nuevoTrofeo != null) {
                 mostrarDobleCelebracion(nuevaMedalla, nuevoTrofeo)
             } else {
-
                 mostrarAnimacionMedalla(nuevaMedalla)
             }
         }
     }
-
 
     private fun verificarTrofeosAntesDeMostrarExito() {
         CondecoracionTracker.verificarYEntregarTrofeos("DeciPlus", "Principiante") { nuevoTrofeo ->
             if (nuevoTrofeo != null) {
                 mostrarAnimacionTrofeo(nuevoTrofeo)
             } else {
-
                 showSuccessDialog()
             }
         }
@@ -264,7 +243,6 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
         )
         dialog.show()
     }
-
 
     private fun mostrarAnimacionTrofeo(
         trofeo: CondecoracionTracker.TrofeoObtenido,
@@ -342,8 +320,6 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
             timeSpentInSeconds
         }
 
-        // C3 ELIMINAR EL 0.7 //
-
         val puntosPorVelocidad = if (tiempoPromedio > 0) {
             (velocidadBonus * (1.0 / tiempoPromedio))
         } else {
@@ -354,7 +330,6 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
 
         return puntajeFinal.toInt()
     }
-
 
     private fun updateScoreToZero() {
         ScoreManager.levelScoresDeciPlusPrincipiante[currentLevel]?.let { previousScore ->
@@ -410,7 +385,7 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
         val messageAnimation = AnimationUtils.loadAnimation(this, R.anim.message_appear_with_shake)
         mainMessageTextView.startAnimation(messageAnimation)
 
-        val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
+        val soundEnabled = isSoundEnabled()
         if (soundEnabled) {
             playSound(R.raw.campanillas)
         }
@@ -437,7 +412,6 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
 
                     pointsTextView.visibility = View.VISIBLE
 
-                    // LR1 Cambio para solucionar el formato de los decimales //
                     val puntosObtenidos = getString(R.string.puntos_obtenidos, pointsEarned)
                     val spannable = SpannableString(puntosObtenidos)
                     val puntosStr = pointsEarned.toString()
@@ -447,7 +421,6 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
                         spannable.setSpan(StyleSpan(Typeface.BOLD), startIdx, endIdx, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                     }
                     pointsTextView.text = spannable
-                    // Fin del cambio LR1 //
 
                     val pointsAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityDeciPlusPrincipiante, R.anim.points_appear_from_back)
                     pointsTextView.startAnimation(pointsAnimation)
@@ -469,14 +442,11 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
                                     val spannablePuntajeActual = SpannableString(puntajeActualText)
                                     val puntosStrActual = puntosDeciPlusPrincipiante.toString()
                                     val startIdxActual = puntajeActualText.indexOf(puntosStrActual)
-
-                                    // LR2 Cambio para solucionar el formato de los decimales //
                                     val endIdxActual = startIdxActual + puntosStrActual.length
                                     if (startIdxActual >= 0 && endIdxActual <= puntajeActualText.length) {
                                         spannablePuntajeActual.setSpan(StyleSpan(Typeface.BOLD), startIdxActual, endIdxActual, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                                     }
                                     currentScoreTextView.text = spannablePuntajeActual
-                                    // Fin del cambio LR2 //
 
                                     currentScoreTextView.visibility = View.VISIBLE
                                     starImageView.visibility = View.VISIBLE
@@ -489,9 +459,6 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
                                         override fun onAnimationStart(animation: android.view.animation.Animation?) {}
 
                                         override fun onAnimationEnd(animation: android.view.animation.Animation?) {
-
-                                            // Cambio de variable para tiempo real mostrado C4 //
-                                            // LR3 Cambio para solucionar el formato de los decimales //
                                             val formattedTime = String.format(Locale.getDefault(), "%.2f", rawTimeSpent)
                                             val tiempoEmpleadoText = getString(R.string.tiempo_empleado, formattedTime)
                                             val spannableTime = SpannableString(tiempoEmpleadoText)
@@ -501,8 +468,6 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
                                                 spannableTime.setSpan(StyleSpan(Typeface.BOLD), startIdxTime, endIdxTime, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                                             }
                                             timeSpentTextView.text = spannableTime
-
-                                            // Fin del cambio LR3 //
 
                                             timeSpentTextView.visibility = View.VISIBLE
                                             val timeAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityDeciPlusPrincipiante, R.anim.points_appear_from_back)
@@ -536,7 +501,6 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
 
                                                 override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
                                             })
-
                                         }
 
                                         override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
@@ -587,7 +551,6 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
         mainMessageTextView.visibility = View.VISIBLE
         rankingChangedTextView.visibility = View.VISIBLE
         unlockLevelTextView.visibility = View.VISIBLE
-        repeatLevelTextView.visibility = View.VISIBLE
 
         val isLevelBlockedAfterThisFail = ScoreManager.getConsecutiveFailuresDeciPlusPrincipiante(currentLevel) >= 12
 
@@ -597,7 +560,7 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
             repeatLevelTextView.visibility = View.VISIBLE
         }
 
-        mainMessageTextView.text = if (attempts >= 2) {
+        mainMessageTextView.text = if (attempts >= 2 || (usedHint && attempts >= 1)) {
             getString(R.string.has_agotado_tus_intentos)
         } else {
             getString(R.string.se_agoto_el_tiempo)
@@ -631,9 +594,11 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
         val fadeIn = AnimationUtils.loadAnimation(this, R.anim.dialog_fade_in)
         rankingChangedTextView.startAnimation(fadeIn)
         unlockLevelTextView.startAnimation(fadeIn)
-        repeatLevelTextView.startAnimation(fadeIn)
+        if (!isLevelBlockedAfterThisFail) {
+            repeatLevelTextView.startAnimation(fadeIn)
+        }
 
-        if (attempts >= 2 && numberList != null && userResponses != null) {
+        if ((attempts >= 2 || (usedHint && attempts >= 1)) && numberList != null && userResponses != null) {
             reviewExerciseTextView.visibility = View.VISIBLE
             applyTouchAnimation(reviewExerciseTextView)
 
@@ -669,6 +634,7 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
             true
         }
     }
+
     private fun isSoundEnabled(): Boolean {
         val globalPrefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         return globalPrefs.getBoolean(SettingsActivity.SOUND_ENABLED, true)
@@ -678,12 +644,9 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
         if (!isSoundEnabled()) return
 
         try {
-            // Liberar MediaPlayer anterior de forma segura
             mediaPlayer?.let { mp ->
                 try {
-                    if (mp.isPlaying) {
-                        mp.stop()
-                    }
+                    if (mp.isPlaying) mp.stop()
                     mp.release()
                 } catch (e: Exception) {
                     android.util.Log.e("MediaPlayer", "Error al liberar MediaPlayer anterior", e)
@@ -691,16 +654,12 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
                 mediaPlayer = null
             }
 
-            // Crear nuevo MediaPlayer
             mediaPlayer = MediaPlayer.create(this, soundResourceId)
             mediaPlayer?.let { mp ->
-                // Configurar listeners
                 mp.setOnCompletionListener { player ->
                     try {
                         player.release()
-                        if (mediaPlayer == player) {
-                            mediaPlayer = null
-                        }
+                        if (mediaPlayer == player) mediaPlayer = null
                     } catch (e: Exception) {
                         android.util.Log.e("MediaPlayer", "Error en OnCompletionListener", e)
                     }
@@ -710,16 +669,13 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
                     android.util.Log.e("MediaPlayer", "Error reproduciendo sonido: what=$what, extra=$extra")
                     try {
                         player.release()
-                        if (mediaPlayer == player) {
-                            mediaPlayer = null
-                        }
+                        if (mediaPlayer == player) mediaPlayer = null
                     } catch (e: Exception) {
                         android.util.Log.e("MediaPlayer", "Error liberando MediaPlayer en OnError", e)
                     }
-                    true // Indica que manejamos el error
+                    true
                 }
 
-                // Iniciar reproducción
                 mp.start()
 
             } ?: run {
@@ -764,5 +720,4 @@ class LevelResultActivityDeciPlusPrincipiante : BaseActivity()  {
         startActivity(intent)
         finish()
     }
-
 }

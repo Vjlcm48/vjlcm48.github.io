@@ -51,7 +51,11 @@ class ExerciseReviewActivitySumaResta : BaseActivity()  {
         displayNumbers(numberList, excludedIndex)
         correctAnswerTextView.text = getString(R.string.correct_answer_format, correctAnswer)
 
-        val responseText = getString(R.string.user_responses_format, userResponses[0], userResponses[1])
+        val responseText = if (userResponses.size >= 2) {
+            getString(R.string.user_responses_format, userResponses[0], userResponses[1])
+        } else {
+            getString(R.string.user_response_single_format, userResponses[0])
+        }
         userResponsesTextView.text = responseText
 
         applyTouchAnimation(understoodButton)

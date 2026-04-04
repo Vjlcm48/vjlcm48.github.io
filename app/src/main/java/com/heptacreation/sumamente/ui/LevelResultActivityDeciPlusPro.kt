@@ -44,11 +44,11 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
     private var currentLevel = 1
     private var isSuccessful = false
     private var attempts = 0
+    private var usedHint = false
     private var timeSpentInSeconds = 0.0
-    private var rawTimeSpent = 0.0 // C1 //
+    private var rawTimeSpent = 0.0
     private var pointsEarned = 0
     private var mediaPlayer: MediaPlayer? = null
-
 
     private var numberList: DoubleArray? = null
     private var correctAnswer: Double = 0.0
@@ -57,11 +57,10 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
     private lateinit var reviewExerciseTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
 
         sharedPreferences = getSharedPreferences("MyPrefsDeciPlus", MODE_PRIVATE)
-
         setContentView(R.layout.activity_level_result_deci_plus)
 
         ScoreManager.initDeciPlusPro(this)
@@ -70,15 +69,12 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
         currentLevel = intent.getIntExtra("LEVEL", 1)
         isSuccessful = intent.getBooleanExtra("IS_SUCCESSFUL", false)
         attempts = intent.getIntExtra("ATTEMPTS", 0)
-        timeSpentInSeconds = intent.getDoubleExtra("TIME_SPENT", 0.0)
+        usedHint = intent.getBooleanExtra("USED_HINT", false)
 
-        // C2 //
         rawTimeSpent = intent.getDoubleExtra("TIME_SPENT", 0.0)
         val useManualAnswer = intent.getBooleanExtra("USE_MANUAL_ANSWER", false)
         timeSpentInSeconds = rawTimeSpent
-        if (useManualAnswer) {
-            timeSpentInSeconds *= 0.7
-        }
+        if (useManualAnswer) timeSpentInSeconds *= 0.7
 
         numberList = intent.getDoubleArrayExtra("NUMBER_LIST")
         correctAnswer = intent.getDoubleExtra("CORRECT_ANSWER", 0.0)
@@ -102,16 +98,10 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
         reviewExerciseTextView = findViewById(R.id.reviewexercisetextview)
 
         setupUI()
-        // Inicio del cambio flecha de regresar del celular
         val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-
-                navigateToLevels()
-                finish()
-            }
+            override fun handleOnBackPressed() { navigateToLevels(); finish() }
         }
         onBackPressedDispatcher.addCallback(this, callback)
-        // Fin del código de flecha de regresar del celular
     }
 
     private fun setupUI() {
@@ -127,11 +117,7 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
         unlockLevelTextView.visibility = View.INVISIBLE
         repeatLevelTextView.visibility = View.INVISIBLE
 
-        if (isSuccessful) {
-            handleSuccessScenario()
-        } else {
-            handleFailureScenario()
-        }
+        if (isSuccessful) handleSuccessScenario() else handleFailureScenario()
     }
 
     private fun handleSuccessScenario() {
@@ -159,13 +145,8 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
             ScoreManager.addCompletedLevelDeciPlusPro(currentLevel)
         }
 
-        // Conteo para pines //
         CondecoracionTracker.marcarNivelConTimestamp("DeciPlus", "Pro", currentLevel)
         CondecoracionTracker.verificarYEntregarPines()
-
-        //if (currentLevel >= ScoreManager.unlockedLevelsDeciPlusPro) {
-        //    ScoreManager.unlockedLevelsDeciPlusPro = currentLevel + 1
-       // }
 
         ScoreManager.saveScoreDeciPlusPro()
 
@@ -175,8 +156,7 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
 
         val factor = obtenerFactorCorreccion(currentLevel)
         val velocidad = 1 / ScoreManager.getTiempoPromedioGlobal()
-        val precision = ScoreManager.correctGamesGlobal.toDouble() /
-                ScoreManager.totalGamesGlobal.toDouble()
+        val precision = ScoreManager.correctGamesGlobal.toDouble() / ScoreManager.totalGamesGlobal.toDouble()
 
         val aporte = ((factor * velocidad * precision * 10) * 100).roundToInt() / 100.0
         ScoreManager.updateIqComponent("DeciPlus", "Pro", aporte)
@@ -184,7 +164,6 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
 
         val syncRequest = androidx.work.OneTimeWorkRequestBuilder<com.heptacreation.sumamente.ui.utils.SyncWorker>().build()
         androidx.work.WorkManager.getInstance(this).enqueue(syncRequest)
-
     }
 
     private fun handleFailureScenario() {
@@ -206,95 +185,59 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
 
     private fun verificarMedallasAntesDeMostrarExito() {
         CondecoracionTracker.verificarYEntregarMedallas { nuevaMedalla ->
-
             if (nuevaMedalla != null && currentLevel == 70) {
-
                 verificarTrofeosParaDobleCondecoracion(nuevaMedalla)
             } else if (nuevaMedalla != null) {
-
                 mostrarAnimacionMedalla(nuevaMedalla)
             } else if (currentLevel == 70) {
-
                 verificarTrofeosAntesDeMostrarExito()
             } else {
-
                 showSuccessDialog()
             }
         }
     }
 
     private fun verificarTrofeosParaDobleCondecoracion(nuevaMedalla: CondecoracionTracker.MedallaObtenida) {
-
         CondecoracionTracker.verificarYEntregarTrofeos("DeciPlus", "Pro") { nuevoTrofeo ->
-            if (nuevoTrofeo != null) {
-                mostrarDobleCelebracion(nuevaMedalla, nuevoTrofeo)
-            } else {
-
-                mostrarAnimacionMedalla(nuevaMedalla)
-            }
+            if (nuevoTrofeo != null) mostrarDobleCelebracion(nuevaMedalla, nuevoTrofeo)
+            else mostrarAnimacionMedalla(nuevaMedalla)
         }
     }
 
     private fun verificarTrofeosAntesDeMostrarExito() {
         CondecoracionTracker.verificarYEntregarTrofeos("DeciPlus", "Pro") { nuevoTrofeo ->
-            if (nuevoTrofeo != null) {
-                mostrarAnimacionTrofeo(nuevoTrofeo)
-            } else {
-
-                showSuccessDialog()
-            }
+            if (nuevoTrofeo != null) mostrarAnimacionTrofeo(nuevoTrofeo)
+            else showSuccessDialog()
         }
     }
 
-    private fun mostrarDobleCelebracion(
-        medalla: CondecoracionTracker.MedallaObtenida,
-        trofeo: CondecoracionTracker.TrofeoObtenido
-    ) {
-        val dialog = CondecoracionAnimationDialog(
+    private fun mostrarDobleCelebracion(medalla: CondecoracionTracker.MedallaObtenida, trofeo: CondecoracionTracker.TrofeoObtenido) {
+        CondecoracionAnimationDialog(
             context = this,
             tipoCondecoracion = TipoCondecoracion.DOBLE_CELEBRACION,
-            onAnimationComplete = {
-                mostrarAnimacionMedalla(medalla) {
-                    mostrarAnimacionTrofeo(trofeo)
-                }
-            }
-        )
-        dialog.show()
+            onAnimationComplete = { mostrarAnimacionMedalla(medalla) { mostrarAnimacionTrofeo(trofeo) } }
+        ).show()
     }
 
-    private fun mostrarAnimacionTrofeo(
-        trofeo: CondecoracionTracker.TrofeoObtenido,
-        onComplete: (() -> Unit)? = null
-    ) {
-        val dialog = CondecoracionAnimationDialog(
+    private fun mostrarAnimacionTrofeo(trofeo: CondecoracionTracker.TrofeoObtenido, onComplete: (() -> Unit)? = null) {
+        CondecoracionAnimationDialog(
             this,
             tipoCondecoracion = TipoCondecoracion.TROFEO,
             nombreTrofeo = trofeo.nombreTrofeo,
-            onAnimationComplete = {
-                onComplete?.invoke() ?: showSuccessDialog()
-            }
-        )
-        dialog.show()
+            onAnimationComplete = { onComplete?.invoke() ?: showSuccessDialog() }
+        ).show()
     }
 
-    private fun mostrarAnimacionMedalla(
-        medalla: CondecoracionTracker.MedallaObtenida,
-        onComplete: (() -> Unit)? = null
-    ) {
+    private fun mostrarAnimacionMedalla(medalla: CondecoracionTracker.MedallaObtenida, onComplete: (() -> Unit)? = null) {
         val medallasObtenidas = CondecoracionTracker.getMedallasObtenidas().size
-        val medallasRestantes = 12 - medallasObtenidas
-
-        val dialog = CondecoracionAnimationDialog(
+        CondecoracionAnimationDialog(
             this,
             tipoCondecoracion = TipoCondecoracion.MEDALLA,
             medallaTipo = medalla.tipo,
             medallasObtenidas = medallasObtenidas,
-            medallasRestantes = medallasRestantes,
-            onAnimationComplete = {
-                onComplete?.invoke() ?: showSuccessDialog()
-            }
-        )
-        dialog.show()
+            medallasRestantes = 12 - medallasObtenidas,
+            onAnimationComplete = { onComplete?.invoke() ?: showSuccessDialog() }
+        ).show()
     }
 
     private fun obtenerFactorCorreccion(maxNivel: Int): Double {
@@ -338,19 +281,9 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
             timeSpentInSeconds
         }
 
-        // C3 ELIMINAR EL 0.7 //
-
-        val puntosPorVelocidad = if (tiempoPromedio > 0) {
-            (velocidadBonus * (1.0 / tiempoPromedio))
-        } else {
-            0.0
-        }
-
-        val puntajeFinal = (pointsAfterAttempts * precisionGlobal) + puntosPorVelocidad
-
-        return puntajeFinal.toInt()
+        val puntosPorVelocidad = if (tiempoPromedio > 0) (velocidadBonus * (1.0 / tiempoPromedio)) else 0.0
+        return ((pointsAfterAttempts * precisionGlobal) + puntosPorVelocidad).toInt()
     }
-
 
     private fun updateScoreToZero() {
         ScoreManager.levelScoresDeciPlusPro[currentLevel]?.let { previousScore ->
@@ -366,50 +299,27 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
         animationView.visibility = View.VISIBLE
 
         val firstAttemptMessages = listOf(
-            getString(R.string.genial),
-            getString(R.string.perfecto),
-            getString(R.string.increible),
-            getString(R.string.asombroso),
-            getString(R.string.excelente),
-            getString(R.string.fantastico),
-            getString(R.string.imparable),
-            getString(R.string.brillante),
-            getString(R.string.magistral),
-            getString(R.string.soberbio),
-            getString(R.string.fenomenal),
-            getString(R.string.esplendido),
+            getString(R.string.genial), getString(R.string.perfecto), getString(R.string.increible),
+            getString(R.string.asombroso), getString(R.string.excelente), getString(R.string.fantastico),
+            getString(R.string.imparable), getString(R.string.brillante), getString(R.string.magistral),
+            getString(R.string.soberbio), getString(R.string.fenomenal), getString(R.string.esplendido),
             getString(R.string.muy_bien)
         )
-
         val secondAttemptMessages = listOf(
-            getString(R.string.buen_trabajo),
-            getString(R.string.bien_hecho),
-            getString(R.string.vamos_bien),
-            getString(R.string.gran_esfuerzo),
-            getString(R.string.lo_lograste),
-            getString(R.string.buen_avance),
-            getString(R.string.sigue_asi),
-            getString(R.string.asi_es),
-            getString(R.string.casi_perfecto),
-            getString(R.string.mejorando),
-            getString(R.string.persistencia),
-            getString(R.string.buen_intento),
+            getString(R.string.buen_trabajo), getString(R.string.bien_hecho), getString(R.string.vamos_bien),
+            getString(R.string.gran_esfuerzo), getString(R.string.lo_lograste), getString(R.string.buen_avance),
+            getString(R.string.sigue_asi), getString(R.string.asi_es), getString(R.string.casi_perfecto),
+            getString(R.string.mejorando), getString(R.string.persistencia), getString(R.string.buen_intento),
             getString(R.string.vas_bien)
         )
 
-        mainMessageTextView.text = if (attempts == 0) {
-            firstAttemptMessages.random()
-        } else {
-            secondAttemptMessages.random()
-        }
+        mainMessageTextView.text = if (attempts == 0) firstAttemptMessages.random() else secondAttemptMessages.random()
 
         val messageAnimation = AnimationUtils.loadAnimation(this, R.anim.message_appear_with_shake)
         mainMessageTextView.startAnimation(messageAnimation)
 
-        val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
-        if (soundEnabled) {
-            playSound(R.raw.campanillas)
-        }
+        val soundEnabled = isSoundEnabled()
+        if (soundEnabled) playSound(R.raw.campanillas)
 
         animationView.setAnimation("stars_animation.json")
         animationView.playAnimation()
@@ -420,20 +330,15 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
 
             fadeOut.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
                 override fun onAnimationStart(animation: android.view.animation.Animation?) {}
-
                 override fun onAnimationEnd(animation: android.view.animation.Animation?) {
                     animationView.setAnimation("confetti_animation.json")
                     val fadeIn = AnimationUtils.loadAnimation(this@LevelResultActivityDeciPlusPro, R.anim.dialog_fade_in)
                     animationView.startAnimation(fadeIn)
                     animationView.playAnimation()
 
-                    if (soundEnabled) {
-                        playSound(R.raw.trompeta)
-                    }
+                    if (soundEnabled) playSound(R.raw.trompeta)
 
                     pointsTextView.visibility = View.VISIBLE
-
-                    // LR1 Cambio para solucionar el formato de los decimales //
                     val puntosObtenidos = getString(R.string.puntos_obtenidos, pointsEarned)
                     val spannable = SpannableString(puntosObtenidos)
                     val puntosStr = pointsEarned.toString()
@@ -443,14 +348,12 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
                         spannable.setSpan(StyleSpan(Typeface.BOLD), startIdx, endIdx, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                     }
                     pointsTextView.text = spannable
-                    // Fin del cambio LR1 //
 
                     val pointsAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityDeciPlusPro, R.anim.points_appear_from_back)
                     pointsTextView.startAnimation(pointsAnimation)
 
                     pointsAnimation.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
                         override fun onAnimationStart(animation: android.view.animation.Animation?) {}
-
                         override fun onAnimationEnd(animation: android.view.animation.Animation?) {
                             checkImageView.visibility = View.VISIBLE
                             val checkAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityDeciPlusPro, R.anim.check_appear)
@@ -458,22 +361,17 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
 
                             checkAnimation.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
                                 override fun onAnimationStart(animation: android.view.animation.Animation?) {}
-
                                 override fun onAnimationEnd(animation: android.view.animation.Animation?) {
-                                    val puntosDeciPlusPro = ScoreManager.currentScoreDeciPlusPro
-                                    val puntajeActualText = getString(R.string.puntaje_actual, puntosDeciPlusPro)
+                                    val puntosPro = ScoreManager.currentScoreDeciPlusPro
+                                    val puntajeActualText = getString(R.string.puntaje_actual, puntosPro)
                                     val spannablePuntajeActual = SpannableString(puntajeActualText)
-                                    val puntosStrActual = puntosDeciPlusPro.toString()
+                                    val puntosStrActual = puntosPro.toString()
                                     val startIdxActual = puntajeActualText.indexOf(puntosStrActual)
-
-                                    // LR2 Cambio para solucionar el formato de los decimales //
                                     val endIdxActual = startIdxActual + puntosStrActual.length
                                     if (startIdxActual >= 0 && endIdxActual <= puntajeActualText.length) {
                                         spannablePuntajeActual.setSpan(StyleSpan(Typeface.BOLD), startIdxActual, endIdxActual, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                                     }
                                     currentScoreTextView.text = spannablePuntajeActual
-                                    // Fin del cambio LR2 //
-
                                     currentScoreTextView.visibility = View.VISIBLE
                                     starImageView.visibility = View.VISIBLE
 
@@ -483,11 +381,7 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
 
                                     puntajeActualAnimation.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
                                         override fun onAnimationStart(animation: android.view.animation.Animation?) {}
-
                                         override fun onAnimationEnd(animation: android.view.animation.Animation?) {
-
-                                            // Cambio de variable para tiempo real mostrado C4 //
-                                            // LR3 Cambio para solucionar el formato de los decimales //
                                             val formattedTime = String.format(Locale.getDefault(), "%.2f", rawTimeSpent)
                                             val tiempoEmpleadoText = getString(R.string.tiempo_empleado, formattedTime)
                                             val spannableTime = SpannableString(tiempoEmpleadoText)
@@ -497,78 +391,52 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
                                                 spannableTime.setSpan(StyleSpan(Typeface.BOLD), startIdxTime, endIdxTime, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                                             }
                                             timeSpentTextView.text = spannableTime
-
-                                            // Fin del cambio LR3 //
-
                                             timeSpentTextView.visibility = View.VISIBLE
+
                                             val timeAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityDeciPlusPro, R.anim.points_appear_from_back)
                                             timeSpentTextView.startAnimation(timeAnimation)
 
                                             timeAnimation.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
                                                 override fun onAnimationStart(animation: android.view.animation.Animation?) {}
-
                                                 override fun onAnimationEnd(animation: android.view.animation.Animation?) {
                                                     checkBlueImageView.visibility = View.VISIBLE
                                                     val checkBlueAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityDeciPlusPro, R.anim.check_appear)
                                                     checkBlueImageView.startAnimation(checkBlueAnimation)
-
                                                     unlockLevelTextView.text = getString(R.string.jugar_un_nuevo_nivel)
 
                                                     mainHandler.postDelayed({
                                                         rankingChangedTextView.visibility = View.VISIBLE
                                                         rankingChangedTextView.startAnimation(AnimationUtils.loadAnimation(this@LevelResultActivityDeciPlusPro, R.anim.dialog_fade_in))
                                                     }, 300)
-
                                                     mainHandler.postDelayed({
                                                         unlockLevelTextView.visibility = View.VISIBLE
                                                         unlockLevelTextView.startAnimation(AnimationUtils.loadAnimation(this@LevelResultActivityDeciPlusPro, R.anim.dialog_fade_in))
                                                     }, 600)
-
                                                     mainHandler.postDelayed({
                                                         repeatLevelTextView.visibility = View.VISIBLE
                                                         repeatLevelTextView.startAnimation(AnimationUtils.loadAnimation(this@LevelResultActivityDeciPlusPro, R.anim.dialog_fade_in))
                                                     }, 900)
                                                 }
-
                                                 override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
                                             })
                                         }
-
                                         override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
                                     })
                                 }
-
                                 override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
                             })
                         }
-
                         override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
                     })
                 }
-
                 override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
             })
         }, 2000)
 
-        unlockLevelTextView.setOnClickListener {
-            finish()
-            navigateToLevels()
-        }
-
-        rankingChangedTextView.setOnClickListener {
-            finish()
-            navigateToClassification()
-        }
-
-        repeatLevelTextView.setOnClickListener {
-            finish()
-            navigateToInstructions()
-        }
-
-        closeButton.setOnClickListener {
-            finish()
-            navigateToHome()
-        }
+        unlockLevelTextView.setOnClickListener { finish(); navigateToLevels() }
+        rankingChangedTextView.setOnClickListener { finish(); navigateToClassification() }
+        repeatLevelTextView.setOnClickListener { finish(); navigateToInstructions() }
+        closeButton.setOnClickListener { finish(); navigateToHome() }
     }
 
     private fun showFailureDialog() {
@@ -582,7 +450,6 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
         mainMessageTextView.visibility = View.VISIBLE
         rankingChangedTextView.visibility = View.VISIBLE
         unlockLevelTextView.visibility = View.VISIBLE
-        repeatLevelTextView.visibility = View.VISIBLE
 
         val isLevelBlockedAfterThisFail = ScoreManager.getConsecutiveFailuresDeciPlusPro(currentLevel) >= 12
 
@@ -592,7 +459,7 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
             repeatLevelTextView.visibility = View.VISIBLE
         }
 
-        mainMessageTextView.text = if (attempts >= 2) {
+        mainMessageTextView.text = if (attempts >= 2 || (usedHint && attempts >= 1)) {
             getString(R.string.has_agotado_tus_intentos)
         } else {
             getString(R.string.se_agoto_el_tiempo)
@@ -603,32 +470,17 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
 
         unlockLevelTextView.text = getString(R.string.jugar_un_nuevo_nivel)
 
-        unlockLevelTextView.setOnClickListener {
-            finish()
-            navigateToLevels()
-        }
-
-        rankingChangedTextView.setOnClickListener {
-            finish()
-            navigateToClassification()
-        }
-
-        repeatLevelTextView.setOnClickListener {
-            finish()
-            navigateToInstructions()
-        }
-
-        closeButton.setOnClickListener {
-            finish()
-            navigateToHome()
-        }
+        unlockLevelTextView.setOnClickListener { finish(); navigateToLevels() }
+        rankingChangedTextView.setOnClickListener { finish(); navigateToClassification() }
+        repeatLevelTextView.setOnClickListener { finish(); navigateToInstructions() }
+        closeButton.setOnClickListener { finish(); navigateToHome() }
 
         val fadeIn = AnimationUtils.loadAnimation(this, R.anim.dialog_fade_in)
         rankingChangedTextView.startAnimation(fadeIn)
         unlockLevelTextView.startAnimation(fadeIn)
-        repeatLevelTextView.startAnimation(fadeIn)
+        if (!isLevelBlockedAfterThisFail) repeatLevelTextView.startAnimation(fadeIn)
 
-        if (attempts >= 2 && numberList != null && userResponses != null) {
+        if ((attempts >= 2 || (usedHint && attempts >= 1)) && numberList != null && userResponses != null) {
             reviewExerciseTextView.visibility = View.VISIBLE
             applyTouchAnimation(reviewExerciseTextView)
 
@@ -651,14 +503,10 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
     private fun applyTouchAnimation(view: View) {
         view.setOnTouchListener { v, event ->
             when (event.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    v.animate().scaleX(0.90f).scaleY(0.90f).setDuration(100).start()
-                }
+                MotionEvent.ACTION_DOWN -> v.animate().scaleX(0.90f).scaleY(0.90f).setDuration(100).start()
                 MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                     v.animate().scaleX(1f).scaleY(1f).setDuration(100).start()
-                    if (event.action == MotionEvent.ACTION_UP) {
-                        v.performClick()
-                    }
+                    if (event.action == MotionEvent.ACTION_UP) v.performClick()
                 }
             }
             true
@@ -672,66 +520,26 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
 
     private fun playSound(soundResourceId: Int) {
         if (!isSoundEnabled()) return
-
         try {
-            // Liberar MediaPlayer anterior de forma segura
             mediaPlayer?.let { mp ->
-                try {
-                    if (mp.isPlaying) {
-                        mp.stop()
-                    }
-                    mp.release()
-                } catch (e: Exception) {
-                    android.util.Log.e("MediaPlayer", "Error al liberar MediaPlayer anterior", e)
-                }
+                try { if (mp.isPlaying) mp.stop(); mp.release() } catch (e: Exception) { android.util.Log.e("MediaPlayer", "Error al liberar", e) }
                 mediaPlayer = null
             }
-
-            // Crear nuevo MediaPlayer
             mediaPlayer = MediaPlayer.create(this, soundResourceId)
             mediaPlayer?.let { mp ->
-                // Configurar listeners
                 mp.setOnCompletionListener { player ->
-                    try {
-                        player.release()
-                        if (mediaPlayer == player) {
-                            mediaPlayer = null
-                        }
-                    } catch (e: Exception) {
-                        android.util.Log.e("MediaPlayer", "Error en OnCompletionListener", e)
-                    }
+                    try { player.release(); if (mediaPlayer == player) mediaPlayer = null } catch (e: Exception) { android.util.Log.e("MediaPlayer", "Error en OnCompletionListener", e) }
                 }
-
                 mp.setOnErrorListener { player, what, extra ->
-                    android.util.Log.e("MediaPlayer", "Error reproduciendo sonido: what=$what, extra=$extra")
-                    try {
-                        player.release()
-                        if (mediaPlayer == player) {
-                            mediaPlayer = null
-                        }
-                    } catch (e: Exception) {
-                        android.util.Log.e("MediaPlayer", "Error liberando MediaPlayer en OnError", e)
-                    }
-                    true // Indica que manejamos el error
+                    android.util.Log.e("MediaPlayer", "Error: what=$what, extra=$extra")
+                    try { player.release(); if (mediaPlayer == player) mediaPlayer = null } catch (e: Exception) { android.util.Log.e("MediaPlayer", "Error liberando", e) }
+                    true
                 }
-
-                // Iniciar reproducción
                 mp.start()
-
-            } ?: run {
-                android.util.Log.e("MediaPlayer", "No se pudo crear MediaPlayer para recurso: $soundResourceId")
-            }
-
+            } ?: run { android.util.Log.e("MediaPlayer", "No se pudo crear MediaPlayer: $soundResourceId") }
         } catch (e: Exception) {
-            android.util.Log.e("MediaPlayer", "Excepción general al reproducir sonido", e)
-            mediaPlayer?.let { mp ->
-                try {
-                    mp.release()
-                } catch (releaseException: Exception) {
-                    android.util.Log.e("MediaPlayer", "Error al liberar en catch", releaseException)
-                }
-                mediaPlayer = null
-            }
+            android.util.Log.e("MediaPlayer", "Excepción general", e)
+            mediaPlayer?.let { mp -> try { mp.release() } catch (re: Exception) { android.util.Log.e("MediaPlayer", "Error al liberar en catch", re) }; mediaPlayer = null }
         }
     }
 
@@ -760,5 +568,4 @@ class LevelResultActivityDeciPlusPro : BaseActivity()  {
         startActivity(intent)
         finish()
     }
-
 }

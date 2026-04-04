@@ -9,20 +9,22 @@ import android.os.Looper
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.StyleSpan
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.enableEdgeToEdge
 import com.airbnb.lottie.LottieAnimationView
 import com.heptacreation.sumamente.R
 import java.util.Locale
 import kotlin.math.max
 import kotlin.math.roundToInt
-import androidx.activity.enableEdgeToEdge
 
-class LevelResultActivityGenioPlus : BaseActivity()  {
+class LevelResultActivityGenioPlus : BaseActivity() {
 
     private lateinit var mainMessageTextView: TextView
     private lateinit var pointsTextView: TextView
@@ -46,13 +48,14 @@ class LevelResultActivityGenioPlus : BaseActivity()  {
     private var isSuccessful = false
     private var attempts = 0
     private var timeSpentInSeconds = 0.0
-    private var rawTimeSpent = 0.0 // C1 //
+    private var rawTimeSpent = 0.0
     private var pointsEarned = 0
+    private var usedHint = false
     private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
 
         sharedPreferences = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_level_result_genio_plus)
@@ -65,9 +68,10 @@ class LevelResultActivityGenioPlus : BaseActivity()  {
         attempts = intent.getIntExtra("ATTEMPTS", 0)
         timeSpentInSeconds = intent.getDoubleExtra("TIME_SPENT", 0.0)
 
-        // C2 //
         rawTimeSpent = intent.getDoubleExtra("TIME_SPENT", 0.0)
         val useManualAnswer = intent.getBooleanExtra("USE_MANUAL_ANSWER", false)
+        usedHint = intent.getBooleanExtra("USED_HINT", false)
+
         timeSpentInSeconds = rawTimeSpent
         if (useManualAnswer) {
             timeSpentInSeconds *= 0.7
@@ -89,16 +93,25 @@ class LevelResultActivityGenioPlus : BaseActivity()  {
         reviewExerciseTextView = findViewById(R.id.review_exercise_textview)
 
         setupUI()
-        // Inicio del cambio flecha de regresar del celular
+
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-
                 navigateToLevels()
                 finish()
             }
         }
         onBackPressedDispatcher.addCallback(this, callback)
-        // Fin del código de flecha de regresar del celular
+    }
+
+    override fun onPause() {
+        super.onPause()
+        stopCurrentSound()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        stopCurrentSound()
+        mainHandler.removeCallbacksAndMessages(null)
     }
 
     private fun setupUI() {
@@ -148,7 +161,6 @@ class LevelResultActivityGenioPlus : BaseActivity()  {
 
         CondecoracionTracker.marcarNivelConTimestamp("GenioPlus", "Avanzado", currentLevel)
         CondecoracionTracker.verificarYEntregarPines()
-
 
         ScoreManager.saveScoreGenioPlus()
 
@@ -311,8 +323,6 @@ class LevelResultActivityGenioPlus : BaseActivity()  {
             timeSpentInSeconds
         }
 
-        // C3 ELIMINAR EL 0.7 //
-
         val puntosPorVelocidad = if (tiempoPromedio > 0) {
             (velocidadBonus * (1.0 / tiempoPromedio))
         } else {
@@ -378,8 +388,7 @@ class LevelResultActivityGenioPlus : BaseActivity()  {
         val messageAnimation = AnimationUtils.loadAnimation(this, R.anim.message_appear_with_shake)
         mainMessageTextView.startAnimation(messageAnimation)
 
-        val soundEnabled = sharedPreferences.getBoolean(SettingsActivity.SOUND_ENABLED, true)
-        if (soundEnabled) {
+        if (isSoundEnabled()) {
             playSound(R.raw.campanillas)
         }
 
@@ -390,22 +399,21 @@ class LevelResultActivityGenioPlus : BaseActivity()  {
             val fadeOut = AnimationUtils.loadAnimation(this, R.anim.dialog_fade_out)
             animationView.startAnimation(fadeOut)
 
-            fadeOut.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
-                override fun onAnimationStart(animation: android.view.animation.Animation?) {}
+            fadeOut.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: Animation?) {}
 
-                override fun onAnimationEnd(animation: android.view.animation.Animation?) {
+                override fun onAnimationEnd(animation: Animation?) {
                     animationView.setAnimation("confetti_animation.json")
                     val fadeIn = AnimationUtils.loadAnimation(this@LevelResultActivityGenioPlus, R.anim.dialog_fade_in)
                     animationView.startAnimation(fadeIn)
                     animationView.playAnimation()
 
-                    if (soundEnabled) {
+                    if (isSoundEnabled()) {
                         playSound(R.raw.trompeta)
                     }
 
                     pointsTextView.visibility = View.VISIBLE
 
-                    // LR1 Cambio para solucionar el formato de los decimales //
                     val puntosObtenidos = getString(R.string.puntos_obtenidos, pointsEarned)
                     val spannable = SpannableString(puntosObtenidos)
                     val puntosStr = pointsEarned.toString()
@@ -415,36 +423,32 @@ class LevelResultActivityGenioPlus : BaseActivity()  {
                         spannable.setSpan(StyleSpan(Typeface.BOLD), startIdx, endIdx, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                     }
                     pointsTextView.text = spannable
-                    // Fin del cambio LR1 //
 
                     val pointsAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityGenioPlus, R.anim.points_appear_from_back)
                     pointsTextView.startAnimation(pointsAnimation)
 
-                    pointsAnimation.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
-                        override fun onAnimationStart(animation: android.view.animation.Animation?) {}
+                    pointsAnimation.setAnimationListener(object : Animation.AnimationListener {
+                        override fun onAnimationStart(animation: Animation?) {}
 
-                        override fun onAnimationEnd(animation: android.view.animation.Animation?) {
+                        override fun onAnimationEnd(animation: Animation?) {
                             checkImageView.visibility = View.VISIBLE
                             val checkAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityGenioPlus, R.anim.check_appear)
                             checkImageView.startAnimation(checkAnimation)
 
-                            checkAnimation.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
-                                override fun onAnimationStart(animation: android.view.animation.Animation?) {}
+                            checkAnimation.setAnimationListener(object : Animation.AnimationListener {
+                                override fun onAnimationStart(animation: Animation?) {}
 
-                                override fun onAnimationEnd(animation: android.view.animation.Animation?) {
+                                override fun onAnimationEnd(animation: Animation?) {
                                     val puntosGenios = ScoreManager.currentScoreGenioPlus
                                     val puntajeActualText = getString(R.string.puntaje_actual, puntosGenios)
                                     val spannablePuntajeActual = SpannableString(puntajeActualText)
                                     val puntosStrActual = puntosGenios.toString()
                                     val startIdxActual = puntajeActualText.indexOf(puntosStrActual)
-
-                                    // LR2 Cambio para solucionar el formato de los decimales //
                                     val endIdxActual = startIdxActual + puntosStrActual.length
                                     if (startIdxActual >= 0 && endIdxActual <= puntajeActualText.length) {
                                         spannablePuntajeActual.setSpan(StyleSpan(Typeface.BOLD), startIdxActual, endIdxActual, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                                     }
                                     currentScoreTextView.text = spannablePuntajeActual
-                                    // Fin del cambio LR2 //
 
                                     currentScoreTextView.visibility = View.VISIBLE
                                     starImageView.visibility = View.VISIBLE
@@ -453,12 +457,10 @@ class LevelResultActivityGenioPlus : BaseActivity()  {
                                     currentScoreTextView.startAnimation(puntajeActualAnimation)
                                     starImageView.startAnimation(puntajeActualAnimation)
 
-                                    puntajeActualAnimation.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
-                                        override fun onAnimationStart(animation: android.view.animation.Animation?) {}
+                                    puntajeActualAnimation.setAnimationListener(object : Animation.AnimationListener {
+                                        override fun onAnimationStart(animation: Animation?) {}
 
-                                        override fun onAnimationEnd(animation: android.view.animation.Animation?) {
-                                            /// Cambio de variable para tiempo real mostrado C4 //
-                                            // LR3 Cambio para solucionar el formato de los decimales //
+                                        override fun onAnimationEnd(animation: Animation?) {
                                             val formattedTime = String.format(Locale.getDefault(), "%.2f", rawTimeSpent)
                                             val tiempoEmpleadoText = getString(R.string.tiempo_empleado, formattedTime)
                                             val spannableTime = SpannableString(tiempoEmpleadoText)
@@ -469,16 +471,14 @@ class LevelResultActivityGenioPlus : BaseActivity()  {
                                             }
                                             timeSpentTextView.text = spannableTime
 
-                                            // Fin del cambio LR3 //
-
                                             timeSpentTextView.visibility = View.VISIBLE
                                             val timeAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityGenioPlus, R.anim.points_appear_from_back)
                                             timeSpentTextView.startAnimation(timeAnimation)
 
-                                            timeAnimation.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
-                                                override fun onAnimationStart(animation: android.view.animation.Animation?) {}
+                                            timeAnimation.setAnimationListener(object : Animation.AnimationListener {
+                                                override fun onAnimationStart(animation: Animation?) {}
 
-                                                override fun onAnimationEnd(animation: android.view.animation.Animation?) {
+                                                override fun onAnimationEnd(animation: Animation?) {
                                                     checkBlueImageView.visibility = View.VISIBLE
                                                     val checkBlueAnimation = AnimationUtils.loadAnimation(this@LevelResultActivityGenioPlus, R.anim.check_appear)
                                                     checkBlueImageView.startAnimation(checkBlueAnimation)
@@ -501,23 +501,23 @@ class LevelResultActivityGenioPlus : BaseActivity()  {
                                                     }, 900)
                                                 }
 
-                                                override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
+                                                override fun onAnimationRepeat(animation: Animation?) {}
                                             })
                                         }
 
-                                        override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
+                                        override fun onAnimationRepeat(animation: Animation?) {}
                                     })
                                 }
 
-                                override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
+                                override fun onAnimationRepeat(animation: Animation?) {}
                             })
                         }
 
-                        override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
+                        override fun onAnimationRepeat(animation: Animation?) {}
                     })
                 }
 
-                override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
+                override fun onAnimationRepeat(animation: Animation?) {}
             })
         }, 2000)
 
@@ -562,7 +562,7 @@ class LevelResultActivityGenioPlus : BaseActivity()  {
             repeatLevelTextView.visibility = View.VISIBLE
         }
 
-        mainMessageTextView.text = if (attempts >= 2) {
+        mainMessageTextView.text = if (attempts >= 2 || (usedHint && attempts >= 1)) {
             getString(R.string.has_agotado_tus_intentos)
         } else {
             getString(R.string.se_agoto_el_tiempo)
@@ -605,7 +605,7 @@ class LevelResultActivityGenioPlus : BaseActivity()  {
         val userResponses = intent.getIntArrayExtra("USER_RESPONSES")
         val excludedIndex = intent.getIntExtra("EXCLUDED_INDEX", -1)
 
-        if (attempts >= 2 && numberList != null && userResponses != null) {
+        if ((attempts >= 2 || (usedHint && attempts >= 1)) && numberList != null && userResponses != null) {
             reviewExerciseTextView.visibility = View.VISIBLE
             applyTouchAnimation(reviewExerciseTextView)
 
@@ -641,6 +641,19 @@ class LevelResultActivityGenioPlus : BaseActivity()  {
             true
         }
     }
+
+    private fun stopCurrentSound() {
+        try {
+            mediaPlayer?.let { mp ->
+                if (mp.isPlaying) mp.stop()
+                mp.release()
+                mediaPlayer = null
+            }
+        } catch (e: Exception) {
+            Log.e("MediaPlayer", "Error al detener audio", e)
+        }
+    }
+
     private fun isSoundEnabled(): Boolean {
         val globalPrefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         return globalPrefs.getBoolean(SettingsActivity.SOUND_ENABLED, true)
@@ -650,61 +663,51 @@ class LevelResultActivityGenioPlus : BaseActivity()  {
         if (!isSoundEnabled()) return
 
         try {
-            // Liberar MediaPlayer anterior de forma segura
             mediaPlayer?.let { mp ->
                 try {
-                    if (mp.isPlaying) {
-                        mp.stop()
-                    }
+                    if (mp.isPlaying) mp.stop()
                     mp.release()
                 } catch (e: Exception) {
-                    android.util.Log.e("MediaPlayer", "Error al liberar MediaPlayer anterior", e)
+                    Log.e("MediaPlayer", "Error al liberar MediaPlayer anterior", e)
                 }
                 mediaPlayer = null
             }
 
-            // Crear nuevo MediaPlayer
             mediaPlayer = MediaPlayer.create(this, soundResourceId)
             mediaPlayer?.let { mp ->
-                // Configurar listeners
                 mp.setOnCompletionListener { player ->
                     try {
                         player.release()
-                        if (mediaPlayer == player) {
-                            mediaPlayer = null
-                        }
+                        if (mediaPlayer == player) mediaPlayer = null
                     } catch (e: Exception) {
-                        android.util.Log.e("MediaPlayer", "Error en OnCompletionListener", e)
+                        Log.e("MediaPlayer", "Error en OnCompletionListener", e)
                     }
                 }
 
                 mp.setOnErrorListener { player, what, extra ->
-                    android.util.Log.e("MediaPlayer", "Error reproduciendo sonido: what=$what, extra=$extra")
+                    Log.e("MediaPlayer", "Error reproduciendo sonido: what=$what, extra=$extra")
                     try {
                         player.release()
-                        if (mediaPlayer == player) {
-                            mediaPlayer = null
-                        }
+                        if (mediaPlayer == player) mediaPlayer = null
                     } catch (e: Exception) {
-                        android.util.Log.e("MediaPlayer", "Error liberando MediaPlayer en OnError", e)
+                        Log.e("MediaPlayer", "Error liberando MediaPlayer en OnError", e)
                     }
-                    true // Indica que manejamos el error
+                    true
                 }
 
-                // Iniciar reproducción
                 mp.start()
 
             } ?: run {
-                android.util.Log.e("MediaPlayer", "No se pudo crear MediaPlayer para recurso: $soundResourceId")
+                Log.e("MediaPlayer", "No se pudo crear MediaPlayer para recurso: $soundResourceId")
             }
 
         } catch (e: Exception) {
-            android.util.Log.e("MediaPlayer", "Excepción general al reproducir sonido", e)
+            Log.e("MediaPlayer", "Excepción general al reproducir sonido", e)
             mediaPlayer?.let { mp ->
                 try {
                     mp.release()
                 } catch (releaseException: Exception) {
-                    android.util.Log.e("MediaPlayer", "Error al liberar en catch", releaseException)
+                    Log.e("MediaPlayer", "Error al liberar en catch", releaseException)
                 }
                 mediaPlayer = null
             }
@@ -736,5 +739,4 @@ class LevelResultActivityGenioPlus : BaseActivity()  {
         startActivity(intent)
         finish()
     }
-
 }

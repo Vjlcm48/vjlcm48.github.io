@@ -106,6 +106,15 @@ class GameActivityFocoPlus : BaseActivity() {
     private var dualAnimRight: ObjectAnimator? = null
     private var userResponsesList = mutableListOf<String>()
     private var correctAnswersList = mutableListOf<String>()
+    private val hintCostCoins = 7
+    private var pistaActivada = false
+    private var hintCountDownTimer: CountDownTimer? = null
+    private lateinit var hintOptionsLayout: View
+    private lateinit var tvHintDesc: TextView
+    private lateinit var tvHintBalance: TextView
+    private lateinit var btnUseHint: androidx.appcompat.widget.AppCompatButton
+    private lateinit var btnSkipHint: androidx.appcompat.widget.AppCompatButton
+    private lateinit var hintTimerBar: ProgressBar
 
     private enum class DualExerciseState {
         WAITING_FIRST,
@@ -154,6 +163,8 @@ class GameActivityFocoPlus : BaseActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+        pistaActivada = false
+
         setContentView(R.layout.activity_game_foco_plus)
 
         currentLevel = intent.getIntExtra("LEVEL", 1)
@@ -185,6 +196,8 @@ class GameActivityFocoPlus : BaseActivity() {
         val levelSeed = currentLevel.toLong() + subtype * 1000L
         Random(levelSeed)
 
+        ScoreManager.initFocoPlusPrincipiante(this)
+
         findViews()
         setUpBackHandler()
         applyHeaders()
@@ -200,6 +213,13 @@ class GameActivityFocoPlus : BaseActivity() {
         perExerciseMs = (baseTimeSeconds * 1000).toLong()
 
         isTwoTerms = isTwoTermsSubtype(subtype)
+
+        if (subtype == 15) {
+            val params = boardContainer.layoutParams as androidx.constraintlayout.widget.ConstraintLayout.LayoutParams
+            params.dimensionRatio = "8:6"
+            boardContainer.layoutParams = params
+        }
+
         totalExercises = 14
         maxErrorsAllowed = if (isTwoTerms) 12 else 6
 
@@ -219,7 +239,7 @@ class GameActivityFocoPlus : BaseActivity() {
 
                     buildLevelMetas(subtype)
 
-                    showVamosThenStart()
+                    verificarYMostrarPista()
                 }
             }
         )
@@ -390,12 +410,23 @@ class GameActivityFocoPlus : BaseActivity() {
     override fun onDestroy() {
         super.onDestroy()
         exerciseTimer?.cancel()
+
+        hintCountDownTimer?.cancel()
+
         levelTimer?.cancel()
         globalTimer?.cancel()
         lastPressedButton = null
     }
 
     private fun findViews() {
+
+        hintOptionsLayout = findViewById(R.id.hint_options_layout)
+        tvHintDesc = findViewById(R.id.tv_hint_desc)
+        tvHintBalance = findViewById(R.id.tv_hint_balance)
+        btnUseHint = findViewById(R.id.btn_use_hint)
+        btnSkipHint = findViewById(R.id.btn_skip_hint)
+        hintTimerBar = findViewById(R.id.hint_timer_bar)
+
         backArrow = findViewById(R.id.back_arrow)
         tvLevel = findViewById(R.id.tv_level)
         tvScore = findViewById(R.id.tv_score)
@@ -486,7 +517,7 @@ class GameActivityFocoPlus : BaseActivity() {
 
     private fun applyHeaders() {
         tvLevel.text = getString(R.string.level_title, currentLevel)
-        tvScore.text = getString(R.string.score_label, 0)
+        tvScore.text = getString(R.string.score_label, ScoreManager.currentScoreFocoPlusPrincipiante)
     }
 
     private fun showVamosThenStart() {
@@ -662,6 +693,9 @@ class GameActivityFocoPlus : BaseActivity() {
             dualSlot.visibility = View.VISIBLE
             correctnessPlan[indexExercise]
             renderDualExercise()
+
+            if (pistaActivada) aplicarPistaABotones()
+
             isDoubleNingunoExercise = false
             startExerciseTimer()
             startDualMovement()
@@ -671,6 +705,9 @@ class GameActivityFocoPlus : BaseActivity() {
             dualSlot.visibility = View.GONE
             singleSlot.visibility = View.VISIBLE
             renderSingleExercise()
+
+            if (pistaActivada) aplicarPistaABotones()
+
             startExerciseTimer()
             startSingleMovement()
 
@@ -1056,7 +1093,7 @@ class GameActivityFocoPlus : BaseActivity() {
         equations.addAll(ningunoEquations.take(8))
         equations.shuffle()
 
-        return equations.take(14)
+        return equations
     }
 
     private fun generateSubtype4Equations(): List<GeneratedEquation> {
@@ -2414,6 +2451,8 @@ class GameActivityFocoPlus : BaseActivity() {
         intent.putExtra("DIFFICULTY", currentDifficulty)
         intent.putExtra("IS_SUCCESSFUL", isSuccessful)
 
+        intent.putExtra("USED_HINT", pistaActivada)
+
         if (shouldPassReviewData) {
             intent.putExtra("EXERCISES_SHOWN", exercisesShownList.toTypedArray())
             intent.putExtra("USER_RESPONSES", userResponsesList.toTypedArray())
@@ -2542,6 +2581,109 @@ class GameActivityFocoPlus : BaseActivity() {
 
         hiddenMetaIndexForFg = -1
         return
+    }
+
+    private fun verificarYMostrarPista() {
+        val balance = CoinManager.getBalance(this)
+        if (balance >= hintCostCoins) {
+            mostrarDialogoPista()
+        } else {
+            showVamosThenStart()
+        }
+    }
+
+    private fun mostrarDialogoPista() {
+        hintOptionsLayout.visibility = View.VISIBLE
+
+        val balance = CoinManager.getBalance(this)
+        tvHintDesc.text = getString(
+            if (isTwoTerms) R.string.hint_desc_foco_dual
+            else R.string.hint_desc_foco_simple
+        )
+        tvHintBalance.text = balance.toString()
+
+        hintTimerBar.max = 100
+        hintTimerBar.progress = 100
+
+        btnUseHint.setOnClickListener {
+            cerrarDialogoPista(usarPista = true)
+        }
+        btnSkipHint.setOnClickListener {
+            cerrarDialogoPista(usarPista = false)
+        }
+
+        hintCountDownTimer?.cancel()
+        hintCountDownTimer = object : CountDownTimer(7000L, 50) {
+            override fun onTick(msLeft: Long) {
+                hintTimerBar.progress = ((msLeft / 7000.0) * 100).toInt()
+            }
+            override fun onFinish() {
+                hintTimerBar.progress = 0
+                cerrarDialogoPista(usarPista = false)
+            }
+        }.start()
+    }
+
+    private fun cerrarDialogoPista(usarPista: Boolean) {
+        hintCountDownTimer?.cancel()
+        if (usarPista) {
+            CoinManager.spendCoins(this, hintCostCoins)
+            pistaActivada = true
+            val nuevoSaldo = CoinManager.getBalance(this)
+            tvHintBalance.text = nuevoSaldo.toString()
+            android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+                hintOptionsLayout.visibility = View.GONE
+                showVamosThenStart()
+            }, 700)
+        } else {
+            hintOptionsLayout.visibility = View.GONE
+            showVamosThenStart()
+        }
+    }
+
+    private fun aplicarPistaABotones() {
+        val allViews: List<Pair<Int, View>> = if (subtype == 14) {
+            listOfNotNull(
+                Pair(0, iv1), Pair(1, iv2), Pair(2, iv3), Pair(3, iv4), Pair(4, iv5),
+                btnNoneFigures?.let { Pair(-1, it) }
+            )
+        } else {
+            listOfNotNull(
+                Pair(0, btn1), Pair(1, btn2), Pair(2, btn3), Pair(3, btn4), Pair(4, btn5),
+                btnNone?.let { Pair(-1, it) }
+            )
+        }
+
+        val allIndices = allViews.map { it.first }
+
+        val visibleIndices: Set<Int> = if (isTwoTerms) {
+            val leftCorrect = leftExpectedMetaIndex
+            val rightCorrect = rightExpectedMetaIndex
+            if (leftCorrect == rightCorrect) {
+                val distractor = allIndices.filter { it != leftCorrect }.shuffled().take(1)
+                (setOf(leftCorrect) + distractor)
+            } else {
+                val correctos = setOf(leftCorrect, rightCorrect)
+                val distractores = allIndices.filter { !correctos.contains(it) }.shuffled().take(2)
+                correctos + distractores
+            }
+        } else {
+            val correctIdx = currentExpectedMetaIndex
+            val distractor = allIndices.filter { it != correctIdx }.shuffled().take(1)
+            (setOf(correctIdx) + distractor)
+        }
+
+        allViews.forEach { (metaIndex, view) ->
+            if (visibleIndices.contains(metaIndex)) {
+                view.alpha = 1f
+                view.isClickable = true
+                view.isFocusable = true
+            } else {
+                view.alpha = 0.2f
+                view.isClickable = false
+                view.isFocusable = false
+            }
+        }
     }
 
 

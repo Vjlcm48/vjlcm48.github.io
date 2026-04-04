@@ -62,6 +62,7 @@ class LevelResultActivityFocoPlus : BaseActivity() {
     private var userResponses: Array<String>? = null
     private var correctAnswers: Array<String>? = null
     private var subtype: Int = 1
+    private var usedHint: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -86,6 +87,8 @@ class LevelResultActivityFocoPlus : BaseActivity() {
         userResponses = intent.getStringArrayExtra("USER_RESPONSES")
         correctAnswers = intent.getStringArrayExtra("CORRECT_ANSWERS")
         subtype = intent.getIntExtra("SUBTYPE", 1)
+
+        usedHint = intent.getBooleanExtra("USED_HINT", false)
 
         isSuccessful = errorsCount < maxErrorsAllowed && correctCount > 0
 

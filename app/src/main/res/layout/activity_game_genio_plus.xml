@@ -20,7 +20,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.065" />
 
-
     <ImageView
         android:id="@+id/back_arrow"
         android:layout_width="48dp"
@@ -65,7 +64,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"/>
 
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/content_scroll"
         android:layout_width="0dp"
@@ -94,7 +92,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
-
 
             <FrameLayout
                 android:id="@+id/progress_ring_container"
@@ -128,7 +125,6 @@
                     app:trackColor="@android:color/darker_gray"
                     android:layout_gravity="center"/>
 
-
                 <TextView
                     android:id="@+id/tv_number"
                     android:layout_width="match_parent"
@@ -142,7 +138,6 @@
                     android:maxLines="1"
                     android:includeFontPadding="false" />
             </FrameLayout>
-
 
             <TextView
                 android:id="@+id/tv_vamos"
@@ -160,7 +155,6 @@
                 app:layout_constraintBottom_toBottomOf="@id/progress_ring_container"
                 app:layout_constraintStart_toStartOf="@id/progress_ring_container"
                 app:layout_constraintEnd_toEndOf="@id/progress_ring_container"/>
-
 
             <TextView
                 android:id="@+id/tv_prompt"
@@ -194,14 +188,53 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <LinearLayout
+                android:id="@+id/hint_options_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="12dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/chronometer_text_view"
+                app:layout_constraintBottom_toTopOf="@id/manual_input_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_hint_option_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@android:color/white"
+                    app:backgroundTint="@color/primary_button_color"
+                    app:cornerRadius="12dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_hint_option_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@android:color/white"
+                    app:backgroundTint="@color/primary_button_color"
+                    app:cornerRadius="12dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/manual_input_layout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginTop="30dp"
+                android:layout_marginBottom="16dp"
                 android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/chronometer_text_view"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
@@ -233,7 +266,6 @@
                     android:textSize="18sp"
                     android:textStyle="bold"/>
             </LinearLayout>
-
 
             <androidx.gridlayout.widget.GridLayout
                 android:id="@+id/answer_buttons_grid"
@@ -319,7 +351,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
-
     <TextView
         android:id="@+id/home_button"
         android:layout_width="0dp"
@@ -380,5 +411,104 @@
         app:layout_constraintTop_toTopOf="@+id/home_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/calendar_button" />
+
+    <!-- ── Overlay de pistas ─────────────────────────────────── -->
+    <FrameLayout
+        android:id="@+id/hint_overlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="40dp"
+        android:visibility="gone"
+        android:background="#CC000000"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            app:cardBackgroundColor="@color/card_bg_dialog">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/tv_hint_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hint_title"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/roboto_bold" />
+
+                <TextView
+                    android:id="@+id/tv_hint_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:drawablePadding="8dp"
+                    android:gravity="center_vertical"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/roboto_bold"
+                    app:drawableStartCompat="@drawable/ic_coins" />
+
+                <TextView
+                    android:id="@+id/tv_hint_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="15sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_use_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/hint_use_btn_5"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/roboto_bold"
+                    app:backgroundTint="@color/primary_button_color"
+                    app:cornerRadius="16dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_skip_hint"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/hint_skip_btn"
+                    android:background="@drawable/button_background_genio"
+                    android:textColor="?attr/colorOnBackground"
+                    app:backgroundTint="@null" />
+
+                <ProgressBar
+                    android:id="@+id/hint_timer_bar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="16dp"
+                    android:max="100"
+                    android:progress="100"
+                    android:progressTint="@color/primary_button_color"
+                    android:progressBackgroundTint="@color/grey_dark" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+    <!-- ── Fin overlay de pistas ─────────────────────────────── -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

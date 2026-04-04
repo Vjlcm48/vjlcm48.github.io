@@ -1854,5 +1854,18 @@
     <string name="hint_use_btn" translatable="false">Usar pista  -4 🪙</string>
     <string name="hint_skip_btn" translatable="false">Continuar sin pista</string>
 
+    <string name="hint_cost_5" translatable="false">Costo: 5 monedas</string>
+    <string name="hint_use_btn_5" translatable="false">Usar pista  -5 🪙</string>
+
+    <string name="hint_cost_6" translatable="false">Costo: 6 monedas</string>
+    <string name="hint_use_btn_6" translatable="false">Usar pista  -6 🪙</string>
+
+    <string name="hint_cost_7" translatable="false">Costo: 7 monedas</string>
+    <string name="hint_use_btn_7" translatable="false">Usar pista  -7 🪙</string>
+
+    <string name="hint_desc_foco_simple" translatable="false">Oculta 4 opciones, deja 2 visibles</string>
+    <string name="hint_desc_foco_dual" translatable="false">Oculta 2 opciones, deja 4 visibles</string>
+    <string name="global_score_label" translatable="false">Puntaje total: </string>
+
 
 </resources>

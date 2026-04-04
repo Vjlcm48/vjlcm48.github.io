@@ -2,6 +2,7 @@
 <resources>
 
     <attr name="colorBackgroundSpecial" format="color" />
+    <attr name="colorFocoPlusScore" format="color"/>
     <attr name="colorOnBackground" format="color"/>
 
 </resources>

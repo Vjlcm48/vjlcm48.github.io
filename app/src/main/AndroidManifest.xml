@@ -439,108 +439,126 @@
             android:name="com.heptacreation.sumamente.ui.GameActivityDeciPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
 
         <activity
             android:name="com.heptacreation.sumamente.ui.GameActivityDeciPlusPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
 
         <activity
             android:name="com.heptacreation.sumamente.ui.GameActivityDeciPlusPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
 
         <activity
             android:name="com.heptacreation.sumamente.ui.GameActivityRomas"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
 
         <activity
             android:name="com.heptacreation.sumamente.ui.GameActivityRomasPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
 
         <activity
             android:name="com.heptacreation.sumamente.ui.GameActivityRomasPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
 
         <activity
             android:name="com.heptacreation.sumamente.ui.GameActivityAlfaNumeros"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
 
         <activity
             android:name="com.heptacreation.sumamente.ui.GameActivityAlfaNumerosPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
 
         <activity
             android:name="com.heptacreation.sumamente.ui.GameActivityAlfaNumerosPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
 
         <activity
             android:name="com.heptacreation.sumamente.ui.GameActivitySumaResta"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
 
         <activity
             android:name="com.heptacreation.sumamente.ui.GameActivitySumaRestaPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
 
         <activity
             android:name="com.heptacreation.sumamente.ui.GameActivitySumaRestaPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
 
         <activity
             android:name="com.heptacreation.sumamente.ui.GameActivityMasPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
 
         <activity
             android:name="com.heptacreation.sumamente.ui.GameActivityMasPlusPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
 
         <activity
             android:name="com.heptacreation.sumamente.ui.GameActivityMasPlusPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
 
         <activity
             android:name="com.heptacreation.sumamente.ui.GameActivityGenioPlus"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
 
         <activity
             android:name="com.heptacreation.sumamente.ui.GameActivityGenioPlusPrincipiante"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
 
         <activity
             android:name="com.heptacreation.sumamente.ui.GameActivityGenioPlusPro"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
 
         <activity

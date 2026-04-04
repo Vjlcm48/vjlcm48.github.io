@@ -83,6 +83,7 @@ class ProgressSummaryActivity : BaseActivity() {
 
     private fun displayGlobalSummary() {
         val tvGlobalLevels = findViewById<TextView>(R.id.tv_global_levels_completed)
+        val tvGlobalScore = findViewById<TextView>(R.id.tv_global_score)
         val tvGlobalProgress = findViewById<TextView>(R.id.tv_global_progress)
 
         val totalCompleted = ScoreManager.getTotalUniqueLevelsCompletedAllGames()
@@ -112,6 +113,25 @@ class ProgressSummaryActivity : BaseActivity() {
 
         tvGlobalLevels.text = builder
         tvGlobalProgress.text = getString(R.string.global_progress_format, percentageString)
+
+        val totalScore = ScoreManager.getTotalScoreAllGames()
+        val scoreLabel = getString(R.string.global_score_label)
+        val builder2 = SpannableStringBuilder()
+        builder2.append(scoreLabel)
+        val scoreString = String.format(Locale.getDefault(), "%,d", totalScore)
+        val scoreSpannable = SpannableString(scoreString)
+        scoreSpannable.setSpan(
+            ForegroundColorSpan(
+                if (isNightMode()) getColorFromAttr(this, R.attr.colorOnBackground)
+                else ContextCompat.getColor(this, R.color.green_dark)
+            ),
+            0,
+            scoreString.length,
+            SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        builder2.append(scoreSpannable)
+        tvGlobalScore.text = builder2
+
     }
 
     private fun createGameProgressData(): List<GameProgressItem> {
@@ -142,6 +162,15 @@ class ProgressSummaryActivity : BaseActivity() {
                 getPrincipianteData = { ScoreManager.getUniqueLevelsPlayedRomasPrincipiante() },
                 getAvanzadoData = { ScoreManager.getUniqueLevelsPlayedRomasAvanzado() },
                 getProData = { ScoreManager.getUniqueLevelsPlayedRomasPro() }
+            ),
+            GameProgressItem(
+                borderColorRes = R.color.s5e_green_800,
+                totalRowBackgroundRes = R.drawable.button_background_foco,
+                gameNameRes = R.string.game_foco_plus,
+                gameNameTextColorRes = if (isNightMode()) R.attr.colorOnBackground else android.R.color.white,
+                getPrincipianteData = { ScoreManager.getUniqueLevelsPlayedFocoPlusPrincipiante() },
+                getAvanzadoData = { 0 },
+                getProData = { 0 }
             ),
             GameProgressItem(
                 borderColorRes = R.color.blue_primary_dark,
@@ -178,15 +207,6 @@ class ProgressSummaryActivity : BaseActivity() {
                 getPrincipianteData = { ScoreManager.getUniqueLevelsPlayedGenioPlusPrincipiante() },
                 getAvanzadoData = { ScoreManager.getUniqueLevelsPlayedGenioPlusAvanzado() },
                 getProData = { ScoreManager.getUniqueLevelsPlayedGenioPlusPro() }
-            ),
-            GameProgressItem(
-                borderColorRes = R.color.s5e_green_800,
-                totalRowBackgroundRes = R.drawable.button_background_foco,
-                gameNameRes = R.string.game_foco_plus,
-                gameNameTextColorRes = if (isNightMode()) R.attr.colorOnBackground else android.R.color.white,
-                getPrincipianteData = { ScoreManager.getUniqueLevelsPlayedFocoPlusPrincipiante() },
-                getAvanzadoData = { 0 },
-                getProData = { 0 }
             )
         )
     }
