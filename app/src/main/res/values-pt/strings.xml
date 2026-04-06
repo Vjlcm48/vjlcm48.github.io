@@ -1440,9 +1440,7 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
 
     <string name="embajador_regla_1">Compartilhe o aplicativo com a família e amigos usando seu código exclusivo.</string>
     <string name="embajador_regla_2">Cada pessoa que jogar pelo menos 12 níveis se torna um indicado validado.</string>
-    <string name="embajador_canje_4">4 indicados = 1 semana PREMIUM</string>
-    <string name="embajador_canje_7">7 indicados = 2 semanas PREMIUM</string>
-    <string name="embajador_canje_12">12 indicados = 4 semanas PREMIUM</string>
+
     <string name="embajador_regla_control">Você está no controle: troque quando quiser e pelo tempo que preferir.</string>
     <string name="embajador_regla_notificacion">Nós o avisaremos quando tiver novos indicados validados.</string>
     <string name="embajador_regla_beneficio">Mais indicados = mais tempo sem anúncios!</string>

@@ -1637,9 +1637,7 @@
 
     <string name="embajador_regla_1">شارك التطبيق مع العائلة والأصدقاء باستخدام رمزك الفريد.</string>
     <string name="embajador_regla_2">كل شخص يلعب 12 مستوى على الأقل يصبح إحالة صالحة.</string>
-    <string name="embajador_canje_4">4 إحالات = أسبوع واحد من PREMIUM</string>
-    <string name="embajador_canje_7">7 إحالات = أسبوعان من PREMIUM</string>
-    <string name="embajador_canje_12">12 إحالة = 4 أسابيع من PREMIUM</string>
+
     <string name="embajador_regla_control">التحكم بين يديك: استبدل متى شئت وللمدة التي تفضلها.</string>
     <string name="embajador_regla_notificacion">سنخبرك عندما يكون لديك إحالات جديدة صالحة.</string>
     <string name="embajador_regla_beneficio">المزيد من الإحالات = المزيد من الوقت بدون إعلانات!</string>

@@ -1500,9 +1500,7 @@ Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di 
 
     <string name="embajador_regla_1">Bagikan aplikasi dengan keluarga dan teman menggunakan kode unik Anda.</string>
     <string name="embajador_regla_2">Setiap orang yang memainkan setidaknya 12 level menjadi rujukan yang divalidasi.</string>
-    <string name="embajador_canje_4">4 rujukan = 1 minggu PREMIUM</string>
-    <string name="embajador_canje_7">7 rujukan = 2 minggu PREMIUM</string>
-    <string name="embajador_canje_12">12 rujukan = 4 minggu PREMIUM</string>
+
     <string name="embajador_regla_control">Anda yang mengontrol: tukarkan kapan pun Anda mau dan untuk durasi yang Anda inginkan.</string>
     <string name="embajador_regla_notificacion">Kami akan memberi tahu Anda jika Anda memiliki rujukan baru yang divalidasi.</string>
     <string name="embajador_regla_beneficio">Lebih banyak rujukan = lebih banyak waktu bebas iklan!</string>

@@ -1519,9 +1519,7 @@
 
     <string name="embajador_regla_1">अपने अद्वितीय कोड का उपयोग करके परिवार और दोस्तों के साथ ऐप साझा करें।</string>
     <string name="embajador_regla_2">जो भी व्यक्ति कम से कम 12 स्तर खेलता है वह एक सत्यापित रेफ़रल बन जाता है।</string>
-    <string name="embajador_canje_4">4 रेफ़रल = 1 सप्ताह PREMIUM</string>
-    <string name="embajador_canje_7">7 रेफ़रल = 2 सप्ताह PREMIUM</string>
-    <string name="embajador_canje_12">12 रेफ़रल = 4 सप्ताह PREMIUM</string>
+
     <string name="embajador_regla_control">आप नियंत्रण में हैं: जब चाहें और जितनी अवधि के लिए चाहें, भुनाएं।</string>
     <string name="embajador_regla_notificacion">जब आपके पास नए सत्यापित रेफ़रल होंगे तो हम आपको सूचित करेंगे।</string>
     <string name="embajador_regla_beneficio">अधिक रेफ़रल = अधिक विज्ञापन-मुक्त समय!</string>

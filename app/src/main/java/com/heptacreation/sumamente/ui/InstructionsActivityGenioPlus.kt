@@ -15,6 +15,7 @@ import androidx.core.content.edit
 import androidx.core.view.isVisible
 import com.heptacreation.sumamente.R
 import androidx.activity.enableEdgeToEdge
+import com.google.android.gms.ads.AdView
 
 class InstructionsActivityGenioPlus : BaseActivity()  {
 
@@ -27,6 +28,7 @@ class InstructionsActivityGenioPlus : BaseActivity()  {
     private lateinit var tvGameName: TextView
     private lateinit var tvDifficulty: TextView
     private lateinit var tvScore: TextView
+    private lateinit var adView: AdView
 
     private val timeLimits = mapOf(
         1 to 24.64, 2 to 24.54, 3 to 24.43, 4 to 24.33, 5 to 24.22, 6 to 24.15, 7 to 24.00,
@@ -47,6 +49,14 @@ class InstructionsActivityGenioPlus : BaseActivity()  {
 
         sharedPreferences = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_instructions_genio_plus)
+
+        tvGameName = findViewById(R.id.tv_game_name)
+        tvDifficulty = findViewById(R.id.tv_difficulty)
+        tvScore = findViewById(R.id.tv_score)
+
+        AdManager.initialize(this)
+        adView = findViewById(R.id.adView)
+        AdManager.loadBanner(this, adView)
 
         val btnClose = findViewById<ImageView>(R.id.btn_close)
 
@@ -80,9 +90,7 @@ class InstructionsActivityGenioPlus : BaseActivity()  {
             responseMode = ResponseModeGenioPlus.valueOf(responseModeName)
         }
 
-        tvGameName = findViewById(R.id.tv_game_name)
-        tvDifficulty = findViewById(R.id.tv_difficulty)
-        tvScore = findViewById(R.id.tv_score)
+
 
         setupInfoBar()
 

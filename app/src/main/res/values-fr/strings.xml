@@ -1581,9 +1581,7 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
 
     <string name="embajador_regla_1">Partagez l\'application avec votre famille et vos amis en utilisant votre code unique.</string>
     <string name="embajador_regla_2">Chaque personne qui joue au moins 12 niveaux devient un parrainage validé.</string>
-    <string name="embajador_canje_4">4 parrainages = 1 semaine PREMIUM</string>
-    <string name="embajador_canje_7">7 parrainages = 2 semaines PREMIUM</string>
-    <string name="embajador_canje_12">12 parrainages = 4 semaines PREMIUM</string>
+
     <string name="embajador_regla_control">Vous avez le contrôle: échangez quand vous le souhaitez et pour la durée de votre choix.</string>
     <string name="embajador_regla_notificacion">Nous vous informerons lorsque vous aurez de nouveaux parrainages validés.</string>
     <string name="embajador_regla_beneficio">Plus de parrainages = plus de temps sans publicité !</string>

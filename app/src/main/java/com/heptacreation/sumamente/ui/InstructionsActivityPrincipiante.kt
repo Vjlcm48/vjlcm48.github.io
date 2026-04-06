@@ -17,6 +17,7 @@ import androidx.core.view.isVisible
 import com.google.android.gms.ads.AdView
 import com.heptacreation.sumamente.R
 
+
 class InstructionsActivityPrincipiante : BaseActivity()  {
 
     private var responseMode: ResponseMode? = null

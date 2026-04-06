@@ -46,6 +46,7 @@ class MyApplication : Application() {
                         setAppState()
                         updateLastActive()
                         resetWelcomeCounterIfNeeded()
+                        verificarVencimientoPremium()
                     }
                 }
             }
@@ -293,4 +294,19 @@ class MyApplication : Application() {
                 }
         }
     }
+
+    private fun verificarVencimientoPremium() {
+        val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        val isPremium = prefs.getBoolean("isPremium", false)
+        if (!isPremium) return
+        val premiumHasta = prefs.getLong("premium_hasta", 0L)
+        if (premiumHasta > 0L && System.currentTimeMillis() > premiumHasta) {
+            prefs.edit {
+                putBoolean("isPremium", false)
+                putLong("premium_hasta", 0L)
+            }
+            android.util.Log.d("PremiumCheck", "Premium vencido — desactivado localmente")
+        }
+    }
+
 }

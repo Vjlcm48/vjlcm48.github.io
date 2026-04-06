@@ -1279,9 +1279,7 @@
 
     <string name="embajador_regla_1">고유 코드를 사용하여 가족 및 친구와 앱을 공유하세요.</string>
     <string name="embajador_regla_2">최소 12개 레벨을 플레이하는 각 사람은 유효한 추천인이 됩니다.</string>
-    <string name="embajador_canje_4">추천인 4명 = 1주 PREMIUM</string>
-    <string name="embajador_canje_7">추천인 7명 = 2주 PREMIUM</string>
-    <string name="embajador_canje_12">추천인 12명 = 4주 PREMIUM</string>
+
     <string name="embajador_regla_control">당신이 제어합니다: 원할 때마다 원하는 기간 동안 교환하세요.</string>
     <string name="embajador_regla_notificacion">새로운 유효한 추천인이 생기면 알려드립니다.</string>
     <string name="embajador_regla_beneficio">더 많은 추천인 = 광고 없는 더 많은 시간!</string>

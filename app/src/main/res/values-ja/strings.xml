@@ -1281,9 +1281,7 @@
 
     <string name="embajador_regla_1">あなたのユニークなコードを使って家族や友人とアプリを共有しましょう。</string>
     <string name="embajador_regla_2">12レベル以上プレイした人は、有効な紹介者となります。</string>
-    <string name="embajador_canje_4">紹介者4人 = PREMIUM 1週間</string>
-    <string name="embajador_canje_7">紹介者7人 = PREMIUM 2週間</string>
-    <string name="embajador_canje_12">紹介者12人 = PREMIUM 4週間</string>
+
     <string name="embajador_regla_control">コントロールはあなたにあります：好きな時に好きな期間だけ交換してください。</string>
     <string name="embajador_regla_notificacion">新しい有効な紹介者がいる場合にお知らせします。</string>
     <string name="embajador_regla_beneficio">紹介者が増えるほど、広告なしの時間が長くなります！</string>

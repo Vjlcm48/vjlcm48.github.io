@@ -1522,9 +1522,7 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
 
     <string name="embajador_regla_1">Teile die App mit Familie und Freunden, indem du deinen einzigartigen Code verwendest.</string>
     <string name="embajador_regla_2">Jede Person, die mindestens 12 Level spielt, wird zu einem validierten Referent.</string>
-    <string name="embajador_canje_4">4 Referenten = 1 Woche PREMIUM</string>
-    <string name="embajador_canje_7">7 Referenten = 2 Wochen PREMIUM</string>
-    <string name="embajador_canje_12">12 Referenten = 4 Wochen PREMIUM</string>
+
     <string name="embajador_regla_control">Du hast die Kontrolle: Tausche ein, wann und für wie lange du möchtest.</string>
     <string name="embajador_regla_notificacion">Wir benachrichtigen dich, wenn du neue validierte Referenten hast.</string>
     <string name="embajador_regla_beneficio">Mehr Referenten = mehr Zeit ohne Werbung!</string>

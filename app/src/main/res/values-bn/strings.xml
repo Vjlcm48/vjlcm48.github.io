@@ -1316,9 +1316,7 @@
 
     <string name="embajador_regla_1">আপনার অনন্য কোড ব্যবহার করে পরিবার এবং বন্ধুদের সাথে অ্যাপটি শেয়ার করুন।</string>
     <string name="embajador_regla_2">যে কেউ কমপক্ষে 12টি স্তর খেলবে সে একটি বৈধ রেফারেল হয়ে যাবে।</string>
-    <string name="embajador_canje_4">4 রেফারেল = 1 সপ্তাহ PREMIUM</string>
-    <string name="embajador_canje_7">7 রেফারেল = 2 সপ্তাহ PREMIUM</string>
-    <string name="embajador_canje_12">12 রেফারেল = 4 সপ্তাহ PREMIUM</string>
+
     <string name="embajador_regla_control">নিয়ন্ত্রণ আপনার হাতে: যখন ইচ্ছা এবং যত সময়ের জন্য ইচ্ছা রিডিম করুন।</string>
     <string name="embajador_regla_notificacion">আপনার নতুন বৈধ রেফারেল থাকলে আমরা আপনাকে জানাব।</string>
     <string name="embajador_regla_beneficio">বেশি রেফারেল = বিজ্ঞাপন ছাড়া বেশি সময়!</string>

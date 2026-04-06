@@ -15,6 +15,7 @@ import androidx.core.content.edit
 import androidx.core.view.isVisible
 import com.heptacreation.sumamente.R
 import androidx.activity.enableEdgeToEdge
+import com.google.android.gms.ads.AdView
 
 class InstructionsActivityRomas : BaseActivity()  {
 
@@ -26,6 +27,7 @@ class InstructionsActivityRomas : BaseActivity()  {
     private lateinit var tvGameName: TextView
     private lateinit var tvDifficulty: TextView
     private lateinit var tvScore: TextView
+    private lateinit var adView: AdView
 
     private val timeLimits = mapOf(
         1 to 22.54, 2 to 22.44, 3 to 22.33, 4 to 22.23, 5 to 22.12, 6 to 22.05, 7 to 21.90,
@@ -47,6 +49,14 @@ class InstructionsActivityRomas : BaseActivity()  {
 
         sharedPreferencesRomas = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
         setContentView(R.layout.activity_instructions_romas)
+
+        tvGameName = findViewById(R.id.tv_game_name)
+        tvDifficulty = findViewById(R.id.tv_difficulty)
+        tvScore = findViewById(R.id.tv_score)
+
+        AdManager.initialize(this)
+        adView = findViewById(R.id.adView)
+        AdManager.loadBanner(this, adView)
 
         val btnClose = findViewById<ImageView>(R.id.btn_close)
 
@@ -72,9 +82,7 @@ class InstructionsActivityRomas : BaseActivity()  {
         val tvRepeatedNumbersMessage = findViewById<TextView>(R.id.tv_repeated_numbers)
         val tvNegativeNumberWarning = findViewById<TextView>(R.id.tv_negative_numbers)
 
-        tvGameName = findViewById(R.id.tv_game_name)
-        tvDifficulty = findViewById(R.id.tv_difficulty)
-        tvScore = findViewById(R.id.tv_score)
+
 
         setupInfoBar()
 

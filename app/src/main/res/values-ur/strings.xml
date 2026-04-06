@@ -1327,9 +1327,7 @@
 
     <string name="embajador_regla_1">اپنے منفرد کوڈ کا استعمال کرتے ہوئے خاندان اور دوستوں کے ساتھ ایپ کا اشتراک کریں۔</string>
     <string name="embajador_regla_2">ہر وہ شخص جو کم از کم 12 درجے کھیلتا ہے ایک تصدیق شدہ حوالہ بن جاتا ہے۔</string>
-    <string name="embajador_canje_4">4 حوالہ جات = 1 ہفتہ PREMIUM</string>
-    <string name="embajador_canje_7">7 حوالہ جات = 2 ہفتے PREMIUM</string>
-    <string name="embajador_canje_12">12 حوالہ جات = 4 ہفتے PREMIUM</string>
+
     <string name="embajador_regla_control">آپ کا کنٹرول ہے: جب چاہیں اور جتنی مدت کے لیے چاہیں اسے بھنائیں۔</string>
     <string name="embajador_regla_notificacion">جب آپ کے پاس نئے تصدیق شدہ حوالہ جات ہوں گے تو ہم آپ کو بتائیں گے۔</string>
     <string name="embajador_regla_beneficio">زیادہ حوالہ جات = اشتہار کے بغیر زیادہ وقت!</string>

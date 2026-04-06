@@ -68,13 +68,13 @@ class CanjeActivity : BaseActivity() {
         btnBack.setOnClickListener { finish() }
 
         btn1Semana.setOnClickListener {
-            applyBounceEffect(it) { procesarCanje(4, getString(R.string.embajador_canje_4)) }
+            applyBounceEffect(it) { procesarCanje(2, getString(R.string.canje_opcion_1)) }
         }
         btn2Semanas.setOnClickListener {
-            applyBounceEffect(it) { procesarCanje(7, getString(R.string.embajador_canje_7)) }
+            applyBounceEffect(it) { procesarCanje(5, getString(R.string.canje_opcion_2)) }
         }
         btn4Semanas.setOnClickListener {
-            applyBounceEffect(it) { procesarCanje(12, getString(R.string.embajador_canje_12)) }
+            applyBounceEffect(it) { procesarCanje(10, getString(R.string.canje_opcion_3)) }
         }
     }
 
@@ -161,6 +161,8 @@ class CanjeActivity : BaseActivity() {
                         if (premiumHasta != null) {
                             sharedPreferences.edit { putLong("premium_hasta", premiumHasta) }
                         }
+
+                        sharedPreferences.edit { putBoolean("isPremium", true) }
 
                         if (!mensaje.isNullOrBlank()) {
                             mostrarDialogoMensaje(mensaje)

@@ -1577,9 +1577,7 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
 
     <string name="embajador_regla_1">Share the app with family and friends using your unique code.</string>
     <string name="embajador_regla_2">Each person who plays at least 12 levels becomes a validated referral.</string>
-    <string name="embajador_canje_4">4 referrals = 1 week PREMIUM</string>
-    <string name="embajador_canje_7">7 referrals = 2 weeks PREMIUM</string>
-    <string name="embajador_canje_12">12 referrals = 4 weeks PREMIUM</string>
+
     <string name="embajador_regla_control">You\'re in control: redeem whenever you want for as long as you prefer.</string>
     <string name="embajador_regla_notificacion">We\'ll let you know when you have new validated referrals.</string>
     <string name="embajador_regla_beneficio">More referrals = more ad-free time!</string>

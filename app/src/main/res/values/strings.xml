@@ -1659,9 +1659,7 @@
 
     <string name="embajador_regla_1">Comparte la app con familiares y amigos usando tu código único.</string>
     <string name="embajador_regla_2">Cada persona que juegue al menos 12 niveles se convierte en referido validado.</string>
-    <string name="embajador_canje_4">4 referidos = 1 semana PREMIUM</string>
-    <string name="embajador_canje_7">7 referidos = 2 semanas PREMIUM</string>
-    <string name="embajador_canje_12">12 referidos = 4 semanas PREMIUM</string>
+
     <string name="embajador_regla_control">Tú tienes el control: canjea cuando quieras por el tiempo que prefieras.</string>
     <string name="embajador_regla_notificacion">Te avisaremos cuando tengas nuevos referidos validados.</string>
     <string name="embajador_regla_beneficio">¡Más referidos = más tiempo sin anuncios!</string>
@@ -1847,6 +1845,15 @@
     <string name="coins_daily_bonus_msg" translatable="false">+%1$d monedas · Racha: %2$d días</string>
     <string name="coins_daily_streak_broken_msg" translatable="false">+%1$d monedas · Racha reiniciada</string>
 
+    <string name="daily_bonus_dialog_title" translatable="false">¡Felicidades, %1$s!</string>
+    <string name="daily_bonus_coins_earned" translatable="false">+%1$d monedas</string>
+    <string name="daily_bonus_login_subtitle" translatable="false">Por iniciar sesión hoy</string>
+    <string name="daily_bonus_streak_label" translatable="false">🔥 %1$d días de racha</string>
+    <string name="daily_bonus_msg_day1" translatable="false">¡Vuelve cada día para construir tu racha y ganar más monedas!</string>
+    <string name="daily_bonus_msg_streak" translatable="false">¡Tu constancia tiene recompensa! Vuelve mañana y ganarás más</string>
+    <string name="daily_bonus_msg_broken" translatable="false">¡Usa tus monedas para seguir jugando sin parar! Así tendrás espacio para seguir ganando más cada día 🪙</string>
+    <string name="daily_bonus_saldo_actual" translatable="false">%1$s: 🪙 %2$d</string>
+
     <string name="hint_title" translatable="false">🧠 ¿Usas una pista?</string>
     <string name="hint_cost" translatable="false">Costo: 4 monedas</string>
     <string name="hint_desc_selection" translatable="false">Elimina 2 opciones incorrectas</string>
@@ -1871,6 +1878,10 @@
     <string name="user_response_single_format_deci" translatable="false">Tu respuesta: %1$s</string>
 
     <string name="user_response_single_format_romas" translatable="false">Tu respuesta: %1$s</string>
+
+    <string name="canje_opcion_1" translatable="false">2 referidos = 1 semana PREMIUM</string>
+    <string name="canje_opcion_2" translatable="false">5 referidos = 1 mes PREMIUM</string>
+    <string name="canje_opcion_3" translatable="false">10 referidos = 3 meses PREMIUM</string>
 
 
 </resources>

@@ -274,6 +274,21 @@ object DataSyncManager {
                         prefs.edit { putBoolean("canje_enabled", true) }
                     }
 
+                    val premiumHasta = doc.getLong("premiumHasta") ?: 0L
+                    val isPremium = doc.getBoolean("isPremium") ?: false
+                    val now = System.currentTimeMillis()
+                    if (isPremium && premiumHasta > now) {
+                        prefs.edit {
+                            putBoolean("isPremium", true)
+                            putLong("premium_hasta", premiumHasta)
+                        }
+                    } else {
+                        prefs.edit {
+                            putBoolean("isPremium", false)
+                            putLong("premium_hasta", 0L)
+                        }
+                    }
+
                     val insigniaVista = doc.getBoolean("insignia_ri_plus_vista") ?: false
                     if (insigniaVista) {
                         prefs.edit { putBoolean("insignia_ri_plus_vista", true) }

@@ -6,6 +6,7 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
@@ -18,10 +19,12 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
@@ -35,6 +38,8 @@ import androidx.core.view.isVisible
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
+import com.airbnb.lottie.LottieAnimationView
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.transition.platform.MaterialSharedAxis
 import com.google.firebase.FirebaseApp
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -45,11 +50,6 @@ import com.heptacreation.sumamente.ui.utils.DailyCondecoracionesWorker
 import com.heptacreation.sumamente.ui.utils.MessagesStateManager
 import java.util.Locale
 import java.util.concurrent.TimeUnit
-import android.app.AlertDialog
-import android.view.LayoutInflater
-import android.widget.LinearLayout
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.snackbar.Snackbar
 
 
 class MainGameActivity : BaseActivity() {
@@ -101,6 +101,7 @@ class MainGameActivity : BaseActivity() {
     private var backgroundCondecoracionesThread: Thread? = null
     private var backgroundSyncThread: Thread? = null
     private var isNavigating = false
+    private var pendingBonusResult: CoinManager.DailyBonusResult.Success? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
@@ -114,7 +115,6 @@ class MainGameActivity : BaseActivity() {
 
         actualizarSaldoMonedasUI()
 
-        //welcomeOverlay.bringToFront()
 
         configurarListeners()
         mostrarBienvenidaSiCorresponde()
@@ -266,16 +266,11 @@ class MainGameActivity : BaseActivity() {
         when (val result = CoinManager.claimDailyBonus(this)) {
             is CoinManager.DailyBonusResult.Success -> {
                 actualizarSaldoMonedasUI()
-                val msg = if (result.streakBroken) {
-                    getString(R.string.coins_daily_streak_broken_msg, result.coinsAdded)
+                if (welcomeOverlay.isVisible) {
+                    pendingBonusResult = result
                 } else {
-                    getString(R.string.coins_daily_bonus_msg, result.coinsAdded, result.streak)
+                    mostrarDialogoBonoDiario(result)
                 }
-                Snackbar.make(
-                    findViewById(android.R.id.content),
-                    msg,
-                    Snackbar.LENGTH_LONG
-                ).show()
             }
             else -> { /* AlreadyClaimed y LimitReached: silencioso */ }
         }
@@ -744,6 +739,8 @@ class MainGameActivity : BaseActivity() {
         isActivityVisible = true
         isNavigating = false
 
+        verificarVencimientoPremium()
+
         actualizarEstadoMusica()
         actualizarPerfil()
         actualizarSaldoMonedasUI()
@@ -774,6 +771,19 @@ class MainGameActivity : BaseActivity() {
         }
 
         postResumeHandler.postDelayed(postResumeWork!!, POST_RESUME_DEFER_MS)
+    }
+
+    private fun verificarVencimientoPremium() {
+        val isPremium = sharedPreferences.getBoolean("isPremium", false)
+        if (!isPremium) return
+        val premiumHasta = sharedPreferences.getLong("premium_hasta", 0L)
+        if (premiumHasta > 0L && System.currentTimeMillis() > premiumHasta) {
+            sharedPreferences.edit {
+                putBoolean("isPremium", false)
+                putLong("premium_hasta", 0L)
+            }
+            android.util.Log.d("PremiumCheck", "Premium vencido — desactivado localmente")
+        }
     }
 
     private fun actualizarCondecoraciones() {
@@ -927,8 +937,66 @@ class MainGameActivity : BaseActivity() {
     }
 
     private fun ocultarBienvenida() {
-
         welcomeOverlay.visibility = View.GONE
+        pendingBonusResult?.let {
+            mostrarDialogoBonoDiario(it)
+            pendingBonusResult = null
+        }
+    }
+
+    private fun mostrarDialogoBonoDiario(result: CoinManager.DailyBonusResult.Success) {
+        if (isFinishing || isDestroyed) return
+
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_daily_bonus, null)
+
+        val lottie        = dialogView.findViewById<LottieAnimationView>(R.id.lottie_bono_stars)
+        val tvTitulo      = dialogView.findViewById<TextView>(R.id.tv_bono_titulo)
+        val tvMonedas     = dialogView.findViewById<TextView>(R.id.tv_bono_monedas)
+        val tvSubtitulo   = dialogView.findViewById<TextView>(R.id.tv_bono_subtitulo)
+        val tvSaldo       = dialogView.findViewById<TextView>(R.id.tv_bono_saldo)
+        val tvRacha       = dialogView.findViewById<TextView>(R.id.tv_bono_racha)
+        val tvMotivacion  = dialogView.findViewById<TextView>(R.id.tv_bono_motivacion)
+        val btnEntendido  = dialogView.findViewById<AppCompatButton>(R.id.btn_bono_entendido)
+        val btnCerrar     = dialogView.findViewById<ImageView>(R.id.btn_cerrar_bono)
+
+        val username = sharedPreferences.getString("savedUserName", null)
+            ?: getString(R.string.default_username)
+
+        tvTitulo.text    = getString(R.string.daily_bonus_dialog_title, username)
+        tvMonedas.text   = getString(R.string.daily_bonus_coins_earned, result.coinsAdded)
+        tvSubtitulo.text = getString(R.string.daily_bonus_login_subtitle)
+
+        val saldoActual  = CoinManager.getBalance(this)
+        tvSaldo.text = getString(R.string.daily_bonus_saldo_actual, getString(R.string.coins_current_balance), saldoActual)
+
+        when {
+            result.streakBroken -> {
+                tvRacha.visibility = View.GONE
+                tvMotivacion.text  = getString(R.string.daily_bonus_msg_broken)
+            }
+            result.streak <= 1 -> {
+                tvRacha.visibility = View.GONE
+                tvMotivacion.text  = getString(R.string.daily_bonus_msg_day1)
+            }
+            else -> {
+                tvRacha.visibility = View.VISIBLE
+                tvRacha.text       = getString(R.string.daily_bonus_streak_label, result.streak)
+                tvMotivacion.text  = getString(R.string.daily_bonus_msg_streak)
+            }
+        }
+
+        lottie.playAnimation()
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        btnEntendido.setOnClickListener { dialog.dismiss() }
+        btnCerrar.setOnClickListener { dialog.dismiss() }
+
+        dialog.show()
     }
 
     override fun onDestroy() {
