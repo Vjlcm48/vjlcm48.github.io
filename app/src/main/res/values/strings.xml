@@ -1867,5 +1867,10 @@
     <string name="hint_desc_foco_dual" translatable="false">Oculta 2 opciones, deja 4 visibles</string>
     <string name="global_score_label" translatable="false">Puntaje total: </string>
 
+    <string name="change_response_mode" translatable="false">Cambiar modo de respuesta</string>
+    <string name="user_response_single_format_deci" translatable="false">Tu respuesta: %1$s</string>
+
+    <string name="user_response_single_format_romas" translatable="false">Tu respuesta: %1$s</string>
+
 
 </resources>

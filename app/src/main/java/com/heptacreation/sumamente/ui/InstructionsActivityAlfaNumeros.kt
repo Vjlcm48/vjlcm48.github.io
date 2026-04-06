@@ -55,6 +55,22 @@ class InstructionsActivityAlfaNumeros : BaseActivity()  {
         setupInfoBar()
 
         val btnClose = findViewById<ImageView>(R.id.btn_close)
+
+        val btnChangeMode = findViewById<ImageView>(R.id.btn_change_mode)
+        btnChangeMode.setOnClickListener {
+            val dialog = ResponseModeDialogAlfaNumeros(this)
+            dialog.setOnResponseModeSelectedListener(object : ResponseModeDialogAlfaNumeros.OnResponseModeSelectedListenerAlfaNumeros {
+                override fun onResponseModeSelected(mode: ResponseModeAlfaNumeros) {
+                    responseMode = mode
+                    getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
+                        .edit {
+                            putString("selectedResponseModeAlfaNumeros", mode.name)
+                        }
+                }
+            })
+            dialog.show()
+        }
+
         val btnStart = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_start)
         val tvInstructions = findViewById<TextView>(R.id.tv_instructions)
         val tvLevel = findViewById<TextView>(R.id.tv_level)

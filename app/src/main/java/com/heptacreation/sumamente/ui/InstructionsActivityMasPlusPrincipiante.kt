@@ -49,6 +49,22 @@ class InstructionsActivityMasPlusPrincipiante : BaseActivity()  {
         setContentView(R.layout.activity_instructions_mas_plus)
 
         val btnClose = findViewById<ImageView>(R.id.btn_close)
+
+        val btnChangeMode = findViewById<ImageView>(R.id.btn_change_mode)
+        btnChangeMode.setOnClickListener {
+            val dialog = ResponseModeDialogMasPlusPrincipiante(this)
+            dialog.setOnResponseModeSelectedListener(object : ResponseModeDialogMasPlusPrincipiante.OnResponseModeSelectedListenerMasPlusPrincipiante {
+                override fun onResponseModeSelected(mode: ResponseModeMasPlusPrincipiante) {
+                    responseMode = mode
+                    getSharedPreferences("MyPrefsMasPlus", MODE_PRIVATE)
+                        .edit {
+                            putString("selectedResponseModeMasPlusPrincipiante", mode.name)
+                        }
+                }
+            })
+            dialog.show()
+        }
+
         val btnStart = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_start)
         val tvInstructions = findViewById<TextView>(R.id.tv_instructions)
         val tvLevel = findViewById<TextView>(R.id.tv_level)

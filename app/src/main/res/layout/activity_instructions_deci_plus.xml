@@ -27,12 +27,28 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/btn_change_mode"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentStart="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/change_response_mode"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_reset"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <ImageView
                     android:id="@+id/btn_close"
-                    android:layout_width="27dp"
-                    android:layout_height="27dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:layout_alignParentEnd="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/close_button_description"
-                    android:src="@drawable/ic_close" />
+                    android:padding="12dp"
+                    android:src="@drawable/ic_close"
+                    android:clickable="true"
+                    android:focusable="true"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -76,8 +92,6 @@
                     android:minWidth="110dp"
                     android:padding="8dp"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:maxLines="4"
                     android:includeFontPadding="false"
                     app:autoSizeTextType="uniform"
@@ -98,8 +112,6 @@
                     android:minHeight="48dp"
                     android:padding="8dp"
                     android:textColor="?attr/colorOnBackground"
-
-
                     android:textStyle="bold"
                     android:maxLines="2"
                     android:includeFontPadding="false"
@@ -129,8 +141,6 @@
                         android:layout_marginTop="0dp"
                         android:gravity="center"
                         android:textColor="?attr/colorOnBackground"
-
-
                         android:textSize="33sp"
                         android:textStyle="bold"
                         android:alpha="0" />
@@ -141,8 +151,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:textColor="?attr/colorOnBackground"
-
-
                         android:textSize="24sp"
                         android:alpha="0" />
 
@@ -152,8 +160,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:textColor="?attr/colorOnBackground"
-
-
                         android:textSize="21sp"
                         android:alpha="0" />
 
@@ -163,8 +169,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:textColor="?attr/colorOnBackground"
-
-
                         android:textSize="21sp"
                         android:alpha="0" />
 
@@ -174,8 +178,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:textColor="?attr/colorOnBackground"
-
-
                         android:textSize="21sp"
                         android:alpha="0" />
 

@@ -19,7 +19,7 @@ class GameProgressAdapter(
     private val progressItems: List<GameProgressItem>
 ) : RecyclerView.Adapter<GameProgressAdapter.ProgressViewHolder>() {
 
-    inner class ProgressViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ProgressViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val container: LinearLayout = itemView.findViewById(R.id.game_progress_container)
         val totalRow: RelativeLayout = itemView.findViewById(R.id.row_total)
         val gameNameTextView: TextView = itemView.findViewById(R.id.tv_game_name)
@@ -53,7 +53,7 @@ class GameProgressAdapter(
             }
         )
 
-        if (item.gameNameRes == R.string.game_numeros_plus || item.gameNameRes == R.string.game_mas_plus) {
+        if (item.gameNameRes == R.string.game_numeros_plus || item.gameNameRes == R.string.game_mas_plus || item.gameNameRes == R.string.game_foco_plus) {
             holder.tvProgressTotal.setTextColor(
                 if (isNightMode()) getColorFromAttr(R.attr.colorOnBackground)
                 else ContextCompat.getColor(context, android.R.color.white)
@@ -77,17 +77,18 @@ class GameProgressAdapter(
         val completedPro = item.getProData()
         val totalCompleted = completedPrincipiante + completedAvanzado + completedPro
 
-        val percPrincipiante = if (completedPrincipiante > 0) (completedPrincipiante / 70.0) * 100 else 0.0
-        val percAvanzado = if (completedAvanzado > 0) (completedAvanzado / 70.0) * 100 else 0.0
-        val percPro = if (completedPro > 0) (completedPro / 70.0) * 100 else 0.0
-        val percTotal = if (totalCompleted > 0) (totalCompleted / 210.0) * 100 else 0.0
+        val totalLevels = item.totalLevelsPrincipiante + item.totalLevelsAvanzado + item.totalLevelsPro
+        val percPrincipiante = if (completedPrincipiante > 0) (completedPrincipiante / item.totalLevelsPrincipiante.toDouble()) * 100 else 0.0
+        val percAvanzado = if (completedAvanzado > 0) (completedAvanzado / item.totalLevelsAvanzado.toDouble()) * 100 else 0.0
+        val percPro = if (completedPro > 0) (completedPro / item.totalLevelsPro.toDouble()) * 100 else 0.0
+        val percTotal = if (totalCompleted > 0) (totalCompleted / totalLevels.toDouble()) * 100 else 0.0
 
         val locale = Locale.getDefault()
 
-        holder.tvProgressTotal.text = context.getString(R.string.game_progress_format, totalCompleted, 210, String.format(locale, "%.2f", percTotal))
-        holder.tvProgressPrincipiante.text = context.getString(R.string.game_progress_format, completedPrincipiante, 70, String.format(locale, "%.2f", percPrincipiante))
-        holder.tvProgressAvanzado.text = context.getString(R.string.game_progress_format, completedAvanzado, 70, String.format(locale, "%.2f", percAvanzado))
-        holder.tvProgressPro.text = context.getString(R.string.game_progress_format, completedPro, 70, String.format(locale, "%.2f", percPro))
+        holder.tvProgressTotal.text = context.getString(R.string.game_progress_format, totalCompleted, totalLevels, String.format(locale, "%.2f", percTotal))
+        holder.tvProgressPrincipiante.text = context.getString(R.string.game_progress_format, completedPrincipiante, item.totalLevelsPrincipiante, String.format(locale, "%.2f", percPrincipiante))
+        holder.tvProgressAvanzado.text = context.getString(R.string.game_progress_format, completedAvanzado, item.totalLevelsAvanzado, String.format(locale, "%.2f", percAvanzado))
+        holder.tvProgressPro.text = context.getString(R.string.game_progress_format, completedPro, item.totalLevelsPro, String.format(locale, "%.2f", percPro))
     }
 
     private fun isNightMode(): Boolean {

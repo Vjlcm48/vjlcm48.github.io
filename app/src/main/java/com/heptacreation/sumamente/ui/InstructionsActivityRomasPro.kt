@@ -49,6 +49,25 @@ class InstructionsActivityRomasPro : BaseActivity()  {
         setContentView(R.layout.activity_instructions_romas)
 
         val btnClose = findViewById<ImageView>(R.id.btn_close)
+
+        val btnChangeMode = findViewById<ImageView>(R.id.btn_change_mode)
+        btnChangeMode.setOnClickListener {
+            val dialog = ResponseModeDialogRomasPro(this)
+            dialog.setOnResponseModeSelectedListener(object : ResponseModeDialogRomasPro.OnResponseModeSelectedListenerRomasPro {
+                override fun onResponseModeSelected(mode: ResponseModeRomasPro) {
+                    responseMode = when(mode) {
+                        ResponseModeRomasPro.SIMPLE_SELECTION_ROMAS -> ResponseModeRomas.SIMPLE_SELECTION_ROMAS
+                        ResponseModeRomasPro.TYPE_ANSWER_ROMAS -> ResponseModeRomas.TYPE_ANSWER_ROMAS
+                    }
+                    getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
+                        .edit {
+                            putString("selectedResponseModeRomasPro", mode.name)
+                        }
+                }
+            })
+            dialog.show()
+        }
+
         val btnStart = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_start)
         val tvInstructions = findViewById<TextView>(R.id.tv_instructions)
         val tvLevel = findViewById<TextView>(R.id.tv_level)

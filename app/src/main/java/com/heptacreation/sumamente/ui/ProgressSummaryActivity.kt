@@ -170,7 +170,10 @@ class ProgressSummaryActivity : BaseActivity() {
                 gameNameTextColorRes = if (isNightMode()) R.attr.colorOnBackground else android.R.color.white,
                 getPrincipianteData = { ScoreManager.getUniqueLevelsPlayedFocoPlusPrincipiante() },
                 getAvanzadoData = { 0 },
-                getProData = { 0 }
+                getProData = { 0 },
+                totalLevelsPrincipiante = 420,
+                totalLevelsAvanzado = 0,
+                totalLevelsPro = 0
             ),
             GameProgressItem(
                 borderColorRes = R.color.blue_primary_dark,

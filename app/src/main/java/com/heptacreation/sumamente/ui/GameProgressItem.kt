@@ -13,5 +13,8 @@ data class GameProgressItem(
     @param:ColorRes val gameNameTextColorRes: Int,
     val getPrincipianteData: () -> Int,
     val getAvanzadoData: () -> Int,
-    val getProData: () -> Int
+    val getProData: () -> Int,
+    val totalLevelsPrincipiante: Int = 70,
+    val totalLevelsAvanzado: Int = 70,
+    val totalLevelsPro: Int = 70
 )

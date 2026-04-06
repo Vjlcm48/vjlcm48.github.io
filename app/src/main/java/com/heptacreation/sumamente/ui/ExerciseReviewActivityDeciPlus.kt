@@ -69,7 +69,11 @@ class ExerciseReviewActivityDeciPlus : BaseActivity()  {
             ""
         }
 
-        val responseText = getString(R.string.user_responses_format_deci, formattedUserResponses)
+        val responseText = if (userResponses.size >= 2) {
+            getString(R.string.user_responses_format_deci, formattedUserResponses)
+        } else {
+            getString(R.string.user_response_single_format_deci, formattedUserResponses)
+        }
         userResponsesTextView.text = responseText
 
         applyTouchAnimation(understoodButton)

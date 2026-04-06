@@ -54,6 +54,25 @@ class InstructionsActivitySumaRestaPro : BaseActivity()  {
         setupInfoBar()
 
         val btnClose = findViewById<ImageView>(R.id.btn_close)
+
+        val btnChangeMode = findViewById<ImageView>(R.id.btn_change_mode)
+        btnChangeMode.setOnClickListener {
+            val dialog = ResponseModeDialogSumaRestaPro(this)
+            dialog.setOnResponseModeSelectedListener(object : ResponseModeDialogSumaRestaPro.OnResponseModeSelectedListenerSumaRestaPro {
+                override fun onResponseModeSelected(mode: ResponseModeSumaRestaPro) {
+                    responseMode = when(mode) {
+                        ResponseModeSumaRestaPro.SIMPLE_SELECTION -> ResponseModeSumaResta.SIMPLE_SELECTION
+                        ResponseModeSumaRestaPro.TYPE_ANSWER -> ResponseModeSumaResta.TYPE_ANSWER
+                    }
+                    getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
+                        .edit {
+                            putString("selectedResponseModeSumaRestaPro", mode.name)
+                        }
+                }
+            })
+            dialog.show()
+        }
+
         val btnStart = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_start)
         val tvInstructions = findViewById<TextView>(R.id.tv_instructions)
         val tvLevel = findViewById<TextView>(R.id.tv_level)

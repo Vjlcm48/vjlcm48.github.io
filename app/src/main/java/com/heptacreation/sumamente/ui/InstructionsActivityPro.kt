@@ -60,6 +60,22 @@ class InstructionsActivityPro : BaseActivity()  {
         setupInfoBar()
 
         val btnClose = findViewById<ImageView>(R.id.btn_close)
+
+        val btnChangeMode = findViewById<ImageView>(R.id.btn_change_mode)
+        btnChangeMode.setOnClickListener {
+            val dialog = ResponseModeDialogPro(this)
+            dialog.setOnResponseModeSelectedListener(object : ResponseModeDialogPro.OnResponseModeSelectedListener {
+                override fun onResponseModeSelected(mode: ResponseMode) {
+                    responseMode = mode
+                    getSharedPreferences("MyPrefs", MODE_PRIVATE)
+                        .edit {
+                            putString("selectedResponseModePro", mode.name)
+                        }
+                }
+            })
+            dialog.show()
+        }
+
         val btnStart = findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btn_start)
         val tvInstructions = findViewById<TextView>(R.id.tv_instructions)
         val tvLevel = findViewById<TextView>(R.id.tv_level)

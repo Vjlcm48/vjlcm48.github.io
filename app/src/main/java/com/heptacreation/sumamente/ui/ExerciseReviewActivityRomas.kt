@@ -68,13 +68,11 @@ class ExerciseReviewActivityRomas : BaseActivity()  {
                     userResponses[1].toString()
                 )
             )
-        } else if (userResponses.isNotEmpty()) {
+        } else {
             getString(
-                R.string.user_responses_format_romas,
+                R.string.user_response_single_format_romas,
                 userResponses[0].toString()
             )
-        } else {
-            getString(R.string.user_responses_format_romas, "")
         }
 
         userResponsesTextView.text = responseText
