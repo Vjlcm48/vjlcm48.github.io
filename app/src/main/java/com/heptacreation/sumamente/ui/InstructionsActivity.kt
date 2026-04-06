@@ -265,7 +265,6 @@ class InstructionsActivity : BaseActivity()  {
         }
     }
 
-
     private fun setupInfoBar() {
         tvGameName.text = getString(R.string.game_numeros_plus)
         tvGameName.setTextColor(ContextCompat.getColor(this, R.color.game_name_color))

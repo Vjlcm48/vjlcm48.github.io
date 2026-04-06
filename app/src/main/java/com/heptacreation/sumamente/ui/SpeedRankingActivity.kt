@@ -84,6 +84,8 @@ class SpeedRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccou
 
         setupFloatingButtonInteractions()
 
+        AdManager.showInterstitialOnRankingOrTrophyEnter(this) {}
+
         val gameType = intent.getStringExtra(EXTRA_GAME_TYPE)
         if (gameType != null) {
             when (gameType) {

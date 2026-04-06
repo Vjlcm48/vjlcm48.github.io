@@ -91,6 +91,11 @@ class IntegralRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAc
         setupButtons()
         setupShareButton()
         setupShareFabMovable()
+
+        setupFloatingButtonInteractions()
+
+        AdManager.showInterstitialOnRankingOrTrophyEnter(this) {}
+
         ensureFreshThen { loadIntegralRankingData() }
 
         // Inicio del cambio flecha de regresar del celular

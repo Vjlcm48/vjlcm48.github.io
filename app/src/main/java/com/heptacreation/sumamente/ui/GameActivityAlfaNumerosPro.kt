@@ -113,6 +113,8 @@ class GameActivityAlfaNumerosPro : BaseActivity()  {
         getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
         setContentView(R.layout.activity_game_alfanumeros)
 
+        AdManager.preloadInterstitial(this)
+
         ScoreManager.initAlfaNumerosPro(this)
 
         val prefs = getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
@@ -1195,8 +1197,10 @@ class GameActivityAlfaNumerosPro : BaseActivity()  {
         intent.putExtra("USED_HINT", pistaActivada)
         intent.putExtra("USE_MANUAL_ANSWER", useManualAnswer)
 
-        startActivity(intent)
-        finish()
+        AdManager.showInterstitialOnLevelEnd(this, currentLevel) {
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun ajustarIconosInferiores() {

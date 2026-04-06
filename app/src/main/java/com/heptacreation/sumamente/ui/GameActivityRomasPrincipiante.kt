@@ -111,6 +111,8 @@ class GameActivityRomasPrincipiante : BaseActivity() {
         getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
         setContentView(R.layout.activity_game_romas)
 
+        AdManager.preloadInterstitial(this)
+
         ScoreManager.initRomasPrincipiante(this)
 
         val prefs = getSharedPreferences("MyPrefsRomas", MODE_PRIVATE)
@@ -1088,8 +1090,10 @@ class GameActivityRomasPrincipiante : BaseActivity() {
         intent.putExtra("USED_HINT", pistaActivada)
         intent.putExtra("USE_MANUAL_ANSWER", useManualAnswer)
 
-        startActivity(intent)
-        finish()
+        AdManager.showInterstitialOnLevelEnd(this, currentLevel) {
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun navigateToHome() {

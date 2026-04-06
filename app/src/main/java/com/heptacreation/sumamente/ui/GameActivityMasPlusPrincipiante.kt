@@ -112,6 +112,8 @@ class GameActivityMasPlusPrincipiante : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_mas_plus)
 
+        AdManager.preloadInterstitial(this)
+
         ScoreManager.initMasPlusPrincipiante(this)
 
         currentLevel = intent.getIntExtra("LEVEL", 1)
@@ -665,7 +667,7 @@ class GameActivityMasPlusPrincipiante : BaseActivity() {
                 tvHintBalance.text = (it.animatedValue as Int).toString()
             }
             addListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: android.animation.Animator) {
+                override fun onAnimationEnd(animation: Animator) {
                     Handler(Looper.getMainLooper()).postDelayed({ onFin() }, 300)
                 }
             })
@@ -1139,8 +1141,10 @@ class GameActivityMasPlusPrincipiante : BaseActivity() {
         intent.putExtra("USED_HINT", pistaActivada)
         intent.putExtra("USE_MANUAL_ANSWER", useManualAnswer)
 
-        startActivity(intent)
-        finish()
+        AdManager.showInterstitialOnLevelEnd(this, currentLevel) {
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun ajustarIconosInferiores() {

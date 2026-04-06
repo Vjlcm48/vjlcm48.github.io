@@ -110,6 +110,8 @@ class GameActivityPro : BaseActivity()  {
         getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_game)
 
+        AdManager.preloadInterstitial(this)
+
         ScoreManager.initPro(this)
 
         val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
@@ -1033,8 +1035,10 @@ class GameActivityPro : BaseActivity()  {
         intent.putExtra("USED_HINT", pistaActivada)
         intent.putExtra("USE_MANUAL_ANSWER", useManualAnswer)
 
-        startActivity(intent)
-        finish()
+        AdManager.showInterstitialOnLevelEnd(this, currentLevel) {
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun ajustarIconosInferiores() {

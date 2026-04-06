@@ -299,6 +299,21 @@ class MainGameActivity : BaseActivity() {
 
         btnWatchVideo.setOnClickListener {
             dialog.dismiss()
+            AdManager.loadRewarded(this)
+            AdManager.showRewarded(
+                activity = this,
+                onRewarded = { coins ->
+                    CoinManager.spendCoins(this, -coins)
+                    actualizarSaldoMonedasUI()
+                },
+                onNotAvailable = {
+                    android.widget.Toast.makeText(
+                        this,
+                        getString(R.string.video_no_disponible),
+                        android.widget.Toast.LENGTH_SHORT
+                    ).show()
+                }
+            )
         }
 
         btnBuyCoins.setOnClickListener {

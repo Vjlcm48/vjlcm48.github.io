@@ -15,10 +15,10 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.core.content.ContextCompat
-import com.heptacreation.sumamente.R
-import androidx.core.view.isVisible
-import androidx.core.graphics.toColorInt
 import androidx.core.content.edit
+import androidx.core.graphics.toColorInt
+import androidx.core.view.isVisible
+import com.heptacreation.sumamente.R
 
 class InstructionsLevelsActivityFocoPlus : BaseActivity() {
 
@@ -584,7 +584,9 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
         val subtype = getSubtypeForLevel(selectedLevel)
         intent.putExtra("SUBTYPE", subtype)
 
-        startActivity(intent)
+        AdManager.showInterstitialOnLevelStart(this@InstructionsLevelsActivityFocoPlus, selectedLevel) {
+            startActivity(intent)
+        }
     }
 
     private fun ensureMiniblockShuffleAndAttachToIntent(

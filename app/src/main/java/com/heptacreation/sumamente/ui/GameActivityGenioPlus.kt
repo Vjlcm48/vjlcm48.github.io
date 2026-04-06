@@ -141,6 +141,8 @@ class GameActivityGenioPlus : BaseActivity() {
         getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_game_genio_plus)
 
+        AdManager.preloadInterstitial(this)
+
         ScoreManager.initGenioPlus(this)
 
         val prefs = getSharedPreferences("MyPrefsGenioPlus", MODE_PRIVATE)
@@ -1221,8 +1223,10 @@ class GameActivityGenioPlus : BaseActivity() {
         intent.putExtra("USED_HINT", pistaActivada)
         intent.putExtra("USE_MANUAL_ANSWER", useManualAnswer)
 
-        startActivity(intent)
-        finish()
+        AdManager.showInterstitialOnLevelEnd(this, currentLevel) {
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun ajustarIconosInferiores() {

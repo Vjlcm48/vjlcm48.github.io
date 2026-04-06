@@ -198,11 +198,13 @@ class InstructionsActivityAlfaNumerosPro : BaseActivity()  {
                         getSharedPreferences("MyPrefsAlfaNumeros", MODE_PRIVATE)
                             .edit { putString("selectedResponseModeAlfaNumerosPro", it.name) }
                     }
-                    Intent(this@InstructionsActivityAlfaNumerosPro, GameActivityAlfaNumerosPro::class.java).apply {
+                    val intent = Intent(this@InstructionsActivityAlfaNumerosPro, GameActivityAlfaNumerosPro::class.java).apply {
                         putExtra("LEVEL", level)
                         responseMode?.let { putExtra("RESPONSE_MODE", it.name) }
                         putExtra("EXCLUDED_INDEX", excludedIndex)
-                        startActivity(this)
+                    }
+                    AdManager.showInterstitialOnLevelStart(this@InstructionsActivityAlfaNumerosPro, level) {
+                        startActivity(intent)
                     }
                 }
                 override fun onAnimationStart(a: Animator) {}

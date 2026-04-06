@@ -113,6 +113,8 @@ class GameActivityMasPlusPro : BaseActivity() {
 
         setContentView(R.layout.activity_game_mas_plus)
 
+        AdManager.preloadInterstitial(this)
+
         ScoreManager.initMasPlusPro(this)
 
         currentLevel = intent.getIntExtra("LEVEL", 1)
@@ -1137,8 +1139,10 @@ class GameActivityMasPlusPro : BaseActivity() {
         intent.putExtra("USED_HINT", pistaActivada)
         intent.putExtra("USE_MANUAL_ANSWER", useManualAnswer)
 
-        startActivity(intent)
-        finish()
+        AdManager.showInterstitialOnLevelEnd(this, currentLevel) {
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun ajustarIconosInferiores() {

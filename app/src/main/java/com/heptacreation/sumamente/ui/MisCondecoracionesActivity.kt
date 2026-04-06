@@ -14,9 +14,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.heptacreation.sumamente.R
+import com.heptacreation.sumamente.ui.utils.MusicManager
 import java.util.Calendar
 import java.util.Locale
-import com.heptacreation.sumamente.ui.utils.MusicManager
 
 class MisCondecoracionesActivity : BaseActivity()  {
 
@@ -42,6 +42,8 @@ class MisCondecoracionesActivity : BaseActivity()  {
         setupButtons()
         loadCondecoraciones()
         setupRecyclerView()
+
+        AdManager.showInterstitialOnRankingOrTrophyEnter(this) {}
 
         // Inicio del cambio flecha de regresar del celular
         val callback = object : OnBackPressedCallback(true) {

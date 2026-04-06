@@ -112,6 +112,8 @@ class GameActivity : BaseActivity()  {
         getSharedPreferences("MyPrefs", MODE_PRIVATE)
         setContentView(R.layout.activity_game)
 
+        AdManager.preloadInterstitial(this)
+
         ScoreManager.initLight(this)
 
         val prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE)
@@ -1082,8 +1084,10 @@ class GameActivity : BaseActivity()  {
         intent.putExtra("USED_HINT", pistaActivada)
         intent.putExtra("USE_MANUAL_ANSWER", useManualAnswer)
 
-        startActivity(intent)
-        finish()
+        AdManager.showInterstitialOnLevelEnd(this, currentLevel) {
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun navigateToHome() {

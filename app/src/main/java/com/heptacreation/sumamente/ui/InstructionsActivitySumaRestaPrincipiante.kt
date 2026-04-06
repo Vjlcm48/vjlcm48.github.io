@@ -226,7 +226,9 @@ class InstructionsActivitySumaRestaPrincipiante : BaseActivity()  {
                         intent.putExtra("RESPONSE_MODE", mode.name)
                     }
                     intent.putExtra("EXCLUDED_INDEX", excludedIndex)
-                    startActivity(intent)
+                    AdManager.showInterstitialOnLevelStart(this@InstructionsActivitySumaRestaPrincipiante, level) {
+                        startActivity(intent)
+                    }
                 }
                 override fun onAnimationCancel(animation: Animator) {}
                 override fun onAnimationRepeat(animation: Animator) {}

@@ -167,6 +167,8 @@ class GameActivityFocoPlus : BaseActivity() {
 
         setContentView(R.layout.activity_game_foco_plus)
 
+        AdManager.preloadInterstitial(this)
+
         currentLevel = intent.getIntExtra("LEVEL", 1)
         currentDifficulty = intent.getStringExtra("DIFFICULTY")
         subtype = intent.getIntExtra("SUBTYPE", 1)
@@ -2460,8 +2462,10 @@ class GameActivityFocoPlus : BaseActivity() {
             intent.putExtra("SUBTYPE", subtype)
         }
 
-        startActivity(intent)
-        finish()
+        AdManager.showInterstitialOnLevelEnd(this, currentLevel) {
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun setMetaButtonsForNumbers(values: List<Int>) {

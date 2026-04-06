@@ -115,6 +115,8 @@ class GameActivityMasPlus : BaseActivity() {
         getSharedPreferences("MyPrefsMasPlus", MODE_PRIVATE)
         setContentView(R.layout.activity_game_mas_plus)
 
+        AdManager.preloadInterstitial(this)
+
         ScoreManager.initMasPlus(this)
 
         val prefs = getSharedPreferences("MyPrefsMasPlus", MODE_PRIVATE)
@@ -1138,8 +1140,10 @@ class GameActivityMasPlus : BaseActivity() {
         intent.putExtra("USED_HINT", pistaActivada)
         intent.putExtra("USE_MANUAL_ANSWER", useManualAnswer)
 
-        startActivity(intent)
-        finish()
+        AdManager.showInterstitialOnLevelEnd(this, currentLevel) {
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun ajustarIconosInferiores() {

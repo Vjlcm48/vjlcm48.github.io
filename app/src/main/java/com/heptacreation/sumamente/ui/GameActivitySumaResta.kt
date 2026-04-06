@@ -110,6 +110,8 @@ class GameActivitySumaResta : BaseActivity() {
         getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
         setContentView(R.layout.activity_game_suma_resta)
 
+        AdManager.preloadInterstitial(this)
+
         ScoreManager.initSumaResta(this)
 
         val prefs = getSharedPreferences("MyPrefsSumaResta", MODE_PRIVATE)
@@ -1080,8 +1082,10 @@ class GameActivitySumaResta : BaseActivity() {
         intent.putExtra("USED_HINT", pistaActivada)
         intent.putExtra("USE_MANUAL_ANSWER", useManualAnswer)
 
-        startActivity(intent)
-        finish()
+        AdManager.showInterstitialOnLevelEnd(this, currentLevel) {
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun navigateToHome() {

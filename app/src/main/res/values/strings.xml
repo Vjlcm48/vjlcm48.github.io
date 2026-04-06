@@ -1883,5 +1883,7 @@
     <string name="canje_opcion_2" translatable="false">5 referidos = 1 mes PREMIUM</string>
     <string name="canje_opcion_3" translatable="false">10 referidos = 3 meses PREMIUM</string>
 
+    <string name="video_no_disponible" translatable="false">Video no disponible, intenta más tarde</string>
+
 
 </resources>

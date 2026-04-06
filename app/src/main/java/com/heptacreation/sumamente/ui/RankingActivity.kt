@@ -91,6 +91,10 @@ class RankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAccountDia
         setupShareButton()
         setupShareFabMovable()
 
+        setupFloatingButtonInteractions()
+
+        AdManager.showInterstitialOnRankingOrTrophyEnter(this) {}
+
         ensureFreshThen { loadRankingData() }
 
         // Inicio del cambio flecha de regresar del celular

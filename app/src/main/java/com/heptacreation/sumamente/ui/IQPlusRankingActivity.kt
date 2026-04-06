@@ -110,6 +110,8 @@ class IQPlusRankingActivity : BaseActivity(), LinkAccountDialogFragment.LinkAcco
         setupBackButton()
         setupFloatingButtonInteractions()
 
+        AdManager.showInterstitialOnRankingOrTrophyEnter(this) {}
+
         spinnerFiltro.visibility = View.GONE
         ensureFreshThen { loadIQPlusRankingData() }
 

@@ -225,7 +225,9 @@ class InstructionsActivityRomasPro : BaseActivity()  {
                         intent.putExtra("RESPONSE_MODE_ROMAS", mode.name)
                     }
                     intent.putExtra("EXCLUDED_INDEX", excludedIndex)
-                    startActivity(intent)
+                    AdManager.showInterstitialOnLevelStart(this@InstructionsActivityRomasPro, level) {
+                        startActivity(intent)
+                    }
                 }
                 override fun onAnimationCancel(animation: Animator) {}
                 override fun onAnimationRepeat(animation: Animator) {}
