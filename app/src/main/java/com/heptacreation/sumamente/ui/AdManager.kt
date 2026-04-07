@@ -16,10 +16,11 @@ import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import java.util.Calendar
 import java.util.TimeZone
+import androidx.core.content.edit
 
 object AdManager {
 
-    private const val BANNER_AD_UNIT_ID     = "ca-app-pub-1889227735632244/5877495907"
+
     private const val INTERSTITIAL_AD_UNIT_ID = "ca-app-pub-1889227735632244/6314173275"
     private const val REWARDED_AD_UNIT_ID   = "ca-app-pub-1889227735632244/6258332958"
 
@@ -50,9 +51,9 @@ object AdManager {
             return
         }
 
-        adView.adUnitId = BANNER_AD_UNIT_ID
         adView.visibility = View.VISIBLE
-        adView.loadAd(AdRequest.Builder().build())
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
         Log.d("AdManager", "Banner cargado")
     }
 
@@ -131,10 +132,10 @@ object AdManager {
         val count = if (lastDate == todayStr) prefs.getInt(KEY_RANKING_COUNT, 0) else 0
 
         val newCount = count + 1
-        prefs.edit()
-            .putString(KEY_RANKING_DATE, todayStr)
-            .putInt(KEY_RANKING_COUNT, newCount)
-            .apply()
+        prefs.edit {
+            putString(KEY_RANKING_DATE, todayStr)
+                .putInt(KEY_RANKING_COUNT, newCount)
+        }
 
         Log.d("AdManager", "Ingreso ranking/condecoraciones: $newCount hoy")
 

@@ -1697,4 +1697,50 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
 
     <string name="ranking_total_participants">🏆 %1$s participants</string>
 
+    <string name="coins_dialog_title">Pièces</string>
+    <string name="coins_current_balance">Votre solde actuel</string>
+    <string name="coins_watch_video">Regarder une vidéo et gagner des pièces</string>
+    <string name="coins_buy">Acheter des pièces</string>
+    <string name="coins_packs_title">Pièces</string>
+    <string name="coins_welcome_bonus_title">🪙 Bonus de bienvenue !</string>
+    <string name="coins_welcome_bonus_desc">Premier achat : pièces bonus gratuites !</string>
+    <string name="coins_pack_amount">%1$d pièces</string>
+    <string name="coins_pack_bonus_badge">+%1$d BONUS</string>
+    <string name="coins_pack_total_with_bonus">Total : %1$d</string>
+    <string name="coins_pack_limit_msg">Limite atteinte</string>
+    <string name="coins_pack_purchased_msg">+%1$d pièces ajoutées</string>
+    <string name="coins_go_premium_btn">💎 Sans limites ? Devenez Premium</string>
+    <string name="coins_daily_bonus_msg">+%1$d pièces · Série : %2$d jours</string>
+    <string name="coins_daily_streak_broken_msg">+%1$d pièces · Série réinitialisée</string>
+    <string name="daily_bonus_dialog_title">Félicitations, %1$s !</string>
+    <string name="daily_bonus_coins_earned">+%1$d pièces</string>
+    <string name="daily_bonus_login_subtitle">Pour votre connexion aujourd\'hui</string>
+    <string name="daily_bonus_streak_label">🔥 Série de %1$d jours</string>
+    <string name="daily_bonus_msg_day1">Revenez chaque jour pour augmenter votre série et gagner plus !</string>
+    <string name="daily_bonus_msg_streak">Votre régularité est récompensée ! Revenez demain pour gagner plus</string>
+    <string name="daily_bonus_msg_broken">Utilisez vos pièces pour continuer à jouer ! Vous ferez ainsi de la place pour en gagner plus 🪙</string>
+    <string name="hint_title">🧠 Utiliser un indice ?</string>
+    <string name="hint_cost">Coût : 4 pièces</string>
+    <string name="hint_desc_selection">Supprime 2 options incorrectes</string>
+    <string name="hint_desc_writing">Affiche 2 réponses possibles</string>
+    <string name="hint_use_btn">Utiliser l\'indice -4 🪙</string>
+    <string name="hint_skip_btn">Continuer sans indice</string>
+    <string name="hint_cost_5">Coût : 5 pièces</string>
+    <string name="hint_use_btn_5">Utiliser l\'indice -5 🪙</string>
+    <string name="hint_cost_6">Coût : 6 pièces</string>
+    <string name="hint_use_btn_6">Utiliser l\'indice -6 🪙</string>
+    <string name="hint_cost_7">Coût : 7 pièces</string>
+    <string name="hint_use_btn_7">Utiliser l\'indice -7 🪙</string>
+    <string name="hint_desc_foco_simple">Masque 4 options, en laisse 2 visibles</string>
+    <string name="hint_desc_foco_dual">Masque 2 options, en laisse 4 visibles</string>
+    <string name="global_score_label">Score total : </string>
+    <string name="change_response_mode">Changer le mode de réponse</string>
+    <string name="user_response_single_format_deci">Votre réponse : %1$s</string>
+    <string name="user_response_single_format_romas">Votre réponse : %1$s</string>
+    <string name="canje_opcion_1">2 parrainages = 1 semaine PREMIUM</string>
+    <string name="canje_opcion_2">5 parrainages = 1 mois PREMIUM</string>
+    <string name="canje_opcion_3">10 parrainages = 3 mois PREMIUM</string>
+    <string name="video_no_disponible">Vidéo non disponible, réessayez plus tard</string>
+    <string name="billing_not_ready">Service de paiement indisponible. Réessayez.</string>
+
 </resources>

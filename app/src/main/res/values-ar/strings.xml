@@ -1752,4 +1752,51 @@
 
     <string name="ranking_total_participants">🏆 %1$s مشارك</string>
 
+    <string name="coins_dialog_title">عملات</string>
+    <string name="coins_current_balance">رصيدك الحالي</string>
+    <string name="coins_watch_video">شاهد فيديو واكسب عملات</string>
+    <string name="coins_buy">شراء عملات</string>
+    <string name="coins_packs_title">عملات</string>
+    <string name="coins_welcome_bonus_title">🪙 مكافأة ترحيبية!</string>
+    <string name="coins_welcome_bonus_desc">عند أول شراء: عملات إضافية مجانًا!</string>
+    <string name="coins_pack_amount">%1$d عملة</string>
+    <string name="coins_pack_bonus_badge">+%1$d مكافأة</string>
+    <string name="coins_pack_total_with_bonus">الإجمالي: %1$d</string>
+    <string name="coins_pack_limit_msg">تم الوصول إلى الحد الأقصى</string>
+    <string name="coins_pack_purchased_msg">تمت إضافة +%1$d عملة</string>
+    <string name="coins_go_premium_btn">💎 بلا حدود؟ كن مشتركاً مميزاً</string>
+    <string name="coins_daily_bonus_msg">+%1$d عملة · سلسلة أيام: %2$d</string>
+    <string name="coins_daily_streak_broken_msg">+%1$d عملة · تمت إعادة تعيين السلسلة</string>
+    <string name="daily_bonus_dialog_title">مبروك، %1$s!</string>
+    <string name="daily_bonus_coins_earned">+%1$d عملة</string>
+    <string name="daily_bonus_login_subtitle">لتسجيل الدخول اليوم</string>
+    <string name="daily_bonus_streak_label">🔥 سلسلة %1$d أيام</string>
+    <string name="daily_bonus_msg_day1">عد يومياً لتبني سلسلتك وتكسب المزيد من العملات!</string>
+    <string name="daily_bonus_msg_streak">استمراريتك لها مكافأة! عد غداً لتكسب المزيد</string>
+    <string name="daily_bonus_msg_broken">استخدم عملاتك لمواصلة اللعب! هكذا ستوفر مساحة لربح المزيد يومياً 🪙</string>
+    <string name="hint_title">🧠 هل تستخدم تلميحاً؟</string>
+    <string name="hint_cost">التكلفة: 4 عملات</string>
+    <string name="hint_desc_selection">حذف خيارين غير صحيحين</string>
+    <string name="hint_desc_writing">إظهار إجابتين محتملتين</string>
+    <string name="hint_use_btn">استخدام تلميح -4 🪙</string>
+    <string name="hint_skip_btn">المتابعة بدون تلميح</string>
+    <string name="hint_cost_5">التكلفة: 5 عملات</string>
+    <string name="hint_use_btn_5">استخدام تلميح -5 🪙</string>
+    <string name="hint_cost_6">التكلفة: 6 عملات</string>
+    <string name="hint_use_btn_6">استخدام تلميح -6 🪙</string>
+    <string name="hint_cost_7">التكلفة: 7 عملات</string>
+    <string name="hint_use_btn_7">استخدام تلميح -7 🪙</string>
+    <string name="hint_desc_foco_simple">إخفاء 4 خيارات وترك 2 فقط</string>
+    <string name="hint_desc_foco_dual">إخفاء خيارين وترك 4 فقط</string>
+    <string name="global_score_label">إجمالي النقاط: </string>
+    <string name="change_response_mode">تغيير وضع الإجابة</string>
+    <string name="user_response_single_format_deci">إجابتك: %1$s</string>
+    <string name="user_response_single_format_romas">إجابتك: %1$s</string>
+    <string name="canje_opcion_1">2 دعوة = أسبوع مميز</string>
+    <string name="canje_opcion_2">5 دعوات = شهر مميز</string>
+    <string name="canje_opcion_3">10 دعوات = 3 أشهر مميزة</string>
+    <string name="video_no_disponible">الفيديو غير متاح، حاول لاحقاً</string>
+    <string name="billing_not_ready">خدمة الدفع غير متاحة. حاول مرة أخرى.</string>
+
+
 </resources>

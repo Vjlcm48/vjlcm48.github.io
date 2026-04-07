@@ -1635,4 +1635,51 @@
 
     <string name="ranking_total_participants">🏆 %1$s प्रतिभागी</string>
 
+    <string name="coins_dialog_title">सिक्के</string>
+    <string name="coins_current_balance">आपका वर्तमान बैलेंस</string>
+    <string name="coins_watch_video">वीडियो देखें और सिक्के कमाएं</string>
+    <string name="coins_buy">सिक्के खरीदें</string>
+    <string name="coins_packs_title">सिक्के</string>
+    <string name="coins_welcome_bonus_title">🪙 स्वागत बोनस!</string>
+    <string name="coins_welcome_bonus_desc">पहली खरीदारी: फ्री एक्स्ट्रा सिक्के!</string>
+    <string name="coins_pack_amount">%1$d सिक्के</string>
+    <string name="coins_pack_bonus_badge">+%1$d बोनस</string>
+    <string name="coins_pack_total_with_bonus">कुल: %1$d</string>
+    <string name="coins_pack_limit_msg">सीमा समाप्त</string>
+    <string name="coins_pack_purchased_msg">+%1$d सिक्के जुड़ गए</string>
+    <string name="coins_go_premium_btn">💎 कोई सीमा नहीं? प्रीमियम बनें</string>
+    <string name="coins_daily_bonus_msg">+%1$d सिक्के · स्ट्रीक: %2$d दिन</string>
+    <string name="coins_daily_streak_broken_msg">+%1$d सिक्के · स्ट्रीक रीसेट</string>
+    <string name="daily_bonus_dialog_title">बधाई हो, %1$s!</string>
+    <string name="daily_bonus_coins_earned">+%1$d सिक्के</string>
+    <string name="daily_bonus_login_subtitle">आज लॉग इन करने के लिए</string>
+    <string name="daily_bonus_streak_label">🔥 %1$d दिन की स्ट्रीक</string>
+    <string name="daily_bonus_msg_day1">अपनी स्ट्रीक बनाने और अधिक सिक्के जीतने के लिए रोज़ आएं!</string>
+    <string name="daily_bonus_msg_streak">आपकी निरंतरता का इनाम! कल वापस आएं और अधिक जीतें</string>
+    <string name="daily_bonus_msg_broken">बिना रुके खेलने के लिए अपने सिक्कों का उपयोग करें! इससे रोज़ अधिक जीतने की जगह बनेगी 🪙</string>
+    <string name="hint_title">🧠 हिंट का उपयोग करें?</string>
+    <string name="hint_cost">लागत: 4 सिक्के</string>
+    <string name="hint_desc_selection">2 गलत विकल्प हटाता है</string>
+    <string name="hint_desc_writing">2 संभावित उत्तर दिखाता है</string>
+    <string name="hint_use_btn">हिंट का उपयोग -4 🪙</string>
+    <string name="hint_skip_btn">हिंट के बिना जारी रखें</string>
+    <string name="hint_cost_5">लागत: 5 सिक्के</string>
+    <string name="hint_use_btn_5">हिंट का उपयोग -5 🪙</string>
+    <string name="hint_cost_6">लागत: 6 सिक्के</string>
+    <string name="hint_use_btn_6">हिंट का उपयोग -6 🪙</string>
+    <string name="hint_cost_7">लागत: 7 सिक्के</string>
+    <string name="hint_use_btn_7">हिंट का उपयोग -7 🪙</string>
+    <string name="hint_desc_foco_simple">4 विकल्प छिपाता है, 2 दिखाता है</string>
+    <string name="hint_desc_foco_dual">2 विकल्प छिपाता है, 4 दिखाता है</string>
+    <string name="global_score_label">कुल स्कोर: </string>
+    <string name="change_response_mode">उत्तर मोड बदलें</string>
+    <string name="user_response_single_format_deci">आपका उत्तर: %1$s</string>
+    <string name="user_response_single_format_romas">आपका उत्तर: %1$s</string>
+    <string name="canje_opcion_1">2 रेफरल = 1 सप्ताह प्रीमियम</string>
+    <string name="canje_opcion_2">5 रेफरल = 1 महीना प्रीमियम</string>
+    <string name="canje_opcion_3">10 रेफरल = 3 महीने प्रीमियम</string>
+    <string name="video_no_disponible">वीडियो उपलब्ध नहीं है, बाद में प्रयास करें</string>
+    <string name="billing_not_ready">भुगतान सेवा उपलब्ध नहीं है। फिर से प्रयास करें।</string>
+
+
 </resources>

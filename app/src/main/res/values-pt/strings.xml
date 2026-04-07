@@ -1554,4 +1554,51 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
 
     <string name="ranking_total_participants">🏆 %1$s participantes</string>
 
+    <string name="coins_dialog_title">Moedas</string>
+    <string name="coins_current_balance">Seu saldo atual</string>
+    <string name="coins_watch_video">Ver vídeo e ganhar moedas</string>
+    <string name="coins_buy">Comprar moedas</string>
+    <string name="coins_packs_title">Moedas</string>
+    <string name="coins_welcome_bonus_title">🪙 Bónus de boas-vindas!</string>
+    <string name="coins_welcome_bonus_desc">Primeira compra: moedas extras grátis!</string>
+    <string name="coins_pack_amount">%1$d moedas</string>
+    <string name="coins_pack_bonus_badge">+%1$d BÓNUS</string>
+    <string name="coins_pack_total_with_bonus">Total: %1$d</string>
+    <string name="coins_pack_limit_msg">Limite atingido</string>
+    <string name="coins_pack_purchased_msg">+%1$d moedas adicionadas</string>
+    <string name="coins_go_premium_btn">💎 Sem limites? Seja Premium</string>
+    <string name="coins_daily_bonus_msg">+%1$d moedas · Sequência: %2$d dias</string>
+    <string name="coins_daily_streak_broken_msg">+%1$d moedas · Sequência reiniciada</string>
+    <string name="daily_bonus_dialog_title">Parabéns, %1$s!</string>
+    <string name="daily_bonus_coins_earned">+%1$d moedas</string>
+    <string name="daily_bonus_login_subtitle">Por fazer login hoje</string>
+    <string name="daily_bonus_streak_label">🔥 %1$d dias de sequência</string>
+    <string name="daily_bonus_msg_day1">Volte todos os dias para construir sua sequência e ganhar mais moedas!</string>
+    <string name="daily_bonus_msg_streak">Sua constância tem recompensa! Volte amanhã e ganhará mais</string>
+    <string name="daily_bonus_msg_broken">Use suas moedas para continuar jogando! Assim terá espaço para ganhar mais a cada dia 🪙</string>
+    <string name="hint_title">🧠 Usar uma dica?</string>
+    <string name="hint_cost">Custo: 4 moedas</string>
+    <string name="hint_desc_selection">Elimina 2 opções incorretas</string>
+    <string name="hint_desc_writing">Mostra 2 respostas possíveis</string>
+    <string name="hint_use_btn">Usar dica -4 🪙</string>
+    <string name="hint_skip_btn">Continuar sem dica</string>
+    <string name="hint_cost_5">Custo: 5 moedas</string>
+    <string name="hint_use_btn_5">Usar dica -5 🪙</string>
+    <string name="hint_cost_6">Custo: 6 moedas</string>
+    <string name="hint_use_btn_6">Usar dica -6 🪙</string>
+    <string name="hint_cost_7">Custo: 7 moedas</string>
+    <string name="hint_use_btn_7">Usar dica -7 🪙</string>
+    <string name="hint_desc_foco_simple">Oculta 4 opções, deixa 2 visíveis</string>
+    <string name="hint_desc_foco_dual">Oculta 2 opções, deixa 4 visíveis</string>
+    <string name="global_score_label">Pontuação total: </string>
+    <string name="change_response_mode">Mudar modo de resposta</string>
+    <string name="user_response_single_format_deci">Sua resposta: %1$s</string>
+    <string name="user_response_single_format_romas">Sua resposta: %1$s</string>
+    <string name="canje_opcion_1">2 indicados = 1 semana PREMIUM</string>
+    <string name="canje_opcion_2">5 indicados = 1 mês PREMIUM</string>
+    <string name="canje_opcion_3">10 indicados = 3 meses PREMIUM</string>
+    <string name="video_no_disponible">Vídeo indisponível, tente mais tarde</string>
+    <string name="billing_not_ready">Serviço de pagamento indisponível. Tente novamente.</string>
+
+
 </resources>

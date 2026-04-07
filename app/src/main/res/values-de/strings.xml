@@ -1636,4 +1636,50 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
 
     <string name="ranking_total_participants">🏆 %1$s Teilnehmer</string>
 
+    <string name="coins_dialog_title">Münzen</string>
+    <string name="coins_current_balance">Dein aktuelles Guthaben</string>
+    <string name="coins_watch_video">Video ansehen und Münzen verdienen</string>
+    <string name="coins_buy">Münzen kaufen</string>
+    <string name="coins_packs_title">Münzen</string>
+    <string name="coins_welcome_bonus_title">🪙 Willkommensbonus!</string>
+    <string name="coins_welcome_bonus_desc">Erster Kauf: gratis Extra-Münzen!</string>
+    <string name="coins_pack_amount">%1$d Münzen</string>
+    <string name="coins_pack_bonus_badge">+%1$d BONUS</string>
+    <string name="coins_pack_total_with_bonus">Gesamt: %1$d</string>
+    <string name="coins_pack_limit_msg">Limit erreicht</string>
+    <string name="coins_pack_purchased_msg">+%1$d Münzen hinzugefügt</string>
+    <string name="coins_go_premium_btn">💎 Ohne Limit? Werde Premium</string>
+    <string name="coins_daily_bonus_msg">+%1$d Münzen · Serie: %2$d Tage</string>
+    <string name="coins_daily_streak_broken_msg">+%1$d Münzen · Serie zurückgesetzt</string>
+    <string name="daily_bonus_dialog_title">Glückwunsch, %1$s!</string>
+    <string name="daily_bonus_coins_earned">+%1$d Münzen</string>
+    <string name="daily_bonus_login_subtitle">Für dein heutiges Login</string>
+    <string name="daily_bonus_streak_label">🔥 %1$d Tage Serie</string>
+    <string name="daily_bonus_msg_day1">Komm jeden Tag wieder, um deine Serie aufzubauen und mehr Münzen zu gewinnen!</string>
+    <string name="daily_bonus_msg_streak">Beständigkeit zahlt sich aus! Komm morgen wieder und gewinne mehr</string>
+    <string name="daily_bonus_msg_broken">Nutze deine Münzen, um weiterzuspielen! So schaffst du Platz, um täglich mehr zu gewinnen 🪙</string>
+    <string name="hint_title">🧠 Hinweis nutzen?</string>
+    <string name="hint_cost">Kosten: 4 Münzen</string>
+    <string name="hint_desc_selection">Entfernt 2 falsche Optionen</string>
+    <string name="hint_desc_writing">Zeigt 2 mögliche Antworten</string>
+    <string name="hint_use_btn">Hinweis nutzen -4 🪙</string>
+    <string name="hint_skip_btn">Ohne Hinweis weiter</string>
+    <string name="hint_cost_5">Kosten: 5 Münzen</string>
+    <string name="hint_use_btn_5">Hinweis nutzen -5 🪙</string>
+    <string name="hint_cost_6">Kosten: 6 Münzen</string>
+    <string name="hint_use_btn_6">Hinweis nutzen -6 🪙</string>
+    <string name="hint_cost_7">Kosten: 7 Münzen</string>
+    <string name="hint_use_btn_7">Hinweis nutzen -7 🪙</string>
+    <string name="hint_desc_foco_simple">Verbirgt 4 Optionen, lässt 2 sichtbar</string>
+    <string name="hint_desc_foco_dual">Verbirgt 2 Optionen, lässt 4 sichtbar</string>
+    <string name="global_score_label">Gesamtpunktzahl: </string>
+    <string name="change_response_mode">Antwortmodus ändern</string>
+    <string name="user_response_single_format_deci">Deine Antwort: %1$s</string>
+    <string name="user_response_single_format_romas">Deine Antwort: %1$s</string>
+    <string name="canje_opcion_1">2 Empfehlungen = 1 Woche PREMIUM</string>
+    <string name="canje_opcion_2">5 Empfehlungen = 1 Monat PREMIUM</string>
+    <string name="canje_opcion_3">10 Empfehlungen = 3 Monate PREMIUM</string>
+    <string name="video_no_disponible">Video nicht verfügbar, später versuchen</string>
+    <string name="billing_not_ready">Zahlungsdienst nicht verfügbar. Erneut versuchen.</string>
+
 </resources>

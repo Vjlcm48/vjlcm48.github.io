@@ -9,6 +9,15 @@ import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.cardview.widget.CardView
+import com.android.billingclient.api.AcknowledgePurchaseParams
+import com.android.billingclient.api.BillingClient
+import com.android.billingclient.api.BillingClientStateListener
+import com.android.billingclient.api.BillingFlowParams
+import com.android.billingclient.api.BillingResult
+import com.android.billingclient.api.PendingPurchasesParams
+import com.android.billingclient.api.Purchase
+import com.android.billingclient.api.QueryProductDetailsParams
+import com.android.billingclient.api.QueryProductDetailsResult
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 import com.heptacreation.sumamente.R
@@ -28,12 +37,15 @@ class CoinPacksActivity : BaseActivity() {
     private lateinit var bannerBienvenida: CardView
     private lateinit var btnGoPremium: MaterialButton
     private lateinit var packViews: List<PackViews>
+    private lateinit var billingClient: BillingClient
+    private var isBillingReady = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_coin_packs)
 
+        inicializarBilling()
         inicializarVistas()
         configurarListeners()
     }
@@ -41,6 +53,62 @@ class CoinPacksActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         actualizarUI()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (::billingClient.isInitialized) billingClient.endConnection()
+    }
+
+    // ── Billing ───────────────────────────────────────────────────────────
+
+    private fun inicializarBilling() {
+        billingClient = BillingClient.newBuilder(this)
+            .enablePendingPurchases(
+                PendingPurchasesParams.newBuilder().enableOneTimeProducts().build()
+            )
+            .setListener { billingResult, purchases ->
+                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
+                    for (purchase in purchases) {
+                        handlePurchase(purchase)
+                    }
+                }
+            }
+            .build()
+
+        billingClient.startConnection(object : BillingClientStateListener {
+            override fun onBillingSetupFinished(billingResult: BillingResult) {
+                isBillingReady = billingResult.responseCode == BillingClient.BillingResponseCode.OK
+            }
+            override fun onBillingServiceDisconnected() {
+                isBillingReady = false
+            }
+        })
+    }
+
+    private fun handlePurchase(purchase: Purchase) {
+        if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
+            // Detectar qué pack se compró y acreditar monedas
+            val packId = purchase.products.firstOrNull() ?: return
+            val pack   = CoinManager.PACKS.find { it.id == packId } ?: return
+
+            CoinManager.executePurchase(this, pack)
+            actualizarUI()
+
+            Snackbar.make(
+                findViewById(android.R.id.content),
+                getString(R.string.coins_pack_purchased_msg, CoinManager.getBalance(this)),
+                Snackbar.LENGTH_LONG
+            ).show()
+
+            // Confirmar compra a Google Play
+            if (!purchase.isAcknowledged) {
+                val params = AcknowledgePurchaseParams.newBuilder()
+                    .setPurchaseToken(purchase.purchaseToken)
+                    .build()
+                billingClient.acknowledgePurchase(params) { }
+            }
+        }
     }
 
     // ── Inicialización ────────────────────────────────────────────────────
@@ -116,13 +184,11 @@ class CoinPacksActivity : BaseActivity() {
             val pack   = CoinManager.PACKS[index]
             val canBuy = CoinManager.canPurchase(this, pack)
 
-            // Texto de monedas (con badge si aplica)
             val baseLabel = getString(R.string.coins_pack_amount, pack.baseCoins)
             views.tvCoins.text = if (pack.badge.isNotEmpty()) "$baseLabel ${pack.badge}"
             else baseLabel
             views.tvPrice.text = pack.priceLabel
 
-            // Fila de bono (solo si primera compra disponible)
             if (isFirst) {
                 views.llBonus.visibility = View.VISIBLE
                 views.tvBonus.text = getString(R.string.coins_pack_bonus_badge, pack.bonusCoins)
@@ -134,35 +200,57 @@ class CoinPacksActivity : BaseActivity() {
                 views.llBonus.visibility = View.GONE
             }
 
-            // Estado habilitado / deshabilitado
             if (canBuy) {
-                views.card.alpha       = 1f
-                views.card.isClickable = true
+                views.card.alpha         = 1f
+                views.card.isClickable   = true
                 views.tvLimit.visibility = View.GONE
                 views.card.setOnClickListener { comprarPack(pack) }
             } else {
-                views.card.alpha       = 0.4f
-                views.card.isClickable = false
+                views.card.alpha         = 0.4f
+                views.card.isClickable   = false
                 views.tvLimit.visibility = View.VISIBLE
                 views.card.setOnClickListener(null)
             }
         }
     }
 
-    // ── Lógica de compra (modo prueba) ────────────────────────────────────
+    // ── Compra real via Google Play ───────────────────────────────────────
 
     private fun comprarPack(pack: CoinManager.CoinPack) {
-        val antes   = CoinManager.getBalance(this)
-        CoinManager.executePurchase(this, pack)
-        val despues = CoinManager.getBalance(this)
-        val agregadas = despues - antes
+        if (!isBillingReady) {
+            Snackbar.make(
+                findViewById(android.R.id.content),
+                getString(R.string.billing_not_ready),
+                Snackbar.LENGTH_SHORT
+            ).show()
+            return
+        }
 
-        Snackbar.make(
-            findViewById(android.R.id.content),
-            getString(R.string.coins_pack_purchased_msg, agregadas),
-            Snackbar.LENGTH_LONG
-        ).show()
+        val productList = listOf(
+            QueryProductDetailsParams.Product.newBuilder()
+                .setProductId(pack.id)
+                .setProductType(BillingClient.ProductType.INAPP)
+                .build()
+        )
 
-        actualizarPacks() // revalida qué packs siguen disponibles
+        val params = QueryProductDetailsParams.newBuilder()
+            .setProductList(productList)
+            .build()
+
+        billingClient.queryProductDetailsAsync(params) { billingResult: BillingResult, result: QueryProductDetailsResult ->
+            if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                val productDetails = result.productDetailsList.firstOrNull() ?: return@queryProductDetailsAsync
+
+                val productDetailsParams = BillingFlowParams.ProductDetailsParams.newBuilder()
+                    .setProductDetails(productDetails)
+                    .build()
+
+                val billingFlowParams = BillingFlowParams.newBuilder()
+                    .setProductDetailsParamsList(listOf(productDetailsParams))
+                    .build()
+
+                billingClient.launchBillingFlow(this, billingFlowParams)
+            }
+        }
     }
 }

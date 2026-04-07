@@ -1431,4 +1431,51 @@
 
     <string name="ranking_total_participants">🏆 %1$s অংশগ্রহণকারী</string>
 
+    <string name="coins_dialog_title">কয়েন</string>
+    <string name="coins_current_balance">আপনার বর্তমান ব্যালেন্স</string>
+    <string name="coins_watch_video">ভিডিও দেখুন এবং কয়েন জিতুন</string>
+    <string name="coins_buy">কয়েন কিনুন</string>
+    <string name="coins_packs_title">কয়েন</string>
+    <string name="coins_welcome_bonus_title">🪙 স্বাগতম বোনাস!</string>
+    <string name="coins_welcome_bonus_desc">প্রথম কেনাকাটা: অতিরিক্ত কয়েন ফ্রি!</string>
+    <string name="coins_pack_amount">%1$d কয়েন</string>
+    <string name="coins_pack_bonus_badge">+%1$d বোনাস</string>
+    <string name="coins_pack_total_with_bonus">মোট: %1$d</string>
+    <string name="coins_pack_limit_msg">সীমা অতিক্রম করেছেন</string>
+    <string name="coins_pack_purchased_msg">+%1$d কয়েন যোগ করা হয়েছে</string>
+    <string name="coins_go_premium_btn">💎 কোনো সীমা নেই? প্রিমিয়াম হন</string>
+    <string name="coins_daily_bonus_msg">+%1$d কয়েন · স্ট্রিক: %2$d দিন</string>
+    <string name="coins_daily_streak_broken_msg">+%1$d কয়েন · স্ট্রিক রিসেট করা হয়েছে</string>
+    <string name="daily_bonus_dialog_title">অভিনন্দন, %1$s!</string>
+    <string name="daily_bonus_coins_earned">+%1$d কয়েন</string>
+    <string name="daily_bonus_login_subtitle">আজ লগইন করার জন্য</string>
+    <string name="daily_bonus_streak_label">🔥 %1$d দিনের স্ট্রিক</string>
+    <string name="daily_bonus_msg_day1">প্রতিদিন ফিরে আসুন এবং আরও কয়েন জিততে স্ট্রিক তৈরি করুন!</string>
+    <string name="daily_bonus_msg_streak">আপনার ধারাবাহিকতার জন্য পুরস্কার! আগামীকাল ফিরে আসুন এবং আরও জিতুন</string>
+    <string name="daily_bonus_msg_broken">বিরতিহীনভাবে খেলতে আপনার কয়েন ব্যবহার করুন! প্রতিদিন আরও জেতার সুযোগ তৈরি হবে 🪙</string>
+    <string name="hint_title">🧠 ক্লু ব্যবহার করবেন?</string>
+    <string name="hint_cost">খরচ: 4 কয়েন</string>
+    <string name="hint_desc_selection">2টি ভুল উত্তর সরিয়ে ফেলুন</string>
+    <string name="hint_desc_writing">2টি সম্ভাব্য উত্তর দেখান</string>
+    <string name="hint_use_btn">ক্লু ব্যবহার করুন -4 🪙</string>
+    <string name="hint_skip_btn">ক্লু ছাড়াই চালিয়ে যান</string>
+    <string name="hint_cost_5">খরচ: 5 কয়েন</string>
+    <string name="hint_use_btn_5">ক্লু ব্যবহার করুন -5 🪙</string>
+    <string name="hint_cost_6">খরচ: 6 কয়েন</string>
+    <string name="hint_use_btn_6">ক্লু ব্যবহার করুন -6 🪙</string>
+    <string name="hint_cost_7">খরচ: 7 কয়েন</string>
+    <string name="hint_use_btn_7">ক্লু ব্যবহার করুন -7 🪙</string>
+    <string name="hint_desc_foco_simple">4টি অপশন লুকান, 2টি দেখান</string>
+    <string name="hint_desc_foco_dual">2টি অপশন লুকান, 4টি দেখান</string>
+    <string name="global_score_label">মোট স্কোর: </string>
+    <string name="change_response_mode">উত্তরের মোড পরিবর্তন করুন</string>
+    <string name="user_response_single_format_deci">আপনার উত্তর: %1$s</string>
+    <string name="user_response_single_format_romas">আপনার উত্তর: %1$s</string>
+    <string name="canje_opcion_1">2 জন রেফারাল = 1 সপ্তাহ প্রিমিয়াম</string>
+    <string name="canje_opcion_2">5 জন রেফারal = 1 মাস প্রিমিয়াম</string>
+    <string name="canje_opcion_3">10 জন রেফারাল = 3 মাস প্রিমিয়াম</string>
+    <string name="video_no_disponible">ভিডিও নেই, পরে চেষ্টা করুন</string>
+    <string name="billing_not_ready">পেমেন্ট পরিষেবা নেই। আবার চেষ্টা করুন।</string>
+
+
 </resources>

@@ -22,6 +22,12 @@ class MyApplication : Application() {
 
         FirebaseApp.initializeApp(this)
 
+        val testDeviceIds = listOf("6B9898FB05F0E360C1BF6F152F37B68E")
+        val configuration = com.google.android.gms.ads.RequestConfiguration.Builder()
+            .setTestDeviceIds(testDeviceIds)
+            .build()
+        com.google.android.gms.ads.MobileAds.setRequestConfiguration(configuration)
+
         val firestoreSettings = com.google.firebase.firestore.FirebaseFirestoreSettings.Builder()
             .setPersistenceEnabled(true)
             .setCacheSizeBytes(com.google.firebase.firestore.FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)

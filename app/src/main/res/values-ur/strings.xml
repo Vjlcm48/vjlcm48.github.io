@@ -1442,4 +1442,52 @@
 
     <string name="ranking_total_participants">🏆 %1$s شرکاء</string>
 
+    <string name="coins_dialog_title">سکے</string>
+    <string name="coins_current_balance">آپ کا موجودہ بیلنس</string>
+    <string name="coins_watch_video">ویڈیو دیکھیں اور سکے جیتیں</string>
+    <string name="coins_buy">سکے خریدیں</string>
+    <string name="coins_packs_title">سکے</string>
+    <string name="coins_welcome_bonus_title">🪙 خوش آمدید بونس!</string>
+    <string name="coins_welcome_bonus_desc">پہلی خریداری: مفت اضافی سکے!</string>
+    <string name="coins_pack_amount">%1$d سکے</string>
+    <string name="coins_pack_bonus_badge">+%1$d بونس</string>
+    <string name="coins_pack_total_with_bonus">کل: %1$d</string>
+    <string name="coins_pack_limit_msg">حد ختم ہو گئی</string>
+    <string name="coins_pack_purchased_msg">+%1$d سکے شامل کر دیے گئے</string>
+    <string name="coins_go_premium_btn">💎 کوئی حد نہیں؟ پریمیم بنیں</string>
+    <string name="coins_daily_bonus_msg">+%1$d سکے · سلسلہ: %2$d دن</string>
+    <string name="coins_daily_streak_broken_msg">+%1$d سکے · سلسلہ دوبارہ شروع</string>
+    <string name="daily_bonus_dialog_title">مبارک ہو، %1$s!</string>
+    <string name="daily_bonus_coins_earned">+%1$d سکے</string>
+    <string name="daily_bonus_login_subtitle">آج لاگ ان کرنے پر</string>
+    <string name="daily_bonus_streak_label">🔥 %1$d دن کا سلسلہ</string>
+    <string name="daily_bonus_msg_day1">اپنا سلسلہ بنانے اور مزید سکے جیتنے کے لیے روزانہ آئیں!</string>
+    <string name="daily_bonus_msg_streak">آپ کی پابندی کا انعام! کل واپس آئیں اور مزید جیتیں</string>
+    <string name="daily_bonus_msg_broken">بغیر رکے کھیلنے کے لیے اپنے سکے استعمال کریں! اس طرح روزانہ مزید جیتنے کی گنجائش رہے گی 🪙</string>
+    <string name="hint_title">🧠 کیا آپ اشارہ استعمال کریں گے؟</string>
+    <string name="hint_cost">قیمت: 4 سکے</string>
+    <string name="hint_desc_selection">2 غلط جوابات ہٹاتا ہے</string>
+    <string name="hint_desc_writing">2 ممکنہ جوابات دکھاتا ہے</string>
+    <string name="hint_use_btn">اشارہ استعمال کریں -4 🪙</string>
+    <string name="hint_skip_btn">اشارے کے بغیر جاری رکھیں</string>
+    <string name="hint_cost_5">قیمت: 5 سکے</string>
+    <string name="hint_use_btn_5">اشارہ استعمال کریں -5 🪙</string>
+    <string name="hint_cost_6">قیمت: 6 سکے</string>
+    <string name="hint_use_btn_6">اشارہ استعمال کریں -6 🪙</string>
+    <string name="hint_cost_7">قیمت: 7 سکے</string>
+    <string name="hint_use_btn_7">اشارہ استعمال کریں -7 🪙</string>
+    <string name="hint_desc_foco_simple">4 اختیارات چھپائیں، 2 دکھائیں</string>
+    <string name="hint_desc_foco_dual">2 اختیارات چھپائیں، 4 دکھائیں</string>
+    <string name="global_score_label">کل سکور: </string>
+    <string name="change_response_mode">جواب کا طریقہ بدلیں</string>
+    <string name="user_response_single_format_deci">آپ کا جواب: %1$s</string>
+    <string name="user_response_single_format_romas">آپ کا جواب: %1$s</string>
+    <string name="canje_opcion_1">2 ریفرلز = 1 ہفتہ پریمیم</string>
+    <string name="canje_opcion_2">5 ریفرلز = 1 مہینہ پریمیم</string>
+    <string name="canje_opcion_3">10 ریفرلز = 3 مہینے پریمیم</string>
+    <string name="video_no_disponible">ویڈیو دستیاب نہیں ہے، تھوڑی دیر بعد کوشش کریں</string>
+    <string name="billing_not_ready">ادائیگی کی سروس دستیاب نہیں ہے۔ دوبارہ کوشش کریں۔</string>
+
+
+
 </resources>

@@ -1395,4 +1395,51 @@
 
     <string name="ranking_total_participants">🏆 %1$s 참가자</string>
 
+    <string name="coins_dialog_title">코인</string>
+    <string name="coins_current_balance">현재 잔액</string>
+    <string name="coins_watch_video">비디오 보고 코인 받기</string>
+    <string name="coins_buy">코인 구매</string>
+    <string name="coins_packs_title">코인</string>
+    <string name="coins_welcome_bonus_title">🪙 웰컴 보너스!</string>
+    <string name="coins_welcome_bonus_desc">첫 구매 시 추가 코인 무료 증정!</string>
+    <string name="coins_pack_amount">코인 %1$d개</string>
+    <string name="coins_pack_bonus_badge">+%1$d 보너스</string>
+    <string name="coins_pack_total_with_bonus">총합: %1$d</string>
+    <string name="coins_pack_limit_msg">한도 도달</string>
+    <string name="coins_pack_purchased_msg">코인 +%1$d개 추가됨</string>
+    <string name="coins_go_premium_btn">💎 무제한을 원하시나요? 프리미엄 되기</string>
+    <string name="coins_daily_bonus_msg">+%1$d 코인 · 연속: %2$d일</string>
+    <string name="coins_daily_streak_broken_msg">+%1$d 코인 · 연속 기록 초기화</string>
+    <string name="daily_bonus_dialog_title">축하합니다, %1$s님!</string>
+    <string name="daily_bonus_coins_earned">+%1$d 코인</string>
+    <string name="daily_bonus_login_subtitle">오늘 로그인 보상</string>
+    <string name="daily_bonus_streak_label">🔥 %1$d일 연속 기록</string>
+    <string name="daily_bonus_msg_day1">매일 방문하여 연속 기록을 세우고 더 많은 코인을 받으세요!</string>
+    <string name="daily_bonus_msg_streak">당신의 꾸준함이 보상을 받습니다! 내일 또 오셔서 더 많이 받으세요</string>
+    <string name="daily_bonus_msg_broken">코인을 사용하여 계속 플레이하세요! 그러면 매일 더 많이 얻을 수 있는 기회가 생깁니다 🪙</string>
+    <string name="hint_title">🧠 힌트를 사용하시겠습니까?</string>
+    <string name="hint_cost">비용: 코인 4개</string>
+    <string name="hint_desc_selection">오답 2개를 제거합니다</string>
+    <string name="hint_desc_writing">가능한 정답 2개를 보여줍니다</string>
+    <string name="hint_use_btn">힌트 사용 -4 🪙</string>
+    <string name="hint_skip_btn">힌트 없이 계속하기</string>
+    <string name="hint_cost_5">비용: 코인 5개</string>
+    <string name="hint_use_btn_5">힌트 사용 -5 🪙</string>
+    <string name="hint_cost_6">비용: 코인 6개</string>
+    <string name="hint_use_btn_6">힌트 사용 -6 🪙</string>
+    <string name="hint_cost_7">비용: 코인 7개</string>
+    <string name="hint_use_btn_7">힌트 사용 -7 🪙</string>
+    <string name="hint_desc_foco_simple">보기 4개를 숨기고 2개만 표시</string>
+    <string name="hint_desc_foco_dual">보기 2개를 숨기고 4개만 표시</string>
+    <string name="global_score_label">총점: </string>
+    <string name="change_response_mode">응답 모드 변경</string>
+    <string name="user_response_single_format_deci">당신의 답변: %1$s</string>
+    <string name="user_response_single_format_romas">당신의 답변: %1$s</string>
+    <string name="canje_opcion_1">추천 2명 = 프리미엄 1주일</string>
+    <string name="canje_opcion_2">추천 5명 = 프리미엄 1개월</string>
+    <string name="canje_opcion_3">추천 10명 = 프리미엄 3개월</string>
+    <string name="video_no_disponible">비디오를 사용할 수 없습니다. 나중에 다시 시도하세요.</string>
+    <string name="billing_not_ready">결제 서비스를 사용할 수 없습니다. 다시 시도하세요.</string>
+
+
 </resources>

@@ -1691,4 +1691,50 @@ Optimum disciple! Your effort and perseverance have brought you to seventh place
 
     <string name="ranking_total_participants">🏆 %1$s participants</string>
 
+    <string name="coins_dialog_title">Coins</string>
+    <string name="coins_current_balance">Your current balance</string>
+    <string name="coins_watch_video">Watch video and earn coins</string>
+    <string name="coins_buy">Buy coins</string>
+    <string name="coins_packs_title">Coins</string>
+    <string name="coins_welcome_bonus_title">🪙 Welcome Bonus!</string>
+    <string name="coins_welcome_bonus_desc">First purchase: free extra coins!</string>
+    <string name="coins_pack_amount">%1$d coins</string>
+    <string name="coins_pack_bonus_badge">+%1$d BONUS</string>
+    <string name="coins_pack_total_with_bonus">Total: %1$d</string>
+    <string name="coins_pack_limit_msg">Limit reached</string>
+    <string name="coins_pack_purchased_msg">+%1$d coins added</string>
+    <string name="coins_go_premium_btn">💎 No limits? Go Premium</string>
+    <string name="coins_daily_bonus_msg">+%1$d coins · Streak: %2$d days</string>
+    <string name="coins_daily_streak_broken_msg">+%1$d coins · Streak reset</string>
+    <string name="daily_bonus_dialog_title">Congrats, %1$s!</string>
+    <string name="daily_bonus_coins_earned">+%1$d coins</string>
+    <string name="daily_bonus_login_subtitle">For logging in today</string>
+    <string name="daily_bonus_streak_label">🔥 %1$d day streak</string>
+    <string name="daily_bonus_msg_day1">Come back every day to build your streak and earn more coins!</string>
+    <string name="daily_bonus_msg_streak">Consistency pays off! Come back tomorrow to earn more</string>
+    <string name="daily_bonus_msg_broken">Use your coins to keep playing! That way you\'ll have space to win more each day 🪙</string>
+    <string name="hint_title">🧠 Use a hint?</string>
+    <string name="hint_cost">Cost: 4 coins</string>
+    <string name="hint_desc_selection">Removes 2 incorrect options</string>
+    <string name="hint_desc_writing">Shows 2 possible answers</string>
+    <string name="hint_use_btn">Use hint -4 🪙</string>
+    <string name="hint_skip_btn">Continue without hint</string>
+    <string name="hint_cost_5">Cost: 5 coins</string>
+    <string name="hint_use_btn_5">Use hint -5 🪙</string>
+    <string name="hint_cost_6">Cost: 6 coins</string>
+    <string name="hint_use_btn_6">Use hint -6 🪙</string>
+    <string name="hint_cost_7">Cost: 7 coins</string>
+    <string name="hint_use_btn_7">Use hint -7 🪙</string>
+    <string name="hint_desc_foco_simple">Hides 4 options, leaves 2 visible</string>
+    <string name="hint_desc_foco_dual">Hides 2 options, leaves 4 visible</string>
+    <string name="global_score_label">Total score: </string>
+    <string name="change_response_mode">Change response mode</string>
+    <string name="user_response_single_format_deci">Your answer: %1$s</string>
+    <string name="user_response_single_format_romas">Your answer: %1$s</string>
+    <string name="canje_opcion_1">2 referrals = 1 week PREMIUM</string>
+    <string name="canje_opcion_2">5 referrals = 1 month PREMIUM</string>
+    <string name="canje_opcion_3">10 referrals = 3 months PREMIUM</string>
+    <string name="video_no_disponible">Video unavailable, try again later</string>
+    <string name="billing_not_ready">Payment service unavailable. Try again.</string>
+
 </resources>

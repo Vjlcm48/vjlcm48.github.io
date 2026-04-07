@@ -1396,4 +1396,51 @@
 
     <string name="ranking_total_participants">🏆 %1$s 参加者</string>
 
+    <string name="coins_dialog_title">コイン</string>
+    <string name="coins_current_balance">現在の残高</string>
+    <string name="coins_watch_video">動画を見てコインを獲得</string>
+    <string name="coins_buy">コインを購入</string>
+    <string name="coins_packs_title">コイン</string>
+    <string name="coins_welcome_bonus_title">🪙 ウェルカムボーナス！</string>
+    <string name="coins_welcome_bonus_desc">初回購入：無料ボーナスコイン！</string>
+    <string name="coins_pack_amount">%1$d コイン</string>
+    <string name="coins_pack_bonus_badge">+%1$d ボーナス</string>
+    <string name="coins_pack_total_with_bonus">合計: %1$d</string>
+    <string name="coins_pack_limit_msg">上限に達しました</string>
+    <string name="coins_pack_purchased_msg">+%1$d コインが追加されました</string>
+    <string name="coins_go_premium_btn">💎 無制限？ プレミアムになる</string>
+    <string name="coins_daily_bonus_msg">+%1$d コイン · 継続: %2$d 日</string>
+    <string name="coins_daily_streak_broken_msg">+%1$d コイン · 継続リセット</string>
+    <string name="daily_bonus_dialog_title">おめでとう、%1$sさん！</string>
+    <string name="daily_bonus_coins_earned">+%1$d コイン</string>
+    <string name="daily_bonus_login_subtitle">本日のログイン特典</string>
+    <string name="daily_bonus_streak_label">🔥 %1$d 日連続</string>
+    <string name="daily_bonus_msg_day1">毎日戻って継続記録を作り、もっとコインを獲得しましょう！</string>
+    <string name="daily_bonus_msg_streak">あなたの継続が報われます！明日も来てさらに獲得しましょう</string>
+    <string name="daily_bonus_msg_broken">コインを使って遊び続けましょう！そうすれば毎日もっと獲得できるチャンスが増えます 🪙</string>
+    <string name="hint_title">🧠 ヒントを使いますか？</string>
+    <string name="hint_cost">コスト: 4 コイン</string>
+    <string name="hint_desc_selection">不正解を2つ削除します</string>
+    <string name="hint_desc_writing">正解候補を2つ表示します</string>
+    <string name="hint_use_btn">ヒントを使う -4 🪙</string>
+    <string name="hint_skip_btn">ヒントなしで進む</string>
+    <string name="hint_cost_5">コスト: 5 コイン</string>
+    <string name="hint_use_btn_5">ヒントを使う -5 🪙</string>
+    <string name="hint_cost_6">コスト: 6 コイン</string>
+    <string name="hint_use_btn_6">ヒントを使う -6 🪙</string>
+    <string name="hint_cost_7">コスト: 7 コイン</string>
+    <string name="hint_use_btn_7">ヒントを使う -7 🪙</string>
+    <string name="hint_desc_foco_simple">4つの選択肢を隠し、2つを表示</string>
+    <string name="hint_desc_foco_dual">2つの選択肢を隠し、4つを表示</string>
+    <string name="global_score_label">合計スコア: </string>
+    <string name="change_response_mode">回答モードを変更</string>
+    <string name="user_response_single_format_deci">あなたの回答: %1$s</string>
+    <string name="user_response_single_format_romas">あなたの回答: %1$s</string>
+    <string name="canje_opcion_1">招待2名 = 1週間プレミアム</string>
+    <string name="canje_opcion_2">招待5名 = 1ヶ月プレミアム</string>
+    <string name="canje_opcion_3">招待10名 = 3ヶ月プレミアム</string>
+    <string name="video_no_disponible">動画は利用できません。後でもう一度お試しください。</string>
+    <string name="billing_not_ready">支払いサービスを利用できません。もう一度お試しください。</string>
+
+
 </resources>

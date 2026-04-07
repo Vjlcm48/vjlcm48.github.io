@@ -50,7 +50,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/embajador_canje_4"
+                android:text="@string/canje_opcion_1"
                 android:textColor="?attr/colorOnBackground"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -60,7 +60,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/embajador_canje_7"
+                android:text="@string/canje_opcion_2"
                 android:textColor="?attr/colorOnBackground"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -70,7 +70,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/embajador_canje_12"
+                android:text="@string/canje_opcion_3"
                 android:textColor="?attr/colorOnBackground"
                 android:textSize="14sp"
                 android:textStyle="bold"
