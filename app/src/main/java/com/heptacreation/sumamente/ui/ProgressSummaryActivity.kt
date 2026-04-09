@@ -87,7 +87,7 @@ class ProgressSummaryActivity : BaseActivity() {
         val tvGlobalProgress = findViewById<TextView>(R.id.tv_global_progress)
 
         val totalCompleted = ScoreManager.getTotalUniqueLevelsCompletedAllGames()
-        val totalLevels = 1890.0
+        val totalLevels = 2310.0
         val percentage = (totalCompleted / totalLevels) * 100
         val percentageString = String.format(Locale.getDefault(), "%.2f", percentage)
 
@@ -169,10 +169,10 @@ class ProgressSummaryActivity : BaseActivity() {
                 gameNameRes = R.string.game_foco_plus,
                 gameNameTextColorRes = if (isNightMode()) R.attr.colorOnBackground else android.R.color.white,
                 getPrincipianteData = { ScoreManager.getUniqueLevelsPlayedFocoPlusPrincipiante() },
-                getAvanzadoData = { 0 },
+                getAvanzadoData = { ScoreManager.getUniqueLevelsPlayedFocoPlusAvanzado() },
                 getProData = { 0 },
                 totalLevelsPrincipiante = 420,
-                totalLevelsAvanzado = 0,
+                totalLevelsAvanzado = 420,
                 totalLevelsPro = 0
             ),
             GameProgressItem(

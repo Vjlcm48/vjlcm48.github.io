@@ -1007,6 +1007,7 @@ class GameActivityGenioPlusPro : BaseActivity() {
             if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
                 inputBlocked = true
                 disableAllInputs()
+                ScoreManager.incrementConsecutiveFailuresGenioPlusPro(currentLevel)
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
 
@@ -1140,6 +1141,7 @@ class GameActivityGenioPlusPro : BaseActivity() {
             if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
                 inputBlocked = true
                 disableAllInputs()
+                ScoreManager.incrementConsecutiveFailuresGenioPlusPro(currentLevel)
                 answerTimer?.cancel()
                 chronometerTimer?.cancel()
 
@@ -1213,15 +1215,21 @@ class GameActivityGenioPlusPro : BaseActivity() {
         intent.putExtra("ATTEMPTS", attempts)
         intent.putExtra("TIME_SPENT", timeSpentInSeconds)
 
-        if (!isSuccessful && userResponses.isEmpty()) {
-            userResponses.add(-1)
-        }
+        if (isSuccessful) {
+            // Si el resultado es exitoso, reiniciamos los fallos en Pro
+            ScoreManager.resetConsecutiveFailuresGenioPlusPro(currentLevel)
+        } else {
+            // Si no es exitoso, agrupamos aquí la lógica de fallos que ya tenías
+            if (userResponses.isEmpty()) {
+                userResponses.add(-1)
+            }
 
-        if (!isSuccessful && (attempts >= 2 || (pistaActivada && attempts >= 1))) {
-            intent.putExtra("NUMBER_LIST", elementList.map { it.value }.toTypedArray())
-            intent.putExtra("CORRECT_ANSWER", correctAnswer)
-            intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
-            intent.putExtra("USER_RESPONSES", userResponses.toIntArray())
+            if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
+                intent.putExtra("NUMBER_LIST", elementList.map { it.value }.toTypedArray())
+                intent.putExtra("CORRECT_ANSWER", correctAnswer)
+                intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)
+                intent.putExtra("USER_RESPONSES", userResponses.toIntArray())
+            }
         }
 
         intent.putExtra("USED_HINT", pistaActivada)

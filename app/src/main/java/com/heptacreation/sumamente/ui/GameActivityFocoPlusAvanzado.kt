@@ -1,18 +1,29 @@
 package com.heptacreation.sumamente.ui
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.Typeface
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.util.TypedValue
+import android.view.Gravity
 import android.view.View
 import android.view.ViewTreeObserver
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -20,20 +31,22 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.content.res.AppCompatResources
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatButton
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.createBitmap
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.gridlayout.widget.GridLayout
 import com.heptacreation.sumamente.R
 import java.util.Locale
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
+import kotlin.math.round
+import kotlin.math.sqrt
 import kotlin.random.Random
 
 
-class GameActivityFocoPlus : BaseActivity() {
+class GameActivityFocoPlusAvanzado : BaseActivity() {
 
     private lateinit var backArrow: ImageView
     private lateinit var tvLevel: TextView
@@ -45,8 +58,6 @@ class GameActivityFocoPlus : BaseActivity() {
     private lateinit var dualSlot: View
     private lateinit var tvLeft: TextView
     private lateinit var tvRight: TextView
-    private lateinit var ivBoardLeft: ImageView
-    private lateinit var ivBoardRight: ImageView
     private lateinit var chrono: TextView
     private lateinit var timeProgress: ProgressBar
     private lateinit var tvErrorsCounter: TextView
@@ -67,13 +78,6 @@ class GameActivityFocoPlus : BaseActivity() {
     private var rightExpectedMetaIndex: Int = -1
     private var lastPressedIndex: Int = -1
     private var lastPressedView: View? = null
-    private lateinit var answersGridFigures: GridLayout
-    private lateinit var iv1: ImageView
-    private lateinit var iv2: ImageView
-    private lateinit var iv3: ImageView
-    private lateinit var iv4: ImageView
-    private lateinit var iv5: ImageView
-    private var btnNoneFigures: Button? = null
     private var btnNone: Button? = null
     private var currentLevel: Int = 1
     private var currentDifficulty: String? = null
@@ -90,15 +94,13 @@ class GameActivityFocoPlus : BaseActivity() {
     private var totalLevelTimeMs: Long = 0
     private var globalTimer: CountDownTimer? = null
     private var isGlobalTimerPausedVisual = false
-    private var pausedChronoTimeMs: Long = 0L
     private var pauseCompensationMs: Long = 0L
     private var isLevelProgressPaused: Boolean = false
     private var levelProgressCompensationMs: Long = 0L
     private var preHideMessageShown = false
-    private var lastPressedButton: Button? = null
     private var dualExerciseState = DualExerciseState.WAITING_FIRST
-    private var dualResponsesGiven = 0
     private var firstResponseCorrect = false
+    private var firstResponseAnsweredLeft: Boolean = true
     private var isDoubleNingunoExercise = false
     private var exercisesShownList = mutableListOf<String>()
     private var timersStartedForThisExercise = false
@@ -112,8 +114,8 @@ class GameActivityFocoPlus : BaseActivity() {
     private lateinit var hintOptionsLayout: View
     private lateinit var tvHintDesc: TextView
     private lateinit var tvHintBalance: TextView
-    private lateinit var btnUseHint: androidx.appcompat.widget.AppCompatButton
-    private lateinit var btnSkipHint: androidx.appcompat.widget.AppCompatButton
+    private lateinit var btnUseHint: AppCompatButton
+    private lateinit var btnSkipHint: AppCompatButton
     private lateinit var hintTimerBar: ProgressBar
 
     private enum class DualExerciseState {
@@ -124,40 +126,22 @@ class GameActivityFocoPlus : BaseActivity() {
 
     private sealed class Meta {
         data class Numeric(val value: Int) : Meta()
-        data class PairFig(val aIcon: Int, val aColor: Int, val bIcon: Int, val bColor: Int) : Meta()
     }
     private val metas: MutableList<Meta> = mutableListOf()
-    private var genesisPairs14: List<Quad> = emptyList()
-    private val dualVerticalOffsetDp = 32
+
+    private val dualVerticalOffsetPx by lazy {
+        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 32f, resources.displayMetrics)
+    }
     private var hiddenMetaIndexForFg: Int = -1
 
-    private val iconNames = listOf(
-        "ic_14_ancla", "ic_14_android", "ic_14_balon", "ic_14_caballo", "ic_14_casa",
-        "ic_14_circulo", "ic_14_corazon", "ic_14_escudo", "ic_14_feliz", "ic_14_infinito",
-        "ic_14_licuadora", "ic_14_lluvia", "ic_14_luna", "ic_14_pie", "ic_14_reciclar",
-        "ic_14_rectangulo", "ic_14_reloj", "ic_14_scooter", "ic_14_tractor", "ic_14_triangulo",
-        "ic_14_van"
-    )
-
-    private val colorResIds = listOf(
-        R.color.grey_dark,
-        R.color.blue_primary_darker,
-        R.color.red_primary,
-        R.color.orange_dark,
-        R.color.cyan,
-        R.color.green_light
-    )
 
     private val validMultiplicationTargets = listOf(
         8, 9, 10, 12, 14, 15, 16, 18, 20, 21, 22, 24, 25, 26, 27, 28,
         30, 32, 33, 34, 35, 36, 38, 39, 40, 42, 44, 45, 46, 48, 49, 50,
-        51, 52, 54, 55, 56, 57, 58, 60, 62, 63, 64, 65, 66, 68, 69, 70
+        51, 52, 54, 55, 56, 57, 58, 60, 62, 63, 64, 65, 66, 68, 69, 70,
+        72, 78, 80
     )
-    private val boardPairSizeDp = 90   // valor para modificar el tamaño de las figuras de la pizarra
-    private val boardPairGapFraction = 0.3f   //  valor para modificar el espacio entre las figuras de la pizarra
 
-    private val metaPairSizeDp = 70   // valor para modificar el tamaño de las figuras de los botones
-    private val metaPairGapFraction = 0.37f   //  valor para modificar el espacio entre las figuras de los botones
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -180,7 +164,7 @@ class GameActivityFocoPlus : BaseActivity() {
             var order: IntArray? = intent.getIntArrayExtra("FOCO_SHUFFLE_ORDER")
 
             if (order == null) {
-                val diffKey = (currentDifficulty ?: "PRINCIPIANTE")
+                val diffKey = (currentDifficulty ?: "AVANZADO")
                 val prefs = getSharedPreferences("MyPrefsFocoPlus", MODE_PRIVATE)
                 val key = "focoplus_miniblock_${diffKey}_${miniblockIndex}"
                 val csv = prefs.getString(key, null)
@@ -198,32 +182,25 @@ class GameActivityFocoPlus : BaseActivity() {
         val levelSeed = currentLevel.toLong() + subtype * 1000L
         Random(levelSeed)
 
-        ScoreManager.initFocoPlusPrincipiante(this)
+        ScoreManager.initFocoPlus(this)
 
         findViews()
         setUpBackHandler()
         applyHeaders()
 
-        if (subtype == 14) {
-
-            boardContainer.background = AppCompatResources.getDrawable(this, R.drawable.pizarra_background_foco14)
-
-            tvVamos.setTextColor(ContextCompat.getColor(this, R.color.text_color_adaptive))
-        }
-
-        val baseTimeSeconds = 10.0 - (currentLevel - 1) * 0.01
+        val baseTimeSeconds = 8.5 - (currentLevel - 1) * 0.01
         perExerciseMs = (baseTimeSeconds * 1000).toLong()
 
         isTwoTerms = isTwoTermsSubtype(subtype)
 
         if (subtype == 15) {
-            val params = boardContainer.layoutParams as androidx.constraintlayout.widget.ConstraintLayout.LayoutParams
+            val params = boardContainer.layoutParams as ConstraintLayout.LayoutParams
             params.dimensionRatio = "8:6"
             boardContainer.layoutParams = params
         }
 
         totalExercises = 14
-        maxErrorsAllowed = if (isTwoTerms) 12 else 6
+        maxErrorsAllowed = if (isTwoTerms) 8 else 4
 
         val pauseTimeMs = (totalExercises - 1) * 1L
         totalLevelTimeMs = totalExercises * perExerciseMs + pauseTimeMs
@@ -265,7 +242,6 @@ class GameActivityFocoPlus : BaseActivity() {
             9  -> generateSubtype9Equations()
             12 -> generateSubtype12Equations()
             13 -> generateSubtype13Equations()
-            14 -> generateSubtype14Equations()
             else -> emptyList()
         }
 
@@ -280,7 +256,6 @@ class GameActivityFocoPlus : BaseActivity() {
 
             val idx = when {
                 eq.expectedMetaIndex == -1 -> -1
-                subtype == 14 -> eq.expectedMetaIndex
                 else -> {
                     val mv = eq.metaValue
                     if (mv != null) extractedMetas.indexOf(mv) else -1
@@ -303,11 +278,12 @@ class GameActivityFocoPlus : BaseActivity() {
             8  -> generateSubtype8Equations()
             10 -> generateSubtype10Equations()
             11 -> generateSubtype11Equations()
+            14 -> generateSubtype14Equations()
             15 -> generateSubtype15Equations()
             else -> emptyList()
         }
 
-        if (subtype in setOf(3, 6, 8, 10, 11, 15)) {
+        if (subtype in setOf(3, 6, 8, 10, 11, 14, 15)) {
             val (finalEquations, finalMetas) = selectFinal10Plus4(
                 pool = generatedEquations,
                 resultOf = { it.metaValue },
@@ -412,12 +388,10 @@ class GameActivityFocoPlus : BaseActivity() {
     override fun onDestroy() {
         super.onDestroy()
         exerciseTimer?.cancel()
-
         hintCountDownTimer?.cancel()
-
         levelTimer?.cancel()
         globalTimer?.cancel()
-        lastPressedButton = null
+
     }
 
     private fun findViews() {
@@ -440,8 +414,6 @@ class GameActivityFocoPlus : BaseActivity() {
         dualSlot = findViewById(R.id.dual_slot)
         tvLeft = findViewById(R.id.tv_left_exercise)
         tvRight = findViewById(R.id.tv_right_exercise)
-        ivBoardLeft = findViewById(R.id.iv_board_left)
-        ivBoardRight = findViewById(R.id.iv_board_right)
 
         chrono = findViewById<TextView>(R.id.chronometer_text_view).apply {
             typeface = Typeface.MONOSPACE
@@ -460,13 +432,6 @@ class GameActivityFocoPlus : BaseActivity() {
         btn5 = findViewById(R.id.btn_meta_5)
         btnNone = findViewById(R.id.btn_meta_none)
 
-        answersGridFigures = findViewById(R.id.answers_grid_figures)
-        iv1 = findViewById(R.id.iv_meta_1)
-        iv2 = findViewById(R.id.iv_meta_2)
-        iv3 = findViewById(R.id.iv_meta_3)
-        iv4 = findViewById(R.id.iv_meta_4)
-        iv5 = findViewById(R.id.iv_meta_5)
-        btnNoneFigures = findViewById(R.id.btn_meta_none_figures)
 
         val listener = View.OnClickListener { v ->
             if (!running) return@OnClickListener
@@ -486,23 +451,6 @@ class GameActivityFocoPlus : BaseActivity() {
         btn5.setOnClickListener(listener)
         btnNone?.setOnClickListener(listener)
 
-        val figureListener = View.OnClickListener { v ->
-            if (!running) return@OnClickListener
-            when (v.id) {
-                R.id.iv_meta_1 -> onMetaPressed(0)
-                R.id.iv_meta_2 -> onMetaPressed(1)
-                R.id.iv_meta_3 -> onMetaPressed(2)
-                R.id.iv_meta_4 -> onMetaPressed(3)
-                R.id.iv_meta_5 -> onMetaPressed(4)
-                R.id.btn_meta_none_figures -> onNonePressed()
-            }
-        }
-        iv1.setOnClickListener(figureListener)
-        iv2.setOnClickListener(figureListener)
-        iv3.setOnClickListener(figureListener)
-        iv4.setOnClickListener(figureListener)
-        iv5.setOnClickListener(figureListener)
-        btnNoneFigures?.setOnClickListener(figureListener)
 
         backArrow.setOnClickListener {
             showExitConfirmation { finish() }
@@ -519,7 +467,8 @@ class GameActivityFocoPlus : BaseActivity() {
 
     private fun applyHeaders() {
         tvLevel.text = getString(R.string.level_title, currentLevel)
-        tvScore.text = getString(R.string.score_label, ScoreManager.currentScoreFocoPlusPrincipiante)
+        tvScore.text = getString(R.string.score_label, ScoreManager.currentScoreFocoPlus)
+
     }
 
     private fun showVamosThenStart() {
@@ -530,14 +479,14 @@ class GameActivityFocoPlus : BaseActivity() {
         val fadeOut = ObjectAnimator.ofFloat(tvVamos, "alpha", 1f, 0f).apply { duration = 250 }
 
         fadeIn.start()
-        fadeIn.addListener(object : android.animation.AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: android.animation.Animator) {
+        fadeIn.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator) {
                 hold.start()
-                hold.addListener(object : android.animation.AnimatorListenerAdapter() {
-                    override fun onAnimationEnd(animation: android.animation.Animator) {
+                hold.addListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator) {
                         fadeOut.start()
-                        fadeOut.addListener(object : android.animation.AnimatorListenerAdapter() {
-                            override fun onAnimationEnd(animation: android.animation.Animator) {
+                        fadeOut.addListener(object : AnimatorListenerAdapter() {
+                            override fun onAnimationEnd(animation: Animator) {
                                 tvVamos.visibility = View.GONE
                                 startLevel()
                             }
@@ -581,14 +530,13 @@ class GameActivityFocoPlus : BaseActivity() {
         globalTimer?.cancel()
         chrono.visibility = View.VISIBLE
         chrono.text = getString(R.string.initial_time_format)
-        pausedChronoTimeMs = 0L
-
+        
         globalTimer = object : CountDownTimer(300000L, 70) {
             override fun onTick(msLeft: Long) {
                 if (!isGlobalTimerPausedVisual) {
                     val elapsedRaw = 300000L - msLeft
                     val elapsed = max(0L, elapsedRaw - pauseCompensationMs)
-                    pausedChronoTimeMs = elapsed
+
                     val seconds = elapsed / 1000.0
                     chrono.text = String.format(Locale.getDefault(), "%05.2f", seconds)
                 }
@@ -604,11 +552,8 @@ class GameActivityFocoPlus : BaseActivity() {
             finishLevel()
             return
         }
-
         dualExerciseState = DualExerciseState.WAITING_FIRST
-        dualResponsesGiven = 0
         firstResponseCorrect = false
-
         timersStartedForThisExercise = false
 
         val miniblockIndex = (currentLevel - 1) / 14
@@ -627,20 +572,11 @@ class GameActivityFocoPlus : BaseActivity() {
 
             running = false
             exerciseTimer?.cancel()
-
             isGlobalTimerPausedVisual = true
-
             isLevelProgressPaused = true
 
-            if (subtype == 14) {
-                ivBoardLeft.clearAnimation()
-                ivBoardRight.clearAnimation()
-                ivBoardLeft.visibility = View.GONE
-                ivBoardRight.visibility = View.GONE
-            } else {
-                tvLeft.clearAnimation()
-                tvRight.clearAnimation()
-            }
+            tvLeft.clearAnimation()
+            tvRight.clearAnimation()
             singleSlot.visibility = View.GONE
             dualSlot.visibility = View.GONE
 
@@ -649,18 +585,17 @@ class GameActivityFocoPlus : BaseActivity() {
             tvVamos.text = getString(R.string.attention_hide_button)
             tvVamos.visibility = View.VISIBLE
             tvVamos.alpha = 1f
-
             tvVamos.bringToFront()
             tvVamos.elevation = 10f
             boardContainer.invalidate()
 
-            val zoomIn = android.view.animation.AnimationUtils.loadAnimation(this, R.anim.logo_zoom_in)
+            val zoomIn = AnimationUtils.loadAnimation(this, R.anim.logo_zoom_in)
             tvVamos.startAnimation(zoomIn)
 
             val metasViews = getMetaOptionViews()
             val target = metasViews[hiddenMetaIndexForFg]
             val shakeNow = {
-                val a = android.view.animation.AnimationUtils.loadAnimation(this, R.anim.shake)
+                val a = AnimationUtils.loadAnimation(this, R.anim.shake)
                 a.duration = 300
                 target.startAnimation(a)
             }
@@ -672,13 +607,10 @@ class GameActivityFocoPlus : BaseActivity() {
             boardContainer.postDelayed({
                 tvVamos.visibility = View.GONE
                 tvVamos.elevation = 0f
-
                 pauseCompensationMs += 3000L
                 levelProgressCompensationMs += 3000L
-
                 isGlobalTimerPausedVisual = false
                 isLevelProgressPaused = false
-
                 running = true
                 preHideMessageShown = true
                 nextExercise()
@@ -693,7 +625,7 @@ class GameActivityFocoPlus : BaseActivity() {
         if (isTwoTerms) {
             singleSlot.visibility = View.GONE
             dualSlot.visibility = View.VISIBLE
-            correctnessPlan[indexExercise]
+
             renderDualExercise()
 
             if (pistaActivada) aplicarPistaABotones()
@@ -720,13 +652,12 @@ class GameActivityFocoPlus : BaseActivity() {
 
     private fun getMetaButtonContent(index: Int): String {
         return when {
-            index == -1 -> resolveNoneText()
+            index == -1 -> getString(R.string.answer_none)
             index == -99 -> "-"
             subtype == 14 -> {
-
                 val meta = metas.getOrNull(index)
-                if (meta is Meta.PairFig) {
-                    "FIG_${meta.aIcon}_${meta.aColor}_${meta.bIcon}_${meta.bColor}"
+                if (meta is Meta.Numeric) {
+                    fmtDec(meta.value / 10.0)
                 } else {
                     "?"
                 }
@@ -773,13 +704,8 @@ class GameActivityFocoPlus : BaseActivity() {
         val start = System.currentTimeMillis()
         metas.clear()
 
-        if (subtype == 14) {
-            answersGrid.visibility = View.GONE
-            answersGridFigures.visibility = View.VISIBLE
-        } else {
-            answersGrid.visibility = View.VISIBLE
-            answersGridFigures.visibility = View.GONE
-        }
+        answersGrid.visibility = View.VISIBLE
+
 
         when (subtype) {
             in 1..10, 11 -> {
@@ -797,16 +723,8 @@ class GameActivityFocoPlus : BaseActivity() {
                 listOf(btn1, btn2, btn3, btn4, btn5).forEach { it.typeface = Typeface.DEFAULT }
             }
             14 -> {
-                if (genesisPairs14.isEmpty()) {
-                    val aI = iconNames.shuffled().map { resources.getIdentifier(it, "drawable", packageName) }.filter { it != 0 }.take(5)
-                    val bI = iconNames.shuffled().map { resources.getIdentifier(it, "drawable", packageName) }.filter { it != 0 }.take(5)
-                    val aC = colorResIds.shuffled().take(5)
-                    val bC = colorResIds.shuffled().take(5)
-                    genesisPairs14 = (0 until 5).map { i -> Quad(aI[i], aC[i], bI[i], bC[i]) }
-                }
-                genesisPairs14.forEach { (a, ac, b, bc) -> metas += Meta.PairFig(a, ac, b, bc) }
-                setMetaButtonsForFigures(genesisPairs14)
-                hiddenMetaIndexForFg = Random.nextInt(0, 5)
+                extractedMetas.forEach { metas += Meta.Numeric(it) }
+                setMetaButtonsForDecimals(extractedMetas)
             }
             15 -> {
                 extractedMetas.forEach { metas += Meta.Numeric(it) }
@@ -814,8 +732,9 @@ class GameActivityFocoPlus : BaseActivity() {
             }
         }
 
-        btnNone?.text = resolveNoneText()
-        btnNoneFigures?.text = resolveNoneText()
+        btnNone?.text = getString(R.string.answer_none)
+
+
         Log.d("PERF", "buildLevelMetas termina en ${System.currentTimeMillis() - start} ms")
     }
 
@@ -828,6 +747,15 @@ class GameActivityFocoPlus : BaseActivity() {
         val b = listOf(btn1, btn2, btn3, btn4, btn5)
         for (i in 0 until 5) {
             b[i].text = formatMinutesToTime(values[i])
+            b[i].setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, null)
+        }
+    }
+
+    private fun setMetaButtonsForDecimals(values: List<Int>) {
+        if (values.isEmpty() || values.size < 5) return
+        val b = listOf(btn1, btn2, btn3, btn4, btn5)
+        for (i in 0 until 5) {
+            b[i].text = fmtDec(values[i] / 10.0)
             b[i].setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, null)
         }
     }
@@ -849,21 +777,21 @@ class GameActivityFocoPlus : BaseActivity() {
 
     private fun generateSubtype1Equations(): List<GeneratedEquation> {
         val equations = mutableListOf<GeneratedEquation>()
-        val metas = pickDistinctInts(5, 8..20, forbidZero = true)
+        val metas = pickDistinctInts(5, 18..30, forbidZero = true)
         val divisors = List(5) { listOf(2, 3, 4).random() }
 
         for (metaIndex in 0..4) {
             val meta = metas[metaIndex]
             val divisor = divisors[metaIndex]
 
-            val a = kotlin.math.round(meta.toDouble() / divisor).toInt()
+            val a = round(meta.toDouble() / divisor).toInt()
             val b = meta - a
 
             val baseEquations = listOf(
-                "$a + $b",
-                "${a + 1} + ${b - 1}",
-                "${a + 2} + ${b - 2}",
-                "${a + 3} + ${b - 3}"
+                "${sqrtFmt(a)} + ${sqrtFmt(b)}",
+                "${sqrtFmt(a + 1)} + ${sqrtFmt(b - 1)}",
+                "${sqrtFmt(a + 2)} + ${sqrtFmt(b - 2)}",
+                "${sqrtFmt(a + 3)} + ${sqrtFmt(b - 3)}"
             )
 
             baseEquations.forEach { eq ->
@@ -873,17 +801,18 @@ class GameActivityFocoPlus : BaseActivity() {
 
         val ningunoEquations = mutableListOf<GeneratedEquation>()
         val usedEquations = mutableSetOf<String>()
+
         val candidatePool = equations.filter {
             val parts = it.left.split(" + ")
-            parts[0].toInt() != parts[1].toInt()
+            parseSqrtFmt(parts[0]) != parseSqrtFmt(parts[1])
         }.toMutableList()
 
         for (candidateEq in candidatePool) {
             if (ningunoEquations.size >= 8) break
 
             val parts = candidateEq.left.split(" + ")
-            val termA = parts[0].toInt()
-            val termB = parts[1].toInt()
+            val termA = parseSqrtFmt(parts[0])
+            val termB = parseSqrtFmt(parts[1])
             val mayor = maxOf(termA, termB)
 
             for (decrement in 1..3) {
@@ -904,11 +833,11 @@ class GameActivityFocoPlus : BaseActivity() {
         }
 
         while (ningunoEquations.size < 8) {
-            val a = pickInt(1, 19, forbidZero = true)
+            val a = pickInt(1, 29, forbidZero = true)
             val b = pickInt(1, 19, forbidZero = true)
             val result = a + b
             if (!metas.contains(result) && !usedEquations.contains("$a+$b")) {
-                ningunoEquations.add(GeneratedEquation("$a + $b", null, -1, null))
+                ningunoEquations.add(GeneratedEquation("${sqrtFmt(a)} + ${sqrtFmt(b)}", null, -1, null))
                 usedEquations.add("$a+$b")
             }
         }
@@ -934,21 +863,21 @@ class GameActivityFocoPlus : BaseActivity() {
     private fun generateSubtype2Equations(): List<GeneratedEquation> {
         val equations = mutableListOf<GeneratedEquation>()
 
-        val metas = pickDistinctInts(5, 12..35, forbidZero = true)
+        val metas = pickDistinctInts(5, 22..45, forbidZero = true)
 
         val divisors = List(5) { listOf(2, 3, 4).random() }
 
         for (metaIndex in 0..4) {
             val meta = metas[metaIndex]
             val divisor = divisors[metaIndex]
-            val a = kotlin.math.round(meta.toDouble() / divisor).toInt()
+            val a = round(meta.toDouble() / divisor).toInt()
             val b = meta - a
 
             val baseEquations = listOf(
-                "$a + $b",
-                "${a + 1} + ${b - 1}",
-                "${a + 2} + ${b - 2}",
-                "${a + 3} + ${b - 3}"
+                "${sqrtFmt(a)} + ${sqrtFmt(b)}",
+                "${sqrtFmt(a + 1)} + ${sqrtFmt(b - 1)}",
+                "${sqrtFmt(a + 2)} + ${sqrtFmt(b - 2)}",
+                "${sqrtFmt(a + 3)} + ${sqrtFmt(b - 3)}"
             )
 
             baseEquations.forEach { eq ->
@@ -958,9 +887,10 @@ class GameActivityFocoPlus : BaseActivity() {
 
         val ningunoEquations = mutableListOf<GeneratedEquation>()
         val usedEquations = mutableSetOf<String>()
+
         val candidatePool = equations.filter {
             val parts = it.left.split(" + ")
-            parts[0].toInt() != parts[1].toInt()
+            parseSqrtFmt(parts[0]) != parseSqrtFmt(parts[1])
         }.toMutableList()
 
         candidatePool.shuffle()
@@ -969,8 +899,9 @@ class GameActivityFocoPlus : BaseActivity() {
             if (ningunoEquations.size >= 8) break
 
             val parts = candidateEq.left.split(" + ")
-            val termA = parts[0].toInt()
-            val termB = parts[1].toInt()
+            val termA = parseSqrtFmt(parts[0])
+            val termB = parseSqrtFmt(parts[1])
+
             val mayor = maxOf(termA, termB)
 
             for (decrement in 1..3) {
@@ -991,11 +922,11 @@ class GameActivityFocoPlus : BaseActivity() {
         }
 
         while (ningunoEquations.size < 8) {
-            val a = pickInt(1, 34, forbidZero = true)
+            val a = pickInt(1, 44, forbidZero = true)
             val b = pickInt(1, 34, forbidZero = true)
             val result = a + b
             if (!metas.contains(result) && !usedEquations.contains("$a+$b")) {
-                ningunoEquations.add(GeneratedEquation("$a + $b", null, -1, null))
+                ningunoEquations.add(GeneratedEquation("${sqrtFmt(a)} + ${sqrtFmt(b)}", null, -1, null))
                 usedEquations.add("$a+$b")
             }
         }
@@ -1006,11 +937,10 @@ class GameActivityFocoPlus : BaseActivity() {
         return equations
     }
 
-
     private fun generateSubtype3Equations(): List<GeneratedEquation> {
         val equations = mutableListOf<GeneratedEquation>()
 
-        val metas = pickDistinctInts(5, 15..35, forbidZero = true)
+        val metas = pickDistinctInts(5, 25..45, forbidZero = true)
 
         val divisors = listOf(2, 3, 2, 3, 2)
         val restas = listOf(2, 3, 4, 2, 3)
@@ -1020,7 +950,7 @@ class GameActivityFocoPlus : BaseActivity() {
             val divisor = divisors[metaIndex]
             val resta = restas[metaIndex]
 
-            val a = kotlin.math.round(meta.toDouble() / divisor).toInt()
+            val a = round(meta.toDouble() / divisor).toInt()
             val b = a - resta
             val c = meta - a - b
 
@@ -1036,7 +966,7 @@ class GameActivityFocoPlus : BaseActivity() {
             val isMenorB = (b == menor)
             val isMenorC = (c == menor)
 
-            equations.add(GeneratedEquation("$a + $b + $c", null, metaIndex, meta))
+            equations.add(GeneratedEquation("${sqrtFmt(a)} + ${sqrtFmt(b)} + ${sqrtFmt(c)}", null, metaIndex, meta))
 
             for (delta in 1..3) {
                 val newA = when {
@@ -1055,7 +985,7 @@ class GameActivityFocoPlus : BaseActivity() {
                     else -> medio
                 }
 
-                equations.add(GeneratedEquation("$newA + $newB + $newC", null, metaIndex, meta))
+                equations.add(GeneratedEquation("${sqrtFmt(newA)} + ${sqrtFmt(newB)} + ${sqrtFmt(newC)}", null, metaIndex, meta))
             }
         }
 
@@ -1066,7 +996,7 @@ class GameActivityFocoPlus : BaseActivity() {
         for (candidateEq in candidatePool) {
             if (ningunoEquations.size >= 8) break
 
-            val parts = candidateEq.left.split(" + ").map { it.toInt() }
+            val parts = candidateEq.left.split(" + ").map { parseSqrtFmt(it) }
             val mayor = parts.maxOrNull() ?: continue
 
             for (increment in 1..4) {
@@ -1075,7 +1005,7 @@ class GameActivityFocoPlus : BaseActivity() {
 
                 if (!metas.contains(newResult)) {
                     val newParts = parts.map { if (it == mayor) newMayor else it }
-                    val newEq = newParts.joinToString(" + ")
+                    val newEq = newParts.joinToString(" + ") { sqrtFmt(it) }
                     ningunoEquations.add(GeneratedEquation(newEq, null, -1, null))
                     break
                 }
@@ -1083,12 +1013,12 @@ class GameActivityFocoPlus : BaseActivity() {
         }
 
         while (ningunoEquations.size < 8) {
-            val a = pickInt(1, 15, forbidZero = true)
-            val b = pickInt(1, 15, forbidZero = true)
-            val c = pickInt(1, 15, forbidZero = true)
+            val a = pickInt(1, 25, forbidZero = true)
+            val b = pickInt(1, 25, forbidZero = true)
+            val c = pickInt(1, 25, forbidZero = true)
             val result = a + b + c
             if (!metas.contains(result)) {
-                ningunoEquations.add(GeneratedEquation("$a + $b + $c", null, -1, null))
+                ningunoEquations.add(GeneratedEquation("${sqrtFmt(a)} + ${sqrtFmt(b)} + ${sqrtFmt(c)}", null, -1, null))
             }
         }
 
@@ -1101,8 +1031,7 @@ class GameActivityFocoPlus : BaseActivity() {
     private fun generateSubtype4Equations(): List<GeneratedEquation> {
         val equations = mutableListOf<GeneratedEquation>()
 
-
-        val metas = pickDistinctInts(5, -4..20, forbidZero = true)
+        val metas = pickDistinctInts(5, -4..30, forbidZero = true)
 
         val termsA = List(14) { -Random.nextInt(1, 21) }
         for (i in 0..13) {
@@ -1110,7 +1039,7 @@ class GameActivityFocoPlus : BaseActivity() {
             val meta = metas[metaIndex]
             val a = termsA[i]
             val b = meta - a
-            equations.add(GeneratedEquation("${fmt(a)} + ${fmt(b)}", null, metaIndex, meta))
+            equations.add(GeneratedEquation("${fmt(a)} + ${sqrtFmt(b)}", null, metaIndex, meta))
         }
 
         val termsB = List(14) { -Random.nextInt(1, 21) }
@@ -1119,14 +1048,15 @@ class GameActivityFocoPlus : BaseActivity() {
             val meta = metas[metaIndex]
             val b = termsB[i]
             val a = meta - b
-            equations.add(GeneratedEquation("${fmt(a)} + ${fmt(b)}", null, metaIndex, meta))
+            equations.add(GeneratedEquation("${fmt(a)} + ${sqrtFmt(b)}", null, metaIndex, meta))
         }
 
         val ningunoEquations = mutableListOf<GeneratedEquation>()
         val usedEquations = mutableSetOf<String>()
+
         val candidatePool = equations.filter {
-            val parts = it.left.replace("âˆ’", "-").split(" + ")
-            parts[0].toInt() != parts[1].toInt()
+            val parts = it.left.replace("âˆ'", "-").split(" + ")
+            parseSqrtFmt(parts[0]) != parseSqrtFmt(parts[1])
         }.toMutableList()
 
         candidatePool.shuffle()
@@ -1134,9 +1064,9 @@ class GameActivityFocoPlus : BaseActivity() {
         for (candidateEq in candidatePool) {
             if (ningunoEquations.size >= 8) break
 
-            val parts = candidateEq.left.replace("âˆ’", "-").split(" + ")
-            val termA = parts[0].toInt()
-            val termB = parts[1].toInt()
+            val parts = candidateEq.left.replace("âˆ'", "-").split(" + ")
+            val termA = parseSqrtFmt(parts[0])
+            val termB = parseSqrtFmt(parts[1])
             val mayor = if (abs(termA) > abs(termB)) termA else termB
 
             for (increment in 1..5) {
@@ -1166,7 +1096,7 @@ class GameActivityFocoPlus : BaseActivity() {
     private fun generateSubtype5Equations(): List<GeneratedEquation> {
         val equations = mutableListOf<GeneratedEquation>()
 
-        val metas = pickDistinctInts(5, -8..30, forbidZero = true)
+        val metas = pickDistinctInts(5, -8..40, forbidZero = true)
 
         val termsA = List(14) { -Random.nextInt(1, 21) }
         for (i in 0..13) {
@@ -1174,7 +1104,7 @@ class GameActivityFocoPlus : BaseActivity() {
             val meta = metas[metaIndex]
             val a = termsA[i]
             val b = meta - a
-            equations.add(GeneratedEquation("${fmt(a)} + ${fmt(b)}", null, metaIndex, meta))
+            equations.add(GeneratedEquation("${fmt(a)} + ${sqrtFmt(b)}", null, metaIndex, meta))
         }
 
         val termsB = List(14) { -Random.nextInt(1, 21) }
@@ -1183,14 +1113,15 @@ class GameActivityFocoPlus : BaseActivity() {
             val meta = metas[metaIndex]
             val b = termsB[i]
             val a = meta - b
-            equations.add(GeneratedEquation("${fmt(a)} + ${fmt(b)}", null, metaIndex, meta))
+            equations.add(GeneratedEquation("${fmt(a)} + ${sqrtFmt(b)}", null, metaIndex, meta))
         }
 
         val ningunoEquations = mutableListOf<GeneratedEquation>()
         val usedEquations = mutableSetOf<String>()
+
         val candidatePool = equations.filter {
-            val parts = it.left.replace("-", "-").split(" + ")
-            parts[0].toInt() != parts[1].toInt()
+            val parts = it.left.replace("âˆ'", "-").split(" + ")
+            parseSqrtFmt(parts[0]) != parseSqrtFmt(parts[1])
         }.toMutableList()
 
         candidatePool.shuffle()
@@ -1198,9 +1129,9 @@ class GameActivityFocoPlus : BaseActivity() {
         for (candidateEq in candidatePool) {
             if (ningunoEquations.size >= 8) break
 
-            val parts = candidateEq.left.replace("-", "-").split(" + ")
-            val termA = parts[0].toInt()
-            val termB = parts[1].toInt()
+            val parts = candidateEq.left.replace("âˆ'", "-").split(" + ")
+            val termA = parseSqrtFmt(parts[0])
+            val termB = parseSqrtFmt(parts[1])
             val mayor = if (abs(termA) > abs(termB)) termA else termB
 
             for (increment in 1..5) {
@@ -1229,10 +1160,9 @@ class GameActivityFocoPlus : BaseActivity() {
 
     private fun generateSubtype6Equations(): List<GeneratedEquation> {
 
-        val sevenMetas = pickDistinctInts(7, -8..30, forbidZero = false)
+        val sevenMetas = pickDistinctInts(7, -8..40, forbidZero = false)
         val fourteenNegatives = List(14) { -Random.nextInt(1, 21) }
         val divisionPattern = intArrayOf(2, 3)
-
 
         fun buildABC(meta: Int, negative: Int, useIndex: Int): Triple<Int, Int, Int> {
             val a = meta + negative
@@ -1244,8 +1174,14 @@ class GameActivityFocoPlus : BaseActivity() {
             return Triple(a, b, c)
         }
 
-        val eqRegex = Regex("""^-?\d+ \+ -?\d+ \+ -?\d+$""")
-        fun render(a: Int, b: Int, c: Int): String = "${fmt(a)} + ${fmt(b)} + ${fmt(c)}"
+        val eqRegex = Regex("""^(-?\d+|√\d+) \+ (-?\d+|√\d+) \+ (-?\d+|√\d+)$""")
+
+        fun render(a: Int, b: Int, c: Int): String {
+            val da = if (a >= 0) sqrtFmt(a) else fmt(a)
+            val db = if (b >= 0) sqrtFmt(b) else fmt(b)
+            val dc = if (c >= 0) sqrtFmt(c) else fmt(c)
+            return "$da + $db + $dc"
+        }
 
         fun tryAddUnique(
             used: MutableSet<String>,
@@ -1343,7 +1279,7 @@ class GameActivityFocoPlus : BaseActivity() {
             val factorizations = getAllFactorizations(meta)
             val chosen = factorizations.shuffled().take(4)
             chosen.forEach { (a, b) ->
-                equations.add(GeneratedEquation("$a × $b", null, metaIndex, meta))
+                equations.add(GeneratedEquation("${sqrtFmt(a)} × ${sqrtFmt(b)}", null, metaIndex, meta))
             }
         }
 
@@ -1355,8 +1291,8 @@ class GameActivityFocoPlus : BaseActivity() {
             if (ningunoEquations.size >= 8) break
 
             val parts = candidateEq.left.split(" × ")
-            val termA = parts[0].toInt()
-            val termB = parts[1].toInt()
+            val termA = parseSqrtFmt(parts[0])
+            val termB = parseSqrtFmt(parts[1])
             val menor = minOf(termA, termB)
 
             for (increment in 1..3) {
@@ -1365,9 +1301,9 @@ class GameActivityFocoPlus : BaseActivity() {
 
                 if (!metas.contains(newResult)) {
                     val newEq = if (termA == menor) {
-                        "$newMenor × $termB"
+                        "${sqrtFmt(newMenor)} × ${sqrtFmt(termB)}"
                     } else {
-                        "$termA × $newMenor"
+                        "${sqrtFmt(termA)} × ${sqrtFmt(newMenor)}"
                     }
                     ningunoEquations.add(GeneratedEquation(newEq, null, -1, null))
                     break
@@ -1413,7 +1349,7 @@ class GameActivityFocoPlus : BaseActivity() {
             Log.w("FocoPlus", "Subtipo 8: Solo se encontraron ${metasBase.size} metas válidas")
         }
 
-        val terminosAdicionales = List(5) { Random.nextInt(1, 13) }
+        val terminosAdicionales = List(5) { Random.nextInt(1, 23) }
         val metasFinales = metasBase.zip(terminosAdicionales).map { it.first + it.second }
 
         for (metaIndex in 0..4) {
@@ -1423,7 +1359,7 @@ class GameActivityFocoPlus : BaseActivity() {
 
             val chosen = factorizations.shuffled().take(4)
             chosen.forEach { (a, b) ->
-                equations.add(GeneratedEquation("$a × $b + $terminoAdicional", null, metaIndex, metasFinales[metaIndex]))
+                equations.add(GeneratedEquation("${sqrtFmt(a)} × ${sqrtFmt(b)} + ${sqrtFmt(terminoAdicional)}", null, metaIndex, metasFinales[metaIndex]))
             }
         }
 
@@ -1436,15 +1372,15 @@ class GameActivityFocoPlus : BaseActivity() {
 
             val parts = candidateEq.left.split(" + ")
             val multiplicationPart = parts[0]
-            val terminoActual = parts[1].toInt()
+            val terminoActual = parseSqrtFmt(parts[1])
 
             for (increment in 1..4) {
                 val newTermino = terminoActual + increment
                 val partsMulti = multiplicationPart.split(" × ")
-                val newResult = partsMulti[0].toInt() * partsMulti[1].toInt() + newTermino
+                val newResult = parseSqrtFmt(partsMulti[0]) * parseSqrtFmt(partsMulti[1]) + newTermino
 
                 if (!metasFinales.contains(newResult)) {
-                    val newEq = "$multiplicationPart + $newTermino"
+                    val newEq = "$multiplicationPart + ${sqrtFmt(newTermino)}"
                     ningunoEquations.add(GeneratedEquation(newEq, null, -1, null))
                     break
                 }
@@ -1457,11 +1393,10 @@ class GameActivityFocoPlus : BaseActivity() {
         return equations
     }
 
-
     private fun generateSubtype9Equations(): List<GeneratedEquation> {
         val equations = mutableListOf<GeneratedEquation>()
 
-        val valoresBase = pickDistinctInts(7, 1..16, forbidZero = true)
+        val valoresBase = pickDistinctInts(7, 11..26, forbidZero = true)
         val metasNumericas = valoresBase.take(5)
         val basesNinguno = valoresBase.takeLast(2)
         val gruposDivisores = List(7) {
@@ -1474,7 +1409,7 @@ class GameActivityFocoPlus : BaseActivity() {
 
             divisores.forEach { divisor ->
                 val dividendo = valor * divisor
-                equations.add(GeneratedEquation("$dividendo ÷  $divisor", null, metaIndex, valor))
+                equations.add(GeneratedEquation("$dividendo ÷  ${sqrtFmt(divisor)}", null, metaIndex, valor))
             }
         }
 
@@ -1484,7 +1419,7 @@ class GameActivityFocoPlus : BaseActivity() {
 
             divisores.forEach { divisor ->
                 val dividendo = valorNinguno * divisor
-                equations.add(GeneratedEquation("$dividendo ÷  $divisor", null, -1, null))
+                equations.add(GeneratedEquation("$dividendo ÷  ${sqrtFmt(divisor)}", null, -1, null))
             }
         }
 
@@ -1496,14 +1431,14 @@ class GameActivityFocoPlus : BaseActivity() {
     private fun generateSubtype10Equations(): List<GeneratedEquation> {
         val equations = mutableListOf<GeneratedEquation>()
 
-        val valoresBase = pickDistinctInts(7, 1..16, forbidZero = true)
+        val valoresBase = pickDistinctInts(7, 11..26, forbidZero = true)
         val metasBase = valoresBase.take(5)
         val basesNinguno = valoresBase.takeLast(2)
         var terminosRestaMetas: List<Int>
         var metasFinales: List<Int>
         var guard = 0
         while (true) {
-            terminosRestaMetas = List(5) { Random.nextInt(1, 13) }
+            terminosRestaMetas = List(5) { Random.nextInt(1, 23) }
             metasFinales = metasBase.indices.map { metasBase[it] - terminosRestaMetas[it] }
             if (metasFinales.toSet().size == 5) break
             guard++
@@ -1523,7 +1458,7 @@ class GameActivityFocoPlus : BaseActivity() {
             }
         }
 
-        val terminosRestaNinguno = MutableList(2) { Random.nextInt(1, 13) }
+        val terminosRestaNinguno = MutableList(2) { Random.nextInt(1, 23) }
         for (i in 0 until 2) {
             var resta = terminosRestaNinguno[i]
             var intento = 0
@@ -1549,7 +1484,7 @@ class GameActivityFocoPlus : BaseActivity() {
             divisores.forEach { divisor ->
                 val dividendo = base * divisor
 
-                val leftExpr = "$dividendo ÷  $divisor - $resta"
+                val leftExpr = "$dividendo ÷  ${sqrtFmt(divisor)} - ${sqrtFmt(resta)}"
                 equations.add(GeneratedEquation(leftExpr, null, metaIndex, metaFinal))
             }
         }
@@ -1567,7 +1502,7 @@ class GameActivityFocoPlus : BaseActivity() {
 
             divisores.forEach { divisor ->
                 val dividendo = baseNinguno * divisor
-                val leftExpr = "$dividendo ÷ $divisor - $resta"
+                val leftExpr = "$dividendo ÷ ${sqrtFmt(divisor)} - ${sqrtFmt(resta)}"
                 equations.add(GeneratedEquation(leftExpr, null, -1, null))
             }
         }
@@ -1585,8 +1520,7 @@ class GameActivityFocoPlus : BaseActivity() {
         val equations = mutableListOf<GeneratedEquation>()
         val metas = mutableListOf<Int>()
 
-        @Suppress("UNUSED_VARIABLE")
-        for (genIndex in 0..4) {
+        repeat(5) {
             var a = 0
             var b = 0
             var c = 0
@@ -1596,20 +1530,20 @@ class GameActivityFocoPlus : BaseActivity() {
             val triedCValues = mutableSetOf<Int>()
 
             while (!foundValid && triedCValues.size < 15) {
-                a = pickInt(1, 15, forbidZero = false)
-                b = pickInt(1, 15, forbidZero = false)
+                a = pickInt(1, 25, forbidZero = false)
+                b = pickInt(1, 25, forbidZero = false)
 
                 val candidateC = pickInt(1, 14, forbidZero = false, exclude = triedCValues)
                 triedCValues.add(candidateC)
 
                 val metaPositive = a + b + candidateC
-                if (metaPositive in 1..15 && !metas.contains(metaPositive)) {
+                if (metaPositive in 11..25 && !metas.contains(metaPositive)) {
                     c = candidateC
                     meta = metaPositive
                     foundValid = true
                 } else {
                     val metaNegative = a + b + (-candidateC)
-                    if (metaNegative in 1..15 && !metas.contains(metaNegative)) {
+                    if (metaNegative in 11..25 && !metas.contains(metaNegative)) {
                         c = -candidateC
                         meta = metaNegative
                         foundValid = true
@@ -1682,7 +1616,7 @@ class GameActivityFocoPlus : BaseActivity() {
 
     private fun generateSubtype12Equations(): List<GeneratedEquation> {
         val equationsSubtype1 = generateSubtype1Equations()
-        val sumPattern = Regex("""^\s*(-?\d+)\s*\+\s*(-?\d+)\s*$""")
+        val sumPattern = Regex("""^\s*(-?√?\d+)\s*\+\s*(-?√?\d+)\s*$""")
         fun toDisplay(v: Int): String {
             val absV = abs(v)
             return if (absV in 1..10) {
@@ -1695,8 +1629,8 @@ class GameActivityFocoPlus : BaseActivity() {
         val letterEquations = equationsSubtype1.map { eq ->
             val m = sumPattern.find(eq.left)
             if (m != null) {
-                val termA = m.groupValues[1].toInt()
-                val termB = m.groupValues[2].toInt()
+                val termA = parseSqrtFmt(m.groupValues[1])
+                val termB = parseSqrtFmt(m.groupValues[2])
                 val displayA = toDisplay(termA)
                 val displayB = toDisplay(termB)
                 val displayText = "$displayA + $displayB"
@@ -1714,8 +1648,8 @@ class GameActivityFocoPlus : BaseActivity() {
         val equationsSubtype4 = generateSubtype4Equations()
         val mixedEquations = equationsSubtype4.map { eq ->
             val parts = eq.left.replace("-", "-").split(" + ")
-            val termA = parts[0].toInt()
-            val termB = parts[1].toInt()
+            val termA = parseSqrtFmt(parts[0])
+            val termB = parseSqrtFmt(parts[1])
             val (menor, mayor) = if (abs(termA) > abs(termB)) {
                 Pair(termB, termA)
             } else {
@@ -1743,55 +1677,49 @@ class GameActivityFocoPlus : BaseActivity() {
 
     private fun generateSubtype14Equations(): List<GeneratedEquation> {
         val equations = mutableListOf<GeneratedEquation>()
+        val metasInt = pickDistinctInts(5, 18..30, forbidZero = true)
+        val divisors = List(5) { listOf(2, 3, 4).random() }
 
-        fun pickDistinctIcons(n: Int): List<Int> {
-            val pool = iconNames.shuffled()
-                .map { resources.getIdentifier(it, "drawable", packageName) }
-                .filter { it != 0 }
-            return pool.take(n)
-        }
-        fun pickDistinctColors(n: Int): List<Int> = colorResIds.shuffled().take(n)
+        for (metaIndex in 0..4) {
+            val metaInt = metasInt[metaIndex]
+            val divisor = divisors[metaIndex]
+            val aInt = round(metaInt.toDouble() / divisor).toInt()
+            val bInt = metaInt - aInt
 
-        val aIcons = pickDistinctIcons(5)
-        val bIcons = pickDistinctIcons(5)
-        val aColors = pickDistinctColors(5)
-        val bColors = pickDistinctColors(5)
+            val baseEquations = listOf(
+                "${fmtDec(aInt / 10.0)} + ${fmtDec(bInt / 10.0)}",
+                "${fmtDec((aInt + 1) / 10.0)} + ${fmtDec((bInt - 1) / 10.0)}",
+                "${fmtDec((aInt + 2) / 10.0)} + ${fmtDec((bInt - 2) / 10.0)}",
+                "${fmtDec((aInt + 3) / 10.0)} + ${fmtDec((bInt - 3) / 10.0)}"
+            )
 
-        genesisPairs14 = (0 until 5).map { i ->
-            Quad(aIcons[i], aColors[i], bIcons[i], bColors[i])
-        }
-
-        for ((idx, q) in genesisPairs14.withIndex()) {
-            repeat(4) {
-                val figureId = "FIG_META_${q.aIcon}_${q.bIcon}_${q.aColor}_${q.bColor}"
-                equations.add(GeneratedEquation(figureId, null, idx, null))
+            baseEquations.forEach { eq ->
+                equations.add(GeneratedEquation(eq, null, metaIndex, metaInt))
             }
         }
 
-        val genesisKeys = genesisPairs14
-            .map { keyOrdered(it.aIcon, it.aColor, it.bIcon, it.bColor) }
-            .toSet()
+        val ningunoEquations = mutableListOf<GeneratedEquation>()
+        val usedEquations = mutableSetOf<String>()
 
-        val noneKeys = mutableSetOf<String>()
-        repeat(8) {
-            var none: Quad
-            var key: String
-            do {
-                none = Quad(iconsRandomId(), colorsRandom(), iconsRandomId(), colorsRandom())
-                key = keyOrdered(none.aIcon, none.aColor, none.bIcon, none.bColor)
-            } while (key in genesisKeys || key in noneKeys)
-            noneKeys += key
-            val figureId = "FIG_NONE_${none.aIcon}_${none.bIcon}_${none.aColor}_${none.bColor}"
-            equations.add(GeneratedEquation(figureId, null, -1, null))
+        while (ningunoEquations.size < 8) {
+            val aInt = pickInt(1, 29, forbidZero = true)
+            val bInt = pickInt(1, 29, forbidZero = true)
+            val resultInt = aInt + bInt
+            val eq = "${fmtDec(aInt / 10.0)} + ${fmtDec(bInt / 10.0)}"
+            if (!metasInt.contains(resultInt) && !usedEquations.contains(eq)) {
+                ningunoEquations.add(GeneratedEquation(eq, null, -1, null))
+                usedEquations.add(eq)
+            }
         }
 
+        equations.addAll(ningunoEquations)
         equations.shuffle()
         return equations
     }
 
     private fun generateSubtype15Equations(): List<GeneratedEquation> {
 
-        val sevenMetas = pickDistinctInts(7, 30..80, forbidZero = true)
+        val sevenMetas = pickDistinctInts(7, 45..95, forbidZero = true)
 
         val divisors = intArrayOf(5, 3, 5, 3, 5, 3, 5)
         val multipliers = intArrayOf(2, 4, 2, 4, 2, 4, 2)
@@ -1833,32 +1761,6 @@ class GameActivityFocoPlus : BaseActivity() {
         return finalEquations.shuffled()
     }
 
-    private data class Quad(val aIcon: Int, val aColor: Int, val bIcon: Int, val bColor: Int)
-
-    private fun keyOrdered(aIcon: Int, aColor: Int, bIcon: Int, bColor: Int): String {
-        val first = minOf("$aIcon-$aColor", "$bIcon-$bColor")
-        val second = maxOf("$aIcon-$aColor", "$bIcon-$bColor")
-        return "$first|$second"
-    }
-
-    private fun setBoardFigureImage(target: ImageView, figureId: String) {
-        val parts = figureId.split("_")
-        if (parts.isEmpty()) {
-            target.setImageDrawable(null)
-            return
-        }
-        val base = if (parts.getOrNull(1) == "NONE") 2 else 2
-        try {
-            val aIcon = parts[base].toInt()
-            val bIcon = parts[base + 1].toInt()
-            val aColor = parts[base + 2].toInt()
-            val bColor = parts[base + 3].toInt()
-            val layer = makePairDrawable(aIcon, aColor, bIcon, bColor, isForBoard = true)
-            target.setImageDrawable(layer)
-        } catch (_: Exception) {
-            target.setImageDrawable(null)
-        }
-    }
 
     private fun renderDualExercise() {
         val exerciseIdx = indexExercise * 2
@@ -1874,35 +1776,13 @@ class GameActivityFocoPlus : BaseActivity() {
         val leftEq = preGeneratedExercises[exerciseIdx].first
         val rightEq = preGeneratedExercises[exerciseIdx + 1].first
 
-        if (subtype == 14) {
-
-            tvLeft.visibility = View.GONE
-            tvRight.visibility = View.GONE
-            ivBoardLeft.visibility = View.VISIBLE
-            ivBoardRight.visibility = View.VISIBLE
-
-            setBoardFigureImage(ivBoardLeft, leftEq)
-            setBoardFigureImage(ivBoardRight, rightEq)
-        } else {
-
-            ivBoardLeft.visibility = View.GONE
-            ivBoardRight.visibility = View.GONE
-            tvLeft.visibility = View.VISIBLE
-            tvRight.visibility = View.VISIBLE
-
-            setColoredExercise(tvLeft, leftEq)
-            setColoredExercise(tvRight, rightEq)
-
-            if (subtype == 12 || subtype == 13) {
-                tvLeft.typeface = Typeface.DEFAULT
-                tvRight.typeface = Typeface.DEFAULT
-            }
-
-            if (subtype == 15) {
-                tvLeft.gravity = android.view.Gravity.END
-                tvRight.gravity = android.view.Gravity.END
-            }
-
+        tvLeft.visibility = View.VISIBLE
+        tvRight.visibility = View.VISIBLE
+        setColoredExercise(tvLeft, leftEq)
+        setColoredExercise(tvRight, rightEq)
+        if (subtype == 12 || subtype == 13) {
+            tvLeft.typeface = Typeface.DEFAULT
+            tvRight.typeface = Typeface.DEFAULT
         }
 
         leftExpectedMetaIndex = exerciseMetaIndices[exerciseIdx]
@@ -1922,7 +1802,7 @@ class GameActivityFocoPlus : BaseActivity() {
         setColoredExercise(tvSingle, equation)
 
         if (subtype == 15) {
-            tvSingle.gravity = android.view.Gravity.END
+            tvSingle.gravity = Gravity.END
         }
 
         currentExpectedMetaIndex = exerciseMetaIndices[indexExercise]
@@ -1933,64 +1813,52 @@ class GameActivityFocoPlus : BaseActivity() {
             override fun onPreDraw(): Boolean {
                 boardContainer.viewTreeObserver.removeOnPreDrawListener(this)
 
-                val width = boardContainer.width.toFloat()
-                val half = (perExerciseMs)
+                val marginPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8f, resources.displayMetrics)
+                val halfSlot = dualSlot.width.toFloat() / 2f
 
                 dualAnimLeft?.cancel();  dualAnimLeft = null
                 dualAnimRight?.cancel(); dualAnimRight = null
 
-                val leftView  = if (subtype == 14) ivBoardLeft else tvLeft
-                val rightView = if (subtype == 14) ivBoardRight else tvRight
+                val leftView  = tvLeft
+                val rightView = tvRight
 
-                if (subtype == 14) {
-                    ivBoardLeft.animate().cancel()
-                    ivBoardRight.animate().cancel()
-                    ivBoardLeft.alpha = 1f
-                    ivBoardRight.alpha = 1f
-                    ivBoardLeft.visibility = View.VISIBLE
-                    ivBoardRight.visibility = View.VISIBLE
-                    ivBoardLeft.translationY = -dp(dualVerticalOffsetDp).toFloat()
-                    ivBoardRight.translationY =  dp(dualVerticalOffsetDp).toFloat()
-                } else {
-                    tvLeft.animate().cancel()
-                    tvRight.animate().cancel()
-                    tvLeft.alpha = 1f
-                    tvRight.alpha = 1f
-                    tvLeft.visibility = View.VISIBLE
-                    tvRight.visibility = View.VISIBLE
-                    tvLeft.translationY = -dp(dualVerticalOffsetDp).toFloat()
-                    tvRight.translationY =  dp(dualVerticalOffsetDp).toFloat()
-                }
+                tvLeft.animate().cancel()
+                tvRight.animate().cancel()
+                tvLeft.alpha = 1f
+                tvRight.alpha = 1f
+                tvLeft.visibility = View.VISIBLE
+                tvRight.visibility = View.VISIBLE
+
+                tvLeft.translationY  = -dualVerticalOffsetPx
+                tvRight.translationY =  dualVerticalOffsetPx
+
+                val leftEnd  =  (halfSlot - marginPx).coerceAtLeast(0f)
+                val rightEnd = -(halfSlot - marginPx).coerceAtLeast(0f)
 
                 val leftStart: Float
-                val leftEnd: Float
                 val rightStart: Float
-                val rightEnd: Float
 
                 if (indexExercise == 0) {
-                    leftStart = -leftView.width.toFloat()
-                    leftEnd   = (width * 1.00f) - (leftView.width)
-                    rightStart = rightView.width.toFloat()
-                    rightEnd   = (width * -0.05f) - (rightView.width)
+                    leftStart  = -leftView.width.toFloat()
+                    rightStart =  rightView.width.toFloat()
                 } else {
-                    leftStart = (width * 0.40f) - (leftView.width)
-                    leftEnd   = (width * 1.00f) - (leftView.width)
-                    rightStart = (width * 0.40f) - (rightView.width)
-                    rightEnd   = (width * -0.05f) - (rightView.width)
+                    leftStart  = 0f
+                    rightStart = 0f
                 }
 
-                leftView.translationX = leftStart
+                leftView.translationX  = leftStart
                 rightView.translationX = rightStart
 
                 val updateListener = ValueAnimator.AnimatorUpdateListener {
                     if (!timersStartedForThisExercise && indexExercise < totalExercises) {
-                        val leftThreshold  = leftView.width * 0.40f
-                        val rightThreshold = rightView.width * 0.40f
-
-                        val leftVisibleEnough  = (leftView.translationX + leftView.width) > leftThreshold
-                        val rightVisibleEnough = rightView.translationX < (boardContainer.width - rightThreshold)
-
-                        if (leftVisibleEnough && rightVisibleEnough) {
+                        val shouldStart = if (indexExercise == 0) {
+                            val leftVisibleEnough  = (leftView.translationX + leftView.width) > leftView.width * 0.40f
+                            val rightVisibleEnough =  rightView.translationX < rightView.width * 0.60f
+                            leftVisibleEnough && rightVisibleEnough
+                        } else {
+                            true
+                        }
+                        if (shouldStart) {
                             timersStartedForThisExercise = true
                             startExerciseResponseTimer()
                             if (indexExercise == 0) {
@@ -2002,7 +1870,7 @@ class GameActivityFocoPlus : BaseActivity() {
                 }
 
                 dualAnimLeft = ObjectAnimator.ofFloat(leftView, "translationX", leftStart, leftEnd).apply {
-                    duration = half
+                    duration = perExerciseMs / 2
                     interpolator = AccelerateDecelerateInterpolator()
                     repeatMode = ValueAnimator.REVERSE
                     repeatCount = 1
@@ -2010,7 +1878,7 @@ class GameActivityFocoPlus : BaseActivity() {
                 }
 
                 dualAnimRight = ObjectAnimator.ofFloat(rightView, "translationX", rightStart, rightEnd).apply {
-                    duration = half
+                    duration = perExerciseMs / 2
                     interpolator = AccelerateDecelerateInterpolator()
                     repeatMode = ValueAnimator.REVERSE
                     repeatCount = 1
@@ -2031,40 +1899,33 @@ class GameActivityFocoPlus : BaseActivity() {
             override fun onPreDraw(): Boolean {
                 boardContainer.viewTreeObserver.removeOnPreDrawListener(this)
 
-                val width = boardContainer.width.toFloat()
-                val offset = width * 0.25f
-                val startX = -tvSingle.width.toFloat()
+                val marginPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8f, resources.displayMetrics)
+                val slotWidth = singleSlot.width.toFloat()
+                val textWidth = tvSingle.width.toFloat()
+                val maxShift = ((slotWidth - textWidth) / 2f - marginPx).coerceAtLeast(0f)
 
-                tvSingle.translationX = startX
+                tvSingle.translationX = -maxShift
                 tvSingle.translationY = 0f
                 tvSingle.alpha = 1f
                 tvSingle.visibility = View.VISIBLE
 
-
-                ObjectAnimator.ofFloat(tvSingle, "translationX", startX, offset).apply {
+                ObjectAnimator.ofFloat(tvSingle, "translationX", -maxShift, maxShift).apply {
                     duration = perExerciseMs / 2
                     interpolator = AccelerateDecelerateInterpolator()
                     repeatMode = ValueAnimator.REVERSE
                     repeatCount = 1
-
                     addUpdateListener {
                         if (!timersStartedForThisExercise && indexExercise < totalExercises) {
-
-                            if (tvSingle.translationX + tvSingle.width > 0) {
-                                timersStartedForThisExercise = true
-
-                                startExerciseResponseTimer()
-
-                                if (indexExercise == 0) {
-                                    startLevelTimer()
-                                    startGlobalVisibleTimer()
-                                }
+                            timersStartedForThisExercise = true
+                            startExerciseResponseTimer()
+                            if (indexExercise == 0) {
+                                startLevelTimer()
+                                startGlobalVisibleTimer()
                             }
                         }
                     }
                     start()
                 }
-
                 return true
             }
         })
@@ -2077,11 +1938,7 @@ class GameActivityFocoPlus : BaseActivity() {
 
         lastPressedIndex = index
 
-        lastPressedView = if (subtype == 14) {
-            listOf(iv1, iv2, iv3, iv4, iv5)[index]
-        } else {
-            listOf(btn1, btn2, btn3, btn4, btn5)[index]
-        }
+        lastPressedView = listOf(btn1, btn2, btn3, btn4, btn5)[index]
 
         applySoftBounceEffect(lastPressedView!!)
 
@@ -2096,12 +1953,22 @@ class GameActivityFocoPlus : BaseActivity() {
             val isFirstResponse = (dualExerciseState == DualExerciseState.WAITING_FIRST)
 
             if (isFirstResponse && exerciseIdx < preGeneratedExercises.size) {
-                exercisesShownList.add(preGeneratedExercises[exerciseIdx].first)
-                correctAnswersList.add(getMetaButtonContent(leftExpectedMetaIndex))
+                val answeredLeft = (index == leftExpectedMetaIndex)
+                firstResponseAnsweredLeft = answeredLeft
+                val answeredExerciseIdx = if (answeredLeft) exerciseIdx else exerciseIdx + 1
+                val correctForFirst = if (answeredLeft) leftExpectedMetaIndex else rightExpectedMetaIndex
+                if (answeredExerciseIdx < preGeneratedExercises.size) {
+                    exercisesShownList.add(preGeneratedExercises[answeredExerciseIdx].first)
+                }
+                correctAnswersList.add(getMetaButtonContent(correctForFirst))
                 userResponsesList.add(getMetaButtonContent(index))
             } else if (!isFirstResponse && exerciseIdx + 1 < preGeneratedExercises.size) {
-                exercisesShownList.add(preGeneratedExercises[exerciseIdx + 1].first)
-                correctAnswersList.add(getMetaButtonContent(rightExpectedMetaIndex))
+                val correctForSecond = if (firstResponseAnsweredLeft) rightExpectedMetaIndex else leftExpectedMetaIndex
+                val remainingExerciseIdx = if (firstResponseAnsweredLeft) exerciseIdx + 1 else exerciseIdx
+                if (remainingExerciseIdx < preGeneratedExercises.size) {
+                    exercisesShownList.add(preGeneratedExercises[remainingExerciseIdx].first)
+                }
+                correctAnswersList.add(getMetaButtonContent(correctForSecond))
                 userResponsesList.add(getMetaButtonContent(index))
             }
         } else {
@@ -2132,11 +1999,7 @@ class GameActivityFocoPlus : BaseActivity() {
 
         lastPressedIndex = -1
 
-        lastPressedView = if (subtype == 14) {
-            btnNoneFigures
-        } else {
-            btnNone
-        }
+        lastPressedView = btnNone
 
         applySoftBounceEffect(lastPressedView!!)
 
@@ -2151,12 +2014,22 @@ class GameActivityFocoPlus : BaseActivity() {
             val isFirstResponse = (dualExerciseState == DualExerciseState.WAITING_FIRST)
 
             if (isFirstResponse && exerciseIdx < preGeneratedExercises.size) {
-                exercisesShownList.add(preGeneratedExercises[exerciseIdx].first)
-                correctAnswersList.add(getMetaButtonContent(leftExpectedMetaIndex))
+                val ningunoMatchesLeft = (leftExpectedMetaIndex == -1)
+                firstResponseAnsweredLeft = ningunoMatchesLeft
+                val answeredExerciseIdx = if (ningunoMatchesLeft) exerciseIdx else exerciseIdx + 1
+                val correctForFirst = if (ningunoMatchesLeft) leftExpectedMetaIndex else rightExpectedMetaIndex
+                if (answeredExerciseIdx < preGeneratedExercises.size) {
+                    exercisesShownList.add(preGeneratedExercises[answeredExerciseIdx].first)
+                }
+                correctAnswersList.add(getMetaButtonContent(correctForFirst))
                 userResponsesList.add(getMetaButtonContent(-1))
             } else if (!isFirstResponse && exerciseIdx + 1 < preGeneratedExercises.size) {
-                exercisesShownList.add(preGeneratedExercises[exerciseIdx + 1].first)
-                correctAnswersList.add(getMetaButtonContent(rightExpectedMetaIndex))
+                val correctForSecond = if (firstResponseAnsweredLeft) rightExpectedMetaIndex else leftExpectedMetaIndex
+                val remainingExerciseIdx = if (firstResponseAnsweredLeft) exerciseIdx + 1 else exerciseIdx
+                if (remainingExerciseIdx < preGeneratedExercises.size) {
+                    exercisesShownList.add(preGeneratedExercises[remainingExerciseIdx].first)
+                }
+                correctAnswersList.add(getMetaButtonContent(correctForSecond))
                 userResponsesList.add(getMetaButtonContent(-1))
             }
         } else {
@@ -2182,7 +2055,6 @@ class GameActivityFocoPlus : BaseActivity() {
     }
 
     private fun handleDualExerciseResponse() {
-        dualResponsesGiven++
 
         if (dualExerciseState == DualExerciseState.WAITING_FIRST) {
             isDoubleNingunoExercise = (leftExpectedMetaIndex == -1 && rightExpectedMetaIndex == -1)
@@ -2279,7 +2151,7 @@ class GameActivityFocoPlus : BaseActivity() {
         val scaleUpX = ObjectAnimator.ofFloat(view, "scaleX", 0.95f, 1f).apply { duration = 30 }
         val scaleUpY = ObjectAnimator.ofFloat(view, "scaleY", 0.95f, 1f).apply { duration = 30 }
 
-        val animatorSet = android.animation.AnimatorSet()
+        val animatorSet = AnimatorSet()
         animatorSet.play(scaleDownX).with(scaleDownY)
         animatorSet.play(scaleUpX).with(scaleUpY).after(scaleDownX)
         animatorSet.start()
@@ -2301,7 +2173,6 @@ class GameActivityFocoPlus : BaseActivity() {
         if (isTwoTerms) {
             val exerciseIdx = indexExercise * 2
 
-
             if (dualExerciseState == DualExerciseState.WAITING_FIRST) {
 
                 if (exerciseIdx < preGeneratedExercises.size) {
@@ -2315,15 +2186,19 @@ class GameActivityFocoPlus : BaseActivity() {
                     userResponsesList.add(getMetaButtonContent(-99))
                 }
                 errorsCount += 2
+
             } else {
 
-                if (exerciseIdx + 1 < preGeneratedExercises.size) {
-                    exercisesShownList.add(preGeneratedExercises[exerciseIdx + 1].first)
-                    correctAnswersList.add(getMetaButtonContent(rightExpectedMetaIndex))
+                val remainingExerciseIdx = if (firstResponseAnsweredLeft) exerciseIdx + 1 else exerciseIdx
+                val remainingCorrect = if (firstResponseAnsweredLeft) rightExpectedMetaIndex else leftExpectedMetaIndex
+                if (remainingExerciseIdx < preGeneratedExercises.size) {
+                    exercisesShownList.add(preGeneratedExercises[remainingExerciseIdx].first)
+                    correctAnswersList.add(getMetaButtonContent(remainingCorrect))
                     userResponsesList.add(getMetaButtonContent(-99))
                 }
                 errorsCount += 1
             }
+
         } else {
             if (indexExercise < preGeneratedExercises.size) {
                 exercisesShownList.add(preGeneratedExercises[indexExercise].first)
@@ -2344,21 +2219,12 @@ class GameActivityFocoPlus : BaseActivity() {
         dualAnimRight?.cancel(); dualAnimRight = null
 
         if (isTwoTerms) {
-            if (subtype == 14) {
-                cancelAnimAndReset(ivBoardLeft)
-                cancelAnimAndReset(ivBoardRight)
-
-                ivBoardLeft.visibility = View.INVISIBLE
-                ivBoardRight.visibility = View.INVISIBLE
-            } else {
-                cancelAnimAndReset(tvLeft)
-                cancelAnimAndReset(tvRight)
-
-                tvLeft.text = ""
-                tvRight.text = ""
-                tvLeft.visibility = View.INVISIBLE
-                tvRight.visibility = View.INVISIBLE
-            }
+            cancelAnimAndReset(tvLeft)
+            cancelAnimAndReset(tvRight)
+            tvLeft.text = ""
+            tvRight.text = ""
+            tvLeft.visibility = View.INVISIBLE
+            tvRight.visibility = View.INVISIBLE
         } else {
 
             cancelAnimAndReset(tvSingle)
@@ -2381,21 +2247,21 @@ class GameActivityFocoPlus : BaseActivity() {
 
 
     fun updateErrorsCounter() {
-        val maxErrors = if (isTwoTerms) 12 else 6
+        val maxErrors = if (isTwoTerms) 8 else 4
         val counterText = getString(R.string.errors_counter_format_dynamic, errorsCount, maxErrors)
 
-        val ss = android.text.SpannableString(counterText)
+        val ss = SpannableString(counterText)
         val numStr = errorsCount.toString()
         val start = counterText.indexOf(numStr)
         if (start >= 0) {
             val end = start + numStr.length
             ss.setSpan(
-                android.text.style.ForegroundColorSpan(
+                ForegroundColorSpan(
                     ContextCompat.getColor(this, R.color.red)
                 ),
                 start,
                 end,
-                android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
             )
         }
         tvErrorsCounter.text = ss
@@ -2404,7 +2270,7 @@ class GameActivityFocoPlus : BaseActivity() {
     private fun applyFeedback() {
         val color = R.color.red
         val overlay = View(this).apply {
-            setBackgroundColor(ContextCompat.getColor(this@GameActivityFocoPlus, color))
+            setBackgroundColor(ContextCompat.getColor(this@GameActivityFocoPlusAvanzado, color))
             alpha = 0f
         }
         boardContainer.addView(
@@ -2423,7 +2289,7 @@ class GameActivityFocoPlus : BaseActivity() {
 
     private fun proceedOrFinish() {
         indexExercise++
-        val maxErrors = if (isTwoTerms) 12 else 6
+        val maxErrors = if (isTwoTerms) 8 else 4
         if (errorsCount >= maxErrors) {
             finishLevel()
             return
@@ -2440,7 +2306,7 @@ class GameActivityFocoPlus : BaseActivity() {
 
         val isSuccessful = errorsCount < maxErrorsAllowed && correctCount > 0
 
-        val maxErrors = if (isTwoTerms) 12 else 6
+        val maxErrors = if (isTwoTerms) 8 else 4
         val shouldPassReviewData = errorsCount >= maxErrors
 
         val intent = Intent(this, LevelResultActivityFocoPlus::class.java)
@@ -2483,25 +2349,8 @@ class GameActivityFocoPlus : BaseActivity() {
         }
     }
 
-    private fun setMetaButtonsForFigures(pairs: List<Quad>) {
-        val imageViews = listOf(iv1, iv2, iv3, iv4, iv5)
-        for (i in 0 until 5) {
-            val iv = imageViews[i]
-            val layer = makePairDrawable(
-                pairs[i].aIcon, pairs[i].aColor,
-                pairs[i].bIcon, pairs[i].bColor,
-                isForBoard = false
-            )
-            iv.setImageDrawable(layer)
-        }
-    }
-
     private fun getMetaOptionViews(): List<View> {
-        return if (subtype == 14) {
-            listOf(iv1, iv2, iv3, iv4, iv5)
-        } else {
-            listOf(btn1, btn2, btn3, btn4, btn5)
-        }
+        return listOf(btn1, btn2, btn3, btn4, btn5)
     }
 
     private fun showQuestionOnButton(btn: Button) {
@@ -2509,7 +2358,7 @@ class GameActivityFocoPlus : BaseActivity() {
         btn.typeface = Typeface.DEFAULT_BOLD
         btn.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28f)
         btn.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, null)
-        btn.gravity = android.view.Gravity.CENTER
+        btn.gravity = Gravity.CENTER
     }
 
     private fun applyHidingIfNeeded(activeHideSubtypes: List<Int>) {
@@ -2523,29 +2372,11 @@ class GameActivityFocoPlus : BaseActivity() {
         if (indexExercise == 11) {
             if (hiddenMetaIndexForFg !in 0..4) hiddenMetaIndexForFg = Random.nextInt(0, 5)
 
-            if (subtype == 14) {
-
-                val imageViews = listOf(iv1, iv2, iv3, iv4, iv5)
-                val idx = hiddenMetaIndexForFg.coerceIn(0, 4)
-
-                val color = resolveAttrColor(R.attr.colorOnBackground)
-                val sizePx = dp(metaPairSizeDp)
-                val bm = makeQuestionBitmap(sizePx, color)
-                imageViews[idx].setImageBitmap(bm)
-
-                val pulse = android.view.animation.AnimationUtils.loadAnimation(this, R.anim.pulse)
-                imageViews[idx].startAnimation(pulse)
-
-            } else {
-
-                val buttons = listOf(btn1, btn2, btn3, btn4, btn5)
-                val idx = hiddenMetaIndexForFg.coerceIn(0, 4)
-
-                showQuestionOnButton(buttons[idx])
-
-                val pulse = android.view.animation.AnimationUtils.loadAnimation(this, R.anim.pulse)
-                buttons[idx].startAnimation(pulse)
-            }
+            val buttons = listOf(btn1, btn2, btn3, btn4, btn5)
+            val idx = hiddenMetaIndexForFg.coerceIn(0, 4)
+            showQuestionOnButton(buttons[idx])
+            val pulse = AnimationUtils.loadAnimation(this, R.anim.pulse)
+            buttons[idx].startAnimation(pulse)
             return
         }
 
@@ -2555,31 +2386,19 @@ class GameActivityFocoPlus : BaseActivity() {
         }
 
         if (hiddenMetaIndexForFg in 0..4) {
-            if (subtype == 14) {
-
-                val imageViews = listOf(iv1, iv2, iv3, iv4, iv5)
-                val idx = hiddenMetaIndexForFg.coerceIn(0, 4)
-                val meta = metas.getOrNull(idx)
-                if (meta is Meta.PairFig) {
-                    val layer = makePairDrawable(meta.aIcon, meta.aColor, meta.bIcon, meta.bColor, isForBoard = false)
-                    imageViews[idx].setImageDrawable(layer)
+            val buttons = listOf(btn1, btn2, btn3, btn4, btn5)
+            val idx = hiddenMetaIndexForFg.coerceIn(0, 4)
+            val metaVal = extractedMetas.getOrNull(idx)
+            if (metaVal != null) {
+                buttons[idx].text = when (subtype) {
+                    15 -> formatMinutesToTime(metaVal)
+                    14 -> fmtDec(metaVal / 10.0)
+                    else -> metaVal.toString()
                 }
-            } else {
-
-                val buttons = listOf(btn1, btn2, btn3, btn4, btn5)
-                val idx = hiddenMetaIndexForFg.coerceIn(0, 4)
-                val metaVal = extractedMetas.getOrNull(idx)
-                if (metaVal != null) {
-                    buttons[idx].text = if (subtype == 15) {
-                        formatMinutesToTime(metaVal)
-                    } else {
-                        metaVal.toString()
-                    }
-                    buttons[idx].typeface = Typeface.DEFAULT
-                    buttons[idx].setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f)
-                    buttons[idx].setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, null)
-                    buttons[idx].gravity = android.view.Gravity.CENTER
-                }
+                buttons[idx].typeface = Typeface.DEFAULT
+                buttons[idx].setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f)
+                buttons[idx].setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, null)
+                buttons[idx].gravity = Gravity.CENTER
             }
         }
 
@@ -2635,7 +2454,7 @@ class GameActivityFocoPlus : BaseActivity() {
             pistaActivada = true
             val nuevoSaldo = CoinManager.getBalance(this)
             tvHintBalance.text = nuevoSaldo.toString()
-            android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+            Handler(Looper.getMainLooper()).postDelayed({
                 hintOptionsLayout.visibility = View.GONE
                 showVamosThenStart()
             }, 700)
@@ -2646,17 +2465,10 @@ class GameActivityFocoPlus : BaseActivity() {
     }
 
     private fun aplicarPistaABotones() {
-        val allViews: List<Pair<Int, View>> = if (subtype == 14) {
-            listOfNotNull(
-                Pair(0, iv1), Pair(1, iv2), Pair(2, iv3), Pair(3, iv4), Pair(4, iv5),
-                btnNoneFigures?.let { Pair(-1, it) }
-            )
-        } else {
-            listOfNotNull(
-                Pair(0, btn1), Pair(1, btn2), Pair(2, btn3), Pair(3, btn4), Pair(4, btn5),
-                btnNone?.let { Pair(-1, it) }
-            )
-        }
+        val allViews: List<Pair<Int, View>> = listOfNotNull(
+            Pair(0, btn1), Pair(1, btn2), Pair(2, btn3), Pair(3, btn4), Pair(4, btn5),
+            btnNone?.let { Pair(-1, it) }
+        )
 
         val allIndices = allViews.map { it.first }
 
@@ -2717,6 +2529,23 @@ class GameActivityFocoPlus : BaseActivity() {
     }
 
     private fun fmt(n: Int): String = if (n < 0) "-${abs(n)}" else "$n"
+
+    private fun sqrtFmt(v: Int): String {
+        return if (v in 1..12) "√${v * v}" else fmt(v)
+    }
+
+    private fun fmtDec(v: Double): String {
+        return String.format(Locale.US, "%.1f", v)
+    }
+
+    private fun parseSqrtFmt(s: String): Int {
+        return if (s.startsWith("√")) {
+            sqrt(s.substring(1).toDouble()).toInt()
+        } else {
+            s.trim().toInt()
+        }
+    }
+
     private fun letterOf(v: Int): String = "ABCDEFGHIJ"[max(1, min(10, v)) - 1].toString()
 
     private fun romanOf(v: Int): String {
@@ -2725,6 +2554,7 @@ class GameActivityFocoPlus : BaseActivity() {
             6 -> "VI"; 7 -> "VII"; 8 -> "VIII"; 9 -> "IX"; 10 -> "X"
             11 -> "XI"; 12 -> "XII"; 13 -> "XIII"; 14 -> "XIV"; 15 -> "XV"
             16 -> "XVI"; 17 -> "XVII"; 18 -> "XVIII"; 19 -> "XIX"; 20 -> "XX"
+            21 -> "XXI"; 22 -> "XXII"; 23 -> "XXIII"; 24 -> "XXIV"; 25 -> "XXV"
             else -> v.toString()
         }
     }
@@ -2735,92 +2565,15 @@ class GameActivityFocoPlus : BaseActivity() {
         return if (v < 0) "-${letterOf(abs(v))}" else letterOf(v)
     }
 
-    private fun dp(value: Int): Int = TypedValue.applyDimension(
-        TypedValue.COMPLEX_UNIT_DIP, value.toFloat(), resources.displayMetrics
-    ).toInt()
-
     private fun isTwoTermsSubtype(subtype: Int): Boolean {
         return when (subtype) {
-            1, 2, 4, 5, 7, 9, 12, 13, 14 -> true
+            1, 2, 4, 5, 7, 9, 12, 13 -> true
             else -> false
         }
     }
 
-    private fun iconsRandomId(excludeIcons: Set<Int> = emptySet()): Int {
-        while (true) {
-            val name = iconNames.random()
-            val id = resources.getIdentifier(name, "drawable", packageName)
-            if (id != 0 && !excludeIcons.contains(id)) return id
-        }
-    }
-
-    private fun colorsRandom(): Int = colorResIds.random()
-
-    private fun makePairDrawable(
-        aIcon: Int,
-        aColorRes: Int,
-        bIcon: Int,
-        bColorRes: Int,
-        isForBoard: Boolean
-    ): Drawable? {
-        val start = System.currentTimeMillis()
-
-        val d1 = AppCompatResources.getDrawable(this, aIcon)?.mutate() ?: return null
-        val d2 = AppCompatResources.getDrawable(this, bIcon)?.mutate() ?: return null
-
-        DrawableCompat.setTint(d1, ContextCompat.getColor(this, aColorRes))
-        DrawableCompat.setTint(d2, ContextCompat.getColor(this, bColorRes))
-
-        val layer = LayerDrawable(arrayOf(d1, d2))
-
-        val sizeDp = if (isForBoard) boardPairSizeDp else metaPairSizeDp
-        val gapFraction = if (isForBoard) boardPairGapFraction else metaPairGapFraction
-
-        val size = dp(sizeDp)
-        d1.setBounds(0, 0, size, size)
-        d2.setBounds(0, 0, size, size)
-
-        val inset = (size * gapFraction).toInt()
-        layer.setLayerInset(0, 0, 0, inset, 0)
-        layer.setLayerInset(1, inset, 0, 0, 0)
-
-        Log.d("PERF", "makePairDrawable termina en ${System.currentTimeMillis() - start} ms")
-        return layer
-    }
-
-    private fun makeQuestionBitmap(sizePx: Int, color: Int): android.graphics.Bitmap {
-        val bmp = createBitmap(sizePx, sizePx)
-        val canvas = android.graphics.Canvas(bmp)
-        val paint = android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG).apply {
-            this.color = color
-            textAlign = android.graphics.Paint.Align.CENTER
-            typeface = Typeface.DEFAULT_BOLD
-            textSize = sizePx * 0.72f
-        }
-        val fm = paint.fontMetrics
-        val cx = sizePx / 2f
-        val cy = sizePx / 2f - (fm.ascent + fm.descent) / 2f
-        canvas.drawText("?", cx, cy, paint)
-        return bmp
-    }
-
-    private fun resolveAttrColor(attrId: Int): Int {
-        val tv = TypedValue()
-        theme.resolveAttribute(attrId, tv, true)
-        return if (tv.resourceId != 0) ContextCompat.getColor(this, tv.resourceId) else tv.data
-    }
-
-    private fun resolveNoneText(): String {
-        val candidates = arrayOf("none_option", "ninguno", "btn_none")
-        for (name in candidates) {
-            val id = resources.getIdentifier(name, "string", packageName)
-            if (id != 0) return getString(id)
-        }
-        return "NINGUNO"
-    }
-
     private fun showExitConfirmation(onConfirm: () -> Unit) {
-        val builder = androidx.appcompat.app.AlertDialog.Builder(this)
+        val builder = AlertDialog.Builder(this)
             .setMessage(R.string.exit_confirmation)
             .setPositiveButton(R.string.btn_yes) { _, _ -> onConfirm() }
             .setNegativeButton(R.string.btn_no, null)
@@ -2828,14 +2581,14 @@ class GameActivityFocoPlus : BaseActivity() {
     }
 
     private fun colorizeNegatives(text: String): CharSequence {
-        val white = android.graphics.Color.WHITE
+        val white = Color.WHITE
         val red = ContextCompat.getColor(this, R.color.red)
 
-        val sb = android.text.SpannableStringBuilder(text)
+        val sb = SpannableStringBuilder(text)
         sb.setSpan(
-            android.text.style.ForegroundColorSpan(white),
+            ForegroundColorSpan(white),
             0, sb.length,
-            android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
 
         val chars = text.toCharArray()
@@ -2873,9 +2626,9 @@ class GameActivityFocoPlus : BaseActivity() {
                 }
 
                 sb.setSpan(
-                    android.text.style.ForegroundColorSpan(red),
+                    ForegroundColorSpan(red),
                     start, j,
-                    android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
 
                 i = j
@@ -2888,7 +2641,7 @@ class GameActivityFocoPlus : BaseActivity() {
     }
 
     private fun setColoredExercise(textView: TextView, rawText: String) {
-        textView.setTextColor(android.graphics.Color.WHITE)
+        textView.setTextColor(Color.WHITE)
         textView.text = colorizeNegatives(rawText)
     }
 

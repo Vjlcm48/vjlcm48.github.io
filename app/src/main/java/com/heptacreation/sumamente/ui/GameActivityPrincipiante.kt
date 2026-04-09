@@ -441,12 +441,12 @@ class GameActivityPrincipiante : BaseActivity()  {
     }
 
     private fun showNumbers() {
-        var index = 0
+        val index = intArrayOf(0)
 
         handler.post(object : Runnable {
             override fun run() {
-                if (index < numberList.size) {
-                    val number = numberList[index]
+                if (index[0] < numberList.size) {
+                    val number = numberList[index[0]]
                     val spannableString = SpannableStringBuilder(number.toString())
 
                     if (number < 0) {
@@ -465,7 +465,7 @@ class GameActivityPrincipiante : BaseActivity()  {
                         )
                     }
 
-                    if (index > 0 && number == numberList[index - 1]) {
+                    if (index[0] > 0 && number == numberList[index[0] - 1]) {
                         spannableString.setSpan(
                             ForegroundColorSpan(ResourcesCompat.getColor(resources, R.color.yellow, null)),
                             0,
@@ -482,9 +482,9 @@ class GameActivityPrincipiante : BaseActivity()  {
 
                     numberTextView.text = spannableString
 
-                    val duration = timePerNumberList[index]
+                    val duration = timePerNumberList[index[0]]
 
-                    index++
+                    index[0]++
                     handler.postDelayed(this, duration)
                 } else {
 

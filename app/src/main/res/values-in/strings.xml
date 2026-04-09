@@ -1664,5 +1664,8 @@ Murid optimal! Usaha dan ketekunan Anda telah membawa Anda ke posisi ketujuh di 
     <string name="video_no_disponible">Video tidak tersedia, coba lagi nanti</string>
     <string name="billing_not_ready">Layanan pembayaran tidak tersedia. Coba lagi.</string>
 
+    <string name="instruction_game_decimals_14">Aktifkan pikiran desimal Anda! 🔢\nPerhatikan 14 latihan bilangan desimal yang bergerak di papan tulis dan selesaikan secara mental.\nNilainya sederhana, tetapi kecepatan adalah tantangan sesungguhnya 🎯!\nTekan tombol dengan jawaban Anda atau pilih TIDAK ADA jika tidak ada kecocokan.\nAnda memiliki batas hingga 4 kesalahan. 🧮🔥 Buktikan ketelitian Anda!</string>
+    <string name="instruction_game_terms_28_avanzado">Bersiaplah untuk tantangan matematika! 🧮🔥\nSelesaikan 28 latihan yang muncul di papan tulis secara mental.\nJika Anda menemukan hasilnya di tombol, segera tekan. 🎯\nJika tidak ada pilihan yang cocok, pilih TIDAK ADA tanpa ragu.\nAnda memiliki maksimal 8 kesalahan. Tetap fokus sepenuhnya! 💪</string>
+
 
 </resources>

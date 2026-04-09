@@ -42,6 +42,9 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
     private var miniblockSubtypes: List<Int> = emptyList()
     private var isFirstTimeUser = false
     private var hasUserMadeSelection = false
+    private val shakeHandler = android.os.Handler(android.os.Looper.getMainLooper())
+    private var shakeRunnable: Runnable? = null
+    private var shakeStopped = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +60,8 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
         updateLevelIndicator()
         updateInstructions()
         setupClickListeners()
+
+        startShakeCycle()
 
         setupScrollListener()
 
@@ -161,7 +166,7 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
         levelButtonsContainer.removeAllViews()
 
         for (level in 1..10) {
-            addDropdownLevelButton(level, isUnlocked = level <= getUnlockedLevels())
+            addDropdownLevelButton(level, isUnlocked = level <= getUnlockedLevels(), isBlocked = isLevelBlockedByFailures(level))
         }
 
         val unlockedLevels = getUnlockedLevels()
@@ -169,7 +174,7 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
         if (unlockedLevels >= 11) {
             val maxVisibleLevel = minOf(unlockedLevels, 415)
             for (level in 11..maxVisibleLevel) {
-                addDropdownLevelButton(level, isUnlocked = true)
+                addDropdownLevelButton(level, isUnlocked = level <= getUnlockedLevels(), isBlocked = isLevelBlockedByFailures(level))
             }
         }
 
@@ -192,7 +197,7 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
         }
     }
 
-    private fun addDropdownLevelButton(level: Int, isUnlocked: Boolean) {
+    private fun addDropdownLevelButton(level: Int, isUnlocked: Boolean, isBlocked: Boolean = false) {
         val levelLayout = LinearLayout(this).apply {
             layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -219,20 +224,24 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
             textSize = 27f
             typeface = androidx.core.content.res.ResourcesCompat.getFont(this@InstructionsLevelsActivityFocoPlus, R.font.gochi_hand)
 
-            if (isUnlocked) {
+            if (isUnlocked && !isBlocked) {
                 setBackgroundResource(R.drawable.level_button_background)
                 setTextColor(ContextCompat.getColor(this@InstructionsLevelsActivityFocoPlus, android.R.color.white))
-
                 setOnClickListener {
                     applyBounceEffect(this) {
                         selectLevel(level)
                         collapseLevelSelector()
                     }
                 }
+            } else if (isUnlocked) {
+                setBackgroundResource(R.drawable.button_background_locked)
+                setTextColor(ContextCompat.getColor(this@InstructionsLevelsActivityFocoPlus, R.color.text_color_adaptive))
+                setOnClickListener {
+                    Toast.makeText(this@InstructionsLevelsActivityFocoPlus, R.string.level_locked_by_failures, Toast.LENGTH_LONG).show()
+                }
             } else {
                 setBackgroundResource(R.drawable.button_background_locked)
                 setTextColor(ContextCompat.getColor(this@InstructionsLevelsActivityFocoPlus, R.color.text_color_adaptive))
-
                 setOnClickListener {
                     showLockedLevelMessage()
                 }
@@ -244,7 +253,7 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
                 36.dpToPx(this@InstructionsLevelsActivityFocoPlus),
                 36.dpToPx(this@InstructionsLevelsActivityFocoPlus)
             )
-            setImageResource(if (isUnlocked) R.drawable.ic_unlock else R.drawable.ic_lock)
+            setImageResource(if (isUnlocked && !isBlocked) R.drawable.ic_unlock else R.drawable.ic_lock)
             scaleType = ImageView.ScaleType.CENTER_INSIDE
         }
 
@@ -311,6 +320,7 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
 
     private fun expandLevelSelector() {
         isLevelSelectorExpanded = true
+        stopShakeCycle(permanent = false)
 
         levelDropdownContainer.visibility = View.VISIBLE
         levelDropdownContainer.alpha = 0f
@@ -334,6 +344,7 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
 
     private fun collapseLevelSelector() {
         isLevelSelectorExpanded = false
+        if (!shakeStopped) startShakeCycle()
 
         levelDropdownContainer.animate()
             .alpha(0f)
@@ -357,6 +368,9 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
     private fun selectLevel(level: Int) {
         selectedLevel = level
         hasUserMadeSelection = true
+
+        stopShakeCycle(permanent = true)
+
         val completedLevels = (1..420).count { hasCompletedLevel(it) }
         if (completedLevels == 0) {
             generateMiniblockSubtypesIfNeeded(level)
@@ -365,6 +379,7 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
         updateInstructions()
         updateSelectedLevelDisplay()
         btnStart.isEnabled = true
+        btnStart.alpha = 1f
 
         updateLevelButtons()
     }
@@ -488,32 +503,54 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
         return pool.getOrElse(positionInMiniblock) { ((level - 1) % 14) + 1 }
     }
 
-
     private fun getInstructionsForSubtype(subtype: Int): String {
+        val isAvanzado = currentDifficulty == DifficultySelectionActivity.DIFFICULTY_AVANZADO
         return when (subtype) {
-            1, 2, 4, 5, 7, 9 -> getString(R.string.instruction_game_terms_28)
+            1, 2, 4, 5, 7, 9 -> if (isAvanzado)
+                getString(R.string.instruction_game_terms_28_avanzado)
+            else
+                getString(R.string.instruction_game_terms_28)
             3, 6, 8, 10 -> getString(R.string.instruction_game_terms_14)
             11 -> getString(R.string.instruction_game_roman_numerals) + "\n\n" +
                     getString(R.string.instruction_game_terms_14)
             12 -> getString(R.string.instruction_game_letters_value) + "\n\n" +
                     getString(R.string.instruction_game_terms_14)
-            13 -> getString(R.string.instruction_game_terms_28) + "\n\n" +
-                    getString(R.string.instruction_game_roman_numerals) + "\n\n" +
-                    getString(R.string.instruction_game_letters_value)
-            14 -> getString(R.string.instruction_game_figures_28)
+            13 -> if (isAvanzado)
+                getString(R.string.instruction_game_terms_28_avanzado) + "\n\n" +
+                        getString(R.string.instruction_game_roman_numerals) + "\n\n" +
+                        getString(R.string.instruction_game_letters_value)
+            else
+                getString(R.string.instruction_game_terms_28) + "\n\n" +
+                        getString(R.string.instruction_game_roman_numerals) + "\n\n" +
+                        getString(R.string.instruction_game_letters_value)
+            14 -> if (isAvanzado)
+                getString(R.string.instruction_game_decimals_14)
+            else
+                getString(R.string.instruction_game_figures_28)
             15 -> getString(R.string.instruction_game_time_addition) + "\n\n" +
                     getString(R.string.instruction_game_terms_14)
-            else -> getString(R.string.instruction_game_terms_28)
+            else -> if (isAvanzado)
+                getString(R.string.instruction_game_terms_28_avanzado)
+            else
+                getString(R.string.instruction_game_terms_28)
         }
     }
 
     private fun getNextAvailableLevel(): Int {
         val unlockedLevels = getUnlockedLevels()
+
         for (level in 1..unlockedLevels) {
-            if (!hasCompletedLevel(level)) {
+            if (!hasCompletedLevel(level) && !isLevelBlockedByFailures(level)) {
                 return level
             }
         }
+
+        for (level in 1..unlockedLevels) {
+            if (!isLevelBlockedByFailures(level)) {
+                return level
+            }
+        }
+
         return 1
     }
 
@@ -532,6 +569,15 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
             DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> ScoreManager.hasCompletedLevelFocoPlusPrincipiante(level)
             DifficultySelectionActivity.DIFFICULTY_PRO -> ScoreManager.hasCompletedLevelFocoPlusPro(level)
             else -> ScoreManager.hasCompletedLevelFocoPlusPrincipiante(level)
+        }
+    }
+
+    private fun isLevelBlockedByFailures(level: Int): Boolean {
+        return when (currentDifficulty) {
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO -> ScoreManager.isLevelBlockedByFailuresFocoPlus(level)
+            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> ScoreManager.isLevelBlockedByFailuresFocoPlusPrincipiante(level)
+            DifficultySelectionActivity.DIFFICULTY_PRO -> ScoreManager.isLevelBlockedByFailuresFocoPlusPro(level)
+            else -> false
         }
     }
 
@@ -575,7 +621,11 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
             isFirstTimeUser = false
         }
 
-        val intent = Intent(this@InstructionsLevelsActivityFocoPlus, GameActivityFocoPlus::class.java)
+        val gameActivity = when (currentDifficulty) {
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO -> GameActivityFocoPlusAvanzado::class.java
+            else -> GameActivityFocoPlusPrincipiante::class.java
+        }
+        val intent = Intent(this@InstructionsLevelsActivityFocoPlus, gameActivity)
         intent.putExtra("LEVEL", selectedLevel)
         intent.putExtra("DIFFICULTY", currentDifficulty)
 
@@ -684,6 +734,34 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
             val subtypesString = miniblockSubtypes.joinToString(",")
             sharedPreferences.edit { putString(miniblockKey, subtypesString) }
         }
+    }
+
+    private fun startShakeCycle() {
+        if (shakeStopped) return
+        shakeRunnable?.let { shakeHandler.removeCallbacks(it) }
+        val runnable = object : Runnable {
+            override fun run() {
+                if (shakeStopped) return
+                val anim = android.view.animation.AnimationUtils.loadAnimation(
+                    this@InstructionsLevelsActivityFocoPlus, R.anim.shake
+                )
+                levelSelectorButton.startAnimation(anim)
+                shakeHandler.postDelayed(this, 7000)
+            }
+        }
+        shakeRunnable = runnable
+        shakeHandler.postDelayed(runnable, 7000)
+    }
+
+    private fun stopShakeCycle(permanent: Boolean) {
+        shakeRunnable?.let { shakeHandler.removeCallbacks(it) }
+        shakeRunnable = null
+        if (permanent) shakeStopped = true
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        stopShakeCycle(permanent = true)
     }
 
     private fun applyBounceEffect(view: View, onAnimationEnd: () -> Unit) {

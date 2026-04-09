@@ -1600,5 +1600,8 @@ Discípulo ótimo! Seu esforço e constância te levaram ao sétimo lugar do ran
     <string name="video_no_disponible">Vídeo indisponível, tente mais tarde</string>
     <string name="billing_not_ready">Serviço de pagamento indisponível. Tente novamente.</string>
 
+    <string name="instruction_game_decimals_14">Ative sua mente decimal! 🔢\nObserve os 14 exercícios com números decimais que se movem no quadro e resolva-os mentalmente.\nOs valores são simples, mas a velocidade é o seu verdadeiro desafio 🎯!\nPressione o botão com sua resposta ou escolha NENHUM se não houver correspondência.\nVocê tem até 4 erros permitidos. 🧮🔥 Demonstre sua precisão!</string>
+    <string name="instruction_game_terms_28_avanzado">Prepare-se para o desafio matemático! 🧮🔥\nResolva mentalmente os 28 exercícios que aparecem no quadro.\nSe encontrar o seu resultado nos botões, pressione-o imediatamente. 🎯\nSe nenhuma opção coincidir, escolha NENHUM sem hesitar.\nVocê tem um máximo de 8 erros. Mantenha a concentração ao máximo! 💪</string>
+
 
 </resources>

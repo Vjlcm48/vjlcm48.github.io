@@ -249,6 +249,7 @@
         android:layout_marginBottom="75dp"
         android:background="@drawable/button_background_foco"
         android:enabled="false"
+        android:alpha="0.4"
         android:fontFamily="@font/gochi_hand"
         android:maxWidth="320dp"
         android:paddingStart="72dp"

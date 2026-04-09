@@ -32,7 +32,7 @@ import java.util.Locale
 class GameSelectionActivity : BaseActivity() {
 
     private companion object {
-        const val TOTAL_LEVELS = 1890.0
+        const val TOTAL_LEVELS = 2310.0
         const val ANIMATION_DURATION = 450L
         const val ANIMATION_DELAY_START = 70L
         const val ANIMATION_DELAY_ITEM = 80L

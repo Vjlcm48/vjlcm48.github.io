@@ -1441,5 +1441,9 @@
     <string name="video_no_disponible">비디오를 사용할 수 없습니다. 나중에 다시 시도하세요.</string>
     <string name="billing_not_ready">결제 서비스를 사용할 수 없습니다. 다시 시도하세요.</string>
 
+    <string name="instruction_game_decimals_14">소수점 두뇌를 깨우세요! 🔢\n칠판에서 움직이는 14개의 소수 문제를 보고 암산으로 풀어보세요.\n값은 간단하지만, 속도가 진정한 도전입니다 🎯!\n정답 버튼을 누르거나 일치하는 항목이 없으면 "없음"을 선택하세요.\n최대 4번의 실수까지 허용됩니다. 🧮🔥 당신의 정확성을 증명하세요!</string>
+    <string name="instruction_game_terms_28_avanzado">수학 도전을 준비하세요! 🧮🔥\n칠판에 나타나는 28개의 문제를 암산으로 푸세요.\n버튼에서 결과값을 찾으면 즉시 누르세요. 🎯\n일치하는 옵션이 없으면 망설이지 말고 "없음"을 선택하세요.\n최대 8번의 실수가 허용됩니다. 집중력을 최대한 유지하세요! 💪</string>
+
+
 
 </resources>

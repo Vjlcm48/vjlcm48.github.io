@@ -168,9 +168,7 @@ class DifficultySelectionActivity : BaseActivity()   {
                     }
                 }
 
-                if (gameType != GAME_TYPE_FOCO_PLUS) {
-                    saveDifficultyPreference(DIFFICULTY_AVANZADO)
-                }
+                saveDifficultyPreference(DIFFICULTY_AVANZADO)
                 navigateBasedOnSelection(DIFFICULTY_AVANZADO, isFromInstructions, level, responseModeStr)
             }
         }
@@ -210,13 +208,13 @@ class DifficultySelectionActivity : BaseActivity()   {
 
         if (gameType == GAME_TYPE_FOCO_PLUS) {
             when (difficulty) {
-                DIFFICULTY_PRINCIPIANTE -> {
+                DIFFICULTY_PRINCIPIANTE, DIFFICULTY_AVANZADO -> {
                     val intent = Intent(this, InstructionsLevelsActivityFocoPlus::class.java)
                     startActivity(intent)
                     finish()
                     return
                 }
-                DIFFICULTY_AVANZADO, DIFFICULTY_PRO -> {
+                DIFFICULTY_PRO -> {
                     showComingSoonDialogFoco()
                     return
                 }
@@ -417,6 +415,11 @@ class DifficultySelectionActivity : BaseActivity()   {
                 DIFFICULTY_PRINCIPIANTE to ScoreManager::saveScoreGenioPlusPrincipiante,
                 DIFFICULTY_AVANZADO to ScoreManager::saveScoreGenioPlus,
                 DIFFICULTY_PRO to ScoreManager::saveScoreGenioPlusPro
+            ),
+            "FocoPlus" to mapOf(
+                DIFFICULTY_PRINCIPIANTE to ScoreManager::saveScoreFocoPlusPrincipiante,
+                DIFFICULTY_AVANZADO to ScoreManager::saveScoreFocoPlus,
+                DIFFICULTY_PRO to ScoreManager::saveScoreFocoPlusPro
             )
         )
 

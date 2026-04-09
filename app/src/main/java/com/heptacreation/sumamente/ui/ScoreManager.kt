@@ -539,7 +539,7 @@ object ScoreManager {
         }
 
         fun loadConsecutiveFailures() {
-            for (i in 1..70) {
+            for (i in 1..420) {
                 val failures = preferences.getIntCompat("$consecutiveFailuresKey:$i", 0)
                 if (failures > 0) {
                     consecutiveFailuresMap[i] = failures
@@ -610,9 +610,6 @@ object ScoreManager {
         }
         if (!::preferencesGenioPlusPrincipiante.isInitialized) {
             preferencesGenioPlusPrincipiante = context.getSharedPreferences(PREFS_NAME_GENIO_PLUS_PRINCIPIANTE, Context.MODE_PRIVATE)
-        }
-        if (!::preferencesGenioPlusPro.isInitialized) {
-            preferencesGenioPlusPro = context.getSharedPreferences(PREFS_NAME_GENIO_PLUS_PRO, Context.MODE_PRIVATE)
         }
         if (!::preferencesGenioPlusPro.isInitialized) {
             preferencesGenioPlusPro = context.getSharedPreferences(PREFS_NAME_GENIO_PLUS_PRO, Context.MODE_PRIVATE)
@@ -818,7 +815,8 @@ object ScoreManager {
         }
 
         if (isDemoForceUnlockEnabled()) {
-            manager.setUnlockedLevels(70)
+            val maxLevels = if (game == Game.FOCO_PLUS) 420 else 70
+            manager.setUnlockedLevels(maxLevels)
         }
 
         return manager
@@ -1772,7 +1770,8 @@ fun haJugadoAlMenosUnNivelEnCadaJuegoYGrado(): Boolean {
             getUniqueLevelsPlayedGenioPlusAvanzado() > 0 &&
             getUniqueLevelsPlayedGenioPlusPro() > 0 &&
             getUniqueLevelsPlayedFocoPlusPrincipiante() > 0 &&
-            getUniqueLevelsPlayedFocoPlusPrincipiante() > 0    // aca en un futuro debemos colocar foco avanzado y foco pro //
+            getUniqueLevelsPlayedFocoPlusAvanzado() > 0 &&
+            getUniqueLevelsPlayedFocoPlusPro() > 0
 }
 
 fun updateIqComponent(juego: String, grado: String, valor: Double) {

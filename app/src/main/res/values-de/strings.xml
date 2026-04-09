@@ -1682,4 +1682,7 @@ Optimaler Schüler! Dein Einsatz und deine Beständigkeit haben dich auf den sie
     <string name="video_no_disponible">Video nicht verfügbar, später versuchen</string>
     <string name="billing_not_ready">Zahlungsdienst nicht verfügbar. Erneut versuchen.</string>
 
+    <string name="instruction_game_decimals_14">Aktiviere deinen Dezimalgeist! 🔢\nBeobachte die 14 Dezimalübungen, die sich auf der Tafel bewegen, und löse sie im Kopf.\nDie Werte sind einfach, aber die Geschwindigkeit ist deine wahre Herausforderung 🎯!\nDrücke die Taste mit deiner Antwort oder wähle KEINE, wenn es keine Übereinstimmung gibt.\nDu darfst bis zu 4 Fehler machen. 🧮🔥 Beweise deine Präzision!</string>
+    <string name="instruction_game_terms_28_avanzado">Bereite dich auf die mathematische Herausforderung vor! 🧮🔥\nLöse die 28 Aufgaben, die auf der Tafel erscheinen, im Kopf.\nWenn du dein Ergebnis auf den Schaltflächen findest, drücke es sofort. 🎯\nWenn keine Option übereinstimmt, wähle ohne Zögern KEINE.\nDu hast maximal 8 Fehler. Behalte die volle Konzentration bei! 💪</string>
+
 </resources>
