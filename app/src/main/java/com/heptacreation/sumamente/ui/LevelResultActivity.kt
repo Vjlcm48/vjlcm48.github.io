@@ -186,7 +186,6 @@ class LevelResultActivity : BaseActivity()  {
         // }
 
         ScoreManager.saveScore()
-
         // Actualizar mejor juego si corresponde
         checkAndUpdateBestGame("NumerosPlus", "Avanzado", currentLevel)
 

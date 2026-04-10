@@ -1129,7 +1129,12 @@ class GameActivityMasPlus : BaseActivity() {
 
         if (isSuccessful) {
             ScoreManager.resetConsecutiveFailuresMasPlus(currentLevel)
-        } else if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
+            if (ScoreManager.isLevelBlockedByFailuresMasPlus(currentLevel + 1)) {
+                ScoreManager.resetConsecutiveFailuresMasPlus(currentLevel + 1)
+            }
+        }
+
+        else if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
             ScoreManager.incrementConsecutiveFailuresMasPlus(currentLevel)
             intent.putExtra("NUMBER_LIST", elementsList.map { it.value }.toTypedArray())
             intent.putExtra("CORRECT_ANSWER", correctAnswer)

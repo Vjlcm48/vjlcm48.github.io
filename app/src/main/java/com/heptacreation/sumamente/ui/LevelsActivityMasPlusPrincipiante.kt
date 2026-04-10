@@ -96,8 +96,15 @@ class LevelsActivityMasPlusPrincipiante : BaseActivity()  {
 
     override fun onResume() {
         super.onResume()
-        updateLevelButtons()
+        ScoreManager.initMasPlusPrincipiante(this)
 
+        val maxCompleted = ScoreManager.getMaxLevelForCombo("MasPlus", "Principiante")
+        if (maxCompleted >= ScoreManager.unlockedLevelsMasPlusPrincipiante) {
+            ScoreManager.unlockedLevelsMasPlusPrincipiante = maxCompleted + 1
+            ScoreManager.saveScoreMasPlusPrincipiante()
+        }
+
+        updateLevelButtons()
         setupInfoBar()
     }
 

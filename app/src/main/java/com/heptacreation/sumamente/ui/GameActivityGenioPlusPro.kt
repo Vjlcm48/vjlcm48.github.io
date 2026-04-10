@@ -1216,9 +1216,13 @@ class GameActivityGenioPlusPro : BaseActivity() {
         intent.putExtra("TIME_SPENT", timeSpentInSeconds)
 
         if (isSuccessful) {
-            // Si el resultado es exitoso, reiniciamos los fallos en Pro
             ScoreManager.resetConsecutiveFailuresGenioPlusPro(currentLevel)
-        } else {
+            if (ScoreManager.isLevelBlockedByFailuresGenioPlusPro(currentLevel + 1)) {
+                ScoreManager.resetConsecutiveFailuresGenioPlusPro(currentLevel + 1)
+            }
+        }
+
+        else {
             // Si no es exitoso, agrupamos aquí la lógica de fallos que ya tenías
             if (userResponses.isEmpty()) {
                 userResponses.add(-1)

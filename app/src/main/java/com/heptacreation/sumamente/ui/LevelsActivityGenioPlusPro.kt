@@ -96,8 +96,15 @@ class LevelsActivityGenioPlusPro : BaseActivity()  {
 
     override fun onResume() {
         super.onResume()
-        updateLevelButtons()
+        ScoreManager.initGenioPlusPro(this)
 
+        val maxCompleted = ScoreManager.getMaxLevelForCombo("GenioPlus", "Pro")
+        if (maxCompleted >= ScoreManager.unlockedLevelsGenioPlusPro) {
+            ScoreManager.unlockedLevelsGenioPlusPro = maxCompleted + 1
+            ScoreManager.saveScoreGenioPlusPro()
+        }
+
+        updateLevelButtons()
         setupInfoBar()
     }
 

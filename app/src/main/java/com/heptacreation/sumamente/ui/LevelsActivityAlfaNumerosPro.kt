@@ -96,6 +96,14 @@ class LevelsActivityAlfaNumerosPro : BaseActivity()  {
     override fun onResume() {
         super.onResume()
         ScoreManager.initAlfaNumerosPro(this)
+
+        // Corrección: restaurar unlockedLevels si quedó inconsistente
+        val maxCompleted = ScoreManager.getMaxLevelForCombo("AlfaNumeros", "Pro")
+        if (maxCompleted >= ScoreManager.unlockedLevelsAlfaNumerosPro) {
+            ScoreManager.unlockedLevelsAlfaNumerosPro = maxCompleted + 1
+            ScoreManager.saveScoreAlfaNumerosPro()
+        }
+
         updateLevelButtons()
         setupInfoBar()
     }

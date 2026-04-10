@@ -1212,7 +1212,11 @@ class GameActivityGenioPlus : BaseActivity() {
 
         if (isSuccessful) {
             ScoreManager.resetConsecutiveFailuresGenioPlus(currentLevel)
-        } else if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
+            if (ScoreManager.isLevelBlockedByFailuresGenioPlus(currentLevel + 1)) {
+                ScoreManager.resetConsecutiveFailuresGenioPlus(currentLevel + 1)
+            }
+        }
+        else if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
             ScoreManager.incrementConsecutiveFailuresGenioPlus(currentLevel)
             if (userResponses.isEmpty()) userResponses.add(-1)
             intent.putExtra("NUMBER_LIST", elementList.map { it.value }.toTypedArray())

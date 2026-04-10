@@ -1035,7 +1035,12 @@ class GameActivityDeciPlusPrincipiante : BaseActivity()  {
 
         if (isSuccessful) {
             ScoreManager.resetConsecutiveFailuresDeciPlusPrincipiante(currentLevel)
-        } else if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
+            if (ScoreManager.isLevelBlockedByFailuresDeciPlusPrincipiante(currentLevel + 1)) {
+                ScoreManager.resetConsecutiveFailuresDeciPlusPrincipiante(currentLevel + 1)
+            }
+        }
+
+        else if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
             intent.putExtra("NUMBER_LIST", numberList.toDoubleArray())
             intent.putExtra("CORRECT_ANSWER", correctAnswer)
             intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)

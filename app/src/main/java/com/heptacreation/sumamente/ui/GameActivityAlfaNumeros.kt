@@ -1200,6 +1200,9 @@ class GameActivityAlfaNumeros : BaseActivity()  {
 
         if (isSuccessful) {
             ScoreManager.resetConsecutiveFailuresAlfaNumeros(currentLevel)
+            if (ScoreManager.isLevelBlockedByFailuresAlfaNumeros(currentLevel + 1)) {
+                ScoreManager.resetConsecutiveFailuresAlfaNumeros(currentLevel + 1)
+            }
         }
         else if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
 

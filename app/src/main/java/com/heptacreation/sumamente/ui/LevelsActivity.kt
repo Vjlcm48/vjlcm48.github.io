@@ -97,6 +97,14 @@ class LevelsActivity : BaseActivity()  {
     override fun onResume() {
         super.onResume()
         ScoreManager.init(this)
+
+        // Corrección: restaurar unlockedLevels si quedó inconsistente
+        val maxCompleted = ScoreManager.getMaxLevelForCombo("NumerosPlus", "Avanzado")
+        if (maxCompleted >= ScoreManager.unlockedLevels) {
+            ScoreManager.unlockedLevels = maxCompleted + 1
+            ScoreManager.saveScore()
+        }
+
         updateLevelButtons()
         setupInfoBar()
     }

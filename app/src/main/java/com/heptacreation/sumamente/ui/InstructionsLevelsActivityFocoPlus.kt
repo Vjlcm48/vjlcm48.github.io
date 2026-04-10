@@ -75,6 +75,38 @@ class InstructionsLevelsActivityFocoPlus : BaseActivity() {
     override fun onResume() {
         super.onResume()
         hasUserMadeSelection = false
+
+        val maxCompleted = when (currentDifficulty) {
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO ->
+                ScoreManager.getMaxLevelForCombo("FocoPlus", "Avanzado")
+            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE ->
+                ScoreManager.getMaxLevelForCombo("FocoPlus", "Principiante")
+            DifficultySelectionActivity.DIFFICULTY_PRO ->
+                ScoreManager.getMaxLevelForCombo("FocoPlus", "Pro")
+            else -> 0
+        }
+
+        when (currentDifficulty) {
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO -> {
+                if (maxCompleted >= ScoreManager.unlockedLevelsFocoPlus) {
+                    ScoreManager.unlockedLevelsFocoPlus = maxCompleted + 1
+                    ScoreManager.saveScoreFocoPlus()
+                }
+            }
+            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> {
+                if (maxCompleted >= ScoreManager.unlockedLevelsFocoPlusPrincipiante) {
+                    ScoreManager.unlockedLevelsFocoPlusPrincipiante = maxCompleted + 1
+                    ScoreManager.saveScoreFocoPlusPrincipiante()
+                }
+            }
+            DifficultySelectionActivity.DIFFICULTY_PRO -> {
+                if (maxCompleted >= ScoreManager.unlockedLevelsFocoPlusPro) {
+                    ScoreManager.unlockedLevelsFocoPlusPro = maxCompleted + 1
+                    ScoreManager.saveScoreFocoPlusPro()
+                }
+            }
+        }
+
         setupInfoBar()
         updateLevelButtons()
     }

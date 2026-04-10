@@ -96,6 +96,13 @@ class LevelsActivitySumaResta : BaseActivity()  {
     override fun onResume() {
         super.onResume()
         ScoreManager.initSumaResta(this)
+
+        val maxCompleted = ScoreManager.getMaxLevelForCombo("SumaResta", "Avanzado")
+        if (maxCompleted >= ScoreManager.unlockedLevelsSumaResta) {
+            ScoreManager.unlockedLevelsSumaResta = maxCompleted + 1
+            ScoreManager.saveScoreSumaResta()
+        }
+
         updateLevelButtons()
         setupInfoBar()
     }

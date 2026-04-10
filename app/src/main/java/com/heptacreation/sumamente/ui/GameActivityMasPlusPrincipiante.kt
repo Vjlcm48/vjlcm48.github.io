@@ -1130,7 +1130,12 @@ class GameActivityMasPlusPrincipiante : BaseActivity() {
 
         if (isSuccessful) {
             ScoreManager.resetConsecutiveFailuresMasPlusPrincipiante(currentLevel)
-        } else if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
+            if (ScoreManager.isLevelBlockedByFailuresMasPlusPrincipiante(currentLevel + 1)) {
+                ScoreManager.resetConsecutiveFailuresMasPlusPrincipiante(currentLevel + 1)
+            }
+        }
+
+        else if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
             ScoreManager.incrementConsecutiveFailuresMasPlusPrincipiante(currentLevel)
             intent.putExtra("NUMBER_LIST", elementsList.map { it.value }.toTypedArray())
             intent.putExtra("CORRECT_ANSWER", correctAnswer)

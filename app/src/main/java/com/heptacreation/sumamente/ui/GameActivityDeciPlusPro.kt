@@ -949,7 +949,12 @@ class GameActivityDeciPlusPro : BaseActivity()  {
 
         if (isSuccessful) {
             ScoreManager.resetConsecutiveFailuresDeciPlusPro(currentLevel)
-        } else if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
+            if (ScoreManager.isLevelBlockedByFailuresDeciPlusPro(currentLevel + 1)) {
+                ScoreManager.resetConsecutiveFailuresDeciPlusPro(currentLevel + 1)
+            }
+        }
+
+        else if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
             intent.putExtra("NUMBER_LIST", numberList.toDoubleArray())
             intent.putExtra("CORRECT_ANSWER", correctAnswer)
             intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)

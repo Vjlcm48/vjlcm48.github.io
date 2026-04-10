@@ -1044,7 +1044,12 @@ class GameActivitySumaRestaPrincipiante : BaseActivity() {
 
         if (isSuccessful) {
             ScoreManager.resetConsecutiveFailuresSumaRestaPrincipiante(currentLevel)
-        } else if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
+            if (ScoreManager.isLevelBlockedByFailuresSumaRestaPrincipiante(currentLevel + 1)) {
+                ScoreManager.resetConsecutiveFailuresSumaRestaPrincipiante(currentLevel + 1)
+            }
+        }
+
+        else if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
             intent.putExtra("NUMBER_LIST", numberList.toIntArray())
             intent.putExtra("CORRECT_ANSWER", correctAnswer)
             intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)

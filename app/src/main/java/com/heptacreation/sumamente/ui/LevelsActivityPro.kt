@@ -98,6 +98,11 @@ class LevelsActivityPro : BaseActivity()  {
     override fun onResume() {
         super.onResume()
         ScoreManager.initPro(this)
+        val maxCompleted = ScoreManager.getMaxLevelForCombo("NumerosPlus", "Pro")
+        if (maxCompleted >= ScoreManager.unlockedLevelsPro) {
+            ScoreManager.unlockedLevelsPro = maxCompleted + 1
+            ScoreManager.saveScorePro()
+        }
         updateLevelButtons()
         setupInfoBar()
     }

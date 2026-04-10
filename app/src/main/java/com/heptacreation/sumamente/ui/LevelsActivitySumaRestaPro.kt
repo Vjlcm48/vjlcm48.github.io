@@ -97,6 +97,13 @@ class LevelsActivitySumaRestaPro : BaseActivity()  {
     override fun onResume() {
         super.onResume()
         ScoreManager.initSumaRestaPro(this)
+
+        val maxCompleted = ScoreManager.getMaxLevelForCombo("SumaResta", "Pro")
+        if (maxCompleted >= ScoreManager.unlockedLevelsSumaRestaPro) {
+            ScoreManager.unlockedLevelsSumaRestaPro = maxCompleted + 1
+            ScoreManager.saveScoreSumaRestaPro()
+        }
+
         updateLevelButtons()
         setupInfoBar()
     }

@@ -217,6 +217,26 @@ class LevelResultActivityFocoPlus : BaseActivity() {
         getScoreManagerFunction("addCompleted").invoke()
         getScoreManagerFunction("resetFailures").invoke()
 
+        val nextLevel = currentLevel + 1
+
+        when (currentDifficulty) {
+            DifficultySelectionActivity.DIFFICULTY_AVANZADO -> {
+                if (ScoreManager.isLevelBlockedByFailuresFocoPlus(nextLevel)) {
+                    ScoreManager.resetConsecutiveFailuresFocoPlus(nextLevel)
+                }
+            }
+            DifficultySelectionActivity.DIFFICULTY_PRINCIPIANTE -> {
+                if (ScoreManager.isLevelBlockedByFailuresFocoPlusPrincipiante(nextLevel)) {
+                    ScoreManager.resetConsecutiveFailuresFocoPlusPrincipiante(nextLevel)
+                }
+            }
+            DifficultySelectionActivity.DIFFICULTY_PRO -> {
+                if (ScoreManager.isLevelBlockedByFailuresFocoPlusPro(nextLevel)) {
+                    ScoreManager.resetConsecutiveFailuresFocoPlusPro(nextLevel)
+                }
+            }
+        }
+
         getScoreManagerFunction("updateStats").invoke()
         updateIqComponent(success = true)
 

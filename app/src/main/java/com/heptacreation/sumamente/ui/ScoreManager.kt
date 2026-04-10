@@ -13,7 +13,6 @@ object ScoreManager {
     private val mapType = object : TypeToken<MutableMap<String, Double>>() {}.type
     private lateinit var appContext: Context
 
-
     lateinit var preferences: SharedPreferences
 
     fun ensurePreferencesInitialized(context: Context) {
@@ -28,7 +27,6 @@ object ScoreManager {
         val myPrefs = appContext.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         return myPrefs.getBoolean(DEMO_FORCE_UNLOCK_KEY, false)
     }
-
 
 
     private const val KEY_TOTAL_GAMES_GLOBAL = "total_games_global"
@@ -476,10 +474,46 @@ object ScoreManager {
         val consecutiveFailuresKey: String,
         val consecutiveFailuresMap: MutableMap<Int, Int>
     ) {
+
+        private val levelScoresStorageKey: String = "${currentScoreKey}_level_scores_json"
+        private var levelScoresLoaded: Boolean = false
         fun saveScore() {
+            saveLevelScores()
             preferences.edit {
                 putInt(currentScoreKey, currentScoreVar())
                 putInt(unlockedLevelsKey, unlockedLevelsVar())
+            }
+        }
+
+        fun loadLevelScoresIfNeeded() {
+            if (levelScoresLoaded) return
+
+            levelScoresMap.clear()
+
+            val json = preferences.getString(levelScoresStorageKey, null)
+            if (!json.isNullOrBlank()) {
+                try {
+                    val restoredMap = gson.fromJson<MutableMap<String, Int>>(
+                        json,
+                        object : TypeToken<MutableMap<String, Int>>() {}.type
+                    ) ?: mutableMapOf()
+
+                    restoredMap.forEach { (level, score) ->
+                        level.toIntOrNull()?.let { safeLevel ->
+                            levelScoresMap[safeLevel] = score
+                        }
+                    }
+                } catch (_: Exception) {
+                }
+            }
+
+            levelScoresLoaded = true
+        }
+
+        private fun saveLevelScores() {
+            val serialized = gson.toJson(levelScoresMap)
+            preferences.edit {
+                putString(levelScoresStorageKey, serialized)
             }
         }
 
@@ -509,10 +543,12 @@ object ScoreManager {
             setCurrentScore(0)
             setUnlockedLevels(2)
             levelScoresMap.clear()
+            levelScoresLoaded = true
             preferences.edit {
                 putInt(currentScoreKey, 0)
                 putInt(unlockedLevelsKey, 2)
                 putStringSet(completedLevelsKey, emptySet())
+                remove(levelScoresStorageKey)
             }
         }
 
@@ -813,6 +849,8 @@ object ScoreManager {
                 }
             }
         }
+
+        manager.loadLevelScoresIfNeeded()
 
         if (isDemoForceUnlockEnabled()) {
             val maxLevels = if (game == Game.FOCO_PLUS) 420 else 70

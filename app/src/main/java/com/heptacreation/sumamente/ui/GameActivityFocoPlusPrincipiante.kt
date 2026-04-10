@@ -1934,8 +1934,8 @@ class GameActivityFocoPlusPrincipiante : BaseActivity() {
             override fun onPreDraw(): Boolean {
                 boardContainer.viewTreeObserver.removeOnPreDrawListener(this)
 
-                val width = boardContainer.width.toFloat()
-                val half = (perExerciseMs)
+                val marginPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8f, resources.displayMetrics)
+                val halfSlot = dualSlot.width.toFloat() / 2f
 
                 dualAnimLeft?.cancel();  dualAnimLeft = null
                 dualAnimRight?.cancel(); dualAnimRight = null
@@ -1963,55 +1963,33 @@ class GameActivityFocoPlusPrincipiante : BaseActivity() {
                     tvRight.translationY =  dp(dualVerticalOffsetDp).toFloat()
                 }
 
-                val leftStart: Float
-                val leftEnd: Float
-                val rightStart: Float
-                val rightEnd: Float
+                val leftEnd  =  (halfSlot - marginPx).coerceAtLeast(0f)
+                val rightEnd = -(halfSlot - marginPx).coerceAtLeast(0f)
 
-                if (indexExercise == 0) {
-                    leftStart = -leftView.width.toFloat()
-                    leftEnd   = (width * 1.00f) - (leftView.width)
-                    rightStart = rightView.width.toFloat()
-                    rightEnd   = (width * -0.05f) - (rightView.width)
-                } else {
-                    leftStart = (width * 0.40f) - (leftView.width)
-                    leftEnd   = (width * 1.00f) - (leftView.width)
-                    rightStart = (width * 0.40f) - (rightView.width)
-                    rightEnd   = (width * -0.05f) - (rightView.width)
-                }
-
-                leftView.translationX = leftStart
-                rightView.translationX = rightStart
+                leftView.translationX  = 0f
+                rightView.translationX = 0f
 
                 val updateListener = ValueAnimator.AnimatorUpdateListener {
                     if (!timersStartedForThisExercise && indexExercise < totalExercises) {
-                        val leftThreshold  = leftView.width * 0.40f
-                        val rightThreshold = rightView.width * 0.40f
-
-                        val leftVisibleEnough  = (leftView.translationX + leftView.width) > leftThreshold
-                        val rightVisibleEnough = rightView.translationX < (boardContainer.width - rightThreshold)
-
-                        if (leftVisibleEnough && rightVisibleEnough) {
-                            timersStartedForThisExercise = true
-                            startExerciseResponseTimer()
-                            if (indexExercise == 0) {
-                                startLevelTimer()
-                                startGlobalVisibleTimer()
-                            }
+                        timersStartedForThisExercise = true
+                        startExerciseResponseTimer()
+                        if (indexExercise == 0) {
+                            startLevelTimer()
+                            startGlobalVisibleTimer()
                         }
                     }
                 }
 
-                dualAnimLeft = ObjectAnimator.ofFloat(leftView, "translationX", leftStart, leftEnd).apply {
-                    duration = half
+                dualAnimLeft = ObjectAnimator.ofFloat(leftView, "translationX", 0f, leftEnd).apply {
+                    duration = perExerciseMs / 2
                     interpolator = AccelerateDecelerateInterpolator()
                     repeatMode = ValueAnimator.REVERSE
                     repeatCount = 1
                     addUpdateListener(updateListener)
                 }
 
-                dualAnimRight = ObjectAnimator.ofFloat(rightView, "translationX", rightStart, rightEnd).apply {
-                    duration = half
+                dualAnimRight = ObjectAnimator.ofFloat(rightView, "translationX", 0f, rightEnd).apply {
+                    duration = perExerciseMs / 2
                     interpolator = AccelerateDecelerateInterpolator()
                     repeatMode = ValueAnimator.REVERSE
                     repeatCount = 1
@@ -2032,40 +2010,33 @@ class GameActivityFocoPlusPrincipiante : BaseActivity() {
             override fun onPreDraw(): Boolean {
                 boardContainer.viewTreeObserver.removeOnPreDrawListener(this)
 
-                val width = boardContainer.width.toFloat()
-                val offset = width * 0.25f
-                val startX = -tvSingle.width.toFloat()
+                val marginPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8f, resources.displayMetrics)
+                val slotWidth = singleSlot.width.toFloat()
+                val textWidth = tvSingle.width.toFloat()
+                val maxShift = ((slotWidth - textWidth) / 2f - marginPx).coerceAtLeast(0f)
 
-                tvSingle.translationX = startX
+                tvSingle.translationX = -maxShift
                 tvSingle.translationY = 0f
                 tvSingle.alpha = 1f
                 tvSingle.visibility = View.VISIBLE
 
-
-                ObjectAnimator.ofFloat(tvSingle, "translationX", startX, offset).apply {
+                ObjectAnimator.ofFloat(tvSingle, "translationX", -maxShift, maxShift).apply {
                     duration = perExerciseMs / 2
                     interpolator = AccelerateDecelerateInterpolator()
                     repeatMode = ValueAnimator.REVERSE
                     repeatCount = 1
-
                     addUpdateListener {
                         if (!timersStartedForThisExercise && indexExercise < totalExercises) {
-
-                            if (tvSingle.translationX + tvSingle.width > 0) {
-                                timersStartedForThisExercise = true
-
-                                startExerciseResponseTimer()
-
-                                if (indexExercise == 0) {
-                                    startLevelTimer()
-                                    startGlobalVisibleTimer()
-                                }
+                            timersStartedForThisExercise = true
+                            startExerciseResponseTimer()
+                            if (indexExercise == 0) {
+                                startLevelTimer()
+                                startGlobalVisibleTimer()
                             }
                         }
                     }
                     start()
                 }
-
                 return true
             }
         })

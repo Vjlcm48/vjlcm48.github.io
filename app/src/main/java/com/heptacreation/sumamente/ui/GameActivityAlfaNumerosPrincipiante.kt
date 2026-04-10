@@ -1185,7 +1185,12 @@ class GameActivityAlfaNumerosPrincipiante : BaseActivity()  {
 
         if (isSuccessful) {
             ScoreManager.resetConsecutiveFailuresAlfaNumerosPrincipiante(currentLevel)
-        } else if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
+            if (ScoreManager.isLevelBlockedByFailuresAlfaNumerosPrincipiante(currentLevel + 1)) {
+                ScoreManager.resetConsecutiveFailuresAlfaNumerosPrincipiante(currentLevel + 1)
+            }
+        }
+
+        else if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
             val elementValuesArray = elementList.map { it.value }.toTypedArray()
             intent.putExtra("ELEMENT_LIST", elementValuesArray)
             intent.putExtra("CORRECT_ANSWER", correctAnswer)

@@ -96,6 +96,11 @@ class LevelsActivityDeciPlus : BaseActivity()  {
     override fun onResume() {
         super.onResume()
         ScoreManager.initDeciPlus(this)
+        val maxCompleted = ScoreManager.getMaxLevelForCombo("DeciPlus", "Avanzado")
+        if (maxCompleted >= ScoreManager.unlockedLevelsDeciPlus) {
+            ScoreManager.unlockedLevelsDeciPlus = maxCompleted + 1
+            ScoreManager.saveScoreDeciPlus()
+        }
         updateLevelButtons()
         setupInfoBar()
     }

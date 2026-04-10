@@ -1201,7 +1201,12 @@ class GameActivityGenioPlusPrincipiante : BaseActivity() {
         if (isSuccessful) {
             // Si el jugador gana, reiniciamos el contador de fallos
             ScoreManager.resetConsecutiveFailuresGenioPlusPrincipiante(currentLevel)
-        } else {
+            if (ScoreManager.isLevelBlockedByFailuresGenioPlusPrincipiante(currentLevel + 1)) {
+                ScoreManager.resetConsecutiveFailuresGenioPlusPrincipiante(currentLevel + 1)
+            }
+        }
+
+        else {
             // Si el jugador falla, aplicamos la lógica que ya tenías
             if (userResponses.isEmpty()) {
                 userResponses.add(-1)

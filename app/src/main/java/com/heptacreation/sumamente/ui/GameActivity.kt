@@ -1074,6 +1074,9 @@ class GameActivity : BaseActivity()  {
 
         if (isSuccessful) {
             ScoreManager.resetConsecutiveFailures(currentLevel)
+            if (ScoreManager.isLevelBlockedByFailures(currentLevel + 1)) {
+                ScoreManager.resetConsecutiveFailures(currentLevel + 1)
+            }
         }
         else if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
             intent.putExtra("NUMBER_LIST", numberList.toIntArray())

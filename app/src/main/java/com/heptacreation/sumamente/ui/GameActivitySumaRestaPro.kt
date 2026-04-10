@@ -1051,7 +1051,12 @@ class GameActivitySumaRestaPro : BaseActivity() {
 
         if (isSuccessful) {
             ScoreManager.resetConsecutiveFailuresSumaRestaPro(currentLevel)
-        } else if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
+            if (ScoreManager.isLevelBlockedByFailuresSumaRestaPro(currentLevel + 1)) {
+                ScoreManager.resetConsecutiveFailuresSumaRestaPro(currentLevel + 1)
+            }
+        }
+
+        else if (attempts >= 2 || (pistaActivada && attempts >= 1)) {
             intent.putExtra("NUMBER_LIST", numberList.toIntArray())
             intent.putExtra("CORRECT_ANSWER", correctAnswer)
             intent.putExtra("EXCLUDED_INDEX", excludedIndex ?: -1)

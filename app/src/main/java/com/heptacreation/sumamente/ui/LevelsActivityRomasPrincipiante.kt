@@ -94,6 +94,13 @@ class LevelsActivityRomasPrincipiante : BaseActivity()  {
     override fun onResume() {
         super.onResume()
         ScoreManager.initRomasPrincipiante(this)
+
+        val maxCompleted = ScoreManager.getMaxLevelForCombo("Romas", "Principiante")
+        if (maxCompleted >= ScoreManager.unlockedLevelsRomasPrincipiante) {
+            ScoreManager.unlockedLevelsRomasPrincipiante = maxCompleted + 1
+            ScoreManager.saveScoreRomasPrincipiante()
+        }
+
         updateLevelButtons()
         setupInfoBar()
     }
