@@ -1746,5 +1746,6 @@ Disciple optimal ! Votre effort et votre constance vous ont mené à la septièm
     <string name="instruction_game_decimals_14">Activez votre esprit décimal ! 🔢\nObservez les 14 exercices avec des nombres décimaux qui bougent sur le tableau et résolvez-les mentalement.\nLes valeurs sont simples, mais la vitesse est votre véritable défi 🎯 !\nAppuyez sur le bouton avec votre réponse ou choisissez AUCUN s\'il n\'y a pas de correspondance.\nVous avez droit jusqu\'à 4 erreurs. 🧮🔥 Prouvez votre précision !</string>
     <string name="instruction_game_terms_28_avanzado">Préparez-vous pour le défi mathématique ! 🧮🔥\nRésolvez mentalement les 28 exercices qui apparaissent au tableau.\nSi vous trouvez votre résultat sur les boutons, appuyez dessus immédiatement. 🎯\nSi aucune option ne correspond, choisissez AUCUN sans hésiter.\nVous avez un maximum de 8 erreurs. Gardez votre concentration au maximum ! 💪</string>
 
+    <string name="ya_eres_premium_disfruta">Vous êtes maintenant Premium ! Continuez à profiter de SumaMente 🎉</string>
 
 </resources>

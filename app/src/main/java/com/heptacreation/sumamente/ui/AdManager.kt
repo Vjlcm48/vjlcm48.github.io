@@ -229,7 +229,6 @@ object AdManager {
         return context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
             .getBoolean("isPremium", false)
     }
-
     private fun getChicagoDateString(): String {
         val cal = Calendar.getInstance(TimeZone.getTimeZone("America/Chicago"))
         return "${cal.get(Calendar.YEAR)}-${cal.get(Calendar.MONTH)}-${cal.get(Calendar.DAY_OF_MONTH)}"

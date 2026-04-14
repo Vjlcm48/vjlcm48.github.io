@@ -90,6 +90,13 @@ class EmbajadorActivity : BaseActivity() {
         tvTitle = findViewById(R.id.tv_title)
 
         referidosValidados = sharedPreferences.getInt("referidos_validados", 0)
+
+        val isPremium = getSharedPreferences("MyPrefs", MODE_PRIVATE).getBoolean("isPremium", false)
+        if (isPremium) {
+            btnCanjear.visibility = View.GONE
+            btnCompartir.visibility = View.GONE
+        }
+
         android.util.Log.d("Embajador", "Inicializar: referidos_validados=$referidosValidados")
     }
 

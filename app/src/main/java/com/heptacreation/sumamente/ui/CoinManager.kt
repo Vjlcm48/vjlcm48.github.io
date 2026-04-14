@@ -11,7 +11,6 @@ import java.util.TimeZone
 object CoinManager {
 
     private const val PREFS_COINS = "MyPrefs"
-    private const val PREFS_APP   = "AppPrefs"
 
     private const val KEY_BALANCE              = "coins_balance"
     private const val KEY_FIRST_PURCHASE_USED  = "coins_first_purchase_used"
@@ -44,7 +43,7 @@ object CoinManager {
         !prefs(context).getBoolean(KEY_FIRST_PURCHASE_USED, false)
 
     fun isPremium(context: Context): Boolean =
-        context.getSharedPreferences(PREFS_APP, Context.MODE_PRIVATE)
+        context.getSharedPreferences(PREFS_COINS, Context.MODE_PRIVATE)
             .getBoolean("isPremium", false)
 
     fun coinsAfterPurchase(context: Context, pack: CoinPack): Int {

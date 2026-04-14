@@ -24,6 +24,7 @@ import java.util.Locale
 import kotlin.math.ceil
 import kotlin.math.max
 import kotlin.math.roundToInt
+import com.google.android.gms.ads.AdView
 
 class LevelResultActivityFocoPlus : BaseActivity() {
 
@@ -63,6 +64,7 @@ class LevelResultActivityFocoPlus : BaseActivity() {
     private var correctAnswers: Array<String>? = null
     private var subtype: Int = 1
     private var usedHint: Boolean = false
+    private lateinit var adView: AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -131,6 +133,11 @@ class LevelResultActivityFocoPlus : BaseActivity() {
         currentScoreTextView = findViewById(R.id.currentScoreTextView)
         starImageView = findViewById(R.id.starImageView)
         reviewExerciseTextView = findViewById(R.id.review_exercise_textview)
+
+        adView = findViewById(R.id.adView)
+        AdManager.initialize(this)
+        AdManager.loadBanner(this, adView)
+
     }
 
     private fun setupUI() {

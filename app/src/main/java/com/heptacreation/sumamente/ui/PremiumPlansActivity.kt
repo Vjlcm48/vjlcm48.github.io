@@ -49,6 +49,23 @@ class PremiumPlansActivity : BaseActivity() {
 
         setContentView(R.layout.activity_premium_plans)
 
+        val isPremium = getSharedPreferences("MyPrefs", MODE_PRIVATE).getBoolean("isPremium", false)
+        if (isPremium) {
+            findViewById<TextView>(R.id.tv_subtitle).text = getString(R.string.ya_eres_premium_disfruta)
+            findViewById<View>(R.id.card_monthly).isClickable = false
+            findViewById<View>(R.id.card_quarterly).isClickable = false
+            findViewById<View>(R.id.card_semi).isClickable = false
+            findViewById<View>(R.id.card_lifetime).isClickable = false
+            findViewById<TextView>(R.id.btn_continue_monthly).isClickable = false
+            findViewById<TextView>(R.id.btn_continue_quarterly).isClickable = false
+            findViewById<TextView>(R.id.btn_continue_semi).isClickable = false
+            findViewById<TextView>(R.id.btn_continue_lifetime).isClickable = false
+            findViewById<TextView>(R.id.btn_continue_monthly).alpha = 0.4f
+            findViewById<TextView>(R.id.btn_continue_quarterly).alpha = 0.4f
+            findViewById<TextView>(R.id.btn_continue_semi).alpha = 0.4f
+            findViewById<TextView>(R.id.btn_continue_lifetime).alpha = 0.4f
+        }
+
 
         billingClient = BillingClient.newBuilder(this)
             .enablePendingPurchases(
@@ -219,7 +236,7 @@ class PremiumPlansActivity : BaseActivity() {
     private fun handlePurchase(purchase: Purchase) {
         if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
 
-            getSharedPreferences("AppPrefs", MODE_PRIVATE)
+            getSharedPreferences("MyPrefs", MODE_PRIVATE)
                 .edit { putBoolean("isPremium", true) }
 
 
